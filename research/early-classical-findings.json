@@ -1,0 +1,108 @@
+{
+  "reviewedOn": "2026-09-16",
+  "decision": "Add the documented reverse of the existing early-classical specimen; preserve the existing obverse, family date and all prior image records.",
+  "parentRecord": "https://www.clevelandart.org/art/1920.267",
+  "obverseRecord": "https://www.clevelandart.org/art/1920.267.a",
+  "reverseRecord": "https://www.clevelandart.org/art/1920.267.b",
+  "museumOpenAccessPolicy": "https://www.clevelandart.org/open-access",
+  "commonsRecord": "https://commons.wikimedia.org/wiki/File:Greece,_5th_century_BC_-_Athenian_Tetradrachm-_Owl_(reverse)_-_1920.267.b_-_Cleveland_Museum_of_Art.tif",
+  "evidenceMethod": "Read the public museum object pages and their artworkData metadata. Both side records have record_type=part and cover_accession_number=1920.267. The parent record names both faces. This is an accession-level match, not a stylistic guess.",
+  "museumMetadata": {
+    "obverse": {
+      "id": 101483,
+      "accession_number": "1920.267.a",
+      "title": "Tetradrachm: Head of Athena (obverse)",
+      "creation_date": "480–449 BCE",
+      "cover_accession_number": "1920.267",
+      "record_type": "part",
+      "share_license_status": "CC0",
+      "creditline": "Gift of Harold W. Parsons",
+      "images": {
+        "annotation": null,
+        "web": {
+          "url": "https://openaccess-cdn.clevelandart.org/1920.267.a/1920.267.a_web.jpg",
+          "width": "908",
+          "height": "893",
+          "filesize": "593660",
+          "filename": "1920.267.a_web.jpg"
+        },
+        "print": {
+          "url": "https://openaccess-cdn.clevelandart.org/1920.267.a/1920.267.a_print.jpg",
+          "width": "2318",
+          "height": "2280",
+          "filesize": "4217297",
+          "filename": "1920.267.a_print.jpg"
+        },
+        "full": {
+          "url": "https://openaccess-cdn.clevelandart.org/1920.267.a/1920.267.a_full.tif",
+          "width": "2318",
+          "height": "2280",
+          "filesize": "15876328",
+          "filename": "1920.267.a_full.tif"
+        }
+      }
+    },
+    "reverse": {
+      "id": 101484,
+      "accession_number": "1920.267.b",
+      "title": "Tetradrachm: Owl, Crescent Moon, Olive Branch (reverse)",
+      "creation_date": "480–449 BCE",
+      "cover_accession_number": "1920.267",
+      "record_type": "part",
+      "share_license_status": "CC0",
+      "creditline": "Gift of Harold W. Parsons",
+      "images": {
+        "annotation": null,
+        "web": {
+          "url": "https://openaccess-cdn.clevelandart.org/1920.267.b/1920.267.b_web.jpg",
+          "width": "934",
+          "height": "893",
+          "filesize": "605996",
+          "filename": "1920.267.b_web.jpg"
+        },
+        "print": {
+          "url": "https://openaccess-cdn.clevelandart.org/1920.267.b/1920.267.b_print.jpg",
+          "width": "2384",
+          "height": "2280",
+          "filesize": "4385551",
+          "filename": "1920.267.b_print.jpg"
+        },
+        "full": {
+          "url": "https://openaccess-cdn.clevelandart.org/1920.267.b/1920.267.b_full.tif",
+          "width": "2384",
+          "height": "2280",
+          "filesize": "16327768",
+          "filename": "1920.267.b_full.tif"
+        }
+      }
+    }
+  },
+  "imageRecord": {
+    "id": "early-owl",
+    "title": "Early classical owl · Cleveland 1920.267.b",
+    "url": "https://openaccess-cdn.clevelandart.org/1920.267.b/1920.267.b_print.jpg",
+    "displayUrl": "https://openaccess-cdn.clevelandart.org/1920.267.b/1920.267.b_web.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Greece,_5th_century_BC_-_Athenian_Tetradrachm-_Owl_(reverse)_-_1920.267.b_-_Cleveland_Museum_of_Art.tif",
+    "credit": "Cleveland Museum of Art · Gift of Harold W. Parsons",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "width": 2384,
+    "height": 2280,
+    "alt": "The owl reverse of Cleveland 1920.267, with an olive sprig, crescent moon and ΑΘΕ inside a recessed square.",
+    "objectUrl": "https://www.clevelandart.org/art/1920.267.b",
+    "date": "Museum range: 480–449 BCE",
+    "note": "The matching reverse of obverse 1920.267.a. Cleveland explicitly groups both faces under accession 1920.267 (17.237 g; 24 mm). The current museum date is retained instead of the older Commons import’s broader label. The viewer uses the museum’s 2,384 × 2,280 JPEG; the TIFF master is available from the linked photograph record.",
+    "crop": "none",
+    "changes": "Museum-supplied 750 × 717 JPEG for page loading; museum-supplied 2,384 × 2,280 JPEG in the viewer. Full source frame, with no additional crop, retouching, upscaling or AI enhancement."
+  },
+  "deliveryNotes": [
+    "Museum CDN and Piction originals both decoded in Chromium at 2384 × 2280. Simple Python HEAD requests returned 403, so delivery is validated in a real browser rather than inferred from HEAD.",
+    "The page uses the museum-supplied web JPEG; the viewer keeps the full-resolution print JPEG. No image bytes are bundled or transformed locally.",
+    "The original TIFF is also available through the museum and Commons records.",
+    "The legacy museum metadata lists the web JPEG as 934 × 893; the live URL decodes at 750 × 717. The displayed modification note uses the measured dimensions. The print JPEG matches its 2384 × 2280 metadata."
+  ],
+  "limitations": [
+    "Museum attribution and catalogue dating are preserved, not independently reattributed.",
+    "This CC0 addition does not change the six unrelated BnF reuse-review flags."
+  ]
+}

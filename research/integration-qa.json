@@ -1,6 +1,6 @@
 {
   "result": "pass",
-  "checks": 85,
+  "checks": 91,
   "items": [
     "bnf-pi-iii-1475: preserved accession",
     "bnf-pi-iii-1475: preserved objectUrl",
@@ -81,16 +81,22 @@
     "bnf-pi-ii-1469/reverse: reuse policy retained",
     "bnf-pi-ii-1469/reverse: download status not overstated",
     "Every main family now has an obverse reference",
+    "Early-classical pair uses the researched photographs",
+    "Early classical/obverse: museum confirms the same parent accession",
+    "Early classical/obverse: museum CC0 designation preserved",
+    "Early classical/reverse: museum confirms the same parent accession",
+    "Early classical/reverse: museum CC0 designation preserved",
+    "Early-classical reverse matches documented source and delivery records",
     "pi: both formerly missing sides integrated",
     "late-old: both formerly missing sides integrated",
-    "Six additions, 16 total image records",
+    "Original 16 images plus the documented early-classical reverse",
     "28 source records",
     "Three BnF specimen records",
     "Low-resolution heterogeneous preview not substituted"
   ],
   "limitations": [
     "Checks preserve the preceding research manifest; no new independent numismatic attribution is claimed.",
-    "No remote photograph bytes were obtained or reverified in this environment.",
+    "This local data test does not verify remote photograph delivery; see the separate hosted-browser report.",
     "Six BnF image reuse statuses remain review-pending."
   ]
 }

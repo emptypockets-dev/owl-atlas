@@ -62,7 +62,7 @@ for anchor in ['origins', 'first-owls', 'classical', '404', 'after-athens', 'new
     check(f'id="{anchor}"' in html, f'Preserved chapter anchor: {anchor}')
 check(data['edition'] == 'Research edition 03', 'Data edition updated')
 check(len(data['sources']) == 28, 'All 28 source records retained')
-check(len(data['images']) == 16, 'All 16 image records retained')
+check(len(data['images']) == 17, 'Original 16 image records retained plus the researched early-classical reverse')
 check(len(data['specimens']) == 3, 'All three BnF specimens retained')
 check(sum(i.get('reuseStatus') == 'review-pending' for i in data['images'].values()) == 6,
       'All six BnF reuse caveats retained')

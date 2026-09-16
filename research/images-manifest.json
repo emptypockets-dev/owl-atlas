@@ -121,9 +121,27 @@
     "alt": "Athena’s helmeted head on an early classical Athenian silver tetradrachm.",
     "objectUrl": "https://www.clevelandart.org/art/1920.267",
     "date": "Museum range: 480–449 BCE",
-    "note": "The museum’s current range is followed; the older Commons import has different compact metadata.",
+    "note": "The museum’s current range is followed; the older Commons import has different compact metadata. Its matching reverse is Cleveland 1920.267.b; both are catalogued as parts of the same coin, 1920.267.",
     "crop": "none",
     "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image."
+  },
+  {
+    "id": "early-owl",
+    "title": "Early classical owl · Cleveland 1920.267.b",
+    "url": "https://openaccess-cdn.clevelandart.org/1920.267.b/1920.267.b_print.jpg",
+    "displayUrl": "https://openaccess-cdn.clevelandart.org/1920.267.b/1920.267.b_web.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Greece,_5th_century_BC_-_Athenian_Tetradrachm-_Owl_(reverse)_-_1920.267.b_-_Cleveland_Museum_of_Art.tif",
+    "credit": "Cleveland Museum of Art · Gift of Harold W. Parsons",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "width": 2384,
+    "height": 2280,
+    "alt": "The owl reverse of Cleveland 1920.267, with an olive sprig, crescent moon and ΑΘΕ inside a recessed square.",
+    "objectUrl": "https://www.clevelandart.org/art/1920.267.b",
+    "date": "Museum range: 480–449 BCE",
+    "note": "The matching reverse of obverse 1920.267.a. Cleveland explicitly groups both faces under accession 1920.267 (17.237 g; 24 mm). The current museum date is retained instead of the older Commons import’s broader label. The viewer uses the museum’s 2,384 × 2,280 JPEG; the TIFF master is available from the linked photograph record.",
+    "crop": "none",
+    "changes": "Museum-supplied 750 × 717 JPEG for page loading; museum-supplied 2,384 × 2,280 JPEG in the viewer. Full source frame, with no additional crop, retouching, upscaling or AI enhancement."
   },
   {
     "id": "new-owl",

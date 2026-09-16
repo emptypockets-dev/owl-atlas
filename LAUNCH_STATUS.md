@@ -5,7 +5,7 @@ The existing research edition is deployed to the verified personal Vercel accoun
 authenticated Vercel access while the six BnF image reuse decisions are unresolved.
 The account's existing Pro plan was retained; no plan upgrade or paid add-on was added.
 
-- Current preview: https://owl-atlas-npok0gpz1-emptypocketsdevs-projects.vercel.app/#family-tree
+- Current preview: https://owl-atlas-h22pnex9w-emptypocketsdevs-projects.vercel.app/#family-early-classical
 - Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
 - Public source repository: https://github.com/emptypockets-dev/owl-atlas
 
@@ -23,7 +23,7 @@ including the stable `owl-atlas.vercel.app` address, are protected. Vercel assig
 its first deployment to production despite an explicit preview target; all URLs
 were then protected immediately, and a separate preview was created. The stable
 address currently retains that initial build; use the current preview above for
-the corrected Met dimension metadata and paired family-tree photographs.
+the corrected Met dimension metadata and complete pairs of family-tree photographs.
 
 ## Deployment configuration
 
@@ -67,32 +67,42 @@ settings and credentials are ignored by Git.
 - At the owner's request, family-tree cards now show labeled obverse and reverse
   photographs side by side, including on mobile. Existing side-specific crops,
   credits, rights notes and full original-image viewer links are preserved.
-  The early-classical reverse remains an explicit photograph gap.
+  A subsequent source check located the exact early-classical reverse,
+  Cleveland 1920.267.b, matching the existing 1920.267.a obverse. Both museum
+  records explicitly belong to accession 1920.267 and carry a CC0 designation.
+  The gap is now filled in the family tree and comparison controls; see
+  `research/early-classical-findings.json` for the accession and rights evidence.
+- Added the museum's full-resolution 2,384 × 2,280 reverse JPEG for the viewer,
+  with its smaller web JPEG (measured at 750 × 717) used on the page. These are
+  museum-supplied files; no local image transformation or archiving was performed.
 - Added a direct `#family-tree` link. Cards use two columns on desktop and one
   on narrow screens, keeping each coin's two faces together.
 
 The existing design and interactions are preserved. `src/app.js` still matches
 the original package checksum; the page, styles and renderer now include the
-requested family-tree update. The 28 sources, 16 image records, three BnF
-specimens, six reuse-review flags, dates, attributions and image URLs remain.
+requested family-tree update. The 28 sources, original 16 image records, three BnF
+specimens, six reuse-review flags, dates, attributions and existing image URLs
+remain. The documented early-classical reverse brings the image total to 17.
 `MANIFEST.sha256` and `research/handoff-validation.json` describe the original
 handoff package, not this later deployment.
 
 ## Verification
 
 - `npm run build:deploy`: passed locally and on Vercel; output is `dist/`.
-- `npm run check`: 849 checks passed.
-- `python3 tests/integration_data.py`: 85 checks passed.
+- `npm run check`: 865 checks passed.
+- `python3 tests/integration_data.py`: 91 checks passed.
 - `python3 tests/editorial_copy.py`: 28 checks passed.
 - Chromium smoke suite: see `research/browser-qa.json` (152 checks; image requests
   intentionally blocked). Playwright was run from an isolated temporary tooling
   environment, with no dependency added to this project.
-- Current family-tree HTTPS preview: 234 checks passed; see
-  `research/family-faces-qa.json`. All 15 available face displays loaded real
+- Current family-tree HTTPS preview: see `research/family-faces-qa.json` for
+  the latest check count and URL. All 16 family-face displays loaded real
   photographs. At 320, 390, 768, 1024 and 1440 pixels, each pair stayed side by
-  side with correct crops and no horizontal page overflow. All 15 viewer links
+  side with correct crops and no horizontal page overflow. All 16 viewer links
   opened the exact original and returned focus on Escape at 390 pixels. Both
-  face slots remained available without JavaScript. Hosted HTML exactly matched
+  face slots remained available without JavaScript. The matching early-classical
+  reverse also loaded at full resolution in the viewer, linked its exact museum
+  record, and appeared correctly in the comparison controls. Hosted HTML exactly matched
   `dist/index.html`, and the new section link resolved. The hosted desktop and
   mobile photographs were visually inspected.
 - Earlier launch preview: 255 checks passed; see `research/hosted-preview-qa.json`. Every one of the

@@ -47,6 +47,9 @@ uncertainty, provenance and image rights remain attached to the relevant evidenc
 
 Edition 03 is an editorial revision, not a new source audit. All 16 image URLs,
 attributions, rights caveats, 28 source records and three BnF specimens are retained.
+The subsequent launch update adds a seventeenth image: Cleveland 1920.267.b,
+the CC0 reverse of the existing early-classical obverse. Museum records confirm
+both belong to the same coin; see `research/early-classical-findings.json`.
 
 ## The experience
 
@@ -58,7 +61,7 @@ attributions, rights caveats, 28 source records and three BnF specimens are reta
   Pi II/Pi III specimen selectors, and story links preset meaningful comparisons.
 - A native-dialog image viewer with source/rights metadata, fitted-size zoom,
   keyboard controls, drag and pinch handlers, and original-image links.
-- Inline source dialogs, 28 bibliography records, author/topic filtering, 16
+- Inline source dialogs, 28 bibliography records, author/topic filtering, 17
   image records, three structured BnF specimen records, a glossary and a visible
   editorial coverage register.
 

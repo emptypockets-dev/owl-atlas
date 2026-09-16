@@ -35,9 +35,11 @@ for public reuse. Do not silently clear flags to make a build succeed.
 
 - Address people interested in the coins generally; no references to an owner's
   purchase, slab or label. Catalogue-reading help is optional and collapsed.
-- Preserve the 28 source records, 16 image records, three BnF specimen records,
+- Preserve the 28 source records, 17 image records, three BnF specimen records,
   primary-source links, qualifications and visible coverage gaps unless a
   documented editorial correction warrants a change.
+  The seventeenth image is the documented matching early-classical reverse;
+  see `research/early-classical-findings.json` for the museum accession evidence.
 - Museum catalogue dates and atlas period dates are distinct. Never make an
   approximate or debated chronology look exact for a cleaner animation.
 - Keep Pi II, Pi III and quadridigite attribution linked to the exact museum

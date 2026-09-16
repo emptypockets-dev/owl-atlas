@@ -36,18 +36,26 @@ for source in research['specimens']:
         check(not image['localOriginalDownloaded'], f'{source["id"]}/{side}: download status not overstated')
 
 check(all(family['obverse'] for family in data['families']), 'Every main family now has an obverse reference')
-# The early-classical entry only had an obverse in edition 01; do not invent its reverse.
+# The early-classical reverse is now sourced to the existing specimen, not a substitute.
+early = json.loads((ROOT / 'research/early-classical-findings.json').read_text())
+family = next(item for item in data['families'] if item['id'] == 'early-classical')
+check(family['obverse'] == 'early-athena' and family['reverse'] == 'early-owl', 'Early-classical pair uses the researched photographs')
+for side in ['obverse', 'reverse']:
+    metadata = early['museumMetadata'][side]
+    check(metadata['cover_accession_number'] == '1920.267', f'Early classical/{side}: museum confirms the same parent accession')
+    check(metadata['share_license_status'] == 'CC0', f'Early classical/{side}: museum CC0 designation preserved')
+check(data['images']['early-owl'] == early['imageRecord'], 'Early-classical reverse matches documented source and delivery records')
 for fid in ['pi','late-old']:
     family = next(item for item in data['families'] if item['id'] == fid)
     check(bool(family['obverse'] and family['reverse']), f'{fid}: both formerly missing sides integrated')
-check(len(data['images']) == 16, 'Six additions, 16 total image records')
+check(len(data['images']) == 17, 'Original 16 images plus the documented early-classical reverse')
 check(len(data['sources']) == 28, '28 source records')
 check(len(data['specimens']) == 3, 'Three BnF specimen records')
 check(not any(i['url'] == research['additional_catalogue_lead']['image_url'] for i in data['images'].values()), 'Low-resolution heterogeneous preview not substituted')
 
 report = {'result':'pass', 'checks':len(checks), 'items':checks,
           'limitations':['Checks preserve the preceding research manifest; no new independent numismatic attribution is claimed.',
-                         'No remote photograph bytes were obtained or reverified in this environment.',
+                         'This local data test does not verify remote photograph delivery; see the separate hosted-browser report.',
                          'Six BnF image reuse statuses remain review-pending.']}
 (ROOT/'research/integration-qa.json').write_text(json.dumps(report,indent=2,ensure_ascii=False)+'\n')
 print(f'PASS: {len(checks)} research-manifest consistency checks.')

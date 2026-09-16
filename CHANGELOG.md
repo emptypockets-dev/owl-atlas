@@ -1,3 +1,16 @@
+# Matching early-classical reverse — 16 September 2026
+
+- Locate Cleveland 1920.267.b, the CC0 reverse of the existing obverse 1920.267.a.
+  Both museum records explicitly belong to parent accession 1920.267, dated
+  480–449 BCE. Record the evidence in `research/early-classical-findings.json`.
+- Fill the early-classical reverse in the family tree and comparison atlas,
+  preserving the existing obverse. Use the museum's web JPEG on the page and
+  full-resolution JPEG in the viewer; retain attribution and original-file links.
+- Preserve all previous records and the six BnF review flags. There are now
+  17 image records, with all eight family-tree entries illustrated on both sides.
+
+---
+
 # Paired family-tree photographs — 16 September 2026
 
 - Show labeled obverse and reverse faces together on every family card, with

@@ -1,7 +1,7 @@
 {
   "result": "pass",
-  "url": "https://owl-atlas-npok0gpz1-emptypocketsdevs-projects.vercel.app",
-  "checks": 234,
+  "url": "https://owl-atlas-h22pnex9w-emptypocketsdevs-projects.vercel.app",
+  "checks": 242,
   "items": [
     {
       "label": "Hosted preview returns HTTP 200 with authorized access",
@@ -48,7 +48,7 @@
       "pass": true
     },
     {
-      "label": "early-classical: missing reverse stated at 1440px",
+      "label": "early-classical/reverse: correct side crop at 1440px",
       "pass": true
     },
     {
@@ -208,7 +208,7 @@
       "pass": true
     },
     {
-      "label": "early-classical: missing reverse stated at 1024px",
+      "label": "early-classical/reverse: correct side crop at 1024px",
       "pass": true
     },
     {
@@ -368,7 +368,7 @@
       "pass": true
     },
     {
-      "label": "early-classical: missing reverse stated at 768px",
+      "label": "early-classical/reverse: correct side crop at 768px",
       "pass": true
     },
     {
@@ -552,7 +552,27 @@
       "pass": true
     },
     {
-      "label": "early-classical: missing reverse stated at 390px",
+      "label": "early-classical/reverse: correct side crop at 390px",
+      "pass": true
+    },
+    {
+      "label": "early-classical/reverse: opens exact original",
+      "pass": true
+    },
+    {
+      "label": "Matching reverse: viewer loads full 2384 by 2280 JPEG",
+      "pass": true
+    },
+    {
+      "label": "Matching reverse: page loads smaller museum-supplied JPEG",
+      "pass": true
+    },
+    {
+      "label": "Matching reverse: viewer links exact museum side record",
+      "pass": true
+    },
+    {
+      "label": "early-classical/reverse: viewer returns focus",
       "pass": true
     },
     {
@@ -808,7 +828,7 @@
       "pass": true
     },
     {
-      "label": "early-classical: missing reverse stated at 320px",
+      "label": "early-classical/reverse: correct side crop at 320px",
       "pass": true
     },
     {
@@ -936,12 +956,24 @@
       "pass": true
     },
     {
+      "label": "Early-classical comparison: verified obverse loads",
+      "pass": true
+    },
+    {
+      "label": "Early-classical comparison: verified reverse loads",
+      "pass": true
+    },
+    {
       "label": "Both face slots available without JavaScript",
+      "pass": true
+    },
+    {
+      "label": "Matching early-classical faces available without JavaScript",
       "pass": true
     }
   ],
   "notes": [
-    "15 face photographs and one documented missing reverse; source image records unchanged.",
+    "All 16 family-face displays load photographs; the new early-classical reverse matches the existing obverse accession.",
     "Five viewport widths; actual external photographs loaded.",
     "Chromium only; not a screen-reader or real-device touch audit."
   ]

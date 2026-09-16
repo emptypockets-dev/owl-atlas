@@ -9,7 +9,13 @@ any material. The website's software license does not cover these photographs.
 **Cleveland Museum of Art / CC0 1.0**
 
 - 1941.296.a and 1941.296.b, obverse/reverse. Gift of Dr. Jacob Hirsch.
-- 1920.267.a, early classical obverse. Gift of Harold W. Parsons.
+- 1920.267.a and 1920.267.b, early classical obverse/reverse of the same coin
+  (parent accession 1920.267). Gift of Harold W. Parsons. The museum's public
+  records explicitly link both faces and designate them CC0.
+- The early-classical reverse uses the museum's 750 × 717 web JPEG for page
+  loading and its 2,384 × 2,280 print JPEG in the viewer. These museum-supplied
+  files show the full source frame. The TIFF master remains available through
+  the linked museum and Commons records. No local transformation was made.
 - The Athena image from 1941.296.a uses a browser-compatible JPEG derivative of
   a TIFF source; it is not an invented or AI-enhanced version.
 
