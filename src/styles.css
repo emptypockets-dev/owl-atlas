@@ -1771,7 +1771,7 @@ img {
 
 .family-grid {
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(2,minmax(0,1fr));
   border-top:1px solid var(--line);
   border-left:1px solid var(--line)
 }
@@ -1799,6 +1799,34 @@ img {
 
 .family-card .image-surface {
   aspect-ratio:1
+}
+
+.family-faces {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px
+}
+
+.family-face {
+  min-width:0
+}
+
+.family-face-label {
+  font-size:10px;
+  margin-bottom:10px
+}
+
+.family-face .photo-gap {
+  padding:10px
+}
+
+.family-face .photo-gap .gap-glyph {
+  font-size:32px
+}
+
+.family-face .photo-gap .eyebrow,
+.family-face .photo-gap .micro-copy {
+  margin-top:6px
 }
 
 .family-card .image-credit {
@@ -3250,7 +3278,11 @@ dialog::backdrop {
     font-size:10px
   }
   .family-grid {
-    gap:0
+    gap:0;
+    grid-template-columns:1fr
+  }
+  .family-faces {
+    gap:12px
   }
   .family-card {
     padding:15px

@@ -1,7 +1,7 @@
 import {readFile, writeFile, mkdir, access} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup, photoGapMarkup} from './src/render.mjs';
+import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup, familyFacesMarkup} from './src/render.mjs';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const read = (relative) => readFile(path.join(root, relative), 'utf8');
@@ -19,7 +19,7 @@ if (useLocalImages) {
 }
 
 function familyCard(family, index) {
-  const image = family.image ? photoMarkup(family.image, data, 'family-photo') : photoGapMarkup(family);
+  const image = familyFacesMarkup(family, data);
   return `<article class="family-card" id="family-${escapeHtml(family.id)}"><div class="family-number"><span>${String(index + 1).padStart(2,'0')}</span><span>${family.id === 'egypt' ? 'REGIONAL BRANCH' : 'ATHENS'}</span></div>${image}<h4>${escapeHtml(family.name)}</h4><p class="date">${escapeHtml(family.date)}</p><p>${escapeHtml(family.feature)} ${sourceRefs(family.refs,data)}</p><p class="status">${escapeHtml(family.status)}</p><details><summary>Attribution & dating notes</summary><p>${escapeHtml(family.detail)}</p></details></article>`;
 }
 function sourceEntry(source, index) {

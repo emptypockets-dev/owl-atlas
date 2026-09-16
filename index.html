@@ -1783,7 +1783,7 @@ img {
 
 .family-grid {
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(2,minmax(0,1fr));
   border-top:1px solid var(--line);
   border-left:1px solid var(--line)
 }
@@ -1811,6 +1811,34 @@ img {
 
 .family-card .image-surface {
   aspect-ratio:1
+}
+
+.family-faces {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px
+}
+
+.family-face {
+  min-width:0
+}
+
+.family-face-label {
+  font-size:10px;
+  margin-bottom:10px
+}
+
+.family-face .photo-gap {
+  padding:10px
+}
+
+.family-face .photo-gap .gap-glyph {
+  font-size:32px
+}
+
+.family-face .photo-gap .eyebrow,
+.family-face .photo-gap .micro-copy {
+  margin-top:6px
 }
 
 .family-card .image-credit {
@@ -3262,7 +3290,11 @@ dialog::backdrop {
     font-size:10px
   }
   .family-grid {
-    gap:0
+    gap:0;
+    grid-template-columns:1fr
+  }
+  .family-faces {
+    gap:12px
   }
   .family-card {
     padding:15px
@@ -4902,7 +4934,7 @@ html.motion-off .supplement-summary-meta>span { transition:none; }
      Image quality varies by source. The viewer identifies the available pixels and always links to the original record.
     </p>
     <div class="atlas-header">
-     <h3>
+     <h3 id="family-tree">
       The family tree
      </h3>
      <span class="micro-copy">
@@ -4910,7 +4942,16 @@ html.motion-off .supplement-summary-meta>span { transition:none; }
      </span>
     </div>
     <div class="family-grid">
-     <article class="family-card" id="family-archaic"><div class="family-number"><span>01</span><span>ATHENS</span></div><figure class="image-figure family-photo" data-photo="archaic" style="--plate-ratio:0.47201492537313433">
+     <article class="family-card" id="family-archaic"><div class="family-number"><span>01</span><span>ATHENS</span></div><div class="family-faces"><div class="family-face" role="group" aria-label="Obverse of Archaic"><p class="eyebrow family-face-label">Obverse</p><figure class="image-figure family-photo" data-photo="archaic" style="--plate-ratio:0.47201492537313433">
+    <div class="image-surface">
+      <a class="image-trigger" href="https://upload.wikimedia.org/wikipedia/commons/2/23/Greek_Silver_Tetradrachm_of_Athens_%28Attica%29.jpg" target="_blank" rel="noopener noreferrer" data-image="archaic" aria-label="Inspect Archaic Athena &amp; owl · paired plate in the image viewer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/Greek_Silver_Tetradrachm_of_Athens_%28Attica%29.jpg" width="759" height="1608" class="crop-top" alt="Athena, top half of a paired plate. Open to see the complete source photograph. Archaic Athena &amp; owl · paired plate." loading="lazy" decoding="async" >
+        <span class="image-unavailable" aria-hidden="true"><span>Photograph unavailable.<br><span>View source & credits ↗</span></span></span>
+        <span class="expand-label" aria-hidden="true">Look closer <span>↗</span></span>
+      </a>
+    </div>
+    <figcaption class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Greek_Silver_Tetradrachm_of_Athens_(Attica).jpg" target="_blank" rel="noopener noreferrer">Exekias / Wikimedia Commons</a><span class="license-short"><a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener noreferrer">CC BY 2.0</a></span></figcaption>
+  </figure></div><div class="family-face" role="group" aria-label="Reverse of Archaic"><p class="eyebrow family-face-label">Reverse</p><figure class="image-figure family-photo" data-photo="archaic" style="--plate-ratio:0.47201492537313433">
     <div class="image-surface">
       <a class="image-trigger" href="https://upload.wikimedia.org/wikipedia/commons/2/23/Greek_Silver_Tetradrachm_of_Athens_%28Attica%29.jpg" target="_blank" rel="noopener noreferrer" data-image="archaic" aria-label="Inspect Archaic Athena &amp; owl · paired plate in the image viewer">
         <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/Greek_Silver_Tetradrachm_of_Athens_%28Attica%29.jpg" width="759" height="1608" class="crop-bottom" alt="Owl, bottom half of a paired plate. Open to see the complete source photograph. Archaic Athena &amp; owl · paired plate." loading="lazy" decoding="async" >
@@ -4919,8 +4960,8 @@ html.motion-off .supplement-summary-meta>span { transition:none; }
       </a>
     </div>
     <figcaption class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Greek_Silver_Tetradrachm_of_Athens_(Attica).jpg" target="_blank" rel="noopener noreferrer">Exekias / Wikimedia Commons</a><span class="license-short"><a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener noreferrer">CC BY 2.0</a></span></figcaption>
-  </figure><h4>Archaic</h4><p class="date">Late 6th century–c. 480 BCE</p><p>A strikingly frontal eye on a profile face; compact, individually engraved forms. <sup class="citation"><a href="#source-archaic-photo" data-source="archaic-photo" aria-label="Source 17: Greek Silver Tetradrachm of Athens (Attica)">[17]</a> <a href="#source-early-silver" data-source="early-silver" aria-label="Source 06: Tyrants, democrats and the first silver ‘owl’ coins of Athens">[06]</a></sup></p><p class="status">Approximate boundary</p><details><summary>Attribution & dating notes</summary><p>The Athena–owl pairing was already established before the classical mass issues. Early style varies: “archaic” is not a synonym for crude. The exact introduction date remains debated.</p></details></article>
-<article class="family-card" id="family-early-classical"><div class="family-number"><span>02</span><span>ATHENS</span></div><figure class="image-figure family-photo" data-photo="early-athena" style="--plate-ratio:1.0166666666666666">
+  </figure></div></div><h4>Archaic</h4><p class="date">Late 6th century–c. 480 BCE</p><p>A strikingly frontal eye on a profile face; compact, individually engraved forms. <sup class="citation"><a href="#source-archaic-photo" data-source="archaic-photo" aria-label="Source 17: Greek Silver Tetradrachm of Athens (Attica)">[17]</a> <a href="#source-early-silver" data-source="early-silver" aria-label="Source 06: Tyrants, democrats and the first silver ‘owl’ coins of Athens">[06]</a></sup></p><p class="status">Approximate boundary</p><details><summary>Attribution & dating notes</summary><p>The Athena–owl pairing was already established before the classical mass issues. Early style varies: “archaic” is not a synonym for crude. The exact introduction date remains debated.</p></details></article>
+<article class="family-card" id="family-early-classical"><div class="family-number"><span>02</span><span>ATHENS</span></div><div class="family-faces"><div class="family-face" role="group" aria-label="Obverse of Early classical"><p class="eyebrow family-face-label">Obverse</p><figure class="image-figure family-photo" data-photo="early-athena" style="--plate-ratio:1.0166666666666666">
     <div class="image-surface">
       <a class="image-trigger" href="https://upload.wikimedia.org/wikipedia/commons/5/54/Greece%2C_5th_century_BC_-_Athenian_Tetradrachm-_Female_Head_%28obverse%29_-_1920.267.a_-_Cleveland_Museum_of_Art.jpg" target="_blank" rel="noopener noreferrer" data-image="early-athena" aria-label="Inspect Early classical Athena · Cleveland 1920.267.a in the image viewer">
         <img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Greece%2C_5th_century_BC_-_Athenian_Tetradrachm-_Female_Head_%28obverse%29_-_1920.267.a_-_Cleveland_Museum_of_Art.jpg" width="2318" height="2280" class="crop-none" alt="Athena’s helmeted head on an early classical Athenian silver tetradrachm." loading="lazy" decoding="async" >
@@ -4929,8 +4970,17 @@ html.motion-off .supplement-summary-meta>span { transition:none; }
       </a>
     </div>
     <figcaption class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Greece,_5th_century_BC_-_Athenian_Tetradrachm-_Female_Head_(obverse)_-_1920.267.a_-_Cleveland_Museum_of_Art.jpg" target="_blank" rel="noopener noreferrer">Cleveland Museum of Art · Gift of Harold W. Parsons</a><span class="license-short"><a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">CC0 1.0</a></span></figcaption>
-  </figure><h4>Early classical</h4><p class="date">c. 480–450 BCE</p><p>More composed engraving, while the old frontal-eye convention survives. <sup class="citation"><a href="#source-cma-early" data-source="cma-early" aria-label="Source 02: Athenian Tetradrachm, 1920.267">[02]</a></sup></p><p class="status">Broad stylistic grouping</p><details><summary>Attribution & dating notes</summary><p>Sometimes called transitional in the fifth-century sense. This label is not the same as the “transitional” owls of the early fourth century. The illustrated museum example is dated 480–449 BCE.</p></details></article>
-<article class="family-card" id="family-classical"><div class="family-number"><span>03</span><span>ATHENS</span></div><figure class="image-figure family-photo" data-photo="met-owl" style="--plate-ratio:0.925">
+  </figure></div><div class="family-face" role="group" aria-label="Reverse of Early classical"><p class="eyebrow family-face-label">Reverse</p><div class="photo-gap"><span class="gap-glyph" aria-hidden="true">—</span><span class="eyebrow">No reverse photograph in this edition.</span><span class="micro-copy">No substitute coin has been used.</span></div></div></div><h4>Early classical</h4><p class="date">c. 480–450 BCE</p><p>More composed engraving, while the old frontal-eye convention survives. <sup class="citation"><a href="#source-cma-early" data-source="cma-early" aria-label="Source 02: Athenian Tetradrachm, 1920.267">[02]</a></sup></p><p class="status">Broad stylistic grouping</p><details><summary>Attribution & dating notes</summary><p>Sometimes called transitional in the fifth-century sense. This label is not the same as the “transitional” owls of the early fourth century. The illustrated museum example is dated 480–449 BCE.</p></details></article>
+<article class="family-card" id="family-classical"><div class="family-number"><span>03</span><span>ATHENS</span></div><div class="family-faces"><div class="family-face" role="group" aria-label="Obverse of Classical mass issues"><p class="eyebrow family-face-label">Obverse</p><figure class="image-figure family-photo" data-photo="met-athena" style="--plate-ratio:1.1059907834101383">
+    <div class="image-surface">
+      <a class="image-trigger" href="https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702575/main-image" target="_blank" rel="noopener noreferrer" data-image="met-athena" aria-label="Inspect Athena · The Met 2021.40.80 in the image viewer">
+        <img src="https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702575/main-image" width="1200" height="1085" class="crop-none" alt="Athena facing right on a silver tetradrachm in the Met, wearing a decorated helmet." loading="lazy" decoding="async" >
+        <span class="image-unavailable" aria-hidden="true"><span>Photograph unavailable.<br><span>View source & credits ↗</span></span></span>
+        <span class="expand-label" aria-hidden="true">Look closer <span>↗</span></span>
+      </a>
+    </div>
+    <figcaption class="image-credit"><a href="https://www.metmuseum.org/art/collection/search/330160" target="_blank" rel="noopener noreferrer">The Metropolitan Museum of Art · Bequest of Nanette B. Kelekian, 2020</a><span class="license-short"><a href="https://creativecommons.org/publicdomain/mark/1.0/" target="_blank" rel="noopener noreferrer">Public domain</a></span></figcaption>
+  </figure></div><div class="family-face" role="group" aria-label="Reverse of Classical mass issues"><p class="eyebrow family-face-label">Reverse</p><figure class="image-figure family-photo" data-photo="met-owl" style="--plate-ratio:0.925">
     <div class="image-surface">
       <a class="image-trigger" href="https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702577/main-image" target="_blank" rel="noopener noreferrer" data-image="met-owl" aria-label="Inspect Owl · The Met 2021.40.80 in the image viewer">
         <img src="https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702577/main-image" width="1110" height="1200" class="crop-none" alt="The owl reverse of a silver tetradrachm cataloged 440–404 BCE, with ΑΘΕ to the right." loading="lazy" decoding="async" >
@@ -4939,8 +4989,17 @@ html.motion-off .supplement-summary-meta>span { transition:none; }
       </a>
     </div>
     <figcaption class="image-credit"><a href="https://www.metmuseum.org/art/collection/search/330160" target="_blank" rel="noopener noreferrer">The Metropolitan Museum of Art · Bequest of Nanette B. Kelekian, 2020</a><span class="license-short"><a href="https://creativecommons.org/publicdomain/mark/1.0/" target="_blank" rel="noopener noreferrer">Public domain</a></span></figcaption>
-  </figure><h4>Classical mass issues</h4><p class="date">c. 450s–404 BCE</p><p>Athena, olive, crescent, owl and ΑΘΕ in a familiar, compact design. <sup class="citation"><a href="#source-met" data-source="met" aria-label="Source 01: Silver tetradrachm, 2021.40.80">[01]</a> <a href="#source-ngc" data-source="ngc" aria-label="Source 21: NGC Ancients: The Elusive “Full Crest” Owls of Athens">[21]</a></sup></p><p class="status">Mature fifth-century design</p><details><summary>Attribution & dating notes</summary><p>The mature group dated 440–404 BCE sits within this broader mass-issue phase. The illustrated Met specimen retains its museum catalogue date; the period does not identify a particular year of striking.</p></details></article>
-<article class="family-card" id="family-profile"><div class="family-number"><span>04</span><span>ATHENS</span></div><figure class="image-figure family-photo" data-photo="profile" style="--plate-ratio:1.976284584980237">
+  </figure></div></div><h4>Classical mass issues</h4><p class="date">c. 450s–404 BCE</p><p>Athena, olive, crescent, owl and ΑΘΕ in a familiar, compact design. <sup class="citation"><a href="#source-met" data-source="met" aria-label="Source 01: Silver tetradrachm, 2021.40.80">[01]</a> <a href="#source-ngc" data-source="ngc" aria-label="Source 21: NGC Ancients: The Elusive “Full Crest” Owls of Athens">[21]</a></sup></p><p class="status">Mature fifth-century design</p><details><summary>Attribution & dating notes</summary><p>The mature group dated 440–404 BCE sits within this broader mass-issue phase. The illustrated Met specimen retains its museum catalogue date; the period does not identify a particular year of striking.</p></details></article>
+<article class="family-card" id="family-profile"><div class="family-number"><span>04</span><span>ATHENS</span></div><div class="family-faces"><div class="family-face" role="group" aria-label="Obverse of Early 4th-century profile-eye"><p class="eyebrow family-face-label">Obverse</p><figure class="image-figure family-photo" data-photo="profile" style="--plate-ratio:1.976284584980237">
+    <div class="image-surface">
+      <a class="image-trigger" href="https://upload.wikimedia.org/wikipedia/commons/f/fc/Sg2537.jpg" target="_blank" rel="noopener noreferrer" data-image="profile" aria-label="Inspect Profile-eye Athena &amp; owl · paired plate in the image viewer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Sg2537.jpg" width="500" height="253" class="crop-left" alt="Athena, left half of a paired plate. Open to see the complete source photograph. Profile-eye Athena &amp; owl · paired plate." loading="lazy" decoding="async" >
+        <span class="image-unavailable" aria-hidden="true"><span>Photograph unavailable.<br><span>View source & credits ↗</span></span></span>
+        <span class="expand-label" aria-hidden="true">Look closer <span>↗</span></span>
+      </a>
+    </div>
+    <figcaption class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Sg2537.jpg" target="_blank" rel="noopener noreferrer">Classical Numismatic Group, Inc. / Wikimedia Commons</a><span class="license-short"><a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></span></figcaption>
+  </figure></div><div class="family-face" role="group" aria-label="Reverse of Early 4th-century profile-eye"><p class="eyebrow family-face-label">Reverse</p><figure class="image-figure family-photo" data-photo="profile" style="--plate-ratio:1.976284584980237">
     <div class="image-surface">
       <a class="image-trigger" href="https://upload.wikimedia.org/wikipedia/commons/f/fc/Sg2537.jpg" target="_blank" rel="noopener noreferrer" data-image="profile" aria-label="Inspect Profile-eye Athena &amp; owl · paired plate in the image viewer">
         <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Sg2537.jpg" width="500" height="253" class="crop-right" alt="Owl, right half of a paired plate. Open to see the complete source photograph. Profile-eye Athena &amp; owl · paired plate." loading="lazy" decoding="async" >
@@ -4949,8 +5008,8 @@ html.motion-off .supplement-summary-meta>span { transition:none; }
       </a>
     </div>
     <figcaption class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Sg2537.jpg" target="_blank" rel="noopener noreferrer">Classical Numismatic Group, Inc. / Wikimedia Commons</a><span class="license-short"><a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></span></figcaption>
-  </figure><h4>Early 4th-century profile-eye</h4><p class="date">Early 4th century BCE</p><p>Athena’s eye is more plausibly seen from the side; the reverse remains conservative. <sup class="citation"><a href="#source-profile" data-source="profile" aria-label="Source 08: Athenian Tetradrachm Coinage of the First Half of the Fourth Century BC">[08]</a> <a href="#source-profile-photo" data-source="profile-photo" aria-label="Source 18: Sg2537: Athenian profile-eye tetradrachm">[18]</a> <a href="#source-isotopes" data-source="isotopes" aria-label="Source 09: When is an owl not an owl? An analysis of Attic tetradrachms circulating in the southern Levant in the late fifth and fourth centuries BCE">[09]</a></sup></p><p class="status">Exact opening date debated</p><details><summary>Attribution & dating notes</summary><p>Frequently cataloged c. 393–355 BCE, with other chronologies using c. 400/390–353. Eye shape is a clue, not a universal dating algorithm: related forms occur in late fifth-century work.</p></details></article>
-<article class="family-card" id="family-pi"><div class="family-number"><span>05</span><span>ATHENS</span></div><figure class="image-figure family-photo" data-photo="bnf-pi-iii-1475-obverse" style="--plate-ratio:1">
+  </figure></div></div><h4>Early 4th-century profile-eye</h4><p class="date">Early 4th century BCE</p><p>Athena’s eye is more plausibly seen from the side; the reverse remains conservative. <sup class="citation"><a href="#source-profile" data-source="profile" aria-label="Source 08: Athenian Tetradrachm Coinage of the First Half of the Fourth Century BC">[08]</a> <a href="#source-profile-photo" data-source="profile-photo" aria-label="Source 18: Sg2537: Athenian profile-eye tetradrachm">[18]</a> <a href="#source-isotopes" data-source="isotopes" aria-label="Source 09: When is an owl not an owl? An analysis of Attic tetradrachms circulating in the southern Levant in the late fifth and fourth centuries BCE">[09]</a></sup></p><p class="status">Exact opening date debated</p><details><summary>Attribution & dating notes</summary><p>Frequently cataloged c. 393–355 BCE, with other chronologies using c. 400/390–353. Eye shape is a clue, not a universal dating algorithm: related forms occur in late fifth-century work.</p></details></article>
+<article class="family-card" id="family-pi"><div class="family-number"><span>05</span><span>ATHENS</span></div><div class="family-faces"><div class="family-face" role="group" aria-label="Obverse of Pi-style"><p class="eyebrow family-face-label">Obverse</p><figure class="image-figure family-photo" data-photo="bnf-pi-iii-1475-obverse" style="--plate-ratio:1">
     <div class="image-surface">
       <a class="image-trigger" href="https://upload.wikimedia.org/wikipedia/commons/1/14/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%281_of_2%29.jpg" target="_blank" rel="noopener noreferrer" data-image="bnf-pi-iii-1475-obverse" aria-label="Inspect Pi III · Athena · BnF 1475 in the image viewer">
         <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%281_of_2%29.jpg" width="2522" height="2522" class="crop-none" alt="Pi III silver tetradrachm, BnF 1966.453.1475: Athena facing right in a decorated helmet; complete obverse photograph." loading="lazy" decoding="async" >
@@ -4959,8 +5018,17 @@ html.motion-off .supplement-summary-meta>span { transition:none; }
       </a>
     </div>
     <figcaption class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%281_of_2%29.jpg" target="_blank" rel="noopener noreferrer">Bibliothèque nationale de France, département Monnaies, médailles et antiques, 1966.453.1475; Gallica, via Wikimedia Commons.</a><span class="license-short"><a href="https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%281_of_2%29.jpg" target="_blank" rel="noopener noreferrer">PD-France assertion (Commons)</a></span><a class="reuse-badge" href="#image-reuse-policy">Reuse review pending ↗</a></figcaption>
-  </figure><h4>Pi-style</h4><p class="date">Mid–late 4th century BCE</p><p>The developed helmet ornament suggests the Greek letter π; many flans show folding and restriking. <sup class="citation"><a href="#source-remint" data-source="remint" aria-label="Source 07: The Reminting of Athenian Silver Coinage, 353 B.C.">[07]</a> <a href="#source-isotopes" data-source="isotopes" aria-label="Source 09: When is an owl not an owl? An analysis of Attic tetradrachms circulating in the southern Levant in the late fifth and fourth centuries BCE">[09]</a> <a href="#source-bnf-pi-iii" data-source="bnf-pi-iii" aria-label="Source 22: Athenian silver tetradrachm, Pi III · 1966.453.1475">[22]</a> <a href="#source-bnf-pi-ii" data-source="bnf-pi-ii" aria-label="Source 24: Athenian silver tetradrachm, Pi II · 1966.453.1469">[24]</a></sup></p><p class="status">Illustrated: Pi III + Pi II · image reuse review pending</p><details><summary>Attribution & dating notes</summary><p>The main image is BnF 1966.453.1475, explicitly catalogued as Pi III, c. 353–295 BCE. Pi II, BnF 1966.453.1469, is available in the comparison selector with its broader catalogue date retained. These object dates are distinct from competing wider Pi-style chronologies, including Kroll’s 353 BCE reminting and the early-340s discussion in the 2026 isotope paper.</p></details></article>
-<article class="family-card" id="family-late-old"><div class="family-number"><span>06</span><span>ATHENS</span></div><figure class="image-figure family-photo" data-photo="bnf-quadridigite-1478-obverse" style="--plate-ratio:1">
+  </figure></div><div class="family-face" role="group" aria-label="Reverse of Pi-style"><p class="eyebrow family-face-label">Reverse</p><figure class="image-figure family-photo" data-photo="bnf-pi-iii-1475-reverse" style="--plate-ratio:1">
+    <div class="image-surface">
+      <a class="image-trigger" href="https://upload.wikimedia.org/wikipedia/commons/d/d9/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%282_of_2%29.jpg" target="_blank" rel="noopener noreferrer" data-image="bnf-pi-iii-1475-reverse" aria-label="Inspect Pi III · Owl · BnF 1475 in the image viewer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%282_of_2%29.jpg" width="2522" height="2522" class="crop-none" alt="Pi III silver tetradrachm, BnF 1966.453.1475: owl with the surrounding inscription and field symbols; complete reverse photograph." loading="lazy" decoding="async" >
+        <span class="image-unavailable" aria-hidden="true"><span>Photograph unavailable.<br><span>View source & credits ↗</span></span></span>
+        <span class="expand-label" aria-hidden="true">Look closer <span>↗</span></span>
+      </a>
+    </div>
+    <figcaption class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%282_of_2%29.jpg" target="_blank" rel="noopener noreferrer">Bibliothèque nationale de France, département Monnaies, médailles et antiques, 1966.453.1475; Gallica, via Wikimedia Commons.</a><span class="license-short"><a href="https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%282_of_2%29.jpg" target="_blank" rel="noopener noreferrer">PD-France assertion (Commons)</a></span><a class="reuse-badge" href="#image-reuse-policy">Reuse review pending ↗</a></figcaption>
+  </figure></div></div><h4>Pi-style</h4><p class="date">Mid–late 4th century BCE</p><p>The developed helmet ornament suggests the Greek letter π; many flans show folding and restriking. <sup class="citation"><a href="#source-remint" data-source="remint" aria-label="Source 07: The Reminting of Athenian Silver Coinage, 353 B.C.">[07]</a> <a href="#source-isotopes" data-source="isotopes" aria-label="Source 09: When is an owl not an owl? An analysis of Attic tetradrachms circulating in the southern Levant in the late fifth and fourth centuries BCE">[09]</a> <a href="#source-bnf-pi-iii" data-source="bnf-pi-iii" aria-label="Source 22: Athenian silver tetradrachm, Pi III · 1966.453.1475">[22]</a> <a href="#source-bnf-pi-ii" data-source="bnf-pi-ii" aria-label="Source 24: Athenian silver tetradrachm, Pi II · 1966.453.1469">[24]</a></sup></p><p class="status">Illustrated: Pi III + Pi II · image reuse review pending</p><details><summary>Attribution & dating notes</summary><p>The main image is BnF 1966.453.1475, explicitly catalogued as Pi III, c. 353–295 BCE. Pi II, BnF 1966.453.1469, is available in the comparison selector with its broader catalogue date retained. These object dates are distinct from competing wider Pi-style chronologies, including Kroll’s 353 BCE reminting and the early-340s discussion in the 2026 isotope paper.</p></details></article>
+<article class="family-card" id="family-late-old"><div class="family-number"><span>06</span><span>ATHENS</span></div><div class="family-faces"><div class="family-face" role="group" aria-label="Obverse of Later Old Style"><p class="eyebrow family-face-label">Obverse</p><figure class="image-figure family-photo" data-photo="bnf-quadridigite-1478-obverse" style="--plate-ratio:1">
     <div class="image-surface">
       <a class="image-trigger" href="https://upload.wikimedia.org/wikipedia/commons/7/75/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%281_of_2%29.jpg" target="_blank" rel="noopener noreferrer" data-image="bnf-quadridigite-1478-obverse" aria-label="Inspect Quadridigité · Athena · BnF 1478 in the image viewer">
         <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%281_of_2%29.jpg" width="2679" height="2679" class="crop-none" alt="Quadridigité silver tetradrachm, BnF 1966.453.1478: Athena facing right in a decorated helmet; complete obverse photograph." loading="lazy" decoding="async" >
@@ -4969,8 +5037,26 @@ html.motion-off .supplement-summary-meta>span { transition:none; }
       </a>
     </div>
     <figcaption class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%281_of_2%29.jpg" target="_blank" rel="noopener noreferrer">Bibliothèque nationale de France, département Monnaies, médailles et antiques, 1966.453.1478; Gallica, via Wikimedia Commons.</a><span class="license-short"><a href="https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%281_of_2%29.jpg" target="_blank" rel="noopener noreferrer">PD-France assertion (Commons)</a></span><a class="reuse-badge" href="#image-reuse-policy">Reuse review pending ↗</a></figcaption>
-  </figure><h4>Later Old Style</h4><p class="date">3rd century BCE</p><p>The old Athena–owl design persists in distinct groups, including quadridigité and heterogeneous issues. The illustrated specimen is quadridigité. <sup class="citation"><a href="#source-bnf-quadridigite" data-source="bnf-quadridigite" aria-label="Source 23: Athenian silver tetradrachm, Quadridigité · 1966.453.1478">[23]</a> <a href="#source-iris-quadridigite" data-source="iris-quadridigite" aria-label="Source 26: Athens, quadridigité · Nicolet-Pierre and Kroll 1990, nos. 1–28">[26]</a> <a href="#source-cng-heterogeneous" data-source="cng-heterogeneous" aria-label="Source 27: Heterogeneous Group C tetradrachm · Electronic Auction 594, lot 66">[27]</a></sup></p><p class="status">Illustrated: quadridigité · heterogeneous photo still needed</p><details><summary>Attribution & dating notes</summary><p>BnF 1966.453.1478 is explicitly catalogued as quadridigité and dated c. 286–261 BCE in that record; this range is not a date for every later Old Style issue. A separate Heterogeneous Group C auction specimen is sourced, but its 500 × 240 px preview has not been substituted for a high-resolution reference photograph. Reuse review remains pending for the linked BnF photographs.</p></details></article>
-<article class="family-card" id="family-new"><div class="family-number"><span>07</span><span>ATHENS</span></div><figure class="image-figure family-photo" data-photo="new-owl" style="--plate-ratio:1">
+  </figure></div><div class="family-face" role="group" aria-label="Reverse of Later Old Style"><p class="eyebrow family-face-label">Reverse</p><figure class="image-figure family-photo" data-photo="bnf-quadridigite-1478-reverse" style="--plate-ratio:1">
+    <div class="image-surface">
+      <a class="image-trigger" href="https://upload.wikimedia.org/wikipedia/commons/3/33/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%282_of_2%29.jpg" target="_blank" rel="noopener noreferrer" data-image="bnf-quadridigite-1478-reverse" aria-label="Inspect Quadridigité · Owl · BnF 1478 in the image viewer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%282_of_2%29.jpg" width="2679" height="2679" class="crop-none" alt="Quadridigité silver tetradrachm, BnF 1966.453.1478: owl with the surrounding inscription and field symbols; complete reverse photograph." loading="lazy" decoding="async" >
+        <span class="image-unavailable" aria-hidden="true"><span>Photograph unavailable.<br><span>View source & credits ↗</span></span></span>
+        <span class="expand-label" aria-hidden="true">Look closer <span>↗</span></span>
+      </a>
+    </div>
+    <figcaption class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%282_of_2%29.jpg" target="_blank" rel="noopener noreferrer">Bibliothèque nationale de France, département Monnaies, médailles et antiques, 1966.453.1478; Gallica, via Wikimedia Commons.</a><span class="license-short"><a href="https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%282_of_2%29.jpg" target="_blank" rel="noopener noreferrer">PD-France assertion (Commons)</a></span><a class="reuse-badge" href="#image-reuse-policy">Reuse review pending ↗</a></figcaption>
+  </figure></div></div><h4>Later Old Style</h4><p class="date">3rd century BCE</p><p>The old Athena–owl design persists in distinct groups, including quadridigité and heterogeneous issues. The illustrated specimen is quadridigité. <sup class="citation"><a href="#source-bnf-quadridigite" data-source="bnf-quadridigite" aria-label="Source 23: Athenian silver tetradrachm, Quadridigité · 1966.453.1478">[23]</a> <a href="#source-iris-quadridigite" data-source="iris-quadridigite" aria-label="Source 26: Athens, quadridigité · Nicolet-Pierre and Kroll 1990, nos. 1–28">[26]</a> <a href="#source-cng-heterogeneous" data-source="cng-heterogeneous" aria-label="Source 27: Heterogeneous Group C tetradrachm · Electronic Auction 594, lot 66">[27]</a></sup></p><p class="status">Illustrated: quadridigité · heterogeneous photo still needed</p><details><summary>Attribution & dating notes</summary><p>BnF 1966.453.1478 is explicitly catalogued as quadridigité and dated c. 286–261 BCE in that record; this range is not a date for every later Old Style issue. A separate Heterogeneous Group C auction specimen is sourced, but its 500 × 240 px preview has not been substituted for a high-resolution reference photograph. Reuse review remains pending for the linked BnF photographs.</p></details></article>
+<article class="family-card" id="family-new"><div class="family-number"><span>07</span><span>ATHENS</span></div><div class="family-faces"><div class="family-face" role="group" aria-label="Obverse of New Style"><p class="eyebrow family-face-label">Obverse</p><figure class="image-figure family-photo" data-photo="new-athena" style="--plate-ratio:1">
+    <div class="image-surface">
+      <a class="image-trigger" href="https://upload.wikimedia.org/wikipedia/commons/0/04/Silver_tetradrachm_Athens_new_style_obverse.jpg" target="_blank" rel="noopener noreferrer" data-image="new-athena" aria-label="Inspect New Style Athena · Musée de la BnF in the image viewer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Silver_tetradrachm_Athens_new_style_obverse.jpg" width="1200" height="1200" class="crop-none" alt="An elaborate helmet and naturalistic profile of Athena on a broad New Style silver coin." loading="lazy" decoding="async" >
+        <span class="image-unavailable" aria-hidden="true"><span>Photograph unavailable.<br><span>View source & credits ↗</span></span></span>
+        <span class="expand-label" aria-hidden="true">Look closer <span>↗</span></span>
+      </a>
+    </div>
+    <figcaption class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Silver_tetradrachm_Athens_new_style_obverse.jpg" target="_blank" rel="noopener noreferrer">Marie-Lan Nguyen / Wikimedia Commons · Musée de la BnF</a><span class="license-short"><a href="https://creativecommons.org/publicdomain/mark/1.0/" target="_blank" rel="noopener noreferrer">Public domain</a></span></figcaption>
+  </figure></div><div class="family-face" role="group" aria-label="Reverse of New Style"><p class="eyebrow family-face-label">Reverse</p><figure class="image-figure family-photo" data-photo="new-owl" style="--plate-ratio:1">
     <div class="image-surface">
       <a class="image-trigger" href="https://upload.wikimedia.org/wikipedia/commons/8/82/Silver_tetradrachm_Athens_new_style_reverse.jpg" target="_blank" rel="noopener noreferrer" data-image="new-owl" aria-label="Inspect New Style owl · Musée de la BnF in the image viewer">
         <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Silver_tetradrachm_Athens_new_style_reverse.jpg" width="1340" height="1340" class="crop-none" alt="A New Style owl stands on a horizontal amphora amid inscriptions, inside an olive wreath." loading="lazy" decoding="async" >
@@ -4979,8 +5065,17 @@ html.motion-off .supplement-summary-meta>span { transition:none; }
       </a>
     </div>
     <figcaption class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Silver_tetradrachm_Athens_new_style_reverse.jpg" target="_blank" rel="noopener noreferrer">Marie-Lan Nguyen / Wikimedia Commons · Musée de la BnF</a><span class="license-short"><a href="https://creativecommons.org/publicdomain/mark/1.0/" target="_blank" rel="noopener noreferrer">Public domain</a></span></figcaption>
-  </figure><h4>New Style</h4><p class="date">c. 165/164–1st century BCE</p><p>A broader composition: elaborate Athena, owl on an amphora, olive wreath and more inscriptions. <sup class="citation"><a href="#source-new-photo" data-source="new-photo" aria-label="Source 19: Silver tetradrachm, Athens New Style (reverse)">[19]</a> <a href="#source-new-chronology" data-source="new-chronology" aria-label="Source 14: The Chronology of the New Style Coinage of Athens">[14]</a> <a href="#source-new-catalogs" data-source="new-catalogs" aria-label="Source 20: New Style Athenian Tetradrachms, 166/164–63/62 BC">[20]</a></sup></p><p class="status">Late endpoint varies by catalog</p><details><summary>Attribution & dating notes</summary><p>The familiar c. 165–42 BCE label is not a universally settled pair of endpoints. This atlas uses a broader envelope rather than assigning every New Style coin one precise terminal date.</p></details></article>
-<article class="family-card" id="family-egypt"><div class="family-number"><span>08</span><span>REGIONAL BRANCH</span></div><figure class="image-figure family-photo" data-photo="sabakes" style="--plate-ratio:1.9851116625310175">
+  </figure></div></div><h4>New Style</h4><p class="date">c. 165/164–1st century BCE</p><p>A broader composition: elaborate Athena, owl on an amphora, olive wreath and more inscriptions. <sup class="citation"><a href="#source-new-photo" data-source="new-photo" aria-label="Source 19: Silver tetradrachm, Athens New Style (reverse)">[19]</a> <a href="#source-new-chronology" data-source="new-chronology" aria-label="Source 14: The Chronology of the New Style Coinage of Athens">[14]</a> <a href="#source-new-catalogs" data-source="new-catalogs" aria-label="Source 20: New Style Athenian Tetradrachms, 166/164–63/62 BC">[20]</a></sup></p><p class="status">Late endpoint varies by catalog</p><details><summary>Attribution & dating notes</summary><p>The familiar c. 165–42 BCE label is not a universally settled pair of endpoints. This atlas uses a broader envelope rather than assigning every New Style coin one precise terminal date.</p></details></article>
+<article class="family-card" id="family-egypt"><div class="family-number"><span>08</span><span>REGIONAL BRANCH</span></div><div class="family-faces"><div class="family-face" role="group" aria-label="Obverse of Egyptian owl-type issues"><p class="eyebrow family-face-label">Obverse</p><figure class="image-figure family-photo" data-photo="sabakes" style="--plate-ratio:1.9851116625310175">
+    <div class="image-surface">
+      <a class="image-trigger" href="https://upload.wikimedia.org/wikipedia/commons/e/eb/EGYPT%2C_Persian_Administration._Sabakes._Circa_340-333_BC.jpg" target="_blank" rel="noopener noreferrer" data-image="sabakes" aria-label="Inspect The owl in Persian-administered Egypt in the image viewer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/EGYPT%2C_Persian_Administration._Sabakes._Circa_340-333_BC.jpg" width="800" height="403" class="crop-left" alt="Athena, left half of a paired plate. Open to see the complete source photograph. The owl in Persian-administered Egypt." loading="lazy" decoding="async" >
+        <span class="image-unavailable" aria-hidden="true"><span>Photograph unavailable.<br><span>View source & credits ↗</span></span></span>
+        <span class="expand-label" aria-hidden="true">Look closer <span>↗</span></span>
+      </a>
+    </div>
+    <figcaption class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:EGYPT,_Persian_Administration._Sabakes._Circa_340-333_BC.jpg" target="_blank" rel="noopener noreferrer">Classical Numismatic Group, Inc. / Wikimedia Commons</a><span class="license-short"><a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></span></figcaption>
+  </figure></div><div class="family-face" role="group" aria-label="Reverse of Egyptian owl-type issues"><p class="eyebrow family-face-label">Reverse</p><figure class="image-figure family-photo" data-photo="sabakes" style="--plate-ratio:1.9851116625310175">
     <div class="image-surface">
       <a class="image-trigger" href="https://upload.wikimedia.org/wikipedia/commons/e/eb/EGYPT%2C_Persian_Administration._Sabakes._Circa_340-333_BC.jpg" target="_blank" rel="noopener noreferrer" data-image="sabakes" aria-label="Inspect The owl in Persian-administered Egypt in the image viewer">
         <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/EGYPT%2C_Persian_Administration._Sabakes._Circa_340-333_BC.jpg" width="800" height="403" class="crop-right" alt="Owl, right half of a paired plate. Open to see the complete source photograph. The owl in Persian-administered Egypt." loading="lazy" decoding="async" >
@@ -4989,7 +5084,7 @@ html.motion-off .supplement-summary-meta>span { transition:none; }
       </a>
     </div>
     <figcaption class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:EGYPT,_Persian_Administration._Sabakes._Circa_340-333_BC.jpg" target="_blank" rel="noopener noreferrer">Classical Numismatic Group, Inc. / Wikimedia Commons</a><span class="license-short"><a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></span></figcaption>
-  </figure><h4>Egyptian owl-type issues</h4><p class="date">c. 340–333 BCE · Sabakes type</p><p>Athenian visual language adapted under Persian administration in Egypt. <sup class="citation"><a href="#source-sabakes" data-source="sabakes" aria-label="Source 13: Sabaces Egypt van Alfen 2002 V: “Sabakes”, Athenian imitations">[13]</a></sup></p><p class="status">Different issuing authority</p><details><summary>Attribution & dating notes</summary><p>“Attic” can describe a weight convention, not the mint. An owl design or an Egyptian findspot alone does not settle who issued a coin. This named type provides a stronger attribution.</p></details></article>
+  </figure></div></div><h4>Egyptian owl-type issues</h4><p class="date">c. 340–333 BCE · Sabakes type</p><p>Athenian visual language adapted under Persian administration in Egypt. <sup class="citation"><a href="#source-sabakes" data-source="sabakes" aria-label="Source 13: Sabaces Egypt van Alfen 2002 V: “Sabakes”, Athenian imitations">[13]</a></sup></p><p class="status">Different issuing authority</p><details><summary>Attribution & dating notes</summary><p>“Attic” can describe a weight convention, not the mint. An owl design or an Egyptian findspot alone does not settle who issued a coin. This named type provides a stronger attribution.</p></details></article>
     </div>
     <details class="catalogue-guide reveal" id="coin-descriptions">
      <summary>
@@ -5357,6 +5452,17 @@ function photoGapMarkup(family, side = 'obverse') {
   const message = family.image ? `No ${side} photograph in this edition.` : 'Documented photo gap';
   const glyph = family.id === 'pi' ? 'π' : '—';
   return `<div class="photo-gap"><span class="gap-glyph" aria-hidden="true">${glyph}</span><span class="eyebrow">${escapeHtml(message)}</span><span class="micro-copy">No substitute coin has been used.</span></div>`;
+}
+
+function familyFacesMarkup(family, data) {
+  const faces = ['obverse', 'reverse'].map((side) => {
+    const label = side === 'obverse' ? 'Obverse' : 'Reverse';
+    const photo = family[side]
+      ? photoMarkup(family[side], data, 'family-photo', family[`${side}Crop`])
+      : photoGapMarkup(family, side);
+    return `<div class="family-face" role="group" aria-label="${label} of ${escapeHtml(family.name)}"><p class="eyebrow family-face-label">${label}</p>${photo}</div>`;
+  });
+  return `<div class="family-faces">${faces.join('')}</div>`;
 }
 
 function comparisonMarkup(familyId, side, data, specimenId) {

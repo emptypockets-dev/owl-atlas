@@ -1,0 +1,948 @@
+{
+  "result": "pass",
+  "url": "https://owl-atlas-npok0gpz1-emptypocketsdevs-projects.vercel.app",
+  "checks": 234,
+  "items": [
+    {
+      "label": "Hosted preview returns HTTP 200 with authorized access",
+      "pass": true
+    },
+    {
+      "label": "Hosted HTML exactly matches validated dist/index.html",
+      "pass": true
+    },
+    {
+      "label": "Family-tree deep link resolves",
+      "pass": true
+    },
+    {
+      "label": "archaic: two labeled face slots at 1440px",
+      "pass": true
+    },
+    {
+      "label": "archaic: faces remain side by side at 1440px",
+      "pass": true
+    },
+    {
+      "label": "archaic/obverse: correct side crop at 1440px",
+      "pass": true
+    },
+    {
+      "label": "archaic/reverse: correct side crop at 1440px",
+      "pass": true
+    },
+    {
+      "label": "archaic: no page overflow at 1440px",
+      "pass": true
+    },
+    {
+      "label": "early-classical: two labeled face slots at 1440px",
+      "pass": true
+    },
+    {
+      "label": "early-classical: faces remain side by side at 1440px",
+      "pass": true
+    },
+    {
+      "label": "early-classical/obverse: correct side crop at 1440px",
+      "pass": true
+    },
+    {
+      "label": "early-classical: missing reverse stated at 1440px",
+      "pass": true
+    },
+    {
+      "label": "early-classical: no page overflow at 1440px",
+      "pass": true
+    },
+    {
+      "label": "classical: two labeled face slots at 1440px",
+      "pass": true
+    },
+    {
+      "label": "classical: faces remain side by side at 1440px",
+      "pass": true
+    },
+    {
+      "label": "classical/obverse: correct side crop at 1440px",
+      "pass": true
+    },
+    {
+      "label": "classical/reverse: correct side crop at 1440px",
+      "pass": true
+    },
+    {
+      "label": "classical: no page overflow at 1440px",
+      "pass": true
+    },
+    {
+      "label": "profile: two labeled face slots at 1440px",
+      "pass": true
+    },
+    {
+      "label": "profile: faces remain side by side at 1440px",
+      "pass": true
+    },
+    {
+      "label": "profile/obverse: correct side crop at 1440px",
+      "pass": true
+    },
+    {
+      "label": "profile/reverse: correct side crop at 1440px",
+      "pass": true
+    },
+    {
+      "label": "profile: no page overflow at 1440px",
+      "pass": true
+    },
+    {
+      "label": "pi: two labeled face slots at 1440px",
+      "pass": true
+    },
+    {
+      "label": "pi: faces remain side by side at 1440px",
+      "pass": true
+    },
+    {
+      "label": "pi/obverse: correct side crop at 1440px",
+      "pass": true
+    },
+    {
+      "label": "pi/reverse: correct side crop at 1440px",
+      "pass": true
+    },
+    {
+      "label": "pi: no page overflow at 1440px",
+      "pass": true
+    },
+    {
+      "label": "late-old: two labeled face slots at 1440px",
+      "pass": true
+    },
+    {
+      "label": "late-old: faces remain side by side at 1440px",
+      "pass": true
+    },
+    {
+      "label": "late-old/obverse: correct side crop at 1440px",
+      "pass": true
+    },
+    {
+      "label": "late-old/reverse: correct side crop at 1440px",
+      "pass": true
+    },
+    {
+      "label": "late-old: no page overflow at 1440px",
+      "pass": true
+    },
+    {
+      "label": "new: two labeled face slots at 1440px",
+      "pass": true
+    },
+    {
+      "label": "new: faces remain side by side at 1440px",
+      "pass": true
+    },
+    {
+      "label": "new/obverse: correct side crop at 1440px",
+      "pass": true
+    },
+    {
+      "label": "new/reverse: correct side crop at 1440px",
+      "pass": true
+    },
+    {
+      "label": "new: no page overflow at 1440px",
+      "pass": true
+    },
+    {
+      "label": "egypt: two labeled face slots at 1440px",
+      "pass": true
+    },
+    {
+      "label": "egypt: faces remain side by side at 1440px",
+      "pass": true
+    },
+    {
+      "label": "egypt/obverse: correct side crop at 1440px",
+      "pass": true
+    },
+    {
+      "label": "egypt/reverse: correct side crop at 1440px",
+      "pass": true
+    },
+    {
+      "label": "egypt: no page overflow at 1440px",
+      "pass": true
+    },
+    {
+      "label": "archaic: two labeled face slots at 1024px",
+      "pass": true
+    },
+    {
+      "label": "archaic: faces remain side by side at 1024px",
+      "pass": true
+    },
+    {
+      "label": "archaic/obverse: correct side crop at 1024px",
+      "pass": true
+    },
+    {
+      "label": "archaic/reverse: correct side crop at 1024px",
+      "pass": true
+    },
+    {
+      "label": "archaic: no page overflow at 1024px",
+      "pass": true
+    },
+    {
+      "label": "early-classical: two labeled face slots at 1024px",
+      "pass": true
+    },
+    {
+      "label": "early-classical: faces remain side by side at 1024px",
+      "pass": true
+    },
+    {
+      "label": "early-classical/obverse: correct side crop at 1024px",
+      "pass": true
+    },
+    {
+      "label": "early-classical: missing reverse stated at 1024px",
+      "pass": true
+    },
+    {
+      "label": "early-classical: no page overflow at 1024px",
+      "pass": true
+    },
+    {
+      "label": "classical: two labeled face slots at 1024px",
+      "pass": true
+    },
+    {
+      "label": "classical: faces remain side by side at 1024px",
+      "pass": true
+    },
+    {
+      "label": "classical/obverse: correct side crop at 1024px",
+      "pass": true
+    },
+    {
+      "label": "classical/reverse: correct side crop at 1024px",
+      "pass": true
+    },
+    {
+      "label": "classical: no page overflow at 1024px",
+      "pass": true
+    },
+    {
+      "label": "profile: two labeled face slots at 1024px",
+      "pass": true
+    },
+    {
+      "label": "profile: faces remain side by side at 1024px",
+      "pass": true
+    },
+    {
+      "label": "profile/obverse: correct side crop at 1024px",
+      "pass": true
+    },
+    {
+      "label": "profile/reverse: correct side crop at 1024px",
+      "pass": true
+    },
+    {
+      "label": "profile: no page overflow at 1024px",
+      "pass": true
+    },
+    {
+      "label": "pi: two labeled face slots at 1024px",
+      "pass": true
+    },
+    {
+      "label": "pi: faces remain side by side at 1024px",
+      "pass": true
+    },
+    {
+      "label": "pi/obverse: correct side crop at 1024px",
+      "pass": true
+    },
+    {
+      "label": "pi/reverse: correct side crop at 1024px",
+      "pass": true
+    },
+    {
+      "label": "pi: no page overflow at 1024px",
+      "pass": true
+    },
+    {
+      "label": "late-old: two labeled face slots at 1024px",
+      "pass": true
+    },
+    {
+      "label": "late-old: faces remain side by side at 1024px",
+      "pass": true
+    },
+    {
+      "label": "late-old/obverse: correct side crop at 1024px",
+      "pass": true
+    },
+    {
+      "label": "late-old/reverse: correct side crop at 1024px",
+      "pass": true
+    },
+    {
+      "label": "late-old: no page overflow at 1024px",
+      "pass": true
+    },
+    {
+      "label": "new: two labeled face slots at 1024px",
+      "pass": true
+    },
+    {
+      "label": "new: faces remain side by side at 1024px",
+      "pass": true
+    },
+    {
+      "label": "new/obverse: correct side crop at 1024px",
+      "pass": true
+    },
+    {
+      "label": "new/reverse: correct side crop at 1024px",
+      "pass": true
+    },
+    {
+      "label": "new: no page overflow at 1024px",
+      "pass": true
+    },
+    {
+      "label": "egypt: two labeled face slots at 1024px",
+      "pass": true
+    },
+    {
+      "label": "egypt: faces remain side by side at 1024px",
+      "pass": true
+    },
+    {
+      "label": "egypt/obverse: correct side crop at 1024px",
+      "pass": true
+    },
+    {
+      "label": "egypt/reverse: correct side crop at 1024px",
+      "pass": true
+    },
+    {
+      "label": "egypt: no page overflow at 1024px",
+      "pass": true
+    },
+    {
+      "label": "archaic: two labeled face slots at 768px",
+      "pass": true
+    },
+    {
+      "label": "archaic: faces remain side by side at 768px",
+      "pass": true
+    },
+    {
+      "label": "archaic/obverse: correct side crop at 768px",
+      "pass": true
+    },
+    {
+      "label": "archaic/reverse: correct side crop at 768px",
+      "pass": true
+    },
+    {
+      "label": "archaic: no page overflow at 768px",
+      "pass": true
+    },
+    {
+      "label": "early-classical: two labeled face slots at 768px",
+      "pass": true
+    },
+    {
+      "label": "early-classical: faces remain side by side at 768px",
+      "pass": true
+    },
+    {
+      "label": "early-classical/obverse: correct side crop at 768px",
+      "pass": true
+    },
+    {
+      "label": "early-classical: missing reverse stated at 768px",
+      "pass": true
+    },
+    {
+      "label": "early-classical: no page overflow at 768px",
+      "pass": true
+    },
+    {
+      "label": "classical: two labeled face slots at 768px",
+      "pass": true
+    },
+    {
+      "label": "classical: faces remain side by side at 768px",
+      "pass": true
+    },
+    {
+      "label": "classical/obverse: correct side crop at 768px",
+      "pass": true
+    },
+    {
+      "label": "classical/reverse: correct side crop at 768px",
+      "pass": true
+    },
+    {
+      "label": "classical: no page overflow at 768px",
+      "pass": true
+    },
+    {
+      "label": "profile: two labeled face slots at 768px",
+      "pass": true
+    },
+    {
+      "label": "profile: faces remain side by side at 768px",
+      "pass": true
+    },
+    {
+      "label": "profile/obverse: correct side crop at 768px",
+      "pass": true
+    },
+    {
+      "label": "profile/reverse: correct side crop at 768px",
+      "pass": true
+    },
+    {
+      "label": "profile: no page overflow at 768px",
+      "pass": true
+    },
+    {
+      "label": "pi: two labeled face slots at 768px",
+      "pass": true
+    },
+    {
+      "label": "pi: faces remain side by side at 768px",
+      "pass": true
+    },
+    {
+      "label": "pi/obverse: correct side crop at 768px",
+      "pass": true
+    },
+    {
+      "label": "pi/reverse: correct side crop at 768px",
+      "pass": true
+    },
+    {
+      "label": "pi: no page overflow at 768px",
+      "pass": true
+    },
+    {
+      "label": "late-old: two labeled face slots at 768px",
+      "pass": true
+    },
+    {
+      "label": "late-old: faces remain side by side at 768px",
+      "pass": true
+    },
+    {
+      "label": "late-old/obverse: correct side crop at 768px",
+      "pass": true
+    },
+    {
+      "label": "late-old/reverse: correct side crop at 768px",
+      "pass": true
+    },
+    {
+      "label": "late-old: no page overflow at 768px",
+      "pass": true
+    },
+    {
+      "label": "new: two labeled face slots at 768px",
+      "pass": true
+    },
+    {
+      "label": "new: faces remain side by side at 768px",
+      "pass": true
+    },
+    {
+      "label": "new/obverse: correct side crop at 768px",
+      "pass": true
+    },
+    {
+      "label": "new/reverse: correct side crop at 768px",
+      "pass": true
+    },
+    {
+      "label": "new: no page overflow at 768px",
+      "pass": true
+    },
+    {
+      "label": "egypt: two labeled face slots at 768px",
+      "pass": true
+    },
+    {
+      "label": "egypt: faces remain side by side at 768px",
+      "pass": true
+    },
+    {
+      "label": "egypt/obverse: correct side crop at 768px",
+      "pass": true
+    },
+    {
+      "label": "egypt/reverse: correct side crop at 768px",
+      "pass": true
+    },
+    {
+      "label": "egypt: no page overflow at 768px",
+      "pass": true
+    },
+    {
+      "label": "archaic: two labeled face slots at 390px",
+      "pass": true
+    },
+    {
+      "label": "archaic: faces remain side by side at 390px",
+      "pass": true
+    },
+    {
+      "label": "archaic/obverse: correct side crop at 390px",
+      "pass": true
+    },
+    {
+      "label": "archaic/obverse: opens exact original",
+      "pass": true
+    },
+    {
+      "label": "archaic/obverse: viewer returns focus",
+      "pass": true
+    },
+    {
+      "label": "archaic/reverse: correct side crop at 390px",
+      "pass": true
+    },
+    {
+      "label": "archaic/reverse: opens exact original",
+      "pass": true
+    },
+    {
+      "label": "archaic/reverse: viewer returns focus",
+      "pass": true
+    },
+    {
+      "label": "archaic: no page overflow at 390px",
+      "pass": true
+    },
+    {
+      "label": "early-classical: two labeled face slots at 390px",
+      "pass": true
+    },
+    {
+      "label": "early-classical: faces remain side by side at 390px",
+      "pass": true
+    },
+    {
+      "label": "early-classical/obverse: correct side crop at 390px",
+      "pass": true
+    },
+    {
+      "label": "early-classical/obverse: opens exact original",
+      "pass": true
+    },
+    {
+      "label": "early-classical/obverse: viewer returns focus",
+      "pass": true
+    },
+    {
+      "label": "early-classical: missing reverse stated at 390px",
+      "pass": true
+    },
+    {
+      "label": "early-classical: no page overflow at 390px",
+      "pass": true
+    },
+    {
+      "label": "classical: two labeled face slots at 390px",
+      "pass": true
+    },
+    {
+      "label": "classical: faces remain side by side at 390px",
+      "pass": true
+    },
+    {
+      "label": "classical/obverse: correct side crop at 390px",
+      "pass": true
+    },
+    {
+      "label": "classical/obverse: opens exact original",
+      "pass": true
+    },
+    {
+      "label": "classical/obverse: viewer returns focus",
+      "pass": true
+    },
+    {
+      "label": "classical/reverse: correct side crop at 390px",
+      "pass": true
+    },
+    {
+      "label": "classical/reverse: opens exact original",
+      "pass": true
+    },
+    {
+      "label": "classical/reverse: viewer returns focus",
+      "pass": true
+    },
+    {
+      "label": "classical: no page overflow at 390px",
+      "pass": true
+    },
+    {
+      "label": "profile: two labeled face slots at 390px",
+      "pass": true
+    },
+    {
+      "label": "profile: faces remain side by side at 390px",
+      "pass": true
+    },
+    {
+      "label": "profile/obverse: correct side crop at 390px",
+      "pass": true
+    },
+    {
+      "label": "profile/obverse: opens exact original",
+      "pass": true
+    },
+    {
+      "label": "profile/obverse: viewer returns focus",
+      "pass": true
+    },
+    {
+      "label": "profile/reverse: correct side crop at 390px",
+      "pass": true
+    },
+    {
+      "label": "profile/reverse: opens exact original",
+      "pass": true
+    },
+    {
+      "label": "profile/reverse: viewer returns focus",
+      "pass": true
+    },
+    {
+      "label": "profile: no page overflow at 390px",
+      "pass": true
+    },
+    {
+      "label": "pi: two labeled face slots at 390px",
+      "pass": true
+    },
+    {
+      "label": "pi: faces remain side by side at 390px",
+      "pass": true
+    },
+    {
+      "label": "pi/obverse: correct side crop at 390px",
+      "pass": true
+    },
+    {
+      "label": "pi/obverse: opens exact original",
+      "pass": true
+    },
+    {
+      "label": "pi/obverse: viewer returns focus",
+      "pass": true
+    },
+    {
+      "label": "pi/reverse: correct side crop at 390px",
+      "pass": true
+    },
+    {
+      "label": "pi/reverse: opens exact original",
+      "pass": true
+    },
+    {
+      "label": "pi/reverse: viewer returns focus",
+      "pass": true
+    },
+    {
+      "label": "pi: no page overflow at 390px",
+      "pass": true
+    },
+    {
+      "label": "late-old: two labeled face slots at 390px",
+      "pass": true
+    },
+    {
+      "label": "late-old: faces remain side by side at 390px",
+      "pass": true
+    },
+    {
+      "label": "late-old/obverse: correct side crop at 390px",
+      "pass": true
+    },
+    {
+      "label": "late-old/obverse: opens exact original",
+      "pass": true
+    },
+    {
+      "label": "late-old/obverse: viewer returns focus",
+      "pass": true
+    },
+    {
+      "label": "late-old/reverse: correct side crop at 390px",
+      "pass": true
+    },
+    {
+      "label": "late-old/reverse: opens exact original",
+      "pass": true
+    },
+    {
+      "label": "late-old/reverse: viewer returns focus",
+      "pass": true
+    },
+    {
+      "label": "late-old: no page overflow at 390px",
+      "pass": true
+    },
+    {
+      "label": "new: two labeled face slots at 390px",
+      "pass": true
+    },
+    {
+      "label": "new: faces remain side by side at 390px",
+      "pass": true
+    },
+    {
+      "label": "new/obverse: correct side crop at 390px",
+      "pass": true
+    },
+    {
+      "label": "new/obverse: opens exact original",
+      "pass": true
+    },
+    {
+      "label": "new/obverse: viewer returns focus",
+      "pass": true
+    },
+    {
+      "label": "new/reverse: correct side crop at 390px",
+      "pass": true
+    },
+    {
+      "label": "new/reverse: opens exact original",
+      "pass": true
+    },
+    {
+      "label": "new/reverse: viewer returns focus",
+      "pass": true
+    },
+    {
+      "label": "new: no page overflow at 390px",
+      "pass": true
+    },
+    {
+      "label": "egypt: two labeled face slots at 390px",
+      "pass": true
+    },
+    {
+      "label": "egypt: faces remain side by side at 390px",
+      "pass": true
+    },
+    {
+      "label": "egypt/obverse: correct side crop at 390px",
+      "pass": true
+    },
+    {
+      "label": "egypt/obverse: opens exact original",
+      "pass": true
+    },
+    {
+      "label": "egypt/obverse: viewer returns focus",
+      "pass": true
+    },
+    {
+      "label": "egypt/reverse: correct side crop at 390px",
+      "pass": true
+    },
+    {
+      "label": "egypt/reverse: opens exact original",
+      "pass": true
+    },
+    {
+      "label": "egypt/reverse: viewer returns focus",
+      "pass": true
+    },
+    {
+      "label": "egypt: no page overflow at 390px",
+      "pass": true
+    },
+    {
+      "label": "archaic: two labeled face slots at 320px",
+      "pass": true
+    },
+    {
+      "label": "archaic: faces remain side by side at 320px",
+      "pass": true
+    },
+    {
+      "label": "archaic/obverse: correct side crop at 320px",
+      "pass": true
+    },
+    {
+      "label": "archaic/reverse: correct side crop at 320px",
+      "pass": true
+    },
+    {
+      "label": "archaic: no page overflow at 320px",
+      "pass": true
+    },
+    {
+      "label": "early-classical: two labeled face slots at 320px",
+      "pass": true
+    },
+    {
+      "label": "early-classical: faces remain side by side at 320px",
+      "pass": true
+    },
+    {
+      "label": "early-classical/obverse: correct side crop at 320px",
+      "pass": true
+    },
+    {
+      "label": "early-classical: missing reverse stated at 320px",
+      "pass": true
+    },
+    {
+      "label": "early-classical: no page overflow at 320px",
+      "pass": true
+    },
+    {
+      "label": "classical: two labeled face slots at 320px",
+      "pass": true
+    },
+    {
+      "label": "classical: faces remain side by side at 320px",
+      "pass": true
+    },
+    {
+      "label": "classical/obverse: correct side crop at 320px",
+      "pass": true
+    },
+    {
+      "label": "classical/reverse: correct side crop at 320px",
+      "pass": true
+    },
+    {
+      "label": "classical: no page overflow at 320px",
+      "pass": true
+    },
+    {
+      "label": "profile: two labeled face slots at 320px",
+      "pass": true
+    },
+    {
+      "label": "profile: faces remain side by side at 320px",
+      "pass": true
+    },
+    {
+      "label": "profile/obverse: correct side crop at 320px",
+      "pass": true
+    },
+    {
+      "label": "profile/reverse: correct side crop at 320px",
+      "pass": true
+    },
+    {
+      "label": "profile: no page overflow at 320px",
+      "pass": true
+    },
+    {
+      "label": "pi: two labeled face slots at 320px",
+      "pass": true
+    },
+    {
+      "label": "pi: faces remain side by side at 320px",
+      "pass": true
+    },
+    {
+      "label": "pi/obverse: correct side crop at 320px",
+      "pass": true
+    },
+    {
+      "label": "pi/reverse: correct side crop at 320px",
+      "pass": true
+    },
+    {
+      "label": "pi: no page overflow at 320px",
+      "pass": true
+    },
+    {
+      "label": "late-old: two labeled face slots at 320px",
+      "pass": true
+    },
+    {
+      "label": "late-old: faces remain side by side at 320px",
+      "pass": true
+    },
+    {
+      "label": "late-old/obverse: correct side crop at 320px",
+      "pass": true
+    },
+    {
+      "label": "late-old/reverse: correct side crop at 320px",
+      "pass": true
+    },
+    {
+      "label": "late-old: no page overflow at 320px",
+      "pass": true
+    },
+    {
+      "label": "new: two labeled face slots at 320px",
+      "pass": true
+    },
+    {
+      "label": "new: faces remain side by side at 320px",
+      "pass": true
+    },
+    {
+      "label": "new/obverse: correct side crop at 320px",
+      "pass": true
+    },
+    {
+      "label": "new/reverse: correct side crop at 320px",
+      "pass": true
+    },
+    {
+      "label": "new: no page overflow at 320px",
+      "pass": true
+    },
+    {
+      "label": "egypt: two labeled face slots at 320px",
+      "pass": true
+    },
+    {
+      "label": "egypt: faces remain side by side at 320px",
+      "pass": true
+    },
+    {
+      "label": "egypt/obverse: correct side crop at 320px",
+      "pass": true
+    },
+    {
+      "label": "egypt/reverse: correct side crop at 320px",
+      "pass": true
+    },
+    {
+      "label": "egypt: no page overflow at 320px",
+      "pass": true
+    },
+    {
+      "label": "Both face slots available without JavaScript",
+      "pass": true
+    }
+  ],
+  "notes": [
+    "15 face photographs and one documented missing reverse; source image records unchanged.",
+    "Five viewport widths; actual external photographs loaded.",
+    "Chromium only; not a screen-reader or real-device touch audit."
+  ]
+}

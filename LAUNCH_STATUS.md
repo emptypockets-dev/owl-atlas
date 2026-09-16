@@ -5,7 +5,7 @@ The existing research edition is deployed to the verified personal Vercel accoun
 authenticated Vercel access while the six BnF image reuse decisions are unresolved.
 The account's existing Pro plan was retained; no plan upgrade or paid add-on was added.
 
-- Current preview: https://owl-atlas-1xw38p25v-andrey-kondratyuks-projects.vercel.app
+- Current preview: https://owl-atlas-npok0gpz1-emptypocketsdevs-projects.vercel.app/#family-tree
 - Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
 - Public source repository: https://github.com/emptypockets-dev/owl-atlas
 
@@ -16,14 +16,14 @@ named Hobby workspace belonging to the work-associated login. On 16 September
 2026, the existing project and deployments were transferred to the verified
 personal account. The API confirmed the new owner and removal from the previous
 workspace. The existing preview was opened successfully in the user's already
-signed-in personal browser session. Its generated URL retains the original
-workspace suffix; this does not reflect its current ownership.
+signed-in personal browser session. The current preview above was subsequently
+deployed directly under the personal workspace.
 Unauthenticated requests redirect to Vercel authentication. All deployments,
 including the stable `owl-atlas.vercel.app` address, are protected. Vercel assigned
 its first deployment to production despite an explicit preview target; all URLs
 were then protected immediately, and a separate preview was created. The stable
 address currently retains that initial build; use the current preview above for
-the corrected Met dimension metadata.
+the corrected Met dimension metadata and paired family-tree photographs.
 
 ## Deployment configuration
 
@@ -64,9 +64,16 @@ settings and credentials are ignored by Git.
   unchanged source URLs: reverse 1,110 × 1,200; obverse 1,200 × 1,085.
 - Updated the third-party notice and generated output through the existing build.
 - Recorded launch verification separately from the original handoff report.
+- At the owner's request, family-tree cards now show labeled obverse and reverse
+  photographs side by side, including on mobile. Existing side-specific crops,
+  credits, rights notes and full original-image viewer links are preserved.
+  The early-classical reverse remains an explicit photograph gap.
+- Added a direct `#family-tree` link. Cards use two columns on desktop and one
+  on narrow screens, keeping each coin's two faces together.
 
-`src/page.html`, `src/styles.css`, `src/app.js` and `src/render.mjs` still match
-the original package checksums. The 28 sources, 16 image records, three BnF
+The existing design and interactions are preserved. `src/app.js` still matches
+the original package checksum; the page, styles and renderer now include the
+requested family-tree update. The 28 sources, 16 image records, three BnF
 specimens, six reuse-review flags, dates, attributions and image URLs remain.
 `MANIFEST.sha256` and `research/handoff-validation.json` describe the original
 handoff package, not this later deployment.
@@ -74,17 +81,25 @@ handoff package, not this later deployment.
 ## Verification
 
 - `npm run build:deploy`: passed locally and on Vercel; output is `dist/`.
-- `npm run check`: 847 checks passed.
+- `npm run check`: 849 checks passed.
 - `python3 tests/integration_data.py`: 85 checks passed.
 - `python3 tests/editorial_copy.py`: 28 checks passed.
 - Chromium smoke suite: see `research/browser-qa.json` (152 checks; image requests
   intentionally blocked). Playwright was run from an isolated temporary tooling
   environment, with no dependency added to this project.
-- Actual HTTPS preview: 255 checks passed; see `research/hosted-preview-qa.json`. Every one of the
+- Current family-tree HTTPS preview: 234 checks passed; see
+  `research/family-faces-qa.json`. All 15 available face displays loaded real
+  photographs. At 320, 390, 768, 1024 and 1440 pixels, each pair stayed side by
+  side with correct crops and no horizontal page overflow. All 15 viewer links
+  opened the exact original and returned focus on Escape at 390 pixels. Both
+  face slots remained available without JavaScript. Hosted HTML exactly matched
+  `dist/index.html`, and the new section link resolved. The hosted desktop and
+  mobile photographs were visually inspected.
+- Earlier launch preview: 255 checks passed; see `research/hosted-preview-qa.json`. Every one of the
   16 real remote photographs loaded and decoded. Each was visually inspected in
   the hosted viewer, including all six full-frame BnF faces and the paired plates.
   The Met dimension mismatch discovered in the first run was corrected.
-- Hosted checks cover exact HTML equality with `dist/index.html`, source and
+- Those earlier hosted checks cover exact HTML equality with `dist/index.html`, source and
   specimen links, image dimensions, zoom/pan/reset, Escape, source-dialog focus
   return, Pi II/Pi III presets and faces, bibliography filtering, no-JavaScript
   content, reduced motion and section links at 320, 390, 768, 1024 and 1440 pixels.

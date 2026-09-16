@@ -1,3 +1,14 @@
+# Paired family-tree photographs — 16 September 2026
+
+- Show labeled obverse and reverse faces together on every family card, with
+  two cards across on desktop and one on mobile. Retain each source's correct
+  crop, attribution, reuse status and full original-image viewer link.
+- Keep the early-classical reverse visibly identified as unavailable.
+- Add the `#family-tree` deep link. Verify real hosted photographs, five viewport
+  widths, viewer focus return and no-JavaScript content; see `LAUNCH_STATUS.md`.
+
+---
+
 # Launch preparation — 16 September 2026
 
 - Added Vercel settings for the existing dependency-free build and `dist/` output.

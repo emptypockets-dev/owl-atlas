@@ -43,6 +43,17 @@ export function photoGapMarkup(family, side = 'obverse') {
   return `<div class="photo-gap"><span class="gap-glyph" aria-hidden="true">${glyph}</span><span class="eyebrow">${escapeHtml(message)}</span><span class="micro-copy">No substitute coin has been used.</span></div>`;
 }
 
+export function familyFacesMarkup(family, data) {
+  const faces = ['obverse', 'reverse'].map((side) => {
+    const label = side === 'obverse' ? 'Obverse' : 'Reverse';
+    const photo = family[side]
+      ? photoMarkup(family[side], data, 'family-photo', family[`${side}Crop`])
+      : photoGapMarkup(family, side);
+    return `<div class="family-face" role="group" aria-label="${label} of ${escapeHtml(family.name)}"><p class="eyebrow family-face-label">${label}</p>${photo}</div>`;
+  });
+  return `<div class="family-faces">${faces.join('')}</div>`;
+}
+
 export function comparisonMarkup(familyId, side, data, specimenId) {
   const family = data.families.find((entry) => entry.id === familyId);
   if (!family) throw new Error(`Unknown family: ${familyId}`);
