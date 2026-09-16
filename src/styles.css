@@ -465,6 +465,10 @@ img {
   border-radius:50%
 }
 
+.hero-photo .expand-label {
+  display:none
+}
+
 .hero-photo .image-credit {
   max-width:94%;
   margin:14px auto 0;
@@ -3511,10 +3515,6 @@ dialog::backdrop {
     bottom:9px;
     right:9px;
     transform:none
-  }
-  .hero-photo .expand-label {
-    bottom:22px;
-    right:30px
   }
   .noscript-note {
     font-size:10px;

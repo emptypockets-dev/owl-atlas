@@ -1,0 +1,30 @@
+{
+  "result": "pass",
+  "url": "https://owl-atlas-9ea3j2ua2-emptypocketsdevs-projects.vercel.app",
+  "checks": 20,
+  "items": [
+    "Preview HTML matches dist/index.html",
+    "1440px: hero label hidden on hover",
+    "1440px: hero label hidden on focus",
+    "1440px: visible keyboard focus preserved",
+    "1440px: keyboard opens viewer",
+    "1440px: Escape restores focus",
+    "1440px: no page overflow",
+    "390px: hero label hidden on hover",
+    "390px: hero label hidden on focus",
+    "390px: visible keyboard focus preserved",
+    "390px: keyboard opens viewer",
+    "390px: Escape restores focus",
+    "390px: no page overflow",
+    "320px: hero label hidden on hover",
+    "320px: hero label hidden on focus",
+    "320px: visible keyboard focus preserved",
+    "320px: keyboard opens viewer",
+    "320px: Escape restores focus",
+    "320px: no page overflow",
+    "Other coin image labels remain visible"
+  ],
+  "limitations": [
+    "Chromium only; targeted hero-label check with real hosted imagery, not a new full-site visual or accessibility audit."
+  ]
+}

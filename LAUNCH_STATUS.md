@@ -5,7 +5,7 @@ The existing research edition is deployed to the verified personal Vercel accoun
 authenticated Vercel access while the six BnF image reuse decisions are unresolved.
 The account's existing Pro plan was retained; no plan upgrade or paid add-on was added.
 
-- Current preview: https://owl-atlas-h22pnex9w-emptypocketsdevs-projects.vercel.app/#family-early-classical
+- Current preview: https://owl-atlas-9ea3j2ua2-emptypocketsdevs-projects.vercel.app
 - Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
 - Public source repository: https://github.com/emptypockets-dev/owl-atlas
 
@@ -77,6 +77,8 @@ settings and credentials are ignored by Git.
   museum-supplied files; no local image transformation or archiving was performed.
 - Added a direct `#family-tree` link. Cards use two columns on desktop and one
   on narrow screens, keeping each coin's two faces together.
+- Removed the hero photograph's “Look closer” overlay, retaining the image
+  viewer link, visible keyboard focus and attribution.
 
 The existing design and interactions are preserved. `src/app.js` still matches
 the original package checksum; the page, styles and renderer now include the
@@ -95,7 +97,11 @@ handoff package, not this later deployment.
 - Chromium smoke suite: see `research/browser-qa.json` (152 checks; image requests
   intentionally blocked). Playwright was run from an isolated temporary tooling
   environment, with no dependency added to this project.
-- Current family-tree HTTPS preview: see `research/family-faces-qa.json` for
+- Current hero-label HTTPS preview: see `research/hero-label-qa.json`. The 20
+  targeted checks verify actual hero/viewer image loading, hidden overlay on
+  hover and focus, visible keyboard focus, Enter/Escape and focus return at
+  320, 390 and 1440 pixels. Other photograph labels remain visible.
+- Previous family-tree HTTPS preview: see `research/family-faces-qa.json` for
   the latest check count and URL. All 16 family-face displays loaded real
   photographs. At 320, 390, 768, 1024 and 1440 pixels, each pair stayed side by
   side with correct crops and no horizontal page overflow. All 16 viewer links

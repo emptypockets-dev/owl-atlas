@@ -1,3 +1,11 @@
+# Hero hover label — 16 September 2026
+
+- Remove the hero photograph's “Look closer” overlay at all screen sizes.
+  Preserve its click/keyboard viewer access, focus indication and credits.
+  Other photograph labels remain available.
+
+---
+
 # Matching early-classical reverse — 16 September 2026
 
 - Locate Cleveland 1920.267.b, the CC0 reverse of the existing obverse 1920.267.a.
