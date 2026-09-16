@@ -1,14 +1,23 @@
 # Owl Atlas launch status — 16 September 2026
 
-The existing research edition is deployed to the owner's personal Vercel Hobby
-workspace, **Andrey Kondratyuk's projects**. It remains restricted to authenticated
-Vercel access while the six BnF image reuse decisions are unresolved.
+The existing research edition is deployed to the verified personal Vercel account
+**emptypockets-dev**, in **emptypocketsdev's projects**. It remains restricted to
+authenticated Vercel access while the six BnF image reuse decisions are unresolved.
+The account's existing Pro plan was retained; no plan upgrade or paid add-on was added.
 
 - Current preview: https://owl-atlas-1xw38p25v-andrey-kondratyuks-projects.vercel.app
-- Vercel project: https://vercel.com/andrey-kondratyuks-projects/owl-atlas
+- Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
 - Public source repository: https://github.com/emptypockets-dev/owl-atlas
 
-Sign in with the Vercel account that owns the project to view the preview.
+Sign in with the personal Vercel account `emptypockets-dev` to view the preview.
+
+**Account correction:** the initial deployment mistakenly selected a similarly
+named Hobby workspace belonging to the work-associated login. On 16 September
+2026, the existing project and deployments were transferred to the verified
+personal account. The API confirmed the new owner and removal from the previous
+workspace. The existing preview was opened successfully in the user's already
+signed-in personal browser session. Its generated URL retains the original
+workspace suffix; this does not reflect its current ownership.
 Unauthenticated requests redirect to Vercel authentication. All deployments,
 including the stable `owl-atlas.vercel.app` address, are protected. Vercel assigned
 its first deployment to production despite an explicit preview target; all URLs
@@ -25,11 +34,22 @@ resource, domain purchase, tracking or analytics was added. The preview serves
 turned off until the public-release decision is recorded.
 
 The source was successfully pushed to `emptypockets-dev/owl-atlas` on `main`.
-Vercel's Git connection attempt returned `You need admin or write access to the
-repository "owl-atlas" to link it (400)`. The Vercel account's GitHub integration
-therefore still needs access to this personal repository. Deployment used the
-authenticated Vercel CLI and does not depend on that integration. No GitHub account
-connection or organization permissions were changed to bypass this restriction.
+After the account transfer, Vercel successfully connected that GitHub repository;
+the earlier access error is resolved. Automatic Git deployments remain disabled
+by `vercel.json` pending the public-release decision.
+
+For future CLI operations, use the project-local personal-account login and an
+explicit scope, without changing the machine's default work-account login:
+
+```sh
+vercel whoami --global-config .vercel/personal-cli
+vercel deploy --target preview --scope emptypocketsdevs-projects --global-config .vercel/personal-cli
+```
+
+The expected username is `emptypockets-dev`. Verify the account identity before
+any mutation. If that local login is missing on another machine, sign in to the
+personal account first. `.vercel/` and `.env.local` contain local configuration
+and credentials and must remain excluded from Git.
 
 The source repository is public by the owner's request. It contains source,
 research records and existing QA material; the hosted site exposes only the
@@ -88,9 +108,9 @@ handoff package, not this later deployment.
    canonical/social metadata, sitemap and favicon appropriate to that identity.
    No domain was purchased or invented.
 3. After the release decision, publish the approved build, remove preview-only
-   indexing restrictions, authorize Vercel's GitHub integration for
-   `emptypockets-dev/owl-atlas`, reconnect it, and deliberately enable the intended
-   Git deployment workflow. Keep the previous deployment available for rollback.
+   indexing restrictions, and deliberately enable the intended Git deployment
+   workflow for the now-connected `emptypockets-dev/owl-atlas` repository. Keep
+   the previous deployment available for rollback.
 4. Decide whether to archive approved photographs for reliability. Current images
    are remote; no photographs were vendored or optimized. The 8.6 MB initial
    image transfer is a mobile-loading limitation; consider permitted, documented
