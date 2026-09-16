@@ -1,3 +1,16 @@
+# Story flow edit — 16 September 2026
+
+- Give each narrative chapter a distinct purpose, tighten repeated geography,
+  visual descriptions and general cautions, and introduce unfamiliar terms at
+  first use. Preserve specific dating and attribution qualifications.
+- Put the pre-owl coinage before the early photographs; continue from 404 BCE
+  into chapter 05; mark regional issues as a return to parallel fourth-century
+  traditions; add a closing link from the story into the reference atlas.
+- Preserve all source, image, family and specimen records, the design and
+  interactions. See `research/story-flow-review.md` for the editorial rationale.
+
+---
+
 # Geographic introduction — 16 September 2026
 
 - Replace the Attica-only schematic in section 01 with an overview of Athens

@@ -5,7 +5,7 @@ The existing research edition is deployed to the verified personal Vercel accoun
 authenticated Vercel access while the six BnF image reuse decisions are unresolved.
 The account's existing Pro plan was retained; no plan upgrade or paid add-on was added.
 
-- Current preview: https://owl-atlas-l5aezhinv-emptypocketsdevs-projects.vercel.app
+- Current preview: https://owl-atlas-bbs5ewny7-emptypocketsdevs-projects.vercel.app
 - Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
 - Public source repository: https://github.com/emptypockets-dev/owl-atlas
 
@@ -85,10 +85,16 @@ settings and credentials are ignored by Git.
   and findspots. Three added sources support the wider distribution and related
   local coinages. This is not an exhaustive inventory of mints or a reconstruction
   of trade routes. See `research/geography-findings.json` for evidence and map credit.
+- Edited the full reading path to reduce repeated geography, visual descriptions
+  and general cautions. Earlier coinage now precedes the first owl photographs;
+  the 404 BCE chapter links onward to chapter 05; the regional chapter explicitly
+  returns to parallel fourth-century traditions; and the story ends with a link
+  into the reference atlas. Specific dating, attribution and rights qualifications
+  remain with their evidence. See `research/story-flow-review.md`.
 
 The existing design and interactions are preserved. `src/app.js` still matches
 the original package checksum; the page, styles and renderer now include the
-requested family-tree and geographic updates. The original 28 sources, 16 image records, three BnF
+requested family-tree, geographic and story-flow updates. The original 28 sources, 16 image records, three BnF
 specimens, six reuse-review flags, dates, attributions and existing image URLs
 remain. The documented early-classical reverse brings the image total to 17.
 The geographic references bring the source total to 31.
@@ -98,13 +104,21 @@ handoff package, not this later deployment.
 ## Verification
 
 - `npm run build:deploy`: passed locally and on Vercel; output is `dist/`.
-- `npm run check`: 914 checks passed.
+- `npm run check`: 905 checks passed (the total changes with rendered citations).
 - `python3 tests/integration_data.py`: 91 checks passed.
 - `python3 tests/editorial_copy.py`: 28 checks passed.
 - Chromium smoke suite: see `research/browser-qa.json` (152 checks; image requests
   intentionally blocked). Playwright was run from an isolated temporary tooling
   environment, with no dependency added to this project.
-- Current geography HTTPS preview: see `research/geography-qa.json`. All 43 checks
+- Current story-flow HTTPS preview: see `research/story-flow-qa.json`. All 93 checks
+  passed: exact hosted HTML equality with `dist/index.html`, preview indexing
+  restriction, all eight chapter deep links, both onward story links, viewport
+  fit at 320, 390, 768, 1024 and 1440 pixels, citation dialogs and focus return,
+  and no-JavaScript reading. All 17 real remote photograph records loaded on the
+  page. Updated desktop and mobile chapter screenshots were visually inspected;
+  no page JavaScript errors occurred. Narrative flow was assessed through reading,
+  not inferred from the automated test results.
+- Previous geography HTTPS preview: see `research/geography-qa.json`. All 43 checks
   passed: exact hosted HTML equality with `dist/index.html`, the section deep link,
   map labels and text, viewport fit at 320, 390, 768, 1024 and 1440 pixels, all three
   new citation dialogs and focus return, and no-JavaScript reading. Real hero,

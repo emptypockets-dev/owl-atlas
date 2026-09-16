@@ -44,6 +44,8 @@ The reading path follows the coins, their changing designs, issuing communities
 and historical context. Practical catalogue terminology remains available in an
 optional, keyboard-accessible reference disclosure beside the glossary. Dating
 uncertainty, provenance and image rights remain attached to the relevant evidence.
+The subsequent story-flow edit removes repeated explanations and clarifies
+chronological transitions; see `research/story-flow-review.md` for its scope.
 
 Edition 03 is an editorial revision, not a new source audit. All 16 image URLs,
 attributions, rights caveats, 28 source records and three BnF specimens are retained.
