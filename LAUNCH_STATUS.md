@@ -24,6 +24,13 @@ resource, domain purchase, tracking or analytics was added. The preview serves
 `X-Robots-Tag: noindex, nofollow`. Git-triggered deployments are deliberately
 turned off until the public-release decision is recorded.
 
+The source was successfully pushed to `emptypockets-dev/owl-atlas` on `main`.
+Vercel's Git connection attempt returned `You need admin or write access to the
+repository "owl-atlas" to link it (400)`. The Vercel account's GitHub integration
+therefore still needs access to this personal repository. Deployment used the
+authenticated Vercel CLI and does not depend on that integration. No GitHub account
+connection or organization permissions were changed to bypass this restriction.
+
 The source repository is public by the owner's request. It contains source,
 research records and existing QA material; the hosted site exposes only the
 built HTML, `LICENSE.txt` and `THIRD_PARTY_NOTICES.txt`. Requests for source,
@@ -81,8 +88,9 @@ handoff package, not this later deployment.
    canonical/social metadata, sitemap and favicon appropriate to that identity.
    No domain was purchased or invented.
 3. After the release decision, publish the approved build, remove preview-only
-   indexing restrictions, and deliberately enable the intended Git deployment
-   workflow. Keep the previous deployment available for rollback.
+   indexing restrictions, authorize Vercel's GitHub integration for
+   `emptypockets-dev/owl-atlas`, reconnect it, and deliberately enable the intended
+   Git deployment workflow. Keep the previous deployment available for rollback.
 4. Decide whether to archive approved photographs for reliability. Current images
    are remote; no photographs were vendored or optimized. The 8.6 MB initial
    image transfer is a mobile-loading limitation; consider permitted, documented
