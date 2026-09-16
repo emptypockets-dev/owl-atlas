@@ -53,7 +53,7 @@ both belong to the same coin; see `research/early-classical-findings.json`.
 
 ## The experience
 
-- Eight narrative chapters: Attica and Athens; early owls; classical mass issues;
+- Eight narrative chapters: Athens and the geography of owl coinage; early owls; classical mass issues;
   404 BCE; fourth-century changes; New Style; regional imitations; and evidence.
 - Scroll reveals, restrained parallax, a chapter indicator and reading progress.
   Scrolling is never hijacked. OS reduced-motion preferences take priority.
@@ -61,9 +61,13 @@ both belong to the same coin; see `research/early-classical-findings.json`.
   Pi II/Pi III specimen selectors, and story links preset meaningful comparisons.
 - A native-dialog image viewer with source/rights metadata, fitted-size zoom,
   keyboard controls, drag and pinch handlers, and original-image links.
-- Inline source dialogs, 28 bibliography records, author/topic filtering, 17
+- Inline source dialogs, 31 bibliography records, author/topic filtering, 17
   image records, three structured BnF specimen records, a glossary and a visible
   editorial coverage register.
+- A geographic introduction distinguishes the Athenian mint, circulation and
+  related local issues. It places Athens within Attica in present-day Greece,
+  with a public-domain coastline map and three additional references. The map
+  shows selected regions across time, not every mint or findspot.
 
 ## Edit and build
 

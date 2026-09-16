@@ -1,0 +1,109 @@
+{
+  "reviewedOn": "2026-09-16",
+  "scope": "A geographic introduction to selected regions of Athenian coin circulation and related owl-type production. Not an exhaustive mint or findspot map.",
+  "sourcesAdded": [
+    {
+      "id": "owl-circulation",
+      "title": "The circulation and distribution of classical Greek coinage",
+      "author": "Zane Mullins",
+      "year": "2025",
+      "url": "https://doi.org/10.1111/ehr.70069",
+      "kind": "Research paper",
+      "scope": "Hoard-based distribution of Classical Greek coinages, including Athenian coins in Egypt, the Levant, Mesopotamia, Iran and Afghanistan, and discussion of foreign imitations.",
+      "note": "The sample covers 550–300 BCE, not every period or every find. Some older hoard descriptions combine Athens and imitations. Hoard locations do not reconstruct exact trade routes; use, issuing intent and movement mechanisms remain interpretive questions.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "owl-hoards",
+      "title": "Hoards and Overstrikes: The Numismatic Evidence",
+      "author": "Margaret Thompson · Penn Museum, Expedition 21(4)",
+      "year": "1979",
+      "url": "https://www.penn.museum/sites/expedition/hoards-and-overstrikes/",
+      "kind": "Numismatic research overview",
+      "scope": "Published hoard evidence for Athenian coins in Sicily, southwest Anatolia, Egypt, the Levant and farther east; discussion of coins used as bullion.",
+      "note": "A historical synthesis retained for its documented geographic examples. Its chronology and broad attribution arguments are not automatically adopted; later research, including Gentelli et al. (2026), revisits some eastern imitations. This overview is not a complete gazetteer of finds.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "iris-babylon",
+      "title": "Mazaces, Babylon · Le Rider 1997 pseudo-atheniens 10",
+      "author": "IRIS / University of Oxford",
+      "year": "Online type catalogue",
+      "url": "https://greekcoinage.org/iris/id/babylon.mazaces.lerider.1997.pseudo-athenians_10",
+      "kind": "Numismatic type record",
+      "scope": "An Athena–owl type attributed to Mazaces and the mint of Babylon, in Babylonia.",
+      "note": "IRIS gives this type a broad 350–300 BCE range. The geographic introduction uses the mint attribution; it does not extend this date range to every Babylonian owl-type coin or imply an exact issue date. No new specimen photograph is embedded.",
+      "accessed": "2026-09-16"
+    }
+  ],
+  "existingSourcesUsed": [
+    "attica",
+    "acropolis",
+    "mines",
+    "cma-classic",
+    "sabakes",
+    "isotopes"
+  ],
+  "map": {
+    "source": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_land.geojson",
+    "provider": "Natural Earth",
+    "license": "Public domain",
+    "licenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+    "sha256": "9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9",
+    "bounds": [
+      8,
+      9,
+      76,
+      47
+    ],
+    "transformation": "Land polygons clipped to the bounds and projected linearly into a 900 × 590 SVG. No modern borders or inferred coin routes. Coordinates are editorial label anchors for broad regions, except Athens city.",
+    "labelAnchors": [
+      {
+        "label": "Athens",
+        "longitude": 23.73,
+        "latitude": 37.98
+      },
+      {
+        "label": "Sicily",
+        "longitude": 14.0,
+        "latitude": 37.5
+      },
+      {
+        "label": "Anatolia",
+        "longitude": 28.8,
+        "latitude": 37.6
+      },
+      {
+        "label": "Egypt",
+        "longitude": 30.4,
+        "latitude": 27.8
+      },
+      {
+        "label": "The Levant",
+        "longitude": 35.8,
+        "latitude": 33.3
+      },
+      {
+        "label": "Babylonia",
+        "longitude": 44.4,
+        "latitude": 32.5
+      },
+      {
+        "label": "Iran & Afghanistan",
+        "longitude": 60.0,
+        "latitude": 34.0
+      },
+      {
+        "label": "Arabia",
+        "longitude": 44.5,
+        "latitude": 20.0
+      }
+    ]
+  },
+  "limits": [
+    "Findspots and regional hoard evidence must not be treated as exact mint locations or complete travel histories.",
+    "Current coastlines are orientation only; ancient shorelines and political boundaries are not reconstructed.",
+    "Regional imitation attribution is not assumed for every eastern find. The 2026 reattribution caveat remains visible.",
+    "Existing 28 sources, 17 image records and all BnF rights flags remain; three geographical sources are appended."
+  ]
+}

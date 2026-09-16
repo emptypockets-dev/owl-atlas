@@ -1,3 +1,16 @@
+# Geographic introduction — 16 September 2026
+
+- Replace the Attica-only schematic in section 01 with an overview of Athens
+  and the wider geography of owl coinage. Explicitly place Athens within Attica
+  in present-day Greece, and distinguish minting, circulation and findspots.
+- Add selected regional labels for Sicily, Anatolia, Egypt, the Levant,
+  Babylonia, Iran/Afghanistan and Arabia. Separate related local issues from
+  Athenian circulation; preserve attribution uncertainty and the mining story.
+- Append three sources, retain the original 28, and credit Natural Earth's
+  public-domain coastline geometry. No photograph or existing image rights changed.
+
+---
+
 # Hero hover label — 16 September 2026
 
 - Remove the hero photograph's “Look closer” overlay at all screen sizes.

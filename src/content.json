@@ -310,6 +310,39 @@
       "scope": "BnF’s published conditions for commercial and promotional reuse of reproductions, with stated exceptions. Preserved alongside the individual Commons PD-France assertions.",
       "note": "The atlas does not resolve their application to every project or jurisdiction. Six linked photographs of BnF specimens remain marked “Reuse review pending”; no permission request has been sent, and no CC0 grant is asserted.",
       "accessed": "2026-09-16"
+    },
+    {
+      "id": "owl-circulation",
+      "title": "The circulation and distribution of classical Greek coinage",
+      "author": "Zane Mullins",
+      "year": "2025",
+      "url": "https://doi.org/10.1111/ehr.70069",
+      "kind": "Research paper",
+      "scope": "Hoard-based distribution of Classical Greek coinages, including Athenian coins in Egypt, the Levant, Mesopotamia, Iran and Afghanistan, and discussion of foreign imitations.",
+      "note": "The sample covers 550–300 BCE, not every period or every find. Some older hoard descriptions combine Athens and imitations. Hoard locations do not reconstruct exact trade routes; use, issuing intent and movement mechanisms remain interpretive questions.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "owl-hoards",
+      "title": "Hoards and Overstrikes: The Numismatic Evidence",
+      "author": "Margaret Thompson · Penn Museum, Expedition 21(4)",
+      "year": "1979",
+      "url": "https://www.penn.museum/sites/expedition/hoards-and-overstrikes/",
+      "kind": "Numismatic research overview",
+      "scope": "Published hoard evidence for Athenian coins in Sicily, southwest Anatolia, Egypt, the Levant and farther east; discussion of coins used as bullion.",
+      "note": "A historical synthesis retained for its documented geographic examples. Its chronology and broad attribution arguments are not automatically adopted; later research, including Gentelli et al. (2026), revisits some eastern imitations. This overview is not a complete gazetteer of finds.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "iris-babylon",
+      "title": "Mazaces, Babylon · Le Rider 1997 pseudo-atheniens 10",
+      "author": "IRIS / University of Oxford",
+      "year": "Online type catalogue",
+      "url": "https://greekcoinage.org/iris/id/babylon.mazaces.lerider.1997.pseudo-athenians_10",
+      "kind": "Numismatic type record",
+      "scope": "An Athena–owl type attributed to Mazaces and the mint of Babylon, in Babylonia.",
+      "note": "IRIS gives this type a broad 350–300 BCE range. The geographic introduction uses the mint attribution; it does not extend this date range to every Babylonian owl-type coin or imply an exact issue date. No new specimen photograph is embedded.",
+      "accessed": "2026-09-16"
     }
   ],
   "images": {
@@ -898,7 +931,7 @@
   "glossary": [
     [
       "Attica",
-      "The region surrounding Athens. “Attica, Athens” is region plus issuing city, not two separate owl varieties.",
+      "The region around Athens in present-day Greece. Athens was the issuing city-state. “Attica, Athens” identifies region and city, not two separate owl varieties.",
       [
         "attica"
       ]

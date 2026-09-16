@@ -80,6 +80,15 @@ No external fonts, icons, JavaScript libraries, CSS frameworks or commercial
 image assets are bundled. Greek-letter typography and diagram shapes are not
 representations of unphotographed coin types.
 
+## Geographic overview
+
+Section 01 uses Natural Earth's 1:110m land geometry, which is in the public
+domain: https://www.naturalearthdata.com/about/terms-of-use/ . The geometry was
+clipped and projected into an inline SVG, with labels added for orientation.
+Modern coastlines do not reconstruct ancient boundaries. No map tiles, external
+scripts or tracking services are loaded. The source URL, checksum, bounds and
+label coordinates are recorded in `research/geography-findings.json`.
+
 ## Editorial exclusions
 
 An earlier candidate Pi-style image was excluded because its embedded
