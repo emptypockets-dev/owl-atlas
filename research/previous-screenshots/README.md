@@ -1,0 +1,1 @@
+Prior supplied QA screenshots, labeled by site edition. Some show remote-image fallback states because external photographs were unavailable. They are visual references only, not original coin images, proof of image delivery, or publication clearance. The current source is general-audience edition 03.

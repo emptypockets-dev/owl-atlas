@@ -1,0 +1,65 @@
+[
+  {
+    "id": "bnf-pi-iii-1475",
+    "name": "Pi III · BnF 1475",
+    "type": "Pi III",
+    "accession": "1966.453.1475",
+    "institution": "Bibliothèque nationale de France, département Monnaies, médailles et antiques",
+    "collectionReference": "SNG France 1, Collection Jean et Marie Delepierre, no. 1475",
+    "weightG": 17.19,
+    "diameterMm": 21,
+    "catalogueDate": "c. 353–295 BCE (BnF catalogue, attributed there to Flament)",
+    "dateNote": "This is the specimen catalogue’s date range, not an exact issue date and not a claim that all Pi-style chronology is settled.",
+    "objectUrl": "https://catalogue.bnf.fr/ark:/12148/cb41772241w",
+    "gallicaUrl": "https://gallica.bnf.fr/ark:/12148/btv1b8500418c",
+    "typeUrl": "https://greekcoinage.org/iris/id/athens.flament_2007.pi-style",
+    "refs": [
+      "bnf-pi-iii"
+    ],
+    "reuseStatus": "review-pending",
+    "obverse": "bnf-pi-iii-1475-obverse",
+    "reverse": "bnf-pi-iii-1475-reverse"
+  },
+  {
+    "id": "bnf-quadridigite-1478",
+    "name": "Quadridigité · BnF 1478",
+    "type": "Quadridigité",
+    "accession": "1966.453.1478",
+    "institution": "Bibliothèque nationale de France, département Monnaies, médailles et antiques",
+    "collectionReference": "SNG France 1, Collection Jean et Marie Delepierre, no. 1478",
+    "weightG": 17.22,
+    "diameterMm": 21,
+    "catalogueDate": "c. 286–261 BCE (BnF catalogue, attributed there to Flament)",
+    "dateNote": "The source’s date convention is preserved. Other specialist catalogues may draw different endpoints.",
+    "objectUrl": "https://catalogue.bnf.fr/ark:/12148/cb41772244x",
+    "gallicaUrl": "https://gallica.bnf.fr/ark:/12148/btv1b8500421v",
+    "typeUrl": "https://greekcoinage.org/iris/id/athens.nicolet-pierre.kroll_1990.1-28.quadridigite",
+    "refs": [
+      "bnf-quadridigite"
+    ],
+    "reuseStatus": "review-pending",
+    "obverse": "bnf-quadridigite-1478-obverse",
+    "reverse": "bnf-quadridigite-1478-reverse"
+  },
+  {
+    "id": "bnf-pi-ii-1469",
+    "name": "Pi II · BnF 1469",
+    "type": "Pi II",
+    "accession": "1966.453.1469",
+    "institution": "Bibliothèque nationale de France, département Monnaies, médailles et antiques",
+    "collectionReference": "SNG France 1, Collection Jean et Marie Delepierre, no. 1469",
+    "weightG": 17.16,
+    "diameterMm": 23,
+    "catalogueDate": "c. 393–295 BCE (broad BnF catalogue range, attributed there to Flament)",
+    "dateNote": "Do not silently turn the broad 393–295 BCE record range into the date of Pi II as a whole. The type identification and the chronology should be stored separately.",
+    "objectUrl": "https://catalogue.bnf.fr/ark:/12148/cb41772235z",
+    "gallicaUrl": "https://gallica.bnf.fr/ark:/12148/btv1b8500412w",
+    "typeUrl": "https://greekcoinage.org/iris/id/athens.flament_2007.pi-style",
+    "refs": [
+      "bnf-pi-ii"
+    ],
+    "reuseStatus": "review-pending",
+    "obverse": "bnf-pi-ii-1469-obverse",
+    "reverse": "bnf-pi-ii-1469-reverse"
+  }
+]

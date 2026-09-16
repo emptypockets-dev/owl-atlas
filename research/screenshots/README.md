@@ -1,0 +1,1 @@
+Fresh Chromium smoke-test screenshots from the launch handoff. Remote photograph requests were deliberately blocked; these screenshots therefore show fallback states, not proof that source images load online. The separate synthetic viewer grid is a test fixture only and is not included in the website. Do not publish research/screenshots as coin imagery.

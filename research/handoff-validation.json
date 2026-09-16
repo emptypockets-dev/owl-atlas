@@ -1,0 +1,70 @@
+{
+  "preparedOn": "2026-09-16",
+  "edition": "Research edition 03 — general-audience launch handoff",
+  "result": "pass for listed local checks; not deployed; release checks remain",
+  "originalStandaloneSha256": "fc3f4ceb80a29ea6c25d83ae85cf2cb965b7ff05dd4cc958ab49252b36cee947",
+  "indexMatchesLatestDeliveredHtml": true,
+  "distMatchesLatestDeliveredHtml": true,
+  "canonicalSourceFilesPreserved": [
+    "src/app.js",
+    "src/content.json",
+    "src/page.html",
+    "src/render.mjs",
+    "src/styles.css"
+  ],
+  "nodeVersion": "v22.16.0",
+  "pythonVersion": "3.13.5",
+  "checksRunThisHandoff": [
+    {
+      "command": "npm run build:deploy",
+      "result": "pass"
+    },
+    {
+      "command": "npm run check",
+      "result": "pass",
+      "checks": 847
+    },
+    {
+      "command": "python3 tests/integration_data.py",
+      "result": "pass",
+      "checks": 85
+    },
+    {
+      "command": "python3 tests/editorial_copy.py",
+      "result": "pass",
+      "checks": 28
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium python3 tests/browser_smoke.py",
+      "result": "pass",
+      "checks": 152
+    },
+    {
+      "check": "Serve dist with a local static HTTP server",
+      "result": "pass",
+      "responses": {
+        "/": 200,
+        "/LICENSE.txt": 200,
+        "/THIRD_PARTY_NOTICES.txt": 200
+      }
+    }
+  ],
+  "siteCounts": {
+    "sources": 28,
+    "images": 16,
+    "specimens": 3,
+    "families": 8,
+    "reuseReviewPending": 6
+  },
+  "includedPhotography": "External URL records only. Coin original photograph bytes are not included. PNGs under research are QA screenshots.",
+  "releaseLimitations": [
+    "No production or preview hosting deployment performed.",
+    "Browser smoke tests deliberately abort remote images; remote image availability and actual image content were not reverified.",
+    "One synthetic, clearly labeled grid tests loaded-image zoom/pan; it is not included in the website.",
+    "No new publication rights clearance; six BnF image flags remain review-pending.",
+    "Image archival script was not integration-tested against remote image hosts in this handoff.",
+    "Local-image deployment staging branch was not exercised with real downloaded coin files.",
+    "Chromium-only browser smoke tests; not Safari/Firefox, screen-reader certification or real-device touch testing.",
+    "No new independent numismatic source audit or specialist editorial review."
+  ]
+}

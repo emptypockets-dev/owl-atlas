@@ -1,0 +1,39 @@
+{
+  "slowNetwork": {
+    "latencyMs": 150,
+    "downloadBytesPerSecond": 200000,
+    "storyReadableBeforeImages": true,
+    "heroLoaded": true,
+    "layoutShiftSum": 0.014632982188180859
+  },
+  "initialImageTransfers": [
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Owl_%28reverse%29_-_1941.296.b_-_Cleveland_Museum_of_Art.jpg",
+      "status": 200,
+      "mimeType": "image/jpeg",
+      "type": "Image",
+      "transferBytes": 5862869
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/8/82/Silver_tetradrachm_Athens_new_style_reverse.jpg",
+      "status": 200,
+      "mimeType": "image/jpeg",
+      "type": "Image",
+      "transferBytes": 2435433
+    },
+    {
+      "url": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702577/main-image",
+      "status": 200,
+      "mimeType": "image/jpeg",
+      "type": "Image",
+      "transferBytes": 294668
+    }
+  ],
+  "initialImageTransferBytes": 8592970,
+  "failedImage": {
+    "heroFallbackVisible": true,
+    "viewerErrorVisible": true,
+    "originalSourceLinkRetained": true,
+    "focusReturned": true
+  }
+}

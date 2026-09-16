@@ -1,0 +1,160 @@
+{
+  "title": "The Owl Atlas — Pi-style and later Old Style image research",
+  "reviewed": "2026-09-16",
+  "status": "Specific specimens identified; six full-size image links visually verified in research browser. Reuse review pending. Existing atlas unchanged.",
+  "rights_note": "The individual Wikimedia Commons file pages carry a PD-France public-domain assertion. That is recorded as the hosting platform’s assertion, not as a CC0 grant or direct permission from BnF. BnF separately publishes conditions for commercial and promotional reuse. Project-specific reuse review remains pending. No permission request has been sent.",
+  "rights_policy_url": "https://www.bnf.fr/fr/commander-une-reproduction-avec-une-utilisation-commerciale",
+  "specimens": [
+    {
+      "id": "bnf-pi-iii-1475",
+      "role": "Preferred Pi-style candidate",
+      "title": "Pi III · Athena’s helmet, in detail",
+      "type": "Pi III, as catalogued by BnF",
+      "institution": "Bibliothèque nationale de France, département Monnaies, médailles et antiques",
+      "accession": "1966.453.1475",
+      "collection_reference": "SNG France 1, Collection Jean et Marie Delepierre, no. 1475",
+      "weight_g": 17.19,
+      "diameter_mm": 21,
+      "catalogue_date": "c. 353–295 BCE (BnF catalogue, attributed there to Flament)",
+      "editorial_date": "Mid–late fourth century BCE; keep the source’s dating convention visible.",
+      "date_note": "This is the specimen catalogue’s date range, not an exact issue date and not a claim that all Pi-style chronology is settled.",
+      "record_url": "https://catalogue.bnf.fr/ark:/12148/cb41772241w",
+      "gallica_url": "https://gallica.bnf.fr/ark:/12148/btv1b8500418c",
+      "type_url": "https://greekcoinage.org/iris/id/athens.flament_2007.pi-style",
+      "look": "The full obverse preserves Athena’s profile eye and the helmet ornament. The reverse gives a separate, close view of the owl and surrounding details. Identification comes from the catalogue, not from appearance alone.",
+      "images": [
+        {
+          "side": "obverse",
+          "width": 2522,
+          "height": 2522,
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%281_of_2%29.jpg",
+          "file_record": "https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%281_of_2%29.jpg",
+          "resolution_evidence": "Dimensions reported by the individual Commons file record; the original-image link was opened and visually inspected through the research browser.",
+          "local_original_downloaded": false,
+          "rights_assertion": "PD-France, as asserted by the Commons file record",
+          "reuse_clearance": "Review pending; not marked publication-cleared",
+          "edits": "None. Full source frame; no AI reconstruction, enhancement, or upscaling."
+        },
+        {
+          "side": "reverse",
+          "width": 2522,
+          "height": 2522,
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%282_of_2%29.jpg",
+          "file_record": "https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%282_of_2%29.jpg",
+          "resolution_evidence": "Dimensions reported by the individual Commons file record; the original-image link was opened and visually inspected through the research browser.",
+          "local_original_downloaded": false,
+          "rights_assertion": "PD-France, as asserted by the Commons file record",
+          "reuse_clearance": "Review pending; not marked publication-cleared",
+          "edits": "None. Full source frame; no AI reconstruction, enhancement, or upscaling."
+        }
+      ],
+      "credit": "Bibliothèque nationale de France, département Monnaies, médailles et antiques, 1966.453.1475; Gallica, via Wikimedia Commons."
+    },
+    {
+      "id": "bnf-quadridigite-1478",
+      "role": "Preferred later Old Style candidate",
+      "title": "Quadridigité · A named later Old Style group",
+      "type": "Quadridigité, as catalogued by BnF",
+      "institution": "Bibliothèque nationale de France, département Monnaies, médailles et antiques",
+      "accession": "1966.453.1478",
+      "collection_reference": "SNG France 1, Collection Jean et Marie Delepierre, no. 1478",
+      "weight_g": 17.22,
+      "diameter_mm": 21,
+      "catalogue_date": "c. 286–261 BCE (BnF catalogue, attributed there to Flament)",
+      "editorial_date": "Third century BCE; identify this specifically as quadridigité, not as a stand-in for every later Old Style issue.",
+      "date_note": "The source’s date convention is preserved. Other specialist catalogues may draw different endpoints.",
+      "record_url": "https://catalogue.bnf.fr/ark:/12148/cb41772244x",
+      "gallica_url": "https://gallica.bnf.fr/ark:/12148/btv1b8500421v",
+      "type_url": "https://greekcoinage.org/iris/id/athens.nicolet-pierre.kroll_1990.1-28.quadridigite",
+      "look": "Both faces are available as full photographs. Compare the helmet treatment with the Pi III example, while retaining the named catalogue classification. This specimen illustrates one later Old Style group, not the whole third century.",
+      "images": [
+        {
+          "side": "obverse",
+          "width": 2679,
+          "height": 2679,
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%281_of_2%29.jpg",
+          "file_record": "https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%281_of_2%29.jpg",
+          "resolution_evidence": "Dimensions reported by the individual Commons file record; the original-image link was opened and visually inspected through the research browser.",
+          "local_original_downloaded": false,
+          "rights_assertion": "PD-France, as asserted by the Commons file record",
+          "reuse_clearance": "Review pending; not marked publication-cleared",
+          "edits": "None. Full source frame; no AI reconstruction, enhancement, or upscaling."
+        },
+        {
+          "side": "reverse",
+          "width": 2679,
+          "height": 2679,
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%282_of_2%29.jpg",
+          "file_record": "https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%282_of_2%29.jpg",
+          "resolution_evidence": "Dimensions reported by the individual Commons file record; the original-image link was opened and visually inspected through the research browser.",
+          "local_original_downloaded": false,
+          "rights_assertion": "PD-France, as asserted by the Commons file record",
+          "reuse_clearance": "Review pending; not marked publication-cleared",
+          "edits": "None. Full source frame; no AI reconstruction, enhancement, or upscaling."
+        }
+      ],
+      "credit": "Bibliothèque nationale de France, département Monnaies, médailles et antiques, 1966.453.1478; Gallica, via Wikimedia Commons."
+    },
+    {
+      "id": "bnf-pi-ii-1469",
+      "role": "Additional Pi-style comparison",
+      "title": "Pi II · An additional securely catalogued example",
+      "type": "Pi II, as catalogued by BnF",
+      "institution": "Bibliothèque nationale de France, département Monnaies, médailles et antiques",
+      "accession": "1966.453.1469",
+      "collection_reference": "SNG France 1, Collection Jean et Marie Delepierre, no. 1469",
+      "weight_g": 17.16,
+      "diameter_mm": 23,
+      "catalogue_date": "c. 393–295 BCE (broad BnF catalogue range, attributed there to Flament)",
+      "editorial_date": "Pi II; specimen chronology requires reconciliation before a narrow date is assigned.",
+      "date_note": "Do not silently turn the broad 393–295 BCE record range into the date of Pi II as a whole. The type identification and the chronology should be stored separately.",
+      "record_url": "https://catalogue.bnf.fr/ark:/12148/cb41772235z",
+      "gallica_url": "https://gallica.bnf.fr/ark:/12148/btv1b8500412w",
+      "type_url": "https://greekcoinage.org/iris/id/athens.flament_2007.pi-style",
+      "look": "The obverse offers another detailed view of the helmet and profile eye. Surface marks remain visible: the image has not been “cleaned up” to make an idealized coin.",
+      "images": [
+        {
+          "side": "obverse",
+          "width": 2624,
+          "height": 2624,
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%281_of_2%29.jpg",
+          "file_record": "https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%281_of_2%29.jpg",
+          "resolution_evidence": "Dimensions reported by the individual Commons file record; the original-image link was opened and visually inspected through the research browser.",
+          "local_original_downloaded": false,
+          "rights_assertion": "PD-France, as asserted by the Commons file record",
+          "reuse_clearance": "Review pending; not marked publication-cleared",
+          "edits": "None. Full source frame; no AI reconstruction, enhancement, or upscaling."
+        },
+        {
+          "side": "reverse",
+          "width": 2624,
+          "height": 2624,
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%282_of_2%29.jpg",
+          "file_record": "https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%282_of_2%29.jpg",
+          "resolution_evidence": "Dimensions reported by the individual Commons file record; the original-image link was opened and visually inspected through the research browser.",
+          "local_original_downloaded": false,
+          "rights_assertion": "PD-France, as asserted by the Commons file record",
+          "reuse_clearance": "Review pending; not marked publication-cleared",
+          "edits": "None. Full source frame; no AI reconstruction, enhancement, or upscaling."
+        }
+      ],
+      "credit": "Bibliothèque nationale de France, département Monnaies, médailles et antiques, 1966.453.1469; Gallica, via Wikimedia Commons."
+    }
+  ],
+  "additional_catalogue_lead": {
+    "type": "Heterogeneous, Group C",
+    "source": "Classical Numismatic Group, Electronic Auction 594, lot 66",
+    "record_url": "https://cngcoins.com/Lot.aspx?LOT_ID=170413",
+    "weight_g": 17.13,
+    "diameter_mm": 24.5,
+    "catalogue_date": "c. 280/67–229 BCE",
+    "reference": "Nicolet-Pierre and Kroll, Heterogeneous Group C, 1 (same dies, according to CNG)",
+    "image_url": "https://cngcoins.com/Photos.AM/4-HR1PNU/4-HR2B2Z.jpg",
+    "verified_image_dimensions": {
+      "width": 500,
+      "height": 240
+    },
+    "status": "Catalogue and preview located. Higher-resolution source and project-specific reuse confirmation still needed; image not embedded in this research plate.",
+    "note": "Same dies does not mean the same physical specimen as the published reference."
+  }
+}

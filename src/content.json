@@ -1,0 +1,1032 @@
+{
+  "title": "The Owl Atlas",
+  "edition": "Research edition 03",
+  "reviewed": "2026-09-16",
+  "sources": [
+    {
+      "id": "met",
+      "title": "Silver tetradrachm, 2021.40.80",
+      "author": "The Metropolitan Museum of Art",
+      "year": "Collection record",
+      "url": "https://www.metmuseum.org/art/collection/search/330160",
+      "kind": "Museum record",
+      "scope": "The 440–404 BCE catalog range, Athena/owl design, 24 mm diameter, and public-domain images.",
+      "note": "The record identifies the museum specimen shown. Its date is a catalogue attribution, not an inscribed year.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "cma-early",
+      "title": "Athenian Tetradrachm, 1920.267",
+      "author": "Cleveland Museum of Art",
+      "year": "Collection record",
+      "url": "https://www.clevelandart.org/art/1920.267",
+      "kind": "Museum record",
+      "scope": "The museum’s 480–449 BCE dating, 17.237 g weight, imagery, and attribution.",
+      "note": "The current museum range is used instead of a single-year field in the older Commons import.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "cma-classic",
+      "title": "Tetradrachm: Head of Athena, 1941.296.a",
+      "author": "Cleveland Museum of Art",
+      "year": "Collection record",
+      "url": "https://www.clevelandart.org/art/1941.296.a",
+      "kind": "Museum record",
+      "scope": "A 449–440 BCE specimen; 17.2 g, 23 mm; Gift of Dr. Jacob Hirsch.",
+      "note": "A single measured specimen is not a universal specification for all owls.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "acropolis",
+      "title": "Athenian tetradrachm",
+      "author": "Acropolis Museum",
+      "year": "Collection record",
+      "url": "https://www.theacropolismuseum.gr/en/athenian-tetradrachm-20",
+      "kind": "Museum record",
+      "scope": "The ΑΘΕ ethnic, olive twig, owl, and incuse square; the Acropolis hoard of 1886.",
+      "note": "",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "attica",
+      "title": "About the ancient city of Athens and its surrounding region, Attica",
+      "author": "Attic Inscriptions Online",
+      "year": "2026 access",
+      "url": "https://www.atticinscriptions.com/",
+      "kind": "Scholarly resource",
+      "scope": "The geographical distinction between Athens and Attica.",
+      "note": "",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "early-silver",
+      "title": "Tyrants, democrats and the first silver ‘owl’ coins of Athens",
+      "author": "Gillan Davis, Janne Blichert-Toft, Liesel Gentelli & Francis Albarède",
+      "year": "2025",
+      "url": "https://doi.org/10.1007/s12520-025-02229-z",
+      "kind": "Research paper",
+      "scope": "Archaic silver sources; chronology of the Laurion discovery; evidence against a simple one-event origin story.",
+      "note": "Archaeological and Anthropological Sciences 17, 122. New analyses of 52 archaic coins plus 12 legacy measurements; the authors’ interpretation is identified as such.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "remint",
+      "title": "The Reminting of Athenian Silver Coinage, 353 B.C.",
+      "author": "John H. Kroll",
+      "year": "2011",
+      "url": "https://doi.org/10.2972/hesperia.80.2.0229",
+      "kind": "Research paper",
+      "scope": "Pi-style, folded flans, reminting, and the proposed 353 BCE fiscal context.",
+      "note": "Hesperia 80(2), 229–259. Consulted in the author’s online copy. Later work revisits the date; this atlas does not treat 353 as settled.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "profile",
+      "title": "Athenian Tetradrachm Coinage of the First Half of the Fourth Century BC",
+      "author": "John H. Kroll",
+      "year": "2011",
+      "url": "https://www.academia.edu/1974966/Athenian_Tetradrachm_Coinage_of_the_First_Half_of_the_Fourth_Century_BC_RBN_157_2011_",
+      "kind": "Research paper",
+      "scope": "Early fourth-century profile-eye coinage, surviving hoards, and reminting as an explanation for rarity.",
+      "note": "Revue belge de Numismatique 157, 3–26. Relative classification is more secure than every absolute date.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "isotopes",
+      "title": "When is an owl not an owl? An analysis of Attic tetradrachms circulating in the southern Levant in the late fifth and fourth centuries BCE",
+      "author": "Liesel Gentelli, Gillan Davis, Francis Albarède, Janne Blichert-Toft & Haim Gitler",
+      "year": "2026",
+      "url": "https://doi.org/10.1016/j.jasrep.2026.105634",
+      "kind": "Research paper",
+      "scope": "Three-quarter-eye owls, contested “Eastern imitation” attributions, the 404 BCE endpoint, and revised Pi-style discussion.",
+      "note": "Journal of Archaeological Science: Reports 70, 105634. Consulted via the author’s full-text copy on ResearchGate. The paper reports 22 sampled coins; the atlas avoids converting a sample-specific argument into a universal authentication rule.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "law",
+      "title": "Law on approvers (dokimastai) of silver coinage, 375/4 BC (AIO 819 / RO 25)",
+      "author": "Translation: Stephen Lambert & P. J. Rhodes; Attic Inscriptions Online",
+      "year": "Updated 2024",
+      "url": "https://atticinscriptions.com/inscription/RO/25",
+      "kind": "Ancient document",
+      "scope": "Official testing, foreign owl-type silver, and bronze- or lead-cored coins.",
+      "note": "The restored wording of the foreign-coin clause is uncertain. Its treatment of good foreign silver is not equated here with a blanket legal-tender rule.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "mines",
+      "title": "Sale of confiscated property and mine leases, 367/6 BC (RO 36)",
+      "author": "Attic Inscriptions Online",
+      "year": "Updated 2017",
+      "url": "https://www.atticinscriptions.com/inscription/RO/36",
+      "kind": "Ancient document",
+      "scope": "Documentary evidence for the mining landscape of Laurion and Sounion.",
+      "note": "",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "accounts",
+      "title": "Payments from the treasury of Athena, 410/9 BC (IG I³ 375)",
+      "author": "Attic Inscriptions Online",
+      "year": "Updated 2024",
+      "url": "https://atticinscriptions.com/inscription/Lawton/8",
+      "kind": "Ancient document",
+      "scope": "Treasury payments in talents, drachmas, and fractions of obols for civic, religious, and military purposes.",
+      "note": "",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "sabakes",
+      "title": "Sabaces Egypt van Alfen 2002 V: “Sabakes”, Athenian imitations",
+      "author": "IRIS / Online Greek Coinage",
+      "year": "Type record",
+      "url": "https://greekcoinage.org/iris/id/sabaces.vanalfen.2002.v.athenian.imitations",
+      "kind": "Type corpus",
+      "scope": "A securely attributed non-Athenian branch: Egyptian Athena/owl issues under Persian administration, c. 340–333 BCE.",
+      "note": "The authority, coin type, and date range are distinct from the findspot of an individual coin.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "new-chronology",
+      "title": "The Chronology of the New Style Coinage of Athens",
+      "author": "Otto Mørkholm",
+      "year": "1984",
+      "url": "https://www.jstor.org/stable/43573675",
+      "kind": "Research paper",
+      "scope": "Specialist chronological debate and the revision of the older New Style chronology.",
+      "note": "American Numismatic Society Museum Notes 29, 29–42. Bibliographic record verified; not represented as an independently rechecked die corpus.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "new-lewis",
+      "title": "The Chronology of the Athenian New Style Coinage",
+      "author": "D. M. Lewis",
+      "year": "1962",
+      "url": "https://www.jstor.org/stable/42662651",
+      "kind": "Research paper",
+      "scope": "Foundational revision of Margaret Thompson’s absolute chronology.",
+      "note": "Numismatic Chronicle, 275–300. Listed as a specialist research route; full text was not independently rechecked for this edition.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "ecb",
+      "title": "Greece: national sides of euro coins",
+      "author": "European Central Bank",
+      "year": "Official coin-design record",
+      "url": "https://www.ecb.europa.eu/euro/coins/html/gr.en.html",
+      "kind": "Official record",
+      "scope": "The Greek €1 national side adapts the owl from a fifth-century Athenian four-drachma coin.",
+      "note": "",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "archaic-photo",
+      "title": "Greek Silver Tetradrachm of Athens (Attica)",
+      "author": "Exekias / Wikimedia Commons",
+      "year": "Photograph and object description",
+      "url": "https://commons.wikimedia.org/wiki/File:Greek_Silver_Tetradrachm_of_Athens_(Attica).jpg",
+      "kind": "Image record",
+      "scope": "An archaic Athena/owl specimen, 17.09 g, cataloged c. 520–510 BCE; Seltman 302d.",
+      "note": "Use the early date as the source’s attribution, not a precise mint year. CC BY 2.0, confirmed by the Commons Flickr review.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "profile-photo",
+      "title": "Sg2537: Athenian profile-eye tetradrachm",
+      "author": "Classical Numismatic Group / Wikimedia Commons",
+      "year": "Photograph and object description",
+      "url": "https://commons.wikimedia.org/wiki/File:Sg2537.jpg",
+      "kind": "Image record",
+      "scope": "Paired obverse/reverse of a specimen cataloged c. 393–355 BCE; 17.12 g; SNG München 90.",
+      "note": "The source image is only 500 × 253 pixels. It is labeled as a reference-quality plate, not high-resolution evidence.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "new-photo",
+      "title": "Silver tetradrachm, Athens New Style (reverse)",
+      "author": "Marie-Lan Nguyen / Wikimedia Commons; Musée de la BnF",
+      "year": "Photograph record",
+      "url": "https://commons.wikimedia.org/wiki/File:Silver_tetradrachm_Athens_new_style_reverse.jpg",
+      "kind": "Image record",
+      "scope": "The amphora, surrounding wreath, and reverse inscriptions visible on a New Style example.",
+      "note": "The file description retains an old c. 200–150 BCE attribution. That metadata is preserved in the credit, not silently adopted as this atlas’s series chronology.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "new-catalogs",
+      "title": "New Style Athenian Tetradrachms, 166/164–63/62 BC",
+      "author": "Forum Ancient Coins, NumisWiki",
+      "year": "Catalog convention",
+      "url": "https://www.forumancientcoins.com/numiswiki/view.asp?key=new+style",
+      "kind": "Catalog convention",
+      "scope": "One explicit alternative to the commonly encountered c. 165–42 BCE series envelope.",
+      "note": "An annotated commercial reference, not a peer-reviewed authority. Used only to demonstrate divergent catalog date conventions.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "ngc",
+      "title": "NGC Ancients: The Elusive “Full Crest” Owls of Athens",
+      "author": "NGC Ancients",
+      "year": "14 August 2018",
+      "url": "https://www.ngccoin.com/news/article/6762/ancient-coins/",
+      "kind": "Specialist overview",
+      "scope": "The conventional mass-issue range, its 404 BCE historical endpoint, and the main stylistic divisions.",
+      "note": "A specialist overview is not a substitute for a die study. Any disputed absolute boundaries are marked separately.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "bnf-pi-iii",
+      "title": "Athenian silver tetradrachm, Pi III · 1966.453.1475",
+      "author": "Bibliothèque nationale de France, département Monnaies, médailles et antiques",
+      "year": "Undated catalogue record",
+      "kind": "Museum collection record",
+      "url": "https://catalogue.bnf.fr/ark:/12148/cb41772241w",
+      "scope": "Explicit identification as Pi III; accession 1966.453.1475; SNG France 1, Collection Jean et Marie Delepierre, no. 1475; weight 17.19 g and diameter 21 mm. Catalogue date: c. 353–295 BCE (BnF catalogue, attributed there to Flament). Gallica photographs are tied to this object record.",
+      "note": "This is the specimen catalogue’s date range, not an exact issue date and not a claim that all Pi-style chronology is settled. Photograph rights are recorded separately on the individual Commons pages and in BnF’s reuse policy. Institutional attribution does not by itself settle image reuse rights.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "bnf-quadridigite",
+      "title": "Athenian silver tetradrachm, Quadridigité · 1966.453.1478",
+      "author": "Bibliothèque nationale de France, département Monnaies, médailles et antiques",
+      "year": "Undated catalogue record",
+      "kind": "Museum collection record",
+      "url": "https://catalogue.bnf.fr/ark:/12148/cb41772244x",
+      "scope": "Explicit identification as Quadridigité; accession 1966.453.1478; SNG France 1, Collection Jean et Marie Delepierre, no. 1478; weight 17.22 g and diameter 21 mm. Catalogue date: c. 286–261 BCE (BnF catalogue, attributed there to Flament). Gallica photographs are tied to this object record.",
+      "note": "The source’s date convention is preserved. Other specialist catalogues may draw different endpoints. Photograph rights are recorded separately on the individual Commons pages and in BnF’s reuse policy. Institutional attribution does not by itself settle image reuse rights.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "bnf-pi-ii",
+      "title": "Athenian silver tetradrachm, Pi II · 1966.453.1469",
+      "author": "Bibliothèque nationale de France, département Monnaies, médailles et antiques",
+      "year": "Undated catalogue record",
+      "kind": "Museum collection record",
+      "url": "https://catalogue.bnf.fr/ark:/12148/cb41772235z",
+      "scope": "Explicit identification as Pi II; accession 1966.453.1469; SNG France 1, Collection Jean et Marie Delepierre, no. 1469; weight 17.16 g and diameter 23 mm. Catalogue date: c. 393–295 BCE (broad BnF catalogue range, attributed there to Flament). Gallica photographs are tied to this object record.",
+      "note": "Do not silently turn the broad 393–295 BCE record range into the date of Pi II as a whole. The type identification and the chronology should be stored separately. Photograph rights are recorded separately on the individual Commons pages and in BnF’s reuse policy. Institutional attribution does not by itself settle image reuse rights.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "iris-pi",
+      "title": "Athens, Pi-style · Flament 2007 type record",
+      "author": "IRIS / University of Oxford",
+      "year": "Online type catalogue",
+      "kind": "Numismatic type record",
+      "url": "https://greekcoinage.org/iris/id/athens.flament_2007.pi-style",
+      "scope": "Type-level reference for Pi-style Athenian tetradrachms. Links the museum specimen evidence to a wider numismatic classification.",
+      "note": "A type-level record is not a precise date for each photographed specimen; the BnF accession records remain the direct evidence for Pi II and Pi III identifications.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "iris-quadridigite",
+      "title": "Athens, quadridigité · Nicolet-Pierre and Kroll 1990, nos. 1–28",
+      "author": "IRIS / University of Oxford",
+      "year": "Online type catalogue",
+      "kind": "Numismatic type record",
+      "url": "https://greekcoinage.org/iris/id/athens.nicolet-pierre.kroll_1990.1-28.quadridigite",
+      "scope": "Quadridigité type entry linking the BnF specimen 1966.453.1478 to the specialist classification.",
+      "note": "Quadridigité illustrates one later Old Style group; it is not a generic name for every third-century Athenian owl.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "cng-heterogeneous",
+      "title": "Heterogeneous Group C tetradrachm · Electronic Auction 594, lot 66",
+      "author": "Classical Numismatic Group, Inc.",
+      "year": "Auction catalogue record",
+      "kind": "Auction specimen record",
+      "url": "https://cngcoins.com/Lot.aspx?LOT_ID=170413",
+      "scope": "Catalogues a 17.13 g, 24.5 mm coin as Heterogeneous Group C, c. 280/67–229 BCE, with a reference to Nicolet-Pierre and Kroll, Group C, no. 1 (same dies).",
+      "note": "“Same dies” is the auctioneer’s die-match attribution, not a statement that this is the same physical specimen as the published reference. Only a 500 × 240 px paired preview was located. No image from this lot is embedded in the atlas; a higher-resolution original and reuse review remain outstanding.",
+      "accessed": "2026-09-16"
+    },
+    {
+      "id": "bnf-reuse",
+      "title": "Commander une reproduction avec une utilisation commerciale",
+      "author": "Bibliothèque nationale de France",
+      "year": "Online reuse policy",
+      "kind": "Image reuse policy",
+      "url": "https://www.bnf.fr/fr/commander-une-reproduction-avec-une-utilisation-commerciale",
+      "scope": "BnF’s published conditions for commercial and promotional reuse of reproductions, with stated exceptions. Preserved alongside the individual Commons PD-France assertions.",
+      "note": "The atlas does not resolve their application to every project or jurisdiction. Six linked photographs of BnF specimens remain marked “Reuse review pending”; no permission request has been sent, and no CC0 grant is asserted.",
+      "accessed": "2026-09-16"
+    }
+  ],
+  "images": {
+    "classic-owl": {
+      "id": "classic-owl",
+      "title": "Owl · Cleveland 1941.296.b",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Owl_%28reverse%29_-_1941.296.b_-_Cleveland_Museum_of_Art.jpg",
+      "displayUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Owl_%28reverse%29_-_1941.296.b_-_Cleveland_Museum_of_Art.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Greece,_Athens,_5th_century_BC_-_Tetradrachm-_Owl_(reverse)_-_1941.296.b_-_Cleveland_Museum_of_Art.jpg",
+      "credit": "Cleveland Museum of Art · Gift of Dr. Jacob Hirsch",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "width": 2634,
+      "height": 2736,
+      "alt": "Silver Athenian tetradrachm: an owl faces outward above a square incuse, with olive, crescent and ΑΘΕ.",
+      "objectUrl": "https://www.clevelandart.org/art/1941.296.a",
+      "date": "449–440 BCE",
+      "note": "Museum dating. The actual specimen is 17.2 g and 23 mm; not shown at actual size.",
+      "crop": "none",
+      "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image."
+    },
+    "classic-athena": {
+      "id": "classic-athena",
+      "title": "Athena · Cleveland 1941.296.a",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Head_of_Athena_%28obverse%29_-_1941.296.a_-_Cleveland_Museum_of_Art.tif/lossy-page1-1920px-Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Head_of_Athena_%28obverse%29_-_1941.296.a_-_Cleveland_Museum_of_Art.tif.jpg",
+      "displayUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Head_of_Athena_%28obverse%29_-_1941.296.a_-_Cleveland_Museum_of_Art.tif/lossy-page1-1920px-Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Head_of_Athena_%28obverse%29_-_1941.296.a_-_Cleveland_Museum_of_Art.tif.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Greece,_Athens,_5th_century_BC_-_Tetradrachm-_Head_of_Athena_(obverse)_-_1941.296.a_-_Cleveland_Museum_of_Art.tif",
+      "credit": "Cleveland Museum of Art · Gift of Dr. Jacob Hirsch",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "width": 1920,
+      "height": 1973,
+      "alt": "Athena in a crested helmet, facing right, with a large almond-shaped eye.",
+      "objectUrl": "https://www.clevelandart.org/art/1941.296.a",
+      "date": "449–440 BCE",
+      "note": "Browser-compatible 1920-pixel JPEG derivative. A 2480 × 2549 TIFF master is linked from the source record.",
+      "crop": "none",
+      "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image."
+    },
+    "archaic": {
+      "id": "archaic",
+      "title": "Archaic Athena & owl · paired plate",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Greek_Silver_Tetradrachm_of_Athens_%28Attica%29.jpg",
+      "displayUrl": "https://upload.wikimedia.org/wikipedia/commons/2/23/Greek_Silver_Tetradrachm_of_Athens_%28Attica%29.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Greek_Silver_Tetradrachm_of_Athens_(Attica).jpg",
+      "credit": "Exekias / Wikimedia Commons",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+      "width": 759,
+      "height": 1608,
+      "alt": "A vertical photographic plate: an archaic helmeted Athena above, an angular owl with an olive spray below.",
+      "objectUrl": "",
+      "date": "Source attribution: c. 520–510 BCE",
+      "note": "17.09 g; Seltman 302d. The early absolute attribution remains a catalog convention. A 759-pixel-wide plate, not an AI enlargement.",
+      "crop": "bottom",
+      "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image."
+    },
+    "met-owl": {
+      "id": "met-owl",
+      "title": "Owl · The Met 2021.40.80",
+      "url": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702577/main-image",
+      "displayUrl": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702577/main-image",
+      "source": "https://www.metmuseum.org/art/collection/search/330160",
+      "credit": "The Metropolitan Museum of Art · Bequest of Nanette B. Kelekian, 2020",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "width": 1110,
+      "height": 1200,
+      "alt": "The owl reverse of a silver tetradrachm cataloged 440–404 BCE, with ΑΘΕ to the right.",
+      "objectUrl": "https://www.metmuseum.org/art/collection/search/330160",
+      "date": "c. 440–404 BCE",
+      "note": "24 mm. The Met dates this classical tetradrachm to 440–404 BCE.",
+      "crop": "none",
+      "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image."
+    },
+    "met-athena": {
+      "id": "met-athena",
+      "title": "Athena · The Met 2021.40.80",
+      "url": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702575/main-image",
+      "displayUrl": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702575/main-image",
+      "source": "https://www.metmuseum.org/art/collection/search/330160",
+      "credit": "The Metropolitan Museum of Art · Bequest of Nanette B. Kelekian, 2020",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "width": 1200,
+      "height": 1085,
+      "alt": "Athena facing right on a silver tetradrachm in the Met, wearing a decorated helmet.",
+      "objectUrl": "https://www.metmuseum.org/art/collection/search/330160",
+      "date": "c. 440–404 BCE",
+      "note": "24 mm. Companion face of the same Met specimen.",
+      "crop": "none",
+      "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image."
+    },
+    "profile": {
+      "id": "profile",
+      "title": "Profile-eye Athena & owl · paired plate",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Sg2537.jpg",
+      "displayUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Sg2537.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Sg2537.jpg",
+      "credit": "Classical Numismatic Group, Inc. / Wikimedia Commons",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "width": 500,
+      "height": 253,
+      "alt": "Two faces of a fourth-century Athenian tetradrachm: Athena’s eye in profile and an owl.",
+      "objectUrl": "",
+      "date": "Source attribution: c. 393–355 BCE",
+      "note": "17.12 g; SNG München 90. Only 500 × 253 pixels are available in this licensed source. Zoom cannot recover missing detail.",
+      "crop": "right",
+      "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image."
+    },
+    "early-athena": {
+      "id": "early-athena",
+      "title": "Early classical Athena · Cleveland 1920.267.a",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Greece%2C_5th_century_BC_-_Athenian_Tetradrachm-_Female_Head_%28obverse%29_-_1920.267.a_-_Cleveland_Museum_of_Art.jpg",
+      "displayUrl": "https://upload.wikimedia.org/wikipedia/commons/5/54/Greece%2C_5th_century_BC_-_Athenian_Tetradrachm-_Female_Head_%28obverse%29_-_1920.267.a_-_Cleveland_Museum_of_Art.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Greece,_5th_century_BC_-_Athenian_Tetradrachm-_Female_Head_(obverse)_-_1920.267.a_-_Cleveland_Museum_of_Art.jpg",
+      "credit": "Cleveland Museum of Art · Gift of Harold W. Parsons",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "width": 2318,
+      "height": 2280,
+      "alt": "Athena’s helmeted head on an early classical Athenian silver tetradrachm.",
+      "objectUrl": "https://www.clevelandart.org/art/1920.267",
+      "date": "Museum range: 480–449 BCE",
+      "note": "The museum’s current range is followed; the older Commons import has different compact metadata.",
+      "crop": "none",
+      "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image."
+    },
+    "new-owl": {
+      "id": "new-owl",
+      "title": "New Style owl · Musée de la BnF",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/8/82/Silver_tetradrachm_Athens_new_style_reverse.jpg",
+      "displayUrl": "https://upload.wikimedia.org/wikipedia/commons/8/82/Silver_tetradrachm_Athens_new_style_reverse.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Silver_tetradrachm_Athens_new_style_reverse.jpg",
+      "credit": "Marie-Lan Nguyen / Wikimedia Commons · Musée de la BnF",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "width": 1340,
+      "height": 1340,
+      "alt": "A New Style owl stands on a horizontal amphora amid inscriptions, inside an olive wreath.",
+      "objectUrl": "",
+      "date": "Hellenistic New Style",
+      "note": "Current file is 1340 × 1340, preferred by the photographer over the older, larger but lower-quality upload. Source metadata says c. 200–150 BCE; this is not adopted as a precise date here.",
+      "crop": "none",
+      "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image."
+    },
+    "new-athena": {
+      "id": "new-athena",
+      "title": "New Style Athena · Musée de la BnF",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Silver_tetradrachm_Athens_new_style_obverse.jpg",
+      "displayUrl": "https://upload.wikimedia.org/wikipedia/commons/0/04/Silver_tetradrachm_Athens_new_style_obverse.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Silver_tetradrachm_Athens_new_style_obverse.jpg",
+      "credit": "Marie-Lan Nguyen / Wikimedia Commons · Musée de la BnF",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "width": 1200,
+      "height": 1200,
+      "alt": "An elaborate helmet and naturalistic profile of Athena on a broad New Style silver coin.",
+      "objectUrl": "",
+      "date": "Hellenistic New Style",
+      "note": "The source cross-links this photograph with the owl reverse. Original file metadata retains a c. 200–150 BCE date; no exact issue year is assigned in this edition.",
+      "crop": "none",
+      "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image."
+    },
+    "sabakes": {
+      "id": "sabakes",
+      "title": "The owl in Persian-administered Egypt",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/EGYPT%2C_Persian_Administration._Sabakes._Circa_340-333_BC.jpg",
+      "displayUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/EGYPT%2C_Persian_Administration._Sabakes._Circa_340-333_BC.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:EGYPT,_Persian_Administration._Sabakes._Circa_340-333_BC.jpg",
+      "credit": "Classical Numismatic Group, Inc. / Wikimedia Commons",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "width": 800,
+      "height": 403,
+      "alt": "Paired faces of a Sabakes owl-type coin: Athena at left and an owl with local lettering at right.",
+      "objectUrl": "https://greekcoinage.org/iris/id/sabaces.vanalfen.2002.v.athenian.imitations",
+      "date": "c. 340–333 BCE",
+      "note": "Egypt, Persian administration; the type is indexed in IRIS under Sabaces/Sabakes. Test cuts are visible. The original plate is only 800 pixels wide.",
+      "crop": "right",
+      "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image."
+    },
+    "bnf-pi-iii-1475-obverse": {
+      "id": "bnf-pi-iii-1475-obverse",
+      "title": "Pi III · Athena · BnF 1475",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%281_of_2%29.jpg",
+      "displayUrl": "https://upload.wikimedia.org/wikipedia/commons/1/14/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%281_of_2%29.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%281_of_2%29.jpg",
+      "credit": "Bibliothèque nationale de France, département Monnaies, médailles et antiques, 1966.453.1475; Gallica, via Wikimedia Commons.",
+      "license": "PD-France assertion (Commons)",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%281_of_2%29.jpg",
+      "width": 2522,
+      "height": 2522,
+      "alt": "Pi III silver tetradrachm, BnF 1966.453.1475: Athena facing right in a decorated helmet; complete obverse photograph.",
+      "objectUrl": "https://catalogue.bnf.fr/ark:/12148/cb41772241w",
+      "date": "c. 353–295 BCE (BnF catalogue, attributed there to Flament)",
+      "note": "BnF explicitly catalogues this specimen as Pi III. SNG France 1, Collection Jean et Marie Delepierre, no. 1475. 17.19 g; 21 mm. This is the specimen catalogue’s date range, not an exact issue date and not a claim that all Pi-style chronology is settled.",
+      "crop": "none",
+      "changes": "Full source frame. No retouching, AI reconstruction, enhancement or upscaling.",
+      "specimenId": "bnf-pi-iii-1475",
+      "side": "obverse",
+      "accession": "1966.453.1475",
+      "reuseStatus": "review-pending",
+      "rightsNote": "Reuse review pending. The Commons file record asserts public-domain status in France (PD-France); this is not a CC0 grant or direct BnF permission. BnF separately publishes conditions for commercial and promotional reuse. Retain both records and review the intended publication use.",
+      "rightsPolicyUrl": "https://www.bnf.fr/fr/commander-une-reproduction-avec-une-utilisation-commerciale",
+      "resolutionEvidence": "Dimensions reported by the individual Commons file record; the original-image link was opened and visually inspected through the research browser.",
+      "localOriginalDownloaded": false
+    },
+    "bnf-pi-iii-1475-reverse": {
+      "id": "bnf-pi-iii-1475-reverse",
+      "title": "Pi III · Owl · BnF 1475",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%282_of_2%29.jpg",
+      "displayUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%282_of_2%29.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%282_of_2%29.jpg",
+      "credit": "Bibliothèque nationale de France, département Monnaies, médailles et antiques, 1966.453.1475; Gallica, via Wikimedia Commons.",
+      "license": "PD-France assertion (Commons)",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%282_of_2%29.jpg",
+      "width": 2522,
+      "height": 2522,
+      "alt": "Pi III silver tetradrachm, BnF 1966.453.1475: owl with the surrounding inscription and field symbols; complete reverse photograph.",
+      "objectUrl": "https://catalogue.bnf.fr/ark:/12148/cb41772241w",
+      "date": "c. 353–295 BCE (BnF catalogue, attributed there to Flament)",
+      "note": "BnF explicitly catalogues this specimen as Pi III. SNG France 1, Collection Jean et Marie Delepierre, no. 1475. 17.19 g; 21 mm. This is the specimen catalogue’s date range, not an exact issue date and not a claim that all Pi-style chronology is settled.",
+      "crop": "none",
+      "changes": "Full source frame. No retouching, AI reconstruction, enhancement or upscaling.",
+      "specimenId": "bnf-pi-iii-1475",
+      "side": "reverse",
+      "accession": "1966.453.1475",
+      "reuseStatus": "review-pending",
+      "rightsNote": "Reuse review pending. The Commons file record asserts public-domain status in France (PD-France); this is not a CC0 grant or direct BnF permission. BnF separately publishes conditions for commercial and promotional reuse. Retain both records and review the intended publication use.",
+      "rightsPolicyUrl": "https://www.bnf.fr/fr/commander-une-reproduction-avec-une-utilisation-commerciale",
+      "resolutionEvidence": "Dimensions reported by the individual Commons file record; the original-image link was opened and visually inspected through the research browser.",
+      "localOriginalDownloaded": false
+    },
+    "bnf-quadridigite-1478-obverse": {
+      "id": "bnf-quadridigite-1478-obverse",
+      "title": "Quadridigité · Athena · BnF 1478",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%281_of_2%29.jpg",
+      "displayUrl": "https://upload.wikimedia.org/wikipedia/commons/7/75/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%281_of_2%29.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%281_of_2%29.jpg",
+      "credit": "Bibliothèque nationale de France, département Monnaies, médailles et antiques, 1966.453.1478; Gallica, via Wikimedia Commons.",
+      "license": "PD-France assertion (Commons)",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%281_of_2%29.jpg",
+      "width": 2679,
+      "height": 2679,
+      "alt": "Quadridigité silver tetradrachm, BnF 1966.453.1478: Athena facing right in a decorated helmet; complete obverse photograph.",
+      "objectUrl": "https://catalogue.bnf.fr/ark:/12148/cb41772244x",
+      "date": "c. 286–261 BCE (BnF catalogue, attributed there to Flament)",
+      "note": "BnF explicitly catalogues this specimen as Quadridigité. SNG France 1, Collection Jean et Marie Delepierre, no. 1478. 17.22 g; 21 mm. The source’s date convention is preserved. Other specialist catalogues may draw different endpoints.",
+      "crop": "none",
+      "changes": "Full source frame. No retouching, AI reconstruction, enhancement or upscaling.",
+      "specimenId": "bnf-quadridigite-1478",
+      "side": "obverse",
+      "accession": "1966.453.1478",
+      "reuseStatus": "review-pending",
+      "rightsNote": "Reuse review pending. The Commons file record asserts public-domain status in France (PD-France); this is not a CC0 grant or direct BnF permission. BnF separately publishes conditions for commercial and promotional reuse. Retain both records and review the intended publication use.",
+      "rightsPolicyUrl": "https://www.bnf.fr/fr/commander-une-reproduction-avec-une-utilisation-commerciale",
+      "resolutionEvidence": "Dimensions reported by the individual Commons file record; the original-image link was opened and visually inspected through the research browser.",
+      "localOriginalDownloaded": false
+    },
+    "bnf-quadridigite-1478-reverse": {
+      "id": "bnf-quadridigite-1478-reverse",
+      "title": "Quadridigité · Owl · BnF 1478",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%282_of_2%29.jpg",
+      "displayUrl": "https://upload.wikimedia.org/wikipedia/commons/3/33/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%282_of_2%29.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%282_of_2%29.jpg",
+      "credit": "Bibliothèque nationale de France, département Monnaies, médailles et antiques, 1966.453.1478; Gallica, via Wikimedia Commons.",
+      "license": "PD-France assertion (Commons)",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%282_of_2%29.jpg",
+      "width": 2679,
+      "height": 2679,
+      "alt": "Quadridigité silver tetradrachm, BnF 1966.453.1478: owl with the surrounding inscription and field symbols; complete reverse photograph.",
+      "objectUrl": "https://catalogue.bnf.fr/ark:/12148/cb41772244x",
+      "date": "c. 286–261 BCE (BnF catalogue, attributed there to Flament)",
+      "note": "BnF explicitly catalogues this specimen as Quadridigité. SNG France 1, Collection Jean et Marie Delepierre, no. 1478. 17.22 g; 21 mm. The source’s date convention is preserved. Other specialist catalogues may draw different endpoints.",
+      "crop": "none",
+      "changes": "Full source frame. No retouching, AI reconstruction, enhancement or upscaling.",
+      "specimenId": "bnf-quadridigite-1478",
+      "side": "reverse",
+      "accession": "1966.453.1478",
+      "reuseStatus": "review-pending",
+      "rightsNote": "Reuse review pending. The Commons file record asserts public-domain status in France (PD-France); this is not a CC0 grant or direct BnF permission. BnF separately publishes conditions for commercial and promotional reuse. Retain both records and review the intended publication use.",
+      "rightsPolicyUrl": "https://www.bnf.fr/fr/commander-une-reproduction-avec-une-utilisation-commerciale",
+      "resolutionEvidence": "Dimensions reported by the individual Commons file record; the original-image link was opened and visually inspected through the research browser.",
+      "localOriginalDownloaded": false
+    },
+    "bnf-pi-ii-1469-obverse": {
+      "id": "bnf-pi-ii-1469-obverse",
+      "title": "Pi II · Athena · BnF 1469",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%281_of_2%29.jpg",
+      "displayUrl": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%281_of_2%29.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%281_of_2%29.jpg",
+      "credit": "Bibliothèque nationale de France, département Monnaies, médailles et antiques, 1966.453.1469; Gallica, via Wikimedia Commons.",
+      "license": "PD-France assertion (Commons)",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%281_of_2%29.jpg",
+      "width": 2624,
+      "height": 2624,
+      "alt": "Pi II silver tetradrachm, BnF 1966.453.1469: Athena facing right in a decorated helmet; complete obverse photograph.",
+      "objectUrl": "https://catalogue.bnf.fr/ark:/12148/cb41772235z",
+      "date": "c. 393–295 BCE (broad BnF catalogue range, attributed there to Flament)",
+      "note": "BnF explicitly catalogues this specimen as Pi II. SNG France 1, Collection Jean et Marie Delepierre, no. 1469. 17.16 g; 23 mm. Do not silently turn the broad 393–295 BCE record range into the date of Pi II as a whole. The type identification and the chronology should be stored separately.",
+      "crop": "none",
+      "changes": "Full source frame. No retouching, AI reconstruction, enhancement or upscaling.",
+      "specimenId": "bnf-pi-ii-1469",
+      "side": "obverse",
+      "accession": "1966.453.1469",
+      "reuseStatus": "review-pending",
+      "rightsNote": "Reuse review pending. The Commons file record asserts public-domain status in France (PD-France); this is not a CC0 grant or direct BnF permission. BnF separately publishes conditions for commercial and promotional reuse. Retain both records and review the intended publication use.",
+      "rightsPolicyUrl": "https://www.bnf.fr/fr/commander-une-reproduction-avec-une-utilisation-commerciale",
+      "resolutionEvidence": "Dimensions reported by the individual Commons file record; the original-image link was opened and visually inspected through the research browser.",
+      "localOriginalDownloaded": false
+    },
+    "bnf-pi-ii-1469-reverse": {
+      "id": "bnf-pi-ii-1469-reverse",
+      "title": "Pi II · Owl · BnF 1469",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%282_of_2%29.jpg",
+      "displayUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%282_of_2%29.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%282_of_2%29.jpg",
+      "credit": "Bibliothèque nationale de France, département Monnaies, médailles et antiques, 1966.453.1469; Gallica, via Wikimedia Commons.",
+      "license": "PD-France assertion (Commons)",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%282_of_2%29.jpg",
+      "width": 2624,
+      "height": 2624,
+      "alt": "Pi II silver tetradrachm, BnF 1966.453.1469: owl with the surrounding inscription and field symbols; complete reverse photograph.",
+      "objectUrl": "https://catalogue.bnf.fr/ark:/12148/cb41772235z",
+      "date": "c. 393–295 BCE (broad BnF catalogue range, attributed there to Flament)",
+      "note": "BnF explicitly catalogues this specimen as Pi II. SNG France 1, Collection Jean et Marie Delepierre, no. 1469. 17.16 g; 23 mm. Do not silently turn the broad 393–295 BCE record range into the date of Pi II as a whole. The type identification and the chronology should be stored separately.",
+      "crop": "none",
+      "changes": "Full source frame. No retouching, AI reconstruction, enhancement or upscaling.",
+      "specimenId": "bnf-pi-ii-1469",
+      "side": "reverse",
+      "accession": "1966.453.1469",
+      "reuseStatus": "review-pending",
+      "rightsNote": "Reuse review pending. The Commons file record asserts public-domain status in France (PD-France); this is not a CC0 grant or direct BnF permission. BnF separately publishes conditions for commercial and promotional reuse. Retain both records and review the intended publication use.",
+      "rightsPolicyUrl": "https://www.bnf.fr/fr/commander-une-reproduction-avec-une-utilisation-commerciale",
+      "resolutionEvidence": "Dimensions reported by the individual Commons file record; the original-image link was opened and visually inspected through the research browser.",
+      "localOriginalDownloaded": false
+    }
+  },
+  "families": [
+    {
+      "id": "archaic",
+      "name": "Archaic",
+      "date": "Late 6th century–c. 480 BCE",
+      "short": "The first owls",
+      "image": "archaic",
+      "obverse": "archaic",
+      "obverseCrop": "top",
+      "reverse": "archaic",
+      "reverseCrop": "bottom",
+      "status": "Approximate boundary",
+      "refs": [
+        "archaic-photo",
+        "early-silver"
+      ],
+      "feature": "A strikingly frontal eye on a profile face; compact, individually engraved forms.",
+      "detail": "The Athena–owl pairing was already established before the classical mass issues. Early style varies: “archaic” is not a synonym for crude. The exact introduction date remains debated."
+    },
+    {
+      "id": "early-classical",
+      "name": "Early classical",
+      "date": "c. 480–450 BCE",
+      "short": "Refinement, not a reset",
+      "image": "early-athena",
+      "obverse": "early-athena",
+      "reverse": null,
+      "status": "Broad stylistic grouping",
+      "refs": [
+        "cma-early"
+      ],
+      "feature": "More composed engraving, while the old frontal-eye convention survives.",
+      "detail": "Sometimes called transitional in the fifth-century sense. This label is not the same as the “transitional” owls of the early fourth century. The illustrated museum example is dated 480–449 BCE."
+    },
+    {
+      "id": "classical",
+      "name": "Classical mass issues",
+      "date": "c. 450s–404 BCE",
+      "short": "The familiar international owl",
+      "image": "met-owl",
+      "obverse": "met-athena",
+      "reverse": "met-owl",
+      "status": "Mature fifth-century design",
+      "refs": [
+        "met",
+        "ngc"
+      ],
+      "feature": "Athena, olive, crescent, owl and ΑΘΕ in a familiar, compact design.",
+      "detail": "The mature group dated 440–404 BCE sits within this broader mass-issue phase. The illustrated Met specimen retains its museum catalogue date; the period does not identify a particular year of striking."
+    },
+    {
+      "id": "profile",
+      "name": "Early 4th-century profile-eye",
+      "date": "Early 4th century BCE",
+      "short": "A smaller change than it seems",
+      "image": "profile",
+      "obverse": "profile",
+      "obverseCrop": "left",
+      "reverse": "profile",
+      "reverseCrop": "right",
+      "status": "Exact opening date debated",
+      "refs": [
+        "profile",
+        "profile-photo",
+        "isotopes"
+      ],
+      "feature": "Athena’s eye is more plausibly seen from the side; the reverse remains conservative.",
+      "detail": "Frequently cataloged c. 393–355 BCE, with other chronologies using c. 400/390–353. Eye shape is a clue, not a universal dating algorithm: related forms occur in late fifth-century work."
+    },
+    {
+      "id": "pi",
+      "name": "Pi-style",
+      "date": "Mid–late 4th century BCE",
+      "short": "An ornament becomes a name",
+      "image": "bnf-pi-iii-1475-obverse",
+      "obverse": "bnf-pi-iii-1475-obverse",
+      "reverse": "bnf-pi-iii-1475-reverse",
+      "status": "Illustrated: Pi III + Pi II · image reuse review pending",
+      "refs": [
+        "remint",
+        "isotopes",
+        "bnf-pi-iii",
+        "bnf-pi-ii"
+      ],
+      "feature": "The developed helmet ornament suggests the Greek letter π; many flans show folding and restriking.",
+      "detail": "The main image is BnF 1966.453.1475, explicitly catalogued as Pi III, c. 353–295 BCE. Pi II, BnF 1966.453.1469, is available in the comparison selector with its broader catalogue date retained. These object dates are distinct from competing wider Pi-style chronologies, including Kroll’s 353 BCE reminting and the early-340s discussion in the 2026 isotope paper.",
+      "specimens": [
+        "bnf-pi-iii-1475",
+        "bnf-pi-ii-1469"
+      ]
+    },
+    {
+      "id": "late-old",
+      "name": "Later Old Style",
+      "date": "3rd century BCE",
+      "short": "The old design persists",
+      "image": "bnf-quadridigite-1478-obverse",
+      "obverse": "bnf-quadridigite-1478-obverse",
+      "reverse": "bnf-quadridigite-1478-reverse",
+      "status": "Illustrated: quadridigité · heterogeneous photo still needed",
+      "refs": [
+        "bnf-quadridigite",
+        "iris-quadridigite",
+        "cng-heterogeneous"
+      ],
+      "feature": "The old Athena–owl design persists in distinct groups, including quadridigité and heterogeneous issues. The illustrated specimen is quadridigité.",
+      "detail": "BnF 1966.453.1478 is explicitly catalogued as quadridigité and dated c. 286–261 BCE in that record; this range is not a date for every later Old Style issue. A separate Heterogeneous Group C auction specimen is sourced, but its 500 × 240 px preview has not been substituted for a high-resolution reference photograph. Reuse review remains pending for the linked BnF photographs.",
+      "specimens": [
+        "bnf-quadridigite-1478"
+      ]
+    },
+    {
+      "id": "new",
+      "name": "New Style",
+      "date": "c. 165/164–1st century BCE",
+      "short": "The owl gets a new world",
+      "image": "new-owl",
+      "obverse": "new-athena",
+      "reverse": "new-owl",
+      "status": "Late endpoint varies by catalog",
+      "refs": [
+        "new-photo",
+        "new-chronology",
+        "new-catalogs"
+      ],
+      "feature": "A broader composition: elaborate Athena, owl on an amphora, olive wreath and more inscriptions.",
+      "detail": "The familiar c. 165–42 BCE label is not a universally settled pair of endpoints. This atlas uses a broader envelope rather than assigning every New Style coin one precise terminal date."
+    },
+    {
+      "id": "egypt",
+      "name": "Egyptian owl-type issues",
+      "date": "c. 340–333 BCE · Sabakes type",
+      "short": "A branch, not a successor",
+      "image": "sabakes",
+      "obverse": "sabakes",
+      "obverseCrop": "left",
+      "reverse": "sabakes",
+      "reverseCrop": "right",
+      "status": "Different issuing authority",
+      "refs": [
+        "sabakes"
+      ],
+      "feature": "Athenian visual language adapted under Persian administration in Egypt.",
+      "detail": "“Attic” can describe a weight convention, not the mint. An owl design or an Egyptian findspot alone does not settle who issued a coin. This named type provides a stronger attribution."
+    }
+  ],
+  "anatomy": [
+    {
+      "id": "identity",
+      "name": "ΑΘΕ",
+      "side": "reverse",
+      "image": "classic-owl",
+      "x": 84,
+      "y": 52,
+      "title": "Three letters. A civic signature.",
+      "text": "ΑΘΕ abbreviates “of the Athenians.” Theta is a Greek letter, not an O; the last character is epsilon, not a modern Latin E added by a dealer.",
+      "refs": [
+        "acropolis"
+      ]
+    },
+    {
+      "id": "owl",
+      "name": "The owl",
+      "side": "reverse",
+      "image": "classic-owl",
+      "x": 53,
+      "y": 48,
+      "title": "A body in profile. Eyes looking back.",
+      "text": "The owl’s body turns right while its head faces the viewer. Recognizing that arrangement is more useful than expecting every engraver to draw an identical bird.",
+      "refs": [
+        "acropolis"
+      ]
+    },
+    {
+      "id": "olive",
+      "name": "Olive & crescent",
+      "side": "reverse",
+      "image": "classic-owl",
+      "x": 24,
+      "y": 28,
+      "title": "Small symbols, enduring identity.",
+      "text": "The olive sprig and crescent accompany the owl on these classical examples. Their presence is observable; a precise commemorative meaning for every detail should not be assumed.",
+      "refs": [
+        "cma-early"
+      ]
+    },
+    {
+      "id": "square",
+      "name": "The incuse",
+      "side": "reverse",
+      "image": "classic-owl",
+      "x": 22,
+      "y": 78,
+      "title": "The square belongs to the strike.",
+      "text": "The reverse sits in a recessed, or incuse, square. It is part of the coin’s manufactured form—not a frame added by a collector or a sign that the coin was originally square.",
+      "refs": [
+        "acropolis"
+      ]
+    },
+    {
+      "id": "eye",
+      "name": "Athena’s eye",
+      "side": "obverse",
+      "image": "classic-athena",
+      "x": 66,
+      "y": 40,
+      "title": "The face turns. The eye does not quite follow.",
+      "text": "The conspicuous almond-shaped eye survives on classical profile portraits. Compare it with the fourth-century example, but do not use eye shape alone to certify a date or mint.",
+      "refs": [
+        "cma-classic",
+        "profile"
+      ]
+    },
+    {
+      "id": "helmet",
+      "name": "The helmet",
+      "side": "obverse",
+      "image": "classic-athena",
+      "x": 36,
+      "y": 27,
+      "title": "The detail that names a later family.",
+      "text": "Helmet ornament is one of the features specialists compare. In developed Pi-style work, an altered floral ornament gives the group its modern name; the classical example here is not Pi-style.",
+      "refs": [
+        "remint"
+      ]
+    }
+  ],
+  "glossary": [
+    [
+      "Attica",
+      "The region surrounding Athens. “Attica, Athens” is region plus issuing city, not two separate owl varieties.",
+      [
+        "attica"
+      ]
+    ],
+    [
+      "Attic standard",
+      "A weight convention used beyond Athens. The illustrated Cleveland tetradrachm weighs 17.2 g; findspot, weight standard and mint are separate questions.",
+      [
+        "cma-classic",
+        "sabakes"
+      ]
+    ],
+    [
+      "Tetradrachm",
+      "A denomination of four drachmas. AR in a catalog identifies silver, not a place or a mint mark.",
+      [
+        "met"
+      ]
+    ],
+    [
+      "Obverse / reverse",
+      "The two faces of a coin. For these Athenian types, the Athena face is conventionally the obverse and the owl face the reverse.",
+      [
+        "met"
+      ]
+    ],
+    [
+      "Flan",
+      "The metal blank that receives the design. Its shape and folded or restruck fabric may preserve evidence of manufacture.",
+      [
+        "remint"
+      ]
+    ],
+    [
+      "Incuse",
+      "A recessed area. On many older owl reverses, the design lies within an incuse square.",
+      [
+        "acropolis"
+      ]
+    ],
+    [
+      "Ethnic",
+      "An inscription naming a people or civic community; ΑΘΕ is the abbreviated ethnic of the Athenians.",
+      [
+        "acropolis"
+      ]
+    ],
+    [
+      "Pi-style",
+      "A modern stylistic label referring to the helmet ornament—not the value, weight, or mathematical properties of the coin.",
+      [
+        "remint"
+      ]
+    ],
+    [
+      "Imitation",
+      "A coin using another issuer’s design language. An ancient imitation can be real silver and historically legitimate; this is not the same category as a modern forgery.",
+      [
+        "sabakes",
+        "law"
+      ]
+    ],
+    [
+      "Test cut",
+      "A deliberate incision used to investigate metal beneath the surface. A cut is evidence to interpret, not proof of a precise route or an automatic guarantee of authenticity.",
+      [
+        "law",
+        "isotopes"
+      ]
+    ],
+    [
+      "Hoard / findspot",
+      "A hoard is a deposited group of objects; a findspot records discovery. Neither is automatically the place where a coin was minted.",
+      [
+        "isotopes"
+      ]
+    ],
+    [
+      "c. / BCE",
+      "Circa means approximately. BCE uses the same numbered years as BC: 440 BCE and 440 BC refer to the same year.",
+      []
+    ]
+  ],
+  "specimens": {
+    "bnf-pi-iii-1475": {
+      "id": "bnf-pi-iii-1475",
+      "name": "Pi III · BnF 1475",
+      "type": "Pi III",
+      "accession": "1966.453.1475",
+      "institution": "Bibliothèque nationale de France, département Monnaies, médailles et antiques",
+      "collectionReference": "SNG France 1, Collection Jean et Marie Delepierre, no. 1475",
+      "weightG": 17.19,
+      "diameterMm": 21,
+      "catalogueDate": "c. 353–295 BCE (BnF catalogue, attributed there to Flament)",
+      "dateNote": "This is the specimen catalogue’s date range, not an exact issue date and not a claim that all Pi-style chronology is settled.",
+      "objectUrl": "https://catalogue.bnf.fr/ark:/12148/cb41772241w",
+      "gallicaUrl": "https://gallica.bnf.fr/ark:/12148/btv1b8500418c",
+      "typeUrl": "https://greekcoinage.org/iris/id/athens.flament_2007.pi-style",
+      "refs": [
+        "bnf-pi-iii"
+      ],
+      "reuseStatus": "review-pending",
+      "obverse": "bnf-pi-iii-1475-obverse",
+      "reverse": "bnf-pi-iii-1475-reverse"
+    },
+    "bnf-quadridigite-1478": {
+      "id": "bnf-quadridigite-1478",
+      "name": "Quadridigité · BnF 1478",
+      "type": "Quadridigité",
+      "accession": "1966.453.1478",
+      "institution": "Bibliothèque nationale de France, département Monnaies, médailles et antiques",
+      "collectionReference": "SNG France 1, Collection Jean et Marie Delepierre, no. 1478",
+      "weightG": 17.22,
+      "diameterMm": 21,
+      "catalogueDate": "c. 286–261 BCE (BnF catalogue, attributed there to Flament)",
+      "dateNote": "The source’s date convention is preserved. Other specialist catalogues may draw different endpoints.",
+      "objectUrl": "https://catalogue.bnf.fr/ark:/12148/cb41772244x",
+      "gallicaUrl": "https://gallica.bnf.fr/ark:/12148/btv1b8500421v",
+      "typeUrl": "https://greekcoinage.org/iris/id/athens.nicolet-pierre.kroll_1990.1-28.quadridigite",
+      "refs": [
+        "bnf-quadridigite"
+      ],
+      "reuseStatus": "review-pending",
+      "obverse": "bnf-quadridigite-1478-obverse",
+      "reverse": "bnf-quadridigite-1478-reverse"
+    },
+    "bnf-pi-ii-1469": {
+      "id": "bnf-pi-ii-1469",
+      "name": "Pi II · BnF 1469",
+      "type": "Pi II",
+      "accession": "1966.453.1469",
+      "institution": "Bibliothèque nationale de France, département Monnaies, médailles et antiques",
+      "collectionReference": "SNG France 1, Collection Jean et Marie Delepierre, no. 1469",
+      "weightG": 17.16,
+      "diameterMm": 23,
+      "catalogueDate": "c. 393–295 BCE (broad BnF catalogue range, attributed there to Flament)",
+      "dateNote": "Do not silently turn the broad 393–295 BCE record range into the date of Pi II as a whole. The type identification and the chronology should be stored separately.",
+      "objectUrl": "https://catalogue.bnf.fr/ark:/12148/cb41772235z",
+      "gallicaUrl": "https://gallica.bnf.fr/ark:/12148/btv1b8500412w",
+      "typeUrl": "https://greekcoinage.org/iris/id/athens.flament_2007.pi-style",
+      "refs": [
+        "bnf-pi-ii"
+      ],
+      "reuseStatus": "review-pending",
+      "obverse": "bnf-pi-ii-1469-obverse",
+      "reverse": "bnf-pi-ii-1469-reverse"
+    }
+  }
+}

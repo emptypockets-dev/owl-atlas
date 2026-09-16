@@ -1,0 +1,1 @@
+This is the original supplemental image-research gallery and manifest. It is retained for provenance, not used as the main website or as proof of new rights clearance. Current authoritative website data is in ../../src/content.json. Photograph URLs in this gallery are external.

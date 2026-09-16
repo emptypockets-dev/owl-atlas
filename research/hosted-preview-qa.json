@@ -1,0 +1,1270 @@
+{
+  "url": "https://owl-atlas-1xw38p25v-andrey-kondratyuks-projects.vercel.app",
+  "checks": [
+    {
+      "label": "Authenticated HTTPS document returns 200",
+      "pass": true
+    },
+    {
+      "label": "Hosted HTML matches dist/index.html exactly",
+      "pass": true
+    },
+    {
+      "label": "Preview sends noindex header",
+      "pass": true
+    },
+    {
+      "label": "One main heading",
+      "pass": true
+    },
+    {
+      "label": "classic-owl real viewer photograph loads",
+      "pass": true
+    },
+    {
+      "label": "classic-owl source dimensions match",
+      "pass": true
+    },
+    {
+      "label": "classic-owl exact source retained",
+      "pass": true
+    },
+    {
+      "label": "classic-owl real-image keyboard zoom",
+      "pass": true
+    },
+    {
+      "label": "classic-owl real-image keyboard pan at 400%",
+      "pass": true
+    },
+    {
+      "label": "classic-owl viewer resets",
+      "pass": true
+    },
+    {
+      "label": "classic-owl Escape closes viewer",
+      "pass": true
+    },
+    {
+      "label": "classic-athena real viewer photograph loads",
+      "pass": true
+    },
+    {
+      "label": "classic-athena source dimensions match",
+      "pass": true
+    },
+    {
+      "label": "classic-athena exact source retained",
+      "pass": true
+    },
+    {
+      "label": "classic-athena real-image keyboard zoom",
+      "pass": true
+    },
+    {
+      "label": "classic-athena real-image keyboard pan at 400%",
+      "pass": true
+    },
+    {
+      "label": "classic-athena viewer resets",
+      "pass": true
+    },
+    {
+      "label": "classic-athena Escape closes viewer",
+      "pass": true
+    },
+    {
+      "label": "archaic real viewer photograph loads",
+      "pass": true
+    },
+    {
+      "label": "archaic source dimensions match",
+      "pass": true
+    },
+    {
+      "label": "archaic exact source retained",
+      "pass": true
+    },
+    {
+      "label": "archaic real-image keyboard zoom",
+      "pass": true
+    },
+    {
+      "label": "archaic real-image keyboard pan at 400%",
+      "pass": true
+    },
+    {
+      "label": "archaic viewer resets",
+      "pass": true
+    },
+    {
+      "label": "archaic Escape closes viewer",
+      "pass": true
+    },
+    {
+      "label": "met-owl real viewer photograph loads",
+      "pass": true
+    },
+    {
+      "label": "met-owl source dimensions match",
+      "pass": true
+    },
+    {
+      "label": "met-owl exact source retained",
+      "pass": true
+    },
+    {
+      "label": "met-owl real-image keyboard zoom",
+      "pass": true
+    },
+    {
+      "label": "met-owl real-image keyboard pan at 400%",
+      "pass": true
+    },
+    {
+      "label": "met-owl viewer resets",
+      "pass": true
+    },
+    {
+      "label": "met-owl Escape closes viewer",
+      "pass": true
+    },
+    {
+      "label": "met-athena real viewer photograph loads",
+      "pass": true
+    },
+    {
+      "label": "met-athena source dimensions match",
+      "pass": true
+    },
+    {
+      "label": "met-athena exact source retained",
+      "pass": true
+    },
+    {
+      "label": "met-athena real-image keyboard zoom",
+      "pass": true
+    },
+    {
+      "label": "met-athena real-image keyboard pan at 400%",
+      "pass": true
+    },
+    {
+      "label": "met-athena viewer resets",
+      "pass": true
+    },
+    {
+      "label": "met-athena Escape closes viewer",
+      "pass": true
+    },
+    {
+      "label": "profile real viewer photograph loads",
+      "pass": true
+    },
+    {
+      "label": "profile source dimensions match",
+      "pass": true
+    },
+    {
+      "label": "profile exact source retained",
+      "pass": true
+    },
+    {
+      "label": "profile real-image keyboard zoom",
+      "pass": true
+    },
+    {
+      "label": "profile real-image keyboard pan at 400%",
+      "pass": true
+    },
+    {
+      "label": "profile viewer resets",
+      "pass": true
+    },
+    {
+      "label": "profile Escape closes viewer",
+      "pass": true
+    },
+    {
+      "label": "early-athena real viewer photograph loads",
+      "pass": true
+    },
+    {
+      "label": "early-athena source dimensions match",
+      "pass": true
+    },
+    {
+      "label": "early-athena exact source retained",
+      "pass": true
+    },
+    {
+      "label": "early-athena real-image keyboard zoom",
+      "pass": true
+    },
+    {
+      "label": "early-athena real-image keyboard pan at 400%",
+      "pass": true
+    },
+    {
+      "label": "early-athena viewer resets",
+      "pass": true
+    },
+    {
+      "label": "early-athena Escape closes viewer",
+      "pass": true
+    },
+    {
+      "label": "new-owl real viewer photograph loads",
+      "pass": true
+    },
+    {
+      "label": "new-owl source dimensions match",
+      "pass": true
+    },
+    {
+      "label": "new-owl exact source retained",
+      "pass": true
+    },
+    {
+      "label": "new-owl real-image keyboard zoom",
+      "pass": true
+    },
+    {
+      "label": "new-owl real-image keyboard pan at 400%",
+      "pass": true
+    },
+    {
+      "label": "new-owl viewer resets",
+      "pass": true
+    },
+    {
+      "label": "new-owl Escape closes viewer",
+      "pass": true
+    },
+    {
+      "label": "new-athena real viewer photograph loads",
+      "pass": true
+    },
+    {
+      "label": "new-athena source dimensions match",
+      "pass": true
+    },
+    {
+      "label": "new-athena exact source retained",
+      "pass": true
+    },
+    {
+      "label": "new-athena real-image keyboard zoom",
+      "pass": true
+    },
+    {
+      "label": "new-athena real-image keyboard pan at 400%",
+      "pass": true
+    },
+    {
+      "label": "new-athena viewer resets",
+      "pass": true
+    },
+    {
+      "label": "new-athena Escape closes viewer",
+      "pass": true
+    },
+    {
+      "label": "sabakes real viewer photograph loads",
+      "pass": true
+    },
+    {
+      "label": "sabakes source dimensions match",
+      "pass": true
+    },
+    {
+      "label": "sabakes exact source retained",
+      "pass": true
+    },
+    {
+      "label": "sabakes real-image keyboard zoom",
+      "pass": true
+    },
+    {
+      "label": "sabakes real-image keyboard pan at 400%",
+      "pass": true
+    },
+    {
+      "label": "sabakes viewer resets",
+      "pass": true
+    },
+    {
+      "label": "sabakes Escape closes viewer",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-iii-1475-obverse real viewer photograph loads",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-iii-1475-obverse source dimensions match",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-iii-1475-obverse exact source retained",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-iii-1475-obverse exact BnF specimen record",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-iii-1475-obverse pending reuse status visible",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-iii-1475-obverse real-image keyboard zoom",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-iii-1475-obverse real-image keyboard pan at 400%",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-iii-1475-obverse viewer resets",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-iii-1475-obverse Escape closes viewer",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-iii-1475-reverse real viewer photograph loads",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-iii-1475-reverse source dimensions match",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-iii-1475-reverse exact source retained",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-iii-1475-reverse exact BnF specimen record",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-iii-1475-reverse pending reuse status visible",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-iii-1475-reverse real-image keyboard zoom",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-iii-1475-reverse real-image keyboard pan at 400%",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-iii-1475-reverse viewer resets",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-iii-1475-reverse Escape closes viewer",
+      "pass": true
+    },
+    {
+      "label": "bnf-quadridigite-1478-obverse real viewer photograph loads",
+      "pass": true
+    },
+    {
+      "label": "bnf-quadridigite-1478-obverse source dimensions match",
+      "pass": true
+    },
+    {
+      "label": "bnf-quadridigite-1478-obverse exact source retained",
+      "pass": true
+    },
+    {
+      "label": "bnf-quadridigite-1478-obverse exact BnF specimen record",
+      "pass": true
+    },
+    {
+      "label": "bnf-quadridigite-1478-obverse pending reuse status visible",
+      "pass": true
+    },
+    {
+      "label": "bnf-quadridigite-1478-obverse real-image keyboard zoom",
+      "pass": true
+    },
+    {
+      "label": "bnf-quadridigite-1478-obverse real-image keyboard pan at 400%",
+      "pass": true
+    },
+    {
+      "label": "bnf-quadridigite-1478-obverse viewer resets",
+      "pass": true
+    },
+    {
+      "label": "bnf-quadridigite-1478-obverse Escape closes viewer",
+      "pass": true
+    },
+    {
+      "label": "bnf-quadridigite-1478-reverse real viewer photograph loads",
+      "pass": true
+    },
+    {
+      "label": "bnf-quadridigite-1478-reverse source dimensions match",
+      "pass": true
+    },
+    {
+      "label": "bnf-quadridigite-1478-reverse exact source retained",
+      "pass": true
+    },
+    {
+      "label": "bnf-quadridigite-1478-reverse exact BnF specimen record",
+      "pass": true
+    },
+    {
+      "label": "bnf-quadridigite-1478-reverse pending reuse status visible",
+      "pass": true
+    },
+    {
+      "label": "bnf-quadridigite-1478-reverse real-image keyboard zoom",
+      "pass": true
+    },
+    {
+      "label": "bnf-quadridigite-1478-reverse real-image keyboard pan at 400%",
+      "pass": true
+    },
+    {
+      "label": "bnf-quadridigite-1478-reverse viewer resets",
+      "pass": true
+    },
+    {
+      "label": "bnf-quadridigite-1478-reverse Escape closes viewer",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-ii-1469-obverse real viewer photograph loads",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-ii-1469-obverse source dimensions match",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-ii-1469-obverse exact source retained",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-ii-1469-obverse exact BnF specimen record",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-ii-1469-obverse pending reuse status visible",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-ii-1469-obverse real-image keyboard zoom",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-ii-1469-obverse real-image keyboard pan at 400%",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-ii-1469-obverse viewer resets",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-ii-1469-obverse Escape closes viewer",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-ii-1469-reverse real viewer photograph loads",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-ii-1469-reverse source dimensions match",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-ii-1469-reverse exact source retained",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-ii-1469-reverse exact BnF specimen record",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-ii-1469-reverse pending reuse status visible",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-ii-1469-reverse real-image keyboard zoom",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-ii-1469-reverse real-image keyboard pan at 400%",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-ii-1469-reverse viewer resets",
+      "pass": true
+    },
+    {
+      "label": "bnf-pi-ii-1469-reverse Escape closes viewer",
+      "pass": true
+    },
+    {
+      "label": "Deep link #top at 1440px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #top at 1440px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #origins at 1440px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #origins at 1440px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #classical at 1440px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #classical at 1440px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #404 at 1440px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #404 at 1440px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #pi-style at 1440px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #pi-style at 1440px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #later-old-style at 1440px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #later-old-style at 1440px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #atlas at 1440px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #atlas at 1440px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #sources at 1440px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #sources at 1440px",
+      "pass": true
+    },
+    {
+      "label": "Pi II preset at 1440px",
+      "pass": true
+    },
+    {
+      "label": "Pi III preset at 1440px",
+      "pass": true
+    },
+    {
+      "label": "left exact obverse at 1440px",
+      "pass": true
+    },
+    {
+      "label": "right exact obverse at 1440px",
+      "pass": true
+    },
+    {
+      "label": "left exact reverse at 1440px",
+      "pass": true
+    },
+    {
+      "label": "right exact reverse at 1440px",
+      "pass": true
+    },
+    {
+      "label": "OS reduced motion at 1440px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #top at 1024px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #top at 1024px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #origins at 1024px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #origins at 1024px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #classical at 1024px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #classical at 1024px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #404 at 1024px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #404 at 1024px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #pi-style at 1024px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #pi-style at 1024px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #later-old-style at 1024px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #later-old-style at 1024px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #atlas at 1024px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #atlas at 1024px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #sources at 1024px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #sources at 1024px",
+      "pass": true
+    },
+    {
+      "label": "Pi II preset at 1024px",
+      "pass": true
+    },
+    {
+      "label": "Pi III preset at 1024px",
+      "pass": true
+    },
+    {
+      "label": "left exact obverse at 1024px",
+      "pass": true
+    },
+    {
+      "label": "right exact obverse at 1024px",
+      "pass": true
+    },
+    {
+      "label": "left exact reverse at 1024px",
+      "pass": true
+    },
+    {
+      "label": "right exact reverse at 1024px",
+      "pass": true
+    },
+    {
+      "label": "OS reduced motion at 1024px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #top at 768px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #top at 768px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #origins at 768px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #origins at 768px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #classical at 768px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #classical at 768px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #404 at 768px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #404 at 768px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #pi-style at 768px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #pi-style at 768px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #later-old-style at 768px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #later-old-style at 768px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #atlas at 768px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #atlas at 768px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #sources at 768px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #sources at 768px",
+      "pass": true
+    },
+    {
+      "label": "Pi II preset at 768px",
+      "pass": true
+    },
+    {
+      "label": "Pi III preset at 768px",
+      "pass": true
+    },
+    {
+      "label": "left exact obverse at 768px",
+      "pass": true
+    },
+    {
+      "label": "right exact obverse at 768px",
+      "pass": true
+    },
+    {
+      "label": "left exact reverse at 768px",
+      "pass": true
+    },
+    {
+      "label": "right exact reverse at 768px",
+      "pass": true
+    },
+    {
+      "label": "OS reduced motion at 768px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #top at 390px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #top at 390px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #origins at 390px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #origins at 390px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #classical at 390px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #classical at 390px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #404 at 390px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #404 at 390px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #pi-style at 390px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #pi-style at 390px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #later-old-style at 390px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #later-old-style at 390px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #atlas at 390px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #atlas at 390px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #sources at 390px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #sources at 390px",
+      "pass": true
+    },
+    {
+      "label": "Pi II preset at 390px",
+      "pass": true
+    },
+    {
+      "label": "Pi III preset at 390px",
+      "pass": true
+    },
+    {
+      "label": "left exact obverse at 390px",
+      "pass": true
+    },
+    {
+      "label": "right exact obverse at 390px",
+      "pass": true
+    },
+    {
+      "label": "left exact reverse at 390px",
+      "pass": true
+    },
+    {
+      "label": "right exact reverse at 390px",
+      "pass": true
+    },
+    {
+      "label": "OS reduced motion at 390px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #top at 320px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #top at 320px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #origins at 320px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #origins at 320px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #classical at 320px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #classical at 320px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #404 at 320px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #404 at 320px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #pi-style at 320px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #pi-style at 320px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #later-old-style at 320px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #later-old-style at 320px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #atlas at 320px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #atlas at 320px",
+      "pass": true
+    },
+    {
+      "label": "Deep link #sources at 320px",
+      "pass": true
+    },
+    {
+      "label": "No overflow #sources at 320px",
+      "pass": true
+    },
+    {
+      "label": "Pi II preset at 320px",
+      "pass": true
+    },
+    {
+      "label": "Pi III preset at 320px",
+      "pass": true
+    },
+    {
+      "label": "left exact obverse at 320px",
+      "pass": true
+    },
+    {
+      "label": "right exact obverse at 320px",
+      "pass": true
+    },
+    {
+      "label": "left exact reverse at 320px",
+      "pass": true
+    },
+    {
+      "label": "right exact reverse at 320px",
+      "pass": true
+    },
+    {
+      "label": "OS reduced motion at 320px",
+      "pass": true
+    },
+    {
+      "label": "Hosted bibliography author search",
+      "pass": true
+    },
+    {
+      "label": "Hosted bibliography empty state",
+      "pass": true
+    },
+    {
+      "label": "All 28 bibliography entries restored",
+      "pass": true
+    },
+    {
+      "label": "Hosted source dialog opens",
+      "pass": true
+    },
+    {
+      "label": "Source dialog focus returns",
+      "pass": true
+    },
+    {
+      "label": "Public output boundary /LICENSE.txt",
+      "pass": true
+    },
+    {
+      "label": "Public output boundary /THIRD_PARTY_NOTICES.txt",
+      "pass": true
+    },
+    {
+      "label": "Public output boundary /src/content.json",
+      "pass": true
+    },
+    {
+      "label": "Public output boundary /research/handoff-validation.json",
+      "pass": true
+    },
+    {
+      "label": "Public output boundary /.env.local",
+      "pass": true
+    },
+    {
+      "label": "Hosted no-JavaScript story and citations",
+      "pass": true
+    },
+    {
+      "label": "No site JavaScript errors",
+      "pass": true
+    }
+  ],
+  "images": [
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Owl_%28reverse%29_-_1941.296.b_-_Cleveland_Museum_of_Art.jpg",
+      "width": 2634,
+      "height": 2736,
+      "loaded": true,
+      "id": "classic-owl",
+      "expectedWidth": 2634,
+      "expectedHeight": 2736
+    },
+    {
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Head_of_Athena_%28obverse%29_-_1941.296.a_-_Cleveland_Museum_of_Art.tif/lossy-page1-1920px-Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Head_of_Athena_%28obverse%29_-_1941.296.a_-_Cleveland_Museum_of_Art.tif.jpg",
+      "width": 1920,
+      "height": 1973,
+      "loaded": true,
+      "id": "classic-athena",
+      "expectedWidth": 1920,
+      "expectedHeight": 1973
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Greek_Silver_Tetradrachm_of_Athens_%28Attica%29.jpg",
+      "width": 759,
+      "height": 1608,
+      "loaded": true,
+      "id": "archaic",
+      "expectedWidth": 759,
+      "expectedHeight": 1608
+    },
+    {
+      "url": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702577/main-image",
+      "width": 1110,
+      "height": 1200,
+      "loaded": true,
+      "id": "met-owl",
+      "expectedWidth": 1110,
+      "expectedHeight": 1200
+    },
+    {
+      "url": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702575/main-image",
+      "width": 1200,
+      "height": 1085,
+      "loaded": true,
+      "id": "met-athena",
+      "expectedWidth": 1200,
+      "expectedHeight": 1085
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Sg2537.jpg",
+      "width": 500,
+      "height": 253,
+      "loaded": true,
+      "id": "profile",
+      "expectedWidth": 500,
+      "expectedHeight": 253
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Greece%2C_5th_century_BC_-_Athenian_Tetradrachm-_Female_Head_%28obverse%29_-_1920.267.a_-_Cleveland_Museum_of_Art.jpg",
+      "width": 2318,
+      "height": 2280,
+      "loaded": true,
+      "id": "early-athena",
+      "expectedWidth": 2318,
+      "expectedHeight": 2280
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/8/82/Silver_tetradrachm_Athens_new_style_reverse.jpg",
+      "width": 1340,
+      "height": 1340,
+      "loaded": true,
+      "id": "new-owl",
+      "expectedWidth": 1340,
+      "expectedHeight": 1340
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Silver_tetradrachm_Athens_new_style_obverse.jpg",
+      "width": 1200,
+      "height": 1200,
+      "loaded": true,
+      "id": "new-athena",
+      "expectedWidth": 1200,
+      "expectedHeight": 1200
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/EGYPT%2C_Persian_Administration._Sabakes._Circa_340-333_BC.jpg",
+      "width": 800,
+      "height": 403,
+      "loaded": true,
+      "id": "sabakes",
+      "expectedWidth": 800,
+      "expectedHeight": 403
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%281_of_2%29.jpg",
+      "width": 2522,
+      "height": 2522,
+      "loaded": true,
+      "id": "bnf-pi-iii-1475-obverse",
+      "expectedWidth": 2522,
+      "expectedHeight": 2522
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%282_of_2%29.jpg",
+      "width": 2522,
+      "height": 2522,
+      "loaded": true,
+      "id": "bnf-pi-iii-1475-reverse",
+      "expectedWidth": 2522,
+      "expectedHeight": 2522
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%281_of_2%29.jpg",
+      "width": 2679,
+      "height": 2679,
+      "loaded": true,
+      "id": "bnf-quadridigite-1478-obverse",
+      "expectedWidth": 2679,
+      "expectedHeight": 2679
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%282_of_2%29.jpg",
+      "width": 2679,
+      "height": 2679,
+      "loaded": true,
+      "id": "bnf-quadridigite-1478-reverse",
+      "expectedWidth": 2679,
+      "expectedHeight": 2679
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%281_of_2%29.jpg",
+      "width": 2624,
+      "height": 2624,
+      "loaded": true,
+      "id": "bnf-pi-ii-1469-obverse",
+      "expectedWidth": 2624,
+      "expectedHeight": 2624
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%282_of_2%29.jpg",
+      "width": 2624,
+      "height": 2624,
+      "loaded": true,
+      "id": "bnf-pi-ii-1469-reverse",
+      "expectedWidth": 2624,
+      "expectedHeight": 2624
+    }
+  ],
+  "javascriptErrors": [],
+  "failedRequests": [],
+  "imageTransferBytes": [
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Owl_%28reverse%29_-_1941.296.b_-_Cleveland_Museum_of_Art.jpg",
+      "transferSize": 5857896,
+      "encodedBodySize": 5857596
+    },
+    {
+      "url": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702577/main-image",
+      "transferSize": 0,
+      "encodedBodySize": 0
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/8/82/Silver_tetradrachm_Athens_new_style_reverse.jpg",
+      "transferSize": 2432442,
+      "encodedBodySize": 2432142
+    },
+    {
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Head_of_Athena_%28obverse%29_-_1941.296.a_-_Cleveland_Museum_of_Art.tif/lossy-page1-1920px-Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Head_of_Athena_%28obverse%29_-_1941.296.a_-_Cleveland_Museum_of_Art.tif.jpg",
+      "transferSize": 879722,
+      "encodedBodySize": 879422
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Sg2537.jpg",
+      "transferSize": 62366,
+      "encodedBodySize": 62066
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%281_of_2%29.jpg",
+      "transferSize": 821266,
+      "encodedBodySize": 820966
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%282_of_2%29.jpg",
+      "transferSize": 882503,
+      "encodedBodySize": 882203
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%282_of_2%29.jpg",
+      "transferSize": 820476,
+      "encodedBodySize": 820176
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%281_of_2%29.jpg",
+      "transferSize": 916675,
+      "encodedBodySize": 916375
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Greek_Silver_Tetradrachm_of_Athens_%28Attica%29.jpg",
+      "transferSize": 453459,
+      "encodedBodySize": 453159
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Greece%2C_5th_century_BC_-_Athenian_Tetradrachm-_Female_Head_%28obverse%29_-_1920.267.a_-_Cleveland_Museum_of_Art.jpg",
+      "transferSize": 4220682,
+      "encodedBodySize": 4220382
+    },
+    {
+      "url": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702575/main-image",
+      "transferSize": 0,
+      "encodedBodySize": 0
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/EGYPT%2C_Persian_Administration._Sabakes._Circa_340-333_BC.jpg",
+      "transferSize": 110200,
+      "encodedBodySize": 109900
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Silver_tetradrachm_Athens_new_style_obverse.jpg",
+      "transferSize": 1168037,
+      "encodedBodySize": 1167737
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%281_of_2%29.jpg",
+      "transferSize": 1019952,
+      "encodedBodySize": 1019652
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%282_of_2%29.jpg",
+      "transferSize": 984745,
+      "encodedBodySize": 984445
+    }
+  ],
+  "result": "pass",
+  "limitations": [
+    "Chromium only; no screen-reader certification or real-device touch testing.",
+    "Image load and dimension checks do not clear reuse rights.",
+    "Cross-origin transfer-size values may be unavailable without Timing-Allow-Origin."
+  ],
+  "checkedOn": "2026-09-16",
+  "visualInspection": {
+    "all16ViewerPhotographsInspected": true,
+    "scope": "Matched visible face or paired plate to the retained source URL, specimen title and side; no independent attribution or rights audit.",
+    "desktopAndMobileInspected": [
+      1440,
+      390
+    ]
+  }
+}

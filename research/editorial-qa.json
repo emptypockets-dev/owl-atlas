@@ -1,0 +1,37 @@
+{
+  "result": "pass",
+  "checks": 28,
+  "items": [
+    "No purchase-specific framing: \\byour\\s+(?:(?:own|new|purchased|individual|specific)\\s+)*(?:coin|owl|label|slab|purchase)\\b",
+    "No purchase-specific framing: \\bthe\\s+range\\s+on\\s+your\\s+label\\b",
+    "No purchase-specific framing: \\bvisitor[\u2019\\']s\\s+coin\\b",
+    "No purchase-specific framing: \\bcommissioning\\s+collector\\b",
+    "No purchase-specific framing: \\bwhat\\s+the\\s+label\\s+cannot\\s+tell\\s+you\\b",
+    "No purchase-specific framing: \\bread\\s+the\\s+label\\s+without\\s+overreading\\s+it\\b",
+    "Classical chapter uses general-interest framing",
+    "404 chapter is historically framed",
+    "Evidence chapter is not label-centered",
+    "Personal specimen callout retired",
+    "Classical comparison status is audience-neutral",
+    "Catalogue literacy remains available",
+    "Prominent label-reading layout removed",
+    "Reference guide is a native disclosure",
+    "Reference guide is collapsed by default",
+    "Preserved chapter anchor: origins",
+    "Preserved chapter anchor: first-owls",
+    "Preserved chapter anchor: classical",
+    "Preserved chapter anchor: 404",
+    "Preserved chapter anchor: after-athens",
+    "Preserved chapter anchor: new-style",
+    "Preserved chapter anchor: beyond",
+    "Preserved chapter anchor: evidence",
+    "Data edition updated",
+    "All 28 source records retained",
+    "All 16 image records retained",
+    "All three BnF specimens retained",
+    "All six BnF reuse caveats retained"
+  ],
+  "limitations": [
+    "Editorial regression checks only; not a new source, rights or accessibility audit."
+  ]
+}
