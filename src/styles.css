@@ -1020,6 +1020,10 @@ img {
   aspect-ratio:1
 }
 
+.museum-plate .early-faces .image-surface {
+  aspect-ratio:1
+}
+
 .editorial-two {
   display:grid;
   grid-template-columns:1fr 1fr;

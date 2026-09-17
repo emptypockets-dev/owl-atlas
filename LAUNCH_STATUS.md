@@ -5,7 +5,7 @@ The existing research edition is deployed to the verified personal Vercel accoun
 authenticated Vercel access while the six BnF image reuse decisions are unresolved.
 The account's existing Pro plan was retained; no plan upgrade or paid add-on was added.
 
-- Current preview: https://owl-atlas-bbs5ewny7-emptypocketsdevs-projects.vercel.app
+- Current preview: https://owl-atlas-go6l89sgz-emptypocketsdevs-projects.vercel.app
 - Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
 - Public source repository: https://github.com/emptypockets-dev/owl-atlas
 
@@ -91,6 +91,13 @@ settings and credentials are ignored by Git.
   returns to parallel fourth-century traditions; and the story ends with a link
   into the reference atlas. Specific dating, attribution and rights qualifications
   remain with their evidence. See `research/story-flow-review.md`.
+- Chapter 02 now shows obverse and reverse together for both early examples.
+  The archaic views use the existing paired plate; the early-classical pair uses
+  Cleveland 1920.267.a/b. Credits, declared crops and original-image viewer links
+  are retained. The heading is now “The owl, in its early forms.” The previous
+  “experiment” wording implied a purpose not established by the cited evidence.
+  Its introductory period label now includes the mid-fifth century, consistent
+  with the displayed 480–449 BCE catalogue range. No specimen dates changed.
 
 The existing design and interactions are preserved. `src/app.js` still matches
 the original package checksum; the page, styles and renderer now include the
@@ -110,7 +117,14 @@ handoff package, not this later deployment.
 - Chromium smoke suite: see `research/browser-qa.json` (152 checks; image requests
   intentionally blocked). Playwright was run from an isolated temporary tooling
   environment, with no dependency added to this project.
-- Current story-flow HTTPS preview: see `research/story-flow-qa.json`. All 93 checks
+- Current early-face HTTPS preview: see `research/early-faces-qa.json`. All 70 checks
+  passed: exact hosted HTML equality with `dist/index.html`, preserved deep link,
+  heading, face labels and crops, side-by-side photographs at 320, 390, 768, 1024
+  and 1440 pixels, real page-image delivery, all four viewer links with verified
+  original dimensions and source URLs, Enter/Escape and focus return, and
+  no-JavaScript access. Desktop and mobile views were visually inspected; no page
+  JavaScript errors occurred.
+- Previous story-flow HTTPS preview: see `research/story-flow-qa.json`. All 93 checks
   passed: exact hosted HTML equality with `dist/index.html`, preview indexing
   restriction, all eight chapter deep links, both onward story links, viewport
   fit at 320, 390, 768, 1024 and 1440 pixels, citation dialogs and focus return,

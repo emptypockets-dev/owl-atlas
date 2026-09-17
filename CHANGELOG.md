@@ -1,3 +1,19 @@
+# Early coin faces and heading — 16 September 2026
+
+- Show labeled obverse and reverse views together for both chapter 02 examples,
+  including on narrow screens. Reuse the archaic paired plate with its declared
+  face crops and the matching Cleveland 1920.267.a/b photographs; preserve credits
+  and full originals in the viewer.
+- Replace the speculative “experiment” heading with “The owl, in its early forms.”
+  The existing sources discuss a change in type and debated origins, without
+  establishing that these examples were trial issues. Extend the chapter's
+  introductory period label through the mid-fifth century to cover the displayed
+  480–449 BCE museum record; no specimen or family dates change.
+  Sources rechecked: [Davis et al. (2025), especially the discussion](https://link.springer.com/article/10.1007/s12520-025-02229-z)
+  and [Cleveland 1920.267](https://www.clevelandart.org/art/1920.267).
+
+---
+
 # Story flow edit — 16 September 2026
 
 - Give each narrative chapter a distinct purpose, tighten repeated geography,
