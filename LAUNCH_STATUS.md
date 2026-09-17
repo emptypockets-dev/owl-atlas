@@ -5,7 +5,7 @@ The existing research edition is deployed to the verified personal Vercel accoun
 authenticated Vercel access while the six BnF image reuse decisions are unresolved.
 The account's existing Pro plan was retained; no plan upgrade or paid add-on was added.
 
-- Current preview: https://owl-atlas-88p09xag4-emptypocketsdevs-projects.vercel.app
+- Current preview: https://owl-atlas-o9u041crv-emptypocketsdevs-projects.vercel.app
 - Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
 - Public source repository: https://github.com/emptypockets-dev/owl-atlas
 
@@ -111,6 +111,13 @@ settings and credentials are ignored by Git.
   Geographic coordinates, coastline geometry, historical qualifications, mobile
   key and Natural Earth attribution remain intact.
 
+- Replaced the slash-separated geographic heading with a complete explanation:
+  Athens is a city in Attica, a region of present-day Greece. Marker 1 and the
+  numbered key explicitly identify the city; a nearby note explains that the
+  region and country boundaries are not drawn. The accessible SVG description
+  carries the same relationship. Adjacent prose now focuses on Athens as an
+  ancient city-state, avoiding a repeated geographic explanation.
+
 The existing design and interactions are preserved. `src/app.js` still matches
 the original package checksum; the page, styles and renderer now include the
 requested family-tree, geographic and story-flow updates. The original 28 sources, 16 image records, three BnF
@@ -129,7 +136,16 @@ handoff package, not this later deployment.
 - Chromium smoke suite: see `research/browser-qa.json` (152 checks; image requests
   intentionally blocked). Playwright was run from an isolated temporary tooling
   environment, with no dependency added to this project.
-- Current map-label HTTPS preview: see `research/map-label-qa.json`. All 56 checks
+- Current geographic-hierarchy HTTPS preview: see `research/map-hierarchy-qa.json`.
+  All 73 checks passed, covering the explicit city/region/country explanation,
+  Athens marker and mobile key, absence-of-boundaries note, accessible description,
+  no-JavaScript text, map connector and marker clearance, and viewport fit at
+  320, 390, 768, 1024 and 1440 pixels. Hosted HTML exactly matches `dist/index.html`,
+  the origins deep link and preview noindex header are preserved, and no page
+  JavaScript errors occurred. The hosted desktop and mobile views and three real
+  photographs (hero, early-classical reverse and BnF Pi III reverse) were visually
+  inspected. Existing source, specimen and image records remain unchanged.
+- Previous map-label HTTPS preview: see `research/map-label-qa.json`. All 56 checks
   passed: hosted HTML exactly matches `dist/index.html`, the origins deep link and
   indexing restriction are preserved, connector paths clear all label bounds,
   markers clear text, labels fit the map, lettering has a coastline halo, and

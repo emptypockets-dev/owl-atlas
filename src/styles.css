@@ -684,23 +684,13 @@ img {
 }
 
 .geography-orientation {
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px 12px;
-  align-items:baseline;
   font-family:var(--serif);
   font-size:22px;
-  line-height:1.4
+  line-height:1.5
 }
 
-.geography-orientation small {
-  display:block;
-  font-family:var(--mono);
-  font-size:9px;
-  color:var(--muted-light)
-}
-
-.geography-orientation strong { font-weight:400 }
+.geography-orientation strong { font-weight:600 }
+.geography-location-note { margin-top:10px; font-size:12px; line-height:1.7; color:var(--muted-light) }
 /* Keep the geographic scale explanation readable outside the SVG on small screens. */
 .geography-scale-note { margin-top:18px; font-size:12px; line-height:1.7; color:var(--muted-light) }
 .geography-scale-note strong { display:block; font-weight:500; color:var(--ink) }
@@ -2948,7 +2938,7 @@ dialog::backdrop {
     max-width:none
   }
   .geography-composition { padding:18px; }
-  .geography-orientation { font-size:21px; gap:6px 9px; }
+  .geography-orientation { font-size:21px; }
   .geography-map { margin:20px 0; }
   .geography-label,.geography-sublabel,.geography-leader,.geography-sea { display:none; }
   .geography-pin { r:22px; }

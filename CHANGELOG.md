@@ -1,3 +1,14 @@
+# Athens, Attica and Greece — 16 September 2026
+
+- Replace the ambiguous slash-separated map heading with an explicit sentence:
+  Athens is a city in Attica, a region of present-day Greece. Explain that marker 1
+  locates Athens and that regional and national boundaries are not drawn.
+- Label Athens as a city in the map and numbered key; preserve the same hierarchy
+  in the accessible map description. Let the adjacent prose focus on Athens as an
+  ancient issuing city-state instead of repeating the geographic explanation.
+
+---
+
 # Map labels and scale — 16 September 2026
 
 - Shorten all eight map connectors to leave clear space around names and subtitles;
