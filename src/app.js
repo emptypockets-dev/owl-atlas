@@ -1,4 +1,4 @@
-import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup} from './render.mjs';
+import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup, marketMoney} from './render.mjs';
 
 /**
  * Progressive enhancement only. The full story, credits and bibliography are
@@ -442,6 +442,71 @@ function filterSources() {
   byId('source-empty').hidden = count !== 0;
 }
 byId('source-search').addEventListener('input', filterSources);
+
+// Enhance the complete, statically rendered market snapshot.
+const marketRows = Array.from(document.querySelectorAll('[data-market-row]')).map(element => ({element, text:normalize(element.textContent)}));
+function filterMarket() {
+  const terms = normalize(byId('market-search').value.trim()).split(/\s+/).filter(Boolean);
+  const family = byId('market-family').value;
+  const venue = byId('market-venue').value;
+  let count = 0;
+  for (const {element, text} of marketRows) {
+    const matches = (family === 'all' || element.dataset.marketFamily === family) && (venue === 'all' || element.dataset.marketVenue === venue) && terms.every(term => text.includes(term));
+    element.hidden = !matches;
+    if (matches) count++;
+  }
+  byId('market-results').textContent = count ? `${count} of ${marketRows.length} observations` : 'No matching observations. Try another detail or reset the filters.';
+}
+function resetMarket() {
+  byId('market-search').value = '';
+  byId('market-family').value = 'all';
+  byId('market-venue').value = 'all';
+  filterMarket();
+}
+byId('market-search').addEventListener('input', filterMarket);
+['market-family','market-venue'].forEach(id => byId(id).addEventListener('change', filterMarket));
+byId('market-reset').addEventListener('click', resetMarket);
+byId('market-filters').hidden = false;
+function calculateMarketPrice() {
+  const hammer = byId('market-hammer');
+  const premium = byId('market-premium');
+  if (!hammer.validity.valid || !premium.validity.valid) {
+    byId('market-total').textContent = '—';
+    byId('market-fee-detail').textContent = 'Enter a hammer price from $0 to $1,000,000 and a premium from 0% to 100%.';
+    return;
+  }
+  const fee = Math.round(hammer.valueAsNumber * premium.valueAsNumber) / 100;
+  const total = Math.round((hammer.valueAsNumber + fee) * 100) / 100;
+  byId('market-total').textContent = marketMoney(total);
+  byId('market-fee-detail').textContent = `Includes ${marketMoney(fee)} buyer premium. Tax and shipping are additional.`;
+}
+['market-hammer','market-premium'].forEach(id => byId(id).addEventListener('input', calculateMarketPrice));
+byId('market-calculator').addEventListener('submit', event => event.preventDefault());
+byId('market-calculator').hidden = false;
+function revealMarketLink() {
+  const id = location.hash.slice(1);
+  if (id !== 'market-ledger' && !id.startsWith('sale-')) return;
+  const target = byId(id);
+  if (!target) return;
+  byId('market-ledger').open = true;
+  if (id.startsWith('sale-')) resetMarket();
+  requestAnimationFrame(() => target.scrollIntoView({block:'start', behavior:'instant'}));
+}
+window.addEventListener('hashchange', revealMarketLink);
+document.addEventListener('click', event => {
+  const link = event.target instanceof Element ? event.target.closest('a[href^="#sale-"], a[href="#market-ledger"]') : null;
+  if (link && link.hash === location.hash) revealMarketLink();
+});
+revealMarketLink();
+let marketPrintDetails = [];
+window.addEventListener('beforeprint', () => {
+  marketPrintDetails = Array.from(document.querySelectorAll('.market-disclosure,.family-market')).filter(detail => !detail.open);
+  marketPrintDetails.forEach(detail => { detail.open = true; });
+});
+window.addEventListener('afterprint', () => {
+  marketPrintDetails.forEach(detail => { detail.open = false; });
+  marketPrintDetails = [];
+});
 
 // Keep print output readable without needing to reveal each animated section first.
 window.addEventListener('beforeprint', () => {

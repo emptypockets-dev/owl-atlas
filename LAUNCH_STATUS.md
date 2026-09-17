@@ -11,8 +11,9 @@ rights clearance; the six flags remain. See
 [research/publication-decision.md](research/publication-decision.md).
 
 - Public site: https://theowlatlas.com/
-- Production deployment: https://owl-atlas-6spdh53s8-emptypocketsdevs-projects.vercel.app
-- Previous preview / rollback source: https://owl-atlas-qa2hg8e3k-emptypocketsdevs-projects.vercel.app
+- Production deployment: https://owl-atlas-3ivm596m4-emptypocketsdevs-projects.vercel.app
+- Pricing preview: https://owl-atlas-jtkn185ba-emptypocketsdevs-projects.vercel.app/#pricing
+- Previous production / rollback source: https://owl-atlas-6spdh53s8-emptypocketsdevs-projects.vercel.app
 - Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
 - Public source repository: https://github.com/emptypockets-dev/owl-atlas
 
@@ -20,6 +21,45 @@ Vercel Standard Protection keeps generated deployment URLs and previews behind
 Vercel authentication; the production domain is public. The existing Pro plan
 was retained, with no plan upgrade or paid add-on. The domain was purchased
 separately by the owner.
+
+## Pricing chapter — 17 September 2026
+
+The owner requested incorporation of the pricing research into the scrolling site.
+Chapter 09, “Once money. Now collected,” follows the evidence chapter and links
+back to the reference atlas. It adds current condition-group comparisons, a
+responsive 2019–2026 chart, a catalogue-linked repeat sale, a full-crest example,
+a buyer-premium calculator, and a filterable ledger with CSV/JSON downloads.
+Six family cards include collapsed price notes for other specimens. Museum
+photographs are not assigned valuations. No auction photographs were added.
+
+The snapshot contains **64 auction results and two public eBay observations**.
+All 32 earlier source records remain unchanged; eight market references bring
+the bibliography to 40. All 17 image records, three BnF specimens and six reuse
+flags are unchanged. Historical observations are selected small samples, not a
+price index; eBay displayed amounts remain explicitly unverified and excluded
+from auction statistics. Actual accepted-offer data remains unavailable.
+
+`npm run build:deploy` staged `dist/` and the personal Vercel project published
+that directory. The authenticated HTTPS preview was visually checked before
+production. **1,862 local checks passed:** 1,489 structural/rendering, 91 research
+consistency, 28 editorial, 213 existing Chromium smoke checks and 41 market checks.
+The new market suite was rerun after the responsive chart refinement.
+
+On the public domain, **48 pricing checks and 209 release checks passed**:
+`research/market-hosted-qa.json` and `research/market-release-qa.json`. Hosted HTML
+matches `dist/index.html`; both downloads contain all 66 observations. Pricing
+was tested from 320 to 1,440 px, with keyboard input, invalid and zero fee values,
+combined filters, empty results, direct sale links, print output and no JavaScript.
+All 17 real page photographs and all 17 original viewer images loaded from their
+recorded URLs; original dimensions, credits, rights notices, zoom and focus return
+were checked. Real hosted photographs and desktop/mobile pricing layouts were
+visually inspected. Coverage is Chromium, not accessibility certification or a
+Safari/Firefox audit. No new publication decision is pending for this update.
+
+The original research notebook in `research/market-pricing-2026-09-17/` retains its
+research-only validation scope. Public records now live in `src/content.json`;
+the generated `research/market-sales.*` exports are staged as `dist/data/owl-sales.*`.
+The research report and internal QA reports are not part of the deployed directory.
 
 ## Domain connection
 

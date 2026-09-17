@@ -14,6 +14,11 @@ try {
   await writeFile(path.join(stage, 'index.html'), html);
   await copyFile(path.join(root, 'LICENSE'), path.join(stage, 'LICENSE.txt'));
   await copyFile(path.join(root, 'THIRD_PARTY_NOTICES.md'), path.join(stage, 'THIRD_PARTY_NOTICES.txt'));
+  // Explicitly publish only the source-linked market observations, not research notes.
+  await mkdir(path.join(stage, 'data'));
+  for (const extension of ['json','csv']) {
+    await copyFile(path.join(root, 'research', `market-sales.${extension}`), path.join(stage, 'data', `owl-sales.${extension}`));
+  }
   for (const asset of ['favicon.svg', 'robots.txt', 'sitemap.xml']) {
     await copyFile(path.join(root, 'public', asset), path.join(stage, asset));
   }

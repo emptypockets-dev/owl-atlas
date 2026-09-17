@@ -1,0 +1,24 @@
+{
+  "checked_on": "2026-09-17",
+  "scope": "research artifacts only; no live site changes",
+  "checks": {
+    "unique_records": 66,
+    "auction_records": 64,
+    "public_ebay_observations": 2,
+    "current_heritage_lot_transcriptions_rechecked": 28,
+    "matched_grade_observations": 24,
+    "csv_json_agreement": "pass",
+    "fee_arithmetic_and_medians": "pass",
+    "ebay_excluded_from_auction_statistics": "pass",
+    "future_dates_excluded": "pass",
+    "local_report_links": "pass"
+  },
+  "limitations": [
+    "Not an exhaustive market dataset or appraisal",
+    "Historical samples are small and non-random",
+    "Some public web results are cached",
+    "eBay Product Research requires user verification/sign-in; actual offer amounts not verified",
+    "No independent authentication, invoice settlement or auction-photo audit",
+    "No site code changed; site build/browser tests not rerun"
+  ]
+}

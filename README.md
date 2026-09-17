@@ -55,8 +55,13 @@ both belong to the same coin; see `research/early-classical-findings.json`.
 
 ## The experience
 
-- Eight narrative chapters: Athens and the geography of owl coinage; early owls; classical mass issues;
-  404 BCE; fourth-century changes; New Style; regional imitations; and evidence.
+- Nine narrative chapters: Athens and the geography of owl coinage; early owls; classical mass issues;
+  404 BCE; fourth-century changes; New Style; regional imitations; evidence; and collecting today.
+- A dated pricing chapter with 64 auction results, two qualified public eBay observations,
+  a 2019–2026 matched-grade chart, repeat-sale comparison, fee calculator and searchable ledger.
+  Six family cards offer collapsed pricing notes for other specimens. Museum objects are not valued.
+  `src/content.json` holds the authoritative market records; the build exports CSV/JSON to
+  `research/market-sales.*` and stages public downloads in `dist/data/owl-sales.*`.
 - A three-step minting illustration connects the silver-mining story to the
   early coins: engraved dies, the silver blank, and the hammer strike. Original
   SVG side views and accompanying text remain readable without JavaScript.
@@ -69,7 +74,7 @@ both belong to the same coin; see `research/early-classical-findings.json`.
   Pi II/Pi III specimen selectors, and story links preset meaningful comparisons.
 - A native-dialog image viewer with source/rights metadata, fitted-size zoom,
   keyboard controls, drag and pinch handlers, and original-image links.
-- Inline source dialogs, 32 bibliography records, author/topic filtering, 17
+- Inline source dialogs, 40 bibliography records, author/topic filtering, 17
   image records, three structured BnF specimen records, a glossary and a visible
   editorial coverage register.
 - A guided geographic explorer distinguishes cities, islands, modern countries
@@ -203,6 +208,9 @@ python3 tests/editorial_copy.py
 ```sh
 # Use your own installed Chromium executable:
 CHROMIUM_PATH=/path/to/chromium python3 tests/browser_smoke.py
+CHROMIUM_PATH=/path/to/chromium python3 tests/market_browser.py
+# Optional deployed-build comparison and public-download verification:
+MARKET_URL=https://theowlatlas.com CHROMIUM_PATH=/path/to/chromium python3 tests/market_browser.py
 ```
 
 Tests cover five viewport widths, reduced motion, native modal opening/closing

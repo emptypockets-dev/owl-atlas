@@ -4,7 +4,7 @@ import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import vm from 'node:vm';
-import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup} from '../src/render.mjs';
+import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup, marketStats, marketCsv} from '../src/render.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const data = JSON.parse(await readFile(path.join(root, 'src/content.json'), 'utf8'));
 const html = await readFile(path.join(root, 'index.html'), 'utf8');
@@ -77,6 +77,30 @@ for (const place of data.geography.places) {
   place.refs.forEach(id => check(ids.has(id), `Unknown geographic source: ${id}`));
 }
 const markup = html.replace(/<script[^>]*>[\s\S]*?<\/script>/g, '');
+const sales = data.market.records;
+check(sales.length === 66 && new Set(sales.map(r=>r.id)).size === 66, '66 distinct market observations');
+check(sales.filter(r=>r.venue !== 'eBay').length === 64, '64 auction results');
+for (const sale of sales) {
+  check(new URL(sale.source_url).protocol === 'https:', `${sale.id}: HTTPS primary source`);
+  check(sale.reported_date <= data.market.asOf && sale.checked_on === data.market.asOf, `${sale.id}: dated snapshot, no future sales`);
+  check(data.families.some(f=>f.id === sale.familyId), `${sale.id}: known coin family`);
+  check(sale.currency === 'USD' && sale.amount > 0, `${sale.id}: explicit USD amount`);
+  if (sale.venue === 'eBay') {
+    check(sale.buyer_price_before_tax_shipping === null, `${sale.id}: unverified eBay display excluded from buyer statistics`);
+  } else {
+    const expected = sale.price_basis === 'hammer' ? Math.round(sale.amount * (1+sale.buyer_premium_rate)*100)/100 : sale.amount;
+    check(sale.buyer_price_before_tax_shipping === expected, `${sale.id}: buyer-premium arithmetic`);
+  }
+}
+const current = sales.filter(r=>r.cohort === 'current consecutive lots');
+check(current.length === 28, 'All 28 lots in the specified current ranges retained');
+check(marketStats(current.filter(r=>r.grade === 'Choice XF')).median === 1067.5, 'Current Choice XF median matches the headline');
+const matched = sales.filter(r=>['current consecutive lots','historical matched grade'].includes(r.cohort) && r.grade === 'Choice XF' && r.strike === 5 && r.surface === 4);
+check(matched.length === 24, 'Historical chart has 24 matched-grade observations');
+check(marketStats(sales.filter(r=>r.venue === 'eBay')) === null, 'Displayed eBay prices cannot create a sale statistic');
+for (const note of Object.values(data.market.familyNotes)) note.ids.forEach(id=>check(sales.some(r=>r.id === id), `Family pricing cites a known record: ${id}`));
+check(marketCsv({records:[{value:'=1+1',note:'a,"quoted" value'}]}).includes('"\'=1+1"'), 'CSV formula-like strings are escaped');
+check(JSON.stringify(JSON.parse(await readFile(path.join(root,'research/market-sales.json'),'utf8')).records) === JSON.stringify(sales), 'Public JSON agrees with authoritative records');
 const htmlIds = [...markup.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
 check(new Set(htmlIds).size === htmlIds.length, 'Duplicate DOM IDs');
 for (const match of markup.matchAll(/href="#([^"]+)"/g)) check(htmlIds.includes(match[1]), `Broken internal link #${match[1]}`);

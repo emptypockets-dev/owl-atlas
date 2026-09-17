@@ -82,6 +82,85 @@ export function comparisonMarkup(familyId, side, data, specimenId) {
   return `<article class="comparison-panel">${photo}<h3>${escapeHtml(family.name)}</h3><span class="eyebrow">${escapeHtml(family.date)}</span><p class="feature">${escapeHtml(family.feature)} ${sourceRefs(family.refs, data)}</p>${specimenNote}<p class="micro-copy">${escapeHtml(family.status)}</p></article>`;
 }
 
+// Pricing is derived from the observations, never from the museum photographs.
+export function marketMoney(value) {
+  return new Intl.NumberFormat('en-US', {style:'currency', currency:'USD', maximumFractionDigits:Number.isInteger(value) ? 0 : 2}).format(value);
+}
+
+export function marketStats(records) {
+  const values = records.map(record => record.buyer_price_before_tax_shipping).filter(Number.isFinite).sort((a,b) => a-b);
+  if (!values.length) return null;
+  const middle = Math.floor(values.length / 2);
+  return {n:values.length, min:values[0], max:values.at(-1), median:values.length % 2 ? values[middle] : Math.round((values[middle-1] + values[middle]) * 50) / 100};
+}
+
+export function marketLink(record, label = `${record.venue} ${record.auction} / ${record.lot}`) {
+  return `<a href="${escapeHtml(record.source_url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)} <span aria-hidden="true">↗</span></a>`;
+}
+
+export function marketFamilyMarkup(family, data) {
+  const note = data.market?.familyNotes[family.id];
+  if (!note) return '';
+  return `<details class="family-market"><summary>Recent prices for other specimens</summary><p>${escapeHtml(note.text)}</p><p class="micro-copy">USD, including buyer premium; before tax and shipping. Research: 17 September 2026.</p><p>${note.ids.map(id => marketLink(data.market.records.find(record => record.id === id))).join(' · ')}</p><a class="quiet-link" href="#pricing">Explore prices &amp; the evidence ↓</a></details>`;
+}
+
+export function marketCurrentMarkup(data) {
+  const core = data.market.records.filter(record => record.cohort === 'current consecutive lots');
+  const groups = [
+    ['Raw VF / Good VF','Visible wear; varying surface issues',data.market.records.filter(record => record.cohort === 'current raw examples')],
+    ['Choice XF','NGC · Choice Extremely Fine',core.filter(record => record.grade === 'Choice XF')],
+    ['AU','NGC · About Uncirculated',core.filter(record => record.grade === 'AU')],
+    ['Choice AU','NGC · Choice About Uncirculated',core.filter(record => record.grade === 'Choice AU')],
+    ['Mint State','NGC · no problems listed in these five descriptions',core.filter(record => record.grade === 'MS' && !record.notes)],
+  ];
+  return groups.map(([label, note, records]) => {
+    const s = marketStats(records);
+    return `<article class="market-band"><div><h4>${label}</h4><p>${note}</p></div><div class="market-band-price"><strong>${marketMoney(s.min)}–${marketMoney(s.max)}</strong><span>${s.n} sales · median ${marketMoney(s.median)}</span><span class="market-range" aria-hidden="true"><i style="left:${s.min/25}%;width:${(s.max-s.min)/25}%"></i><b style="left:${s.median/25}%"></b></span></div></article>`;
+  }).join('');
+}
+
+export function marketHistoryMarkup(data) {
+  const records = data.market.records.filter(r => ['current consecutive lots','historical matched grade'].includes(r.cohort) && r.grade === 'Choice XF' && r.strike === 5 && r.surface === 4);
+  const years = [...new Set(records.map(r => r.reported_date.slice(0,4)))].sort();
+  function chart(mobile = false) {
+  const x = value => (mobile ? 65 : 125) + value / 1600 * (mobile ? 215 : 520);
+  const grid = [0,500,1000,1500].map(value => `<line x1="${x(value)}" x2="${x(value)}" y1="40" y2="410"/><text x="${x(value)}" y="22" text-anchor="middle">${marketMoney(value)}</text>`).join('');
+  const bars = years.map((year, index) => {
+    const group = records.filter(r => r.reported_date.startsWith(year));
+    const s = marketStats(group); const y = 65 + index * 47;
+    return `<text x="5" y="${y+4}" class="market-chart-year">${year}</text><text x="${mobile ? 5 : 63}" y="${y+(mobile ? 21 : 4)}">n=${s.n}</text><line class="market-chart-range" x1="${x(s.min)}" x2="${x(s.max)}" y1="${y}" y2="${y}"/>${group.map((r,i) => `<circle cx="${x(r.buyer_price_before_tax_shipping)}" cy="${y+(i-(group.length-1)/2)*4}" r="${mobile ? 3 : 4}"/>`).join('')}<line class="market-chart-median" x1="${x(s.median)}" x2="${x(s.median)}" y1="${y-11}" y2="${y+11}"/><text class="market-chart-total" x="${mobile ? 300 : 685}" y="${y+4}">${marketMoney(s.median)}</text>`;
+  }).join('');
+  return `<svg class="market-history-chart ${mobile ? 'market-chart-mobile' : 'market-chart-wide'}" viewBox="0 0 ${mobile ? 390 : 790} 440" role="img" aria-label="Selected Choice XF sales, 2019–2026. Twenty-four observations; full values and sources follow in the table.">${grid}<text x="${mobile ? 300 : 685}" y="22">Median</text>${bars}</svg>`;
+  }
+  const rows = years.map(year => {
+    const group=records.filter(r=>r.reported_date.startsWith(year)); const s=marketStats(group);
+    return `<tr><th scope="row">${year}</th><td>${s.n}</td><td>${marketMoney(s.min)}–${marketMoney(s.max)}</td><td>${marketMoney(s.median)}</td><td>${group.map(r=>marketLink(r,`${r.auction}/${r.lot}`)).join('<br>')}</td></tr>`;
+  }).join('');
+  return `<figure class="market-history-figure">${chart()}${chart(true)}<figcaption>Each dot is a sale. The upright mark is the sample median; <em>n</em> is the number of sales. USD including buyer premium, before tax and shipping. Small, selected samples—not a market index.</figcaption></figure><details class="market-disclosure"><summary>Read the values and individual sources</summary><div class="market-scroll" role="region" tabindex="0" aria-label="Historical price table"><table class="market-table"><caption>Classical mass issues · NGC Choice XF · strike 5/5, surface 4/5</caption><thead><tr><th scope="col">Year</th><th scope="col">Sales</th><th scope="col">Range</th><th scope="col">Median</th><th scope="col">Sale records</th></tr></thead><tbody>${rows}</tbody></table></div></details>`;
+}
+
+export function marketFamiliesMarkup(data) {
+  const records = data.market.records.filter(r=>r.cohort==='other families');
+  return records.map(r=>`<tr><th scope="row"><a href="#family-${r.familyId}">${escapeHtml(r.family)}</a></th><td>${escapeHtml(r.grade)}${r.strike ? ` · ${r.strike}/5 strike, ${r.surface}/5 surface` : ''}<small>${escapeHtml(r.notes)}</small></td><td>${marketMoney(r.buyer_price_before_tax_shipping)}</td><td>${marketLink(r)}</td></tr>`).join('');
+}
+
+export function marketLedgerMarkup(data) {
+  return [...data.market.records].sort((a,b)=>b.reported_date.localeCompare(a.reported_date)||a.id.localeCompare(b.id)).map(r=>{
+    const isEbay=r.venue==='eBay';
+    return `<tr id="sale-${escapeHtml(r.id)}" data-market-row data-market-family="${escapeHtml(r.familyId)}" data-market-venue="${r.venue}"><th scope="row">${escapeHtml(r.reported_date)}<small>${escapeHtml(r.venue)} · ${escapeHtml(r.auction)} / ${escapeHtml(r.lot)}</small></th><td>${escapeHtml(r.family)}<small>${r.venue==='Heritage' ? 'NGC ' : ''}${escapeHtml(r.grade)}${r.strike ? ` · ${r.strike}/5 strike · ${r.surface}/5 surface` : ''}</small>${r.notes ? `<p>${escapeHtml(r.notes)}</p>` : ''}</td><td class="market-ledger-price">${marketMoney(isEbay ? r.amount : r.buyer_price_before_tax_shipping)}<small class="${isEbay ? 'market-unverified' : ''}">${isEbay ? 'Displayed only · actual price unverified' : 'Including buyer premium'}</small>${r.price_basis==='hammer' ? `<small>${marketMoney(r.amount)} hammer + ${r.buyer_premium_rate*100}%</small>` : ''}</td><td>${marketLink(r,'Sale record')}<small>${escapeHtml(r.date_basis)}</small></td></tr>`;
+  }).join('');
+}
+
+export function marketCsv(market) {
+  const keys=Object.keys(market.records[0]);
+  const cell=value=>{
+    let text=String(value??'');
+    if (typeof value==='string' && /^[=+@-]/.test(text)) text=`'${text}`;
+    return `"${text.replace(/"/g,'""')}"`;
+  };
+  return [keys.map(cell).join(','),...market.records.map(r=>keys.map(key=>cell(r[key])).join(','))].join('\r\n')+'\r\n';
+}
+
 // Geographic outlines are supplied at build time, so no map service or runtime
 // geometry dependency is needed. Each view retains true geographic coordinates.
 function clipGeoRing(ring, bounds) {

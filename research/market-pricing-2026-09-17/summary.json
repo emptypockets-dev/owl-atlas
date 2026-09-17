@@ -1,0 +1,100 @@
+{
+  "as_of": "2026-09-17",
+  "total_observations": 66,
+  "auction_observations": 64,
+  "ebay_observations": 2,
+  "current": {
+    "Choice XF": {
+      "n": 7,
+      "minimum": 976.0,
+      "median": 1067.5,
+      "maximum": 1464.0
+    },
+    "AU": {
+      "n": 6,
+      "minimum": 1159.0,
+      "median": 1464.0,
+      "maximum": 1586.0
+    },
+    "Choice AU": {
+      "n": 8,
+      "minimum": 1128.5,
+      "median": 1361.52,
+      "maximum": 2074.0
+    },
+    "MS": {
+      "n": 7,
+      "minimum": 1159.0,
+      "median": 2074.0,
+      "maximum": 2379.0
+    },
+    "MS without listed problems": {
+      "n": 5,
+      "minimum": 2074.0,
+      "median": 2135.0,
+      "maximum": 2379.0
+    },
+    "Raw VF/Good VF examples": {
+      "n": 5,
+      "minimum": 450.0,
+      "median": 780.0,
+      "maximum": 1080.0
+    }
+  },
+  "matched_grade_by_year": {
+    "2019": {
+      "n": 2,
+      "minimum": 528.0,
+      "median": 594.0,
+      "maximum": 660.0
+    },
+    "2020": {
+      "n": 2,
+      "minimum": 720.0,
+      "median": 780.0,
+      "maximum": 840.0
+    },
+    "2021": {
+      "n": 5,
+      "minimum": 630.0,
+      "median": 750.0,
+      "maximum": 900.0
+    },
+    "2022": {
+      "n": 2,
+      "minimum": 660.0,
+      "median": 660.0,
+      "maximum": 660.0
+    },
+    "2023": {
+      "n": 3,
+      "minimum": 720.0,
+      "median": 900.0,
+      "maximum": 900.0
+    },
+    "2024": {
+      "n": 3,
+      "minimum": 750.0,
+      "median": 780.0,
+      "maximum": 900.0
+    },
+    "2025": {
+      "n": 2,
+      "minimum": 960.0,
+      "median": 975.0,
+      "maximum": 990.0
+    },
+    "2026": {
+      "n": 5,
+      "minimum": 1037.0,
+      "median": 1067.5,
+      "maximum": 1464.0
+    }
+  },
+  "repeat_sale": {
+    "earlier_id": "Heritage-232403-63026",
+    "later_id": "Heritage-232527-61037",
+    "buyer_price_change_percent": 28,
+    "basis": "Catalogue-linked identity; both reported prices include 20% premium. Not a net return."
+  }
+}

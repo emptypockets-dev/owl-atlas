@@ -1,7 +1,7 @@
 import {readFile, writeFile, mkdir, access} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup, familyFacesMarkup, anatomyMarkup, geographyMarkup} from './src/render.mjs';
+import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup, familyFacesMarkup, anatomyMarkup, geographyMarkup, marketFamilyMarkup, marketCurrentMarkup, marketHistoryMarkup, marketFamiliesMarkup, marketLedgerMarkup, marketCsv} from './src/render.mjs';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const read = (relative) => readFile(path.join(root, relative), 'utf8');
@@ -21,7 +21,7 @@ if (useLocalImages) {
 
 function familyCard(family, index) {
   const image = familyFacesMarkup(family, data);
-  return `<article class="family-card" id="family-${escapeHtml(family.id)}"><div class="family-number"><span>${String(index + 1).padStart(2,'0')}</span><span>${family.id === 'egypt' ? 'REGIONAL BRANCH' : 'ATHENS'}</span></div>${image}<h4>${escapeHtml(family.name)}</h4><p class="date">${escapeHtml(family.date)}</p><p>${escapeHtml(family.feature)} ${sourceRefs(family.refs,data)}</p><p class="status">${escapeHtml(family.status)}</p><details><summary>Attribution & dating notes</summary><p>${escapeHtml(family.detail)}</p></details></article>`;
+  return `<article class="family-card" id="family-${escapeHtml(family.id)}"><div class="family-number"><span>${String(index + 1).padStart(2,'0')}</span><span>${family.id === 'egypt' ? 'REGIONAL BRANCH' : 'ATHENS'}</span></div>${image}<h4>${escapeHtml(family.name)}</h4><p class="date">${escapeHtml(family.date)}</p><p>${escapeHtml(family.feature)} ${sourceRefs(family.refs,data)}</p><p class="status">${escapeHtml(family.status)}</p><details><summary>Attribution & dating notes</summary><p>${escapeHtml(family.detail)}</p></details>${marketFamilyMarkup(family,data)}</article>`;
 }
 function sourceEntry(source, index) {
   return `<article class="source-entry" id="source-${escapeHtml(source.id)}"><span class="source-number">${String(index + 1).padStart(2,'0')}</span><div><div class="source-kind">${escapeHtml(source.kind)}</div><h3><a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.title)}</a></h3><p class="source-byline">${escapeHtml(source.author)} · ${escapeHtml(source.year)}</p><p class="source-scope">${escapeHtml(source.scope)}</p>${source.note ? `<details><summary>Scope & limitations</summary><p>${escapeHtml(source.note)}</p></details>` : ''}</div><a class="source-link" href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer" aria-label="Open source ${index + 1}: ${escapeHtml(source.title)}">↗</a></article>`;
@@ -34,6 +34,10 @@ function imageRecord(image) {
 
 const options = (selected) => data.families.map((family) => `<option value="${family.id}"${family.id === selected ? ' selected' : ''}>${escapeHtml(family.name)}</option>`).join('');
 const replacements = {
+  MARKET_CURRENT: marketCurrentMarkup(data),
+  MARKET_HISTORY: marketHistoryMarkup(data),
+  MARKET_FAMILIES: marketFamiliesMarkup(data),
+  MARKET_LEDGER: marketLedgerMarkup(data),
   GEOGRAPHY: geographyMarkup(data, geography),
   SOURCE_COUNT: data.sources.length,
   IMAGE_COUNT: Object.keys(data.images).length,
@@ -69,4 +73,6 @@ await mkdir(path.join(root,'research'),{recursive:true});
 await writeFile(path.join(root,'research/sources.json'),JSON.stringify(data.sources,null,2));
 await writeFile(path.join(root,'research/images-manifest.json'),JSON.stringify(Object.values(data.images),null,2));
 await writeFile(path.join(root,'research/specimens.json'),JSON.stringify(Object.values(data.specimens),null,2));
+await writeFile(path.join(root,'research/market-sales.json'),JSON.stringify({asOf:data.market.asOf,records:data.market.records},null,2));
+await writeFile(path.join(root,'research/market-sales.csv'),marketCsv(data.market));
 console.log(`Built index.html (${Math.round(Buffer.byteLength(html) / 1024)} KiB); ${data.sources.length} sources, ${Object.keys(data.images).length} image records. ${useLocalImages ? 'Local images enabled.' : 'Remote images; internet required for photography.'}`);
