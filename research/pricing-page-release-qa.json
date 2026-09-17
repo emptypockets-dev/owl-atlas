@@ -1,0 +1,452 @@
+{
+  "date": "2026-09-17T12:25:08.024129+00:00",
+  "result": "pass",
+  "url": "https://theowlatlas.com",
+  "checks": 209,
+  "items": [
+    "Anonymous HTTPS request opens the site without a login",
+    "Production HTML exactly matches validated dist/index.html",
+    "Public production has no noindex HTTP header",
+    "Public production has no noindex meta tag",
+    "Canonical URL uses the purchased domain",
+    "Social metadata uses the purchased domain",
+    "favicon.svg matches the staged file",
+    "robots.txt matches the staged file",
+    "sitemap.xml matches the staged file",
+    "LICENSE.txt matches the staged file",
+    "THIRD_PARTY_NOTICES.txt matches the staged file",
+    ".env.local is not published",
+    "src/content.json is not published",
+    "research/handoff-validation.json is not published",
+    "HTTP redirects to HTTPS",
+    "www permanently redirects to apex preserving the query",
+    "www redirect preserves the section deep link",
+    "https://owl-atlas-6spdh53s8-emptypocketsdevs-projects.vercel.app/ retains deployment protection",
+    "https://owl-atlas-qa2hg8e3k-emptypocketsdevs-projects.vercel.app/ retains deployment protection",
+    "Latest minting illustration is present",
+    "All 40 sources and 17 image records are retained",
+    "All six reuse-review flags remain",
+    "classic-owl: real page photograph loads from its recorded URL",
+    "classic-owl: visible credit retained",
+    "classic-owl: viewer loads the original source photograph",
+    "classic-owl: original dimensions match the source record",
+    "classic-owl: viewer retains license",
+    "classic-owl: real photograph zooms with keyboard",
+    "Real original photograph pans with the keyboard",
+    "classic-owl: fit resets zoom",
+    "classic-owl: viewer closes and restores focus",
+    "classic-athena: real page photograph loads from its recorded URL",
+    "classic-athena: visible credit retained",
+    "classic-athena: viewer loads the original source photograph",
+    "classic-athena: original dimensions match the source record",
+    "classic-athena: viewer retains license",
+    "classic-athena: real photograph zooms with keyboard",
+    "classic-athena: fit resets zoom",
+    "classic-athena: viewer closes and restores focus",
+    "archaic: real page photograph loads from its recorded URL",
+    "archaic: visible credit retained",
+    "archaic: viewer loads the original source photograph",
+    "archaic: original dimensions match the source record",
+    "archaic: viewer retains license",
+    "archaic: real photograph zooms with keyboard",
+    "archaic: fit resets zoom",
+    "archaic: viewer closes and restores focus",
+    "met-owl: real page photograph loads from its recorded URL",
+    "met-owl: visible credit retained",
+    "met-owl: viewer loads the original source photograph",
+    "met-owl: original dimensions match the source record",
+    "met-owl: viewer retains license",
+    "met-owl: real photograph zooms with keyboard",
+    "met-owl: fit resets zoom",
+    "met-owl: viewer closes and restores focus",
+    "met-athena: real page photograph loads from its recorded URL",
+    "met-athena: visible credit retained",
+    "met-athena: viewer loads the original source photograph",
+    "met-athena: original dimensions match the source record",
+    "met-athena: viewer retains license",
+    "met-athena: real photograph zooms with keyboard",
+    "met-athena: fit resets zoom",
+    "met-athena: viewer closes and restores focus",
+    "profile: real page photograph loads from its recorded URL",
+    "profile: visible credit retained",
+    "profile: viewer loads the original source photograph",
+    "profile: original dimensions match the source record",
+    "profile: viewer retains license",
+    "profile: real photograph zooms with keyboard",
+    "profile: fit resets zoom",
+    "profile: viewer closes and restores focus",
+    "early-athena: real page photograph loads from its recorded URL",
+    "early-athena: visible credit retained",
+    "early-athena: viewer loads the original source photograph",
+    "early-athena: original dimensions match the source record",
+    "early-athena: viewer retains license",
+    "early-athena: real photograph zooms with keyboard",
+    "early-athena: fit resets zoom",
+    "early-athena: viewer closes and restores focus",
+    "early-owl: real page photograph loads from its recorded URL",
+    "early-owl: visible credit retained",
+    "early-owl: viewer loads the original source photograph",
+    "early-owl: original dimensions match the source record",
+    "early-owl: viewer retains license",
+    "early-owl: real photograph zooms with keyboard",
+    "early-owl: fit resets zoom",
+    "early-owl: viewer closes and restores focus",
+    "new-owl: real page photograph loads from its recorded URL",
+    "new-owl: visible credit retained",
+    "new-owl: viewer loads the original source photograph",
+    "new-owl: original dimensions match the source record",
+    "new-owl: viewer retains license",
+    "new-owl: real photograph zooms with keyboard",
+    "new-owl: fit resets zoom",
+    "new-owl: viewer closes and restores focus",
+    "new-athena: real page photograph loads from its recorded URL",
+    "new-athena: visible credit retained",
+    "new-athena: viewer loads the original source photograph",
+    "new-athena: original dimensions match the source record",
+    "new-athena: viewer retains license",
+    "new-athena: real photograph zooms with keyboard",
+    "new-athena: fit resets zoom",
+    "new-athena: viewer closes and restores focus",
+    "sabakes: real page photograph loads from its recorded URL",
+    "sabakes: visible credit retained",
+    "sabakes: viewer loads the original source photograph",
+    "sabakes: original dimensions match the source record",
+    "sabakes: viewer retains license",
+    "sabakes: real photograph zooms with keyboard",
+    "sabakes: fit resets zoom",
+    "sabakes: viewer closes and restores focus",
+    "bnf-pi-iii-1475-obverse: real page photograph loads from its recorded URL",
+    "bnf-pi-iii-1475-obverse: visible credit retained",
+    "bnf-pi-iii-1475-obverse: viewer loads the original source photograph",
+    "bnf-pi-iii-1475-obverse: original dimensions match the source record",
+    "bnf-pi-iii-1475-obverse: viewer retains license",
+    "bnf-pi-iii-1475-obverse: reuse-review notice remains visible",
+    "bnf-pi-iii-1475-obverse: real photograph zooms with keyboard",
+    "bnf-pi-iii-1475-obverse: fit resets zoom",
+    "bnf-pi-iii-1475-obverse: viewer closes and restores focus",
+    "bnf-pi-iii-1475-reverse: real page photograph loads from its recorded URL",
+    "bnf-pi-iii-1475-reverse: visible credit retained",
+    "bnf-pi-iii-1475-reverse: viewer loads the original source photograph",
+    "bnf-pi-iii-1475-reverse: original dimensions match the source record",
+    "bnf-pi-iii-1475-reverse: viewer retains license",
+    "bnf-pi-iii-1475-reverse: reuse-review notice remains visible",
+    "bnf-pi-iii-1475-reverse: real photograph zooms with keyboard",
+    "bnf-pi-iii-1475-reverse: fit resets zoom",
+    "bnf-pi-iii-1475-reverse: viewer closes and restores focus",
+    "bnf-quadridigite-1478-obverse: real page photograph loads from its recorded URL",
+    "bnf-quadridigite-1478-obverse: visible credit retained",
+    "bnf-quadridigite-1478-obverse: viewer loads the original source photograph",
+    "bnf-quadridigite-1478-obverse: original dimensions match the source record",
+    "bnf-quadridigite-1478-obverse: viewer retains license",
+    "bnf-quadridigite-1478-obverse: reuse-review notice remains visible",
+    "bnf-quadridigite-1478-obverse: real photograph zooms with keyboard",
+    "bnf-quadridigite-1478-obverse: fit resets zoom",
+    "bnf-quadridigite-1478-obverse: viewer closes and restores focus",
+    "bnf-quadridigite-1478-reverse: real page photograph loads from its recorded URL",
+    "bnf-quadridigite-1478-reverse: visible credit retained",
+    "bnf-quadridigite-1478-reverse: viewer loads the original source photograph",
+    "bnf-quadridigite-1478-reverse: original dimensions match the source record",
+    "bnf-quadridigite-1478-reverse: viewer retains license",
+    "bnf-quadridigite-1478-reverse: reuse-review notice remains visible",
+    "bnf-quadridigite-1478-reverse: real photograph zooms with keyboard",
+    "bnf-quadridigite-1478-reverse: fit resets zoom",
+    "bnf-quadridigite-1478-reverse: viewer closes and restores focus",
+    "bnf-pi-ii-1469-obverse: real page photograph loads from its recorded URL",
+    "bnf-pi-ii-1469-obverse: visible credit retained",
+    "bnf-pi-ii-1469-obverse: viewer loads the original source photograph",
+    "bnf-pi-ii-1469-obverse: original dimensions match the source record",
+    "bnf-pi-ii-1469-obverse: viewer retains license",
+    "bnf-pi-ii-1469-obverse: reuse-review notice remains visible",
+    "bnf-pi-ii-1469-obverse: real photograph zooms with keyboard",
+    "bnf-pi-ii-1469-obverse: fit resets zoom",
+    "bnf-pi-ii-1469-obverse: viewer closes and restores focus",
+    "bnf-pi-ii-1469-reverse: real page photograph loads from its recorded URL",
+    "bnf-pi-ii-1469-reverse: visible credit retained",
+    "bnf-pi-ii-1469-reverse: viewer loads the original source photograph",
+    "bnf-pi-ii-1469-reverse: original dimensions match the source record",
+    "bnf-pi-ii-1469-reverse: viewer retains license",
+    "bnf-pi-ii-1469-reverse: reuse-review notice remains visible",
+    "bnf-pi-ii-1469-reverse: real photograph zooms with keyboard",
+    "bnf-pi-ii-1469-reverse: fit resets zoom",
+    "bnf-pi-ii-1469-reverse: viewer closes and restores focus",
+    "1440px: no horizontal overflow with real photographs",
+    "1440px: OS reduced-motion preference respected",
+    "1440px: anatomy obverse toggle works",
+    "1440px: anatomy reverse toggle works",
+    "1440px: geography navigation works",
+    "1440px: Pi II / Pi III comparison preset works",
+    "1440px: comparison controls fit",
+    "768px: no horizontal overflow with real photographs",
+    "768px: OS reduced-motion preference respected",
+    "768px: anatomy obverse toggle works",
+    "768px: anatomy reverse toggle works",
+    "768px: geography navigation works",
+    "768px: Pi II / Pi III comparison preset works",
+    "768px: comparison controls fit",
+    "390px: no horizontal overflow with real photographs",
+    "390px: OS reduced-motion preference respected",
+    "390px: anatomy obverse toggle works",
+    "390px: anatomy reverse toggle works",
+    "390px: geography navigation works",
+    "390px: Pi II / Pi III comparison preset works",
+    "390px: comparison controls fit",
+    "320px: no horizontal overflow with real photographs",
+    "320px: OS reduced-motion preference respected",
+    "320px: anatomy obverse toggle works",
+    "320px: anatomy reverse toggle works",
+    "320px: geography navigation works",
+    "320px: Pi II / Pi III comparison preset works",
+    "320px: comparison controls fit",
+    "origins: direct HTTPS deep link opens correctly",
+    "geography-egypt: direct HTTPS deep link opens correctly",
+    "minting: direct HTTPS deep link opens correctly",
+    "first-owls: direct HTTPS deep link opens correctly",
+    "family-early-classical: direct HTTPS deep link opens correctly",
+    "new-style: direct HTTPS deep link opens correctly",
+    "pricing: direct HTTPS deep link opens correctly",
+    "sale-Heritage-61626-23039: direct HTTPS deep link opens correctly",
+    "Source dialog opens with keyboard",
+    "Source dialog closes and restores focus",
+    "Bibliography search works on public site",
+    "Minting story readable without JavaScript",
+    "Both anatomy faces available without JavaScript",
+    "All eight geography entries available without JavaScript",
+    "No-JavaScript mobile reading fits the viewport",
+    "No uncaught JavaScript errors on public site"
+  ],
+  "photographs": [
+    {
+      "id": "classic-owl",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Owl_%28reverse%29_-_1941.296.b_-_Cleveland_Museum_of_Art.jpg",
+        "width": 2634,
+        "height": 2736
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Owl_%28reverse%29_-_1941.296.b_-_Cleveland_Museum_of_Art.jpg",
+        "width": 2634,
+        "height": 2736
+      }
+    },
+    {
+      "id": "classic-athena",
+      "page": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Head_of_Athena_%28obverse%29_-_1941.296.a_-_Cleveland_Museum_of_Art.tif/lossy-page1-1920px-Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Head_of_Athena_%28obverse%29_-_1941.296.a_-_Cleveland_Museum_of_Art.tif.jpg",
+        "width": 1920,
+        "height": 1973
+      },
+      "original": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Head_of_Athena_%28obverse%29_-_1941.296.a_-_Cleveland_Museum_of_Art.tif/lossy-page1-1920px-Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Head_of_Athena_%28obverse%29_-_1941.296.a_-_Cleveland_Museum_of_Art.tif.jpg",
+        "width": 1920,
+        "height": 1973
+      }
+    },
+    {
+      "id": "archaic",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Greek_Silver_Tetradrachm_of_Athens_%28Attica%29.jpg",
+        "width": 759,
+        "height": 1608
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Greek_Silver_Tetradrachm_of_Athens_%28Attica%29.jpg",
+        "width": 759,
+        "height": 1608
+      }
+    },
+    {
+      "id": "met-owl",
+      "page": {
+        "url": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702577/main-image",
+        "width": 1110,
+        "height": 1200
+      },
+      "original": {
+        "url": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702577/main-image",
+        "width": 1110,
+        "height": 1200
+      }
+    },
+    {
+      "id": "met-athena",
+      "page": {
+        "url": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702575/main-image",
+        "width": 1200,
+        "height": 1085
+      },
+      "original": {
+        "url": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702575/main-image",
+        "width": 1200,
+        "height": 1085
+      }
+    },
+    {
+      "id": "profile",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Sg2537.jpg",
+        "width": 500,
+        "height": 253
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Sg2537.jpg",
+        "width": 500,
+        "height": 253
+      }
+    },
+    {
+      "id": "early-athena",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Greece%2C_5th_century_BC_-_Athenian_Tetradrachm-_Female_Head_%28obverse%29_-_1920.267.a_-_Cleveland_Museum_of_Art.jpg",
+        "width": 2318,
+        "height": 2280
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Greece%2C_5th_century_BC_-_Athenian_Tetradrachm-_Female_Head_%28obverse%29_-_1920.267.a_-_Cleveland_Museum_of_Art.jpg",
+        "width": 2318,
+        "height": 2280
+      }
+    },
+    {
+      "id": "early-owl",
+      "page": {
+        "url": "https://openaccess-cdn.clevelandart.org/1920.267.b/1920.267.b_web.jpg",
+        "width": 750,
+        "height": 717
+      },
+      "original": {
+        "url": "https://openaccess-cdn.clevelandart.org/1920.267.b/1920.267.b_print.jpg",
+        "width": 2384,
+        "height": 2280
+      }
+    },
+    {
+      "id": "new-owl",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/82/Silver_tetradrachm_Athens_new_style_reverse.jpg",
+        "width": 1340,
+        "height": 1340
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/82/Silver_tetradrachm_Athens_new_style_reverse.jpg",
+        "width": 1340,
+        "height": 1340
+      }
+    },
+    {
+      "id": "new-athena",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Silver_tetradrachm_Athens_new_style_obverse.jpg",
+        "width": 1200,
+        "height": 1200
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Silver_tetradrachm_Athens_new_style_obverse.jpg",
+        "width": 1200,
+        "height": 1200
+      }
+    },
+    {
+      "id": "sabakes",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/EGYPT%2C_Persian_Administration._Sabakes._Circa_340-333_BC.jpg",
+        "width": 800,
+        "height": 403
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/EGYPT%2C_Persian_Administration._Sabakes._Circa_340-333_BC.jpg",
+        "width": 800,
+        "height": 403
+      }
+    },
+    {
+      "id": "bnf-pi-iii-1475-obverse",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%281_of_2%29.jpg",
+        "width": 2522,
+        "height": 2522
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%281_of_2%29.jpg",
+        "width": 2522,
+        "height": 2522
+      }
+    },
+    {
+      "id": "bnf-pi-iii-1475-reverse",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%282_of_2%29.jpg",
+        "width": 2522,
+        "height": 2522
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%282_of_2%29.jpg",
+        "width": 2522,
+        "height": 2522
+      }
+    },
+    {
+      "id": "bnf-quadridigite-1478-obverse",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%281_of_2%29.jpg",
+        "width": 2679,
+        "height": 2679
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%281_of_2%29.jpg",
+        "width": 2679,
+        "height": 2679
+      }
+    },
+    {
+      "id": "bnf-quadridigite-1478-reverse",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%282_of_2%29.jpg",
+        "width": 2679,
+        "height": 2679
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%282_of_2%29.jpg",
+        "width": 2679,
+        "height": 2679
+      }
+    },
+    {
+      "id": "bnf-pi-ii-1469-obverse",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%281_of_2%29.jpg",
+        "width": 2624,
+        "height": 2624
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%281_of_2%29.jpg",
+        "width": 2624,
+        "height": 2624
+      }
+    },
+    {
+      "id": "bnf-pi-ii-1469-reverse",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%282_of_2%29.jpg",
+        "width": 2624,
+        "height": 2624
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%282_of_2%29.jpg",
+        "width": 2624,
+        "height": 2624
+      }
+    }
+  ],
+  "htmlSha256": "abe791227a403c8601f287dae8ec9f689645dd38f6b5441dd5c14d7b686b0fd3",
+  "localChecks": {
+    "structural": 1697,
+    "data": 91,
+    "editorial": 28,
+    "browser": 213,
+    "market": 73
+  },
+  "limitations": [
+    "Chromium only; no Safari, Firefox, screen-reader certification or real-device touch test.",
+    "Photographs remain remotely hosted; rights notices and six review-pending flags remain."
+  ]
+}

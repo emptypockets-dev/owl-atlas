@@ -12,6 +12,8 @@ const stage = await mkdtemp(path.join(root, '.deploy-stage-'));
 let localCount = 0;
 try {
   await writeFile(path.join(stage, 'index.html'), html);
+  await mkdir(path.join(stage, 'pricing'));
+  await copyFile(path.join(root, 'pricing/index.html'), path.join(stage, 'pricing/index.html'));
   await copyFile(path.join(root, 'LICENSE'), path.join(stage, 'LICENSE.txt'));
   await copyFile(path.join(root, 'THIRD_PARTY_NOTICES.md'), path.join(stage, 'THIRD_PARTY_NOTICES.txt'));
   // Explicitly publish only the source-linked market observations, not research notes.

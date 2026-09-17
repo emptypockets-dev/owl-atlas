@@ -19,6 +19,9 @@ Edit narrative/markup in `src/page.html`, styling in `src/styles.css`, shared
 rendering in `src/render.mjs`, interactions in `src/app.js`, and authoritative
 content in `src/content.json`. Generated `index.html` and exported manifests under
 `research/` should not be hand-edited.
+The full pricing research is in `src/pricing.html`; its generated
+`pricing/index.html` must also be rebuilt, not hand-edited. Preserve both the
+short `/#pricing` story and the detailed `/pricing/` page, including old sale bookmarks.
 
 `npm run build:deploy` rebuilds and stages `dist/`. Publish that directory only.
 The build uses Node built-ins; `npm install` is not required. No runtime services,

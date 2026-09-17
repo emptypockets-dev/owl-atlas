@@ -101,7 +101,16 @@ export function marketLink(record, label = `${record.venue} ${record.auction} / 
 export function marketFamilyMarkup(family, data) {
   const note = data.market?.familyNotes[family.id];
   if (!note) return '';
-  return `<details class="family-market"><summary>Recent prices for other specimens</summary><p>${escapeHtml(note.text)}</p><p class="micro-copy">USD, including buyer premium; before tax and shipping. Research: 17 September 2026.</p><p>${note.ids.map(id => marketLink(data.market.records.find(record => record.id === id))).join(' · ')}</p><a class="quiet-link" href="#pricing">Explore prices &amp; the evidence ↓</a></details>`;
+  return `<details class="family-market"><summary>Recent prices for other specimens</summary><p>${escapeHtml(note.text)}</p><p class="micro-copy">USD, including buyer premium; before tax and shipping. Research: 17 September 2026.</p><p>${note.ids.map(id => marketLink(data.market.records.find(record => record.id === id))).join(' · ')}</p><a class="quiet-link" href="pricing/">Explore prices &amp; the evidence ↗</a></details>`;
+}
+
+export function marketSummaryMarkup(data) {
+  const low = data.market.records.find(r => r.id === 'CNG-612-89');
+  const high = data.market.records.find(r => r.id === 'Heritage-3130-36022');
+  const classic = marketStats(data.market.records.filter(r => r.cohort === 'current consecutive lots' && r.grade === 'Choice XF'));
+  return `<article><span class="eyebrow">PI STYLE</span><strong>${marketMoney(low.buyer_price_before_tax_shipping)}</strong><h3>A later owl.</h3><p>Good Very Fine, with a worn obverse die. One auction result.</p><a href="pricing/#sale-${low.id}">See this sale <span aria-hidden="true">↗</span></a></article>
+  <article class="market-summary-classical"><span class="eyebrow">CLASSICAL MASS ISSUES</span><strong>${marketMoney(classic.min)}–${marketMoney(classic.max)}</strong><h3>The familiar design.</h3><p>Seven owls graded Choice Extremely Fine. A comparison group, not a fixed price.</p><a href="pricing/#market-current-title">Compare recent sales <span aria-hidden="true">↗</span></a></article>
+  <article><span class="eyebrow">ARCHAIC</span><strong>${marketMoney(high.buyer_price_before_tax_shipping)}</strong><h3>An earlier form.</h3><p>Very Fine, with a flan flaw and low weight. One auction result.</p><a href="pricing/#sale-${high.id}">See this sale <span aria-hidden="true">↗</span></a></article>`;
 }
 
 export function marketCurrentMarkup(data) {
@@ -115,7 +124,7 @@ export function marketCurrentMarkup(data) {
   ];
   return groups.map(([label, note, records]) => {
     const s = marketStats(records);
-    return `<article class="market-band"><div><h4>${label}</h4><p>${note}</p></div><div class="market-band-price"><strong>${marketMoney(s.min)}–${marketMoney(s.max)}</strong><span>${s.n} sales · median ${marketMoney(s.median)}</span><span class="market-range" aria-hidden="true"><i style="left:${s.min/25}%;width:${(s.max-s.min)/25}%"></i><b style="left:${s.median/25}%"></b></span></div></article>`;
+    return `<article class="market-band"><div><h3>${label}</h3><p>${note}</p></div><div class="market-band-price"><strong>${marketMoney(s.min)}–${marketMoney(s.max)}</strong><span>${s.n} sales · median ${marketMoney(s.median)}</span><span class="market-range" aria-hidden="true"><i style="left:${s.min/25}%;width:${(s.max-s.min)/25}%"></i><b style="left:${s.median/25}%"></b></span></div></article>`;
   }).join('');
 }
 
@@ -141,7 +150,7 @@ export function marketHistoryMarkup(data) {
 
 export function marketFamiliesMarkup(data) {
   const records = data.market.records.filter(r=>r.cohort==='other families');
-  return records.map(r=>`<tr><th scope="row"><a href="#family-${r.familyId}">${escapeHtml(r.family)}</a></th><td>${escapeHtml(r.grade)}${r.strike ? ` · ${r.strike}/5 strike, ${r.surface}/5 surface` : ''}<small>${escapeHtml(r.notes)}</small></td><td>${marketMoney(r.buyer_price_before_tax_shipping)}</td><td>${marketLink(r)}</td></tr>`).join('');
+  return records.map(r=>`<tr><th scope="row"><a href="../#family-${r.familyId}">${escapeHtml(r.family)}</a></th><td>${escapeHtml(r.grade)}${r.strike ? ` · ${r.strike}/5 strike, ${r.surface}/5 surface` : ''}<small>${escapeHtml(r.notes)}</small></td><td>${marketMoney(r.buyer_price_before_tax_shipping)}</td><td>${marketLink(r)}</td></tr>`).join('');
 }
 
 export function marketLedgerMarkup(data) {

@@ -9,6 +9,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const data = JSON.parse(await readFile(path.join(root, 'src/content.json'), 'utf8'));
 const html = await readFile(path.join(root, 'index.html'), 'utf8');
 const template = await readFile(path.join(root, 'src/page.html'), 'utf8');
+const pricing = await readFile(path.join(root, 'pricing/index.html'), 'utf8');
 let tests = 0;
 function check(condition, message) { assert(condition, message); tests++; }
 const ids = new Set();
@@ -101,6 +102,26 @@ check(marketStats(sales.filter(r=>r.venue === 'eBay')) === null, 'Displayed eBay
 for (const note of Object.values(data.market.familyNotes)) note.ids.forEach(id=>check(sales.some(r=>r.id === id), `Family pricing cites a known record: ${id}`));
 check(marketCsv({records:[{value:'=1+1',note:'a,"quoted" value'}]}).includes('"\'=1+1"'), 'CSV formula-like strings are escaped');
 check(JSON.stringify(JSON.parse(await readFile(path.join(root,'research/market-sales.json'),'utf8')).records) === JSON.stringify(sales), 'Public JSON agrees with authoritative records');
+const recent = sales.filter(r => r.venue !== 'eBay' && r.reported_date.startsWith('2026'));
+check(recent.length === 45 && marketStats(recent).min === 420 && marketStats(recent).max === 6710, 'Homepage summary matches the 2026 sample');
+const documents = new Map([['/',html],['/pricing/',pricing]]);
+for (const [pathname, document] of documents) {
+  const pageMarkup = document.replace(/<script[^>]*>[\s\S]*?<\/script>/g, '');
+  const pageIds = [...pageMarkup.matchAll(/\bid="([^"]+)"/g)].map(match=>match[1]);
+  check(new Set(pageIds).size === pageIds.length, `${pathname}: unique IDs`);
+  check((pageMarkup.match(/<h1\b/g)||[]).length === 1, `${pathname}: one main heading`);
+  check(pageMarkup.includes(`href="https://theowlatlas.com${pathname}" rel="canonical"`), `${pathname}: correct canonical URL`);
+  for (const match of pageMarkup.matchAll(/href="([^"]+)"/g)) {
+    const url = new URL(match[1],`https://theowlatlas.com${pathname}`);
+    if (url.origin !== 'https://theowlatlas.com' || !url.hash) continue;
+    const destination = documents.get(url.pathname);
+    check(Boolean(destination?.includes(`id="${url.hash.slice(1)}"`)), `${pathname}: valid link ${match[1]}`);
+  }
+  for (const [,attrs,script] of document.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)) if (!attrs.includes('application/json')) { new vm.Script(script); tests++; }
+  check(!/\{\{[A-Z]|INLINE_(STYLES|SCRIPT|DATA)/.test(document), `${pathname}: no unrendered template tokens`);
+}
+check(!/<tr\b[^>]*data-market-row/.test(markup) && !markup.includes('class="market-history-figure"'), 'Homepage has only the pricing summary');
+check((pricing.replace(/<script[^>]*>[\s\S]*?<\/script>/g,'').match(/<tr\b[^>]*data-market-row/g)||[]).length === 66, 'Full page preserves all 66 observations');
 const htmlIds = [...markup.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
 check(new Set(htmlIds).size === htmlIds.length, 'Duplicate DOM IDs');
 for (const match of markup.matchAll(/href="#([^"]+)"/g)) check(htmlIds.includes(match[1]), `Broken internal link #${match[1]}`);

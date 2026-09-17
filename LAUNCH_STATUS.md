@@ -11,9 +11,9 @@ rights clearance; the six flags remain. See
 [research/publication-decision.md](research/publication-decision.md).
 
 - Public site: https://theowlatlas.com/
-- Production deployment: https://owl-atlas-3ivm596m4-emptypocketsdevs-projects.vercel.app
-- Pricing preview: https://owl-atlas-jtkn185ba-emptypocketsdevs-projects.vercel.app/#pricing
-- Previous production / rollback source: https://owl-atlas-6spdh53s8-emptypocketsdevs-projects.vercel.app
+- Production deployment: https://owl-atlas-gkcj76ktc-emptypocketsdevs-projects.vercel.app
+- Pricing preview: https://owl-atlas-ee4hvaen6-emptypocketsdevs-projects.vercel.app/pricing/
+- Previous production / rollback source: https://owl-atlas-3ivm596m4-emptypocketsdevs-projects.vercel.app
 - Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
 - Public source repository: https://github.com/emptypockets-dev/owl-atlas
 
@@ -21,6 +21,47 @@ Vercel Standard Protection keeps generated deployment URLs and previews behind
 Vercel authentication; the production domain is public. The existing Pro plan
 was retained, with no plan upgrade or paid add-on. The domain was purchased
 separately by the owner.
+
+## Pricing page split — 17 September 2026
+
+The main scroll now presents a short “One owl. Many prices” section at
+https://theowlatlas.com/#pricing. Three examples show the observed 2026 sample
+span of $420–$6,710, with the seven classical Choice XF results in the middle;
+a full-crest fact connects price to a visible design detail. The summary stays
+under 250 words and distinguishes the sample span from market limits.
+
+The full research chapter moved to https://theowlatlas.com/pricing/, with its
+charts, calculator, 66-record ledger, downloads, eight supporting references and
+all methodological caveats. Navigation links both pages. The six family pricing
+notes now link to the full page. Saved main-page pricing-topic and sale fragments
+redirect to the corresponding new location with JavaScript; without it, they
+land beside the summary's ordinary link. The original `/#pricing` still works.
+
+Both pages share existing styling, header, footer, dialogs and progressive
+enhancement. Each has one main heading, a canonical URL and sitemap entry.
+The pricing page's heading outline was adjusted for a standalone document.
+`/pricing` redirects to `/pricing/`; no framework, dependency or runtime routing
+was introduced. All authoritative content, source, image, specimen and market
+records are unchanged. `src/pricing.html` is the new canonical narrative file;
+`pricing/index.html` is generated and staged in `dist/pricing/index.html`.
+
+The build and **2,102 local checks passed**: 1,697 structural/rendering,
+91 research consistency, 28 editorial, 213 existing Chromium checks and 73
+two-page pricing checks. **73 pricing checks also passed on the public domain**,
+including byte comparisons for both pages, downloads, mobile layouts, source
+dialogs, old bookmarks, cross-page navigation, no-JavaScript reading and print.
+See `research/market-browser-qa.json` and `research/market-hosted-qa.json`.
+The authenticated preview and desktop/mobile page layouts were visually reviewed.
+An additional **209 public release checks passed**; see
+`research/pricing-page-release-qa.json`. All 17 real page photographs and 17
+original viewer images loaded, with their recorded dimensions, credits, six reuse
+notices, keyboard zoom and focus return preserved. HTTPS redirects, private-file
+404s, existing geography/anatomy/comparison controls and direct links also passed.
+Together with the pricing suite, that is **282 hosted checks**. These are Chromium
+checks, not cross-browser or accessibility certification. No new publication
+decision remains; the earlier image-reuse decision and pricing caveats still apply.
+
+The previous release notes below describe the earlier single-page implementation.
 
 ## Pricing chapter — 17 September 2026
 

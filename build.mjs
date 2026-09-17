@@ -1,7 +1,7 @@
 import {readFile, writeFile, mkdir, access} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup, familyFacesMarkup, anatomyMarkup, geographyMarkup, marketFamilyMarkup, marketCurrentMarkup, marketHistoryMarkup, marketFamiliesMarkup, marketLedgerMarkup, marketCsv} from './src/render.mjs';
+import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup, familyFacesMarkup, anatomyMarkup, geographyMarkup, marketFamilyMarkup, marketSummaryMarkup, marketCurrentMarkup, marketHistoryMarkup, marketFamiliesMarkup, marketLedgerMarkup, marketCsv} from './src/render.mjs';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const read = (relative) => readFile(path.join(root, relative), 'utf8');
@@ -33,7 +33,16 @@ function imageRecord(image) {
 }
 
 const options = (selected) => data.families.map((family) => `<option value="${family.id}"${family.id === selected ? ' selected' : ''}>${escapeHtml(family.name)}</option>`).join('');
+const mainTemplate = await read('src/page.html');
+const pricingTemplate = await read('src/pricing.html');
+const legacyMarketIds = [...new Set([
+  ...[...pricingTemplate.matchAll(/id="(market-[^"]+)"/g)].map(match => match[1]),
+  ...data.market.records.map(record => `sale-${record.id}`),
+])];
 const replacements = {
+  MARKET_SUMMARY: marketSummaryMarkup(data),
+  MARKET_LEGACY_LINKS: legacyMarketIds.map(id => `<span id="${escapeHtml(id)}" class="market-legacy-anchor" data-pricing-redirect aria-hidden="true"></span>`).join(''),
+  MARKET_SOURCES: data.sources.map((source,index) => source.id.startsWith('market-') ? sourceEntry(source,index) : '').join('\n'),
   MARKET_CURRENT: marketCurrentMarkup(data),
   MARKET_HISTORY: marketHistoryMarkup(data),
   MARKET_FAMILIES: marketFamiliesMarkup(data),
@@ -51,28 +60,52 @@ const replacements = {
   SOURCES: data.sources.map(sourceEntry).join('\n'),
   IMAGE_REGISTER: Object.values(data.images).map(imageRecord).join('\n'),
 };
-let html = await read('src/page.html');
-html = html.replace(/\{\{PHOTO:([^:}]+):([^}]+)\}\}/g, (_,id,className) => {
-  const crop = className === 'archaic-photo' ? 'top' : className === 'eye-profile' ? 'left' : undefined;
-  return photoMarkup(id,data,className,crop,className === 'hero-photo');
-});
-html = html.replace(/\{\{CITE:([^}]+)\}\}/g, (_,ids) => sourceRefs(ids.split(','),data));
-html = html.replace(/\{\{([A-Z_]+)\}\}/g, (_,key) => {
-  if (!(key in replacements)) throw new Error(`Unknown template token: ${key}`);
-  return replacements[key];
-});
 const shared = (await read('src/render.mjs')).replace(/^export /gm,'');
 const app = (await read('src/app.js')).replace(/^import .*from '\.\/render\.mjs';\s*/m,'');
 const script = `(() => {\n'use strict';\n${shared}\n${app}\n})();`;
-html = html.replace('/* INLINE_STYLES */', await read('src/styles.css'))
-  .replace('/* INLINE_DATA */', JSON.stringify(data).replace(/</g,'\\u003c'))
-  .replace('/* INLINE_SCRIPT */', script.replace(/<\/script/gi,'<\\/script'));
-if (/\{\{[A-Z_]+|__\w+_URL__/.test(html)) throw new Error('An unresolved build token remains.');
+const styles = await read('src/styles.css');
+function renderPage(template) {
+  let html = template;
+  html = html.replace(/\{\{PHOTO:([^:}]+):([^}]+)\}\}/g, (_,id,className) => {
+    const crop = className === 'archaic-photo' ? 'top' : className === 'eye-profile' ? 'left' : undefined;
+    return photoMarkup(id,data,className,crop,className === 'hero-photo');
+  });
+  html = html.replace(/\{\{CITE:([^}]+)\}\}/g, (_,ids) => sourceRefs(ids.split(','),data));
+  html = html.replace(/\{\{([A-Z_]+)\}\}/g, (_,key) => {
+    if (!(key in replacements)) throw new Error(`Unknown template token: ${key}`);
+    return replacements[key];
+  });
+  html = html.replace('/* INLINE_STYLES */', styles)
+    .replace('/* INLINE_DATA */', JSON.stringify(data).replace(/</g,'\\u003c'))
+    .replace('/* INLINE_SCRIPT */', script.replace(/<\/script/gi,'<\\/script'));
+  if (/\{\{[A-Z_]+|__\w+_URL__/.test(html)) throw new Error('An unresolved build token remains.');
+  return html;
+}
+const html = renderPage(mainTemplate);
 await writeFile(path.join(root,'index.html'),html);
+// Reuse the existing site chrome and native dialogs; only the page content differs.
+const pricingTitle = 'Athenian Owl Prices & Auction History — The Owl Atlas';
+const pricingDescription = 'Explore current Athenian owl auction prices, 2019–2026 comparisons, buyer fees and 66 source-linked market observations. Research snapshot: September 2026.';
+const pricingStart = mainTemplate.slice(0,mainTemplate.indexOf('<main id="main">') + '<main id="main">'.length)
+  .replace('<body>', '<body class="pricing-page">')
+  .replace(/<title>[\s\S]*?<\/title>/, `<title>${pricingTitle}</title>`)
+  .replace(/content="[^"]*" (name="description"|property="og:description"|name="twitter:description")/g, `content="${pricingDescription}" $1`)
+  .replace(/content="[^"]*" (property="og:title"|name="twitter:title")/g, `content="${pricingTitle}" $1`)
+  .replaceAll('https://theowlatlas.com/','https://theowlatlas.com/pricing/')
+  .replace(/href="#(top|origins|atlas)"/g,'href="../#$1"')
+  .replace('class="pricing-nav"','class="pricing-nav" aria-current="page"')
+  .replace('{{SOURCE_COUNT}}', String(data.sources.filter(s=>s.id.startsWith('market-')).length))
+  .replace('Skip to the story','Skip to the pricing research');
+const pricingEnd = mainTemplate.slice(mainTemplate.indexOf('   <footer class="site-footer'))
+  .replace('href="#top"','href="../#pricing"').replace('Back to the beginning ↑','Back to the story ↗')
+  .replace('The story, family entries and bibliography remain readable without JavaScript. Image links open the original photographs; interactive comparison and zoom controls require JavaScript.', 'The price comparisons, chart, sales ledger and sources remain readable without JavaScript. The calculator and ledger filters require JavaScript.');
+const pricingHtml = renderPage(pricingTemplate.replace('{{PRICING_START}}',pricingStart).replace('{{PRICING_END}}',pricingEnd));
+await mkdir(path.join(root,'pricing'),{recursive:true});
+await writeFile(path.join(root,'pricing/index.html'),pricingHtml);
 await mkdir(path.join(root,'research'),{recursive:true});
 await writeFile(path.join(root,'research/sources.json'),JSON.stringify(data.sources,null,2));
 await writeFile(path.join(root,'research/images-manifest.json'),JSON.stringify(Object.values(data.images),null,2));
 await writeFile(path.join(root,'research/specimens.json'),JSON.stringify(Object.values(data.specimens),null,2));
 await writeFile(path.join(root,'research/market-sales.json'),JSON.stringify({asOf:data.market.asOf,records:data.market.records},null,2));
 await writeFile(path.join(root,'research/market-sales.csv'),marketCsv(data.market));
-console.log(`Built index.html (${Math.round(Buffer.byteLength(html) / 1024)} KiB); ${data.sources.length} sources, ${Object.keys(data.images).length} image records. ${useLocalImages ? 'Local images enabled.' : 'Remote images; internet required for photography.'}`);
+console.log(`Built index.html (${Math.round(Buffer.byteLength(html) / 1024)} KiB) and pricing/index.html (${Math.round(Buffer.byteLength(pricingHtml) / 1024)} KiB); ${data.sources.length} sources, ${Object.keys(data.images).length} image records. ${useLocalImages ? 'Local images enabled.' : 'Remote images; internet required for photography.'}`);

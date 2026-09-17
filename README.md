@@ -57,8 +57,11 @@ both belong to the same coin; see `research/early-classical-findings.json`.
 
 - Nine narrative chapters: Athens and the geography of owl coinage; early owls; classical mass issues;
   404 BCE; fourth-century changes; New Style; regional imitations; evidence; and collecting today.
-- A dated pricing chapter with 64 auction results, two qualified public eBay observations,
-  a 2019–2026 matched-grade chart, repeat-sale comparison, fee calculator and searchable ledger.
+- A short pricing chapter introduces three examples spanning the 2026 auction sample.
+  The full research lives at `/pricing/`: 64 auction results, two qualified public eBay
+  observations, a 2019–2026 chart, repeat-sale comparison, fee calculator and searchable ledger.
+  Ordinary links connect both pages; old main-page sale and pricing-topic bookmarks
+  follow the moved chapter with JavaScript, or land beside its link without JavaScript.
   Six family cards offer collapsed pricing notes for other specimens. Museum objects are not valued.
   `src/content.json` holds the authoritative market records; the build exports CSV/JSON to
   `research/market-sales.*` and stages public downloads in `dist/data/owl-sales.*`.
@@ -101,6 +104,8 @@ npm run check          # check references, IDs, rendering and JavaScript syntax
 | `src/styles.css` | Design tokens, responsive layouts, motion and print styles |
 | `src/app.js` | Progressive enhancements and native dialog behavior |
 | `src/render.mjs` | Shared escaped markup used by build and browser |
+| `src/pricing.html` | Full pricing research page; shares the main page's header, footer and dialogs |
+| `pricing/index.html` | Generated pricing page; do not hand-edit |
 | `build.mjs` | Inlines the page assets and exports research manifests |
 | `research/sources.json` | Generated bibliography export; do not edit directly |
 | `research/images-manifest.json` | Generated image/rights export; do not edit directly |
@@ -235,7 +240,8 @@ images; it does not deploy anything. Preview with:
 python3 -m http.server 8000 --bind 127.0.0.1 --directory dist
 ```
 
-The output is static. Upload `index.html` to any HTTPS static host. With local
+The output is static. Publish all of `dist/`, including `pricing/index.html` and
+the `data/` downloads, to an HTTPS static host. With local
 photography, also upload `public/images/`. No server code is needed. Do not deploy
 research notebooks or test files unless intentionally making the source public.
 Nothing in this delivery has been published or deployed on your behalf.

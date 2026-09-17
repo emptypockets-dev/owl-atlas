@@ -70,7 +70,7 @@ const chapters = Array.from(document.querySelectorAll('[data-chapter]'));
 const hero = byId('top');
 const heroObject = byId('hero-object');
 const crisis = byId('404');
-const crisisYear = crisis.querySelector('.crisis-year');
+const crisisYear = crisis?.querySelector('.crisis-year');
 let scheduled = false;
 function updateScroll() {
   scheduled = false;
@@ -83,8 +83,8 @@ function updateScroll() {
     if (chapter.getBoundingClientRect().top <= headerHeight + 150) active = chapter;
     else break;
   }
-  if (active) byId('current-chapter').textContent = active.dataset.chapter;
-  if (!motionOff && window.innerWidth > 760) {
+  if (active && byId('current-chapter')) byId('current-chapter').textContent = active.dataset.chapter;
+  if (!motionOff && window.innerWidth > 760 && hero && heroObject && crisisYear) {
     const heroTop = hero.getBoundingClientRect().top;
     const offset = Math.min(1100, Math.max(0, -heroTop));
     heroObject.style.transform = `translateY(${offset * 0.105}px) rotate(${offset * 0.002}deg)`;
@@ -92,8 +92,8 @@ function updateScroll() {
     const progress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)));
     crisisYear.style.transform = `translateY(${(progress - .5) * 34}px)`;
   } else {
-    heroObject.style.removeProperty('transform');
-    crisisYear.style.removeProperty('transform');
+    heroObject?.style.removeProperty('transform');
+    crisisYear?.style.removeProperty('transform');
   }
 }
 function requestScrollUpdate() { if (!scheduled) { scheduled = true; requestAnimationFrame(updateScroll); } }
@@ -373,8 +373,10 @@ function selectAnatomyFace() {
   });
 }
 anatomyFaces.forEach(input => input.addEventListener('change', selectAnatomyFace));
-selectAnatomyFace();
-document.querySelector('.anatomy-faces').hidden = false;
+if (anatomyPanels.length) {
+  selectAnatomyFace();
+  document.querySelector('.anatomy-faces').hidden = false;
+}
 
 // Comparison keeps family chronology distinct from each museum specimen's label.
 function syncSpecimenOptions(position) {
@@ -396,6 +398,7 @@ function updateComparison() {
   }
 }
 for (const position of ['left', 'right']) {
+  if (!byId(`compare-${position}`)) continue;
   syncSpecimenOptions(position);
   byId(`compare-${position}`).addEventListener('change', () => {
     syncSpecimenOptions(position);
@@ -425,7 +428,7 @@ document.addEventListener('click', (event) => {
   const link = event.target instanceof Element ? event.target.closest('a[href="#image-reuse-policy"]') : null;
   if (link) byId('image-reuse-policy').open = true;
 });
-if (location.hash === '#image-reuse-policy') byId('image-reuse-policy').open = true;
+if (location.hash === '#image-reuse-policy' && byId('image-reuse-policy')) byId('image-reuse-policy').open = true;
 
 // Search filters the visible bibliography, not a hidden external search index.
 const normalize = (text) => text.toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -444,6 +447,7 @@ function filterSources() {
 byId('source-search').addEventListener('input', filterSources);
 
 // Enhance the complete, statically rendered market snapshot.
+if (byId('market-ledger')?.tagName === 'DETAILS') {
 const marketRows = Array.from(document.querySelectorAll('[data-market-row]')).map(element => ({element, text:normalize(element.textContent)}));
 function filterMarket() {
   const terms = normalize(byId('market-search').value.trim()).split(/\s+/).filter(Boolean);
@@ -498,6 +502,16 @@ document.addEventListener('click', event => {
   if (link && link.hash === location.hash) revealMarketLink();
 });
 revealMarketLink();
+} else {
+  // Existing saved links to the former long chapter follow it to its new page.
+  // Without JavaScript the anchors land beside the summary's ordinary page link.
+  function followMovedPricingLink() {
+    const target = byId(location.hash.slice(1));
+    if (target?.hasAttribute('data-pricing-redirect')) location.replace(`pricing/${location.hash}`);
+  }
+  window.addEventListener('hashchange', followMovedPricingLink);
+  followMovedPricingLink();
+}
 let marketPrintDetails = [];
 window.addEventListener('beforeprint', () => {
   marketPrintDetails = Array.from(document.querySelectorAll('.market-disclosure,.family-market')).filter(detail => !detail.open);
