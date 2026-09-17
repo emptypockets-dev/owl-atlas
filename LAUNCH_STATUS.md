@@ -11,9 +11,9 @@ rights clearance; the six flags remain. See
 [research/publication-decision.md](research/publication-decision.md).
 
 - Public site: https://theowlatlas.com/
-- Production deployment: https://owl-atlas-b99rhwf5m-emptypocketsdevs-projects.vercel.app
-- Latest preview: https://owl-atlas-jdzm239dy-emptypocketsdevs-projects.vercel.app/
-- Previous production / rollback source: https://owl-atlas-bgk4jqwz8-emptypocketsdevs-projects.vercel.app
+- Production deployment: https://owl-atlas-7dlsitun6-emptypocketsdevs-projects.vercel.app
+- Latest preview: https://owl-atlas-hwkw3sd7g-emptypocketsdevs-projects.vercel.app/
+- Previous production / rollback source: https://owl-atlas-b99rhwf5m-emptypocketsdevs-projects.vercel.app
 - Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
 - Public source repository: https://github.com/emptypockets-dev/owl-atlas
 
@@ -21,6 +21,45 @@ Vercel Standard Protection keeps generated deployment URLs and previews behind
 Vercel authentication; the production domain is public. The existing Pro plan
 was retained, with no plan upgrade or paid add-on. The domain was purchased
 separately by the owner.
+
+## Visual design refinement — 17 September 2026
+
+The owner requested a more modern, striking and purposeful presentation. The
+opening now gives the real owl photograph more space and brings it before the
+introductory paragraph on mobile. Decorative orbit rings, parallax, ornamental
+indexes and repeated hero labels were removed. War, minting, evidence and
+reference sections use calmer spacing and fewer nested boxes. Family names and
+dates now introduce the paired photographs. Close-reading choices use clear
+underlines; compact image cues leave more of the coin visible. Mobile keeps one
+navigation bar, with all four main destinations available. The detailed pricing
+page introduces the evidence before its topic links.
+
+The existing serif identity, readable text sizes, motion controls, original
+photographs, all 41 sources, 17 image records, three BnF specimens, 66 market
+observations and six reuse-review flags remain. The unchanged CC0 Cleveland owl
+photograph supplies image metadata for shared links. External platforms control
+their own previews and caches; no social widget or tracking was added.
+
+`npm run build:deploy` passed locally and on the existing personal Vercel project,
+publishing only `dist/`. **2,425 local checks passed**: 1,707 structural/rendering,
+91 data consistency, 28 editorial, 213 Chromium smoke, 73 pricing and 313
+readability checks. Independent visual review covered desktop, tablet and narrow
+mobile layouts, enlarged text, contrast, native dialogs and both pages. See
+`research/design-qa.json`.
+
+**521 hosted checks passed**: 448 public release checks and 73 pricing checks.
+Both pages exactly match the validated staged HTML. All 17 real page photographs
+and their full original files loaded and decoded; dimensions, credits, reuse
+notices, keyboard zoom/pan/reset and focus return passed. Live deep links,
+320–1440px layouts, mobile hero visibility, enlarged text, both anatomy faces,
+Pi II/Pi III presets, bibliography search, pricing tools, public downloads and
+no-JavaScript reading passed. The authenticated HTTPS preview and actual public
+mobile/desktop photographs were visually inspected. See
+`research/design-release-qa.json` and `research/market-hosted-qa.json`.
+
+No new publication decision remains. Existing remote-image and BnF reuse
+limitations remain. Verification is targeted Chromium coverage, not accessibility
+certification, real-device touch testing or cross-browser coverage.
 
 ## Typography and usability — 17 September 2026
 
