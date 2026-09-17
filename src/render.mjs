@@ -132,20 +132,21 @@ export function marketHistoryMarkup(data) {
   const records = data.market.records.filter(r => ['current consecutive lots','historical matched grade'].includes(r.cohort) && r.grade === 'Choice XF' && r.strike === 5 && r.surface === 4);
   const years = [...new Set(records.map(r => r.reported_date.slice(0,4)))].sort();
   function chart(mobile = false) {
-  const x = value => (mobile ? 65 : 125) + value / 1600 * (mobile ? 215 : 520);
-  const grid = [0,500,1000,1500].map(value => `<line x1="${x(value)}" x2="${x(value)}" y1="40" y2="410"/><text x="${x(value)}" y="22" text-anchor="middle">${marketMoney(value)}</text>`).join('');
+  const x = value => (mobile ? 68 : 125) + value / 1600 * (mobile ? 195 : 520);
+  const medianPosition = mobile ? 'x="385" text-anchor="end"' : 'x="685"';
+  const grid = [0,500,1000,1500].map(value => `<line x1="${x(value)}" x2="${x(value)}" y1="40" y2="${mobile ? 472 : 410}"/><text x="${x(value)}" y="22" text-anchor="middle">${mobile && value >= 1000 ? `$${value/1000}k` : marketMoney(value)}</text>`).join('');
   const bars = years.map((year, index) => {
     const group = records.filter(r => r.reported_date.startsWith(year));
-    const s = marketStats(group); const y = 65 + index * 47;
-    return `<text x="5" y="${y+4}" class="market-chart-year">${year}</text><text x="${mobile ? 5 : 63}" y="${y+(mobile ? 21 : 4)}">n=${s.n}</text><line class="market-chart-range" x1="${x(s.min)}" x2="${x(s.max)}" y1="${y}" y2="${y}"/>${group.map((r,i) => `<circle cx="${x(r.buyer_price_before_tax_shipping)}" cy="${y+(i-(group.length-1)/2)*4}" r="${mobile ? 3 : 4}"/>`).join('')}<line class="market-chart-median" x1="${x(s.median)}" x2="${x(s.median)}" y1="${y-11}" y2="${y+11}"/><text class="market-chart-total" x="${mobile ? 300 : 685}" y="${y+4}">${marketMoney(s.median)}</text>`;
+    const s = marketStats(group); const y = 65 + index * (mobile ? 52 : 47);
+    return `<text x="5" y="${y+4}" class="market-chart-year">${year}</text><text x="${mobile ? 5 : 63}" y="${y+(mobile ? 25 : 4)}">n=${s.n}</text><line class="market-chart-range" x1="${x(s.min)}" x2="${x(s.max)}" y1="${y}" y2="${y}"/>${group.map((r,i) => `<circle cx="${x(r.buyer_price_before_tax_shipping)}" cy="${y+(i-(group.length-1)/2)*4}" r="${mobile ? 3 : 4}"/>`).join('')}<line class="market-chart-median" x1="${x(s.median)}" x2="${x(s.median)}" y1="${y-11}" y2="${y+11}"/><text class="market-chart-total" ${medianPosition} y="${y+4}">${marketMoney(s.median)}</text>`;
   }).join('');
-  return `<svg class="market-history-chart ${mobile ? 'market-chart-mobile' : 'market-chart-wide'}" viewBox="0 0 ${mobile ? 390 : 790} 440" role="img" aria-label="Selected Choice XF sales, 2019–2026. Twenty-four observations; full values and sources follow in the table.">${grid}<text x="${mobile ? 300 : 685}" y="22">Median</text>${bars}</svg>`;
+  return `<svg class="market-history-chart ${mobile ? 'market-chart-mobile' : 'market-chart-wide'}" viewBox="0 0 ${mobile ? '390 490' : '790 440'}" role="img" aria-label="Selected Choice XF sales, 2019–2026. Twenty-four observations; full values and sources follow in the table.">${grid}<text ${medianPosition} y="22">Median</text>${bars}</svg>`;
   }
   const rows = years.map(year => {
     const group=records.filter(r=>r.reported_date.startsWith(year)); const s=marketStats(group);
     return `<tr><th scope="row">${year}</th><td>${s.n}</td><td>${marketMoney(s.min)}–${marketMoney(s.max)}</td><td>${marketMoney(s.median)}</td><td>${group.map(r=>marketLink(r,`${r.auction}/${r.lot}`)).join('<br>')}</td></tr>`;
   }).join('');
-  return `<figure class="market-history-figure">${chart()}${chart(true)}<figcaption>Each dot is a sale. The upright mark is the sample median; <em>n</em> is the number of sales. USD including buyer premium, before tax and shipping. Small, selected samples—not a market index.</figcaption></figure><details class="market-disclosure"><summary>Read the values and individual sources</summary><div class="market-scroll" role="region" tabindex="0" aria-label="Historical price table"><table class="market-table"><caption>Classical mass issues · NGC Choice XF · strike 5/5, surface 4/5</caption><thead><tr><th scope="col">Year</th><th scope="col">Sales</th><th scope="col">Range</th><th scope="col">Median</th><th scope="col">Sale records</th></tr></thead><tbody>${rows}</tbody></table></div></details>`;
+  return `<figure class="market-history-figure">${chart()}${chart(true)}<figcaption>Each dot is a sale. The upright mark is the sample median; <em>n</em> is the number of sales. USD including buyer premium, before tax and shipping. Small, selected samples—not a market index.</figcaption></figure><details class="market-disclosure"><summary>Read the values and individual sources</summary><p class="market-scroll-hint">Swipe or scroll sideways to see every column ↔</p><div class="market-scroll" role="region" tabindex="0" aria-label="Historical price table"><table class="market-table"><caption>Classical mass issues · NGC Choice XF · strike 5/5, surface 4/5</caption><thead><tr><th scope="col">Year</th><th scope="col">Sales</th><th scope="col">Range</th><th scope="col">Median</th><th scope="col">Sale records</th></tr></thead><tbody>${rows}</tbody></table></div></details>`;
 }
 
 export function marketFamiliesMarkup(data) {

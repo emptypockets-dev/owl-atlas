@@ -11,9 +11,9 @@ rights clearance; the six flags remain. See
 [research/publication-decision.md](research/publication-decision.md).
 
 - Public site: https://theowlatlas.com/
-- Production deployment: https://owl-atlas-bgk4jqwz8-emptypocketsdevs-projects.vercel.app
-- Latest preview: https://owl-atlas-9k86tdrh4-emptypocketsdevs-projects.vercel.app/#anatomy
-- Previous production / rollback source: https://owl-atlas-gkcj76ktc-emptypocketsdevs-projects.vercel.app
+- Production deployment: https://owl-atlas-b99rhwf5m-emptypocketsdevs-projects.vercel.app
+- Latest preview: https://owl-atlas-jdzm239dy-emptypocketsdevs-projects.vercel.app/
+- Previous production / rollback source: https://owl-atlas-bgk4jqwz8-emptypocketsdevs-projects.vercel.app
 - Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
 - Public source repository: https://github.com/emptypockets-dev/owl-atlas
 
@@ -21,6 +21,52 @@ Vercel Standard Protection keeps generated deployment URLs and previews behind
 Vercel authentication; the production domain is public. The existing Pro plan
 was retained, with no plan upgrade or paid add-on. The domain was purchased
 separately by the owner.
+
+## Typography and usability — 17 September 2026
+
+Both the main story and detailed pricing page received a readability and visual
+review. The existing serif headings, colors and editorial layout remain. Regular
+narrative is now 16–17px at default browser settings, with supporting text at
+13–15px and more generous line spacing. Rem-based sizes respond to larger text
+preferences. Image credits, source notes, chart labels, forms and disclosures
+have clearer hierarchy and more space; citations have larger targets.
+
+The mobile header now uses two rows with all four destinations and the motion
+control visible. Measured navigation heights keep deep links and sticky images
+clear when text wraps. The chapter label reserves room for its longest wrapped
+entry, preventing chapter changes from covering an anchor destination. Evidence panels use two tablet columns and one mobile
+column; comparison panels stack on narrow screens while family cards continue
+to show both coin faces together. Dialog content scrolls while its controls stay
+reachable. Source lists, long captions, prices and headings wrap without page
+overflow. Horizontally scrolling tables have a mobile hint. No-JavaScript pages
+use a static header and keep their native disclosures.
+
+All 41 sources, 17 image records, three BnF specimens, 66 market observations,
+six reuse-review flags and the approved dotted-theta treatment are unchanged.
+No dependency, framework, tracking, font service or new photograph was added.
+
+`npm run build:deploy` passed locally and on the existing personal Vercel project,
+publishing only `dist/`. **2,427 local checks passed**: 1,709 structural/rendering,
+91 data consistency, 28 editorial, 213 Chromium smoke, 73 pricing and 313 focused
+readability checks. The latter cover both pages at 320, 390, 768, 1024 and 1440
+CSS pixels, sampled type sizes, navigation targets, source-dialog keyboard use,
+200% root-font enlargement, native anchor clearance, increased text spacing and no-JavaScript reading.
+The authenticated final HTTPS preview was visually inspected with the real owl
+photograph. See `research/readability-qa.json`.
+
+**467 hosted checks passed**: 394 public release checks plus 73 pricing checks.
+Both HTTPS pages exactly match the staged HTML. All 17 real page photographs
+and all 17 full originals loaded and decoded; dimensions, credits, reuse notices,
+keyboard zoom/pan/reset and focus return were verified. Live navigation, deep
+links, 320px enlarged-text anchor clearance, source search, pricing filters,
+calculator, downloads and no-JavaScript reading passed. Mobile and desktop
+photographs and layouts were visually reviewed. See
+`research/readability-release-qa.json` and `research/market-hosted-qa.json`.
+
+No new publication decision remains. The owner's earlier BnF decision and all
+six reuse-review notices remain. These are targeted Chromium checks, not
+cross-browser or accessibility certification. Actual browser zoom, screen-reader
+and real-device touch review remain separate work.
 
 ## Dotted theta — 17 September 2026
 

@@ -7,6 +7,7 @@ import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup, marketMoney} from
 const dataElement = document.querySelector('#atlas-data');
 if (!dataElement?.textContent) throw new Error('The atlas content is missing.');
 const data = JSON.parse(dataElement.textContent);
+document.documentElement.classList.add('has-js');
 const byId = (id) => document.getElementById(id);
 const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 let manuallyReduced = false;
@@ -67,6 +68,17 @@ if ('IntersectionObserver' in window) {
 }
 
 const chapters = Array.from(document.querySelectorAll('[data-chapter]'));
+// Reserve the label's natural wrapped height so chapter changes cannot move
+// the sticky bar over a native anchor destination. Spacers are not announced.
+const chapterCurrent = document.querySelector('.chapter-current');
+if (chapterCurrent) {
+  for (const chapter of chapters) {
+    const spacer = document.createElement('span');
+    spacer.setAttribute('aria-hidden', 'true');
+    spacer.textContent = chapter.dataset.chapter;
+    chapterCurrent.append(spacer);
+  }
+}
 const hero = byId('top');
 const heroObject = byId('hero-object');
 const crisis = byId('404');
@@ -78,7 +90,7 @@ function updateScroll() {
   const percentage = scrollable > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollable)) : 0;
   byId('reading-fill').style.transform = `scaleX(${percentage})`;
   let active = chapters[0];
-  const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header')) || 86;
+  const headerHeight = document.querySelector('.site-header').getBoundingClientRect().height;
   for (const chapter of chapters) {
     if (chapter.getBoundingClientRect().top <= headerHeight + 150) active = chapter;
     else break;
@@ -98,6 +110,21 @@ function updateScroll() {
 }
 function requestScrollUpdate() { if (!scheduled) { scheduled = true; requestAnimationFrame(updateScroll); } }
 window.addEventListener('scroll', requestScrollUpdate, {passive: true});
+// Keep deep links clear of wrapping navigation, including enlarged browser text.
+function syncNavigationHeight() {
+  const root = document.documentElement;
+  root.style.setProperty('--header', `${Math.ceil(document.querySelector('.site-header').getBoundingClientRect().height)}px`);
+  const bar = document.querySelector('.chapter-bar');
+  root.style.setProperty('--bar', `${bar ? Math.ceil(bar.getBoundingClientRect().height) : 0}px`);
+  requestScrollUpdate();
+}
+if ('ResizeObserver' in window) {
+  const navigationObserver = new ResizeObserver(syncNavigationHeight);
+  navigationObserver.observe(document.querySelector('.site-header'));
+  const bar = document.querySelector('.chapter-bar');
+  if (bar) navigationObserver.observe(bar);
+}
+syncNavigationHeight();
 window.addEventListener('resize', requestScrollUpdate, {passive: true});
 syncMotion();
 

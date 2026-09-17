@@ -194,6 +194,13 @@ keyboard zoom/pan, labeled controls and reduced-motion support are implemented.
 Most story content, source links and family entries work without JavaScript.
 The comparison controls themselves require JavaScript.
 
+The reading scale uses rem-based type: ordinary narrative is 16–17px at the
+default browser setting, with 13–15px supporting text. Captions, source notes,
+charts and controls have their own hierarchy. Navigation wraps on smaller
+screens, measures its height for deep links, and keeps all four destinations
+available. Narrow comparison panels stack while family cards retain paired
+coin faces. Text enlargement and increased spacing are checked separately.
+
 The site adds no analytics, accounts, trackers, cookies or remote fonts. Its only
 stored preference is the optional motion setting in browser local storage.
 Remote image hosts still receive ordinary browser requests.
@@ -214,6 +221,7 @@ python3 tests/editorial_copy.py
 # Use your own installed Chromium executable:
 CHROMIUM_PATH=/path/to/chromium python3 tests/browser_smoke.py
 CHROMIUM_PATH=/path/to/chromium python3 tests/market_browser.py
+CHROMIUM_PATH=/path/to/chromium python3 tests/readability_browser.py
 # Optional deployed-build comparison and public-download verification:
 MARKET_URL=https://theowlatlas.com CHROMIUM_PATH=/path/to/chromium python3 tests/market_browser.py
 ```
@@ -227,6 +235,13 @@ Remote requests are deliberately blocked during that test. These are smoke
 tests, not an accessibility certification or a full visual-regression suite.
 Safari/Firefox, real touch gestures, screen readers and genuine online imagery
 still need an in-context review.
+
+The readability suite checks both pages at 320–1440 CSS pixels, sampled text
+sizes, header targets, keyboard source dialogs, 200% root-font enlargement,
+increased text spacing and no-JavaScript reading. Its JSON output does not
+overwrite other reports. Root-font enlargement is not actual browser zoom.
+See `research/readability-qa.json` for the latest run and
+`research/readability-release-qa.json` for separate public-site/photo checks.
 
 ## Deployment
 

@@ -1,0 +1,43 @@
+{
+  "passed": 313,
+  "total": 313,
+  "failures": [],
+  "scope": "Selected typography, header geometry, source keyboard interaction, root-text enlargement, text spacing, and no-JavaScript checks in Chromium. External photographs blocked; not accessibility certification or actual browser zoom coverage.",
+  "date": "2026-09-17T12:56:35.177770+00:00",
+  "result": "pass",
+  "pages": [
+    "index.html",
+    "pricing/index.html"
+  ],
+  "widths": [
+    1440,
+    1024,
+    768,
+    390,
+    320
+  ],
+  "visualReview": "Desktop and 390/320px mobile layouts reviewed, including hero, close reading, comparison, family cards, geography, minting, bibliography, source and image dialogs, and pricing. Real imagery is checked separately in the hosted release report.",
+  "contrastReview": {
+    "method": "Computed solid foreground/background pairs; selected text and focus/control colors, not every possible composite pixel.",
+    "mutedTextOnPaperDeep": 4.85,
+    "mutedTextOnPaper": 5.42,
+    "darkMutedText": 8.43,
+    "changes": [
+      "Gold focus outline inside the dark catalogue guide.",
+      "Darker control borders (#778072)."
+    ]
+  },
+  "preserved": {
+    "sourceRecords": 41,
+    "imageRecords": 17,
+    "bnfSpecimens": 3,
+    "reuseReviewFlags": 6,
+    "marketObservations": 66
+  },
+  "limitations": [
+    "Chromium only. No screen-reader, Safari/Firefox or real-device touch certification.",
+    "200% root font-size and 320 CSS-pixel widths are targeted reflow checks, not actual browser zoom.",
+    "Existing image-reuse notices remain; no new rights clearance."
+  ],
+  "additionalReview": "Independent 200% root-text scans on both pages at 768, 1024, 1101, 1440, 1600 and 1920px found no horizontal document overflow; 320px no-JavaScript normal/enlarged text also fits."
+}
