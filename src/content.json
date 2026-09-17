@@ -1079,5 +1079,436 @@
       "obverse": "bnf-pi-ii-1469-obverse",
       "reverse": "bnf-pi-ii-1469-reverse"
     }
+  },
+  "geography": {
+    "places": [
+      {
+        "id": "athens",
+        "name": "Athens & Attica",
+        "kind": "City · region · country",
+        "shape": "attica",
+        "bounds": [
+          22.65,
+          37.3,
+          24.5,
+          38.5
+        ],
+        "heading": "Begin with a city and its countryside.",
+        "where": "Athens is a city in Attica, the surrounding region on the Greek mainland. Both are in present-day Greece.",
+        "relation": "The starting point: the Aegean world.",
+        "role": "The Athenian mint",
+        "evidence": "Athens issued silver tetradrachms—coins worth four drachmas. Attica also contained the Laurion silver-mining district, introduced below.",
+        "refs": [
+          "attica",
+          "acropolis",
+          "met",
+          "mines"
+        ],
+        "legend": "Gold: modern Attica region · dot: Athens city",
+        "mapNote": "The modern region helps locate Attica; its borders are not a reconstruction of the ancient city-state.",
+        "labels": [
+          [
+            "Attica",
+            23.62,
+            38.22,
+            "focus"
+          ],
+          [
+            "Athens",
+            23.73,
+            37.98,
+            "city"
+          ],
+          [
+            "Aegean Sea",
+            24.6,
+            37.7,
+            "water"
+          ]
+        ],
+        "orientationSource": "https://www.atticinscriptions.com/"
+      },
+      {
+        "id": "sicily",
+        "name": "Sicily",
+        "kind": "Island",
+        "shape": "sicily",
+        "bounds": [
+          11.5,
+          35.8,
+          17.3,
+          40.2
+        ],
+        "heading": "West, across the sea.",
+        "where": "Sicily is the large island just off the “toe” of Italy. It lies west of Greece, in the central Mediterranean.",
+        "relation": "West of Athens.",
+        "role": "Evidence of circulation",
+        "evidence": "Athenian owls occur in Sicilian hoards. These finds document coins reaching the island; they do not make Sicily an Athenian mint.",
+        "refs": [
+          "owl-hoards"
+        ],
+        "legend": "Gold: the island of Sicily",
+        "mapNote": "Sicily is part of present-day Italy. The highlighted island is a geographic reference, not an ancient political boundary.",
+        "labels": [
+          [
+            "Sicily",
+            14,
+            37.45,
+            "focus"
+          ],
+          [
+            "Italy",
+            16.25,
+            39.05,
+            "context"
+          ],
+          [
+            "Mediterranean Sea",
+            13.2,
+            36.3,
+            "water"
+          ]
+        ]
+      },
+      {
+        "id": "anatolia",
+        "name": "Anatolia",
+        "kind": "Peninsula",
+        "shape": "anatolia",
+        "bounds": [
+          24.5,
+          34,
+          46,
+          43
+        ],
+        "heading": "Across the Aegean, into Anatolia.",
+        "where": "Anatolia is the large peninsula east of the Aegean Sea, forming the Asian part of present-day Türkiye. Greece faces it across the water.",
+        "relation": "East of Athens, across the Aegean.",
+        "role": "Evidence of circulation",
+        "evidence": "Hoard evidence records Athenian coins in southwest Anatolia. That regional evidence does not establish a route through every part of the peninsula.",
+        "refs": [
+          "owl-hoards",
+          "owl-circulation"
+        ],
+        "legend": "Gold: the Anatolian mainland of modern Türkiye",
+        "mapNote": "The outline is for orientation; the ancient region and its political divisions changed over time.",
+        "labels": [
+          [
+            "Anatolia",
+            34.5,
+            39,
+            "focus"
+          ],
+          [
+            "Black Sea",
+            34,
+            42.2,
+            "water"
+          ],
+          [
+            "Mediterranean Sea",
+            32.5,
+            34.9,
+            "water"
+          ],
+          [
+            "Aegean",
+            25.65,
+            37.5,
+            "water"
+          ]
+        ]
+      },
+      {
+        "id": "egypt",
+        "name": "Egypt",
+        "kind": "Country · Nile valley",
+        "shape": "egypt",
+        "bounds": [
+          23,
+          21,
+          37,
+          33
+        ],
+        "heading": "South to the Nile.",
+        "where": "Egypt lies on the southern shore of the Mediterranean. The Nile runs north through it to a broad delta on the coast.",
+        "relation": "South of Athens, across the Mediterranean.",
+        "role": "Circulation and related local issues",
+        "evidence": "Egyptian hoards include Athenian coins, sometimes valued as silver by weight. Later, authorities in Persian-administered Egypt issued related owl-type coins, including the Sabakes type shown in chapter 07.",
+        "refs": [
+          "owl-hoards",
+          "sabakes"
+        ],
+        "legend": "Gold: modern Egypt · blue: the Nile",
+        "mapNote": "The modern country outline locates Egypt. It is not a map of a particular ancient kingdom or the distribution of coin finds.",
+        "labels": [
+          [
+            "Egypt",
+            28.5,
+            26.7,
+            "focus"
+          ],
+          [
+            "Nile",
+            32.3,
+            25.3,
+            "water"
+          ],
+          [
+            "Mediterranean Sea",
+            28.8,
+            32.3,
+            "water"
+          ],
+          [
+            "Red Sea",
+            35.4,
+            26.5,
+            "water"
+          ],
+          [
+            "Libya",
+            23.6,
+            28.5,
+            "context"
+          ],
+          [
+            "Sudan",
+            29.5,
+            20.9,
+            "context"
+          ]
+        ]
+      },
+      {
+        "id": "levant",
+        "name": "The Levant",
+        "kind": "Historical region",
+        "shape": "levant",
+        "bounds": [
+          31,
+          28,
+          43,
+          38
+        ],
+        "heading": "Along the Mediterranean’s eastern edge.",
+        "where": "The Levant is a regional name for the eastern Mediterranean lands. It includes areas now in Syria, Lebanon, Israel, Palestine and Jordan; its extent varies with context.",
+        "relation": "Southeast of Anatolia; northeast of Egypt.",
+        "role": "Circulation and debated local issues",
+        "evidence": "Athenian coins reached the Levant, and related owl-type issues also circulated there. Some coins once called eastern imitations have been reassessed as Athenian; a findspot alone cannot settle the mint.",
+        "refs": [
+          "owl-circulation",
+          "isotopes"
+        ],
+        "legend": "Hatching: a modern geographic guide to the Levant",
+        "mapNote": "The hatched countries locate the broad region. They do not define a single ancient state or an exact historical boundary.",
+        "approximate": true,
+        "labels": [
+          [
+            "Levant",
+            37,
+            33,
+            "focus"
+          ],
+          [
+            "Syria",
+            38.7,
+            35.2,
+            "context"
+          ],
+          [
+            "Jordan",
+            37.1,
+            30.2,
+            "context"
+          ],
+          [
+            "Mediterranean",
+            32.6,
+            35.4,
+            "water"
+          ]
+        ],
+        "orientationSource": "https://www.britishmuseum.org/our-work/departments/middle-east"
+      },
+      {
+        "id": "babylonia",
+        "name": "Babylonia",
+        "kind": "Historical region",
+        "shape": "babylonia",
+        "bounds": [
+          40,
+          28,
+          50.5,
+          36.5
+        ],
+        "heading": "In the land of the two rivers.",
+        "where": "Babylonia was in southern Mesopotamia, in what is now southern Iraq. The Tigris and Euphrates cross this lowland toward the Persian Gulf. Babylon was a city within it.",
+        "relation": "Inland, east of the Levant.",
+        "role": "Related local issues",
+        "evidence": "Oxford’s IRIS catalogue attributes a Mazaces Athena–owl type to Babylon. This is evidence for a related local coinage, not another name for the Athenian mint.",
+        "refs": [
+          "iris-babylon"
+        ],
+        "legend": "Hatching: southern Iraq, locating Babylonia",
+        "mapNote": "The hatched area is an approximate locator, not an ancient border. Blue lines show the Tigris and Euphrates.",
+        "approximate": true,
+        "labels": [
+          [
+            "Babylonia",
+            44.95,
+            31.5,
+            "focus"
+          ],
+          [
+            "Iraq",
+            43.6,
+            35,
+            "context"
+          ],
+          [
+            "Iran",
+            48.9,
+            34,
+            "context"
+          ],
+          [
+            "Persian Gulf",
+            49.4,
+            28.7,
+            "water"
+          ],
+          [
+            "Tigris",
+            45.55,
+            33.55,
+            "water"
+          ],
+          [
+            "Euphrates",
+            42.55,
+            32.7,
+            "water"
+          ]
+        ],
+        "orientationSource": "https://archeologie.culture.gouv.fr/babylone/ar/node/35"
+      },
+      {
+        "id": "east",
+        "name": "Iran & Afghanistan",
+        "kind": "Two present-day countries",
+        "shape": "east",
+        "bounds": [
+          42,
+          23,
+          76,
+          41
+        ],
+        "heading": "Farther east than the Mediterranean.",
+        "where": "Iran lies east of Iraq. Afghanistan lies farther east, beyond Iran. These are two distinct countries, far inland from the Aegean starting point.",
+        "relation": "Beyond Mesopotamia, east of Athens.",
+        "role": "Evidence of circulation",
+        "evidence": "Hoard evidence places Athenian coins in Iran and Afghanistan. Modern country names help locate the finds; they do not identify who ruled those lands when the coins arrived.",
+        "refs": [
+          "owl-circulation",
+          "owl-hoards"
+        ],
+        "legend": "Gold: modern Iran and Afghanistan, separately outlined",
+        "mapNote": "The two highlighted country outlines are modern geographic references. No route or exact findspot is implied.",
+        "labels": [
+          [
+            "Iran",
+            53.4,
+            32.2,
+            "focus"
+          ],
+          [
+            "Afghanistan",
+            66.1,
+            33.6,
+            "focus"
+          ],
+          [
+            "Iraq",
+            44,
+            34,
+            "context"
+          ],
+          [
+            "Arabian Sea",
+            61.5,
+            23.4,
+            "water"
+          ],
+          [
+            "Caspian Sea",
+            51,
+            39.5,
+            "water"
+          ]
+        ]
+      },
+      {
+        "id": "arabia",
+        "name": "Arabia",
+        "kind": "Peninsula · wider region",
+        "shape": "arabia",
+        "bounds": [
+          33,
+          10,
+          60,
+          33
+        ],
+        "heading": "A peninsula between two seas.",
+        "where": "The Arabian Peninsula lies between the Red Sea and the Persian Gulf. Arabia is a wider geographic and historical name, not simply another name for modern Saudi Arabia.",
+        "relation": "Southeast of the Levant; south of Mesopotamia.",
+        "role": "Related regional traditions",
+        "evidence": "Arabian authorities also adopted owl-type designs. This edition marks that wider tradition while leaving a fuller account of Arabian series in the coverage register.",
+        "refs": [
+          "owl-circulation"
+        ],
+        "legend": "Hatching: the countries of the Arabian Peninsula",
+        "mapNote": "Modern outlines orient the peninsula. They are not the boundaries of an ancient Arabian state or a complete record of mint sites.",
+        "approximate": true,
+        "labels": [
+          [
+            "Arabian Peninsula",
+            44.4,
+            24,
+            "focus"
+          ],
+          [
+            "Red Sea",
+            37.8,
+            20.5,
+            "water"
+          ],
+          [
+            "Persian Gulf",
+            52.5,
+            28,
+            "water"
+          ],
+          [
+            "Arabian Sea",
+            52.5,
+            14.6,
+            "water"
+          ],
+          [
+            "Yemen",
+            45,
+            15.8,
+            "context"
+          ],
+          [
+            "Oman",
+            56.4,
+            21,
+            "context"
+          ]
+        ]
+      }
+    ]
   }
 }

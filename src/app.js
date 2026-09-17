@@ -101,6 +101,42 @@ window.addEventListener('scroll', requestScrollUpdate, {passive: true});
 window.addEventListener('resize', requestScrollUpdate, {passive: true});
 syncMotion();
 
+// All geographic panels are readable without JavaScript. Enhancement selects one
+// at a time, without scroll-driven animation, external tiles, or pointer-only UI.
+const geographyExplorer = byId('geography-explorer');
+if (geographyExplorer) {
+  const panels = Array.from(geographyExplorer.querySelectorAll('.geo-place'));
+  const buttons = Array.from(geographyExplorer.querySelectorAll('[data-geography]'));
+  const select = byId('geography-select');
+  function selectGeography(id, announce = true) {
+    const selected = byId(`geography-${id}`);
+    if (!panels.includes(selected)) return;
+    panels.forEach(panel => { panel.hidden = panel !== selected; });
+    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.geography === id)));
+    select.value = id;
+    if (announce) byId('geography-status').textContent = `${data.geography.places.find(place => place.id === id).name} selected.`;
+  }
+  buttons.forEach(button => button.addEventListener('click', () => selectGeography(button.dataset.geography)));
+  select.addEventListener('change', () => selectGeography(select.value));
+  geographyExplorer.querySelectorAll('[data-geography-next]').forEach(button => {
+    button.hidden = false;
+    button.addEventListener('click', () => {
+      const id = button.dataset.geographyNext;
+      selectGeography(id, false);
+      // A deliberate next-place action moves focus to the new reading position.
+      byId(`geography-${id}-title`).focus();
+    });
+  });
+  function geographyFromHash() {
+    const id = location.hash.replace(/^#geography-/, '');
+    if (panels.some(panel => panel.id === `geography-${id}`)) selectGeography(id, false);
+  }
+  selectGeography(data.geography.places[0].id, false);
+  geographyFromHash();
+  window.addEventListener('hashchange', geographyFromHash);
+  geographyExplorer.querySelector('.geo-controls').hidden = false;
+}
+
 // Inline citations open a compact evidence note; without JS their anchors work.
 const sourceDialog = byId('source-dialog');
 const imageDialog = byId('image-dialog');

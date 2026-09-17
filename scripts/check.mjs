@@ -62,6 +62,15 @@ for (const detail of data.anatomy) {
 }
 for (const [, , refs] of data.glossary) refs.forEach(id => check(ids.has(id), `Unknown glossary source: ${id}`));
 for (const match of template.matchAll(/\{\{CITE:([^}]+)\}\}/g)) match[1].split(',').forEach(id => check(ids.has(id), `Unknown narrative citation: ${id}`));
+const geography = JSON.parse(await readFile(path.join(root, 'src/geography.json'), 'utf8'));
+const placeIds = new Set();
+for (const place of data.geography.places) {
+  check(!placeIds.has(place.id), `Duplicate geographic place: ${place.id}`); placeIds.add(place.id);
+  check(Boolean(geography.shapes[place.shape]?.length), `Missing area outline: ${place.id}`);
+  check(place.bounds.length === 4 && place.bounds.every(Number.isFinite) && place.bounds[0] < place.bounds[2] && place.bounds[1] < place.bounds[3], `Invalid map extent: ${place.id}`);
+  check(Boolean(place.kind && place.where && place.legend && place.mapNote), `Missing geographic explanation: ${place.id}`);
+  place.refs.forEach(id => check(ids.has(id), `Unknown geographic source: ${id}`));
+}
 const markup = html.replace(/<script[^>]*>[\s\S]*?<\/script>/g, '');
 const htmlIds = [...markup.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
 check(new Set(htmlIds).size === htmlIds.length, 'Duplicate DOM IDs');

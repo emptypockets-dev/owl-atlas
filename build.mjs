@@ -1,11 +1,12 @@
 import {readFile, writeFile, mkdir, access} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup, familyFacesMarkup} from './src/render.mjs';
+import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup, familyFacesMarkup, geographyMarkup} from './src/render.mjs';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const read = (relative) => readFile(path.join(root, relative), 'utf8');
 const data = JSON.parse(await read('src/content.json'));
+const geography = JSON.parse(await read('src/geography.json'));
 const useLocalImages = process.argv.includes('--local-images');
 if (useLocalImages) {
   const manifest = JSON.parse(await read('public/images/local-manifest.json'));
@@ -33,6 +34,7 @@ function imageRecord(image) {
 
 const options = (selected) => data.families.map((family) => `<option value="${family.id}"${family.id === selected ? ' selected' : ''}>${escapeHtml(family.name)}</option>`).join('');
 const replacements = {
+  GEOGRAPHY: geographyMarkup(data, geography),
   SOURCE_COUNT: data.sources.length,
   IMAGE_COUNT: Object.keys(data.images).length,
   ANATOMY_BUTTONS: data.anatomy.map((detail,index) => `<button type="button" data-detail="${detail.id}" aria-pressed="${index === 0}" aria-controls="anatomy-text"><span>${String(index + 1).padStart(2,'0')}</span>${escapeHtml(detail.name)}</button>`).join(''),

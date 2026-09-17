@@ -5,7 +5,7 @@ The existing research edition is deployed to the verified personal Vercel accoun
 authenticated Vercel access while the six BnF image reuse decisions are unresolved.
 The account's existing Pro plan was retained; no plan upgrade or paid add-on was added.
 
-- Current preview: https://owl-atlas-o9u041crv-emptypocketsdevs-projects.vercel.app
+- Current preview: https://owl-atlas-gc7m58c4w-emptypocketsdevs-projects.vercel.app
 - Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
 - Public source repository: https://github.com/emptypockets-dev/owl-atlas
 
@@ -118,9 +118,19 @@ settings and credentials are ignored by Git.
   carries the same relationship. Adjacent prose now focuses on Athens as an
   ancient city-state, avoiding a repeated geographic explanation.
 
-The existing design and interactions are preserved. `src/app.js` still matches
-the original package checksum; the page, styles and renderer now include the
-requested family-tree, geographic and story-flow updates. The original 28 sources, 16 image records, three BnF
+- Replaced the single pin map with a guided eight-place geography explorer.
+  Focused SVG area maps, contextual locators, approximate scale bars and modern
+  outlines show cities, islands, countries and historical regions differently.
+  Athens is located within Attica and Greece; Egypt includes the Nile and delta;
+  Iran and Afghanistan have separate outlines. Hatching identifies broad regional
+  locators, with visible limitations. Each entry explains its relationship to owl
+  coinage and links to the relevant evidence. Native controls support keyboard and
+  mobile selection; all entries remain readable without JavaScript and in print.
+  See `research/geography-explorer-findings.json` for data provenance.
+
+The broader editorial design and existing photograph interactions are preserved.
+`src/app.js` now also enhances the pre-rendered geography views; the page, styles
+and renderer include the requested family-tree, geographic and story-flow updates. The original 28 sources, 16 image records, three BnF
 specimens, six reuse-review flags, dates, attributions and existing image URLs
 remain. The documented early-classical reverse brings the image total to 17.
 The geographic references bring the source total to 31.
@@ -130,13 +140,25 @@ handoff package, not this later deployment.
 ## Verification
 
 - `npm run build:deploy`: passed locally and on Vercel; output is `dist/`.
-- `npm run check`: 905 checks passed (the total changes with rendered citations).
+- `npm run check`: 995 checks passed (the total changes with rendered citations).
 - `python3 tests/integration_data.py`: 91 checks passed.
 - `python3 tests/editorial_copy.py`: 28 checks passed.
-- Chromium smoke suite: see `research/browser-qa.json` (152 checks; image requests
+- Chromium smoke suite: see `research/browser-qa.json` (188 checks; image requests
   intentionally blocked). Playwright was run from an isolated temporary tooling
   environment, with no dependency added to this project.
-- Current geographic-hierarchy HTTPS preview: see `research/map-hierarchy-qa.json`.
+- Current guided-geography HTTPS preview: see `research/geography-explorer-qa.json`.
+  All 463 checks passed across 320, 390, 768, 1024 and 1440 pixels. Every place
+  supports keyboard or native mobile selection, with one exposed panel and
+  synchronized selection state. All SVG labels fit, area outlines, shading legends,
+  scale bars and context locators are present, source dialogs restore focus, and
+  next-place navigation moves focus to the new heading. Direct Egypt links survive
+  reload; all eight views appear without JavaScript and in print. Hosted HTML
+  matches `dist/index.html` exactly, preview indexing remains restricted, and no
+  page JavaScript errors occurred. Real hero, early-classical reverse and BnF Pi III
+  reverse photographs loaded and were visually inspected. All eight desktop views
+  and the mobile layouts were inspected. Geographic interpretation, provenance and
+  remaining limits are documented separately from these automated checks.
+- Previous geographic-hierarchy HTTPS preview: see `research/map-hierarchy-qa.json`.
   All 73 checks passed, covering the explicit city/region/country explanation,
   Athens marker and mobile key, absence-of-boundaries note, accessible description,
   no-JavaScript text, map connector and marker clearance, and viewport fit at

@@ -44,6 +44,26 @@ with sync_playwright() as p:
     page.locator('#motion-toggle').click()
     check(not page.locator('html').evaluate("e => e.classList.contains('motion-off')"), 'Manual motion re-enabled')
 
+    # Guided geography uses native controls and keeps one complete reading panel visible.
+    for place in DATA['geography']['places']:
+        button = page.locator(f'[data-geography="{place["id"]}"]')
+        button.focus()
+        page.keyboard.press('Enter')
+        check(button.get_attribute('aria-pressed') == 'true', f'Keyboard geographic selection: {place["id"]}')
+        check(page.locator('.geo-place:visible').count() == 1 and page.locator(f'#geography-{place["id"]}').is_visible(), f'Only selected geographic panel exposed: {place["id"]}')
+        check(place['legend'] in page.locator(f'#geography-{place["id"]} .geo-focus figcaption').inner_text(), f'Area shading explained: {place["id"]}')
+    page.locator('#geography-arabia .geo-next').focus()
+    page.keyboard.press('Enter')
+    check(page.locator('#geography-athens-title').evaluate('e=>e===document.activeElement'), 'Next-place navigation returns to Athens and moves focus to the new heading')
+    page.set_viewport_size({'width':390,'height':844})
+    for place in DATA['geography']['places']:
+        page.locator('#geography-select').select_option(place['id'])
+        check(page.locator(f'#geography-{place["id"]}').is_visible(), f'Mobile place selector: {place["id"]}')
+    page.evaluate("location.hash='geography-egypt'")
+    page.wait_for_function("!document.getElementById('geography-egypt').hidden")
+    check(page.locator('#geography-select').input_value() == 'egypt', 'Geographic deep link selects the corresponding place')
+    page.set_viewport_size({'width':1440,'height':1000})
+
     # Native source dialog and focus return.
     citation = page.locator('.object-caption [data-source]').first
     citation.click()
@@ -195,6 +215,8 @@ with sync_playwright() as p:
         page.close()
 
     page = new_page(browser, java_script_enabled=False)
+    check(page.locator('.geo-place:visible').count() == 8, 'All eight geographic views readable without JavaScript')
+    check(not page.locator('.geo-controls').is_visible(), 'Inert geographic controls omitted without JavaScript')
     check(page.locator('h1').is_visible(), 'No-JavaScript story visible')
     check(page.locator('#sources-title').is_visible(), 'No-JavaScript bibliography visible')
     check(page.locator('.family-card').count() == len(DATA['families']), 'No-JavaScript family reference retained')

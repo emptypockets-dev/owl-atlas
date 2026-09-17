@@ -1,0 +1,73 @@
+{
+  "reviewedOn": "2026-09-16",
+  "scope": "Replaces the earlier dot map with eight focused geographic views and contextual locators. Existing historical source and image records remain unchanged.",
+  "mapProvider": "Natural Earth",
+  "license": "Public domain",
+  "licenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+  "datasets": [
+    {
+      "file": "ne_50m_admin_0_countries.geojson",
+      "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_admin_0_countries.geojson",
+      "sha256": "3e458fc036ad0a66411f2c1e6cac49c5d7bfb81cb1123bc513b22511a2b7fdeb",
+      "bytes": 3083490
+    },
+    {
+      "file": "ne_10m_admin_1_states_provinces.geojson",
+      "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_admin_1_states_provinces.geojson",
+      "sha256": "22d0e3ad85eb3e27f17cabf8ba2d50e554fbc27a87796ff891d958185da62fb5",
+      "bytes": 40726851
+    },
+    {
+      "file": "ne_50m_rivers_lake_centerlines.geojson",
+      "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_rivers_lake_centerlines.geojson",
+      "sha256": "f286e0ce978fde999ca2d7a78c764be08542e19b63cded52b05c12d5173ccc51",
+      "bytes": 827318
+    }
+  ],
+  "reproduction": "Download the three original datasets into one directory; verify the checksums above; run python3 scripts/prepare-geography.py --source-dir PATH, then npm run build:deploy. Normal builds use the committed src/geography.json and do not access the network.",
+  "transforms": [
+    "Exterior polygon rings clipped to 5–80°E and 8–49°N; lakes omitted.",
+    "Douglas–Peucker simplification in longitude/latitude: 0.025° for countries, 0.001° for Greek regions, 0.012° for rivers; coordinates rounded to four decimals.",
+    "Selected Natural Earth Greek administrative region Attiki for the Attica locator; modern administrative boundaries are explicitly distinguished from ancient Attica.",
+    "Sicily selected from Italian island polygons in its geographic bounds; Anatolia uses the largest Turkish mainland polygon, excluding European Thrace.",
+    "Egypt follows the modern country outline; Iran and Afghanistan are separate modern country outlines.",
+    "Levant orientation groups modern Syria, Lebanon, Israel, Palestine and Jordan. Arabia groups modern Saudi Arabia, Yemen, Oman, UAE, Qatar, Kuwait and Bahrain. Hatching is an orientation convention, not an ancient border.",
+    "Babylonia is located approximately with the part of modern Iraq south of 33.5°N. This intentionally broad hatching is labeled as a locator, not a reconstruction of historical boundaries.",
+    "Nile, Damietta and Rosetta branches, Tigris and Euphrates taken from modern river geometry; ancient channels are not reconstructed.",
+    "Each SVG uses an equirectangular projection with longitude scaled by the cosine of its centre latitude. North remains up; main scale bars are approximate at the map centre. Locator boxes depict the main viewport extent, including aspect-ratio padding.",
+    "SVG label coordinates are for lettering only. No new coin findspots, inferred routes or exact ancient mint coordinates are drawn."
+  ],
+  "geographicReading": [
+    {
+      "url": "https://www.atticinscriptions.com/",
+      "supports": "Athens and its surrounding region, Attica."
+    },
+    {
+      "url": "https://www.britishmuseum.org/our-work/departments/middle-east",
+      "supports": "Broad modern geographic orientation for the Levant, Anatolia and Arabia."
+    },
+    {
+      "url": "https://archeologie.culture.gouv.fr/babylone/ar/node/35",
+      "supports": "Babylonia in Lower Mesopotamia, southern Iraq; limits are not a simple exact border."
+    }
+  ],
+  "existingHistoricalSources": [
+    "attica",
+    "acropolis",
+    "mines",
+    "owl-hoards",
+    "owl-circulation",
+    "sabakes",
+    "iris-babylon",
+    "isotopes",
+    "met",
+    "cma-classic"
+  ],
+  "limitations": [
+    "Modern geographic outlines orient ancient material; they are not ancient political boundaries.",
+    "Country and regional shading does not mean coins were found everywhere within the shaded area.",
+    "Selected places and periods only; no exhaustive mint, hoard or route inventory.",
+    "Natural Earth is generalized cartographic data; these are educational views, not survey maps.",
+    "Existing six BnF reuse flags and broader coverage gaps remain unchanged."
+  ]
+}

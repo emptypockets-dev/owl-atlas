@@ -82,12 +82,21 @@ representations of unphotographed coin types.
 
 ## Geographic overview
 
-Section 01 uses Natural Earth's 1:110m land geometry, which is in the public
-domain: https://www.naturalearthdata.com/about/terms-of-use/ . The geometry was
-clipped and projected into an inline SVG, with labels added for orientation.
-Modern coastlines do not reconstruct ancient boundaries. No map tiles, external
-scripts or tracking services are loaded. The source URL, checksum, bounds and
-label coordinates are recorded in `research/geography-findings.json`.
+Section 01 uses public-domain Natural Earth data: 1:50m country outlines and
+rivers, and 1:10m Greek administrative regions. Terms:
+https://www.naturalearthdata.com/about/terms-of-use/ . The local derived outlines
+are clipped, simplified and projected into inline SVG views. Region shading is
+an editorial aid, not a reconstruction of ancient political boundaries or river
+channels. Hatching explicitly marks broad regional locators; the Babylonia view
+uses an approximate part of southern Iraq.
+
+Dataset URLs, checksums, transformations, selection rules and geographic references
+are recorded in `research/geography-explorer-findings.json`. The dependency-free
+preprocessing script is `scripts/prepare-geography.py`; ordinary builds use the
+committed derived data in `src/geography.json` without contacting a map provider.
+No map tiles, external scripts, API keys or tracking services are loaded.
+The earlier single-map source record remains in `research/geography-findings.json`
+as research history.
 
 ## Editorial exclusions
 

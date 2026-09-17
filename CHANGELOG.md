@@ -1,3 +1,22 @@
+# Guided geographic explorer — 16 September 2026
+
+- Replace the single numbered-pin map with eight selectable area views. Start
+  inside Attica with Athens marked as a city and Greece shown in a contextual
+  locator, then explore Sicily, Anatolia, Egypt, the Levant, Babylonia, Iran and
+  Afghanistan, and Arabia. Native buttons, a mobile selector and next-place
+  controls support keyboard and touch; every entry remains readable without
+  JavaScript and in print.
+- Use public-domain Natural Earth outlines and rivers, local SVG rendering,
+  approximate scale bars and wider locator maps. Distinguish modern geographic
+  outlines from broadly hatched historical regions; draw no inferred coin routes.
+- Pair each area with its geographic relationship and source-linked coin evidence.
+  Preserve all 31 source records, 17 photograph records, museum dates, credits,
+  image interactions, six BnF review flags and existing section links.
+- No dependencies, framework changes, map services, API keys or tracking added.
+  See `research/geography-explorer-findings.json` for geometry provenance and limits.
+
+---
+
 # Athens, Attica and Greece — 16 September 2026
 
 - Replace the ambiguous slash-separated map heading with an explicit sentence:

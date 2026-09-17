@@ -66,10 +66,12 @@ both belong to the same coin; see `research/early-classical-findings.json`.
 - Inline source dialogs, 31 bibliography records, author/topic filtering, 17
   image records, three structured BnF specimen records, a glossary and a visible
   editorial coverage register.
-- A geographic introduction distinguishes the Athenian mint, circulation and
-  related local issues. It places Athens within Attica in present-day Greece,
-  with a public-domain coastline map and three additional references. The map
-  shows selected regions across time, not every mint or findspot.
+- A guided geographic explorer distinguishes cities, islands, modern countries
+  and historical regions. Eight focused area maps have wider locators, scale bars,
+  source-linked coin evidence, keyboard controls and a mobile selector. Athens is
+  shown within Attica and Greece; other regions are areas rather than numbered pins.
+  All eight entries remain readable without JavaScript and in print. See
+  `research/geography-explorer-findings.json` for data and qualifications.
 
 ## Edit and build
 
@@ -83,7 +85,8 @@ npm run check          # check references, IDs, rendering and JavaScript syntax
 | File | Responsibility |
 | --- | --- |
 | `src/page.html` | Narrative, semantic document structure and build tokens |
-| `src/content.json` | Authoritative sources, image records, families and glossary |
+| `src/content.json` | Authoritative sources, image records, families, glossary and geographic explanations |
+| `src/geography.json` | Derived public-domain geographic outlines used at build time |
 | `src/styles.css` | Design tokens, responsive layouts, motion and print styles |
 | `src/app.js` | Progressive enhancements and native dialog behavior |
 | `src/render.mjs` | Shared escaped markup used by build and browser |
