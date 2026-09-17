@@ -14,6 +14,9 @@ try {
   await writeFile(path.join(stage, 'index.html'), html);
   await copyFile(path.join(root, 'LICENSE'), path.join(stage, 'LICENSE.txt'));
   await copyFile(path.join(root, 'THIRD_PARTY_NOTICES.md'), path.join(stage, 'THIRD_PARTY_NOTICES.txt'));
+  for (const asset of ['favicon.svg', 'robots.txt', 'sitemap.xml']) {
+    await copyFile(path.join(root, 'public', asset), path.join(stage, asset));
+  }
   for (const [id, image] of Object.entries(data.images)) {
     if (!image.localUrl) continue;
     // Only copy the build's explicit image files, never arbitrary source paths.

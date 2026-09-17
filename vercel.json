@@ -4,14 +4,6 @@
   "buildCommand": "npm run build:deploy",
   "outputDirectory": "dist",
   "installCommand": "",
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
-      ]
-    }
-  ],
   "git": {
     "deploymentEnabled": false
   }
