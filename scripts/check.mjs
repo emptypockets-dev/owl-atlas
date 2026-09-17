@@ -57,8 +57,13 @@ function markupGapText() {
 }
 for (const detail of data.anatomy) {
   check(Boolean(data.images[detail.image]), `Unknown anatomy image: ${detail.image}`);
+  check(['obverse', 'reverse'].includes(detail.side), `Unknown anatomy side: ${detail.side}`);
   detail.refs.forEach(id => check(ids.has(id), `Unknown anatomy citation: ${id}`));
   check(detail.x >= 0 && detail.x <= 100 && detail.y >= 0 && detail.y <= 100, 'Invalid anatomy coordinate');
+}
+for (const side of ['obverse', 'reverse']) {
+  const images = new Set(data.anatomy.filter(detail => detail.side === side).map(detail => detail.image));
+  check(images.size === 1, `Anatomy ${side} must use one consistent specimen photograph`);
 }
 for (const [, , refs] of data.glossary) refs.forEach(id => check(ids.has(id), `Unknown glossary source: ${id}`));
 for (const match of template.matchAll(/\{\{CITE:([^}]+)\}\}/g)) match[1].split(',').forEach(id => check(ids.has(id), `Unknown narrative citation: ${id}`));

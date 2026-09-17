@@ -59,7 +59,10 @@ both belong to the same coin; see `research/early-classical-findings.json`.
   404 BCE; fourth-century changes; New Style; regional imitations; and evidence.
 - Scroll reveals, restrained parallax, a chapter indicator and reading progress.
   Scrolling is never hijacked. OS reduced-motion preferences take priority.
-- A six-part coin-detail reader and two-column, eight-family comparison atlas. Pi-style additionally has separate
+- A six-part coin-detail reader with an explicit owl/reverse and Athena/obverse
+  toggle. Each face remembers its selected detail; both faces and every sourced
+  reading remain available without JavaScript and in print.
+- A two-column, eight-family comparison atlas. Pi-style additionally has separate
   Pi II/Pi III specimen selectors, and story links preset meaningful comparisons.
 - A native-dialog image viewer with source/rights metadata, fitted-size zoom,
   keyboard controls, drag and pinch handlers, and original-image links.

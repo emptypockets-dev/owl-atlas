@@ -340,27 +340,41 @@ document.addEventListener('click', (event) => {
   }
 });
 
-// Anatomy: buttons, descriptions and markers all refer to the same data record.
-const anatomyButtons = document.querySelectorAll('[data-detail]');
-const anatomyMarker = byId('anatomy-marker');
-// Anchor percentages to the photograph itself, never the credit beneath it.
-byId('anatomy-photo').querySelector('.image-surface').append(anatomyMarker);
-anatomyButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    const index = data.anatomy.findIndex((detail) => detail.id === button.dataset.detail);
+// Each face retains its selected detail. Both complete readings exist without JS.
+const anatomyPanels = document.querySelectorAll('[data-anatomy-side]');
+const anatomyFaces = document.querySelectorAll('input[name="anatomy-side"]');
+anatomyPanels.forEach((panel) => {
+  const buttons = panel.querySelectorAll('[data-detail]');
+  const marker = panel.querySelector('.anatomy-marker');
+  // Anchor percentages to the photograph itself, never its label or credit.
+  panel.querySelector('.image-surface').append(marker);
+  function selectDetail(button) {
+    const index = data.anatomy.findIndex(detail => detail.id === button.dataset.detail);
     const detail = data.anatomy[index];
-    if (!detail) return;
-    anatomyButtons.forEach((other) => other.setAttribute('aria-pressed', String(other === button)));
-    byId('anatomy-photo').innerHTML = photoMarkup(detail.image, data, 'anatomy-image', undefined, true);
-    const marker = anatomyMarker;
-    byId('anatomy-photo').querySelector('.image-surface').append(marker);
+    buttons.forEach(other => other.setAttribute('aria-pressed', String(other === button)));
+    panel.querySelectorAll('.anatomy-reading').forEach(reading => {
+      reading.hidden = reading.id !== button.getAttribute('aria-controls');
+    });
     marker.style.setProperty('--x', `${detail.x}%`);
     marker.style.setProperty('--y', `${detail.y}%`);
     marker.textContent = String(index + 1);
-    byId('anatomy-text').innerHTML = `<span class="eyebrow">${String(index + 1).padStart(2, '0')} / ${escapeHtml(detail.side)}</span><h4>${escapeHtml(detail.title)}</h4><p>${escapeHtml(detail.text)} ${sourceRefs(detail.refs, data)}</p>`;
-    watchImages(byId('anatomy-photo'));
-  });
+  }
+  selectDetail(buttons[0]);
+  panel.querySelector('.anatomy-text').setAttribute('aria-live', 'polite');
+  panel.querySelector('.anatomy-text').setAttribute('aria-atomic', 'true');
+  panel.querySelector('.detail-buttons').hidden = false;
+  marker.hidden = false;
+  buttons.forEach(button => button.addEventListener('click', () => selectDetail(button)));
 });
+function selectAnatomyFace() {
+  const side = document.querySelector('input[name="anatomy-side"]:checked').value;
+  anatomyPanels.forEach(panel => {
+    panel.hidden = panel.dataset.anatomySide !== side;
+  });
+}
+anatomyFaces.forEach(input => input.addEventListener('change', selectAnatomyFace));
+selectAnatomyFace();
+document.querySelector('.anatomy-faces').hidden = false;
 
 // Comparison keeps family chronology distinct from each museum specimen's label.
 function syncSpecimenOptions(position) {

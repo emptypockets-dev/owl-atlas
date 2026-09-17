@@ -319,38 +319,15 @@
        </h3>
       </div>
       <p>
-       Select a detail. Then open the photograph to inspect the real surface.
+       Choose the owl or Athena, then select a detail. Open either photograph to inspect the real surface.
       </p>
      </div>
-     <div class="anatomy-layout">
-      <div class="anatomy-photo-wrap">
-       <div id="anatomy-photo">
-        {{PHOTO:classic-owl:anatomy-image}}
-       </div>
-       <span aria-hidden="true" class="anatomy-marker" id="anatomy-marker" style="--x:84%;--y:52%">
-        1
-       </span>
-      </div>
-      <div class="anatomy-controls">
-       <div aria-label="Choose a coin detail" class="detail-buttons">
-        {{ANATOMY_BUTTONS}}
-       </div>
-       <div aria-live="polite" class="anatomy-text" id="anatomy-text">
-        <span class="eyebrow">
-         01 / THE ETHNIC
-        </span>
-        <h4>
-         Three letters. A civic signature.
-        </h4>
-        <p>
-         ΑΘΕ abbreviates “of the Athenians.” The letters are alpha, theta and epsilon. {{CITE:acropolis}}
-        </p>
-       </div>
-       <p class="micro-copy">
-        Markers identify approximate areas, not measured die features.
-       </p>
-      </div>
-     </div>
+     <fieldset class="segmented anatomy-faces" hidden>
+      <legend class="sr-only">Choose a coin face for the close reading</legend>
+      <label><input checked name="anatomy-side" type="radio" value="reverse" aria-controls="anatomy-reverse"/><span>Owl / reverse</span></label>
+      <label><input name="anatomy-side" type="radio" value="obverse" aria-controls="anatomy-obverse"/><span>Athena / obverse</span></label>
+     </fieldset>
+     {{ANATOMY}}
     </div>
    </section>
    <section aria-labelledby="crisis-title" class="crisis section-ink" data-chapter="04 / War and its aftermath" id="404">

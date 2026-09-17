@@ -1151,6 +1151,34 @@ img {
   align-items:center
 }
 
+.segmented.anatomy-faces {
+  width:max-content;
+  max-width:100%;
+  margin-bottom:28px
+}
+
+.anatomy-faces span {
+  min-height:48px;
+  display:flex;
+  align-items:center
+}
+
+.anatomy-layout+.anatomy-layout:not([hidden]) {
+  margin-top:45px
+}
+
+.anatomy-faces:not([hidden])~.anatomy-layout {
+  margin-top:0
+}
+
+.anatomy-reading+.anatomy-reading:not([hidden]) {
+  margin-top:28px
+}
+
+.detail-buttons:not([hidden])+.anatomy-text .anatomy-reading {
+  margin-top:0
+}
+
 .anatomy-photo-wrap {
   position:relative;
   max-width:600px
@@ -3046,7 +3074,7 @@ dialog::backdrop {
     margin:auto
   }
   .detail-buttons {
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(2,1fr);
     gap:6px;
     margin-bottom:24px
   }
@@ -3909,6 +3937,10 @@ html.motion-off .supplement-summary-meta>span { transition:none; }
   .geo-credit { padding:17px; }
 }
 @media print {
+  .anatomy-faces,.anatomy-marker { display:none!important; }
+  .anatomy-layout[hidden] { display:grid!important; }
+  .anatomy-reading[hidden] { display:block!important; }
+  .anatomy-layout+.anatomy-layout,.anatomy-reading+.anatomy-reading { margin-top:28px!important; }
   .geo-controls,.geo-next { display:none!important; }
   .geo-place[hidden] { display:block!important; }
   .geo-place { break-inside:avoid; border-top:1px solid var(--line)!important; }

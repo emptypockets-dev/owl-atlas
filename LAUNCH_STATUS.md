@@ -5,7 +5,7 @@ The existing research edition is deployed to the verified personal Vercel accoun
 authenticated Vercel access while the six BnF image reuse decisions are unresolved.
 The account's existing Pro plan was retained; no plan upgrade or paid add-on was added.
 
-- Current preview: https://owl-atlas-gc7m58c4w-emptypocketsdevs-projects.vercel.app
+- Current preview: https://owl-atlas-6mx0gdbfd-emptypocketsdevs-projects.vercel.app
 - Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
 - Public source repository: https://github.com/emptypockets-dev/owl-atlas
 
@@ -128,6 +128,12 @@ settings and credentials are ignored by Git.
   mobile selection; all entries remain readable without JavaScript and in print.
   See `research/geography-explorer-findings.json` for data provenance.
 
+- Added an explicit owl/reverse and Athena/obverse toggle to the close reading.
+  Each face has its own detail controls, photograph and remembered selection.
+  All six existing sourced readings remain; both faces and all explanations are
+  available without JavaScript and in print. The eye marker now points to the
+  visible eye on Cleveland 1941.296.a. Credits and original-image links are intact.
+
 The broader editorial design and existing photograph interactions are preserved.
 `src/app.js` now also enhances the pre-rendered geography views; the page, styles
 and renderer include the requested family-tree, geographic and story-flow updates. The original 28 sources, 16 image records, three BnF
@@ -140,13 +146,22 @@ handoff package, not this later deployment.
 ## Verification
 
 - `npm run build:deploy`: passed locally and on Vercel; output is `dist/`.
-- `npm run check`: 995 checks passed (the total changes with rendered citations).
+- `npm run check`: 1008 checks passed (the total changes with rendered citations).
 - `python3 tests/integration_data.py`: 91 checks passed.
 - `python3 tests/editorial_copy.py`: 28 checks passed.
-- Chromium smoke suite: see `research/browser-qa.json` (188 checks; image requests
+- Chromium smoke suite: see `research/browser-qa.json` (213 checks; image requests
   intentionally blocked). Playwright was run from an isolated temporary tooling
   environment, with no dependency added to this project.
-- Current guided-geography HTTPS preview: see `research/geography-explorer-qa.json`.
+- Current close-reading HTTPS preview: see `research/anatomy-faces-qa.json`.
+  All 245 checks passed across 320, 390, 768, 1024 and 1440 pixels. Both actual
+  Cleveland photographs loaded, including the exact recorded viewer dimensions
+  and URLs. Keyboard face switching, remembered detail selection, markers,
+  citations, zoom, Escape and focus return passed. Both faces and all readings
+  remain available without JavaScript and in print, and no horizontal overflow
+  or page JavaScript errors occurred. Hosted HTML exactly matches `dist/index.html`
+  and retains the preview indexing restriction. Desktop and mobile photographs
+  and detail-marker positions were visually inspected on the hosted preview.
+- Previous guided-geography HTTPS preview: see `research/geography-explorer-qa.json`.
   All 463 checks passed across 320, 390, 768, 1024 and 1440 pixels. Every place
   supports keyboard or native mobile selection, with one exposed panel and
   synchronized selection state. All SVG labels fit, area outlines, shading legends,

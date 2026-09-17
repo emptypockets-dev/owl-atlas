@@ -1,3 +1,16 @@
+# Two-face close reading — 16 September 2026
+
+- Add a native radio toggle between the owl/reverse and Athena/obverse in the
+  interactive close reading. Each face has its own detail buttons, photograph,
+  numbered marker and sourced explanation, and remembers its selected detail.
+- Retain the existing six readings and Cleveland 1941.296.a/b photographs,
+  original-image viewer, credits, citations and motion preferences. Move the eye
+  marker onto Athena's visible eye after inspecting the real obverse photograph.
+- Render both faces and all six explanations at build time for no-JavaScript
+  reading and printing. Hide interactive controls when JavaScript is unavailable.
+
+---
+
 # Guided geographic explorer — 16 September 2026
 
 - Replace the single numbered-pin map with eight selectable area views. Start

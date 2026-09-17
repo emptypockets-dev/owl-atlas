@@ -1,7 +1,7 @@
 import {readFile, writeFile, mkdir, access} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup, familyFacesMarkup, geographyMarkup} from './src/render.mjs';
+import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup, familyFacesMarkup, anatomyMarkup, geographyMarkup} from './src/render.mjs';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const read = (relative) => readFile(path.join(root, relative), 'utf8');
@@ -37,7 +37,7 @@ const replacements = {
   GEOGRAPHY: geographyMarkup(data, geography),
   SOURCE_COUNT: data.sources.length,
   IMAGE_COUNT: Object.keys(data.images).length,
-  ANATOMY_BUTTONS: data.anatomy.map((detail,index) => `<button type="button" data-detail="${detail.id}" aria-pressed="${index === 0}" aria-controls="anatomy-text"><span>${String(index + 1).padStart(2,'0')}</span>${escapeHtml(detail.name)}</button>`).join(''),
+  ANATOMY: anatomyMarkup(data),
   COMPARE_LEFT: options('classical'),
   COMPARE_RIGHT: options('new'),
   COMPARE_PANEL_LEFT: comparisonMarkup('classical','reverse',data),

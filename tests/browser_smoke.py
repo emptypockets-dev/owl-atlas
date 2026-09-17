@@ -86,10 +86,27 @@ with sync_playwright() as p:
     check(image_link.evaluate('e=>document.activeElement===e'), 'Image-dialog focus restored')
 
     # All anatomy views and both faces of every family comparison.
+    check(page.locator('#anatomy-reverse').is_visible() and not page.locator('#anatomy-obverse').is_visible(), 'Close reading starts on the owl reverse')
     for detail in DATA['anatomy']:
-        page.locator(f'[data-detail="{detail["id"]}"]').click()
-        check(page.locator(f'[data-detail="{detail["id"]}"]').get_attribute('aria-pressed') == 'true', f'Anatomy selection: {detail["id"]}')
-        check(page.locator('#anatomy-text h4').inner_text() == detail['title'], f'Anatomy text: {detail["id"]}')
+        page.locator(f'input[name="anatomy-side"][value="{detail["side"]}"]').check()
+        button = page.locator(f'[data-detail="{detail["id"]}"]')
+        button.focus()
+        page.keyboard.press('Enter')
+        panel = page.locator(f'#anatomy-{detail["side"]}')
+        check(button.get_attribute('aria-pressed') == 'true', f'Anatomy keyboard selection: {detail["id"]}')
+        check(panel.locator('.anatomy-reading:visible h4').inner_text() == detail['title'], f'Anatomy text: {detail["id"]}')
+        check(page.locator('[data-anatomy-side]:visible').count() == 1 and panel.locator('[data-detail][aria-pressed="true"]').count() == 1, f'One active face and detail: {detail["id"]}')
+        check(panel.locator('[data-image]').get_attribute('data-image') == detail['image'], f'Correct photograph and viewer link: {detail["id"]}')
+        check(panel.locator('.anatomy-marker').inner_text() == str(DATA['anatomy'].index(detail) + 1), f'Marker agrees with selected detail: {detail["id"]}')
+    face = page.locator('input[name="anatomy-side"][value="obverse"]')
+    face.focus()
+    page.keyboard.press('ArrowLeft')
+    check(page.locator('#anatomy-reverse').is_visible() and page.locator('[data-detail="square"]').get_attribute('aria-pressed') == 'true', 'Keyboard face toggle remembers reverse detail')
+    page.keyboard.press('ArrowRight')
+    check(page.locator('#anatomy-obverse').is_visible() and page.locator('[data-detail="helmet"]').get_attribute('aria-pressed') == 'true', 'Keyboard face toggle remembers obverse detail')
+    page.emulate_media(media='print')
+    check(page.locator('[data-anatomy-side]:visible').count() == 2 and page.locator('.anatomy-reading:visible').count() == 6, 'Both faces and all readings available in print')
+    page.emulate_media(media='screen')
     for side in ['obverse', 'reverse']:
         page.locator(f'input[name="compare-side"][value="{side}"]').check()
         for family in DATA['families']:
@@ -215,6 +232,9 @@ with sync_playwright() as p:
         page.close()
 
     page = new_page(browser, java_script_enabled=False)
+    check(page.locator('[data-anatomy-side]:visible').count() == 2, 'Both close-reading faces available without JavaScript')
+    check(page.locator('.anatomy-reading:visible').count() == len(DATA['anatomy']), 'All sourced close readings available without JavaScript')
+    check(not page.locator('.anatomy-faces').is_visible() and page.locator('#anatomy [data-detail]:visible').count() == 0, 'Inert anatomy controls omitted without JavaScript')
     check(page.locator('.geo-place:visible').count() == 8, 'All eight geographic views readable without JavaScript')
     check(not page.locator('.geo-controls').is_visible(), 'Inert geographic controls omitted without JavaScript')
     check(page.locator('h1').is_visible(), 'No-JavaScript story visible')
