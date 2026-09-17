@@ -289,6 +289,15 @@ img {
   line-height:1
 }
 
+/* The logo echoes the coin's dotted theta; prose retains the printed Θ. */
+.logo-theta {
+  display:inline-block;
+  width:.75em;
+  height:.75em;
+  vertical-align:-.025em;
+  overflow:visible
+}
+
 .wordmark .ethnic {
   border-right:1px solid var(--line-dark);
   padding-right:15px

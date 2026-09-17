@@ -49,7 +49,7 @@ for fid in ['pi','late-old']:
     family = next(item for item in data['families'] if item['id'] == fid)
     check(bool(family['obverse'] and family['reverse']), f'{fid}: both formerly missing sides integrated')
 check(len(data['images']) == 17, 'Original 16 images plus the documented early-classical reverse')
-check(len(data['sources']) == 40, '40 source records, including eight market references')
+check(len(data['sources']) == 41, '41 source records, including eight market references and the theta letterform reference')
 check(len(data['specimens']) == 3, 'Three BnF specimen records')
 check(not any(i['url'] == research['additional_catalogue_lead']['image_url'] for i in data['images'].values()), 'Low-resolution heterogeneous preview not substituted')
 

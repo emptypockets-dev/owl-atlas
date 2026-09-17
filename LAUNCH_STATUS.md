@@ -11,9 +11,9 @@ rights clearance; the six flags remain. See
 [research/publication-decision.md](research/publication-decision.md).
 
 - Public site: https://theowlatlas.com/
-- Production deployment: https://owl-atlas-gkcj76ktc-emptypocketsdevs-projects.vercel.app
-- Pricing preview: https://owl-atlas-ee4hvaen6-emptypocketsdevs-projects.vercel.app/pricing/
-- Previous production / rollback source: https://owl-atlas-3ivm596m4-emptypocketsdevs-projects.vercel.app
+- Production deployment: https://owl-atlas-bgk4jqwz8-emptypocketsdevs-projects.vercel.app
+- Latest preview: https://owl-atlas-9k86tdrh4-emptypocketsdevs-projects.vercel.app/#anatomy
+- Previous production / rollback source: https://owl-atlas-gkcj76ktc-emptypocketsdevs-projects.vercel.app
 - Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
 - Public source repository: https://github.com/emptypockets-dev/owl-atlas
 
@@ -21,6 +21,28 @@ Vercel Standard Protection keeps generated deployment URLs and previews behind
 Vercel authentication; the production domain is public. The existing Pro plan
 was retained, with no plan upgrade or paid add-on. The domain was purchased
 separately by the owner.
+
+## Dotted theta — 17 September 2026
+
+The header and footer logos now use a drawn circle with a central dot for theta,
+on both the main story and pricing page. Standard ΑΘΕ remains in prose and
+close-reading controls. The identity detail includes the owner's approved
+explanation of the coin's dotted theta and the printed Θ. A new Open University
+reference supports the ancient letterform; all 40 earlier sources retain their
+numbers, bringing the bibliography to 41. Images and rights notices are unchanged.
+
+`npm run build:deploy` passed and Vercel published only `dist/` to the existing
+personal project. **2,041 local checks passed**: 1,709 structural/rendering,
+91 data consistency, 28 editorial and 213 Chromium smoke checks. The authenticated
+HTTPS preview was visually inspected with the real owl photograph. **40 hosted
+checks passed** on the public domain: exact output matching for both pages,
+header/footer logos, desktop and narrow mobile layouts, keyboard source-dialog
+use and focus return, the exact approved copy, both real close-reading coin faces
+and their original viewers, and no-JavaScript reading. See
+`research/theta-update-qa.json`. Desktop and mobile screenshots were reviewed.
+This is targeted verification, not new cross-browser or accessibility certification.
+No new publication decision is pending; the six existing BnF reuse-review notices
+and the owner's earlier decision remain in effect.
 
 ## Pricing page split — 17 September 2026
 

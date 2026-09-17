@@ -442,6 +442,17 @@
       "scope": "7 June 2026: NGC Choice VF star, full crest, brushed; reported realized price $3,416 including 22% premium. A specific example, not a fixed premium for the crest.",
       "note": "Market research snapshot checked 17 September 2026. Small, selected samples do not establish an appraisal or a market-wide price index. Individual sale records and qualifications are retained in the pricing ledger.",
       "accessed": "2026-09-17"
+    },
+    {
+      "id": "openlearn-theta",
+      "title": "Getting started on ancient Greek: 9.1 Athens",
+      "author": "The Open University · OpenLearn",
+      "year": "Course resource",
+      "url": "https://www.open.edu/openlearn/mod/oucontent/view.php?id=114240&section=9.1",
+      "kind": "Scholarly resource",
+      "scope": "Ancient Athenian theta letterforms, including the circle with a central dot.",
+      "note": "Activity 14 compares dotted and crossed theta on Themistocles ostraka. These are examples of Athenian writing, not a catalogue or dating source for the illustrated coin.",
+      "accessed": "2026-09-17"
     }
   ],
   "images": {
@@ -955,9 +966,10 @@
       "x": 84,
       "y": 52,
       "title": "Three letters. A civic signature.",
-      "text": "ΑΘΕ abbreviates “of the Athenians.” The letters are alpha, theta and epsilon.",
+      "text": "ΑΘΕ abbreviates “of the Athenians.” The letters are alpha, theta and epsilon. On this coin, theta is a circle with a central dot—the ancient counterpart of the printed Θ.",
       "refs": [
-        "acropolis"
+        "acropolis",
+        "openlearn-theta"
       ]
     },
     {

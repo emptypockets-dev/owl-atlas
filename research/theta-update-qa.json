@@ -1,0 +1,90 @@
+{
+  "checkedAt": "2026-09-17T12:39:26.251015+00:00",
+  "result": "pass",
+  "url": "https://theowlatlas.com",
+  "previewUrl": "https://owl-atlas-9k86tdrh4-emptypocketsdevs-projects.vercel.app/#anatomy",
+  "hostedChecks": 40,
+  "items": [
+    "Anonymous HTTPS access: /#anatomy",
+    "Hosted output exactly matches dist: /#anatomy",
+    "Dotted theta in header and footer: /#anatomy",
+    "Accessible wordmark name preserved: /#anatomy",
+    "Single primary heading: /#anatomy",
+    "No horizontal overflow at 1440: /#anatomy",
+    "Header theta visible at 1440: /#anatomy",
+    "No horizontal overflow at 390: /#anatomy",
+    "Header theta visible at 390: /#anatomy",
+    "No horizontal overflow at 320: /#anatomy",
+    "Header theta visible at 320: /#anatomy",
+    "Anonymous HTTPS access: /pricing/",
+    "Hosted output exactly matches dist: /pricing/",
+    "Dotted theta in header and footer: /pricing/",
+    "Accessible wordmark name preserved: /pricing/",
+    "Single primary heading: /pricing/",
+    "No horizontal overflow at 1440: /pricing/",
+    "Header theta visible at 1440: /pricing/",
+    "No horizontal overflow at 390: /pricing/",
+    "Header theta visible at 390: /pricing/",
+    "No horizontal overflow at 320: /pricing/",
+    "Header theta visible at 320: /pricing/",
+    "Exact approved close-reading copy is live",
+    "Close-reading label retains standard Greek ΑΘΕ",
+    "New reference opens with keyboard",
+    "New source credit is visible",
+    "Source dialog restores focus",
+    "reverse real photograph loads from its recorded URL",
+    "reverse photograph credit is present",
+    "reverse original photograph loads in viewer",
+    "reverse viewer restores focus",
+    "obverse real photograph loads from its recorded URL",
+    "obverse photograph credit is present",
+    "obverse original photograph loads in viewer",
+    "obverse viewer restores focus",
+    "Expanded reading fits on mobile with real photograph",
+    "Expanded explanation readable without JavaScript",
+    "Logo works without JavaScript",
+    "New citation has a no-JavaScript bibliography destination",
+    "No uncaught JavaScript errors"
+  ],
+  "photographs": [
+    {
+      "id": "classic-owl",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Owl_%28reverse%29_-_1941.296.b_-_Cleveland_Museum_of_Art.jpg",
+        "width": 2634,
+        "height": 2736
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Owl_%28reverse%29_-_1941.296.b_-_Cleveland_Museum_of_Art.jpg",
+        "width": 2634,
+        "height": 2736
+      }
+    },
+    {
+      "id": "classic-athena",
+      "page": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Head_of_Athena_%28obverse%29_-_1941.296.a_-_Cleveland_Museum_of_Art.tif/lossy-page1-1920px-Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Head_of_Athena_%28obverse%29_-_1941.296.a_-_Cleveland_Museum_of_Art.tif.jpg",
+        "width": 1920,
+        "height": 1973
+      },
+      "original": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Head_of_Athena_%28obverse%29_-_1941.296.a_-_Cleveland_Museum_of_Art.tif/lossy-page1-1920px-Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Head_of_Athena_%28obverse%29_-_1941.296.a_-_Cleveland_Museum_of_Art.tif.jpg",
+        "width": 1920,
+        "height": 1973
+      }
+    }
+  ],
+  "localChecks": {
+    "structural": 1709,
+    "data": 91,
+    "editorial": 28,
+    "browser": 213
+  },
+  "htmlSha256": "bc65b2108e7d7e201b34c481d92649ee2966d86c4c5f70e283180b2ab91abd59",
+  "previewReview": "Authenticated HTTPS preview opened in the in-app browser; real owl photograph and dotted header logo visually inspected.",
+  "limitations": [
+    "Chromium plus in-app browser; no new Safari, Firefox or screen-reader certification.",
+    "Targeted hosted photography check covers both close-reading faces; other photographs unchanged.",
+    "Existing six BnF reuse-review notices and owner publication decision remain unchanged."
+  ]
+}
