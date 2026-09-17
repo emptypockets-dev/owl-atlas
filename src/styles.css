@@ -4583,3 +4583,30 @@ html:not(.has-js) .journey-hero { padding-top:30px; }
  .journey-photo-record { break-inside:avoid; }
  .journey-generation-marks span { border-color:#333; }
 }
+
+/* A visibly bounded fictional interlude, followed by sourced collecting history. */
+.journey-fiction { background:var(--paper-deep); border-block:1px solid var(--line); }
+.journey-fiction .journey-heading { border-top:3px solid var(--muted-light); padding-top:24px; }
+.journey-fiction .journey-side-note { color:var(--ink); font-size:var(--type-small); }
+.journey-scenes { list-style:none; padding:0; margin:0; }
+.journey-scenes>li+li { border-top:1px solid var(--line); padding-top:35px; margin-top:38px; }
+.journey-scenes h3 { font-size:clamp(1.875rem,2.5vw,2.5rem); line-height:1.15; margin:17px 0 24px; }
+.journey-scenes .journey-copy p { font:1.25rem/1.75 var(--serif); letter-spacing:0; }
+.journey-scenes .journey-copy p+p { margin-top:1em; }
+.journey-fiction-coda { border-top:1px solid var(--line); padding-top:30px; margin-top:50px; }
+.journey-fiction-coda p { font:1.625rem/1.5 var(--serif); max-width:760px; margin-top:16px; }
+.journey-collecting .journey-question { margin-bottom:38px; }
+.journey-collecting h3 { margin-top:20px; }
+.journey-collecting h3 em { color:var(--muted-light); }
+.journey-collectors { list-style:none; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:35px; padding:0; margin:0 0 30px; }
+.journey-collectors>li { border-top:1px solid var(--line); padding-top:24px; min-width:0; }
+.journey-collectors h4 { font:1.75rem/1.2 var(--serif); letter-spacing:-.025em; margin:18px 0; overflow-wrap:anywhere; }
+.journey-collectors p { font-size:var(--type-body); line-height:1.85; }
+@media (max-width:900px) {
+ .journey-collectors { grid-template-columns:minmax(0,1fr); gap:28px; }
+ .journey-collectors>li { max-width:700px; }
+}
+@media print {
+ .journey-fiction .journey-heading { position:static; }
+ .journey-scenes>li,.journey-collectors>li { break-inside:avoid; }
+}

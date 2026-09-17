@@ -40,7 +40,11 @@
     "journey-gc-2024",
     "journey-hoard",
     "journey-conservation",
-    "journey-suetonius"
+    "journey-suetonius",
+    "journey-beni-hasan",
+    "journey-collecting",
+    "journey-petrarch",
+    "journey-royal-cabinet"
   ],
   "sources": [
     {
@@ -107,6 +111,50 @@
       "scope": "Describes Augustus giving old royal coins and foreign money as festive gifts. Supports interest in older or unusual coins in antiquity.",
       "note": "Does not establish an ancient collector’s involvement in this owl’s survival or an organized modern-style collecting tradition. Translation published in 1913.",
       "year": "Early second century CE; translation 1913",
+      "accessed": "2026-09-17"
+    },
+    {
+      "id": "journey-beni-hasan",
+      "title": "The Beni Hasan Coin-Hoard",
+      "author": "J. Grafton Milne",
+      "url": "https://www.jstor.org/stable/3854598",
+      "kind": "Published hoard study",
+      "scope": "Journal of Egyptian Archaeology 19 (1933), pp. 119–121. Describes 54 Athenian-type tetradrachms as exceptionally preserved and apparently uncirculated.",
+      "note": "The opening primary text was checked in an indexed scan; the complete page image could not be retrieved. Historical condition language is not a modern grade. The article considers an Egyptian origin for these pieces; they are not identified as the featured coin or its hoard.",
+      "year": "1933",
+      "accessed": "2026-09-17"
+    },
+    {
+      "id": "journey-collecting",
+      "title": "Collecting Money · The Value of Money",
+      "author": "Smithsonian National Museum of American History",
+      "url": "https://americanhistory.si.edu/explore/exhibitions/value-money/online/allure-money/collecting-money",
+      "kind": "Museum history of collecting",
+      "scope": "Places the recognizable collecting hobby in the Renaissance and notes possible ancient Roman precedents.",
+      "note": "Ancient appreciation and the later organized hobby are distinct. The exhibit does not establish a unique first collector or this specimen’s ownership.",
+      "year": "Undated exhibition",
+      "accessed": "2026-09-17"
+    },
+    {
+      "id": "journey-petrarch",
+      "title": "His Audience with the Emperor · Familiar Letters XIX.3",
+      "author": "Francesco Petrarch; translation edited by James Harvey Robinson and Henry Winchester Rolfe",
+      "url": "https://www.gutenberg.org/files/48776/48776-h/48776-h.htm",
+      "kind": "Historical letter in translation",
+      "scope": "Petrarch recounts giving treasured ancient Roman gold and silver coins to Charles IV as examples of rulers to emulate. See pp. 370–376, especially 371–372.",
+      "note": "The page uses a broad fourteenth-century date to distinguish the 1354 encounter from the 1355 letter. These Roman coins are not the Athenian owl pictured here. No claim that Petrarch was the first collector.",
+      "year": "Fourteenth-century letter; 1914 translation edition",
+      "accessed": "2026-09-17"
+    },
+    {
+      "id": "journey-royal-cabinet",
+      "title": "History of the Department of Coins, Medals and Antiques",
+      "author": "Bibliothèque nationale de France",
+      "url": "https://www.bnf.fr/fr/departement-monnaies-medailles-antiques",
+      "kind": "Institutional collection history",
+      "scope": "Describes Louis XIV expanding the royal Cabinet and moving it to Versailles so he could spend time with it daily; the collection is ancestral to the BnF department.",
+      "note": "The Cabinet contained antiquities as well as coins. This institutional history supports the royal-collector setting, not any royal ownership of NGC 2086328-049.",
+      "year": "Undated institutional history",
       "accessed": "2026-09-17"
     }
   ],
@@ -195,5 +243,28 @@
       "sha256": "71db37d43503a3a2d5a0d93a4e42cf358e8d54c58244edb609c98c60f9230aa2",
       "side": "reverse"
     }
+  },
+  "fiction": {
+    "sectionId": "an-imagined-life",
+    "title": "The gift that waited.",
+    "status": "Explicitly labeled historical fiction, requested by the owner. Not specimen provenance.",
+    "inventedElements": [
+      "people",
+      "dialogue",
+      "gift",
+      "hiding place",
+      "rediscovery",
+      "royal collection"
+    ],
+    "basisSourceIds": [
+      "journey-beni-hasan",
+      "journey-hoard",
+      "journey-conservation",
+      "journey-suetonius",
+      "journey-collecting",
+      "journey-petrarch",
+      "journey-royal-cabinet"
+    ],
+    "limits": "No most/usually claim about high-grade survival rates. No named historical collector is connected to this specimen. The long pause and later collecting are one imagined possibility."
   }
 }

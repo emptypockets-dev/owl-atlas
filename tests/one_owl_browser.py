@@ -29,7 +29,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / 'dist'
 HTML = (DIST / 'one-owl/index.html').read_text()
 PHOTO_IDS = ('owner-athena', 'owner-owl', 'owner-holder-obverse', 'owner-holder-reverse')
-CHAPTER_IDS = ('top', 'mint-state', 'generations', 'survival', 'record', 'photographs', 'sources')
+CHAPTER_IDS = ('top', 'mint-state', 'an-imagined-life', 'generations', 'survival', 'collecting-history', 'record', 'photographs', 'sources')
 WIDTHS = (1440, 768, 390, 320)
 OUTPUT = Path('/private/tmp') if Path('/private/tmp').exists() else Path(tempfile.gettempdir())
 checks, failures, errors = [], [], []
@@ -131,6 +131,8 @@ try:
         page = load(browser)
         check(page.locator('h1').count() == 1, 'Companion has one main heading')
         check(page.locator('main').count() == 1, 'Companion has one main landmark')
+        check(page.locator('#fiction-boundary').is_visible(), 'Fiction explanation is visible without expanding a disclosure')
+        check(page.locator('#an-imagined-life').get_attribute('aria-describedby') == 'fiction-boundary', 'Fiction region has an accessible context description')
         for fragment in CHAPTER_IDS:
             check(page.locator(f'#{fragment}').count() == 1, f'Unique chapter target: #{fragment}')
         levels = page.locator('main h1,main h2,main h3,main h4').evaluate_all(
@@ -228,9 +230,15 @@ try:
             anchor_clearance(page, 'generations', f'{label} / enlarged text / #generations')
             page.evaluate("document.documentElement.style.fontSize=''")
             if width in (1440, 390):
+                page.evaluate('document.activeElement?.blur()')
                 page.evaluate('scrollTo(0,0)')
                 page.screenshot(path=str(OUTPUT / f'owl-one-owl-hero-{width}.png'))
                 page.locator('#generations').screenshot(path=str(OUTPUT / f'owl-one-owl-generations-{width}.png'))
+                # A tall element screenshot can place fixed navigation halfway
+                # through the image. Capture the actual reading viewport instead.
+                for fragment, name in (('an-imagined-life', 'fiction'), ('collecting-history', 'collecting')):
+                    page.evaluate('(id)=>document.getElementById(id).scrollIntoView({block:"start",behavior:"instant"})', fragment)
+                    page.screenshot(path=str(OUTPUT / f'owl-one-owl-{name}-{width}.png'))
 
         motion_page = load(browser, motion='no-preference')
         initial_motion = motion_page.locator('html').evaluate('e=>e.classList.contains("motion-off")')
@@ -243,6 +251,7 @@ try:
         check(nojs.locator('h1').count() == 1, 'No-JavaScript story has its main heading')
         check(nojs.locator('.journey-copy:visible').count() > 0, 'No-JavaScript narrative is visible')
         check(nojs.locator('.source-entry:visible').count() > 0, 'No-JavaScript bibliography is visible')
+        check(nojs.locator('#fiction-boundary').is_visible() and nojs.locator('.journey-scenes>li').count() == 4, 'All four fictional scenes and their context remain readable without JavaScript')
         for photo_id in PHOTO_IDS[:2]:
             check(nojs.locator(f'[data-photo="{photo_id}"]').is_visible(), f'No-JavaScript {photo_id}: coin face remains visible')
         nojs.locator('#photographs > summary').focus()
@@ -271,7 +280,7 @@ try:
         check(home.locator('h1').count() == 1 and home.locator('#record').count() == 1, 'Main story link opens the complete companion page')
         response = page.request.get(BASE + '/one-owl')
         check(response.status == 200 and response.url.endswith('/one-owl/'), 'URL without trailing slash reaches the companion page')
-        for fragment in ('generations', 'record', 'photographs'):
+        for fragment in ('an-imagined-life', 'collecting-history', 'generations', 'record', 'photographs'):
             deep = load(browser, width=390, path=f'/one-owl/#{fragment}')
             check(deep.locator(f'#{fragment}').is_visible(), f'Hosted-style deep link works: #{fragment}')
             deep.close()

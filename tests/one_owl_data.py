@@ -149,8 +149,19 @@ check(bool(marks) and len(re.findall(r'<span\b', marks[1])) == 100
       and marks[1].count('class="range-end"') == 20,
       'Generation illustration shows 80 solid marks and 20 range marks')
 
-check(len(journey['sources']) == 6 and len(journey['sourceIds']) == 8,
-      'Six specimen/context sources and two existing atlas references are retained')
+original_sources = {'journey-ngc','journey-gc-2022','journey-gc-2024','journey-hoard','journey-conservation','journey-suetonius'}
+check(original_sources <= {s['id'] for s in journey['sources']}
+      and {'met-minting','market-ngc'} <= set(journey['sourceIds']),
+      'Original specimen/context sources and existing atlas references are retained')
+check(len(journey['sourceIds']) == len(set(journey['sourceIds'])), 'Companion reference list contains no duplicates')
+fiction = re.search(r'<section\b[^>]*id="an-imagined-life".*?</section>', html, re.S)
+check(bool(fiction) and 'HISTORICAL FICTION' in fiction[0] and 'END OF THE FICTION' in fiction[0],
+      'Fiction is explicitly bounded at its beginning and end')
+check('aria-describedby="fiction-boundary"' in fiction[0] and 'are fictional' in fiction[0],
+      'Fiction is associated with an accessible explanation of invented events')
+check('data-source=' not in fiction[0], 'Invented events do not carry citations suggesting they are documented')
+check('collecting-history' in ids and {'journey-collecting','journey-petrarch','journey-royal-cabinet','journey-beni-hasan'} <= set(journey['sourceIds']),
+      'The factual collecting and preservation context has separate source records')
 source_lookup = {source['id']: source for source in page_data['sources']}
 for source_id in journey['sourceIds']:
     check(source_id in source_lookup and f'source-{source_id}' in ids,

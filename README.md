@@ -290,3 +290,9 @@ to concern the main atlas's external photographs only.
 photographs, keyboard dialogs, responsive layouts and no-JavaScript story.
 It serves `dist/` on a temporary local server by default; set `BASE_URL` for the
 hosted origin and `CHROMIUM_PATH` for a locally installed Chromium executable.
+
+The companion includes an owner-requested historical-fiction interlude, “The gift
+that waited.” Its invented events are visibly bounded and separately recorded in
+`src/one-owl.json`; sourced collecting and preservation history follows the story.
+The fiction does not extend the specimen’s documented provenance. See
+`research/coin-survival-fiction-notes.md` for the editorial basis.

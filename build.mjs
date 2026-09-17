@@ -41,6 +41,7 @@ const legacyMarketIds = [...new Set([
   ...data.market.records.map(record => `sale-${record.id}`),
 ])];
 const replacements = {
+  JOURNEY_SOURCE_COUNT: journey.sourceIds.length,
   GENERATION_MARKS: Array.from({length:100}, (_,i) => `<span${i >= 80 ? ' class="range-end"' : ''}></span>`).join(''),
   MARKET_SUMMARY: marketSummaryMarkup(data),
   MARKET_LEGACY_LINKS: legacyMarketIds.map(id => `<span id="${escapeHtml(id)}" class="market-legacy-anchor" data-pricing-redirect aria-hidden="true"></span>`).join(''),

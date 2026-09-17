@@ -11,9 +11,9 @@ rights clearance; the six flags remain. See
 [research/publication-decision.md](research/publication-decision.md).
 
 - Public site: https://theowlatlas.com/
-- Production deployment: https://owl-atlas-b99rhwf5m-emptypocketsdevs-projects.vercel.app
-- Latest preview: https://owl-atlas-jdzm239dy-emptypocketsdevs-projects.vercel.app/
-- Previous production / rollback source: https://owl-atlas-bgk4jqwz8-emptypocketsdevs-projects.vercel.app
+- Production deployment: https://owl-atlas-ntvdt1smi-emptypocketsdevs-projects.vercel.app
+- Latest preview: https://owl-atlas-iam7iz4z4-emptypocketsdevs-projects.vercel.app/
+- Previous production / rollback source: https://owl-atlas-1fiujxfos-emptypocketsdevs-projects.vercel.app
 - Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
 - Public source repository: https://github.com/emptypockets-dev/owl-atlas
 
@@ -21,6 +21,29 @@ Vercel Standard Protection keeps generated deployment URLs and previews behind
 Vercel authentication; the production domain is public. The existing Pro plan
 was retained, with no plan upgrade or paid add-on. The domain was purchased
 separately by the owner.
+
+## One owl: an imagined life — 17 September 2026
+
+The companion at https://theowlatlas.com/one-owl/ now includes “The gift that
+waited,” a four-scene historical-fiction interlude requested by the owner. A
+family gift becomes hidden savings, then a rediscovered antiquity and a gift to
+an unnamed king. The invented events are visibly labeled; they are not added to
+the specimen’s provenance. Sourced collecting history follows, with Augustus,
+Petrarch and Louis XIV, plus real hoard and conservation context. Four new
+references bring the companion bibliography to twelve.
+
+The production build publishes only `dist/`. All checks passed: 1,750 structural,
+91 research data, 28 editorial, 118 companion data, 213 site browser smoke, and
+240 companion browser checks both locally and on public HTTPS. The four original
+owner photographs load and match their staged bytes. All three public HTML pages
+match `dist/`. The authenticated preview and public desktop/mobile reading layouts
+were visually inspected. See `research/one-owl-fiction-release-qa.json` and
+`research/coin-survival-fiction-notes.md`; the previous companion launch is
+recorded separately in `research/one-owl-release-qa.json`.
+
+No new publication decision is pending. The existing BnF notices remain, and
+these targeted Chromium checks do not constitute cross-browser or accessibility
+certification.
 
 ## Typography and usability — 17 September 2026
 
