@@ -2,9 +2,9 @@
 
 **A small owl. An ancient world.**
 
-**Current launch status:** a restricted preview is now hosted on the owner's
-personal Vercel account. See [LAUNCH_STATUS.md](LAUNCH_STATUS.md) for the URL,
-live-image checks and unresolved publication decisions. The handoff descriptions
+**Current launch status:** public at **https://theowlatlas.com/** on the owner's
+personal Vercel account. See [LAUNCH_STATUS.md](LAUNCH_STATUS.md) for DNS details,
+live-image checks, the recorded publication decision and remaining limitations. The handoff descriptions
 below describe the original package; its reports are preserved as historical records.
 
 **Launch handoff:** start with `START_HERE.md` and `AGENTS.md`. The prepared

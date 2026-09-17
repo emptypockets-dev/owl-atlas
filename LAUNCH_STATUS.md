@@ -1,42 +1,92 @@
-# Owl Atlas launch status — 16 September 2026
+# Owl Atlas launch status — 17 September 2026
 
-The existing research edition is deployed to the verified personal Vercel account
-**emptypockets-dev**, in **emptypocketsdev's projects**. It remains restricted to
-authenticated Vercel access while the six BnF image reuse decisions are unresolved.
-The account's existing Pro plan was retained; no plan upgrade or paid add-on was added.
+The existing research edition is public at **https://theowlatlas.com/** on the
+verified personal Vercel account **emptypockets-dev**, in
+**emptypocketsdev's projects**. `www.theowlatlas.com` permanently redirects to
+that address. HTTPS and anonymous access have been verified.
 
-- Current preview: https://owl-atlas-qa2hg8e3k-emptypocketsdevs-projects.vercel.app
+The owner explicitly chose to retain the six BnF/Gallica photographs with their
+existing credits and reuse-review notices. This is a publication decision, not
+rights clearance; the six flags remain. See
+[research/publication-decision.md](research/publication-decision.md).
+
+- Public site: https://theowlatlas.com/
+- Production deployment: https://owl-atlas-6spdh53s8-emptypocketsdevs-projects.vercel.app
+- Previous preview / rollback source: https://owl-atlas-qa2hg8e3k-emptypocketsdevs-projects.vercel.app
 - Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
 - Public source repository: https://github.com/emptypockets-dev/owl-atlas
 
-Sign in with the personal Vercel account `emptypockets-dev` to view the preview.
+Vercel Standard Protection keeps generated deployment URLs and previews behind
+Vercel authentication; the production domain is public. The existing Pro plan
+was retained, with no plan upgrade or paid add-on. The domain was purchased
+separately by the owner.
+
+## Domain connection
+
+Squarespace remains the registrar and DNS provider. The Squarespace Defaults
+parking preset (four A records, the `www` CNAME and the apex HTTPS record) was
+replaced with Vercel's project-specific recommended records:
+
+| Type | Name | Value | TTL |
+| --- | --- | --- | --- |
+| A | @ | 216.150.1.1 | 30 minutes |
+| A | @ | 216.150.16.1 | 30 minutes |
+| CNAME | www | 57cb3053370ee0b2.vercel-dns-017.com | 30 minutes |
+
+The `_domainconnect` CNAME and all three Email Security TXT records were
+preserved. Nameservers, DNSSEC, registration and billing settings were unchanged.
+Vercel handles the `www` → apex 308 redirect and HTTPS certificates.
+The DNS change history is recorded in `research/domain-launch-dns.json`.
+
+## Public launch validation
+
+On 17 September 2026, `npm run build:deploy` succeeded and staged only `dist/`.
+All **1,352 local checks** passed: 1,020 structural/rendering, 91 data consistency,
+28 editorial and 213 Chromium browser checks. The browser suite deliberately
+blocks remote images; it was followed by independent tests on the public domain.
+
+All **207 anonymous HTTPS checks** passed on `theowlatlas.com`; see
+`research/domain-launch-qa.json`. Production HTML and the five public supporting
+files exactly matched `dist/`. HTTPS, the permanent `www` redirect, section links,
+production indexing, private-file 404s and protected preview URLs were verified.
+All **17 real page photographs and 17 original viewer images** loaded with the
+recorded dimensions. Credits and six review notices remained visible; keyboard
+zoom, pan, Escape and focus return worked with real images.
+
+The live page was checked at 1,440, 768, 390 and 320 px, with reduced motion and
+without JavaScript. Geography, both close-reading faces, Pi comparison presets,
+source dialogs and bibliography search worked. No uncaught JavaScript errors
+were observed. Photographs and layouts were also visually inspected on the
+hosted site. This is Chromium coverage, not cross-browser or accessibility
+certification.
+
+The reports below preserve earlier preview checks and their original scope.
+
+## Account history
 
 **Account correction:** the initial deployment mistakenly selected a similarly
 named Hobby workspace belonging to the work-associated login. On 16 September
 2026, the existing project and deployments were transferred to the verified
 personal account. The API confirmed the new owner and removal from the previous
 workspace. The existing preview was opened successfully in the user's already
-signed-in personal browser session. The current preview above was subsequently
-deployed directly under the personal workspace.
-Unauthenticated requests redirect to Vercel authentication. All deployments,
-including the stable `owl-atlas.vercel.app` address, are protected. Vercel assigned
-its first deployment to production despite an explicit preview target; all URLs
-were then protected immediately, and a separate preview was created. The stable
-address currently retains that initial build; use the current preview above for
-the corrected Met dimension metadata and complete pairs of family-tree photographs.
+signed-in personal browser session. Later previews were deployed directly under the personal workspace.
+All addresses remained protected during preview work. The stable production
+address retained the initial build until the public launch on 17 September,
+when the latest validated edition was deployed.
 
 ## Deployment configuration
 
 `vercel.json` uses the original `npm run build:deploy` command, skips dependency
 installation, and publishes only `dist/`. No framework, runtime service, paid
-resource, domain purchase, tracking or analytics was added. The preview serves
-`X-Robots-Tag: noindex, nofollow`. Git-triggered deployments are deliberately
-turned off until the public-release decision is recorded.
+resource, domain purchase, tracking or analytics was added by the agent. Public
+production now has canonical/social metadata, a favicon, robots.txt and a sitemap.
+The unconditional preview-only `noindex` header was removed for public release.
+Git-triggered deployments remain off; releases are made deliberately with the CLI.
 
 The source was successfully pushed to `emptypockets-dev/owl-atlas` on `main`.
 After the account transfer, Vercel successfully connected that GitHub repository;
 the earlier access error is resolved. Automatic Git deployments remain disabled
-by `vercel.json` pending the public-release decision.
+by `vercel.json`; publishing remains a manual step.
 
 For future CLI operations, use the project-local personal-account login and an
 explicit scope, without changing the machine's default work-account login:
@@ -44,6 +94,8 @@ explicit scope, without changing the machine's default work-account login:
 ```sh
 vercel whoami --global-config .vercel/personal-cli
 vercel deploy --target preview --scope emptypocketsdevs-projects --global-config .vercel/personal-cli
+# Publish a validated release:
+vercel deploy --prod --scope emptypocketsdevs-projects --global-config .vercel/personal-cli
 ```
 
 The expected username is `emptypockets-dev`. Verify the account identity before
@@ -53,8 +105,9 @@ and credentials and must remain excluded from Git.
 
 The source repository is public by the owner's request. It contains source,
 research records and existing QA material; the hosted site exposes only the
-built HTML, `LICENSE.txt` and `THIRD_PARTY_NOTICES.txt`. Requests for source,
-research files and `.env.local` return 404 after authentication. Local Vercel
+built HTML, favicon, robots.txt, sitemap.xml, `LICENSE.txt` and
+`THIRD_PARTY_NOTICES.txt`. Requests for source, research files and `.env.local`
+return 404 on the public domain. Local Vercel
 settings and credentials are ignored by Git.
 
 ## Changes
@@ -270,26 +323,19 @@ handoff package, not this later deployment.
   field-performance/Core Web Vitals certification. Failure fallbacks and source
   links remained usable, and closing the failed-image dialog restored focus.
 
-## Decisions before public release
+## Publication decision and remaining limitations
 
-1. Resolve the intended use of the six BnF/Gallica photographs (Pi II 1469,
-   Pi III 1475 and quadridigité 1478, both sides). The Commons PD-France assertion
-   is retained alongside BnF's separate reuse conditions. No new permission has
-   been obtained. See `THIRD_PARTY_NOTICES.md` and the authoritative image records.
-   Keep authentication enabled until this decision is documented.
-2. Decide whether the assigned `owl-atlas.vercel.app` address is the final public
-   address or whether an already-owned domain should be attached. Then add the
-   canonical/social metadata, sitemap and favicon appropriate to that identity.
-   No domain was purchased or invented.
-3. After the release decision, publish the approved build, remove preview-only
-   indexing restrictions, and deliberately enable the intended Git deployment
-   workflow for the now-connected `emptypockets-dev/owl-atlas` repository. Keep
-   the previous deployment available for rollback.
-4. Decide whether to archive approved photographs for reliability. Current images
-   are remote; no photographs were vendored or optimized. The 8.6 MB initial
-   image transfer is a mobile-loading limitation; consider permitted, documented
-   page derivatives while keeping full source frames in the viewer. Retain originals and
-   per-image credits and license/modification records for any later derivatives.
+The owner selected the purchased `theowlatlas.com` domain and approved public
+publication with all six BnF/Gallica images retaining their current review
+notices. This resolves the owner decisions that had kept the preview restricted.
+It does not resolve the underlying BnF reuse conditions or obtain permission.
+All original attribution, source links and qualifications remain visible.
+
+Photographs remain remote. No photographs were vendored or optimized. Archiving
+approved photographs and using permitted, documented smaller page derivatives
+remain future reliability/performance options, preserving originals and rights
+records. The earlier 8.6 MB initial image-transfer measurement is a mobile-loading
+limitation, not a new measurement of the domain launch.
 
 Specialist numismatic review, the documented coverage gaps, Safari/Firefox,
 screen-reader review and real-device touch testing remain outstanding. The checks

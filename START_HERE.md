@@ -1,7 +1,7 @@
 # The Owl Atlas — launch handoff
 
 **Deployment update:** see [LAUNCH_STATUS.md](LAUNCH_STATUS.md) for the current
-restricted Vercel preview, personal GitHub repository and launch checks. The
+public site at **https://theowlatlas.com/**, personal GitHub repository and launch checks. The
 original handoff notes below are retained for context.
 
 This is the **latest general-audience edition**, including the sourced Pi II,

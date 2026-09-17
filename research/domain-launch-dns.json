@@ -1,0 +1,139 @@
+{
+  "checkedAt": "2026-09-17T11:27:44.988259+00:00",
+  "provider": "Squarespace",
+  "apex": "theowlatlas.com",
+  "redirect": {
+    "from": "www.theowlatlas.com",
+    "to": "theowlatlas.com",
+    "status": 308
+  },
+  "authoritativeAnswers": {
+    "theowlatlas.com": "theowlatlas.com.\t1800\tIN\tA\t216.150.1.1\ntheowlatlas.com.\t1800\tIN\tA\t216.150.16.1",
+    "www.theowlatlas.com": "www.theowlatlas.com.\t1800\tIN\tCNAME\t57cb3053370ee0b2.vercel-dns-017.com.",
+    "_domainconnect.theowlatlas.com": "_domainconnect.theowlatlas.com.\t3600 IN\tCNAME\t_domainconnect.domains.squarespace.com.",
+    "_dmarc.theowlatlas.com": "_dmarc.theowlatlas.com.\t14400\tIN\tTXT\t\"v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s\"",
+    "_domainkey.theowlatlas.com": "_domainkey.theowlatlas.com. 14400 IN\tTXT\t\"v=DKIM1; p=\"",
+    "spf": "theowlatlas.com.\t14400\tIN\tTXT\t\"v=spf1 -all\""
+  },
+  "vercelDomainConfiguration": {
+    "theowlatlas.com": {
+      "configuredBy": "A",
+      "nameservers": [
+        "nsd1.squarespacedns.com",
+        "nsd2.squarespacedns.com",
+        "nsd3.squarespacedns.com",
+        "nsd4.squarespacedns.com"
+      ],
+      "serviceType": "external",
+      "cnames": [],
+      "aValues": [
+        "216.150.1.1",
+        "216.150.16.1"
+      ],
+      "conflicts": [],
+      "acceptedChallenges": [
+        "http-01"
+      ],
+      "recommendedIPv4": [
+        {
+          "rank": 1,
+          "value": [
+            "216.150.1.1",
+            "216.150.16.1"
+          ]
+        },
+        {
+          "rank": 2,
+          "value": [
+            "76.76.21.21"
+          ]
+        }
+      ],
+      "recommendedCNAME": [
+        {
+          "rank": 1,
+          "value": "57cb3053370ee0b2.vercel-dns-017.com."
+        },
+        {
+          "rank": 2,
+          "value": "cname.vercel-dns.com."
+        }
+      ],
+      "ipStatus": "no-change",
+      "misconfigured": false
+    },
+    "www.theowlatlas.com": {
+      "configuredBy": "CNAME",
+      "nameservers": [
+        "nsd1.squarespacedns.com",
+        "nsd2.squarespacedns.com",
+        "nsd3.squarespacedns.com",
+        "nsd4.squarespacedns.com"
+      ],
+      "serviceType": "external",
+      "cnames": [
+        "57cb3053370ee0b2.vercel-dns-017.com."
+      ],
+      "aValues": [
+        "216.150.16.193",
+        "216.150.1.193"
+      ],
+      "conflicts": [],
+      "acceptedChallenges": [
+        "http-01"
+      ],
+      "recommendedIPv4": [
+        {
+          "rank": 1,
+          "value": [
+            "216.150.1.1",
+            "216.150.16.1"
+          ]
+        },
+        {
+          "rank": 2,
+          "value": [
+            "76.76.21.21"
+          ]
+        }
+      ],
+      "recommendedCNAME": [
+        {
+          "rank": 1,
+          "value": "57cb3053370ee0b2.vercel-dns-017.com."
+        },
+        {
+          "rank": 2,
+          "value": "cname.vercel-dns.com."
+        }
+      ],
+      "ipStatus": "no-change",
+      "misconfigured": false
+    }
+  },
+  "removedParkingPreset": {
+    "A": [
+      "198.185.159.144",
+      "198.185.159.145",
+      "198.49.23.144",
+      "198.49.23.145"
+    ],
+    "wwwCNAME": "ext-sq.squarespace.com",
+    "apexHTTPS": "1 . alpn=\"h2,http/1.1\" ipv4hint=\"198.185.159.144,198.185.159.145,198.49.23.144,198.49.23.145\"",
+    "ttlSeconds": 14400
+  },
+  "retained": [
+    "Squarespace nameservers",
+    "Squarespace Domain Connect CNAME",
+    "Email Security SPF/DMARC/DKIM TXT records"
+  ],
+  "deployment": {
+    "id": "dpl_9diHk3j1nsT1m35L45HHc1sK5mES",
+    "sourceCommit": "08601bc",
+    "target": "production",
+    "account": "emptypockets-dev",
+    "projectScope": "emptypocketsdevs-projects",
+    "protection": "prod_deployment_urls_and_all_previews",
+    "previousPreview": "dpl_65oVjESgtDW1iqst1K9TgxGZ3iRd"
+  }
+}
