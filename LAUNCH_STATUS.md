@@ -5,7 +5,7 @@ The existing research edition is deployed to the verified personal Vercel accoun
 authenticated Vercel access while the six BnF image reuse decisions are unresolved.
 The account's existing Pro plan was retained; no plan upgrade or paid add-on was added.
 
-- Current preview: https://owl-atlas-go6l89sgz-emptypocketsdevs-projects.vercel.app
+- Current preview: https://owl-atlas-59t2qspcj-emptypocketsdevs-projects.vercel.app
 - Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
 - Public source repository: https://github.com/emptypockets-dev/owl-atlas
 
@@ -98,6 +98,11 @@ settings and credentials are ignored by Git.
   “experiment” wording implied a purpose not established by the cited evidence.
   Its introductory period label now includes the mid-fifth century, consistent
   with the displayed 480–449 BCE catalogue range. No specimen dates changed.
+- Separated photograph clipping from the image controls. The two circular
+  New Style displays now keep their “Look closer” labels and keyboard focus
+  outlines visible. Centered labels clear the portrait inset at narrow widths;
+  the photographs retain their circular crop and hover enlargement. The hero
+  label remains hidden as requested.
 
 The existing design and interactions are preserved. `src/app.js` still matches
 the original package checksum; the page, styles and renderer now include the
@@ -117,7 +122,15 @@ handoff package, not this later deployment.
 - Chromium smoke suite: see `research/browser-qa.json` (152 checks; image requests
   intentionally blocked). Playwright was run from an isolated temporary tooling
   environment, with no dependency added to this project.
-- Current early-face HTTPS preview: see `research/early-faces-qa.json`. All 70 checks
+- Current circular-label HTTPS preview: see `research/circular-label-qa.json`.
+  All 87 checks passed, including unobstructed label corners and centers during
+  hover and keyboard focus at 320, 390, 768, 1024 and 1440 pixels, circular photo
+  clipping, visible focus outlines, original-image loading in the viewer,
+  Enter/Escape and focus return, no horizontal overflow, no-JavaScript links,
+  preservation of paired-plate crop frames and the hidden hero label. Hosted HTML
+  exactly matches `dist/index.html`; no page JavaScript errors occurred. Desktop
+  and mobile photographs and labels were visually inspected.
+- Previous early-face HTTPS preview: see `research/early-faces-qa.json`. All 70 checks
   passed: exact hosted HTML equality with `dist/index.html`, preserved deep link,
   heading, face labels and crops, side-by-side photographs at 320, 390, 768, 1024
   and 1440 pixels, real page-image delivery, all four viewer links with verified

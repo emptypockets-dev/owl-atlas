@@ -1,3 +1,13 @@
+# Circular-image labels — 16 September 2026
+
+- Clip the photograph in its own frame so circular New Style images cannot cut
+  off the “Look closer” label or keyboard focus outline. Center the labels near
+  the lower part of each circle, clear of the overlapping portrait inset.
+- Preserve the circular photographs, hover enlargement, viewer links and credits.
+  The hero label remains hidden as previously requested.
+
+---
+
 # Early coin faces and heading — 16 September 2026
 
 - Show labeled obverse and reverse views together for both chapter 02 examples,

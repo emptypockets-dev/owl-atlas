@@ -829,6 +829,13 @@ img {
   cursor:zoom-in
 }
 
+.image-frame {
+  display:block;
+  position:absolute;
+  inset:0;
+  overflow:hidden
+}
+
 .image-trigger img {
   width:100%;
   height:100%;
@@ -1418,7 +1425,7 @@ img {
 .new-hero .image-surface {
   background:#acafa0;
   border-radius:50%;
-  overflow:hidden
+  overflow:visible
 }
 
 .new-hero .image-surface img {
@@ -1437,11 +1444,36 @@ img {
 
 .new-inset .image-surface {
   border:7px solid var(--olive);
-  border-radius:50%
+  border-radius:50%;
+  overflow:visible
 }
 
 .new-inset .image-credit {
   font-size:9px
+}
+
+.new-hero .image-trigger,.new-athena .image-trigger {
+  overflow:visible;
+  border-radius:50%
+}
+
+.new-hero .image-frame,.new-athena .image-frame {
+  border-radius:50%
+}
+
+.new-hero .expand-label,.new-athena .expand-label {
+  left:0;
+  right:0;
+  bottom:12%;
+  width:max-content;
+  max-width:100%;
+  margin-inline:auto;
+  white-space:nowrap
+}
+
+.new-hero .expand-label {
+  /* Clear the portrait inset even when it overlaps more of a narrow image. */
+  bottom:max(12%,60px)
 }
 
 .new-layout .prose {
