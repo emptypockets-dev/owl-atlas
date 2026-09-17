@@ -701,11 +701,16 @@ img {
 }
 
 .geography-orientation strong { font-weight:400 }
+/* Keep the geographic scale explanation readable outside the SVG on small screens. */
+.geography-scale-note { margin-top:18px; font-size:12px; line-height:1.7; color:var(--muted-light) }
+.geography-scale-note strong { display:block; font-weight:500; color:var(--ink) }
 .geography-map { display:block; width:100%; height:auto; margin:20px 0 }
 .geography-land { fill:#cbd0bf; stroke:#89927e; stroke-width:1; stroke-linejoin:round }
 .geography-leader { fill:none; stroke:var(--olive); stroke-width:1 }
 .geography-pin { fill:var(--forest); stroke:var(--paper); stroke-width:2 }
 .geography-number { fill:var(--paper); font-family:var(--mono); font-size:15px; text-anchor:middle }
+/* A narrow halo keeps coastline strokes clear of the lettering too. */
+.geography-label, .geography-sublabel { paint-order:stroke; stroke:var(--paper-deep); stroke-width:3px; stroke-linejoin:round }
 .geography-label { fill:var(--ink); font-family:var(--serif); font-size:24px }
 .geography-sublabel { fill:var(--muted-light); font-family:var(--sans); font-size:14px }
 .geography-sea { fill:var(--muted-light); font-family:var(--mono); font-size:13px; letter-spacing:2px }

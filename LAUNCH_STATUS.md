@@ -5,7 +5,7 @@ The existing research edition is deployed to the verified personal Vercel accoun
 authenticated Vercel access while the six BnF image reuse decisions are unresolved.
 The account's existing Pro plan was retained; no plan upgrade or paid add-on was added.
 
-- Current preview: https://owl-atlas-59t2qspcj-emptypocketsdevs-projects.vercel.app
+- Current preview: https://owl-atlas-88p09xag4-emptypocketsdevs-projects.vercel.app
 - Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
 - Public source repository: https://github.com/emptypockets-dev/owl-atlas
 
@@ -104,6 +104,13 @@ settings and credentials are ignored by Git.
   the photographs retain their circular crop and hover enlargement. The hero
   label remains hidden as requested.
 
+- Cleared all eight map connectors from names and subtitles, lifted the Athens
+  label and Mediterranean Sea label clear of markers, and added a narrow halo
+  around lettering to prevent coastlines from obscuring it. A readable scale note
+  explains the thousands of kilometres covered, enlarged markers and offset names.
+  Geographic coordinates, coastline geometry, historical qualifications, mobile
+  key and Natural Earth attribution remain intact.
+
 The existing design and interactions are preserved. `src/app.js` still matches
 the original package checksum; the page, styles and renderer now include the
 requested family-tree, geographic and story-flow updates. The original 28 sources, 16 image records, three BnF
@@ -122,7 +129,17 @@ handoff package, not this later deployment.
 - Chromium smoke suite: see `research/browser-qa.json` (152 checks; image requests
   intentionally blocked). Playwright was run from an isolated temporary tooling
   environment, with no dependency added to this project.
-- Current circular-label HTTPS preview: see `research/circular-label-qa.json`.
+- Current map-label HTTPS preview: see `research/map-label-qa.json`. All 56 checks
+  passed: hosted HTML exactly matches `dist/index.html`, the origins deep link and
+  indexing restriction are preserved, connector paths clear all label bounds,
+  markers clear text, labels fit the map, lettering has a coastline halo, and
+  the scale note and eight-place key remain readable at 320, 390, 768, 1024 and
+  1440 pixels. No horizontal overflow or page JavaScript errors occurred. The
+  explanation and place key remain available without JavaScript. Real hero,
+  early-classical reverse and BnF Pi III reverse photographs loaded and were
+  visually inspected, along with desktop and mobile map screenshots. Source
+  comparison confirmed unchanged coastline geometry and geographic marker positions.
+- Previous circular-label HTTPS preview: see `research/circular-label-qa.json`.
   All 87 checks passed, including unobstructed label corners and centers during
   hover and keyboard focus at 320, 390, 768, 1024 and 1440 pixels, circular photo
   clipping, visible focus outlines, original-image loading in the viewer,

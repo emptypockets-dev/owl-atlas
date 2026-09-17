@@ -1,3 +1,16 @@
+# Map labels and scale — 16 September 2026
+
+- Shorten all eight map connectors to leave clear space around names and subtitles;
+  move the Athens label above its marker. Give lettering a narrow background halo
+  so coastline strokes cannot obscure it. Geographic positions and coastline
+  geometry are unchanged.
+- Add a readable note above the map explaining that it spans thousands of
+  kilometres, with enlarged markers and offset labels. Clarify that connector
+  lines identify labels, not travel routes. Retain the historical scope, geographic
+  qualifications, mobile key, accessible SVG description and Natural Earth credit.
+
+---
+
 # Circular-image labels — 16 September 2026
 
 - Clip the photograph in its own frame so circular New Style images cannot cut

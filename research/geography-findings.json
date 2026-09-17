@@ -98,7 +98,8 @@
         "longitude": 44.5,
         "latitude": 20.0
       }
-    ]
+    ],
+    "presentationNote": "The overview spans thousands of kilometres. Geographic coordinates and coastline geometry are unchanged. Place names are offset, connectors stop outside label bounds, and markers are enlarged for visibility. Label spacing and marker size are not distance or area scales."
   },
   "limits": [
     "Findspots and regional hoard evidence must not be treated as exact mint locations or complete travel histories.",
