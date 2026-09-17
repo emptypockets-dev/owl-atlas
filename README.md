@@ -68,8 +68,7 @@ both belong to the same coin; see `research/early-classical-findings.json`.
 - A three-step minting illustration connects the silver-mining story to the
   early coins: engraved dies, the silver blank, and the hammer strike. Original
   SVG side views and accompanying text remain readable without JavaScript.
-- Gentle scroll reveals, a desktop chapter indicator and reading progress.
-  Mobile keeps the four primary destinations without a second sticky bar.
+- Scroll reveals, restrained parallax, a chapter indicator and reading progress.
   Scrolling is never hijacked. OS reduced-motion preferences take priority.
 - A six-part coin-detail reader with an explicit owl/reverse and Athena/obverse
   toggle. Each face remembers its selected detail; both faces and every sourced
@@ -87,15 +86,6 @@ both belong to the same coin; see `research/early-classical-findings.json`.
   shown within Attica and Greece; other regions are areas rather than numbered pins.
   All eight entries remain readable without JavaScript and in print. See
   `research/geography-explorer-findings.json` for data and qualifications.
-
-The September 2026 visual refinement brings the real owl photograph earlier on
-mobile, removes decorative orbit rings and parallax, and uses open editorial
-layouts for the minting sequence, comparison plates and family entries. Names
-and dates precede each family's paired photographs. Underlined face/detail
-controls keep the close reading prominent; compact image cues leave more of
-the surface visible. The pricing page introduces the evidence before its topic
-navigation. Sharing metadata uses the existing unchanged CC0 owl photograph;
-platform preview rendering and caching are outside the site's control.
 
 ## Edit and build
 
@@ -250,10 +240,8 @@ The readability suite checks both pages at 320–1440 CSS pixels, sampled text
 sizes, header targets, keyboard source dialogs, 200% root-font enlargement,
 increased text spacing and no-JavaScript reading. Its JSON output does not
 overwrite other reports. Root-font enlargement is not actual browser zoom.
-The earlier typography pass is recorded in `research/readability-qa.json` and
-`research/readability-release-qa.json`. The current visual refinement is recorded
-in `research/design-qa.json` and `research/design-release-qa.json`, including
-separate public-site and real-photograph checks.
+See `research/readability-qa.json` for the latest run and
+`research/readability-release-qa.json` for separate public-site/photo checks.
 
 ## Deployment
 

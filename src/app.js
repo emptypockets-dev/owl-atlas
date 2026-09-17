@@ -79,6 +79,10 @@ if (chapterCurrent) {
     chapterCurrent.append(spacer);
   }
 }
+const hero = byId('top');
+const heroObject = byId('hero-object');
+const crisis = byId('404');
+const crisisYear = crisis?.querySelector('.crisis-year');
 let scheduled = false;
 function updateScroll() {
   scheduled = false;
@@ -92,6 +96,17 @@ function updateScroll() {
     else break;
   }
   if (active && byId('current-chapter')) byId('current-chapter').textContent = active.dataset.chapter;
+  if (!motionOff && window.innerWidth > 760 && hero && heroObject && crisisYear) {
+    const heroTop = hero.getBoundingClientRect().top;
+    const offset = Math.min(1100, Math.max(0, -heroTop));
+    heroObject.style.transform = `translateY(${offset * 0.105}px) rotate(${offset * 0.002}deg)`;
+    const rect = crisis.getBoundingClientRect();
+    const progress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)));
+    crisisYear.style.transform = `translateY(${(progress - .5) * 34}px)`;
+  } else {
+    heroObject?.style.removeProperty('transform');
+    crisisYear?.style.removeProperty('transform');
+  }
 }
 function requestScrollUpdate() { if (!scheduled) { scheduled = true; requestAnimationFrame(updateScroll); } }
 window.addEventListener('scroll', requestScrollUpdate, {passive: true});

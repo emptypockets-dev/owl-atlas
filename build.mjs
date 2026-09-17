@@ -21,7 +21,7 @@ if (useLocalImages) {
 
 function familyCard(family, index) {
   const image = familyFacesMarkup(family, data);
-  return `<article class="family-card" id="family-${escapeHtml(family.id)}"><div class="family-number"><span>${String(index + 1).padStart(2,'0')}</span><span>${family.id === 'egypt' ? 'REGIONAL BRANCH' : 'ATHENS'}</span></div><h4>${escapeHtml(family.name)}</h4><p class="date">${escapeHtml(family.date)}</p>${image}<p>${escapeHtml(family.feature)} ${sourceRefs(family.refs,data)}</p><p class="status">${escapeHtml(family.status)}</p><details><summary>Attribution & dating notes</summary><p>${escapeHtml(family.detail)}</p></details>${marketFamilyMarkup(family,data)}</article>`;
+  return `<article class="family-card" id="family-${escapeHtml(family.id)}"><div class="family-number"><span>${String(index + 1).padStart(2,'0')}</span><span>${family.id === 'egypt' ? 'REGIONAL BRANCH' : 'ATHENS'}</span></div>${image}<h4>${escapeHtml(family.name)}</h4><p class="date">${escapeHtml(family.date)}</p><p>${escapeHtml(family.feature)} ${sourceRefs(family.refs,data)}</p><p class="status">${escapeHtml(family.status)}</p><details><summary>Attribution & dating notes</summary><p>${escapeHtml(family.detail)}</p></details>${marketFamilyMarkup(family,data)}</article>`;
 }
 function sourceEntry(source, index) {
   return `<article class="source-entry" id="source-${escapeHtml(source.id)}"><span class="source-number">${String(index + 1).padStart(2,'0')}</span><div><div class="source-kind">${escapeHtml(source.kind)}</div><h3><a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.title)}</a></h3><p class="source-byline">${escapeHtml(source.author)} · ${escapeHtml(source.year)}</p><p class="source-scope">${escapeHtml(source.scope)}</p>${source.note ? `<details><summary>Scope & limitations</summary><p>${escapeHtml(source.note)}</p></details>` : ''}</div><a class="source-link" href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer" aria-label="Open source ${index + 1}: ${escapeHtml(source.title)}">↗</a></article>`;
@@ -40,10 +40,6 @@ const legacyMarketIds = [...new Set([
   ...data.market.records.map(record => `sale-${record.id}`),
 ])];
 const replacements = {
-  SOCIAL_IMAGE: escapeHtml(data.images['classic-owl'].url),
-  SOCIAL_IMAGE_ALT: escapeHtml(`${data.images['classic-owl'].alt} Cleveland Museum of Art · CC0.`),
-  SOCIAL_IMAGE_WIDTH: data.images['classic-owl'].width,
-  SOCIAL_IMAGE_HEIGHT: data.images['classic-owl'].height,
   MARKET_SUMMARY: marketSummaryMarkup(data),
   MARKET_LEGACY_LINKS: legacyMarketIds.map(id => `<span id="${escapeHtml(id)}" class="market-legacy-anchor" data-pricing-redirect aria-hidden="true"></span>`).join(''),
   MARKET_SOURCES: data.sources.map((source,index) => source.id.startsWith('market-') ? sourceEntry(source,index) : '').join('\n'),

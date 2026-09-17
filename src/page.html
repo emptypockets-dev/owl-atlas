@@ -16,15 +16,9 @@
   <meta content="https://theowlatlas.com/" property="og:url"/>
   <meta content="The Owl Atlas — A small owl. An ancient world." property="og:title"/>
   <meta content="Explore the places, people and changing designs behind Athenian owl coinage, with museum photographs and sources to follow." property="og:description"/>
-  <meta content="{{SOCIAL_IMAGE}}" property="og:image"/>
-  <meta content="{{SOCIAL_IMAGE_ALT}}" property="og:image:alt"/>
-  <meta content="{{SOCIAL_IMAGE_WIDTH}}" property="og:image:width"/>
-  <meta content="{{SOCIAL_IMAGE_HEIGHT}}" property="og:image:height"/>
   <meta content="summary" name="twitter:card"/>
   <meta content="The Owl Atlas — A small owl. An ancient world." name="twitter:title"/>
   <meta content="Explore the places, people and changing designs behind Athenian owl coinage, with museum photographs and sources to follow." name="twitter:description"/>
-  <meta content="{{SOCIAL_IMAGE}}" name="twitter:image"/>
-  <meta content="{{SOCIAL_IMAGE_ALT}}" name="twitter:image:alt"/>
   <style>
    /* INLINE_STYLES */
   </style>
@@ -54,6 +48,9 @@
     <a href="#pricing" class="pricing-nav"><span class="nav-wide">Prices today</span><span class="nav-compact">Prices</span></a>
     <a href="#sources">
      Sources
+     <span class="source-count">
+      {{SOURCE_COUNT}}
+     </span>
     </a>
    </nav>
    <button aria-pressed="false" class="motion-button" id="motion-toggle" title="Turn off decorative animation" type="button">
@@ -70,31 +67,95 @@
   </header>
   <main id="main">
    <section aria-labelledby="hero-title" class="hero section-dark" data-chapter="A small owl" id="top">
+    <div class="hero-topline">
+     <span class="eyebrow">
+      AN OBJECT BIOGRAPHY IN SILVER
+     </span>
+     <span class="edition">
+      Research edition 03 / 2026
+     </span>
+    </div>
     <div class="hero-layout">
      <div class="hero-copy">
-      <p class="eyebrow muted">ATHENIAN SILVER · AN ILLUSTRATED HISTORY</p>
-      <h1 id="hero-title">A small owl.<br/><em>An ancient<br/> world.</em></h1>
-     </div>
-     <div class="hero-object" id="hero-object">
-      {{PHOTO:classic-owl:hero-photo}}
-      <div class="object-measure"><span>17.2 g</span><span>23 mm</span><span>449–440 BCE</span></div>
-      <p class="object-caption">Athenian tetradrachm {{CITE:cma-classic}}</p>
-     </div>
-     <div class="hero-intro">
-      <p class="hero-deck">Follow a small silver coin through the ancient world. Discover the places it reached, the designs it inspired, and the details still visible on its surface.</p>
+      <p class="eyebrow muted">
+       ATHENS, ATTICA &amp; BEYOND
+      </p>
+      <h1 id="hero-title">
+       A small owl.
+       <br/>
+       <em>
+        An ancient
+        <br/>
+        world.
+       </em>
+      </h1>
+      <p class="hero-deck">
+       Explore the art, history and changing forms of Athena–owl coinage, from early Athens to the wider ancient world. Compare museum specimens and follow the evidence behind their attribution.
+      </p>
       <div class="hero-actions">
-       <a class="pill primary" href="#origins">Begin the story <span aria-hidden="true">↓</span></a>
-       <a class="quiet-link" href="#atlas">Explore the coin atlas <span aria-hidden="true">↗</span></a>
+       <a class="pill primary" href="#origins">
+        Begin the story
+        <span aria-hidden="true">
+         ↓
+        </span>
+       </a>
+       <a class="quiet-link" href="#atlas">
+        Go straight to the atlas
+        <span aria-hidden="true">
+         ↗
+        </span>
+       </a>
       </div>
      </div>
+     <div class="hero-object" id="hero-object">
+      <div aria-hidden="true" class="orbit orbit-one">
+      </div>
+      <div aria-hidden="true" class="orbit orbit-two">
+      </div>
+      <span aria-hidden="true" class="object-tick tick-a">
+       01 / REVERSE
+      </span>
+      {{PHOTO:classic-owl:hero-photo}}
+      <div class="object-measure">
+       <span>
+        17.2 g
+       </span>
+       <span>
+        23 mm
+       </span>
+       <span>
+        449–440 BCE
+       </span>
+      </div>
+      <p class="object-caption">
+       Athenian tetradrachm · Cleveland Museum of Art {{CITE:cma-classic}}
+      </p>
+     </div>
+    </div>
+    <div class="hero-bottom">
+     <span>
+      From the late 6th century to the Hellenistic world
+     </span>
+     <a class="scroll-cue" href="#origins">
+      Scroll to explore
+      <span aria-hidden="true">
+       ↓
+      </span>
+     </a>
+     <span>
+      Look closely. Every image opens.
+     </span>
     </div>
    </section>
    <div class="chapter-bar">
+    <span class="chapter-caption">
+     IN THE STORY
+    </span>
     <span class="chapter-current">
      <span id="current-chapter">A small owl</span>
     </span>
     <a href="#atlas">
-     Coin atlas
+     The reference atlas
      <span aria-hidden="true">
       ↗
      </span>
@@ -116,6 +177,9 @@
      <article><span class="eyebrow">WHERE IT WAS FOUND</span><h3>Findspot.</h3><p>A hoard is a group of coins deposited together. Its location records one point in those coins’ histories, not every stop or a complete trade route. {{CITE:owl-circulation,owl-hoards}}</p></article>
     </div>
     <div class="mining-band reveal">
+     <span aria-hidden="true" class="large-glyph">
+      Ag
+     </span>
      <div>
       <span class="eyebrow">
        BEFORE THE COIN, THE SILVER
@@ -377,6 +441,8 @@
        ↗
       </span>
      </a>
+    </div>
+    <div aria-hidden="true" class="crisis-lines">
     </div>
    </section>
    <section aria-labelledby="after-title" class="chapter section-paper" data-chapter="05 / A familiar owl, a changing Athens" id="after-athens">
@@ -653,6 +719,9 @@
     </div>
     <div class="evidence-grid reveal">
      <article>
+      <span class="evidence-index">
+       I.
+      </span>
       <h3>
        Style
       </h3>
@@ -661,6 +730,9 @@
       </p>
      </article>
      <article>
+      <span class="evidence-index">
+       II.
+      </span>
       <h3>
        Context
       </h3>
@@ -669,6 +741,9 @@
       </p>
      </article>
      <article>
+      <span class="evidence-index">
+       III.
+      </span>
       <h3>
        Metal
       </h3>
@@ -677,6 +752,9 @@
       </p>
      </article>
      <article>
+      <span class="evidence-index">
+       IV.
+      </span>
       <h3>
        Documents
       </h3>
@@ -756,7 +834,7 @@
       </em>
      </h2>
      <p class="section-deck">
-      Compare the designs, or explore the eight families below. Open any photograph for a closer look. Pi-style includes Pi III and Pi II specimens. Photographs are normalized for viewing, not displayed at actual size.
+      Return to any part of the story with the comparison tool or the eight-family reference below. Pi-style includes both Pi III and Pi II specimens. Photographs are normalized for viewing, not displayed at actual size.
      </p>
     </div>
     <div class="compare-tools">
