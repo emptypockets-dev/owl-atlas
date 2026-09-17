@@ -250,7 +250,7 @@ function openImage(id) {
   byId('viewer-policy').hidden = !image.rightsPolicyUrl;
   byId('viewer-policy').href = image.rightsPolicyUrl || image.source;
   byId('viewer-source').href = image.source;
-  byId('viewer-original').href = image.url;
+  byId('viewer-original').href = image.localUrl || image.url;
   byId('viewer-error').hidden = true;
   viewer.hidden = false;
   viewer.alt = image.alt;

@@ -1,0 +1,199 @@
+{
+  "asOf": "2026-09-17",
+  "editorialScope": "Owner-requested companion biography. Personal specimen records are separate from the main general-audience atlas. Undocumented ancient ownership and findspot remain unknown.",
+  "coin": {
+    "certificate": "2086328-049",
+    "catalogueDate": "c. 440–404 BCE",
+    "mint": "Athens",
+    "denomination": "Silver tetradrachm",
+    "weightG": 17.21,
+    "grade": "MS",
+    "strike": 4,
+    "surface": 4,
+    "gradeDate": "2018-10-12",
+    "mintYearBceRange": [
+      440,
+      404
+    ]
+  },
+  "generationModel": {
+    "asOfYear": 2026,
+    "yearsPerGeneration": [
+      25,
+      30
+    ],
+    "elapsedYears": [
+      2429,
+      2465
+    ],
+    "roundedGenerations": [
+      80,
+      100
+    ],
+    "meaning": "Illustrative elapsed time, not a count of owners or custodians."
+  },
+  "sourceIds": [
+    "met-minting",
+    "market-ngc",
+    "journey-ngc",
+    "journey-gc-2022",
+    "journey-gc-2024",
+    "journey-hoard",
+    "journey-conservation",
+    "journey-suetonius"
+  ],
+  "sources": [
+    {
+      "id": "journey-ngc",
+      "title": "Certification record: 2086328-049",
+      "author": "NGC",
+      "url": "https://www.ngccoin.com/certlookup/2086328-049/NGCAncients/",
+      "kind": "Specimen certification record",
+      "scope": "Records c.440–404 BC, Attica, Athens, AR tetradrachm; MS, strike 4/5, surface 4/5; grade date 12 October 2018.",
+      "note": "The field titled Pedigree contains a design description, not former owners. The grade date is not a discovery date. Owner-supplied holder photographs corroborate the label; no new authentication is claimed.",
+      "year": "2018; record checked 2026",
+      "accessed": "2026-09-17"
+    },
+    {
+      "id": "journey-gc-2022",
+      "title": "Auction 1224867 · 2 October 2022",
+      "author": "GreatCollections",
+      "url": "https://www.greatcollections.com/Coin/1224867/Ancient-Attica-Athens-c440-404-BC-AR-Tetradrachm-1721gms-NGC-MS-Strike-55-Surface-45",
+      "kind": "Auction archive",
+      "scope": "Records certificate 2086328-049 and 17.21 g. Auction ended 2 October 2022 and is marked sold.",
+      "note": "Its title states strike 5/5, conflicting with the current NGC record, supplied holder photograph and 2024 listing. This inconsistency does not establish a regrade. Price requires login and is not reported here.",
+      "year": "2022",
+      "accessed": "2026-09-17"
+    },
+    {
+      "id": "journey-gc-2024",
+      "title": "Auction 1594499 · 9 June 2024",
+      "author": "GreatCollections",
+      "url": "https://www.greatcollections.com/Coin/1594499/Ancient-Attica-Athens-c440-404-BC-AR-Tetradrachm-1721-gms-NGC-MS-Strike-45-Surface-45",
+      "kind": "Auction archive",
+      "scope": "Records certificate 2086328-049, 17.21 g, MS, strike 4/5 and surface 4/5. Auction ended 9 June 2024 and is marked sold.",
+      "note": "The certification number links the record to the specimen. No buyer, later transfer, invoice settlement or continuous ownership chain is established. Price requires login.",
+      "year": "2024",
+      "accessed": "2026-09-17"
+    },
+    {
+      "id": "journey-hoard",
+      "title": "Athenian tetradrachm · Acropolis hoard 1886, no. 20",
+      "author": "Acropolis Museum",
+      "url": "https://www.theacropolismuseum.gr/en/athenian-tetradrachm-0",
+      "kind": "Museum object record",
+      "scope": "An owl dated 483–480 BC from a hoard found on the Acropolis in 1886. A documented example of a coin with a recorded hoard context.",
+      "note": "This is an earlier, different specimen. Its findspot and preservation history cannot be transferred to NGC 2086328-049. No museum photograph is reproduced on the companion page.",
+      "year": "Undated catalogue",
+      "accessed": "2026-09-17"
+    },
+    {
+      "id": "journey-conservation",
+      "title": "Identifying Archaeological Metal · CCI Notes 4/1",
+      "author": "Canadian Conservation Institute",
+      "url": "https://publications.gc.ca/collections/collection_2011/pc-ch/NM95-57-4-1-2007-eng.pdf",
+      "kind": "Conservation guidance",
+      "scope": "Explains how metal and burial environments affect corrosion, including silver corrosion products.",
+      "note": "General preservation context, not a diagnosis of this specimen or evidence that it was buried.",
+      "year": "2007",
+      "accessed": "2026-09-17"
+    },
+    {
+      "id": "journey-suetonius",
+      "title": "Life of Augustus, chapter 75",
+      "author": "Suetonius; translated by J. C. Rolfe",
+      "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Suetonius/12Caesars/Augustus%2A.html#75",
+      "kind": "Ancient literary source",
+      "scope": "Describes Augustus giving old royal coins and foreign money as festive gifts. Supports interest in older or unusual coins in antiquity.",
+      "note": "Does not establish an ancient collector’s involvement in this owl’s survival or an organized modern-style collecting tradition. Translation published in 1913.",
+      "year": "Early second century CE; translation 1913",
+      "accessed": "2026-09-17"
+    }
+  ],
+  "images": {
+    "owner-athena": {
+      "id": "owner-athena",
+      "title": "Athena · obverse close-up",
+      "url": "https://theowlatlas.com/public/images/one-owl-athena.jpg",
+      "localUrl": "public/images/one-owl-athena.jpg",
+      "source": "https://theowlatlas.com/one-owl/#photographs",
+      "credit": "Photographs courtesy of the owner",
+      "license": "Used with permission",
+      "licenseUrl": "https://theowlatlas.com/one-owl/#photographs",
+      "width": 960,
+      "height": 1280,
+      "alt": "Close-up of Athena facing right on the owner’s silver tetradrachm, photographed through its holder.",
+      "date": "Coin: c. 440–404 BCE; photographs supplied 17 September 2026",
+      "note": "Owner-supplied photograph of NGC 2086328-049 through its holder. Prongs, reflections and marks on the plastic are visible; this image is not a separate assessment of the coin’s condition.",
+      "crop": "none",
+      "changes": "Original JPEG preserved byte for byte. Complete frame displayed; no cropping, retouching, reconstruction or enhancement.",
+      "reuseStatus": "owner-permission",
+      "rightsNote": "Supplied by the owner for publication on this site. No general reuse license granted; excluded from the implementation MIT license.",
+      "sha256": "bcb5410fae9d60fe7b2cbbf26802089c269d337eb76abc4ae1b132c0114ec492",
+      "side": "obverse"
+    },
+    "owner-owl": {
+      "id": "owner-owl",
+      "title": "Owl · reverse close-up",
+      "url": "https://theowlatlas.com/public/images/one-owl-owl.jpg",
+      "localUrl": "public/images/one-owl-owl.jpg",
+      "source": "https://theowlatlas.com/one-owl/#photographs",
+      "credit": "Photographs courtesy of the owner",
+      "license": "Used with permission",
+      "licenseUrl": "https://theowlatlas.com/one-owl/#photographs",
+      "width": 960,
+      "height": 1280,
+      "alt": "Close-up of an owl, olive spray, crescent and ΑΘΕ, with a dotted theta, on the owner’s silver tetradrachm through its holder.",
+      "date": "Coin: c. 440–404 BCE; photographs supplied 17 September 2026",
+      "note": "Owner-supplied photograph of NGC 2086328-049 through its holder. Prongs, reflections and marks on the plastic are visible; this image is not a separate assessment of the coin’s condition.",
+      "crop": "none",
+      "changes": "Original JPEG preserved byte for byte. Complete frame displayed; no cropping, retouching, reconstruction or enhancement.",
+      "reuseStatus": "owner-permission",
+      "rightsNote": "Supplied by the owner for publication on this site. No general reuse license granted; excluded from the implementation MIT license.",
+      "sha256": "8b370dcbfaf06128dcb705c65b0411d48e9ad9fa24a45076152fb8dfdf5a4d72",
+      "side": "reverse"
+    },
+    "owner-holder-obverse": {
+      "id": "owner-holder-obverse",
+      "title": "Obverse and NGC holder label",
+      "url": "https://theowlatlas.com/public/images/one-owl-holder-obverse.jpg",
+      "localUrl": "public/images/one-owl-holder-obverse.jpg",
+      "source": "https://theowlatlas.com/one-owl/#photographs",
+      "credit": "Photographs courtesy of the owner",
+      "license": "Used with permission",
+      "licenseUrl": "https://theowlatlas.com/one-owl/#photographs",
+      "width": 968,
+      "height": 1280,
+      "alt": "Full holder showing Athena and the label: Attica, Athens, c.440–404 BC, 17.21 g, MS, strike 4/5, surface 4/5, certificate 2086328-049.",
+      "date": "Coin: c. 440–404 BCE; photographs supplied 17 September 2026",
+      "note": "Owner-supplied photograph of NGC 2086328-049 through its holder. Prongs, reflections and marks on the plastic are visible; this image is not a separate assessment of the coin’s condition.",
+      "crop": "none",
+      "changes": "Original JPEG preserved byte for byte. Complete frame displayed; no cropping, retouching, reconstruction or enhancement.",
+      "reuseStatus": "owner-permission",
+      "rightsNote": "Supplied by the owner for publication on this site. No general reuse license granted; excluded from the implementation MIT license.",
+      "sha256": "dcaa724150ecb275e34b938628d6261f6a3976e38e05691900ccefbcb2bbb1cb",
+      "side": "obverse"
+    },
+    "owner-holder-reverse": {
+      "id": "owner-holder-reverse",
+      "title": "Reverse in its holder",
+      "url": "https://theowlatlas.com/public/images/one-owl-holder-reverse.jpg",
+      "localUrl": "public/images/one-owl-holder-reverse.jpg",
+      "source": "https://theowlatlas.com/one-owl/#photographs",
+      "credit": "Photographs courtesy of the owner",
+      "license": "Used with permission",
+      "licenseUrl": "https://theowlatlas.com/one-owl/#photographs",
+      "width": 962,
+      "height": 1280,
+      "alt": "Full reverse of the holder, showing the owl and an NGC hologram above it.",
+      "date": "Coin: c. 440–404 BCE; photographs supplied 17 September 2026",
+      "note": "Owner-supplied photograph of NGC 2086328-049 through its holder. Prongs, reflections and marks on the plastic are visible; this image is not a separate assessment of the coin’s condition.",
+      "crop": "none",
+      "changes": "Original JPEG preserved byte for byte. Complete frame displayed; no cropping, retouching, reconstruction or enhancement.",
+      "reuseStatus": "owner-permission",
+      "rightsNote": "Supplied by the owner for publication on this site. No general reuse license granted; excluded from the implementation MIT license.",
+      "sha256": "71db37d43503a3a2d5a0d93a4e42cf358e8d54c58244edb609c98c60f9230aa2",
+      "side": "reverse"
+    }
+  }
+}

@@ -259,7 +259,8 @@ The output is static. Publish all of `dist/`, including `pricing/index.html` and
 the `data/` downloads, to an HTTPS static host. With local
 photography, also upload `public/images/`. No server code is needed. Do not deploy
 research notebooks or test files unless intentionally making the source public.
-Nothing in this delivery has been published or deployed on your behalf.
+The public site is hosted at https://theowlatlas.com/ on the owner's personal
+Vercel account. Preview deployments retain Vercel login protection.
 
 ## Rights
 
@@ -269,3 +270,23 @@ creator, institution, original-record link, license and modification notes
 attached to each image. Review `THIRD_PARTY_NOTICES.md` and the image manifest
 before redistribution. No museum, researcher or photographer endorsement is
 claimed or implied.
+
+## One owl: owner-requested companion story
+
+`/one-owl/` follows the survival of NGC 2086328-049. Its personal specimen
+framing is an intentional, owner-requested exception confined to this page.
+The main narrative, its 41 sources, 17 external images and six BnF review flags
+remain unchanged apart from a short link to the companion.
+
+Edit `src/one-owl.html` for the story, `src/one-owl.json` for its scoped specimen,
+source and photograph records, and the scoped journey rules in `src/styles.css`
+for presentation. `build.mjs` generates `one-owl/index.html` and the research
+manifest; do not hand-edit them. `npm run build:deploy` includes the page and all
+four original JPEGs in `dist/`. The existing optional vendor command continues
+to concern the main atlas's external photographs only.
+
+`python3 tests/one_owl_data.py` checks specimen data and photo integrity.
+`tests/one_owl_browser.py` uses optional Playwright/Chromium to test the real
+photographs, keyboard dialogs, responsive layouts and no-JavaScript story.
+It serves `dist/` on a temporary local server by default; set `BASE_URL` for the
+hosted origin and `CHROMIUM_PATH` for a locally installed Chromium executable.

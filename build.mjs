@@ -6,6 +6,7 @@ import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup, familyFacesMarkup
 const root = path.dirname(fileURLToPath(import.meta.url));
 const read = (relative) => readFile(path.join(root, relative), 'utf8');
 const data = JSON.parse(await read('src/content.json'));
+const journey = JSON.parse(await read('src/one-owl.json'));
 const geography = JSON.parse(await read('src/geography.json'));
 const useLocalImages = process.argv.includes('--local-images');
 if (useLocalImages) {
@@ -40,6 +41,7 @@ const legacyMarketIds = [...new Set([
   ...data.market.records.map(record => `sale-${record.id}`),
 ])];
 const replacements = {
+  GENERATION_MARKS: Array.from({length:100}, (_,i) => `<span${i >= 80 ? ' class="range-end"' : ''}></span>`).join(''),
   MARKET_SUMMARY: marketSummaryMarkup(data),
   MARKET_LEGACY_LINKS: legacyMarketIds.map(id => `<span id="${escapeHtml(id)}" class="market-legacy-anchor" data-pricing-redirect aria-hidden="true"></span>`).join(''),
   MARKET_SOURCES: data.sources.map((source,index) => source.id.startsWith('market-') ? sourceEntry(source,index) : '').join('\n'),
@@ -64,19 +66,19 @@ const shared = (await read('src/render.mjs')).replace(/^export /gm,'');
 const app = (await read('src/app.js')).replace(/^import .*from '\.\/render\.mjs';\s*/m,'');
 const script = `(() => {\n'use strict';\n${shared}\n${app}\n})();`;
 const styles = await read('src/styles.css');
-function renderPage(template) {
+function renderPage(template, pageData = data) {
   let html = template;
   html = html.replace(/\{\{PHOTO:([^:}]+):([^}]+)\}\}/g, (_,id,className) => {
     const crop = className === 'archaic-photo' ? 'top' : className === 'eye-profile' ? 'left' : undefined;
-    return photoMarkup(id,data,className,crop,className === 'hero-photo');
+    return photoMarkup(id,pageData,className,crop,className === 'hero-photo' || id === 'owner-athena' || id === 'owner-owl');
   });
-  html = html.replace(/\{\{CITE:([^}]+)\}\}/g, (_,ids) => sourceRefs(ids.split(','),data));
+  html = html.replace(/\{\{CITE:([^}]+)\}\}/g, (_,ids) => sourceRefs(ids.split(','),pageData));
   html = html.replace(/\{\{([A-Z_]+)\}\}/g, (_,key) => {
     if (!(key in replacements)) throw new Error(`Unknown template token: ${key}`);
     return replacements[key];
   });
   html = html.replace('/* INLINE_STYLES */', styles)
-    .replace('/* INLINE_DATA */', JSON.stringify(data).replace(/</g,'\\u003c'))
+    .replace('/* INLINE_DATA */', JSON.stringify(pageData).replace(/</g,'\\u003c'))
     .replace('/* INLINE_SCRIPT */', script.replace(/<\/script/gi,'<\\/script'));
   if (/\{\{[A-Z_]+|__\w+_URL__/.test(html)) throw new Error('An unresolved build token remains.');
   return html;
@@ -102,10 +104,39 @@ const pricingEnd = mainTemplate.slice(mainTemplate.indexOf('   <footer class="si
 const pricingHtml = renderPage(pricingTemplate.replace('{{PRICING_START}}',pricingStart).replace('{{PRICING_END}}',pricingEnd));
 await mkdir(path.join(root,'pricing'),{recursive:true});
 await writeFile(path.join(root,'pricing/index.html'),pricingHtml);
+// Owner-supplied photographs and personal records belong to this companion only.
+// Keep the main atlas's general-audience image register and bibliography intact.
+const journeyData = {
+  ...data,
+  sources: [...data.sources, ...journey.sources],
+  images: Object.fromEntries(Object.entries({...data.images, ...journey.images}).map(([id, image]) =>
+    [id, image.localUrl ? {...image, localUrl:`../${image.localUrl}`} : image])),
+};
+const journeyTitle = '2,400 Years. Still Here. — One Owl’s Survival | The Owl Atlas';
+const journeyDescription = 'Follow one Mint State Athenian owl across 2,400 years: original photographs, the scale of human generations, possible preservation paths and its documented modern appearances.';
+const journeyStart = mainTemplate.slice(0,mainTemplate.indexOf('<main id="main">') + '<main id="main">'.length)
+  .replace('<body>', '<body class="journey-page">')
+  .replace(/<title>[\s\S]*?<\/title>/, `<title>${journeyTitle}</title>`)
+  .replace(/content="[^"]*" (name="description"|property="og:description"|name="twitter:description")/g, `content="${journeyDescription}" $1`)
+  .replace(/content="[^"]*" (property="og:title"|name="twitter:title")/g, `content="${journeyTitle}" $1`)
+  .replaceAll('https://theowlatlas.com/','https://theowlatlas.com/one-owl/')
+  .replace(/href="#(top|origins|atlas|pricing)"/g,'href="../#$1"')
+  .replace('{{SOURCE_COUNT}}',String(journey.sourceIds.length));
+const journeyEnd = mainTemplate.slice(mainTemplate.indexOf('   <footer class="site-footer'))
+  .replace('href="#top"','href="../#one-owl"').replace('Back to the beginning ↑','Back to the atlas ↗')
+  .replace('The story, family entries and bibliography remain readable without JavaScript. Image links open the original photographs; interactive comparison and zoom controls require JavaScript.', 'The complete story, photographs and sources remain available without JavaScript. Image links open the original photographs; zoom controls require JavaScript.');
+const journeyTemplate = (await read('src/one-owl.html'))
+  .replace('{{JOURNEY_START}}',journeyStart).replace('{{JOURNEY_END}}',journeyEnd)
+  .replace('{{JOURNEY_SOURCES}}',journeyData.sources.map((source,index) => journey.sourceIds.includes(source.id) ? sourceEntry(source,index) : '').join('\n'));
+const journeyHtml = `${renderPage(journeyTemplate,journeyData).trimEnd()}\n`;
+await mkdir(path.join(root,'one-owl'),{recursive:true});
+await writeFile(path.join(root,'one-owl/index.html'),journeyHtml);
 await mkdir(path.join(root,'research'),{recursive:true});
 await writeFile(path.join(root,'research/sources.json'),JSON.stringify(data.sources,null,2));
 await writeFile(path.join(root,'research/images-manifest.json'),JSON.stringify(Object.values(data.images),null,2));
 await writeFile(path.join(root,'research/specimens.json'),JSON.stringify(Object.values(data.specimens),null,2));
 await writeFile(path.join(root,'research/market-sales.json'),JSON.stringify({asOf:data.market.asOf,records:data.market.records},null,2));
 await writeFile(path.join(root,'research/market-sales.csv'),marketCsv(data.market));
+await writeFile(path.join(root,'research/one-owl-manifest.json'),JSON.stringify(journey,null,2));
 console.log(`Built index.html (${Math.round(Buffer.byteLength(html) / 1024)} KiB) and pricing/index.html (${Math.round(Buffer.byteLength(pricingHtml) / 1024)} KiB); ${data.sources.length} sources, ${Object.keys(data.images).length} image records. ${useLocalImages ? 'Local images enabled.' : 'Remote images; internet required for photography.'}`);
+console.log(`Built one-owl/index.html (${Math.round(Buffer.byteLength(journeyHtml) / 1024)} KiB); ${journey.sourceIds.length} references and ${Object.keys(journey.images).length} owner-supplied photographs.`);

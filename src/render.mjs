@@ -22,7 +22,7 @@ export function photoMarkup(id, data, className = '', cropOverride, eager = fals
   const crop = cropOverride ?? image.crop ?? 'none';
   const cropLabels = {top: 'Athena, top half of a paired plate', bottom: 'Owl, bottom half of a paired plate', left: 'Athena, left half of a paired plate', right: 'Owl, right half of a paired plate'};
   const alt = crop === 'none' ? image.alt : `${cropLabels[crop]}. Open to see the complete source photograph. ${image.title}.`;
-  const original = image.url;
+  const original = image.localUrl || image.url;
   const displayed = image.localUrl || image.displayUrl || image.url;
   const credit = image.credit;
   return `<figure class="image-figure ${escapeHtml(className)}" data-photo="${escapeHtml(id)}" style="--plate-ratio:${image.width / image.height}">

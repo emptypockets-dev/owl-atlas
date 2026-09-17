@@ -1,0 +1,382 @@
+{
+  "checkedAt": "2026-09-17T19:26:48.038527+00:00",
+  "result": "pass for the listed checks",
+  "url": "https://theowlatlas.com/one-owl/",
+  "previewUrl": "https://owl-atlas-jlmeq27ct-emptypocketsdevs-projects.vercel.app/one-owl/",
+  "previewAccess": "Vercel login protection retained. Actual owner photographs inspected in authenticated in-app browser; public domain tested anonymously.",
+  "productionDeployment": "https://owl-atlas-1fiujxfos-emptypocketsdevs-projects.vercel.app",
+  "vercelAccount": "emptypockets-dev",
+  "vercelScope": "emptypocketsdevs-projects",
+  "githubRepository": "https://github.com/emptypockets-dev/owl-atlas",
+  "publishCommand": "npm run build:deploy",
+  "publishedDirectory": "dist/",
+  "changes": [
+    "Added a separately scoped, source-linked scrolling biography of NGC 2086328-049 at /one-owl/.",
+    "Added a short main-page invitation after the pricing summary.",
+    "Included four unchanged owner-supplied photographs, complete originals in keyboard-accessible zoom viewer, anonymous credits and scoped reuse notice.",
+    "Separated grade evidence, illustrative elapsed generations, possible preservation routes and documented modern appearances.",
+    "Preserved existing main-page design, 41 sources, 17 external image records, 66 market observations and six BnF reuse-review flags."
+  ],
+  "checks": [
+    {
+      "name": "npm run build:deploy",
+      "result": "pass"
+    },
+    {
+      "name": "npm run check",
+      "passed": 1743,
+      "total": 1743
+    },
+    {
+      "name": "python3 tests/integration_data.py",
+      "passed": 91,
+      "total": 91
+    },
+    {
+      "name": "python3 tests/editorial_copy.py",
+      "passed": 28,
+      "total": 28
+    },
+    {
+      "name": "python3 tests/one_owl_data.py",
+      "passed": 98,
+      "total": 98
+    },
+    {
+      "name": "tests/browser_smoke.py",
+      "passed": 213,
+      "total": 213,
+      "images": "External requests intentionally blocked; separate hosted verification completed."
+    },
+    {
+      "name": "tests/market_browser.py",
+      "passed": 73,
+      "total": 73
+    },
+    {
+      "name": "tests/readability_browser.py",
+      "passed": 313,
+      "total": 313
+    },
+    {
+      "name": "tests/one_owl_browser.py local",
+      "passed": 219,
+      "total": 219
+    },
+    {
+      "name": "tests/one_owl_browser.py public HTTPS",
+      "passed": 219,
+      "total": 219
+    },
+    {
+      "name": "Hosted main-site release checks",
+      "passed": 394,
+      "total": 394
+    }
+  ],
+  "validatedHtmlSha256": {
+    "index.html": "a2e24308f3d7f12eee038f43fa25e8080112a976a6b10a158bcc0c39bb142a3e",
+    "pricing/index.html": "fd96a0d69f4cfb5df6a06312682e999d5094f36dfce76ec7433f6ae3732437bd",
+    "one-owl/index.html": "48cc35d5368cf290cfbc61d05613decc62bbabf582acc5dccb2310223a384227"
+  },
+  "ownerPhotographs": [
+    {
+      "id": "owner-athena",
+      "path": "public/images/one-owl-athena.jpg",
+      "dimensions": [
+        960,
+        1280
+      ],
+      "sha256": "bcb5410fae9d60fe7b2cbbf26802089c269d337eb76abc4ae1b132c0114ec492",
+      "hostedOriginalBytesMatch": true
+    },
+    {
+      "id": "owner-owl",
+      "path": "public/images/one-owl-owl.jpg",
+      "dimensions": [
+        960,
+        1280
+      ],
+      "sha256": "8b370dcbfaf06128dcb705c65b0411d48e9ad9fa24a45076152fb8dfdf5a4d72",
+      "hostedOriginalBytesMatch": true
+    },
+    {
+      "id": "owner-holder-obverse",
+      "path": "public/images/one-owl-holder-obverse.jpg",
+      "dimensions": [
+        968,
+        1280
+      ],
+      "sha256": "dcaa724150ecb275e34b938628d6261f6a3976e38e05691900ccefbcb2bbb1cb",
+      "hostedOriginalBytesMatch": true
+    },
+    {
+      "id": "owner-holder-reverse",
+      "path": "public/images/one-owl-holder-reverse.jpg",
+      "dimensions": [
+        962,
+        1280
+      ],
+      "sha256": "71db37d43503a3a2d5a0d93a4e42cf358e8d54c58244edb609c98c60f9230aa2",
+      "hostedOriginalBytesMatch": true
+    }
+  ],
+  "externalPhotographs": [
+    {
+      "id": "classic-owl",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Owl_%28reverse%29_-_1941.296.b_-_Cleveland_Museum_of_Art.jpg",
+        "width": 2634,
+        "height": 2736
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Owl_%28reverse%29_-_1941.296.b_-_Cleveland_Museum_of_Art.jpg",
+        "width": 2634,
+        "height": 2736
+      }
+    },
+    {
+      "id": "classic-athena",
+      "page": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Head_of_Athena_%28obverse%29_-_1941.296.a_-_Cleveland_Museum_of_Art.tif/lossy-page1-1920px-Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Head_of_Athena_%28obverse%29_-_1941.296.a_-_Cleveland_Museum_of_Art.tif.jpg",
+        "width": 1920,
+        "height": 1973
+      },
+      "original": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Head_of_Athena_%28obverse%29_-_1941.296.a_-_Cleveland_Museum_of_Art.tif/lossy-page1-1920px-Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Head_of_Athena_%28obverse%29_-_1941.296.a_-_Cleveland_Museum_of_Art.tif.jpg",
+        "width": 1920,
+        "height": 1973
+      }
+    },
+    {
+      "id": "archaic",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Greek_Silver_Tetradrachm_of_Athens_%28Attica%29.jpg",
+        "width": 759,
+        "height": 1608
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Greek_Silver_Tetradrachm_of_Athens_%28Attica%29.jpg",
+        "width": 759,
+        "height": 1608
+      }
+    },
+    {
+      "id": "met-owl",
+      "page": {
+        "url": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702577/main-image",
+        "width": 1110,
+        "height": 1200
+      },
+      "original": {
+        "url": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702577/main-image",
+        "width": 1110,
+        "height": 1200
+      }
+    },
+    {
+      "id": "met-athena",
+      "page": {
+        "url": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702575/main-image",
+        "width": 1200,
+        "height": 1085
+      },
+      "original": {
+        "url": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702575/main-image",
+        "width": 1200,
+        "height": 1085
+      }
+    },
+    {
+      "id": "profile",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Sg2537.jpg",
+        "width": 500,
+        "height": 253
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Sg2537.jpg",
+        "width": 500,
+        "height": 253
+      }
+    },
+    {
+      "id": "early-athena",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Greece%2C_5th_century_BC_-_Athenian_Tetradrachm-_Female_Head_%28obverse%29_-_1920.267.a_-_Cleveland_Museum_of_Art.jpg",
+        "width": 2318,
+        "height": 2280
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Greece%2C_5th_century_BC_-_Athenian_Tetradrachm-_Female_Head_%28obverse%29_-_1920.267.a_-_Cleveland_Museum_of_Art.jpg",
+        "width": 2318,
+        "height": 2280
+      }
+    },
+    {
+      "id": "early-owl",
+      "page": {
+        "url": "https://openaccess-cdn.clevelandart.org/1920.267.b/1920.267.b_web.jpg",
+        "width": 750,
+        "height": 717
+      },
+      "original": {
+        "url": "https://openaccess-cdn.clevelandart.org/1920.267.b/1920.267.b_print.jpg",
+        "width": 2384,
+        "height": 2280
+      }
+    },
+    {
+      "id": "new-owl",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/82/Silver_tetradrachm_Athens_new_style_reverse.jpg",
+        "width": 1340,
+        "height": 1340
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/82/Silver_tetradrachm_Athens_new_style_reverse.jpg",
+        "width": 1340,
+        "height": 1340
+      }
+    },
+    {
+      "id": "new-athena",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Silver_tetradrachm_Athens_new_style_obverse.jpg",
+        "width": 1200,
+        "height": 1200
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Silver_tetradrachm_Athens_new_style_obverse.jpg",
+        "width": 1200,
+        "height": 1200
+      }
+    },
+    {
+      "id": "sabakes",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/EGYPT%2C_Persian_Administration._Sabakes._Circa_340-333_BC.jpg",
+        "width": 800,
+        "height": 403
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/EGYPT%2C_Persian_Administration._Sabakes._Circa_340-333_BC.jpg",
+        "width": 800,
+        "height": 403
+      }
+    },
+    {
+      "id": "bnf-pi-iii-1475-obverse",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%281_of_2%29.jpg",
+        "width": 2522,
+        "height": 2522
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%281_of_2%29.jpg",
+        "width": 2522,
+        "height": 2522
+      }
+    },
+    {
+      "id": "bnf-pi-iii-1475-reverse",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%282_of_2%29.jpg",
+        "width": 2522,
+        "height": 2522
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%282_of_2%29.jpg",
+        "width": 2522,
+        "height": 2522
+      }
+    },
+    {
+      "id": "bnf-quadridigite-1478-obverse",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%281_of_2%29.jpg",
+        "width": 2679,
+        "height": 2679
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%281_of_2%29.jpg",
+        "width": 2679,
+        "height": 2679
+      }
+    },
+    {
+      "id": "bnf-quadridigite-1478-reverse",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%282_of_2%29.jpg",
+        "width": 2679,
+        "height": 2679
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%282_of_2%29.jpg",
+        "width": 2679,
+        "height": 2679
+      }
+    },
+    {
+      "id": "bnf-pi-ii-1469-obverse",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%281_of_2%29.jpg",
+        "width": 2624,
+        "height": 2624
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%281_of_2%29.jpg",
+        "width": 2624,
+        "height": 2624
+      }
+    },
+    {
+      "id": "bnf-pi-ii-1469-reverse",
+      "page": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%282_of_2%29.jpg",
+        "width": 2624,
+        "height": 2624
+      },
+      "original": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500412w_%282_of_2%29.jpg",
+        "width": 2624,
+        "height": 2624
+      }
+    }
+  ],
+  "qaFindingsResolved": [
+    "Enlarged-text overflow on the new companion was corrected before publication.",
+    "The first concurrent readability run had one early anchor-position measurement; the isolated rerun passed313/313. A similar companion-test race was resolved by waiting for ResizeObserver header measurements before following an anchor.",
+    "The earlier rollback left production domains pinned to the previous build; explicitly promoting the tested deployment restored the custom-domain assignment. Anonymous served HTML now matches dist for all three pages."
+  ],
+  "editorialQualifications": [
+    "No ancient findspot, specific transaction or uninterrupted chain of ownership has been established.",
+    "80–100 generations describes illustrative elapsed time, not a count of custodians.",
+    "The2022 GreatCollections title says strike5/5; the current official record, holder and2024 listing say4/5. The discrepancy is disclosed without inferring regrading.",
+    "Auction sale prices require login; no price is invented."
+  ],
+  "publicationDecisions": [
+    "Owner supplied these photographs for the requested personal companion story. Their use is scoped to this site, with no general reuse license.",
+    "The six existing BnF reuse-review notices remain visible, in accordance with the owner’s prior instruction; no new clearance is claimed."
+  ],
+  "limitations": [
+    "Chromium desktop and mobile viewport checks, not Safari/Firefox or actual-device coverage.",
+    "200%root text checks are text enlargement, not a claim of actual browser zoom or screen-reader/accessibility certification.",
+    "Original handoff-validation.json remains historical; this report records this later release."
+  ],
+  "finalPublicByteCheck": {
+    "at": "2026-09-17T19:28:10.081445+00:00",
+    "passed": 7,
+    "total": 7,
+    "paths": [
+      "index.html",
+      "pricing/index.html",
+      "one-owl/index.html",
+      "public/images/one-owl-athena.jpg",
+      "public/images/one-owl-owl.jpg",
+      "public/images/one-owl-holder-obverse.jpg",
+      "public/images/one-owl-holder-reverse.jpg"
+    ],
+    "note": "Final generated-file cleanup removed one trailing blank line from companion HTML only. All three public HTML files and four original JPEGs then matched the final dist byte for byte."
+  }
+}

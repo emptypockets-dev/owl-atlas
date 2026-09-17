@@ -8,12 +8,15 @@ const html = await readFile(path.join(root, 'index.html'), 'utf8');
 const match = html.match(/<script\b[^>]*\bid="atlas-data"[^>]*>([\s\S]*?)<\/script>/i);
 if (!match) throw new Error('Built atlas-data is missing. Run npm run build first.');
 const data = JSON.parse(match[1]);
+const journey = JSON.parse(await readFile(path.join(root, 'src/one-owl.json'), 'utf8'));
 const stage = await mkdtemp(path.join(root, '.deploy-stage-'));
 let localCount = 0;
 try {
   await writeFile(path.join(stage, 'index.html'), html);
   await mkdir(path.join(stage, 'pricing'));
   await copyFile(path.join(root, 'pricing/index.html'), path.join(stage, 'pricing/index.html'));
+  await mkdir(path.join(stage, 'one-owl'));
+  await copyFile(path.join(root, 'one-owl/index.html'), path.join(stage, 'one-owl/index.html'));
   await copyFile(path.join(root, 'LICENSE'), path.join(stage, 'LICENSE.txt'));
   await copyFile(path.join(root, 'THIRD_PARTY_NOTICES.md'), path.join(stage, 'THIRD_PARTY_NOTICES.txt'));
   // Explicitly publish only the source-linked market observations, not research notes.
@@ -24,7 +27,7 @@ try {
   for (const asset of ['favicon.svg', 'robots.txt', 'sitemap.xml']) {
     await copyFile(path.join(root, 'public', asset), path.join(stage, asset));
   }
-  for (const [id, image] of Object.entries(data.images)) {
+  for (const [id, image] of Object.entries({...data.images, ...journey.images})) {
     if (!image.localUrl) continue;
     // Only copy the build's explicit image files, never arbitrary source paths.
     if (!/^public\/images\/[a-zA-Z0-9_-]+\.(jpg|jpeg|png|webp)$/.test(image.localUrl)) {
@@ -38,7 +41,7 @@ try {
   const dist = path.join(root, 'dist');
   await rm(dist, {recursive: true, force: true});
   await rename(stage, dist);
-  const imageCount = Object.keys(data.images).length;
+  const imageCount = Object.keys(data.images).length + Object.keys(journey.images).length;
   const pending = Object.values(data.images).filter(image => image.reuseStatus === 'review-pending').length;
   console.log(`Prepared dist/: ${localCount}/${imageCount} local image files. No deployment performed.`);
   if (localCount < imageCount) console.warn('Photographs still require external hosts. Verify live delivery before launch.');
