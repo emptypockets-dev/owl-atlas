@@ -806,6 +806,58 @@ img {
   max-width:700px
 }
 
+.minting-section {
+  margin-top:75px;
+  padding-top:50px;
+  border-top:1px solid var(--line)
+}
+
+.minting-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:40px; margin-bottom:32px; }
+.minting-heading h3 { font-size:44px; line-height:1.05; margin-top:16px; }
+.minting-heading>p { max-width:390px; font-size:14px; line-height:1.8; }
+.minting-steps { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); list-style:none; padding:0; margin:0; border:1px solid var(--line); }
+.minting-steps>li { min-width:0; padding:18px 22px 28px; background:var(--paper-deep); }
+.minting-steps>li+li { border-left:1px solid var(--line); }
+.minting-diagram { display:block; width:100%; height:auto; margin:0 auto 24px; color:var(--ink); overflow:visible; }
+.minting-diagram path { stroke:currentColor; stroke-width:1.5; stroke-linejoin:round; stroke-linecap:round; }
+.minting-diagram .mint-tool { fill:#a6ad9b; }
+.minting-diagram .mint-anvil { fill:#c6c8ba; }
+.minting-diagram .mint-handle { fill:#d0bd93; }
+.minting-diagram .mint-guide { fill:none; stroke:#8c9384; stroke-dasharray:3 6; stroke-width:1; }
+.minting-diagram .mint-edge { fill:none; stroke:#e8ebdf; }
+.minting-diagram .mint-silver { fill:#c6a257; stroke:#72521c; }
+.minting-diagram .mint-silver-edge { fill:none; stroke:#72521c; stroke-width:1; }
+.minting-diagram .mint-leader { fill:none; stroke:#67705f; stroke-width:1; }
+.minting-diagram .mint-motion { fill:none; stroke:#72521c; stroke-width:2; }
+.mint-label { font:14px var(--sans); fill:var(--ink); }
+.mint-label-note { font:11px var(--mono); fill:var(--muted-light); }
+.minting-step-copy .eyebrow { font-size:9px; }
+.minting-step-copy h4 { font:30px/1.15 var(--serif); letter-spacing:-.035em; margin:14px 0; }
+.minting-step-copy>p { font-size:13px; line-height:1.8; }
+.minting-footer { display:flex; justify-content:space-between; align-items:flex-start; gap:30px; margin-top:22px; }
+.minting-footer .micro-copy { max-width:610px; }
+.minting-footer .quiet-link { flex-shrink:0; margin-top:0; }
+@media(max-width:1000px) {
+  .minting-steps { grid-template-columns:1fr; }
+  .minting-steps>li { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); align-items:center; gap:28px; padding:20px 28px; }
+  .minting-steps>li+li { border-left:0; border-top:1px solid var(--line); }
+  .minting-diagram { max-width:360px; margin:0 auto; }
+}
+@media(max-width:600px) {
+  .minting-section { margin-top:45px; padding-top:35px; }
+  .minting-heading { display:block; }
+  .minting-heading h3 { font-size:36px; }
+  .minting-heading>p { margin-top:22px; }
+  .minting-steps>li { display:block; padding:18px 20px 26px; }
+  .minting-diagram { margin-bottom:24px; }
+  .minting-step-copy h4 { font-size:29px; }
+  .minting-footer { display:block; }
+  .minting-footer .quiet-link { margin-top:18px; }
+}
+@media print {
+  .minting-steps>li { break-inside:avoid; }
+}
+
 .image-figure {
   min-width:0
 }

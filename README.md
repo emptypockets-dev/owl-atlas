@@ -57,6 +57,9 @@ both belong to the same coin; see `research/early-classical-findings.json`.
 
 - Eight narrative chapters: Athens and the geography of owl coinage; early owls; classical mass issues;
   404 BCE; fourth-century changes; New Style; regional imitations; and evidence.
+- A three-step minting illustration connects the silver-mining story to the
+  early coins: engraved dies, the silver blank, and the hammer strike. Original
+  SVG side views and accompanying text remain readable without JavaScript.
 - Scroll reveals, restrained parallax, a chapter indicator and reading progress.
   Scrolling is never hijacked. OS reduced-motion preferences take priority.
 - A six-part coin-detail reader with an explicit owl/reverse and Athena/obverse
@@ -66,7 +69,7 @@ both belong to the same coin; see `research/early-classical-findings.json`.
   Pi II/Pi III specimen selectors, and story links preset meaningful comparisons.
 - A native-dialog image viewer with source/rights metadata, fitted-size zoom,
   keyboard controls, drag and pinch handlers, and original-image links.
-- Inline source dialogs, 31 bibliography records, author/topic filtering, 17
+- Inline source dialogs, 32 bibliography records, author/topic filtering, 17
   image records, three structured BnF specimen records, a glossary and a visible
   editorial coverage register.
 - A guided geographic explorer distinguishes cities, islands, modern countries

@@ -1,0 +1,32 @@
+{
+  "reviewedOn": "2026-09-16",
+  "sourceId": "met-minting",
+  "source": {
+    "title": "Greek Art: From Prehistoric to Classical: A Resource for Educators",
+    "author": "Michael Norris",
+    "publisher": "The Metropolitan Museum of Art",
+    "year": 2000,
+    "section": "Coins of Ancient Greece \u2014 Origin and Technique",
+    "printedPage": 55,
+    "pdfPage": 57,
+    "url": "https://resources.metmuseum.org/resources/metpublications/pdf/Greek_Art_From_Prehistoric_to_Classical.pdf#page=57"
+  },
+  "supportedProcess": [
+    "Two hand-engraved dies supply the two faces.",
+    "The lower, obverse die is fixed in an anvil.",
+    "The blank is placed between the dies.",
+    "The hammer strikes the upper, reverse die."
+  ],
+  "editorialImplementation": {
+    "location": "End of section 01, after the mining band and before #first-owls.",
+    "illustration": "Original inline SVG side-view schematics, not traced or reproduced publication artwork.",
+    "colours": "Existing paper and olive palette; gold distinguishes the silver blank and force arrows.",
+    "accessibility": "Ordered list, SVG titles and descriptions, complete visible prose, all steps visible without JavaScript or animation.",
+    "flow": "Defines flan before the early photographs and removes the repeated definition there."
+  },
+  "limits": [
+    "Tool proportions and engraved marks are illustrative and not to scale.",
+    "No particular workshop, authentic die design, tooling materials, blank preparation temperature or exact number of blows is reconstructed.",
+    "No historical photographs are generated, edited or substituted. Existing image rights and publication conditions are unchanged."
+  ]
+}

@@ -61,7 +61,7 @@ check(bool(match) and not re.search(r'\bopen\b', match.group()), 'Reference guid
 for anchor in ['origins', 'first-owls', 'classical', '404', 'after-athens', 'new-style', 'beyond', 'evidence']:
     check(f'id="{anchor}"' in html, f'Preserved chapter anchor: {anchor}')
 check(data['edition'] == 'Research edition 03', 'Data edition updated')
-check(len(data['sources']) == 31, 'Original 28 sources retained plus three geography references')
+check(len(data['sources']) == 32, 'Original 28 sources retained plus three geography references and the minting source')
 check(len(data['images']) == 17, 'Original 16 image records retained plus the researched early-classical reverse')
 check(len(data['specimens']) == 3, 'All three BnF specimens retained')
 check(sum(i.get('reuseStatus') == 'review-pending' for i in data['images'].values()) == 6,

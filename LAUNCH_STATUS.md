@@ -5,7 +5,7 @@ The existing research edition is deployed to the verified personal Vercel accoun
 authenticated Vercel access while the six BnF image reuse decisions are unresolved.
 The account's existing Pro plan was retained; no plan upgrade or paid add-on was added.
 
-- Current preview: https://owl-atlas-6mx0gdbfd-emptypocketsdevs-projects.vercel.app
+- Current preview: https://owl-atlas-qa2hg8e3k-emptypocketsdevs-projects.vercel.app
 - Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
 - Public source repository: https://github.com/emptypockets-dev/owl-atlas
 
@@ -134,25 +134,43 @@ settings and credentials are ignored by Git.
   available without JavaScript and in print. The eye marker now points to the
   visible eye on Cleveland 1941.296.a. Credits and original-image links are intact.
 
+- Added a three-step minting illustration after the silver-mining story.
+  Original SVG side views explain engraved dies, the flan and the hammer strike,
+  with visible labels, accessible descriptions and responsive layouts. All steps
+  remain available without JavaScript. A new Met source supports the explanation;
+  an onward link leads into the early photographs. The flan definition now occurs
+  once at its first use. See `research/minting-findings.json`.
+
 The broader editorial design and existing photograph interactions are preserved.
 `src/app.js` now also enhances the pre-rendered geography views; the page, styles
 and renderer include the requested family-tree, geographic and story-flow updates. The original 28 sources, 16 image records, three BnF
 specimens, six reuse-review flags, dates, attributions and existing image URLs
 remain. The documented early-classical reverse brings the image total to 17.
-The geographic references bring the source total to 31.
+The geographic references brought the source total to 31; the minting reference
+brings the current total to 32.
 `MANIFEST.sha256` and `research/handoff-validation.json` describe the original
 handoff package, not this later deployment.
 
 ## Verification
 
 - `npm run build:deploy`: passed locally and on Vercel; output is `dist/`.
-- `npm run check`: 1008 checks passed (the total changes with rendered citations).
+- `npm run check`: 1020 checks passed (the total changes with rendered citations).
 - `python3 tests/integration_data.py`: 91 checks passed.
 - `python3 tests/editorial_copy.py`: 28 checks passed.
 - Chromium smoke suite: see `research/browser-qa.json` (213 checks; image requests
   intentionally blocked). Playwright was run from an isolated temporary tooling
   environment, with no dependency added to this project.
-- Current close-reading HTTPS preview: see `research/anatomy-faces-qa.json`.
+- Current minting HTTPS preview: see `research/minting-qa.json`. All 105 checks
+  passed across 320, 390, 768, 1024 and 1440 pixels. Hosted HTML exactly matches
+  `dist/index.html`; SVG labels fit without overlapping one another. The source
+  dialog opens by keyboard, links the relevant PDF page and restores focus.
+  The minting deep link survives reload; the onward link reaches the early coins.
+  All three steps remain visible without JavaScript and in print. No horizontal
+  overflow or page JavaScript errors occurred. Desktop and mobile diagrams were
+  visually inspected, along with actual hero, early-classical reverse and
+  classical Athena photographs. These photographs and their original viewer
+  sources loaded successfully. Existing preview indexing restrictions remain.
+- Previous close-reading HTTPS preview: see `research/anatomy-faces-qa.json`.
   All 245 checks passed across 320, 390, 768, 1024 and 1440 pixels. Both actual
   Cleveland photographs loaded, including the exact recorded viewer dimensions
   and URLs. Keyboard face switching, remembered detail selection, markers,

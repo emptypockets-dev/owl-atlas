@@ -1,3 +1,18 @@
+# How the owl was minted — 16 September 2026
+
+- Add an original three-step SVG illustration between the silver-mining story
+  and the early coin photographs: engraved dies, a silver blank, and the hammer
+  strike. Labels and prose identify the lower obverse die and upper reverse die.
+- Cite the Met's educational explanation as source 32. The diagrams are explicitly
+  schematic, with simplified tools and no invented historical coin imagery.
+- Keep all three steps visible, with accessible image descriptions, mobile and
+  tablet layouts, and no JavaScript or animation dependency. An onward link leads
+  to the early owls. Define “flan” here and remove its repeated definition below.
+- Preserve the existing 31 sources, 17 photographs, specimen records and six
+  pending image-reuse decisions. See `research/minting-findings.json`.
+
+---
+
 # Two-face close reading — 16 September 2026
 
 - Add a native radio toggle between the owl/reverse and Athena/obverse in the

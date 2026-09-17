@@ -80,6 +80,17 @@ No external fonts, icons, JavaScript libraries, CSS frameworks or commercial
 image assets are bundled. Greek-letter typography and diagram shapes are not
 representations of unphotographed coin types.
 
+## Minting illustration
+
+The three minting diagrams are original inline SVG schematics. Their process
+explanation cites Michael Norris, *Greek Art: From Prehistoric to Classical*,
+The Metropolitan Museum of Art (2000), “Origin and Technique,” printed p. 55
+(PDF page 57). No artwork from that publication is reproduced or traced.
+Tool shapes and engraved marks are schematic, not reconstructions of an actual
+Athenian tool set or specimen. Silver is highlighted in gold for clarity.
+The schematics belong to the site's implementation; they do not add or alter
+any of the 17 photograph records or their individual rights conditions.
+
 ## Geographic overview
 
 Section 01 uses public-domain Natural Earth data: 1:50m country outlines and
