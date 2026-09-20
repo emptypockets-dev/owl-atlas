@@ -5791,6 +5791,14 @@ window.addEventListener('resize', () => { if (imageDialog.open) drawViewer(); },
 document.addEventListener('click', (event) => {
   const target = event.target instanceof Element ? event.target : null;
   if (!target) return;
+  if (target.closest('.site-footer a[href="#top"]') && !event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey && event.button === 0) {
+    // Keep native anchor scrolling; resume keyboard reading at the heading.
+    requestAnimationFrame(() => {
+      const heading = document.querySelector('main h1');
+      heading?.setAttribute('tabindex', '-1');
+      heading?.focus({preventScroll: true});
+    });
+  }
   const imageLink = target.closest('[data-image]');
   if (imageLink && !event.ctrlKey && !event.metaKey && !event.shiftKey && typeof imageDialog.showModal === 'function') {
     event.preventDefault();
