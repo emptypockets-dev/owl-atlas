@@ -11,9 +11,9 @@ rights clearance; the six flags remain. See
 [research/publication-decision.md](research/publication-decision.md).
 
 - Public site: https://theowlatlas.com/
-- Production deployment: https://owl-atlas-q7wjof0ll-emptypocketsdevs-projects.vercel.app
+- Production deployment: https://owl-atlas-nbg79seqg-emptypocketsdevs-projects.vercel.app
 - Latest prototype preview: https://owl-atlas-mrh5uqk2v-emptypocketsdevs-projects.vercel.app/#anatomy
-- Previous production / rollback source: https://owl-atlas-ntvdt1smi-emptypocketsdevs-projects.vercel.app
+- Previous production / rollback source: https://owl-atlas-q7wjof0ll-emptypocketsdevs-projects.vercel.app
 - Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
 - Public source repository: https://github.com/emptypockets-dev/owl-atlas
 
@@ -21,6 +21,21 @@ Vercel Standard Protection keeps generated deployment URLs and previews behind
 Vercel authentication; the production domain is public. The existing Pro plan
 was retained, with no plan upgrade or paid add-on. The domain was purchased
 separately by the owner.
+
+## Shorter homepage and dedicated reference atlas — 20 September 2026
+
+The reference atlas, comparison controls, family cards, glossary, bibliography
+and image-use records now live at https://theowlatlas.com/atlas/. A short homepage
+invitation replaces the long reference chapters. At 1440px viewport width, the
+homepage measures 25,316px instead of 42,792px: 40.8% shorter. The main story,
+Anatomy exhibit, pricing summary and One Owl invitation remain.
+
+Published with `npm run build:deploy`, serving only `dist/`. Checks passed:
+1,652 structural, 91 integration, 28 editorial and 69 focused browser checks.
+All four public HTML pages return 200 and match the staged build. The live
+comparison photographs loaded; mobile layout, legacy bookmarks and the Pi preset
+passed. Existing image-reuse notices remain. No new publication decision is pending.
+See `research/reference-release-qa.json` for scope and limitations.
 
 ## Anatomy of an Owl and companion discovery — 20 September 2026
 

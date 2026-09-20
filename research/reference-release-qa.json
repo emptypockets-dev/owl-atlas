@@ -1,0 +1,45 @@
+{
+  "date": "2026-09-20",
+  "productionUrl": "https://theowlatlas.com/",
+  "referenceUrl": "https://theowlatlas.com/atlas/",
+  "deploymentUrl": "https://owl-atlas-nbg79seqg-emptypocketsdevs-projects.vercel.app",
+  "rollbackDeployment": "https://owl-atlas-q7wjof0ll-emptypocketsdevs-projects.vercel.app",
+  "sourceCommit": "ecd4293",
+  "build": "npm run build:deploy; published dist/",
+  "checks": {
+    "structural": 1652,
+    "integration": 91,
+    "editorial": 28,
+    "referenceBrowser": 69
+  },
+  "homepageHeight": {
+    "width": 1440,
+    "after": 25316,
+    "before": 42792,
+    "reductionPercent": 40.8
+  },
+  "liveChecks": {
+    "result": "pass",
+    "checks": [
+      "/: public HTTPS200 and exact dist match",
+      "/atlas/: public HTTPS200 and exact dist match",
+      "/pricing/: public HTTPS200 and exact dist match",
+      "/one-owl/: public HTTPS200 and exact dist match",
+      "Both initial comparison photographs loaded at real resolution",
+      "320px reference page has no horizontal overflow",
+      "Legacy family bookmark reaches new reference page",
+      "Live Pi comparison preset selects the correct specimens",
+      "No JavaScript errors"
+    ]
+  },
+  "limitations": [
+    "Focused split-page browser suite supersedes moved-reference checks in the older single-page smoke suite.",
+    "Chromium only; no new cross-browser or accessibility certification.",
+    "Existing six BnF reuse-review notices retained under the previous publication decision."
+  ],
+  "changes": [
+    "Reference atlas, comparison, family cards, glossary, bibliography and image-use records moved to /atlas/.",
+    "Homepage has a short reference invitation.",
+    "Citations, comparison presets and legacy reference bookmarks preserved."
+  ]
+}
