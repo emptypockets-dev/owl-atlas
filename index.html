@@ -784,8 +784,7 @@ img {
 .geography-evidence {
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
-  margin-top:52px;
-  border-top:1px solid var(--line);
+  margin-top:25px;
   border-bottom:1px solid var(--line)
 }
 
@@ -830,9 +829,8 @@ img {
   display:grid;
   grid-template-columns:1fr 2fr;
   gap:60px;
-  border-top:1px solid var(--line);
   padding-top:55px;
-  margin-top:80px
+  margin-top:0
 }
 
 .large-glyph {
@@ -3059,7 +3057,7 @@ dialog::backdrop {
     font-size:var(--type-reading);
     margin-top:22px
   }
-  .geography-evidence { grid-template-columns:1fr; margin-top:35px; }
+  .geography-evidence { grid-template-columns:1fr; margin-top:12px; }
   .geography-evidence article,.geography-evidence article+article { border-left:0; padding:24px 0; }
   .geography-evidence article+article { border-top:1px solid var(--line); }
   .geography-evidence h3 { font-size:1.75rem; }
@@ -3081,7 +3079,6 @@ dialog::backdrop {
   .mining-band {
     grid-template-columns:1fr;
     gap:15px;
-    margin-top:45px;
     padding-top:35px
   }
   .large-glyph {
@@ -3992,7 +3989,6 @@ html.motion-off .supplement-summary-meta>span { transition:none; }
  .chapter-rights-note,.reuse-badge { color:#111; }
 }
 /* Museum identifiers and longer dates must not set a comparison column's width. */
-.market-section { border-top:1px solid var(--line); }
 .market-summary { border-top:1px solid var(--line); position:relative; }
 .market-legacy-anchor { display:block; position:absolute; top:0; width:0; height:0; }
 .market-summary-prices { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.35fr) minmax(0,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
@@ -4061,6 +4057,7 @@ html.motion-off .supplement-summary-meta>span { transition:none; }
 .market-range b { position:absolute; height:13px; width:2px; top:0; background:var(--ink); }
 .market-method { color:var(--muted-light); margin-top:23px; font-size:var(--type-small); max-width:960px; }
 .market-disclosure { border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-top:27px; }
+.market-disclosure + .market-disclosure { border-top:0; margin-top:0; }
 .market-disclosure>summary,.family-market>summary { cursor:pointer; font:var(--type-small)/1.7 var(--mono); padding:20px 0; }
 .market-disclosure>p { font-size:var(--type-support); line-height:1.9; max-width:950px; margin:0 0 20px; }
 .market-crest { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); gap:40px; align-items:center; background:var(--paper-deep); padding:clamp(25px,4vw,60px); margin-top:65px; }
