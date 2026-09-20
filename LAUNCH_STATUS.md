@@ -11,9 +11,9 @@ rights clearance; the six flags remain. See
 [research/publication-decision.md](research/publication-decision.md).
 
 - Public site: https://theowlatlas.com/
-- Production deployment: https://owl-atlas-khq7okek6-emptypocketsdevs-projects.vercel.app
+- Production deployment: https://owl-atlas-k2kh76g5p-emptypocketsdevs-projects.vercel.app
 - Latest prototype preview: https://owl-atlas-mrh5uqk2v-emptypocketsdevs-projects.vercel.app/#anatomy
-- Previous production / rollback source: https://owl-atlas-nbg79seqg-emptypocketsdevs-projects.vercel.app
+- Previous production / rollback source: https://owl-atlas-e18pnv7ai-emptypocketsdevs-projects.vercel.app
 - Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
 - Public source repository: https://github.com/emptypockets-dev/owl-atlas
 
@@ -21,6 +21,21 @@ Vercel Standard Protection keeps generated deployment URLs and previews behind
 Vercel authentication; the production domain is public. The existing Pro plan
 was retained, with no plan upgrade or paid add-on. The domain was purchased
 separately by the owner.
+
+## Hero refinement — 20 September 2026
+
+The homepage now has two hero actions (atlas and One Owl), a quieter coin
+presentation without orbit rings or the duplicate credit/accession labels, and
+a silhouette using the existing Anatomy reverse rim coordinates. The full source
+photograph, metadata and viewer remain intact; the display mask is documented in
+the image record and third-party notices. Chapter labels and the favicon echo the
+wordmark's dotted theta.
+
+Published `dist/` after `npm run build:deploy`; 1,650 structural, 91 integration,
+28 editorial and 69 reference-browser checks passed. Real-photo screenshots at
+1440 and 390px were inspected; layout and viewer checks also passed at 320px.
+The public homepage matches the staged build. This is a targeted Chromium check, not a new
+rights audit or cross-browser certification.
 
 ## Divider cleanup — 20 September 2026
 
