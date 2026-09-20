@@ -70,7 +70,7 @@ both belong to the same coin; see `research/early-classical-findings.json`.
   SVG side views and accompanying text remain readable without JavaScript.
 - Scroll reveals, restrained parallax, a chapter indicator and reading progress.
   Scrolling is never hijacked. OS reduced-motion preferences take priority.
-- An eight-step “Anatomy of an Owl” prototype replaces the former close reader.
+- An eight-step “Anatomy of an Owl” exhibit replaces the former close reader.
   A reusable artifact camera follows normalized focus coordinates through both
   sides of Cleveland 1941.296. Both source photographs and all readings remain
   available without JavaScript and in print. See `docs/artifact-stories.md` for

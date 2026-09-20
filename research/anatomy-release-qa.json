@@ -1,0 +1,77 @@
+{
+  "recordedAt": "2026-09-20T12:13:06.729386+00:00",
+  "release": "Anatomy of an Owl and homepage companion link",
+  "sourceCommit": "3800f18",
+  "productionUrl": "https://theowlatlas.com/",
+  "deploymentUrl": "https://owl-atlas-q7wjof0ll-emptypocketsdevs-projects.vercel.app",
+  "deploymentId": "dpl_7QNtxADzWmFFWdhzR22377mZ9kYH",
+  "rollbackDeployment": "https://owl-atlas-ntvdt1smi-emptypocketsdevs-projects.vercel.app",
+  "account": "emptypockets-dev",
+  "scope": "emptypocketsdevs-projects",
+  "changes": [
+    "Published the approved eight-step Anatomy of an Owl experience.",
+    "Added a direct One Owl link to the homepage introduction; existing lower-page invitation retained.",
+    "Preserved the complete pricing and companion pages."
+  ],
+  "build": {
+    "command": "npm run build:deploy",
+    "result": "pass",
+    "publishDirectory": "dist"
+  },
+  "localChecks": {
+    "structural": 1806,
+    "integrationData": 91,
+    "editorialCopy": 28,
+    "companionData": 118,
+    "browserSmoke": 273,
+    "readability": 313
+  },
+  "hostedChecks": {
+    "artifact": {
+      "passed": 656,
+      "total": 656,
+      "failures": []
+    },
+    "companion": {
+      "passed": 240,
+      "total": 240,
+      "failures": []
+    },
+    "http": [
+      {
+        "route": "/",
+        "status": 200,
+        "matchesDist": true,
+        "sha256": "0535af93fb85f220493f3025b534ef286bb1198e5664fd7307f8b6aa8054eb93"
+      },
+      {
+        "route": "/pricing/",
+        "status": 200,
+        "matchesDist": true,
+        "sha256": "79732addff917f5335c792981488d7102abfbc94c423ea9b49d104346ace9c8e"
+      },
+      {
+        "route": "/one-owl/",
+        "status": 200,
+        "matchesDist": true,
+        "sha256": "3ef68f89d32df8eeff845b3c47ae7fc63ed031b22feb1df3c10be06d6a74190a"
+      }
+    ]
+  },
+  "visualReview": [
+    "Homepage link reviewed at1440,390 and320 CSS pixels; no overflow or overlapping actions.",
+    "Public homepage viewed in the in-app browser with the real owl photograph; new link followed to the companion.",
+    "Hosted Anatomy desktop eye, mobile inscription and crescent views inspected; real photographs and preserved attribution."
+  ],
+  "photographs": "Hosted Anatomy checks decode both existing Cleveland images at recorded dimensions; hosted companion checks verify all four owner photographs and staged byte integrity.",
+  "publicationDecisions": "No new decision pending. Existing six BnF reuse-review flags and owner-approved notices remain; no new rights clearance claimed.",
+  "limitations": [
+    "Chromium and in-app browser checks; no new Safari, Firefox, physical-device or screen-reader certification.",
+    "The separate smoke suite blocks external images; real-image evidence is from the hosted suites."
+  ],
+  "reports": [
+    "/private/tmp/owl-homepage-link-smoke-qa.json",
+    "/private/tmp/owl-artifact-hosted-qa.json",
+    "/private/tmp/owl-one-owl-hosted-qa.json"
+  ]
+}

@@ -1,4 +1,4 @@
-# Owl Atlas launch status — 17 September 2026
+# Owl Atlas launch status — 20 September 2026
 
 The existing research edition is public at **https://theowlatlas.com/** on the
 verified personal Vercel account **emptypockets-dev**, in
@@ -11,9 +11,9 @@ rights clearance; the six flags remain. See
 [research/publication-decision.md](research/publication-decision.md).
 
 - Public site: https://theowlatlas.com/
-- Production deployment: https://owl-atlas-ntvdt1smi-emptypocketsdevs-projects.vercel.app
-- Latest preview: https://owl-atlas-iam7iz4z4-emptypocketsdevs-projects.vercel.app/
-- Previous production / rollback source: https://owl-atlas-1fiujxfos-emptypocketsdevs-projects.vercel.app
+- Production deployment: https://owl-atlas-q7wjof0ll-emptypocketsdevs-projects.vercel.app
+- Latest prototype preview: https://owl-atlas-mrh5uqk2v-emptypocketsdevs-projects.vercel.app/#anatomy
+- Previous production / rollback source: https://owl-atlas-ntvdt1smi-emptypocketsdevs-projects.vercel.app
 - Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
 - Public source repository: https://github.com/emptypockets-dev/owl-atlas
 
@@ -21,6 +21,28 @@ Vercel Standard Protection keeps generated deployment URLs and previews behind
 Vercel authentication; the production domain is public. The existing Pro plan
 was retained, with no plan upgrade or paid add-on. The domain was purchased
 separately by the owner.
+
+## Anatomy of an Owl and companion discovery — 20 September 2026
+
+The owner approved publishing the Anatomy prototype and adding a direct link to
+https://theowlatlas.com/one-owl/ from the homepage introduction. “Follow one owl
+through 2,400 years” now sits with the opening story links; the existing companion
+invitation farther down the page remains. The eight-step artifact exhibit is live
+at https://theowlatlas.com/#anatomy. The complete pricing and companion pages are
+included in the same production release.
+
+`npm run build:deploy` published `dist/` through the existing personal Vercel
+project. Local checks passed: 1,806 structural, 91 research data, 28 editorial,
+118 companion data, 273 browser smoke and 313 readability checks. Public HTTPS
+checks passed: 656 artifact checks and 240 companion checks, with real photographs,
+mobile layouts, deep links and reduced motion. All three public HTML pages return
+200 and match their staged bytes. The homepage link was followed in the live browser.
+Desktop and narrow-phone screenshots were inspected without layout issues.
+
+See [research/anatomy-release-qa.json](research/anatomy-release-qa.json). The earlier
+restricted-preview record remains in `research/anatomy-prototype-qa.json` as history.
+No new publication decision is pending; existing BnF notices and browser-coverage
+limitations remain.
 
 ## One owl: an imagined life — 17 September 2026
 
