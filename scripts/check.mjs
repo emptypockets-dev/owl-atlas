@@ -10,6 +10,8 @@ const data = JSON.parse(await readFile(path.join(root, 'src/content.json'), 'utf
 const html = await readFile(path.join(root, 'index.html'), 'utf8');
 const template = await readFile(path.join(root, 'src/page.html'), 'utf8');
 const pricing = await readFile(path.join(root, 'pricing/index.html'), 'utf8');
+const atlas = await readFile(path.join(root, 'atlas/index.html'), 'utf8');
+const atlasTemplate = await readFile(path.join(root, 'src/atlas.html'), 'utf8');
 const journey = await readFile(path.join(root, 'one-owl/index.html'), 'utf8');
 let tests = 0;
 function check(condition, message) { assert(condition, message); tests++; }
@@ -74,7 +76,7 @@ for (const story of Object.values(data.artifactStories)) {
   }
 }
 for (const [, , refs] of data.glossary) refs.forEach(id => check(ids.has(id), `Unknown glossary source: ${id}`));
-for (const match of template.matchAll(/\{\{CITE:([^}]+)\}\}/g)) match[1].split(',').forEach(id => check(ids.has(id), `Unknown narrative citation: ${id}`));
+for (const match of (template + atlasTemplate).matchAll(/\{\{CITE:([^}]+)\}\}/g)) match[1].split(',').forEach(id => check(ids.has(id), `Unknown narrative citation: ${id}`));
 const geography = JSON.parse(await readFile(path.join(root, 'src/geography.json'), 'utf8'));
 const placeIds = new Set();
 for (const place of data.geography.places) {
@@ -111,7 +113,7 @@ check(marketCsv({records:[{value:'=1+1',note:'a,"quoted" value'}]}).includes('"\
 check(JSON.stringify(JSON.parse(await readFile(path.join(root,'research/market-sales.json'),'utf8')).records) === JSON.stringify(sales), 'Public JSON agrees with authoritative records');
 const recent = sales.filter(r => r.venue !== 'eBay' && r.reported_date.startsWith('2026'));
 check(recent.length === 45 && marketStats(recent).min === 420 && marketStats(recent).max === 6710, 'Homepage summary matches the 2026 sample');
-const documents = new Map([['/',html],['/pricing/',pricing],['/one-owl/',journey]]);
+const documents = new Map([['/',html],['/pricing/',pricing],['/one-owl/',journey],['/atlas/',atlas]]);
 for (const [pathname, document] of documents) {
   const pageMarkup = document.replace(/<script[^>]*>[\s\S]*?<\/script>/g, '');
   const pageIds = [...pageMarkup.matchAll(/\bid="([^"]+)"/g)].map(match=>match[1]);

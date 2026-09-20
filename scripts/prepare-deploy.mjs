@@ -13,6 +13,8 @@ const stage = await mkdtemp(path.join(root, '.deploy-stage-'));
 let localCount = 0;
 try {
   await writeFile(path.join(stage, 'index.html'), html);
+  await mkdir(path.join(stage, 'atlas'));
+  await copyFile(path.join(root, 'atlas/index.html'), path.join(stage, 'atlas/index.html'));
   await mkdir(path.join(stage, 'pricing'));
   await copyFile(path.join(root, 'pricing/index.html'), path.join(stage, 'pricing/index.html'));
   await mkdir(path.join(stage, 'one-owl'));

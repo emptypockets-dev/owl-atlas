@@ -360,6 +360,7 @@ document.addEventListener('click', (event) => {
   if (jump) {
     event.preventDefault();
     sourceDialog.close();
+    if (!byId(`source-${jump.dataset.bibliographyJump}`) || !byId('source-search')) { location.href = `/atlas/#source-${encodeURIComponent(jump.dataset.bibliographyJump)}`; return; }
     byId('source-search').value = '';
     filterSources();
     const entry = byId(`source-${jump.dataset.bibliographyJump}`);
@@ -407,7 +408,7 @@ const comparisonPresets = {
 };
 document.querySelectorAll('[data-compare-preset]').forEach((link) => link.addEventListener('click', () => {
   const preset = comparisonPresets[link.dataset.comparePreset];
-  if (!preset) return;
+  if (!preset || !byId('compare-left')) return;
   ['left', 'right'].forEach((position, index) => {
     byId(`compare-${position}`).value = preset.families[index];
     syncSpecimenOptions(position);
@@ -417,10 +418,29 @@ document.querySelectorAll('[data-compare-preset]').forEach((link) => link.addEve
   updateComparison();
   // Leave ordinary anchor navigation intact, including when JavaScript is disabled.
 }));
+// A story link can open a comparison preset on the dedicated reference page.
+const initialPreset = comparisonPresets[new URLSearchParams(location.search).get('compare')];
+if (initialPreset && byId('compare-left')) {
+  ['left','right'].forEach((position,index) => {
+    byId(`compare-${position}`).value = initialPreset.families[index];
+    syncSpecimenOptions(position);
+    byId(`compare-${position}-specimen`).value = initialPreset.specimens[index];
+  });
+  document.querySelector('input[name="compare-side"][value="obverse"]').checked = true;
+  updateComparison();
+}
+if (!document.body.classList.contains('reference-page')) {
+  const followReferenceBookmark = () => {
+    const id = location.hash.slice(1);
+    if ((id === 'atlas' || byId(id)?.hasAttribute('data-reference-redirect')) && !document.body.classList.contains('pricing-page') && !document.body.classList.contains('journey-page')) location.replace(`/atlas/${location.hash}`);
+  };
+  window.addEventListener('hashchange',followReferenceBookmark);
+  followReferenceBookmark();
+}
 // Expand the targeted rights note rather than navigating to a closed disclosure.
 document.addEventListener('click', (event) => {
   const link = event.target instanceof Element ? event.target.closest('a[href="#image-reuse-policy"]') : null;
-  if (link) byId('image-reuse-policy').open = true;
+  if (link && byId('image-reuse-policy')?.tagName === 'DETAILS') byId('image-reuse-policy').open = true;
 });
 if (location.hash === '#image-reuse-policy' && byId('image-reuse-policy')) byId('image-reuse-policy').open = true;
 
@@ -438,7 +458,7 @@ function filterSources() {
   byId('source-results').textContent = `${count} ${count === 1 ? 'source' : 'sources'}`;
   byId('source-empty').hidden = count !== 0;
 }
-byId('source-search').addEventListener('input', filterSources);
+byId('source-search')?.addEventListener('input', filterSources);
 
 // Enhance the complete, statically rendered market snapshot.
 if (byId('market-ledger')?.tagName === 'DETAILS') {

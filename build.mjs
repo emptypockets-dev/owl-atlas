@@ -36,6 +36,7 @@ function imageRecord(image) {
 const options = (selected) => data.families.map((family) => `<option value="${family.id}"${family.id === selected ? ' selected' : ''}>${escapeHtml(family.name)}</option>`).join('');
 const mainTemplate = await read('src/page.html');
 const pricingTemplate = await read('src/pricing.html');
+const atlasTemplate = await read('src/atlas.html');
 const legacyMarketIds = [...new Set([
   ...[...pricingTemplate.matchAll(/id="(market-[^"]+)"/g)].map(match => match[1]),
   ...data.market.records.map(record => `sale-${record.id}`),
@@ -85,7 +86,10 @@ function renderPage(template, pageData = data) {
   if (/\{\{[A-Z_]+|__\w+_URL__/.test(html)) throw new Error('An unresolved build token remains.');
   return html;
 }
-const html = renderPage(mainTemplate);
+// Keep moved reference bookmarks reachable, including without JavaScript.
+const referenceIds = ['sources','sources-title','family-tree','coin-descriptions','glossary-title','image-reuse-policy',...data.families.map(f=>`family-${f.id}`),...data.sources.map(s=>`source-${s.id}`)];
+replacements.ATLAS_LEGACY_LINKS = referenceIds.filter(id=>!['atlas','atlas-title'].includes(id)).map(id=>`<span id="${escapeHtml(id)}" class="market-legacy-anchor" data-reference-redirect aria-hidden="true"></span>`).join('');
+const html = renderPage(mainTemplate).replace(/href="#(source-[^"]+|image-reuse-policy)"/g,'href="atlas/#$1"');
 await writeFile(path.join(root,'index.html'),html);
 // Reuse the existing site chrome and native dialogs; only the page content differs.
 const pricingTitle = 'Athenian Owl Prices & Auction History — The Owl Atlas';
@@ -97,6 +101,7 @@ const pricingStart = mainTemplate.slice(0,mainTemplate.indexOf('<main id="main">
   .replace(/content="[^"]*" (property="og:title"|name="twitter:title")/g, `content="${pricingTitle}" $1`)
   .replaceAll('https://theowlatlas.com/','https://theowlatlas.com/pricing/')
   .replace(/href="#(top|origins|atlas)"/g,'href="../#$1"')
+  .replace('href="/atlas/#sources"','href="#sources"')
   .replace('class="pricing-nav"','class="pricing-nav" aria-current="page"')
   .replace('{{SOURCE_COUNT}}', String(data.sources.filter(s=>s.id.startsWith('market-')).length))
   .replace('Skip to the story','Skip to the pricing research');
@@ -106,6 +111,22 @@ const pricingEnd = mainTemplate.slice(mainTemplate.indexOf('   <footer class="si
 const pricingHtml = renderPage(pricingTemplate.replace('{{PRICING_START}}',pricingStart).replace('{{PRICING_END}}',pricingEnd));
 await mkdir(path.join(root,'pricing'),{recursive:true});
 await writeFile(path.join(root,'pricing/index.html'),pricingHtml);
+// The reference page retains the complete comparison, glossary and bibliography.
+const atlasStart = mainTemplate.slice(0,mainTemplate.indexOf('<main id="main">') + '<main id="main">'.length)
+  .replace('<body>', '<body class="reference-page">')
+  .replace(/<title>[\s\S]*?<\/title>/, '<title>Compare Owl Coins &amp; Explore the Sources — The Owl Atlas</title>')
+  .replace(/content="[^"]*" (property="og:title"|name="twitter:title")/g, 'content="The Owl Atlas — Reference atlas and sources" $1')
+  .replace(/content="[^"]*" (name="description"|property="og:description"|name="twitter:description")/g, 'content="Compare eight owl coin families, examine both faces, and explore the glossary, source bibliography and image credits." $1')
+  .replaceAll('https://theowlatlas.com/','https://theowlatlas.com/atlas/')
+  .replace(/href="#(top|origins|pricing)"/g,'href="../#$1"')
+  .replace('Skip to the story','Skip to the reference atlas');
+const atlasEnd = mainTemplate.slice(mainTemplate.indexOf('   <footer class="site-footer'))
+  .replace('href="#top"','href="../"').replace('Back to the beginning ↑','Back to the story ↗');
+const atlasData = {...data, images:Object.fromEntries(Object.entries(data.images).map(([id,image])=>[id,image.localUrl ? {...image,localUrl:`../${image.localUrl}`} : image]))};
+const atlasHtml = renderPage(atlasTemplate.replace('{{ATLAS_START}}',atlasStart).replace('{{ATLAS_END}}',atlasEnd),atlasData)
+  .replace(/href="pricing\//g,'href="../pricing/');
+await mkdir(path.join(root,'atlas'),{recursive:true});
+await writeFile(path.join(root,'atlas/index.html'),atlasHtml);
 // Owner-supplied photographs and personal records belong to this companion only.
 // Keep the main atlas's general-audience image register and bibliography intact.
 const journeyData = {
@@ -123,6 +144,7 @@ const journeyStart = mainTemplate.slice(0,mainTemplate.indexOf('<main id="main">
   .replace(/content="[^"]*" (property="og:title"|name="twitter:title")/g, `content="${journeyTitle}" $1`)
   .replaceAll('https://theowlatlas.com/','https://theowlatlas.com/one-owl/')
   .replace(/href="#(top|origins|atlas|pricing)"/g,'href="../#$1"')
+  .replace('href="/atlas/#sources"','href="#sources"')
   .replace('{{SOURCE_COUNT}}',String(journey.sourceIds.length));
 const journeyEnd = mainTemplate.slice(mainTemplate.indexOf('   <footer class="site-footer'))
   .replace('href="#top"','href="../#one-owl"').replace('Back to the beginning ↑','Back to the atlas ↗')

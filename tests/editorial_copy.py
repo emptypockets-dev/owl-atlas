@@ -9,7 +9,8 @@ import json
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
-html = (ROOT / 'index.html').read_text()
+home_html = (ROOT / 'index.html').read_text()
+html = home_html + '\n' + (ROOT / 'atlas/index.html').read_text()
 data = json.loads((ROOT / 'src/content.json').read_text())
 checks = []
 
@@ -59,7 +60,7 @@ match = re.search(r'<details\b[^>]*\bid="coin-descriptions"[^>]*>', html)
 check(bool(match), 'Reference guide is a native disclosure')
 check(bool(match) and not re.search(r'\bopen\b', match.group()), 'Reference guide is collapsed by default')
 for anchor in ['origins', 'first-owls', 'classical', '404', 'after-athens', 'new-style', 'beyond', 'evidence']:
-    check(f'id="{anchor}"' in html, f'Preserved chapter anchor: {anchor}')
+    check(f'id="{anchor}"' in home_html, f'Preserved homepage chapter anchor: {anchor}')
 check(data['edition'] == 'Research edition 03', 'Data edition updated')
 check(len(data['sources']) == 41, 'All 40 earlier sources retained plus the theta letterform reference')
 check(len(data['images']) == 17, 'Original 16 image records retained plus the researched early-classical reverse')

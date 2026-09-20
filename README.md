@@ -75,6 +75,7 @@ both belong to the same coin; see `research/early-classical-findings.json`.
   sides of Cleveland 1941.296. Both source photographs and all readings remain
   available without JavaScript and in print. See `docs/artifact-stories.md` for
   the declarative API, localhost coordinate helper and validation commands.
+- A dedicated `/atlas/` reference page contains the comparison tool, eight-family atlas, glossary, bibliography and image-use records. The homepage ends with a short invitation to explore it. Old reference bookmarks redirect to the new page.
 - A two-column, eight-family comparison atlas. Pi-style additionally has separate
   Pi II/Pi III specimen selectors, and story links preset meaningful comparisons.
 - A native-dialog image viewer with source/rights metadata, fitted-size zoom,
@@ -107,6 +108,8 @@ npm run check          # check references, IDs, rendering and JavaScript syntax
 | `src/app.js` | Progressive enhancements and native dialog behavior |
 | `src/artifact-explorer.js` | Reusable artifact camera, discrete scroll states and coordinate authoring helper |
 | `src/render.mjs` | Shared escaped markup used by build and browser |
+| `src/atlas.html` | Dedicated comparison atlas, glossary, bibliography and image-use records |
+| `atlas/index.html` | Generated reference page; do not hand-edit |
 | `src/pricing.html` | Full pricing research page; shares the main page's header, footer and dialogs |
 | `pricing/index.html` | Generated pricing page; do not hand-edit |
 | `build.mjs` | Inlines the page assets and exports research manifests |
@@ -222,7 +225,7 @@ python3 tests/editorial_copy.py
 
 ```sh
 # Use your own installed Chromium executable:
-CHROMIUM_PATH=/path/to/chromium python3 tests/browser_smoke.py
+CHROMIUM_PATH=/path/to/chromium python3 tests/reference_browser.py
 CHROMIUM_PATH=/path/to/chromium python3 tests/market_browser.py
 CHROMIUM_PATH=/path/to/chromium python3 tests/readability_browser.py
 # Optional deployed-build comparison and public-download verification:

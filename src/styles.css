@@ -4690,3 +4690,6 @@ html:not(.has-js) .journey-hero { padding-top:30px; }
  .journey-fiction .journey-heading { position:static; }
  .journey-scenes>li,.journey-collectors>li { break-inside:avoid; }
 }
+
+/* Dedicated reference page uses the existing atlas layout below the fixed header. */
+.reference-page main { padding-top:var(--header); }
