@@ -498,27 +498,6 @@ img {
   display:none
 }
 
-.orbit {
-  position:absolute;
-  border:1px solid #82917b30;
-  border-radius:50%;
-  aspect-ratio:1;
-  left:50%;
-  top:45%;
-  transform:translate(-50%,-50%);
-  pointer-events:none
-}
-
-.orbit-one {
-  width:110%
-}
-
-.orbit-two {
-  width:126%;
-  border-style:dashed;
-  border-color:#82917b1f
-}
-
 .object-tick {
   font-family:var(--mono);
   font-size:var(--type-label);
@@ -576,17 +555,7 @@ img {
 
 .scroll-cue span {
   display:inline-block;
-  font-size:1.125rem;
-  animation:nudge 2.5s ease-in-out infinite
-}
-
-@keyframes nudge {
-  0%,100% {
-    transform:translateY(0)
-  }
-  50% {
-    transform:translateY(5px)
-  }
+  font-size:1.125rem
 }
 
 .chapter-bar {
@@ -2994,12 +2963,6 @@ dialog::backdrop {
   .hero-photo {
     width:90%
   }
-  .orbit-one {
-    width:110%
-  }
-  .orbit-two {
-    width:123%
-  }
   .object-tick {
     top:0;
     right:0;
@@ -3738,7 +3701,7 @@ dialog::backdrop {
     background:#fff;
     font-size:11pt
   }
-  .site-header,.chapter-bar,.hero-object .orbit,.motion-button,.scroll-cue,.hero-actions,.compare-tools,.image-trigger .expand-label,.viewer-controls,.source-toolbar,.anatomy-controls .detail-buttons,dialog {
+  .site-header,.chapter-bar,.motion-button,.scroll-cue,.hero-actions,.compare-tools,.image-trigger .expand-label,.viewer-controls,.source-toolbar,.anatomy-controls .detail-buttons,dialog {
     display:none!important
   }
   .section-dark,.section-ink,.section-olive,.section-paper,.site-footer {
