@@ -11,9 +11,9 @@ rights clearance; the six flags remain. See
 [research/publication-decision.md](research/publication-decision.md).
 
 - Public site: https://theowlatlas.com/
-- Production deployment: https://owl-atlas-nbg79seqg-emptypocketsdevs-projects.vercel.app
+- Production deployment: https://owl-atlas-khq7okek6-emptypocketsdevs-projects.vercel.app
 - Latest prototype preview: https://owl-atlas-mrh5uqk2v-emptypocketsdevs-projects.vercel.app/#anatomy
-- Previous production / rollback source: https://owl-atlas-q7wjof0ll-emptypocketsdevs-projects.vercel.app
+- Previous production / rollback source: https://owl-atlas-nbg79seqg-emptypocketsdevs-projects.vercel.app
 - Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
 - Public source repository: https://github.com/emptypockets-dev/owl-atlas
 
@@ -21,6 +21,20 @@ Vercel Standard Protection keeps generated deployment URLs and previews behind
 Vercel authentication; the production domain is public. The existing Pro plan
 was retained, with no plan upgrade or paid add-on. The domain was purchased
 separately by the owner.
+
+## Divider cleanup — 20 September 2026
+
+Removed redundant dividers between the geography explorer, its evidence summary
+and the mining story, below the pricing navigation, and between adjacent pricing
+disclosures. Consolidated the empty margins around those boundaries while keeping
+readable desktop/mobile spacing and the existing card and control borders.
+
+Published with `npm run build:deploy`, serving `dist/`. Passed 1,652 structural,
+91 integration, 28 editorial and 69 existing reference-browser checks, plus
+46 targeted local and 51 public HTTPS checks at 1440, 390 and 320px. All four
+live HTML pages match the staged build; the real hero photograph loads. Inspected
+desktop/mobile boundary screenshots. No content, sources or rights records changed.
+See `research/divider-release-qa.json` for scope and limitations.
 
 ## Shorter homepage and dedicated reference atlas — 20 September 2026
 
