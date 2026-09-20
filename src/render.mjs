@@ -25,14 +25,7 @@ export function photoMarkup(id, data, className = '', cropOverride, eager = fals
   const original = image.localUrl || image.url;
   const displayed = image.localUrl || image.displayUrl || image.url;
   const credit = image.credit;
-  // Reuse the same photographed rim as the Anatomy exhibit; never invent an edge.
-  const heroFace = className.split(/\s+/).includes('hero-photo')
-    ? Object.values(data.artifactStories?.anatomy?.faces || {}).find(face => face.image === id)
-    : null;
-  const outline = heroFace?.outline
-    ? `;--photo-outline:polygon(${heroFace.outline.map(([x,y]) => `${x*100}% ${y*100}%`).join(',')})`
-    : '';
-  return `<figure class="image-figure ${escapeHtml(className)}" data-photo="${escapeHtml(id)}" style="--plate-ratio:${image.width / image.height}${outline}">
+  return `<figure class="image-figure ${escapeHtml(className)}" data-photo="${escapeHtml(id)}" style="--plate-ratio:${image.width / image.height}">
     <div class="image-surface">
       <a class="image-trigger" href="${escapeHtml(original)}" target="_blank" rel="noopener noreferrer" data-image="${escapeHtml(id)}" aria-label="Inspect ${escapeHtml(image.title)} in the image viewer">
         <span class="image-frame"><img src="${escapeHtml(displayed)}" width="${image.width}" height="${image.height}" class="crop-${escapeHtml(crop)}" alt="${escapeHtml(alt)}" loading="${eager ? 'eager' : 'lazy'}" decoding="async" ${eager ? 'fetchpriority="high"' : ''}></span>
