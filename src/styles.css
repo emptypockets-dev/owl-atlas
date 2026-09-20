@@ -462,7 +462,10 @@ img {
 }
 
 .hero-photo {
-  width:92%;
+  width:100%;
+  padding:8%;
+  border:1px solid #9eaa9370;
+  border-radius:50%;
   margin:auto;
   position:relative;
   z-index:2
@@ -473,7 +476,7 @@ img {
   border-radius:50%;
   overflow:hidden;
   background:#333b34;
-  border:1px solid #9eaa9370;
+  border:0;
   box-shadow:0 36px 80px #0005
 }
 
@@ -2952,9 +2955,6 @@ dialog::backdrop {
     max-width:450px;
     margin:45px auto 0;
     padding:32px 0 10px
-  }
-  .hero-photo {
-    width:90%
   }
   .object-tick {
     top:0;
