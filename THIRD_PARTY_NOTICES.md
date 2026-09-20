@@ -42,6 +42,9 @@ any material. The website's software license does not cover these photographs.
   The original frames remain available in the viewer and no-JavaScript exhibit.
   A brief CSS edge cue suggests a turn; it is not a measured reconstruction of
   this coin’s edge or thickness. The two photograph records declare these changes.
+- The hero reuses the same reverse rim polygon to mask the photographic
+  background. It preserves the photograph's proportions and does not reshape
+  the coin. The complete source remains available in the image viewer.
 
 **The Metropolitan Museum of Art / Public domain**
 
