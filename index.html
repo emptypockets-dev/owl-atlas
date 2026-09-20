@@ -670,6 +670,23 @@ img {
   margin-bottom:24px
 }
 
+/* A quiet maker's mark, echoing the dotted theta in the wordmark. */
+.section-heading>.eyebrow {
+  display:inline-flex;
+  align-items:center;
+  gap:12px
+}
+
+.section-heading>.eyebrow::before {
+  content:"";
+  flex:0 0 13px;
+  width:13px;
+  height:13px;
+  border:1px solid currentColor;
+  border-radius:50%;
+  background:radial-gradient(circle,currentColor 0 1.5px,transparent 2px)
+}
+
 .section-heading :is(h1,h2) {
   font-size:clamp(3.125rem,6vw,5.75rem);
   max-width:950px

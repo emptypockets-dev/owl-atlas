@@ -4,6 +4,6 @@
   <g fill="none" stroke="#c0a56c" stroke-width="4" stroke-linejoin="round">
     <path d="M8 45 17 19l9 26M12 35h10M47 19h12M47 19v26h12M47 32h10"/>
     <ellipse cx="36" cy="32" rx="7" ry="13"/>
-    <path d="M30 32h12"/>
+    <circle cx="36" cy="32" r="2.5" fill="#c0a56c" stroke="none"/>
   </g>
 </svg>
