@@ -487,14 +487,7 @@ img {
 }
 
 .hero-photo .image-credit {
-  max-width:94%;
-  margin:14px auto 0;
-  text-align:center;
-  font-size:var(--type-label);
-  color:#b6bbae
-}
-
-.hero-photo .image-credit .license-short {
+  /* Full photographic attribution remains in the viewer and image register. */
   display:none
 }
 
