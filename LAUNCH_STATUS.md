@@ -11,7 +11,7 @@ rights clearance; the six flags remain. See
 [research/publication-decision.md](research/publication-decision.md).
 
 - Public site: https://theowlatlas.com/
-- Production deployment: https://owl-atlas-k2kh76g5p-emptypocketsdevs-projects.vercel.app
+- Production deployment: https://owl-atlas-1bv0xm0aa-emptypocketsdevs-projects.vercel.app
 - Latest prototype preview: https://owl-atlas-mrh5uqk2v-emptypocketsdevs-projects.vercel.app/#anatomy
 - Previous production / rollback source: https://owl-atlas-e18pnv7ai-emptypocketsdevs-projects.vercel.app
 - Vercel project: https://vercel.com/emptypocketsdevs-projects/owl-atlas
@@ -21,6 +21,14 @@ Vercel Standard Protection keeps generated deployment URLs and previews behind
 Vercel authentication; the production domain is public. The existing Pro plan
 was retained, with no plan upgrade or paid add-on. The domain was purchased
 separately by the owner.
+
+## Hero silhouette reverted — 20 September 2026
+
+At the owner's request, the irregular silhouette change below was reverted.
+The circular hero frame is restored; the two hero links, removed duplicate
+credit/accession labels, and all earlier cleanup remain. Rebuilt with
+`npm run build:deploy`; 1,650 structural, 91 integration, 28 editorial and
+69 reference-browser checks passed.
 
 ## Hero refinement — 20 September 2026
 
