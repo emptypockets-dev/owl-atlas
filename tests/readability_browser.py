@@ -26,7 +26,7 @@ checks, failures, errors = [], [], []
 
 BODY_TEXT = (
     '.hero-deck, .section-deck, .prose p:not(.micro-copy), '
-    '.anatomy-reading p, .family-card > p:not(.date):not(.status), '
+    '.artifact-step p, .family-card > p:not(.date):not(.status), '
     '.geo-evidence p, .minting-step-copy > p, '
     '.market-summary-prices p, .market-opening-copy > p, '
     '.market-spotlight > p:not(.market-big-price):not(.market-price-note), '
@@ -179,7 +179,7 @@ with sync_playwright() as p:
         check(page.locator('h1').count() == 1, f'{label}: one main heading')
         check(page.locator('.source-entry:visible').count() > 0, f'{label}: bibliography is readable')
         if relative == 'index.html':
-            check(page.locator('.anatomy-reading:visible').count() >= 6, f'{label}: both close readings remain readable')
+            check(page.locator('#anatomy .artifact-step:visible').count() == 8, f'{label}: all eight close readings remain readable')
             check(page.locator('.geo-place:visible').count() > 1, f'{label}: place descriptions remain readable')
             check(page.locator('.family-card:visible').count() > 0, f'{label}: family entries remain readable')
             disclosure = page.locator('#coin-descriptions')

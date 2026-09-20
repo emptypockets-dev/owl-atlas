@@ -1,0 +1,199 @@
+{
+  "recordedAt": "2026-09-20T12:03:49+00:00",
+  "edition": "Anatomy of an owl prototype",
+  "branch": "prototype/anatomy-of-an-owl",
+  "previewUrl": "https://owl-atlas-mrh5uqk2v-emptypocketsdevs-projects.vercel.app/#anatomy",
+  "releaseStatus": "Authenticated preview; production unchanged.",
+  "productionUrl": "https://theowlatlas.com/",
+  "scope": {
+    "change": "The #anatomy hotspot reader is replaced with an eight-step scrolling close reading using the existing paired Cleveland 1941.296 photographs.",
+    "implementation": "Declarative artifactStories data, a reusable two-face viewer, generated readable no-JavaScript markup, native scrolling, stable deep links and reduced-motion behavior.",
+    "photographs": "No new imagery, retouching or generated coin detail. Display masks preserve the lips and rims; the brief edge cue is schematic, not a measured edge.",
+    "dependenciesAdded": false,
+    "authoringDocumentation": "docs/artifact-stories.md"
+  },
+  "automatedChecks": [
+    {
+      "command": "npm run build:deploy",
+      "result": "passed",
+      "output": "dist/"
+    },
+    {
+      "command": "npm run check",
+      "result": "passed",
+      "checks": 1806
+    },
+    {
+      "command": "python tests/integration_data.py",
+      "result": "passed",
+      "checks": 91
+    },
+    {
+      "command": "python tests/editorial_copy.py",
+      "result": "passed",
+      "checks": 28
+    },
+    {
+      "command": "node tests/artifact_geometry.mjs",
+      "result": "passed",
+      "checks": 128
+    },
+    {
+      "command": "python tests/artifact_browser.py",
+      "result": "passed",
+      "checks": 656,
+      "realImageRequests": true,
+      "viewports": [
+        [
+          1440,
+          1000
+        ],
+        [
+          1024,
+          900
+        ],
+        [
+          768,
+          1024
+        ],
+        [
+          390,
+          844
+        ],
+        [
+          320,
+          740
+        ],
+        [
+          844,
+          390
+        ]
+      ],
+      "coverage": [
+        "200% root text",
+        "initial deep links",
+        "forward and backward steps",
+        "arbitrary jumps",
+        "interrupted turns",
+        "normal and reduced motion"
+      ],
+      "report": "/private/tmp/owl-artifact-local-qa.json"
+    },
+    {
+      "command": "python tests/browser_smoke.py",
+      "result": "passed",
+      "checks": 273,
+      "realImageRequests": false,
+      "imageRequestsBlocked": true,
+      "javascriptErrors": 0,
+      "report": "/private/tmp/owl-artifact-final-smoke-qa.json"
+    },
+    {
+      "command": "python tests/readability_browser.py",
+      "result": "passed",
+      "checks": 313
+    },
+    {
+      "command": "python tests/one_owl_browser.py",
+      "result": "passed",
+      "checks": 240,
+      "report": "/private/tmp/owl-one-owl-browser-qa.json"
+    },
+    {
+      "check": "Localhost coordinate-authoring helper",
+      "result": "passed",
+      "detail": "Clicking the eye-stage center returns obverse focus x=0.775, y=0.48."
+    }
+  ],
+  "hostedReview": {
+    "method": "Root agent inspected the actual HTTPS preview through the authenticated in-app browser.",
+    "views": [
+      {
+        "viewport": [
+          1522,
+          1121
+        ],
+        "inspection": "Desktop eye and owl views; full original reverse opens with loaded pixel dimensions, source links, credit and CC0 license. Escape closes the native viewer."
+      },
+      {
+        "viewport": [
+          390,
+          844
+        ],
+        "inspection": "Reverse photograph and every state forward/backward through native navigation."
+      },
+      {
+        "viewport": [
+          320,
+          740
+        ],
+        "inspection": "Narrow-screen crescent close-up."
+      }
+    ],
+    "photographs": [
+      {
+        "imageId": "classic-athena",
+        "side": "obverse",
+        "loaded": true,
+        "naturalWidth": 1920,
+        "naturalHeight": 1973
+      },
+      {
+        "imageId": "classic-owl",
+        "side": "reverse",
+        "loaded": true,
+        "naturalWidth": 2634,
+        "naturalHeight": 2736
+      }
+    ],
+    "horizontalOverflowPx": 0,
+    "visualFindings": [
+      "Both real photographs loaded.",
+      "Masks retain the visible lips and rims.",
+      "The brief schematic edge avoids a persistent gray polygon."
+    ],
+    "accessLimitation": "Credential-based automated preview access was rejected by approval review. No bypass credential was acquired; safe signed-in browser review was completed instead.",
+    "byteComparison": "Hosted DOM and images were inspected; deployed HTML bytes were not compared with the local artifact hashes."
+  },
+  "localArtifactVerification": {
+    "method": "SHA-256 of current generated HTML and staged dist files; pairs compared byte for byte.",
+    "artifacts": [
+      {
+        "generatedPath": "index.html",
+        "stagedPath": "dist/index.html",
+        "generatedSha256": "d383d6c53729930758f9ce3546a4075812cfd258fb0fc4420a09cfdd22df6014",
+        "stagedSha256": "d383d6c53729930758f9ce3546a4075812cfd258fb0fc4420a09cfdd22df6014",
+        "byteForByteMatch": true,
+        "stagedBytes": 871294
+      },
+      {
+        "generatedPath": "pricing/index.html",
+        "stagedPath": "dist/pricing/index.html",
+        "generatedSha256": "79732addff917f5335c792981488d7102abfbc94c423ea9b49d104346ace9c8e",
+        "stagedSha256": "79732addff917f5335c792981488d7102abfbc94c423ea9b49d104346ace9c8e",
+        "byteForByteMatch": true,
+        "stagedBytes": 425167
+      },
+      {
+        "generatedPath": "one-owl/index.html",
+        "stagedPath": "dist/one-owl/index.html",
+        "generatedSha256": "3ef68f89d32df8eeff845b3c47ae7fc63ed031b22feb1df3c10be06d6a74190a",
+        "stagedSha256": "3ef68f89d32df8eeff845b3c47ae7fc63ed031b22feb1df3c10be06d6a74190a",
+        "byteForByteMatch": true,
+        "stagedBytes": 374733
+      }
+    ]
+  },
+  "publicationDecisions": {
+    "prototypeOnly": true,
+    "productionChanged": false,
+    "existingBnfReuseReviewFlags": 6,
+    "bnfStatus": "Existing notices and review-pending flags remain unchanged under the owner’s prior publication decision. This work does not establish reuse clearance."
+  },
+  "limitations": [
+    "Chromium and in-app browser coverage only.",
+    "Safari, Firefox and physical devices were not tested.",
+    "No accessibility certification is claimed.",
+    "The smoke suite blocks images; actual photograph checks are recorded separately above."
+  ]
+}

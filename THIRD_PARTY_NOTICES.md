@@ -37,6 +37,11 @@ any material. The website's software license does not cover these photographs.
   the linked museum and Commons records. No local transformation was made.
 - The Athena image from 1941.296.a uses a browser-compatible JPEG derivative of
   a TIFF source; it is not an invented or AI-enhanced version.
+- The Anatomy of an Owl prototype uses display-only polygons around the
+  photographed rims, plus camera zoom/pan. No source image bytes are changed.
+  The original frames remain available in the viewer and no-JavaScript exhibit.
+  A brief CSS edge cue suggests a turn; it is not a measured reconstruction of
+  this coin’s edge or thickness. The two photograph records declare these changes.
 
 **The Metropolitan Museum of Art / Public domain**
 

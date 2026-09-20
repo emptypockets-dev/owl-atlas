@@ -57,15 +57,21 @@ check(!markupGapText(), 'Obsolete missing-image claim remains');
 function markupGapText() {
   return ['Why there is no Pi-style photograph here yet', 'Pi-style and later Old Style. Securely attributed, rights-cleared plates remain to be added.'].some(text => html.includes(text));
 }
-for (const detail of data.anatomy) {
-  check(Boolean(data.images[detail.image]), `Unknown anatomy image: ${detail.image}`);
-  check(['obverse', 'reverse'].includes(detail.side), `Unknown anatomy side: ${detail.side}`);
-  detail.refs.forEach(id => check(ids.has(id), `Unknown anatomy citation: ${id}`));
-  check(detail.x >= 0 && detail.x <= 100 && detail.y >= 0 && detail.y <= 100, 'Invalid anatomy coordinate');
-}
-for (const side of ['obverse', 'reverse']) {
-  const images = new Set(data.anatomy.filter(detail => detail.side === side).map(detail => detail.image));
-  check(images.size === 1, `Anatomy ${side} must use one consistent specimen photograph`);
+for (const story of Object.values(data.artifactStories)) {
+  check(story.id && story.steps.length > 0, 'Artifact story requires an id and steps');
+  const stepIds = new Set();
+  for (const face of Object.values(story.faces)) {
+    check(Boolean(data.images[face.image]), 'Artifact face requires an existing image');
+    if (face.outline) check(face.outline.every(point => point.length === 2 && point.every(n => n >= 0 && n <= 1)), 'Outline uses normalized photo coordinates');
+  }
+  for (const step of story.steps) {
+    check(!stepIds.has(step.id), 'Artifact step IDs must be unique'); stepIds.add(step.id);
+    check(Boolean(story.faces[step.state.side]), 'Artifact step requires a known face');
+    check(step.state.focus.x >= 0 && step.state.focus.x <= 1 && step.state.focus.y >= 0 && step.state.focus.y <= 1, 'Artifact focus uses normalized coordinates');
+    check(Number.isFinite(step.state.zoom) && step.state.zoom >= 1 && Number.isFinite(step.state.rotation), 'Artifact state has valid zoom and rotation');
+    check(step.paragraphs.length > 0, 'Each artifact view has a readable narrative');
+    step.refs.forEach(id => check(ids.has(id), `Unknown artifact citation: ${id}`));
+  }
 }
 for (const [, , refs] of data.glossary) refs.forEach(id => check(ids.has(id), `Unknown glossary source: ${id}`));
 for (const match of template.matchAll(/\{\{CITE:([^}]+)\}\}/g)) match[1].split(',').forEach(id => check(ids.has(id), `Unknown narrative citation: ${id}`));

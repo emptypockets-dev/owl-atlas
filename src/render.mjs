@@ -54,17 +54,31 @@ export function familyFacesMarkup(family, data) {
   return `<div class="family-faces">${faces.join('')}</div>`;
 }
 
-export function anatomyMarkup(data) {
-  return ['reverse', 'obverse'].map((side) => {
-    const details = data.anatomy.map((detail, index) => ({...detail, number: index + 1})).filter(detail => detail.side === side);
-    const label = side === 'reverse' ? 'Owl / reverse' : 'Athena / obverse';
-    const buttons = details.map(detail => `<button type="button" data-detail="${escapeHtml(detail.id)}" aria-pressed="false" aria-controls="anatomy-detail-${escapeHtml(detail.id)}"><span>${String(detail.number).padStart(2, '0')}</span>${escapeHtml(detail.name)}</button>`).join('');
-    const readings = details.map(detail => `<div class="anatomy-reading" id="anatomy-detail-${escapeHtml(detail.id)}"><span class="eyebrow">${String(detail.number).padStart(2, '0')} / ${side}</span><h4>${escapeHtml(detail.title)}</h4><p>${escapeHtml(detail.text)} ${sourceRefs(detail.refs, data)}</p></div>`).join('');
-    return `<div class="anatomy-layout" id="anatomy-${side}" data-anatomy-side="${side}" role="group" aria-labelledby="anatomy-${side}-label">
-      <div class="anatomy-photo-wrap"><p class="face-label" id="anatomy-${side}-label">${label} · ${details.length} details</p>${photoMarkup(details[0].image, data, 'anatomy-image')}<span aria-hidden="true" class="anatomy-marker" hidden></span></div>
-      <div class="anatomy-controls"><div aria-label="Choose a detail on the ${side}" class="detail-buttons" hidden>${buttons}</div><div class="anatomy-text">${readings}</div><p class="micro-copy">Markers identify approximate areas, not measured die features.</p></div>
-    </div>`;
+export function artifactStoryMarkup(story, data) {
+  const faces = Object.entries(story.faces);
+  const front = data.images[faces[0][1].image];
+  const outline = (face) => face.outline ? `polygon(${face.outline.map(([x,y])=>`${x*100}% ${y*100}%`).join(',')})` : 'none';
+  const planes = faces.map(([side,face]) => {
+    const image=data.images[face.image];
+    return `<div class="artifact-face" data-artifact-face="${escapeHtml(side)}" aria-hidden="${side !== faces[0][0]}"><img src="${escapeHtml(image.localUrl || image.url)}" width="${image.width}" height="${image.height}" alt="${escapeHtml(image.alt)}" loading="lazy" decoding="async" style="clip-path:${outline(face)}"><span class="artifact-photo-error">Photograph unavailable.<br>Open the source record below.</span></div>`;
   }).join('');
+  const edges = [-2,-1,0,1,2].map(z=>`<span class="artifact-edge" aria-hidden="true" style="--edge-z:${z}px;clip-path:${outline(story.faces.obverse)}"></span>`).join('');
+  const steps = story.steps.map((step,index) => `<article class="artifact-step" id="${story.id}-detail-${escapeHtml(step.id)}" data-artifact-step="${escapeHtml(step.id)}" aria-labelledby="${story.id}-${step.id}-title">${story.id === 'anatomy' && step.id === 'owl' ? '<span id="anatomy-detail-square"></span>' : ''}<div class="artifact-step-copy"><span class="eyebrow">${String(index+1).padStart(2,'0')} / ${escapeHtml(step.label)}</span><h4 id="${story.id}-${step.id}-title" tabindex="-1">${escapeHtml(step.title)}</h4>${step.paragraphs.map((text,i)=>`<p>${escapeHtml(text)}${i === step.paragraphs.length-1 ? ` ${sourceRefs(step.refs,data)}` : ''}</p>`).join('')}</div></article>`).join('');
+  return `<div class="artifact-explorer" data-artifact-story="${escapeHtml(story.id)}">
+    <div class="artifact-sticky">
+      <div class="artifact-live" hidden>
+        <div class="artifact-stage-heading"><span class="artifact-face-label">${escapeHtml(faces[0][1].label)}</span><span class="artifact-state-label">01 / ${escapeHtml(story.steps[0].label)}</span></div>
+        <div class="artifact-stage" role="group" aria-label="Two photographed faces of ${escapeHtml(story.specimen)}">
+          <div class="artifact-camera"><div class="artifact-turn">${edges}${planes}</div></div><p class="artifact-stage-error">Photograph unavailable. The full photograph link keeps its source and credits available.</p>
+        </div>
+        <div class="artifact-stage-foot"><span>${escapeHtml(story.specimen)} · ${escapeHtml(story.date)}</span><a class="artifact-inspect" data-image="${escapeHtml(faces[0][1].image)}" href="${escapeHtml(front.localUrl || front.url)}" target="_blank" rel="noopener noreferrer">Full photograph ↗</a></div>
+        <p class="artifact-credit"><a class="artifact-current-credit" href="${escapeHtml(front.source)}" target="_blank" rel="noopener noreferrer">${escapeHtml(front.credit)}</a> · <a class="artifact-current-license" href="${escapeHtml(front.licenseUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(front.license)}</a></p>
+      </div>
+      <div class="artifact-static">${faces.map(([side,face])=>`<div id="${escapeHtml(story.id)}-${side}"><p class="eyebrow">${escapeHtml(face.label)}</p>${photoMarkup(face.image,data,'artifact-static-photo')}</div>`).join('')}</div>
+      <nav class="artifact-nav" aria-label="Anatomy details" hidden>${story.steps.map((step,index)=>`<a href="#${story.id}-detail-${escapeHtml(step.id)}" aria-label="${String(index+1).padStart(2,'0')}: ${escapeHtml(step.label)}">${String(index+1).padStart(2,'0')}</a>`).join('')}</nav>
+    </div>
+    <div class="artifact-steps">${steps}</div>
+  </div>`;
 }
 
 export function comparisonMarkup(familyId, side, data, specimenId) {

@@ -85,28 +85,45 @@ with sync_playwright() as p:
     check(not page.locator('#image-dialog').evaluate('e=>e.open'), 'Escape closes image dialog')
     check(image_link.evaluate('e=>document.activeElement===e'), 'Image-dialog focus restored')
 
-    # All anatomy views and both faces of every family comparison.
-    check(page.locator('#anatomy-reverse').is_visible() and not page.locator('#anatomy-obverse').is_visible(), 'Close reading starts on the owl reverse')
-    for detail in DATA['anatomy']:
-        page.locator(f'input[name="anatomy-side"][value="{detail["side"]}"]').check()
-        button = page.locator(f'[data-detail="{detail["id"]}"]')
-        button.focus()
+    # Native anatomy anchors preserve every reading and select the matching photograph.
+    anatomy_story = DATA['artifactStories']['anatomy']
+    anatomy = page.locator('#anatomy .artifact-explorer[data-artifact-story="anatomy"]')
+    check(anatomy.locator('.artifact-step:visible').count() == len(anatomy_story['steps']) == 8, 'All eight close readings remain visible with JavaScript')
+    check(anatomy.locator('.artifact-static').is_hidden(), 'Enhanced close reading omits its duplicate static photographs')
+    for side in ('obverse', 'reverse'):
+        check(anatomy.locator(f'[data-artifact-face="{side}"]').count() == 1, f'Close-reading stage includes the {side}')
+    for detail in anatomy_story['steps']:
+        fragment = f'anatomy-detail-{detail["id"]}'
+        link = anatomy.locator(f'.artifact-nav a[href="#{fragment}"]')
+        link.focus()
         page.keyboard.press('Enter')
-        panel = page.locator(f'#anatomy-{detail["side"]}')
-        check(button.get_attribute('aria-pressed') == 'true', f'Anatomy keyboard selection: {detail["id"]}')
-        check(panel.locator('.anatomy-reading:visible h4').inner_text() == detail['title'], f'Anatomy text: {detail["id"]}')
-        check(page.locator('[data-anatomy-side]:visible').count() == 1 and panel.locator('[data-detail][aria-pressed="true"]').count() == 1, f'One active face and detail: {detail["id"]}')
-        check(panel.locator('[data-image]').get_attribute('data-image') == detail['image'], f'Correct photograph and viewer link: {detail["id"]}')
-        check(panel.locator('.anatomy-marker').inner_text() == str(DATA['anatomy'].index(detail) + 1), f'Marker agrees with selected detail: {detail["id"]}')
-    face = page.locator('input[name="anatomy-side"][value="obverse"]')
-    face.focus()
-    page.keyboard.press('ArrowLeft')
-    check(page.locator('#anatomy-reverse').is_visible() and page.locator('[data-detail="square"]').get_attribute('aria-pressed') == 'true', 'Keyboard face toggle remembers reverse detail')
-    page.keyboard.press('ArrowRight')
-    check(page.locator('#anatomy-obverse').is_visible() and page.locator('[data-detail="helmet"]').get_attribute('aria-pressed') == 'true', 'Keyboard face toggle remembers obverse detail')
+        page.wait_for_function('(id)=>document.querySelector("#anatomy .artifact-explorer").dataset.activeStep===id', arg=detail['id'])
+        page.wait_for_function('(id)=>document.getElementById(id).querySelector("h4")===document.activeElement', arg=fragment)
+        article = page.locator(f'#{fragment}')
+        heading = article.locator('h4')
+        check(page.evaluate('location.hash') == f'#{fragment}', f'Anatomy keyboard link preserves its native fragment: {detail["id"]}')
+        check(heading.inner_text() == detail['title'] and heading.evaluate('e=>e===document.activeElement'), f'Anatomy keyboard navigation focuses the reading heading: {detail["id"]}')
+        check(link.get_attribute('aria-current') == 'step' and anatomy.locator('.artifact-nav [aria-current="step"]').count() == 1, f'One current anatomy navigation step: {detail["id"]}')
+        image_id = anatomy_story['faces'][detail['state']['side']]['image']
+        inspect = anatomy.locator('.artifact-inspect[data-image]')
+        check(inspect.get_attribute('data-image') == image_id, f'Anatomy inspection opens the matching coin face: {detail["id"]}')
+        check(article.locator('[data-source]').count() > 0, f'Anatomy reading retains its evidence links: {detail["id"]}')
+        anatomy.locator('.artifact-stage-error').wait_for(state='visible')
+        check(anatomy.locator('.artifact-stage.has-error').count() == 1, f'Blocked active anatomy photograph marks the stage unavailable: {detail["id"]}')
+        check(anatomy.locator('.artifact-stage-error').is_visible(), f'Blocked active anatomy photograph displays an explanatory fallback: {detail["id"]}')
+        inspect.focus()
+        page.keyboard.press('Enter')
+        check(page.locator('#image-dialog').evaluate('e=>e.open&&e.matches(":modal")'), f'Anatomy inspection opens the native viewer: {detail["id"]}')
+        page.locator('#viewer-error').wait_for(state='visible')
+        check(page.locator('#viewer-source').get_attribute('href') == DATA['images'][image_id]['source'], f'Blocked anatomy photograph retains the correct source: {detail["id"]}')
+        check(bool(page.locator('#viewer-license').inner_text().strip()), f'Blocked anatomy photograph retains its license: {detail["id"]}')
+        page.keyboard.press('Escape')
+        check(inspect.evaluate('e=>e===document.activeElement'), f'Closing anatomy inspection returns keyboard focus: {detail["id"]}')
     page.emulate_media(media='print')
-    check(page.locator('[data-anatomy-side]:visible').count() == 2 and page.locator('.anatomy-reading:visible').count() == 6, 'Both faces and all readings available in print')
+    check(anatomy.locator('.artifact-static figure:visible').count() == 2 and anatomy.locator('.artifact-step:visible').count() == 8, 'Both static faces and all eight readings are available in print')
+    check(all(detail['label'].casefold() in page.locator(f'#anatomy-detail-{detail["id"]}').inner_text().casefold() for detail in anatomy_story['steps']), 'All eight close-reading labels are retained in print')
     page.emulate_media(media='screen')
+    # Both faces of every family comparison.
     for side in ['obverse', 'reverse']:
         page.locator(f'input[name="compare-side"][value="{side}"]').check()
         for family in DATA['families']:
@@ -232,9 +249,9 @@ with sync_playwright() as p:
         page.close()
 
     page = new_page(browser, java_script_enabled=False)
-    check(page.locator('[data-anatomy-side]:visible').count() == 2, 'Both close-reading faces available without JavaScript')
-    check(page.locator('.anatomy-reading:visible').count() == len(DATA['anatomy']), 'All sourced close readings available without JavaScript')
-    check(not page.locator('.anatomy-faces').is_visible() and page.locator('#anatomy [data-detail]:visible').count() == 0, 'Inert anatomy controls omitted without JavaScript')
+    check(page.locator('#anatomy .artifact-static figure:visible').count() == 2, 'Both close-reading faces available without JavaScript')
+    check(page.locator('#anatomy .artifact-step:visible').count() == len(DATA['artifactStories']['anatomy']['steps']) == 8, 'All eight sourced close readings available without JavaScript')
+    check(page.locator('#anatomy .artifact-nav').is_hidden(), 'Enhanced anatomy navigation omitted without JavaScript')
     check(page.locator('.geo-place:visible').count() == 8, 'All eight geographic views readable without JavaScript')
     check(not page.locator('.geo-controls').is_visible(), 'Inert geographic controls omitted without JavaScript')
     check(page.locator('h1').is_visible(), 'No-JavaScript story visible')

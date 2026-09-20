@@ -4584,6 +4584,86 @@ html:not(.has-js) .journey-hero { padding-top:30px; }
  .journey-generation-marks span { border-color:#333; }
 }
 
+/* Artifact stories: ordinary document scrolling, a camera, and readable labels. */
+.artifact-explorer { --artifact-clearance:0px; display:grid; grid-template-columns:minmax(0,3fr) minmax(0,2fr); gap:clamp(28px,4vw,64px); align-items:start; }
+.artifact-sticky { min-width:0; }
+.artifact-live { min-width:0; }
+.artifact-stage-heading,.artifact-stage-foot { display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px 20px; font:var(--type-small)/1.5 var(--mono); }
+.artifact-stage-heading { padding:12px 0; border-top:1px solid var(--line); }
+.artifact-state-label { color:var(--muted-light); }
+.artifact-stage { height:clamp(300px,calc(100svh - var(--header) - var(--bar) - 190px),760px); position:relative; overflow:hidden; perspective:1400px; background:var(--paper-deep); isolation:isolate; }
+.artifact-camera { position:absolute; top:50%; left:50%; transform-style:preserve-3d; transition:transform 1000ms cubic-bezier(.22,.55,.25,1); }
+.artifact-turn { position:absolute; translate:-50% -50%; transform-style:preserve-3d; transition:transform 1150ms cubic-bezier(.4,.05,.25,1); }
+.artifact-face,.artifact-edge { position:absolute; top:50%; left:50%; backface-visibility:hidden; }
+.artifact-face { transform:translate(-50%,-50%) translateZ(3px); }
+.artifact-face[data-artifact-face="reverse"] { transform:translate(-50%,-50%) rotateY(180deg) translateZ(3px); }
+.artifact-face img { display:block; width:100%; height:100%; }
+.artifact-edge { opacity:0; width:97%; height:100%; background:linear-gradient(100deg,#8b887e,#b2afa4 45%,#65665d); transform:translate(-50%,-50%) translateZ(var(--edge-z)); backface-visibility:visible; }
+.artifact-turn.is-turning .artifact-edge { animation:artifact-edge-turn 1150ms linear; }
+/* The photographed faces have different silhouettes. Suggest thickness only
+   while almost edge-on, never put a fabricated backing around visible metal. */
+@keyframes artifact-edge-turn { 0%,30%,43%,100% { opacity:0; } 34%,38% { opacity:1; } }
+.artifact-photo-error { display:none; font:var(--type-body)/1.5 var(--sans); padding:30%; background:var(--paper-deep); width:100%; height:100%; }
+.artifact-face.has-error img { visibility:hidden; }
+.artifact-face.has-error .artifact-photo-error { display:block; position:absolute; inset:0; }
+.artifact-stage-error { display:none; position:absolute; inset:0; padding:24px; align-items:center; justify-content:center; text-align:center; font-size:var(--type-body); }
+.artifact-stage.has-error .artifact-camera { visibility:hidden; }
+.artifact-stage.has-error .artifact-stage-error { display:flex; }
+.artifact-stage-foot { align-items:center; padding-top:12px; font-family:var(--sans); }
+.artifact-inspect { display:inline-flex; min-height:44px; align-items:center; text-underline-offset:4px; }
+.artifact-credit { font:var(--type-label)/1.6 var(--sans); color:var(--muted-light); margin-top:4px; }
+.artifact-credit a { text-underline-offset:3px; }
+.artifact-nav { display:flex; max-width:100%; overflow-x:auto; margin-top:12px; border-top:1px solid var(--line); gap:2px; scrollbar-width:thin; }
+.artifact-nav a { flex:0 0 44px; min-height:44px; display:grid; place-items:center; font:var(--type-label)/1 var(--mono); text-decoration:none; color:var(--muted-light); border-top:2px solid transparent; }
+.artifact-nav a[aria-current] { border-color:var(--ink); color:var(--ink); }
+.artifact-step { padding:36px 0; border-top:1px solid var(--line); scroll-margin-top:var(--artifact-clearance); min-width:0; }
+.artifact-step-copy { max-width:31rem; }
+.artifact-step h4 { font:clamp(2rem,3.2vw,3.125rem)/1.12 var(--serif); letter-spacing:-.035em; margin:24px 0; }
+.artifact-step p { font-size:var(--type-reading); line-height:1.8; }
+.artifact-step .eyebrow { color:var(--muted-light); }
+.artifact-step.is-active .eyebrow { color:var(--ink); }
+.artifact-static { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.artifact-static-photo { margin-top:12px; }
+.artifact-static-photo .image-frame { aspect-ratio:auto; }
+.artifact-method { font-size:var(--type-small); color:var(--muted-light); max-width:65rem; margin-top:40px; }
+.artifact-authoring { display:block; font:13px/1.5 var(--mono); padding:10px; background:var(--paper-deep); }
+.artifact-stage.is-authoring { cursor:crosshair; }
+@media screen {
+ .artifact-explorer.is-enhanced .artifact-sticky { position:sticky; top:calc(var(--header) + var(--bar) + 12px); }
+ .artifact-explorer.is-enhanced .artifact-static { display:none; }
+ .artifact-explorer.is-enhanced .artifact-step { min-height:calc(90svh - var(--header) - var(--bar)); display:flex; align-items:center; padding-block:80px; border:0; }
+ .artifact-explorer.is-enhanced .artifact-step:last-child { min-height:calc(100svh - var(--header) - var(--bar)); }
+ .artifact-explorer.is-unpinned .artifact-sticky { position:static; }
+ .artifact-explorer.is-unpinned .artifact-step { min-height:0; padding-block:50px; border-top:1px solid var(--line); }
+}
+@media (max-width:900px) {
+ .artifact-explorer { grid-template-columns:minmax(0,1fr); gap:28px; }
+ .artifact-explorer.is-enhanced { display:block; }
+ .artifact-explorer.is-enhanced .artifact-sticky { top:calc(var(--header) + var(--bar)); background:var(--paper); z-index:4; padding-bottom:4px; }
+ .artifact-stage { height:clamp(160px,28svh,320px); }
+ .artifact-stage-heading { padding:8px 0; font-size:var(--type-label); }
+ .artifact-stage-foot { padding-top:2px; gap:0 12px; font-size:var(--type-label); }
+ .artifact-credit { margin:0; }
+ .artifact-nav { margin-top:6px; gap:0; }
+ .artifact-nav a { flex:1 0 32px; }
+ .artifact-explorer.is-enhanced .artifact-step { min-height:65svh; padding:28px 0 85px; display:block; }
+ .artifact-explorer.is-enhanced .artifact-step:last-child { min-height:75svh; }
+ .artifact-step h4 { font-size:2.125rem; margin:18px 0; }
+ .artifact-step :focus-visible { scroll-margin-top:var(--artifact-clearance); }
+ .artifact-explorer.is-unpinned .artifact-step { min-height:0; padding-block:36px; }
+}
+@media (max-width:380px) { .artifact-stage { height:25svh; min-height:150px; } }
+@media (prefers-reduced-motion:reduce) {
+ .artifact-camera,.artifact-turn { transition:none!important; }
+}
+.motion-off .artifact-camera,.motion-off .artifact-turn { transition:none!important; }
+@media print {
+ .artifact-live,.artifact-nav { display:none!important; }
+ .artifact-explorer { display:block; }
+ .artifact-static { display:grid!important; }
+ .artifact-step { break-inside:avoid; }
+}
+
 /* A visibly bounded fictional interlude, followed by sourced collecting history. */
 .journey-fiction { background:var(--paper-deep); border-block:1px solid var(--line); }
 .journey-fiction .journey-heading { border-top:3px solid var(--muted-light); padding-top:24px; }

@@ -70,9 +70,11 @@ both belong to the same coin; see `research/early-classical-findings.json`.
   SVG side views and accompanying text remain readable without JavaScript.
 - Scroll reveals, restrained parallax, a chapter indicator and reading progress.
   Scrolling is never hijacked. OS reduced-motion preferences take priority.
-- A six-part coin-detail reader with an explicit owl/reverse and Athena/obverse
-  toggle. Each face remembers its selected detail; both faces and every sourced
-  reading remain available without JavaScript and in print.
+- An eight-step “Anatomy of an Owl” prototype replaces the former close reader.
+  A reusable artifact camera follows normalized focus coordinates through both
+  sides of Cleveland 1941.296. Both source photographs and all readings remain
+  available without JavaScript and in print. See `docs/artifact-stories.md` for
+  the declarative API, localhost coordinate helper and validation commands.
 - A two-column, eight-family comparison atlas. Pi-style additionally has separate
   Pi II/Pi III specimen selectors, and story links preset meaningful comparisons.
 - A native-dialog image viewer with source/rights metadata, fitted-size zoom,
@@ -103,6 +105,7 @@ npm run check          # check references, IDs, rendering and JavaScript syntax
 | `src/geography.json` | Derived public-domain geographic outlines used at build time |
 | `src/styles.css` | Design tokens, responsive layouts, motion and print styles |
 | `src/app.js` | Progressive enhancements and native dialog behavior |
+| `src/artifact-explorer.js` | Reusable artifact camera, discrete scroll states and coordinate authoring helper |
 | `src/render.mjs` | Shared escaped markup used by build and browser |
 | `src/pricing.html` | Full pricing research page; shares the main page's header, footer and dialogs |
 | `pricing/index.html` | Generated pricing page; do not hand-edit |
