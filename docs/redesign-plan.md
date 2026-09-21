@@ -91,9 +91,13 @@ Nothing is deployed or pushed without an explicit request.
   a sequenced reveal; One Owl leads with one lit owl in a measured circular
   crop, and all four owner photographs now carry CC BY 4.0 with the credit
   "The Owl Atlas (theowlatlas.com)".
-- Chunk 4: in progress (three parallel agents: resemblance identifier, share
-  tools and card maker, creator kit page). The owner asked to PAUSE after
-  chunk 4 merges to make tweaks to existing work; chunk 5 waits for a go.
+- Chunk 4: merged 21 September 2026. Six-question resemblance identifier on
+  `/atlas/#identify` with a no-JavaScript decision table; copy-link on every
+  chapter heading, a Share control in the chapter bar, and a share-card maker
+  (1080×1350 and 1200×630, five rights-cleared presets); creator kit at
+  `/kit/` with 15 reusable photographs, ten sourced facts (sources 44–50),
+  credit lines and short links, plus its own share card.
+  PAUSED here at the owner's request for tweaks; chunk 5 waits for a go.
 - Polish list for chunk 5: the "Hammer" label overlaps the moving hammer
   mid-animation; hide the hero's honesty note on phones; round the focus ring
   on pill buttons; remove dead `.journey-faces` rules; distinguish the two
