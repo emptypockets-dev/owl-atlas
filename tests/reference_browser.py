@@ -37,8 +37,18 @@ with sync_playwright() as p:
     check(home.locator('.source-entry').count()==0,'Homepage omits the full bibliography')
     check(home.locator('h1').count()==1,'Homepage retains one main heading')
     check(home.locator('a[href="one-owl/"]').count()>0,'Homepage retains the One Owl journey link')
-    for fragment in ('origins','classical','close-reading','pricing','one-owl'):
+    for fragment in ('origins','minting','classical','close-reading','theta','404','new-style',
+                     'beyond','geography-explorer','evidence','pricing','atlas','one-owl'):
         check(home.locator(f'#{fragment}').count()==1,f'Homepage preserves #{fragment}')
+    # The 21 September 2026 reorder: the explorer moved from chapter 01 to
+    # chapter 05, and the One Owl invitation became the ending.
+    check(home.locator('#beyond #geography-explorer').count()==1,'Explorer sits in chapter 05')
+    check(home.locator('#origins .origins-map .geo-focus-map').count()==1,'Chapter 01 keeps one static map')
+    check(home.evaluate('''() => {
+      const ids=[...document.querySelectorAll('main > section, main > aside')].map(e=>e.id);
+      return ids.join(',');
+    }''')=='top,origins,classical,theta,404,new-style,beyond,evidence,pricing,atlas,one-owl',
+          'Homepage story order is the reordered one')
     new_height=home.evaluate('document.documentElement.scrollHeight')
     baseline=Path('/private/tmp/owl-before-reference-split.html')
     heights={'width':1440,'after':new_height}
@@ -92,7 +102,7 @@ with sync_playwright() as p:
             if path=='/atlas/' and width in (1440,320):
                 page.screenshot(path=f'/private/tmp/owl-reference-split-atlas-{width}.png')
             if path=='/' and width in (1440,320):
-                page.locator('#atlas').evaluate('e=>e.scrollIntoView({block:"start",behavior:"instant"})')
+                page.locator('#one-owl').evaluate('e=>e.scrollIntoView({block:"start",behavior:"instant"})')
                 page.screenshot(path=f'/private/tmp/owl-reference-split-home-end-{width}.png')
             page.close()
     for path in ('/','/atlas/'):

@@ -120,6 +120,25 @@ Nothing is deployed or pushed without an explicit request.
   new glossary entry. The archaic and early classical photographs are no longer
   on the home page but stay on `/atlas/`, in the identifier and in `/kit/`; no
   source or image record was dropped. Chapters 03-08 renumbered to 02-07.
+- Owner-requested reorder, 21 September 2026: the home page story order changed
+  so the reader meets the coin before the maps. Chapter 01 is now "Silver from
+  Laurion" — Attica, the mining district and the tetradrachm, beside one static
+  Athens & Attica map (`atticaLocatorMarkup()`, the explorer's own view with its
+  scale bar and labels and nothing to operate), then the minting illustration:
+  3,455 px down to 1,381 px. The eight-region explorer moved whole into chapter
+  05, where the chapter already said not every owl came from Athens; it selects
+  by id, so `src/app.js` is untouched and every `#geography-<place>` deep link,
+  the keyboard buttons, the mobile selector and the no-JavaScript reading came
+  with it. Chapter 02 moved to `section-dark` for the close reading, with the
+  three paper-ground control fills restated for the dark ground. Chapter 06 was
+  halved to 990 px around Nikophon's law of 375/4 BCE, in the wording already
+  vetted in `research/hooks-findings.json` and on `/kit/`; the isotope feature
+  and the euro coda went, and both their sources are still cited elsewhere on
+  the page. The `#atlas` invitation became a 306 px continue row, keeping its id,
+  and the One Owl invitation now ends the page on `--forest-deep`. Every chapter
+  01–07 and the interlude end with a one-line mono link to the next section.
+  Chapter numbers are unchanged; the page is 15,531 px at 1440, from 17,563.
+  Styles are one appended `CHUNK 6 / STORY ORDER` block.
 - Polish list for chunk 5: the "Hammer" label overlaps the moving hammer
   mid-animation; hide the hero's honesty note on phones; round the focus ring
   on pill buttons; remove dead `.journey-faces` rules; distinguish the two
@@ -127,7 +146,9 @@ Nothing is deployed or pushed without an explicit request.
   `tests/artifact_browser.py` and `tests/one_owl_browser.py`; remove the rules
   the removed chapter 02 left behind (`.duo-plates`, `.museum-plate`,
   `.plate-label`, `.archaic-photo`, `.early-faces`, `.editorial-two`) and the
-  `archaic-photo` crop branch in `build.mjs`.
+  `archaic-photo` crop branch in `build.mjs`; and the rules the geography
+  intro left behind when chapter 01 was rebuilt (`.geography-intro`, plus
+  its entries in the `min-width:0` and narrow-screen lists).
 - Chunk 4 prep: `research/hooks-findings.md` ranks ten verified hooks.
 
 ## Backlog (owner TODOs)

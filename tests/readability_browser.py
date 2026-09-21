@@ -27,14 +27,14 @@ checks, failures, errors = [], [], []
 BODY_TEXT = (
     '.hero-deck, .section-deck, .prose p:not(.micro-copy), '
     '.artifact-step p, .family-card > p:not(.date):not(.status), '
-    '.geo-evidence p, .minting-step-copy > p, '
+    '.geo-evidence p, .minting-step-copy > p, .geography-key p, '
     '.market-summary-prices p, .market-opening-copy > p, '
     '.market-spotlight > p:not(.market-big-price):not(.market-price-note), '
     '.market-block-heading > p, .market-ebay > div > p:not(.micro-copy)'
 )
 SMALL_TEXT = (
     '.image-credit, .micro-copy, .source-entry details, .source-byline, '
-    '.family-card .date, .geo-focus figcaption, .market-method, '
+    '.family-card .date, .geo-focus figcaption, .market-method, .onward-cue a, '
     '.market-price-note, .market-history-figure figcaption, .market-table small'
 )
 
@@ -189,7 +189,9 @@ with sync_playwright() as p:
             after = sample.evaluate('e=>parseFloat(getComputedStyle(e).fontSize)')
             check(after >= before * 1.9, f'{label}: narrative responds to enlarged root text', {'before':before, 'after':after})
             layout(page, f'{label} / 200% root text')
-            for fragment in (('minting', 'close-reading') if relative == 'index.html'
+            # #origins is the reordered chapter 01, #beyond the chapter the
+            # geography explorer moved into, and #one-owl now ends the page.
+            for fragment in (('minting', 'close-reading', 'beyond', 'one-owl') if relative == 'index.html'
                              else ('market-fees-title', 'market-history-title')):
                 anchor_clearance(page, fragment, f'{label} / 200% text / {fragment}')
             page.evaluate("document.documentElement.style.fontSize=''")

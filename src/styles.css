@@ -7717,3 +7717,172 @@ html.motion-off .close-reading-marker { transition:none; }
 
 .section-heading>.quiet-link { margin-top:26px; }
 /* === end CHAPTER 02 OPENING ============================================== */
+
+/* ==========================================================================
+   CHUNK 6 / STORY ORDER — the reordered home page
+   Chapter 01 opens on the silver and one static Attica map; chapter 02 moves to
+   a dark ground so the close reading reads like a vitrine; the eight-place
+   explorer moves to chapter 05; chapter 06 is halved; the continue row replaces
+   the old invitation section; One Owl ends the page on a deeper dark. Nothing
+   above this line was edited for any of it. Where a rule here overrides an
+   earlier one it does so by specificity, and every such selector names a
+   home-page id or a home-page-only class, so /atlas/, /pricing/, /one-owl/ and
+   /kit/ keep the chapter block they had. The three controls restated under
+   .section-dark are the ones painted with an explicit paper-ground fill; the
+   rest of the close reading reads --line and --muted-light, which .section-dark
+   has already remapped.
+   ========================================================================== */
+
+/* --- The onward cue that closes every chapter -------------------------- */
+/* Static markup, one line, the site's own quiet link set in the mono face so a
+   reader can tell a chapter's exit from a citation or an outbound link. */
+.onward-cue {
+  margin-top:clamp(28px,3vw,44px);
+  padding-top:clamp(14px,1.6vw,22px);
+  border-top:1px solid var(--line);
+}
+.onward-cue .quiet-link,
+.minting-footer-actions .quiet-link {
+  font-family:var(--mono);
+  font-size:var(--type-small);
+  letter-spacing:.02em;
+  gap:14px;
+}
+.crisis-content>.onward-cue { margin-top:clamp(26px,2.8vw,36px); }
+.theta-copy>.onward-cue { margin-top:clamp(24px,2.6vw,34px); }
+@media print { .onward-cue { display:none!important; } }
+
+/* --- Chapter 01: the silver, then one map ------------------------------ */
+/* The eight-region explorer has left this chapter. What remains is a short
+   opening beside the explorer's own Athens & Attica view, drawn once and
+   static, and then the minting illustration. The chapter is deliberately
+   tighter than the rest: it is the first thing after the hero. */
+#origins { padding-block:clamp(56px,4.8vw,80px); }
+.origins-opening {
+  display:grid;
+  grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);
+  gap:clamp(30px,3.4vw,50px);
+  align-items:start;
+}
+.origins-copy>.section-heading { margin-bottom:clamp(18px,2vw,26px); }
+.origins-copy .section-heading :is(h1,h2) { font-size:clamp(2.25rem,3.4vw,3rem); }
+.origins-copy .prose { max-width:none; }
+.origins-copy .prose .lead { font-size:1.3125rem; line-height:1.5; }
+.origins-copy .prose p+p { font-size:var(--type-body); margin-top:1em; }
+.origins-figure { min-width:0; }
+.origins-map { margin:0; }
+#origins .minting-section {
+  margin-top:clamp(32px,3.4vw,48px);
+  padding-top:clamp(26px,2.6vw,38px);
+}
+#origins .minting-heading { margin-bottom:26px; }
+#origins .minting-heading h3 { font-size:2.25rem; }
+#origins .minting-diagram { max-width:288px; margin-inline:auto; }
+
+/* --- Chapters 02, 04 and 05: the same rhythm, less air ----------------- */
+/* Three home-page chapters keep their own padding so the page can lose roughly
+   a screen of height without changing the chapter block on /atlas/, /pricing/,
+   /one-owl/ or /kit/, which share the .chapter class. */
+#classical,#new-style,#beyond { padding-block:clamp(62px,5.4vw,92px); }
+.theta-interlude { padding-block:clamp(64px,6.6vw,96px); }
+
+/* --- Chapter 05: the explorer's new lead-in ---------------------------- */
+.geography-key { margin-top:clamp(30px,3.4vw,46px); margin-bottom:clamp(12px,1.4vw,18px); }
+.geography-key p { max-width:46rem; font-size:var(--type-body); line-height:1.8; }
+#beyond .geography-evidence { margin-top:0; border-top:1px solid var(--line); }
+#beyond .geography-explorer { margin-top:clamp(22px,2.6vw,34px); }
+
+/* --- Chapter 02 on a dark ground --------------------------------------- */
+/* `.section-dark` already remaps --line and --muted-light and sets the light
+   text colour, so headings, decks, eyebrows, sidenote chips, image credits and
+   the close reading's own copy follow without help. Only the three controls
+   that were painted with an explicit paper-ground fill need restating, plus the
+   two photograph mounts, which stay light on purpose: they are the plate the
+   coin sits on, not a surface anyone reads text from. */
+.section-dark .detail-buttons button[aria-pressed="true"] {
+  color:var(--forest);
+  background:var(--light);
+  border-color:var(--light);
+}
+/* 5.2:1 on the light fill; the paper-ground gold would be 3.6:1 there. */
+.section-dark .detail-buttons button[aria-pressed="true"] span { color:#6f6233; }
+.section-dark .detail-buttons button:hover:not([aria-pressed="true"]) {
+  background:rgba(240,237,228,.09);
+}
+.section-dark .segmented input:checked+span { background:var(--light); color:var(--forest); }
+.section-dark .segmented input:focus-visible+span { outline-color:#e2d296; }
+/* The close reading's own borders, eyebrows, decks, credits, sidenote chips and
+   reading text all read --line and --muted-light, which .section-dark has
+   already remapped, so none of them is restated here. */
+.section-dark .paired-face .image-surface,
+.section-dark .close-reading-photograph .image-surface { background:#cdccc1; }
+#classical .section-heading :is(h1,h2) { font-size:clamp(2.5rem,4.2vw,3.75rem); }
+#classical .close-reading { margin-top:clamp(44px,4.6vw,66px); padding-top:clamp(34px,3.4vw,48px); }
+/* The marker already sits on the photograph, not on the section ground, and it
+   already carries its own dark disc, gold ring and light numeral. The citation
+   chip's inverted hover is already a light chip, which reads on either ground. */
+
+/* --- Chapter 06, halved ------------------------------------------------ */
+/* Four one-line kinds of evidence and one document, told once. The deck, the
+   isotope research feature and the euro coda are gone: the first two repeat
+   what the four articles and chapter 05 already say, and the euro fact is in
+   the hero fact strip. Every source they carried is still cited elsewhere on
+   this page. */
+#evidence { padding-block:clamp(48px,4vw,66px); }
+#evidence .section-heading { margin-bottom:clamp(26px,2.8vw,38px); }
+#evidence .section-heading :is(h1,h2) { font-size:clamp(2.25rem,3.6vw,3.25rem); }
+#evidence .evidence-grid { padding-top:0; }
+#evidence .evidence-index { font-size:2.125rem; }
+#evidence .evidence-grid h3 { font-size:1.75rem; margin:12px 0 10px; }
+#evidence .evidence-grid article p { font-size:var(--type-support); line-height:1.75; }
+#evidence .document-card { margin-top:clamp(24px,2.6vw,38px); padding-top:clamp(22px,2.4vw,32px); }
+#evidence .document-card h3 { font-size:clamp(1.6875rem,2.4vw,2.0625rem); letter-spacing:-.035em; line-height:1.15; margin:12px 0 0; }
+#evidence .document-card p { margin-top:14px; max-width:46rem; }
+#evidence .document-card .quiet-link { margin-top:18px; }
+
+/* --- The continue row -------------------------------------------------- */
+/* Three destinations, one band. It replaces a full chapter-height invitation,
+   so it keeps the chapter's horizontal rhythm and drops its vertical one. */
+.market-summary#pricing { padding-bottom:clamp(48px,4vw,66px); }
+.continue-row { padding-block:clamp(34px,2.8vw,44px) clamp(40px,3.4vw,56px); }
+.continue-heading { display:flex; align-items:baseline; gap:clamp(16px,2.4vw,34px); flex-wrap:wrap; margin-bottom:clamp(20px,2.4vw,30px); }
+.continue-heading h2 { font-size:clamp(1.75rem,2.4vw,2.1875rem); }
+.continue-cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; background:var(--line); border-block:1px solid var(--line); margin:0; padding:0; list-style:none; }
+.continue-cards li { background:var(--paper); }
+.continue-cards a {
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  height:100%;
+  padding:22px clamp(18px,1.8vw,26px);
+  text-decoration:none;
+}
+.continue-cards a:hover { background:var(--paper-deep); }
+.continue-cards strong { font-family:var(--serif); font-weight:400; font-size:1.375rem; letter-spacing:-.03em; line-height:1.15; }
+.continue-cards span { font-size:var(--type-small); line-height:1.6; color:var(--muted-light); }
+
+/* --- The finale -------------------------------------------------------- */
+/* One Owl now sits between the paper continue row and the forest footer. Two
+   identical darks in a row read flat, so the invitation takes the deeper one
+   and the footer keeps the tone the rest of the page ends on. */
+#one-owl { background:var(--forest-deep); }
+
+/* --- Narrow screens ---------------------------------------------------- */
+@media screen and (max-width:900px) {
+  .origins-opening { grid-template-columns:minmax(0,1fr); gap:30px; }
+  .origins-copy .prose { max-width:36rem; }
+  .origins-map { max-width:640px; }
+  .continue-cards { grid-template-columns:minmax(0,1fr); }
+  .continue-heading { display:block; }
+  .continue-heading h2 { margin-top:12px; }
+}
+@media screen and (max-width:600px) {
+  .onward-cue { margin-top:32px; padding-top:16px; }
+  .origins-copy .prose .lead { font-size:1.25rem; }
+  .continue-cards a { padding:20px 0; }
+  .continue-cards { background:none; border-block:0; gap:0; }
+  .continue-cards li { border-top:1px solid var(--line); }
+  .continue-cards li:last-child { border-bottom:1px solid var(--line); }
+  .continue-cards a:hover { background:none; }
+}
+/* === end CHUNK 6 / STORY ORDER =========================================== */

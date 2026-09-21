@@ -64,10 +64,18 @@ both belong to the same coin; see `research/early-classical-findings.json`.
 
 ## The experience
 
-- Seven narrative chapters: Athens and the geography of owl coinage; the classical mass issues;
-  404 BCE; New Style; regional imitations; evidence; and collecting today. A dotted-theta
-  interlude sits between the second and third. Two chapters were removed on 21 September 2026 at
-  the owner's request: the fourth-and-third-century chapter, and "The owl takes shape". What they
+- Seven narrative chapters, in this order: 01 Silver from Laurion — Attica, the Laurion
+  mining district, one static Athens & Attica map and the minting illustration; 02 The
+  classical icon — the interactive close reading, on a dark ground; 03 War and its
+  aftermath (404 BCE); 04 The redesign (New Style); 05 An owl beyond Attica — the Sabakes
+  example and the eight-region geographic explorer; 06 How we know — four kinds of evidence
+  and Nikophon's law of 375/4 BCE; 07 The owl today. A dotted-theta interlude sits between
+  chapters 02 and 03, a compact continue row follows chapter 07, and the One Owl invitation
+  ends the page. Every chapter closes with a one-line link to the next section.
+  The home page was reordered on 21 September 2026 so the reader meets the coin before the
+  maps; the explorer moved from chapter 01 to chapter 05 whole, with every deep link intact.
+  Two chapters were removed earlier the same day at the owner's request: the
+  fourth-and-third-century chapter, and "The owl takes shape". What they
   argued is now in the chapter 02 close reading, that chapter's opening deck, the `/atlas/` family
   cards and the glossary; the archaic and early classical photographs stay on `/atlas/`.
 - A short pricing chapter introduces three examples spanning the 2026 auction sample.
@@ -101,12 +109,14 @@ both belong to the same coin; see `research/early-classical-findings.json`.
 - Inline source dialogs, 41 bibliography records, author/topic filtering, 17
   image records, three structured BnF specimen records, a glossary and a visible
   editorial coverage register.
-- A guided geographic explorer distinguishes cities, islands, modern countries
-  and historical regions. Eight focused area maps have wider locators, scale bars,
+- A guided geographic explorer, in chapter 05, distinguishes cities, islands, modern
+  countries and historical regions. Eight focused area maps have wider locators, scale bars,
   source-linked coin evidence, keyboard controls and a mobile selector. Athens is
   shown within Attica and Greece; other regions are areas rather than numbered pins.
   All eight entries remain readable without JavaScript and in print. See
   `research/geography-explorer-findings.json` for data and qualifications.
+  Chapter 01 draws the same Athens & Attica view once, as a static figure with its scale
+  bar and labels and nothing to operate (`atticaLocatorMarkup()` in `src/render.mjs`).
 
 ## Edit and build
 
