@@ -1,7 +1,7 @@
 import {readFile, writeFile, mkdir, access, stat} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup, familyFacesMarkup, artifactStoryMarkup, geographyMarkup, marketFamilyMarkup, marketSummaryMarkup, marketCurrentMarkup, marketHistoryMarkup, marketFamiliesMarkup, marketLedgerMarkup, marketCsv, derivedSrcset, photoSizesFor, photoMaxWidthFor, identifierMarkup} from './src/render.mjs';
+import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup, familyFacesMarkup, geographyMarkup, marketFamilyMarkup, marketSummaryMarkup, marketCurrentMarkup, marketHistoryMarkup, marketFamiliesMarkup, marketLedgerMarkup, marketCsv, derivedSrcset, photoSizesFor, photoMaxWidthFor, identifierMarkup} from './src/render.mjs';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const read = (relative) => readFile(path.join(root, relative), 'utf8');
@@ -95,7 +95,6 @@ const replacements = {
   GEOGRAPHY: geographyMarkup(data, geography),
   SOURCE_COUNT: data.sources.length,
   IMAGE_COUNT: Object.keys(data.images).length,
-  ANATOMY: artifactStoryMarkup(data.artifactStories.anatomy, data),
   COMPARE_LEFT: options('classical'),
   COMPARE_RIGHT: options('new'),
   COMPARE_PANEL_LEFT: comparisonMarkup('classical','reverse',data),
@@ -106,10 +105,9 @@ const replacements = {
   IMAGE_REGISTER: Object.values(data.images).map(imageRecord).join('\n'),
 };
 const shared = (await read('src/render.mjs')).replace(/^export /gm,'');
-const artifact = (await read('src/artifact-explorer.js')).replace(/^export /gm,'');
 const shareCards = (await read('src/share-cards.js')).replace(/^export /gm,'');
 const app = (await read('src/app.js')).replace(/^import .*from '\.\/(?:render\.mjs|artifact-explorer\.js)';\s*/gm,'');
-const script = `(() => {\n'use strict';\n${shared}\n${artifact}\n${shareCards}\n${app}\n})();`;
+const script = `(() => {\n'use strict';\n${shared}\n${shareCards}\n${app}\n})();`;
 const styles = await read('src/styles.css');
 function renderPage(template, pageData = data) {
   let html = template;

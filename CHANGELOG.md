@@ -1,3 +1,17 @@
+# Anatomy exhibit removed — 21 September 2026
+
+- Remove the eight-step “Anatomy of an Owl” exhibit from chapter 03 at the
+  owner's request, along with its creator-kit short link. The theta interlude
+  now follows the paired Met exhibit directly.
+- Archive the close reading that preceded it under
+  `research/previous-close-reading/` (readings, markup, script and styles from
+  the commit before the prototype) so it can be restored if wanted.
+- Stop inlining `src/artifact-explorer.js`; the module and its geometry test
+  stay in the repository unused. The Cleveland image records no longer describe
+  the exhibit's display crop.
+
+---
+
 # Reasons to post — 21 September 2026
 
 - Give every chapter heading a "Copy link" control. It copies the canonical

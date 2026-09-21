@@ -1,4 +1,3 @@
-import {ArtifactExplorer} from './artifact-explorer.js';
 import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup, marketMoney, derivedSources, derivedSrcset, photoSizesFor, photoMaxWidthFor} from './render.mjs';
 
 /**
@@ -633,10 +632,6 @@ document.addEventListener('click', (event) => {
     entry?.querySelector('h3 a')?.focus({preventScroll: true});
   }
 });
-
-// Story records declare camera states; the reusable viewer owns all transforms.
-const artifactExplorers = [...document.querySelectorAll('[data-artifact-story]')].map(root =>
-  new ArtifactExplorer(root, data.artifactStories[root.dataset.artifactStory], data.images, () => motionOff));
 
 // Comparison keeps family chronology distinct from each museum specimen's label.
 function syncSpecimenOptions(position) {
