@@ -16,6 +16,54 @@ export function sourceRefs(ids, data) {
   return `<sup class="citation">${links.join(' ')}</sup>`;
 }
 
+/** Rendered slot widths per layout class, so the browser can choose a derivative
+ *  instead of always downloading the largest one. */
+export const photoSizes = {
+  'hero-photo': '(max-width: 688px) 90vw, 620px',
+  'comparison-photo': '50vw',
+  'family-photo': '25vw',
+  'artifact-static-photo': '40vw',
+};
+
+/** The hero disc is never wider than 620 CSS pixels, so even a very dense
+ *  display has no use for the 2,400-pixel Anatomy stage copy. */
+export const photoMaxWidths = {'hero-photo': 1600};
+
+const matchClass = (className, table, fallback) => {
+  const classes = String(className || '').split(/\s+/);
+  for (const [name, value] of Object.entries(table)) if (classes.includes(name)) return value;
+  return fallback;
+};
+
+export function photoSizesFor(className) {
+  return matchClass(className, photoSizes, '100vw');
+}
+
+export function photoMaxWidthFor(className) {
+  return matchClass(className, photoMaxWidths, Infinity);
+}
+
+/** Self-hosted resized display copies, smallest first. Absent for the six
+ *  reuse-review-pending photographs, which keep hotlinking their originals. */
+export function derivedSources(image, maxWidth = Infinity) {
+  const sources = image?.derived?.sources || [];
+  const usable = sources.filter((source) => source.width <= maxWidth);
+  return usable.length ? usable : sources.slice(0, 1);
+}
+
+export function derivedSrcset(image, maxWidth = Infinity) {
+  return derivedSources(image, maxWidth).map((source) => `${source.path} ${source.width}w`).join(', ');
+}
+
+/** The Anatomy stage sizes its camera from these exact pixels, so the "never
+ *  enlarge a source pixel" rule has to measure the file actually displayed. */
+export function artifactFaceSource(image, maxWidth = 2400) {
+  const candidate = derivedSources(image).filter((source) => source.width <= maxWidth).at(-1);
+  return candidate
+    ? {src: candidate.path, width: candidate.width, height: candidate.height}
+    : {src: image.localUrl || image.url, width: image.width, height: image.height};
+}
+
 export function photoMarkup(id, data, className = '', cropOverride, eager = false) {
   const image = data.images[id];
   if (!image) throw new Error(`Unknown image: ${id}`);
@@ -23,12 +71,19 @@ export function photoMarkup(id, data, className = '', cropOverride, eager = fals
   const cropLabels = {top: 'Athena, top half of a paired plate', bottom: 'Owl, bottom half of a paired plate', left: 'Athena, left half of a paired plate', right: 'Owl, right half of a paired plate'};
   const alt = crop === 'none' ? image.alt : `${cropLabels[crop]}. Open to see the complete source photograph. ${image.title}.`;
   const original = image.localUrl || image.url;
-  const displayed = image.localUrl || image.displayUrl || image.url;
+  const sources = derivedSources(image, photoMaxWidthFor(className));
+  const displayed = sources.length ? sources[0].path : (image.localUrl || image.displayUrl || image.url);
+  const responsive = sources.length > 1
+    ? ` srcset="${escapeHtml(derivedSrcset(image, photoMaxWidthFor(className)))}" sizes="${escapeHtml(photoSizesFor(className))}"`
+    : '';
+  // A blurred 24-pixel copy keeps the hero disc from opening as an empty well.
+  const placeholder = String(className || '').split(/\s+/).includes('hero-photo') && image.derived?.placeholder
+    ? ` style="background-image:url(${escapeHtml(image.derived.placeholder)})"` : '';
   const credit = image.credit;
   return `<figure class="image-figure ${escapeHtml(className)}" data-photo="${escapeHtml(id)}" style="--plate-ratio:${image.width / image.height}">
-    <div class="image-surface">
+    <div class="image-surface"${placeholder}>
       <a class="image-trigger" href="${escapeHtml(original)}" target="_blank" rel="noopener noreferrer" data-image="${escapeHtml(id)}" aria-label="Inspect ${escapeHtml(image.title)} in the image viewer">
-        <span class="image-frame"><img src="${escapeHtml(displayed)}" width="${image.width}" height="${image.height}" class="crop-${escapeHtml(crop)}" alt="${escapeHtml(alt)}" loading="${eager ? 'eager' : 'lazy'}" decoding="async" ${eager ? 'fetchpriority="high"' : ''}></span>
+        <span class="image-frame"><img src="${escapeHtml(displayed)}"${responsive} width="${image.width}" height="${image.height}" class="crop-${escapeHtml(crop)}" alt="${escapeHtml(alt)}" loading="${eager ? 'eager' : 'lazy'}" decoding="async" ${eager ? 'fetchpriority="high"' : ''}></span>
         <span class="image-unavailable" aria-hidden="true"><span>Photograph unavailable.<br><span>View source & credits ↗</span></span></span>
         <span class="expand-label" aria-hidden="true">Look closer <span>↗</span></span>
       </a>
@@ -60,7 +115,11 @@ export function artifactStoryMarkup(story, data) {
   const outline = (face) => face.outline ? `polygon(${face.outline.map(([x,y])=>`${x*100}% ${y*100}%`).join(',')})` : 'none';
   const planes = faces.map(([side,face]) => {
     const image=data.images[face.image];
-    return `<div class="artifact-face" data-artifact-face="${escapeHtml(side)}" aria-hidden="${side !== faces[0][0]}"><img src="${escapeHtml(image.localUrl || image.url)}" width="${image.width}" height="${image.height}" alt="${escapeHtml(image.alt)}" loading="lazy" decoding="async" style="clip-path:${outline(face)}"><span class="artifact-photo-error">Photograph unavailable.<br>Open the source record below.</span></div>`;
+    // The width/height attributes carry the displayed file's real pixels, which
+    // is what the camera measures before refusing to enlarge a source pixel.
+    const displayed=artifactFaceSource(image);
+    const placeholder=image.derived?.placeholder ? `background-image:url(${escapeHtml(image.derived.placeholder)});` : '';
+    return `<div class="artifact-face" data-artifact-face="${escapeHtml(side)}" aria-hidden="${side !== faces[0][0]}"><img src="${escapeHtml(displayed.src)}" width="${displayed.width}" height="${displayed.height}" alt="${escapeHtml(image.alt)}" loading="lazy" decoding="async" style="${placeholder}clip-path:${outline(face)}"><span class="artifact-photo-error">Photograph unavailable.<br>Open the source record below.</span></div>`;
   }).join('');
   const edges = [-2,-1,0,1,2].map(z=>`<span class="artifact-edge" aria-hidden="true" style="--edge-z:${z}px;clip-path:${outline(story.faces.obverse)}"></span>`).join('');
   const steps = story.steps.map((step,index) => `<article class="artifact-step" id="${story.id}-detail-${escapeHtml(step.id)}" data-artifact-step="${escapeHtml(step.id)}" aria-labelledby="${story.id}-${step.id}-title">${story.id === 'anatomy' && step.id === 'owl' ? '<span id="anatomy-detail-square"></span>' : ''}<div class="artifact-step-copy"><span class="eyebrow">${String(index+1).padStart(2,'0')} / ${escapeHtml(step.label)}</span><h4 id="${story.id}-${step.id}-title" tabindex="-1">${escapeHtml(step.title)}</h4>${step.paragraphs.map((text,i)=>`<p>${escapeHtml(text)}${i === step.paragraphs.length-1 ? ` ${sourceRefs(step.refs,data)}` : ''}</p>`).join('')}</div></article>`).join('');

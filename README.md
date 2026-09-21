@@ -113,6 +113,8 @@ npm run check          # check references, IDs, rendering and JavaScript syntax
 | `src/pricing.html` | Full pricing research page; shares the main page's header, footer and dialogs |
 | `pricing/index.html` | Generated pricing page; do not hand-edit |
 | `build.mjs` | Inlines the page assets and exports research manifests |
+| `scripts/derive-images.mjs` | Downloads originals and writes the resized display copies |
+| `public/images/derived/` | Generated display copies and their manifest; do not hand-edit |
 | `research/sources.json` | Generated bibliography export; do not edit directly |
 | `research/images-manifest.json` | Generated image/rights export; do not edit directly |
 | `research/specimens.json` | Generated museum-object export with separate catalogue dates |
@@ -164,6 +166,49 @@ vendoring script is included but has not been integration-tested against the
 remote hosts. Source images were inspected during the preceding research; browser tests
 of this build did not validate actual remote-image delivery. Confirm all images,
 rights records, and crop choices in an internet-connected browser before launch.
+
+### Self-hosted display copies
+
+Page loading no longer depends on multi-megabyte museum originals. A separate
+script downloads each eligible original into a git-ignored `.cache/originals/`
+and writes resized JPEG display copies into `public/images/derived/`, committed
+alongside the source. It uses macOS `sips`; there are still no npm dependencies.
+
+```sh
+npm run derive:images   # network required on the first run; then offline and idempotent
+npm run build           # merges public/images/derived/manifest.json, no network needed
+npm run check
+```
+
+- Widths are 800 and 1,600 pixels, plus 2,400 for the two Anatomy of an Owl
+  faces, at JPEG quality 82. A requested width larger than the source is
+  skipped: nothing is ever enlarged, and a source narrower than 800 pixels is
+  re-encoded only at its own size.
+- A copy that would not be smaller than its original is discarded, so
+  `profile` and `sabakes` keep their existing display URLs.
+- File names carry a content hash, so `vercel.json` serves
+  `/public/images/derived/` as immutable for a year. `npm run build:deploy`
+  stages only the derived files the build actually references.
+- `image.url` is untouched. It remains the "Full-resolution original" link,
+  the image viewer's on-demand source, and the "Full photograph" link in the
+  Anatomy exhibit. Each derived record's `changes` note states the
+  transformation, which is also visible in the viewer and the image register.
+- The six reuse-review-pending BnF photographs are never downloaded or derived
+  here and continue to hotlink their originals unchanged.
+- `public/images/derived/manifest.json` records, per photograph, the SHA-256 of
+  the original it was resized from, the tool and settings used, and the bytes
+  and pixel size of every derivative. `npm run check` verifies those bytes on
+  disk. `node scripts/derive-images.mjs --force` re-downloads and rebuilds.
+
+The hero photograph and both Anatomy faces also carry a 24-pixel blurred
+placeholder, inlined as a data URI under 1.1 KB, so the hero disc and the
+exhibit stage are never empty while the photograph arrives. Placeholders are
+loading affordances generated from the same source file; they are never
+presented as the photograph, and the viewer still opens the original.
+
+Unlike the vendoring script above, `scripts/derive-images.mjs` has been run
+against the live hosts: 11 originals (19.2 MiB) downloaded and verified, and
+14 display copies (6.3 MiB) written.
 
 ## Accuracy and publishing status
 
