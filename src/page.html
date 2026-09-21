@@ -159,6 +159,14 @@
        <a href="one-owl/">One owl, still Mint State after <span class="fact-figure">2,400</span> years <span aria-hidden="true">↗</span></a>
       </li>
      </ul>
+     <!-- CHUNK 4 / SHARE. Enhancement only: src/share-cards.js unhides this
+          once it has a canvas and at least one rights-cleared photograph. -->
+     <button class="hero-share-card" hidden id="hero-share-card" type="button">
+      Make a share card
+      <span aria-hidden="true">
+       ↗
+      </span>
+     </button>
      <a class="scroll-cue" href="#origins">
       Scroll to explore
       <span aria-hidden="true">
@@ -1005,6 +1013,79 @@
     </button>
    </div>
    <div id="source-dialog-content">
+   </div>
+  </dialog>
+  <!-- CHUNK 4 / SHARE. The card is composed in this browser from the same
+       rights-cleared, self-hosted photographs the page already carries: nothing
+       is uploaded, nothing is fetched across origins, and a photograph whose
+       reuse review is unresolved can never reach it. The preset list and the
+       preview are built by src/share-cards.js, so without JavaScript the dialog
+       is simply never opened and the page is unchanged. -->
+  <dialog aria-labelledby="share-card-title" class="share-dialog" id="share-card-dialog">
+   <div class="share-dialog-header">
+    <div>
+     <span class="eyebrow">
+      SOMETHING TO POST
+     </span>
+     <h2 id="share-card-title">
+      Make a share card
+     </h2>
+    </div>
+    <button aria-label="Close the share card maker" class="icon-button" id="share-card-close" type="button">
+     ✕
+    </button>
+   </div>
+   <div class="share-dialog-body">
+    <div class="share-card-stage">
+     <canvas height="1350" id="share-card-canvas" role="img" width="1080">
+      A share card drawn from a photograph of an Athenian owl coin.
+     </canvas>
+    </div>
+    <div class="share-card-controls">
+     <fieldset class="share-card-field">
+      <legend>
+       Choose a card
+      </legend>
+      <div class="share-card-presets" id="share-card-presets">
+      </div>
+     </fieldset>
+     <fieldset class="share-card-field">
+      <legend>
+       Card size
+      </legend>
+      <div class="share-card-sizes">
+       <label>
+        <input checked="" name="share-card-size" type="radio" value="portrait"/>
+        <span><strong>Portrait</strong><span>1080 × 1350</span></span>
+       </label>
+       <label>
+        <input name="share-card-size" type="radio" value="landscape"/>
+        <span><strong>Landscape</strong><span>1200 × 630</span></span>
+       </label>
+      </div>
+     </fieldset>
+     <div class="share-card-actions">
+      <button class="share-card-action is-primary" id="share-card-download" type="button">
+       Download
+       <span aria-hidden="true">
+        ↓
+       </span>
+      </button>
+      <button class="share-card-action" hidden id="share-card-share" type="button">
+       Share
+       <span aria-hidden="true">
+        ↗
+       </span>
+      </button>
+     </div>
+     <p aria-live="polite" class="micro-copy share-card-status" id="share-card-status" role="status">
+     </p>
+     <p class="micro-copy share-card-credit" id="share-card-credit">
+     </p>
+     <p class="micro-copy">
+      The card is drawn in this browser and is never uploaded. Each photograph's credit and licence are printed on the image; keep them with the card.
+     </p>
+    </div>
    </div>
   </dialog>
   <noscript>

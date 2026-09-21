@@ -909,6 +909,27 @@ if (animatedStages.length) {
   }
 }
 
+/* ==========================================================================
+   CHUNK 4 / SHARE — copy-link controls, the page Share control and the
+   coin-card maker.
+   --------------------------------------------------------------------------
+   The feature itself lives in src/share-cards.js, which build.mjs inlines
+   ahead of this file exactly as it inlines the artifact explorer. It is called
+   rather than imported so the two module names this file imports — the only
+   ones build.mjs strips — stay as they were.
+   ========================================================================== */
+initShareCards({
+  data,
+  // The card maker is a deliberate stop, like the source and image dialogs:
+  // hold the page still and bring the chrome back, so closing it does not
+  // leave the reader without the wordmark, the nav or the motion control.
+  onDialogToggle(open) {
+    document.body.classList.toggle('modal-open', open);
+    headerPinned = open;
+    if (open) setHeaderHidden(false);
+  },
+});
+
 /* === CHUNK 4 / IDENTIFIER ================================================ */
 /**
  * "Which owl does this resemble?" — the reference page's guided comparison.
