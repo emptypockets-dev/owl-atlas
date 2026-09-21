@@ -66,11 +66,13 @@ export const photoSizes = {
   'comparison-photo': '50vw',
   'family-photo': '25vw',
   'artifact-static-photo': '40vw',
+  'close-reading-photograph': '(max-width: 900px) 90vw, 600px',
 };
 
-/** The hero disc is never wider than 620 CSS pixels, so even a very dense
- *  display has no use for the 2,400-pixel Anatomy stage copy. */
-export const photoMaxWidths = {'hero-photo': 1600};
+/** The hero disc is never wider than 620 CSS pixels, and the close reading's
+ *  photograph column never wider than 600, so neither has any use for the
+ *  2,400-pixel copy on disk. */
+export const photoMaxWidths = {'hero-photo': 1600, 'close-reading-photograph': 1600};
 
 const matchClass = (className, table, fallback) => {
   const classes = String(className || '').split(/\s+/);
@@ -150,6 +152,33 @@ export function familyFacesMarkup(family, data) {
     return `<div class="family-face" role="group" aria-label="${label} of ${escapeHtml(family.name)}"><p class="eyebrow family-face-label">${label}</p>${photo}</div>`;
   });
   return `<div class="family-faces">${faces.join('')}</div>`;
+}
+
+/** The close reading in chapter 03. Every reading, on both faces, with its
+ *  citations, is in the document before a script runs: without JavaScript the
+ *  two photographs and all six readings are simply there, and the controls that
+ *  would switch between them stay hidden. The enhancement in app.js reveals the
+ *  buttons and the numbered marker, then shows one reading at a time. */
+export function closeReadingMarkup(data) {
+  const {note, readings, coda} = data.closeReading;
+  const numbered = readings.map((reading, index) => ({...reading, number: String(index + 1).padStart(2, '0')}));
+  const panels = ['reverse', 'obverse'].map((side) => {
+    const details = numbered.filter((reading) => reading.side === side);
+    if (!details.length) throw new Error(`The close reading has no ${side} reading.`);
+    const label = side === 'reverse' ? 'Owl / reverse' : 'Athena / obverse';
+    const buttons = details.map((detail) =>
+      `<button type="button" data-close-reading="${escapeHtml(detail.id)}" aria-pressed="false" aria-controls="close-reading-${escapeHtml(detail.id)}"><span>${detail.number}</span>${escapeHtml(detail.name)}</button>`).join('');
+    const items = details.map((detail) =>
+      `<article class="close-reading-item" id="close-reading-${escapeHtml(detail.id)}"><span class="eyebrow">${detail.number} / ${escapeHtml(side)}</span><h4>${escapeHtml(detail.title)}</h4><p>${escapeHtml(detail.text)} ${sourceRefs(detail.refs, data)}</p></article>`).join('');
+    return `<div class="close-reading-layout" id="close-reading-${side}" data-close-reading-side="${side}" role="group" aria-labelledby="close-reading-${side}-label">`
+      + `<div class="close-reading-photo"><p class="face-label" id="close-reading-${side}-label">${escapeHtml(label)} · ${details.length} details</p>`
+      + `${photoMarkup(details[0].image, data, 'close-reading-photograph')}<span aria-hidden="true" class="close-reading-marker" hidden></span></div>`
+      + `<div class="close-reading-controls"><div aria-label="Choose a detail on the ${escapeHtml(side)}" class="detail-buttons" hidden>${buttons}</div>`
+      + `<div class="close-reading-text">${items}</div><p class="micro-copy">${escapeHtml(note)}</p></div></div>`;
+  }).join('');
+  const links = coda.links.map((link) =>
+    `<a class="quiet-link" href="${escapeHtml(link.href)}" data-compare-preset="${escapeHtml(link.preset)}">${escapeHtml(link.label)} <span aria-hidden="true">↗</span></a>`).join('');
+  return `${panels}<div class="close-reading-coda reveal"><p>${escapeHtml(coda.text)} ${sourceRefs(coda.refs, data)}</p><div class="close-reading-coda-links">${links}</div></div>`;
 }
 
 export function artifactStoryMarkup(story, data) {

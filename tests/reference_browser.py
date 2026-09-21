@@ -37,7 +37,7 @@ with sync_playwright() as p:
     check(home.locator('.source-entry').count()==0,'Homepage omits the full bibliography')
     check(home.locator('h1').count()==1,'Homepage retains one main heading')
     check(home.locator('a[href="one-owl/"]').count()>0,'Homepage retains the One Owl journey link')
-    for fragment in ('origins','classical','anatomy','pricing','one-owl'):
+    for fragment in ('origins','classical','close-reading','pricing','one-owl'):
         check(home.locator(f'#{fragment}').count()==1,f'Homepage preserves #{fragment}')
     new_height=home.evaluate('document.documentElement.scrollHeight')
     baseline=Path('/private/tmp/owl-before-reference-split.html')

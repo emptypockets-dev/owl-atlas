@@ -1182,7 +1182,7 @@
         "bnf-pi-ii"
       ],
       "feature": "The developed helmet ornament suggests the Greek letter π; many flans show folding and restriking.",
-      "detail": "The main image is BnF 1966.453.1475, explicitly catalogued as Pi III, c. 353–295 BCE. Pi II, BnF 1966.453.1469, is available in the comparison selector with its broader catalogue date retained. These object dates are distinct from competing wider Pi-style chronologies, including Kroll’s 353 BCE reminting and the early-340s discussion in the 2026 isotope paper.",
+      "detail": "The main image is BnF 1966.453.1475, explicitly catalogued as Pi III, c. 353–295 BCE. Pi II, BnF 1966.453.1469, is available in the comparison selector with its broader catalogue date retained: BnF identifies that coin as Pi II and keeps a broad c. 393–295 BCE range on the record, which is not a claim that the Pi II subgroup began in 393 BCE. A subgroup attribution and a catalogue date stay separate. These object dates are distinct from competing wider Pi-style chronologies, including Kroll’s 353 BCE reminting and the early-340s discussion in the 2026 isotope paper.",
       "specimens": [
         "bnf-pi-iii-1475",
         "bnf-pi-ii-1469"
@@ -1246,7 +1246,7 @@
         "cng-heterogeneous"
       ],
       "feature": "The old Athena–owl design persists in distinct groups, including quadridigité and heterogeneous issues. The illustrated specimen is quadridigité.",
-      "detail": "BnF 1966.453.1478 is explicitly catalogued as quadridigité and dated c. 286–261 BCE in that record; this range is not a date for every later Old Style issue. A separate Heterogeneous Group C auction specimen is sourced, but its 500 × 240 px preview has not been substituted for a high-resolution reference photograph. Reuse review remains pending for the linked BnF photographs.",
+      "detail": "BnF 1966.453.1478 is explicitly catalogued as quadridigité and dated c. 286–261 BCE in that record; this range is not a date for every later Old Style issue. The heterogeneous issues are a separate third-century group needing their own treatment: CNG’s Electronic Auction 594, lot 66 is catalogued as Heterogeneous Group C citing Nicolet-Pierre and Kroll, Group C, no. 1 as the same dies, not necessarily the same physical coin. That auction specimen is sourced, but its 500 × 240 px preview has not been substituted for a high-resolution reference photograph or for the quadridigité coin above. Reuse review remains pending for the linked BnF photographs.",
       "specimens": [
         "bnf-quadridigite-1478"
       ],
@@ -1411,6 +1411,111 @@
       }
     }
   ],
+  "closeReading": {
+    "note": "Markers identify approximate areas, not measured die features.",
+    "readings": [
+      {
+        "id": "owl",
+        "name": "The owl",
+        "side": "reverse",
+        "image": "classic-owl",
+        "x": 53,
+        "y": 48,
+        "title": "A body in profile. Eyes looking back.",
+        "text": "The owl’s body turns right while its head faces the viewer.",
+        "refs": [
+          "acropolis"
+        ]
+      },
+      {
+        "id": "olive",
+        "name": "Olive & crescent",
+        "side": "reverse",
+        "image": "classic-owl",
+        "x": 24,
+        "y": 28,
+        "title": "Small symbols, enduring identity.",
+        "text": "The olive sprig and crescent accompany the owl on these classical examples. Their presence is observable; a precise commemorative meaning for every detail should not be assumed.",
+        "refs": [
+          "cma-early"
+        ]
+      },
+      {
+        "id": "square",
+        "name": "The incuse",
+        "side": "reverse",
+        "image": "classic-owl",
+        "x": 22,
+        "y": 78,
+        "title": "The square belongs to the strike.",
+        "text": "The reverse sits in a recessed, or incuse, square formed in striking. The minting illustration earlier in the story shows the blow that forms it.",
+        "refs": [
+          "acropolis"
+        ]
+      },
+      {
+        "id": "identity",
+        "name": "ΑΘΕ",
+        "side": "reverse",
+        "image": "classic-owl",
+        "x": 84,
+        "y": 52,
+        "title": "The city signs its own money.",
+        "text": "ΑΘΕ abbreviates “of the Athenians”; the interlude that follows takes up its dotted theta.",
+        "refs": [
+          "acropolis"
+        ]
+      },
+      {
+        "id": "eye",
+        "name": "Athena’s eye",
+        "side": "obverse",
+        "image": "classic-athena",
+        "x": 75,
+        "y": 48,
+        "title": "The face turns. The eye does not quite follow.",
+        "text": "The conspicuous almond-shaped eye appears almost frontal although Athena’s face is in profile. In many fourth-century issues the eye follows the face into profile. Eye shapes overlap across the late fifth and early fourth centuries, so this feature alone cannot date a coin.",
+        "refs": [
+          "cma-classic",
+          "profile",
+          "isotopes"
+        ]
+      },
+      {
+        "id": "helmet",
+        "name": "The helmet",
+        "side": "obverse",
+        "image": "classic-athena",
+        "x": 36,
+        "y": 27,
+        "title": "The detail that names a later family.",
+        "text": "The classical helmet here is the reference for what changes next. A developed ornament resembling the Greek letter π names the mid–late fourth-century Pi-style family, catalogued on the BnF specimen shown in the atlas.",
+        "refs": [
+          "remint",
+          "bnf-pi-iii"
+        ]
+      }
+    ],
+    "coda": {
+      "text": "The old Athena–owl design kept going into the third century BCE in several distinct groups, quadridigité among them.",
+      "refs": [
+        "bnf-quadridigite",
+        "iris-quadridigite"
+      ],
+      "links": [
+        {
+          "href": "/atlas/?compare=pi-pair#atlas",
+          "preset": "pi-pair",
+          "label": "Compare Pi II with Pi III"
+        },
+        {
+          "href": "/atlas/?compare=late-bridge#atlas",
+          "preset": "late-bridge",
+          "label": "Compare Pi III with quadridigité"
+        }
+      ]
+    }
+  },
   "artifactStories": {
     "anatomy": {
       "id": "anatomy",
@@ -2204,7 +2309,7 @@
         "where": "Egypt lies on the southern shore of the Mediterranean. The Nile runs north through it to a broad delta on the coast.",
         "relation": "South of Athens, across the Mediterranean.",
         "role": "Circulation and related local issues",
-        "evidence": "Egyptian hoards include Athenian coins, sometimes valued as silver by weight. Later, authorities in Persian-administered Egypt issued related owl-type coins, including the Sabakes type shown in chapter 07.",
+        "evidence": "Egyptian hoards include Athenian coins, sometimes valued as silver by weight. Later, authorities in Persian-administered Egypt issued related owl-type coins, including the Sabakes type shown in chapter 06.",
         "refs": [
           "owl-hoards",
           "sabakes"

@@ -1,3 +1,40 @@
+# Close reading restored, fourth-century chapter folded in — 21 September 2026
+
+- Restore the interactive close reading in chapter 03, in the slot the Anatomy
+  exhibit left empty. It is rebuilt from `research/previous-close-reading/` in
+  the current type and the chunk-2 set-piece language: a native radio pair
+  chooses the face, detail buttons choose a reading, and a numbered gold-ringed
+  marker moves over the photograph. Both faces of Cleveland 1941.296 and all six
+  readings, with every citation, are rendered at build time; without JavaScript
+  they are simply all on the page and the controls stay hidden. The readings
+  live in `src/content.json` under `closeReading`, the markup in
+  `closeReadingMarkup()` behind a `{{CLOSE_READING}}` token, the styles in one
+  appended `CHUNK 5 / CLOSE READING` block, and the script in a matching block
+  at the end of `src/app.js`.
+- Cut the repetition the owner named. The "Three letters" reading is now a
+  single line that hands ΑΘΕ to the theta interlude rather than telling the same
+  story twice, and no reading runs past three short sentences.
+- Remove chapter 05, "A familiar owl, a changing Athens". Its two real points
+  are now the two obverse readings: Athena's eye turning into profile in the
+  fourth century, with the caveat that eye shapes overlap and cannot date a
+  coin, and the helmet ornament that names the Pi-style family. A closing line
+  carries the third-century Old Style into the two comparison presets, so
+  `/atlas/?compare=pi-pair#atlas` and `/atlas/?compare=late-bridge#atlas` are
+  still reachable from the story. Chapters 06–09 become 05–08.
+- Nothing sourced was dropped. The Pi II exhibit — both photographs, the BnF
+  provenance, "A classification is not a date" and its preset link — moved to
+  `/atlas/` under the family tree, with the "reuse review pending" notice beside
+  it. The heterogeneous Group C point moved into the later Old Style family
+  card's attribution notes, and the Pi II dating caveat into the Pi-style card's.
+  All 50 sources, all 17 image records and all three BnF specimens are retained;
+  all six BnF photographs are still displayed, still hotlinked unchanged, and
+  still carry their reuse flags.
+- `/pricing/`'s "Revisit Athena's helmet" now lands on the restored helmet
+  reading. The browser suites drive the comparison presets and the BnF specimens
+  on `/atlas/`, where they now live, instead of on the home page.
+
+---
+
 # Anatomy exhibit removed — 21 September 2026
 
 - Remove the eight-step “Anatomy of an Owl” exhibit from chapter 03 at the

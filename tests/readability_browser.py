@@ -189,7 +189,7 @@ with sync_playwright() as p:
             after = sample.evaluate('e=>parseFloat(getComputedStyle(e).fontSize)')
             check(after >= before * 1.9, f'{label}: narrative responds to enlarged root text', {'before':before, 'after':after})
             layout(page, f'{label} / 200% root text')
-            for fragment in (('minting', 'after-athens') if relative == 'index.html'
+            for fragment in (('minting', 'close-reading') if relative == 'index.html'
                              else ('market-fees-title', 'market-history-title')):
                 anchor_clearance(page, fragment, f'{label} / 200% text / {fragment}')
             page.evaluate("document.documentElement.style.fontSize=''")
@@ -207,18 +207,23 @@ with sync_playwright() as p:
         label = f'{relative} / no JavaScript'
         layout(page, label)
         check(page.locator('h1').count() == 1, f'{label}: one main heading')
-        check(page.locator('.source-entry:visible').count() > 0, f'{label}: bibliography is readable')
         if relative == 'index.html':
-            check(page.locator('#anatomy .artifact-step:visible').count() == 8, f'{label}: all eight close readings remain readable')
+            # The home page is the story. The bibliography, the family atlas and
+            # the catalogue guide are on /atlas/, which this suite does not load,
+            # and the home page carries no native disclosure of its own.
+            check(page.locator('.close-reading-layout:visible').count() == 2, f'{label}: both close-reading faces remain readable')
+            check(page.locator('.close-reading-item:visible').count() == 6, f'{label}: all six close readings remain readable')
             check(page.locator('.geo-place:visible').count() > 1, f'{label}: place descriptions remain readable')
-            check(page.locator('.family-card:visible').count() > 0, f'{label}: family entries remain readable')
-            disclosure = page.locator('#coin-descriptions')
+            check(page.locator('.market-summary-prices:visible').count() > 0, f'{label}: the pricing summary remains readable')
+            disclosure = None
         else:
+            check(page.locator('.source-entry:visible').count() > 0, f'{label}: bibliography is readable')
             check(page.locator('.market-band:visible').count() == 5, f'{label}: price ranges remain readable')
             disclosure = page.locator('#market-ledger')
-        disclosure.locator('summary').focus()
-        page.keyboard.press('Enter')
-        check(disclosure.evaluate('e=>e.open'), f'{label}: native disclosure opens with keyboard')
+        if disclosure is not None:
+            disclosure.locator('summary').focus()
+            page.keyboard.press('Enter')
+            check(disclosure.evaluate('e=>e.open'), f'{label}: native disclosure opens with keyboard')
         page.close()
     browser.close()
 

@@ -59,8 +59,24 @@ check('class="reading-label' not in html, 'Prominent label-reading layout remove
 match = re.search(r'<details\b[^>]*\bid="coin-descriptions"[^>]*>', html)
 check(bool(match), 'Reference guide is a native disclosure')
 check(bool(match) and not re.search(r'\bopen\b', match.group()), 'Reference guide is collapsed by default')
-for anchor in ['origins', 'first-owls', 'classical', '404', 'after-athens', 'new-style', 'beyond', 'evidence']:
+# "A familiar owl, a changing Athens" was removed on 21 September 2026 at the
+# owner's request. Its fourth-century reading moved into the chapter 03 close
+# reading; its specimens, presets and caveats moved to /atlas/.
+for anchor in ['origins', 'first-owls', 'classical', '404', 'new-style', 'beyond', 'evidence']:
     check(f'id="{anchor}"' in home_html, f'Preserved homepage chapter anchor: {anchor}')
+check('id="after-athens"' not in home_html, 'The withdrawn fourth-century chapter is gone')
+check('id="close-reading"' in home_html, 'The chapter 03 close reading is restored')
+for reading in data['closeReading']['readings']:
+    check(f'id="close-reading-{reading["id"]}"' in home_html, f'Close reading is in the document: {reading["id"]}')
+    check(reading['title'] in visible_copy, f'Close reading is readable without JavaScript: {reading["id"]}')
+check(data['closeReading']['coda']['links'][0]['href'] == '/atlas/?compare=pi-pair#atlas'
+      and data['closeReading']['coda']['links'][1]['href'] == '/atlas/?compare=late-bridge#atlas',
+      'Both comparison presets stay reachable from the story')
+# The statements the withdrawn chapter carried alone keep a visible home.
+check('A classification is not a date.' in visible_copy, 'The Pi II dating caveat survives on /atlas/')
+check('Heterogeneous Group C' in all_copy, 'The heterogeneous third-century groups survive on /atlas/')
+check('SOURCED IMAGES / REUSE REVIEW PENDING' in visible_copy,
+      'The BnF reuse notice stays where those photographs are shown')
 check(data['edition'] == 'Research edition 03', 'Data edition updated')
 check(len(data['sources']) == 50, 'All 41 earlier sources retained plus the nine shareable-fact references')
 check(len(data['images']) == 17, 'Original 16 image records retained plus the researched early-classical reverse')

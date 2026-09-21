@@ -98,6 +98,19 @@ Nothing is deployed or pushed without an explicit request.
   `/kit/` with 15 reusable photographs, ten sourced facts (sources 44–50),
   credit lines and short links, plus its own share card.
   PAUSED here at the owner's request for tweaks; chunk 5 waits for a go.
+- Owner-requested edit, 21 September 2026: chapter 05, "A familiar owl, a
+  changing Athens", is removed. The owner's reason was repetition — the site was
+  asking readers for paragraphs about subtle differences. The interactive close
+  reading is restored in chapter 03 in its place, rebuilt from
+  `research/previous-close-reading/` in Fraunces and the chunk-2 language, with
+  the "Three letters" reading reduced to one line that hands ΑΘΕ to the theta
+  interlude. The withdrawn chapter's two real points became the two obverse
+  readings (the eye turning into profile; the helmet ornament that names
+  Pi-style), and a closing line carries the third century into the two
+  comparison presets. The Pi II exhibit, the heterogeneous Group C note and the
+  BnF reuse notice moved to `/atlas/`; no source or image record was dropped.
+  Chapters 06–09 renumbered to 05–08. Styles are one appended
+  `CHUNK 5 / CLOSE READING` block, per the chunk-2 lesson above.
 - Polish list for chunk 5: the "Hammer" label overlaps the moving hammer
   mid-animation; hide the hero's honesty note on phones; round the focus ring
   on pill buttons; remove dead `.journey-faces` rules; distinguish the two
