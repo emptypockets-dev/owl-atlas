@@ -471,5 +471,82 @@
     "scope": "The civic legibility of the owl type and its longevity: the Athenians saw little need to change the basic design until they ceased minting tetradrachms completely in the first century BC.",
     "note": "A curator's public-facing post, not a peer-reviewed article. The Peisistratid branding explanation is reported there as a current explanation rather than asserted. The claim concerns the basic type; style and detail changed considerably.",
     "accessed": "2026-09-21"
+  },
+  {
+    "id": "hook-birds",
+    "title": "Birds 1106–1108",
+    "author": "Aristophanes; translation Eugene O'Neill, Jr.; Perseus Digital Library",
+    "year": "Translation 1938 (Random House); play produced 414 BC",
+    "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0026%3Acard%3D1102",
+    "kind": "Ancient document",
+    "scope": "The bird chorus promises the competition judges that the owls of Laurion will never fail them, that they will move in and nest in the judges' money-bags, and that they will hatch out small change.",
+    "note": "A comic bribe aimed at the play's judges, not a report of monetary practice. The Greek text is at Perseus text 1999.01.0025, same card; line 1108 reads ἐννεοττεύσουσι κἀκλέψουσι μικρὰ κέρματα. O'Neill's 1938 English may remain in copyright: link and quote briefly rather than reproducing the passage.",
+    "accessed": "2026-09-21"
+  },
+  {
+    "id": "hook-ans-testcut",
+    "title": "Silver Tetradrachm, Athens, 515 BCE–482 BCE · 2008.39.34",
+    "author": "American Numismatic Society",
+    "year": "Collection record",
+    "url": "https://numismatics.org/collection/2008.39.34",
+    "kind": "Museum record",
+    "scope": "A worn archaic Athenian tetradrachm, 17.047 g, 21 mm, recorded with one chisel cut and a secondary treatment of Cut, from the Asyut hoard (IGCH 1644).",
+    "note": "The record documents a cut on this specimen. It does not state who made the cut, when or why, and a single record is not evidence for how common test cuts are. Citing it implies no museum endorsement and offers no authentication guidance.",
+    "accessed": "2026-09-21"
+  },
+  {
+    "id": "hook-hdt-fleet",
+    "title": "The Histories 7.144",
+    "author": "Herodotus; translation A. D. Godley; Perseus Digital Library",
+    "year": "Translation 1920 (Harvard University Press)",
+    "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0126%3Abook%3D7%3Achapter%3D144",
+    "kind": "Ancient document",
+    "scope": "Revenues from the mines at Laurium; a proposed distribution of ten drachmae a man; Themistocles persuading the Athenians to build two hundred ships instead, for the war with Aegina.",
+    "note": "Herodotus gives no year, names no coin type, and ties the ships to the Aeginetan war rather than to Salamis. Godley's own footnote calculates that ten drachmae a head would be far too small a sum to build two hundred ships and reads the passage as a contribution to a shipbuilding fund.",
+    "accessed": "2026-09-21"
+  },
+  {
+    "id": "hook-athpol-fleet",
+    "title": "Athenian Constitution 22.7 (Athenaion Politeia)",
+    "author": "Aristotle; translation H. Rackham; Perseus Digital Library",
+    "year": "Translation 1952",
+    "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0046%3Achapter%3D22",
+    "kind": "Ancient document",
+    "scope": "A hundred-talent profit from the newly discovered mines at Maronea; Themistocles has it lent to the hundred richest Athenians; a hundred triremes are built, and with these the Athenians fight the naval battle at Salamis.",
+    "note": "This account conflicts with Herodotus 7.144 on the mine, the number of ships and the mechanism. Rackham prints the archon's name as Nicomedes; the archon of 483/2 BC is usually printed Nikodemos. The conventional 483/2 BC date comes from the archon year, not from the text.",
+    "accessed": "2026-09-21"
+  },
+  {
+    "id": "hook-ans-dollar",
+    "title": "The ANS's Greatest Coins: the first Athenian “Owl”. The dollar of the ancient Greek world",
+    "author": "Peter van Alfen · American Numismatic Society, Pocket Change",
+    "year": "4 March 2021",
+    "url": "https://numismatics.org/pocketchange/the-anss-greatest-coins-the-first-athenian-owl-the-dollar-of-the-ancient-greek-world/",
+    "kind": "Museum outreach post",
+    "scope": "Record of where the phrase “the dollar of the ancient Greek world” actually comes from: the headline of an ANS video post about the first Athenian owl.",
+    "note": "Held as evidence about the phrasing, not as support for a claim. The analogy is a headline on a video post and is not argued in the body text. Treat it as popular framing attributable to ANS outreach, never as a research finding.",
+    "accessed": "2026-09-21"
+  },
+  {
+    "id": "hook-athpol-pay",
+    "title": "Athenian Constitution 62.2 (Athenaion Politeia)",
+    "author": "Aristotle; translation H. Rackham; Perseus Digital Library",
+    "year": "Translation 1952",
+    "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0046%3Achapter%3D62",
+    "kind": "Ancient document",
+    "scope": "State pay for public duties: a drachma for an ordinary meeting of the Assembly and a drachma and a half for a sovereign one, half a drachma for the jury-courts, five obols for the Council, and a drachma a day for the archon for Salamis.",
+    "note": "The Athenaion Politeia describes arrangements of its own time, the later fourth century BC, not a rate fixed for every year. Its authorship is debated; it is transmitted under Aristotle's name. Rackham's 1952 translation may remain in copyright: link rather than reproduce at length.",
+    "accessed": "2026-09-21"
+  },
+  {
+    "id": "hook-thuc-seamen",
+    "title": "History of the Peloponnesian War 6.31.3",
+    "author": "Thucydides; translation Richard Crawley; Perseus Digital Library",
+    "year": "Translation 1910 (J. M. Dent)",
+    "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0200%3Abook%3D6%3Achapter%3D31",
+    "kind": "Ancient document",
+    "scope": "The Sicilian expedition of 415 BC: the treasury giving a drachma a day to each seaman, with the trierarchs adding bounties on top of the state's pay.",
+    "note": "A rate for one expedition that Thucydides presents as exceptionally costly, not a standing naval wage. Perseus publishes this translation under CC BY-SA 3.0 US.",
+    "accessed": "2026-09-21"
   }
 ]
