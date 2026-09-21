@@ -1008,3 +1008,15 @@ if (identifyForm) {
   identifyForm.addEventListener('submit', (event) => event.preventDefault());
   renderIdentify();
 }
+
+// The creator kit links to /#share-card. Open the card maker when that hash
+// arrives, then drop the hash so reloads and back navigation stay predictable.
+function openShareCardFromHash() {
+  if (location.hash !== '#share-card') return;
+  const trigger = document.getElementById('hero-share-card');
+  if (!trigger) return;
+  history.replaceState(null, '', location.pathname + location.search);
+  trigger.click();
+}
+openShareCardFromHash();
+window.addEventListener('hashchange', openShareCardFromHash);
