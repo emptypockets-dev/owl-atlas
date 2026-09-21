@@ -1,6 +1,6 @@
 /** Dependency-free content, reference, markup and JavaScript sanity checks. */
 import assert from 'node:assert/strict';
-import {readFile} from 'node:fs/promises';
+import {readFile, stat} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import vm from 'node:vm';
@@ -27,6 +27,35 @@ for (const [id, image] of Object.entries(data.images)) {
   for (const key of ['url','source','licenseUrl']) check(new URL(image[key]).protocol === 'https:', `${id}: invalid ${key}`);
   check(!/__\w+__/.test(image.url), `${id}: unresolved URL`);
   check(photoMarkup(id, data).includes('data-image='), `${id}: failed rendering`);
+}
+// Self-hosted resized display copies. The linked originals stay untouched, the
+// six reuse-review-pending photographs stay hotlinked, and every derived file
+// the build references must exist on disk at its declared size.
+let derivedManifest = null;
+try { derivedManifest = JSON.parse(await readFile(path.join(root, 'public/images/derived/manifest.json'), 'utf8')); }
+catch (error) { if (error.code !== 'ENOENT') throw error; }
+const declaredDerivatives = new Map();
+for (const [id, record] of Object.entries(derivedManifest?.images || {})) {
+  check(Boolean(data.images[id]), `Derived manifest names an unknown image: ${id}`);
+  check(record.sourceUrl === data.images[id].url, `${id}: derivatives must be resized from the record's own original`);
+  for (const derivative of record.derivatives) {
+    check(/^public\/images\/derived\/[a-zA-Z0-9_-]+\.jpg$/.test(derivative.path), `${id}: unsupported derived path ${derivative.path}`);
+    check((await stat(path.join(root, derivative.path))).size === derivative.bytes, `${derivative.path}: file size differs from the declared bytes`);
+    check(derivative.width <= record.sourceWidth, `${derivative.path}: a derivative may never enlarge its source`);
+    declaredDerivatives.set(derivative.path, derivative.bytes);
+  }
+}
+const figuresFor = (document, id) =>
+  [...document.matchAll(new RegExp(`<figure class="image-figure[^"]*" data-photo="${id}"[\\s\\S]*?</figure>`, 'g'))].map(match => match[0]);
+for (const [id, image] of Object.entries(data.images)) {
+  if (image.reuseStatus !== 'review-pending') continue;
+  check(!derivedManifest?.images?.[id], `${id}: a reuse-review-pending photograph must not be derived`);
+  const figures = [...figuresFor(html, id), ...figuresFor(atlas, id)];
+  check(figures.length > 0, `${id}: the reuse-review-pending photograph is no longer displayed`);
+  for (const figure of figures) {
+    check(!figure.includes('srcset='), `${id}: a reuse-review-pending photograph must not get derivatives`);
+    check(figure.includes(`src="${escapeHtml(image.url)}"`), `${id}: must keep hotlinking its unchanged original`);
+  }
 }
 for (const family of data.families) {
   family.refs.forEach(id => check(ids.has(id), `Unknown family citation: ${id}`));
@@ -128,7 +157,16 @@ for (const [pathname, document] of documents) {
   }
   for (const [,attrs,script] of document.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)) if (!attrs.includes('application/json')) { new vm.Script(script); tests++; }
   check(!/\{\{[A-Z]|INLINE_(STYLES|SCRIPT|DATA)/.test(document), `${pathname}: no unrendered template tokens`);
+  for (const match of document.matchAll(/(?:\.\.\/)?(public\/images\/derived\/[A-Za-z0-9._-]+)/g)) {
+    check(declaredDerivatives.has(match[1]), `${pathname}: references an undeclared derived file ${match[1]}`);
+  }
 }
+const heroFigure = html.match(/<figure class="image-figure hero-photo"[\s\S]*?<\/figure>/)?.[0] || '';
+check(/<img [^>]*\bsrcset="[^"]*public\/images\/derived\/[^"]*"[^>]*\bsizes="/.test(heroFigure), 'The hero photograph renders a responsive srcset of self-hosted derivatives');
+check(/\bfetchpriority="high"/.test(heroFigure) && /\bloading="eager"/.test(heroFigure), 'The hero photograph keeps its eager, high-priority load');
+check(/style="background-image:url\(data:image\/jpeg;base64,/.test(heroFigure), 'The hero disc paints a placeholder while the photograph arrives');
+check(/<link as="image"[^>]*\bimagesrcset="[^"]*public\/images\/derived\/[^"]*"[^>]*\brel="preload"\/>/.test(html), 'The head preloads the hero derivative');
+check(!/<link as="image"[^>]*rel="preload"/.test(atlas + pricing + journey), 'Only the homepage preloads the hero photograph');
 check(!/<tr\b[^>]*data-market-row/.test(markup) && !markup.includes('class="market-history-figure"'), 'Homepage has only the pricing summary');
 check((pricing.replace(/<script[^>]*>[\s\S]*?<\/script>/g,'').match(/<tr\b[^>]*data-market-row/g)||[]).length === 66, 'Full page preserves all 66 observations');
 const htmlIds = [...markup.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);

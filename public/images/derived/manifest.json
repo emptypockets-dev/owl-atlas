@@ -1,0 +1,382 @@
+{
+  "generatedAt": "2026-09-21T12:09:39.540Z",
+  "tool": "/usr/bin/sips (sips-316)",
+  "settings": {
+    "format": "jpeg",
+    "quality": 82,
+    "widths": [
+      800,
+      1600
+    ],
+    "extraWidths": {
+      "classic-athena": [
+        2400
+      ],
+      "classic-owl": [
+        2400
+      ]
+    },
+    "placeholderWidth": 24,
+    "placeholderQuality": 40,
+    "rule": "A requested width larger than the source is skipped; nothing is ever enlarged.",
+    "excluded": "Photographs whose reuseStatus is review-pending are not downloaded or derived."
+  },
+  "images": {
+    "classic-owl": {
+      "id": "classic-owl",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Owl_%28reverse%29_-_1941.296.b_-_Cleveland_Museum_of_Art.jpg",
+      "sourceBytes": 5857596,
+      "sourceSha256": "0769a3e2b32b991f06e02c1639b89cf44526771f368623033e4b7750d4fa1170",
+      "sourceWidth": 2634,
+      "sourceHeight": 2736,
+      "license": "CC0 1.0",
+      "credit": "Cleveland Museum of Art · Gift of Dr. Jacob Hirsch",
+      "reuseStatus": "see-source-record",
+      "tool": "/usr/bin/sips (sips-316)",
+      "settings": "format jpeg, formatOptions 82, --resampleWidth",
+      "requestedWidths": [
+        800,
+        1600,
+        2400
+      ],
+      "widths": [
+        800,
+        1600,
+        2400
+      ],
+      "derivatives": [
+        {
+          "width": 800,
+          "height": 831,
+          "path": "public/images/derived/classic-owl-800-b4cb57d2.jpg",
+          "bytes": 214927,
+          "sha256": "b4cb57d291111b12980420ac98565d57eebc41ed25433c222856f3af728e0fe0"
+        },
+        {
+          "width": 1600,
+          "height": 1662,
+          "path": "public/images/derived/classic-owl-1600-60289951.jpg",
+          "bytes": 791039,
+          "sha256": "60289951ff977ee3367119005a44d700a5e39919570e1cb2a68c48ee22468176"
+        },
+        {
+          "width": 2400,
+          "height": 2493,
+          "path": "public/images/derived/classic-owl-2400-55836d97.jpg",
+          "bytes": 1705481,
+          "sha256": "55836d97941277d20a467f94edd18a929e18b3c5704e5ad99968d22fe729c993"
+        }
+      ],
+      "placeholder": {
+        "width": 24,
+        "height": 25,
+        "bytes": 775,
+        "uriBytes": 1059,
+        "dataUri": "data:image/jpeg;base64,/9j/wAARCAAZABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9sAQwAJCQkJCQkQCQkQFhAQEBYeFhYWFh4mHh4eHh4mLiYmJiYmJi4uLi4uLi4uNzc3Nzc3QEBAQEBISEhISEhISEhI/9sAQwELDAwSERIfEREfSzMqM0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tL/90ABAAC/9oADAMBAAIRAxEAPwDtNR1W200BXG6RhkIOPxJ7Vyh8WahKSba1DKpwcDP9aqa2JH1mYO21TtwT/dx2rJuZI0Gy1BAzy56k1LY0j1DTNStdTh8yHhwPnQ9VNaeB6V5x4VfydSMXXdGc9PY9ia9F3U0xNH//0L/iSwM0gmXg8c1zQtiI9zHcw7Yxn/Cu71j/AFFcf3pNAmaugxBLwS4wdu3Gc4FdvuNcfo3+trqaYrn/2Q=="
+      }
+    },
+    "classic-athena": {
+      "id": "classic-athena",
+      "sourceUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Head_of_Athena_%28obverse%29_-_1941.296.a_-_Cleveland_Museum_of_Art.tif/lossy-page1-1920px-Greece%2C_Athens%2C_5th_century_BC_-_Tetradrachm-_Head_of_Athena_%28obverse%29_-_1941.296.a_-_Cleveland_Museum_of_Art.tif.jpg",
+      "sourceBytes": 879422,
+      "sourceSha256": "3edf82bb6951a95ae05ce9c2e1380aed77fabb505e21f74e10db138f22140eb1",
+      "sourceWidth": 1920,
+      "sourceHeight": 1973,
+      "license": "CC0 1.0",
+      "credit": "Cleveland Museum of Art · Gift of Dr. Jacob Hirsch",
+      "reuseStatus": "see-source-record",
+      "tool": "/usr/bin/sips (sips-316)",
+      "settings": "format jpeg, formatOptions 82, --resampleWidth",
+      "requestedWidths": [
+        800,
+        1600
+      ],
+      "widths": [
+        800,
+        1600
+      ],
+      "derivatives": [
+        {
+          "width": 800,
+          "height": 822,
+          "path": "public/images/derived/classic-athena-800-4bf7e659.jpg",
+          "bytes": 220367,
+          "sha256": "4bf7e659d563bddd320d2630207f9c5d0ec25d68ffcc7599593ef902b91608ee"
+        },
+        {
+          "width": 1600,
+          "height": 1644,
+          "path": "public/images/derived/classic-athena-1600-93d7c023.jpg",
+          "bytes": 828278,
+          "sha256": "93d7c0231fad084186736e6addff000dc6b05fe3fc74f272fb551031190b11ef"
+        }
+      ],
+      "placeholder": {
+        "width": 24,
+        "height": 24,
+        "bytes": 767,
+        "uriBytes": 1047,
+        "dataUri": "data:image/jpeg;base64,/9j/wAARCAAYABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9sAQwAJCQkJCQkQCQkQFhAQEBYeFhYWFh4mHh4eHh4mLiYmJiYmJi4uLi4uLi4uNzc3Nzc3QEBAQEBISEhISEhISEhI/9sAQwELDAwSERIfEREfSzMqM0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tL/90ABAAC/9oADAMBAAIRAxEAPwC3rfim4MkjW2Aa5iDX9Y88MZ26HjjGe1UbrzS4Vf4hjnuSf6Yq1p8IN2gPJOVYfU9RSGen6DqFxf22brbvXHI7+vFbtcfogNpOLVH8wB9hYdOQT/SuxppiaP/QTUfDOqWx2bM4PBHf8aji0zVReRXEUGNihSOMHAwT9a9a1n7qfWsmHrQ0FzN0TS3slee4A82Q/kBW/S9qSmhH/9k="
+      }
+    },
+    "archaic": {
+      "id": "archaic",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/23/Greek_Silver_Tetradrachm_of_Athens_%28Attica%29.jpg",
+      "sourceBytes": 453159,
+      "sourceSha256": "2421780318b57fb5d86a6ab5b6e184eb72b5b01a06110cec0e60a8ead6662e1f",
+      "sourceWidth": 759,
+      "sourceHeight": 1608,
+      "license": "CC BY 2.0",
+      "credit": "Exekias / Wikimedia Commons",
+      "reuseStatus": "see-source-record",
+      "tool": "/usr/bin/sips (sips-316)",
+      "settings": "format jpeg, formatOptions 82, --resampleWidth",
+      "requestedWidths": [
+        759
+      ],
+      "widths": [
+        759
+      ],
+      "derivatives": [
+        {
+          "width": 759,
+          "height": 1608,
+          "path": "public/images/derived/archaic-759-cd93f76f.jpg",
+          "bytes": 431446,
+          "sha256": "cd93f76fdc35024ce6b5b9f4857e85aacbe3b0e2048dbbeb2f0f486c0b0d73e3"
+        }
+      ],
+      "placeholder": null
+    },
+    "met-owl": {
+      "id": "met-owl",
+      "sourceUrl": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702577/main-image",
+      "sourceBytes": 294053,
+      "sourceSha256": "19ca7f1cef6817903635b9e6c0cabaf419a7d21b2a59db5a43d8b3c7e45bb19e",
+      "sourceWidth": 1110,
+      "sourceHeight": 1200,
+      "license": "Public domain",
+      "credit": "The Metropolitan Museum of Art · Bequest of Nanette B. Kelekian, 2020",
+      "reuseStatus": "see-source-record",
+      "tool": "/usr/bin/sips (sips-316)",
+      "settings": "format jpeg, formatOptions 82, --resampleWidth",
+      "requestedWidths": [
+        800
+      ],
+      "widths": [
+        800
+      ],
+      "derivatives": [
+        {
+          "width": 800,
+          "height": 865,
+          "path": "public/images/derived/met-owl-800-621094c9.jpg",
+          "bytes": 213988,
+          "sha256": "621094c9bee562a38aab28cc183a401285a9a2daee08f35906c91062ff6791e7"
+        }
+      ],
+      "placeholder": null
+    },
+    "met-athena": {
+      "id": "met-athena",
+      "sourceUrl": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702575/main-image",
+      "sourceBytes": 263962,
+      "sourceSha256": "66625a8bc0c5ef4edaaf7ac5173c931099d2b9a74b4e6c67c8d7093ab6721f02",
+      "sourceWidth": 1200,
+      "sourceHeight": 1085,
+      "license": "Public domain",
+      "credit": "The Metropolitan Museum of Art · Bequest of Nanette B. Kelekian, 2020",
+      "reuseStatus": "see-source-record",
+      "tool": "/usr/bin/sips (sips-316)",
+      "settings": "format jpeg, formatOptions 82, --resampleWidth",
+      "requestedWidths": [
+        800
+      ],
+      "widths": [
+        800
+      ],
+      "derivatives": [
+        {
+          "width": 800,
+          "height": 723,
+          "path": "public/images/derived/met-athena-800-363b2ded.jpg",
+          "bytes": 154277,
+          "sha256": "363b2dedd8fd42e5e4a74f8a94b6344ee34a03a8ea91eb148b8ba78dc0324f62"
+        }
+      ],
+      "placeholder": null
+    },
+    "profile": {
+      "id": "profile",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Sg2537.jpg",
+      "sourceBytes": 62066,
+      "sourceSha256": "262e05996c1aed0c6b7e089cd27c87a0b4242042881a96ea452cd0c1f617ba04",
+      "sourceWidth": 500,
+      "sourceHeight": 253,
+      "license": "CC BY-SA 3.0",
+      "credit": "Classical Numismatic Group, Inc. / Wikimedia Commons",
+      "reuseStatus": "see-source-record",
+      "tool": "/usr/bin/sips (sips-316)",
+      "settings": "format jpeg, formatOptions 82, --resampleWidth",
+      "requestedWidths": [
+        500
+      ],
+      "widths": [],
+      "derivatives": [],
+      "placeholder": null
+    },
+    "early-athena": {
+      "id": "early-athena",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/54/Greece%2C_5th_century_BC_-_Athenian_Tetradrachm-_Female_Head_%28obverse%29_-_1920.267.a_-_Cleveland_Museum_of_Art.jpg",
+      "sourceBytes": 4220382,
+      "sourceSha256": "007a159e09a8b5b188ee764661436c3299ec11b867baaead4cc72cd23837312a",
+      "sourceWidth": 2318,
+      "sourceHeight": 2280,
+      "license": "CC0 1.0",
+      "credit": "Cleveland Museum of Art · Gift of Harold W. Parsons",
+      "reuseStatus": "see-source-record",
+      "tool": "/usr/bin/sips (sips-316)",
+      "settings": "format jpeg, formatOptions 82, --resampleWidth",
+      "requestedWidths": [
+        800,
+        1600
+      ],
+      "widths": [
+        800,
+        1600
+      ],
+      "derivatives": [
+        {
+          "width": 800,
+          "height": 787,
+          "path": "public/images/derived/early-athena-800-1364bf75.jpg",
+          "bytes": 181509,
+          "sha256": "1364bf7530495ee73e01916357e1885810e4c5579d977f5006144a413f208efb"
+        },
+        {
+          "width": 1600,
+          "height": 1573,
+          "path": "public/images/derived/early-athena-1600-9f89f274.jpg",
+          "bytes": 606035,
+          "sha256": "9f89f274d3e0b142168531a0aa07b57deff8b75bdbb77a73e49f831e3d00b39c"
+        }
+      ],
+      "placeholder": null
+    },
+    "early-owl": {
+      "id": "early-owl",
+      "sourceUrl": "https://openaccess-cdn.clevelandart.org/1920.267.b/1920.267.b_print.jpg",
+      "sourceBytes": 4388968,
+      "sourceSha256": "550f8a67e228ad5f572dae09e54110e2b0d251ab3d5295eff7c4d713443b4dfa",
+      "sourceWidth": 2384,
+      "sourceHeight": 2280,
+      "license": "CC0 1.0",
+      "credit": "Cleveland Museum of Art · Gift of Harold W. Parsons",
+      "reuseStatus": "see-source-record",
+      "tool": "/usr/bin/sips (sips-316)",
+      "settings": "format jpeg, formatOptions 82, --resampleWidth",
+      "requestedWidths": [
+        800,
+        1600
+      ],
+      "widths": [
+        800,
+        1600
+      ],
+      "derivatives": [
+        {
+          "width": 800,
+          "height": 765,
+          "path": "public/images/derived/early-owl-800-2bfc8d28.jpg",
+          "bytes": 160127,
+          "sha256": "2bfc8d2880fc99e19915de1660e3d00a8aa87d179ab5a50b8ae8ed3de3c39dd7"
+        },
+        {
+          "width": 1600,
+          "height": 1530,
+          "path": "public/images/derived/early-owl-1600-89edc607.jpg",
+          "bytes": 598348,
+          "sha256": "89edc60708adc2ee7a42efe6eae8d5e01063dad885d7f472fc8197d049e6fffa"
+        }
+      ],
+      "placeholder": null
+    },
+    "new-owl": {
+      "id": "new-owl",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/82/Silver_tetradrachm_Athens_new_style_reverse.jpg",
+      "sourceBytes": 2432142,
+      "sourceSha256": "7b95c8d92ead2f16191b181ad2d7c5ca810de011ffaa08e77c3b7d4a9c9013ef",
+      "sourceWidth": 1340,
+      "sourceHeight": 1340,
+      "license": "Public domain",
+      "credit": "Marie-Lan Nguyen / Wikimedia Commons · Musée de la BnF",
+      "reuseStatus": "see-source-record",
+      "tool": "/usr/bin/sips (sips-316)",
+      "settings": "format jpeg, formatOptions 82, --resampleWidth",
+      "requestedWidths": [
+        800
+      ],
+      "widths": [
+        800
+      ],
+      "derivatives": [
+        {
+          "width": 800,
+          "height": 800,
+          "path": "public/images/derived/new-owl-800-3efdabb3.jpg",
+          "bytes": 275386,
+          "sha256": "3efdabb39cceb10691e39839bf874b2c7169d310939ba98d22ac93ac1a499867"
+        }
+      ],
+      "placeholder": null
+    },
+    "new-athena": {
+      "id": "new-athena",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/04/Silver_tetradrachm_Athens_new_style_obverse.jpg",
+      "sourceBytes": 1167737,
+      "sourceSha256": "78f222b64ffa9da0a7ced5de278ddbe5a34669b988166ed5d668c247ab57c920",
+      "sourceWidth": 1200,
+      "sourceHeight": 1200,
+      "license": "Public domain",
+      "credit": "Marie-Lan Nguyen / Wikimedia Commons · Musée de la BnF",
+      "reuseStatus": "see-source-record",
+      "tool": "/usr/bin/sips (sips-316)",
+      "settings": "format jpeg, formatOptions 82, --resampleWidth",
+      "requestedWidths": [
+        800
+      ],
+      "widths": [
+        800
+      ],
+      "derivatives": [
+        {
+          "width": 800,
+          "height": 800,
+          "path": "public/images/derived/new-athena-800-2e4e4b36.jpg",
+          "bytes": 246500,
+          "sha256": "2e4e4b36abc0e0119c7064389631bcf7fd606098ba04de99800e21181477076d"
+        }
+      ],
+      "placeholder": null
+    },
+    "sabakes": {
+      "id": "sabakes",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/EGYPT%2C_Persian_Administration._Sabakes._Circa_340-333_BC.jpg",
+      "sourceBytes": 109900,
+      "sourceSha256": "b44786619247db90205c8512d90c827bba7ae4eb64dc1333ef9d7d409087efa4",
+      "sourceWidth": 800,
+      "sourceHeight": 403,
+      "license": "CC BY-SA 3.0",
+      "credit": "Classical Numismatic Group, Inc. / Wikimedia Commons",
+      "reuseStatus": "see-source-record",
+      "tool": "/usr/bin/sips (sips-316)",
+      "settings": "format jpeg, formatOptions 82, --resampleWidth",
+      "requestedWidths": [
+        800
+      ],
+      "widths": [],
+      "derivatives": [],
+      "placeholder": null
+    }
+  }
+}

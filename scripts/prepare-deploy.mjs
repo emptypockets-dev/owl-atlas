@@ -11,6 +11,7 @@ const data = JSON.parse(match[1]);
 const journey = JSON.parse(await readFile(path.join(root, 'src/one-owl.json'), 'utf8'));
 const stage = await mkdtemp(path.join(root, '.deploy-stage-'));
 let localCount = 0;
+const derivedFiles = new Set();
 try {
   await writeFile(path.join(stage, 'index.html'), html);
   await mkdir(path.join(stage, 'atlas'));
@@ -30,6 +31,17 @@ try {
     await copyFile(path.join(root, 'public', asset), path.join(stage, asset));
   }
   for (const [id, image] of Object.entries({...data.images, ...journey.images})) {
+    // Self-hosted resized display copies the build actually references. Their
+    // names carry a content hash, so they are served immutably (see vercel.json).
+    for (const source of image.derived?.sources || []) {
+      if (!/^public\/images\/derived\/[a-zA-Z0-9_-]+\.jpg$/.test(source.path)) {
+        throw new Error(`Unsafe or unsupported derived image path for ${id}: ${source.path}`);
+      }
+      const target = path.join(stage, source.path);
+      await mkdir(path.dirname(target), {recursive: true});
+      await copyFile(path.join(root, source.path), target);
+      derivedFiles.add(source.path);
+    }
     if (!image.localUrl) continue;
     // Only copy the build's explicit image files, never arbitrary source paths.
     if (!/^public\/images\/[a-zA-Z0-9_-]+\.(jpg|jpeg|png|webp)$/.test(image.localUrl)) {
@@ -45,8 +57,9 @@ try {
   await rename(stage, dist);
   const imageCount = Object.keys(data.images).length + Object.keys(journey.images).length;
   const pending = Object.values(data.images).filter(image => image.reuseStatus === 'review-pending').length;
-  console.log(`Prepared dist/: ${localCount}/${imageCount} local image files. No deployment performed.`);
-  if (localCount < imageCount) console.warn('Photographs still require external hosts. Verify live delivery before launch.');
+  const derivedImages = Object.values({...data.images, ...journey.images}).filter(image => image.derived?.sources?.length).length;
+  console.log(`Prepared dist/: ${localCount}/${imageCount} local image files, plus ${derivedFiles.size} self-hosted display copies for ${derivedImages} photographs. No deployment performed.`);
+  if (localCount + derivedImages < imageCount) console.warn('Photographs still require external hosts. Verify live delivery before launch.');
   if (pending) console.warn(`${pending} image records retain unresolved reuse-review flags. Staging is not publication clearance.`);
 } catch (error) {
   await rm(stage, {recursive: true, force: true});

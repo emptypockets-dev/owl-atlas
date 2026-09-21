@@ -477,7 +477,13 @@ img {
   overflow:hidden;
   background:#333b34;
   border:0;
-  box-shadow:0 36px 80px #0005
+  box-shadow:0 36px 80px #0005;
+  /* The build paints a 24-pixel blurred copy of the same photograph here, so
+     the disc is never an empty well while the full image arrives. It is a
+     loading placeholder, not a substitute: the photograph replaces it. */
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:cover
 }
 
 .hero-photo .image-surface img {
@@ -4567,7 +4573,10 @@ html:not(.has-js) .journey-hero { padding-top:30px; }
 .artifact-face,.artifact-edge { position:absolute; top:50%; left:50%; backface-visibility:hidden; }
 .artifact-face { transform:translate(-50%,-50%) translateZ(3px); }
 .artifact-face[data-artifact-face="reverse"] { transform:translate(-50%,-50%) rotateY(180deg) translateZ(3px); }
-.artifact-face img { display:block; width:100%; height:100%; }
+/* Each face carries a 24-pixel blurred copy of its own photograph as a loading
+   placeholder, clipped by the same rim silhouette. The photograph paints over
+   it; a failed load hides both and shows the error message instead. */
+.artifact-face img { display:block; width:100%; height:100%; background-position:center; background-repeat:no-repeat; background-size:cover; }
 .artifact-edge { opacity:0; width:97%; height:100%; background:linear-gradient(100deg,#8b887e,#b2afa4 45%,#65665d); transform:translate(-50%,-50%) translateZ(var(--edge-z)); backface-visibility:visible; }
 .artifact-turn.is-turning .artifact-edge { animation:artifact-edge-turn 1150ms linear; }
 /* The photographed faces have different silhouettes. Suggest thickness only

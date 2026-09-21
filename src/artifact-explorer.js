@@ -69,6 +69,15 @@ export class ArtifactExplorer {
     this.request();
   }
 
+  /** The stage shows a resized display copy, so the camera measures that file's
+   *  real pixels rather than the record's full-resolution dimensions. The
+   *  build writes them onto the element; the record is the fallback. */
+  faceImage(side) {
+    const element = this.root.querySelector(`[data-artifact-face="${side}"] img`);
+    const width = Number(element?.getAttribute('width')), height = Number(element?.getAttribute('height'));
+    return width > 0 && height > 0 ? {width, height} : this.images[this.story.faces[side].image];
+  }
+
   measure() {
     const size = this.stage.getBoundingClientRect();
     this.size = {width:size.width, height:size.height};
@@ -85,9 +94,8 @@ export class ArtifactExplorer {
       ? `${Math.max(0,this.sticky.offsetHeight - 20)}px` : '0px');
     const diameter = Math.min(size.width,size.height) * .88;
     this.turn.style.width = `${diameter}px`; this.turn.style.height = `${diameter}px`;
-    for (const [side, face] of Object.entries(this.story.faces)) {
-      const image = this.images[face.image];
-      const view = artifactView(this.size,image,{focus:{x:.5,y:.5},zoom:1});
+    for (const side of Object.keys(this.story.faces)) {
+      const view = artifactView(this.size,this.faceImage(side),{focus:{x:.5,y:.5},zoom:1});
       const element = this.root.querySelector(`[data-artifact-face="${side}"]`);
       element.style.width = `${view.width}px`; element.style.height = `${view.height}px`;
     }
@@ -111,8 +119,7 @@ export class ArtifactExplorer {
   }
 
   pose(state, immediate = false) {
-    const image = this.images[this.story.faces[state.side].image];
-    const view = artifactView(this.size,image,state);
+    const view = artifactView(this.size,this.faceImage(state.side),state);
     this.view = view;
     this.camera.style.transitionDuration = immediate ? '0ms' : '';
     this.camera.style.transform = `translate3d(${view.x}px,${view.y}px,0) scale(${view.zoom}) rotate(${view.rotation}deg)`;
@@ -184,8 +191,7 @@ export class ArtifactExplorer {
       const rect = this.stage.getBoundingClientRect();
       const inverse = new DOMMatrix(getComputedStyle(this.camera).transform).inverse();
       const point = new DOMPoint(event.clientX-rect.left-rect.width/2,event.clientY-rect.top-rect.height/2).matrixTransform(inverse);
-      const image = this.images[this.story.faces[this.side].image];
-      const base = artifactView(this.size,image,{focus:{x:.5,y:.5},zoom:1});
+      const base = artifactView(this.size,this.faceImage(this.side),{focus:{x:.5,y:.5},zoom:1});
       output.textContent = JSON.stringify({side:this.side,focus:{x:+(point.x/base.width+.5).toFixed(3),y:+(point.y/base.height+.5).toFixed(3)}});
     });
   }
