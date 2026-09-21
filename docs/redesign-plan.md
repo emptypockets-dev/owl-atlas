@@ -73,6 +73,11 @@ Nothing is deployed or pushed without an explicit request.
 
 ## Status
 
-- Chunk 1: in progress (three parallel agents: images, share metadata, mobile chrome).
-- Chunk 2 prep: font sample page in progress.
-- Chunk 4 prep: hook-fact research in progress.
+- Chunk 1: merged 21 September 2026. Hero derivative 215 KB (1×) / 773 KB (2×)
+  instead of 5.7 MB; share cards and JSON-LD on all four pages; phone hero
+  coin-first; header hides on scroll-down; motion toggle in the chapter bar.
+  Review screenshots: `node scripts/qa-shots.mjs`.
+- Chunk 2: typography merged (Fraunces, metrics-matched fallback, GFS Didot for
+  Greek). Hero object and hooks, set pieces and sidenotes, and the share-card
+  re-render are in progress.
+- Chunk 4 prep: `research/hooks-findings.md` ranks ten verified hooks.
