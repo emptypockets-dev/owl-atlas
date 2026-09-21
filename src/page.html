@@ -12,17 +12,17 @@
   <link href="https://openaccess-cdn.clevelandart.org" rel="dns-prefetch"/>
   <link href="https://collectionapi.metmuseum.org" rel="dns-prefetch"/>
   {{HERO_PRELOAD}}
-  <meta content="An illustrated, source-linked journey through Athenian owl coinage: archaic beginnings, classical mass issues, fourth-century changes, New Style, and coins beyond Athens." name="description"/>
+  <meta content="Athens’ silver owl coin in plain language: museum photographs that open full size, what one owl actually bought, and a linked source behind every claim." name="description"/>
   <title>
-   The Owl Atlas — A small owl. An ancient world.
+   The Owl Atlas — Athens’ silver owl coin, 2,400 years on
   </title>
   <link href="https://theowlatlas.com/" rel="canonical"/>
   <link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
   <meta content="The Owl Atlas" property="og:site_name"/>
   <meta content="website" property="og:type"/>
   <meta content="https://theowlatlas.com/" property="og:url"/>
-  <meta content="The Owl Atlas — A small owl. An ancient world." property="og:title"/>
-  <meta content="Explore the places, people and changing designs behind Athenian owl coinage, with museum photographs and sources to follow." property="og:description"/>
+  <meta content="The Owl Atlas — Athens’ silver owl coin, 2,400 years on" property="og:title"/>
+  <meta content="Athens’ silver owl coin in plain language: museum photographs that open full size, what one owl actually bought, and a linked source behind every claim." property="og:description"/>
   <!-- Share card: rendered by scripts/render-social.mjs. build.mjs swaps the image and its alt text for each sub-page. -->
   <meta content="https://theowlatlas.com/social/home.png" property="og:image"/>
   <meta content="1200" property="og:image:width"/>
@@ -30,8 +30,8 @@
   <meta content="image/png" property="og:image:type"/>
   <meta content="The Owl Atlas: a silver Athenian owl tetradrachm reverse from the Cleveland Museum of Art, beside the headline “A small owl. An ancient world.”" property="og:image:alt"/>
   <meta content="summary_large_image" name="twitter:card"/>
-  <meta content="The Owl Atlas — A small owl. An ancient world." name="twitter:title"/>
-  <meta content="Explore the places, people and changing designs behind Athenian owl coinage, with museum photographs and sources to follow." name="twitter:description"/>
+  <meta content="The Owl Atlas — Athens’ silver owl coin, 2,400 years on" name="twitter:title"/>
+  <meta content="Athens’ silver owl coin in plain language: museum photographs that open full size, what one owl actually bought, and a linked source behind every claim." name="twitter:description"/>
   <meta content="https://theowlatlas.com/social/home.png" name="twitter:image"/>
   <meta content="The Owl Atlas: a silver Athenian owl tetradrachm reverse from the Cleveland Museum of Art, beside the headline “A small owl. An ancient world.”" name="twitter:image:alt"/>
   <style>
@@ -95,7 +95,7 @@
        </em>
       </h1>
       <p class="hero-deck">
-       Explore the art, history and changing forms of Athena–owl coinage, from early Athens to the wider ancient world. Compare museum specimens and follow the evidence behind their attribution.
+       Athens had silver mines at Laurion, and an owl design whose basic form it saw little need to change until it stopped striking tetradrachms altogether. {{CITE:mines,hook-ans-design}} In 408/7 BC one owl was about four days’ pay for a craftsman on the Acropolis. {{CITE:hook-erechtheion}}
       </p>
       <div class="hero-actions">
        <a class="pill primary" href="/atlas/">
@@ -124,23 +124,43 @@
        </span>
       </div>
       <p class="object-caption">
-       Athenian tetradrachm · Cleveland Museum of Art {{CITE:cma-classic}}
+       <span class="object-face" id="hero-face-label">
+        Owl · reverse
+       </span>
+       <span class="object-credit">
+        Athenian tetradrachm · Cleveland Museum of Art {{CITE:cma-classic}}
+       </span>
       </p>
+      <!-- Enhancement only. Without JavaScript the hero stays exactly the owl
+           photograph: app.js builds the second face, then unhides this control. -->
+      <div class="object-turn" hidden id="hero-turn-controls">
+       <button aria-describedby="hero-turn-note" aria-pressed="false" class="turn-button" id="hero-turn" type="button">
+        Turn the coin
+       </button>
+       <span class="object-honesty" id="hero-turn-note">
+        The turn suggests thickness; it is not a measured reconstruction.
+       </span>
+      </div>
      </div>
     </div>
     <div class="hero-bottom">
-     <span>
-      From the late 6th century to the Hellenistic world
-     </span>
+     <ul class="hero-facts">
+      <li>
+       <span class="fact-figure">≈ 4</span> days’ pay, 408/7 BC {{CITE:hook-erechtheion}}
+      </li>
+      <li>
+       The owl on Greece’s <span class="fact-figure">€1</span> coin today {{CITE:ecb}}
+      </li>
+      <li>
+       <a href="one-owl/">One owl, still Mint State after <span class="fact-figure">2,400</span> years <span aria-hidden="true">↗</span></a>
+      </li>
+     </ul>
      <a class="scroll-cue" href="#origins">
       Scroll to explore
       <span aria-hidden="true">
        ↓
       </span>
      </a>
-     <span>
-      Look closely. Every image opens.
-     </span>
     </div>
    </section>
    <div class="chapter-bar">

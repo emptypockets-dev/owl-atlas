@@ -1,5 +1,5 @@
 import {ArtifactExplorer} from './artifact-explorer.js';
-import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup, marketMoney} from './render.mjs';
+import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup, marketMoney, derivedSources, derivedSrcset, photoSizesFor, photoMaxWidthFor} from './render.mjs';
 
 /**
  * Progressive enhancement only. The full story, credits and bibliography are
@@ -189,6 +189,211 @@ if ('ResizeObserver' in window) {
 syncNavigationHeight();
 window.addEventListener('resize', requestScrollUpdate, {passive: true});
 syncMotion();
+
+/* The hero coin is an object in a room, and it has two real faces.
+ *
+ * Both belong to the same specimen and both are already self-hosted:
+ * classic-owl is the reverse (Cleveland 1941.296.b) and classic-athena the
+ * obverse (1941.296.a), CC0. The turning structure is built here rather than
+ * written into src/page.html, so without JavaScript the hero stays exactly the
+ * owl photograph it has always been. The scroll parallax owns #hero-object's
+ * transform, so the rotation goes on an inner element and the two never fight.
+ * The obverse derivative is requested only once the owl has loaded, and the
+ * head still preloads one image.
+ */
+const HERO_TURN_MS = 1400;      // must match the .hero-turn transition in styles.css
+const HERO_INTRO_DELAY = 1200;  // after the owl photograph has finished loading
+const HERO_SWEEP_DELAY = 1500;
+const HERO_REST_MS = 2500;
+const heroFaces = {
+  reverse: {image: 'classic-owl', label: 'Owl · reverse'},
+  obverse: {image: 'classic-athena', label: 'Athena · obverse'},
+};
+function setupHeroCoin() {
+  const figure = document.querySelector('.hero-photo');
+  const trigger = figure?.querySelector('.image-trigger');
+  const frame = trigger?.querySelector('.image-frame');
+  const owlImage = frame?.querySelector('img');
+  const controls = byId('hero-turn-controls');
+  const button = byId('hero-turn');
+  const faceLabel = byId('hero-face-label');
+  const obverse = data.images[heroFaces.obverse.image];
+  if (!figure || !trigger || !frame || !owlImage || !controls || !button || !faceLabel || !obverse) return;
+
+  // Perspective sits on the trigger (see styles.css), so the link stays a flat,
+  // always-clickable overlay above both faces and "Look closer" keeps working.
+  const turn = document.createElement('div');
+  turn.className = 'hero-turn';
+  frame.before(turn);
+  turn.append(frame);
+  // The same thin stacked-edge illusion the Anatomy exhibit uses.
+  for (const depth of [-2, -1, 0, 1, 2]) {
+    const edge = document.createElement('span');
+    edge.className = 'hero-edge';
+    edge.setAttribute('aria-hidden', 'true');
+    edge.style.setProperty('--edge-z', `${depth}px`);
+    turn.append(edge);
+  }
+  const back = document.createElement('span');
+  back.className = 'hero-face-back';
+  back.setAttribute('aria-hidden', 'true');
+  turn.append(back);
+  const surface = frame.closest('.image-surface');
+  const sheen = document.createElement('span');
+  sheen.className = 'hero-sheen';
+  sheen.setAttribute('aria-hidden', 'true');
+  turn.after(sheen);
+  sheen.addEventListener('animationend', () => sheen.classList.remove('is-sweeping'));
+
+  // The class is the CSS contract and the variable is the site's own state.
+  // Reading both means an inspector (or a review harness) that sets the class
+  // directly also stops the arrival turn, not just its transition.
+  const noMotion = () => motionOff || document.documentElement.classList.contains('motion-off');
+
+  let side = 'reverse';
+  let introSettled = false;
+  let introWaiting = false;
+  let obverseReady = false;
+  let introTimer = 0;
+  let restTimer = 0;
+  let sweepTimer = 0;
+  let edgeTimer = 0;
+  let identityTimer = 0;
+  let turnEndsAt = 0;
+  let introDeadline = Infinity;
+  let wasStill = false;
+
+  // Everything that names the visible face: the caption, which face the
+  // accessibility tree exposes, and what the viewer will open.
+  function applyIdentity(next) {
+    const face = heroFaces[next];
+    const image = data.images[face.image];
+    frame.setAttribute('aria-hidden', String(next !== 'reverse'));
+    back.setAttribute('aria-hidden', String(next !== 'obverse'));
+    faceLabel.textContent = face.label;
+    trigger.dataset.image = face.image;
+    trigger.href = image.localUrl || image.url;
+    trigger.setAttribute('aria-label', `Inspect ${image.title} in the image viewer`);
+  }
+
+  function showFace(next, immediate = false) {
+    const still = immediate || noMotion();
+    side = next;
+    clearTimeout(edgeTimer);
+    clearTimeout(identityTimer);
+    turn.classList.remove('is-turning');
+    turn.style.transitionDuration = still ? '0ms' : '';
+    // The pressed state is the control answering the reader, so it flips at once.
+    button.setAttribute('aria-pressed', String(next === 'obverse'));
+    turnEndsAt = still ? 0 : performance.now() + HERO_TURN_MS;
+    if (still) applyIdentity(next);
+    else {
+      void turn.offsetWidth;  // restart the edge keyframes for this turn
+      turn.classList.add('is-turning');
+      // The caption renames the face as the coin passes edge-on, not before it.
+      identityTimer = setTimeout(() => applyIdentity(next), HERO_TURN_MS / 2);
+      edgeTimer = setTimeout(() => turn.classList.remove('is-turning'), HERO_TURN_MS);
+    }
+    turn.style.transform = `rotateY(${next === 'obverse' ? 180 : 0}deg)`;
+  }
+
+  // The arrival turn is the page introducing itself, not a change the reader
+  // asked for, so the caption only starts announcing once it is over.
+  function settleIntro() {
+    clearTimeout(introTimer);
+    clearTimeout(restTimer);
+    introWaiting = false;
+    if (introSettled) return;
+    introSettled = true;
+    faceLabel.setAttribute('aria-live', 'polite');
+  }
+
+  function sweepLight() {
+    if (noMotion()) return;
+    // A light crossing a coin that is edge-on is a light crossing nothing, so
+    // the arrival sweep waits for the disc to settle on a face before it runs.
+    const remaining = turnEndsAt - performance.now();
+    if (remaining > 0) { sweepTimer = setTimeout(sweepLight, remaining + 60); return; }
+    sheen.classList.remove('is-sweeping');
+    void sheen.offsetWidth;
+    sheen.classList.add('is-sweeping');
+  }
+
+  function runIntro() {
+    if (introSettled) return;
+    if (!obverseReady) { introWaiting = true; return; }
+    introWaiting = false;
+    // A second face that arrives long after the reader did is no longer an
+    // arrival: it would turn the coin under someone already reading.
+    if (noMotion() || performance.now() > introDeadline) return settleIntro();
+    showFace('obverse');
+    restTimer = setTimeout(() => { showFace('reverse'); settleIntro(); }, HERO_TURN_MS + HERO_REST_MS);
+  }
+
+  button.addEventListener('click', () => {
+    settleIntro();
+    showFace(side === 'reverse' ? 'obverse' : 'reverse');
+  });
+
+  // Turning motion off mid-sequence stops the arrival turn where it is rather
+  // than finishing a rotation the reader has just asked not to see.
+  // documentElement's class list also carries the retracting header, so only a
+  // real change into the motion-off state is worth reacting to.
+  new MutationObserver(() => {
+    const still = noMotion();
+    if (still === wasStill) return;
+    wasStill = still;
+    if (!still) return;
+    clearTimeout(sweepTimer);
+    clearTimeout(edgeTimer);
+    clearTimeout(identityTimer);
+    sheen.classList.remove('is-sweeping');
+    turn.classList.remove('is-turning');
+    settleIntro();
+    showFace(side, true);
+  }).observe(document.documentElement, {attributes: true, attributeFilter: ['class']});
+
+  function addObverse() {
+    const maxWidth = photoMaxWidthFor('hero-photo');
+    const sources = derivedSources(obverse, maxWidth);
+    const image = document.createElement('img');
+    image.alt = obverse.alt;
+    image.decoding = 'async';
+    image.loading = 'lazy';
+    image.width = obverse.width;
+    image.height = obverse.height;
+    // watchImages() must not paint the shared disc with this face's error state.
+    image.dataset.watched = 'true';
+    image.addEventListener('load', () => {
+      obverseReady = true;
+      controls.hidden = false;   // the control appears only once both faces exist
+      if (introWaiting) runIntro();
+    }, {once: true});
+    if (sources.length > 1) {
+      image.srcset = derivedSrcset(obverse, maxWidth);
+      image.sizes = photoSizesFor('hero-photo');
+    }
+    image.src = sources.length ? sources[0].path : (obverse.localUrl || obverse.displayUrl || obverse.url);
+    back.append(image);
+  }
+
+  // Nothing is fetched, and nothing turns, until the owl itself is on screen.
+  function owlReady() {
+    // The build paints a blurred 24-pixel copy of the owl behind the disc so it
+    // is never an empty well while the photograph loads. That job is finished
+    // the moment the photograph arrives, and mid-turn the blur would be the one
+    // thing showing through the window. The flat well is the room behind it.
+    surface?.style.removeProperty('background-image');
+    wasStill = noMotion();
+    introDeadline = performance.now() + HERO_INTRO_DELAY + 4000;
+    addObverse();
+    sweepTimer = setTimeout(sweepLight, HERO_SWEEP_DELAY);
+    introTimer = setTimeout(runIntro, HERO_INTRO_DELAY);
+  }
+  if (owlImage.complete) { if (owlImage.naturalWidth) owlReady(); }
+  else owlImage.addEventListener('load', owlReady, {once: true});
+}
+setupHeroCoin();
 
 // All geographic panels are readable without JavaScript. Enhancement selects one
 // at a time, without scroll-driven animation, external tiles, or pointer-only UI.

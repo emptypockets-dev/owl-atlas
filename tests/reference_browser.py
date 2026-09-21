@@ -62,7 +62,7 @@ with sync_playwright() as p:
     atlas=load(browser,'/atlas/')
     check(atlas.locator('h1').count()==1,'Reference page has one main heading')
     check(atlas.locator('.family-card').count()==len(DATA['families'])==8,'Reference page retains eight coin families')
-    check(atlas.locator('.source-entry').count()==len(DATA['sources'])==41,'Reference page retains 41 source records')
+    check(atlas.locator('.source-entry').count()==len(DATA['sources'])==43,'Reference page retains 43 source records')
     for side in ('obverse','reverse'):
         atlas.locator(f'input[name="compare-side"][value="{side}"]').check()
         for family in DATA['families']:
@@ -76,7 +76,7 @@ with sync_playwright() as p:
             check(home.locator(f'#compare-{position}-specimen').input_value()==specimen,f'{preset}: correct {position} specimen')
         check(home.locator('input[name="compare-side"][value="obverse"]').is_checked(),f'{preset}: begins with obverse faces')
     atlas.locator('#source-search').fill('Kroll')
-    check(1<atlas.locator('.source-entry:visible').count()<41,'Reference bibliography search works')
+    check(1<atlas.locator('.source-entry:visible').count()<43,'Reference bibliography search works')
     atlas.locator('#source-search').fill('')
     atlas.locator('[data-source]').first.click()
     check(atlas.locator('#source-dialog').evaluate('e=>e.open'),'Reference citation opens a source dialog')
@@ -101,7 +101,7 @@ with sync_playwright() as p:
         check(page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),f'{path}: no-JavaScript mobile reflow')
         if path=='/atlas/':
             check(page.locator('.family-card:visible').count()==8,'No-JavaScript reference retains all families')
-            check(page.locator('.source-entry:visible').count()==41,'No-JavaScript reference retains all sources')
+            check(page.locator('.source-entry:visible').count()==43,'No-JavaScript reference retains all sources')
             page.locator('#coin-descriptions>summary').click()
             check(page.locator('#coin-descriptions').evaluate('e=>e.open'),'No-JavaScript catalogue disclosure works')
         else:
