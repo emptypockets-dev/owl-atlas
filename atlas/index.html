@@ -5093,6 +5093,9 @@ h4 {
    wordmark was tracked for Georgia, so it is opened up a little here. */
 .ethnic {
   letter-spacing:-.02em
+}
+
+/* --------------------------------------------------------------------------
 
    Chunk 2 / Beauty — task A+B: the hero coin as an object in a room, and the
    fact strip that leads with the verified numbers.
@@ -5425,6 +5428,212 @@ h4 {
   .hero-photo::before { inset:-18% }
 }
 
+/* ==========================================================================
+   CHUNK 2 / BEAUTY — set pieces and citation sidenotes
+   Everything this task adds lives here: the dotted-theta interlude, the
+   "80–100 generations" invitation, wide-screen citation sidenotes and the
+   sub-page chrome label. Nothing above this line was rewritten for it except
+   the citation brackets, which moved into ::before/::after so wide screens can
+   drop them.
+   ========================================================================== */
+
+/* --- The dotted theta -------------------------------------------------- */
+/* A light band between the Anatomy exhibit and the ink-dark 404, so two dark
+   set pieces never stack. The mark is the wordmark's own circle-and-dot, drawn
+   at reading scale with a finer stroke; no font glyph and no invented artefact. */
+.theta-interlude {
+  background:var(--paper-deep);
+  color:var(--ink);
+  color-scheme:light;
+  border-block:1px solid var(--line);
+  padding:clamp(72px,9vw,132px) var(--gutter);
+  display:grid;
+  grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+  gap:clamp(36px,6vw,90px);
+  align-items:center;
+}
+.theta-interlude>* { max-width:var(--max); }
+.theta-stage { display:flex; justify-content:center; }
+.theta-mark {
+  display:block;
+  width:auto;
+  height:clamp(230px,57vh,560px);
+  max-width:100%;
+  color:var(--olive);
+  overflow:visible;
+}
+.theta-copy .eyebrow { color:var(--muted-light); }
+.theta-copy h2 {
+  font-size:clamp(2.75rem,6vw,5.25rem);
+  line-height:1.03;
+  margin-top:22px;
+}
+.theta-copy h2 em { color:var(--muted-light); }
+.theta-copy p { max-width:33rem; }
+.theta-copy .lead { margin-top:30px; }
+.theta-copy>p+p { font-size:var(--type-body); line-height:1.85; color:var(--muted-light); }
+
+@media screen and (max-width:900px) {
+  .theta-interlude { grid-template-columns:minmax(0,1fr); gap:34px; }
+  .theta-mark { height:clamp(180px,38vh,320px); }
+}
+@media print {
+  .theta-interlude { display:block; break-inside:avoid; border:0; }
+  .theta-stage { justify-content:flex-start; margin-bottom:18px; }
+  .theta-mark { height:110pt; }
+  .theta-copy h2 { font-size:30pt; }
+}
+
+/* --- 80–100 generations, on the home page ------------------------------ */
+/* The companion page measures this specimen in detail; here the number is the
+   invitation. Its own marks and scale, so the two are not one page twice. */
+.journey-invitation {
+  padding-block:clamp(66px,7.5vw,104px);
+  grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+  gap:clamp(40px,5vw,70px);
+}
+.journey-invitation-copy .lead {
+  font-family:var(--serif);
+  font-size:1.5rem;
+  line-height:1.45;
+  letter-spacing:-.02em;
+  margin-top:26px;
+}
+.journey-invitation-copy>p+p { font-size:var(--type-body); line-height:1.85; color:var(--muted-dark); }
+.journey-invitation-copy .quiet-link { margin-top:26px; }
+.generation-figure { border-top:1px solid var(--line-dark); padding-top:30px; min-width:0; }
+.generation-count { display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 24px; }
+.generation-count strong {
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(3.25rem,7vw,6.25rem);
+  line-height:1;
+  letter-spacing:-.06em;
+  white-space:nowrap;
+}
+.generation-count span { font-size:var(--type-support); line-height:1.5; color:var(--muted-dark); }
+.generation-marks { display:grid; grid-template-columns:repeat(20,minmax(0,1fr)); gap:11px; margin:30px 0 20px; }
+.generation-marks span { display:block; height:16px; border-left:2px solid var(--gold); }
+.generation-marks .range-end { opacity:.28; }
+.generation-figure figcaption {
+  font:var(--type-label)/1.8 var(--sans);
+  color:var(--muted-dark);
+  max-width:34rem;
+}
+
+@media screen and (max-width:900px) {
+  .journey-invitation { grid-template-columns:minmax(0,1fr); gap:38px; }
+  .generation-marks { grid-template-columns:repeat(25,minmax(0,1fr)); gap:8px; }
+  .generation-marks span { height:13px; }
+}
+@media print {
+  .journey-invitation { display:block; break-inside:avoid; }
+  .generation-figure { margin-top:22px; }
+  .generation-marks span { border-color:#444; }
+}
+
+/* --- Citation chips and their margin notes ----------------------------- */
+/* The brackets are drawn, not typed, so the sidenote layout can drop them and
+   leave a plain superscript numeral. Everything narrower than the sidenote
+   breakpoint, every touch device and every printed page keeps the chip as it
+   was, including its tap target. */
+.citation a::before { content:"["; }
+.citation a::after { content:"]"; }
+.cite-note { display:none; }
+
+@media screen and (min-width:1180px) and (hover:hover) {
+  :root { --cite-note-col:168px; --cite-note-gap:24px; }
+  main .citation a::before,main .citation a::after { content:none; }
+  main .citation a {
+    /* Narrower without the brackets, but never below the 24px target the chip
+       already had: a citation is inline in a sentence, so it keeps its floor. */
+    min-width:24px;
+    padding:2px 1px;
+    color:var(--muted-light);
+    text-decoration:none;
+  }
+  main .citation a:hover,main .citation a:focus-visible {
+    color:inherit;
+    background:none;
+    text-decoration:underline;
+  }
+  /* The hero caption belongs to the opening, not to the chapter apparatus; it
+     keeps the chip exactly as the rest of the site shows it below 1180px. */
+  .hero .citation a::before { content:"["; }
+  .hero .citation a::after { content:"]"; }
+  .hero .citation a { min-width:24px; padding:3px; color:inherit; }
+  .hero .citation a:hover { background:var(--paper-deep); color:var(--ink); }
+  /* Only containers with room of their own carry a note: the note is floated
+     into reserved padding, so it can never reach a neighbouring column, an
+     image, a card or the sticky Anatomy stage. Where the measure has no room to
+     give — the narrow .prose columns, the geography and evidence grids, the
+     family cards, the Anatomy stage copy — the compact numeral stands alone. */
+  .theta-copy,
+  .crisis-text,
+  .section-heading>.section-deck,
+  .mining-band>div,
+  .late-old-heading,
+  .editorial-detail p,
+  .chapter-rights-note p,
+  .research-feature>div,
+  .document-card>div {
+    padding-right:calc(var(--cite-note-col) + var(--cite-note-gap));
+  }
+  /* Contain the floated notes, so a run of them grows its own container instead
+     of spilling over whatever the container sits above. The grid items in this
+     list already establish their own formatting context. */
+  .crisis-text,
+  .section-heading>.section-deck,
+  .late-old-heading,
+  .editorial-detail p { display:flow-root; }
+  /* These two are sized by their own measure, so the column is added to it
+     rather than taken out of it. */
+  .crisis-text { max-width:calc(580px + var(--cite-note-col) + var(--cite-note-gap)); }
+  .section-heading>.section-deck { max-width:calc(620px + var(--cite-note-col) + var(--cite-note-gap)); }
+
+  .theta-copy .cite-note,
+  .crisis-text .cite-note,
+  .section-heading>.section-deck .cite-note,
+  .mining-band>div .cite-note,
+  .late-old-heading .cite-note,
+  .editorial-detail p .cite-note,
+  .chapter-rights-note p .cite-note,
+  .research-feature>div .cite-note,
+  .document-card>div .cite-note {
+    display:block;
+    float:right;
+    clear:right;
+    width:var(--cite-note-col);
+    margin:0 calc(-1 * (var(--cite-note-col) + var(--cite-note-gap))) 12px 0;
+    font:var(--type-label)/1.5 var(--mono);
+    letter-spacing:0;
+    white-space:normal;
+    text-align:left;
+    text-indent:0;
+    vertical-align:baseline;
+    color:var(--muted-light);
+    padding-top:.2em;
+  }
+  .cite-note-index { display:block; color:var(--gold); margin-bottom:4px; }
+  .section-paper .cite-note-index { color:#8a7c4d; }
+}
+
+/* --- Sub-page chrome strip label --------------------------------------- */
+/* The home page's sticky bar names the chapter under way; the sub-pages have no
+   chapter tracker, so their strip names the page instead of standing empty. */
+.chrome-utility-label { display:flex; align-items:center; gap:14px; min-width:0; margin-right:auto; }
+.chrome-utility-page {
+  font-family:var(--mono);
+  font-size:var(--type-label);
+  letter-spacing:.12em;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+@media screen and (max-width:600px) {
+  .chrome-utility-label>.chapter-caption { display:none; }
+}
+
   </style>
  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://theowlatlas.com/#organization","name":"The Owl Atlas","url":"https://theowlatlas.com/"},{"@type":"CreativeWork","@id":"https://theowlatlas.com/atlas/#page","url":"https://theowlatlas.com/atlas/","mainEntityOfPage":"https://theowlatlas.com/atlas/","name":"The Owl Atlas — Compare the owls, follow the sources","headline":"The Owl Atlas — Compare the owls, follow the sources","description":"Eight owl coin families side by side, both faces in museum photographs, plus a plain-language glossary and every source linked in full.","image":"https://theowlatlas.com/social/atlas.png","inLanguage":"en","dateModified":"2026-09-16","author":{"@id":"https://theowlatlas.com/#organization"},"publisher":{"@id":"https://theowlatlas.com/#organization"},"isPartOf":{"@id":"https://theowlatlas.com/#website"},"associatedMedia":[{"@id":"https://theowlatlas.com/atlas/#photo-archaic"},{"@id":"https://theowlatlas.com/atlas/#photo-met-owl"},{"@id":"https://theowlatlas.com/atlas/#photo-met-athena"},{"@id":"https://theowlatlas.com/atlas/#photo-profile"},{"@id":"https://theowlatlas.com/atlas/#photo-early-athena"},{"@id":"https://theowlatlas.com/atlas/#photo-early-owl"},{"@id":"https://theowlatlas.com/atlas/#photo-new-owl"},{"@id":"https://theowlatlas.com/atlas/#photo-new-athena"},{"@id":"https://theowlatlas.com/atlas/#photo-sabakes"}]},{"@type":"ImageObject","@id":"https://theowlatlas.com/atlas/#photo-archaic","name":"Archaic Athena & owl · paired plate","caption":"A vertical photographic plate: an archaic helmeted Athena above, an angular owl with an olive spray below.","contentUrl":"https://upload.wikimedia.org/wikipedia/commons/2/23/Greek_Silver_Tetradrachm_of_Athens_%28Attica%29.jpg","width":759,"height":1608,"license":"https://creativecommons.org/licenses/by/2.0/","acquireLicensePage":"https://commons.wikimedia.org/wiki/File:Greek_Silver_Tetradrachm_of_Athens_(Attica).jpg","creditText":"Exekias / Wikimedia Commons","creator":{"@type":"Organization","name":"Exekias / Wikimedia Commons"},"copyrightNotice":"Exekias / Wikimedia Commons · CC BY 2.0"},{"@type":"ImageObject","@id":"https://theowlatlas.com/atlas/#photo-met-owl","name":"Owl · The Met 2021.40.80","caption":"The owl reverse of a silver tetradrachm cataloged 440–404 BCE, with ΑΘΕ to the right.","contentUrl":"https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702577/main-image","width":1110,"height":1200,"license":"https://creativecommons.org/publicdomain/mark/1.0/","acquireLicensePage":"https://www.metmuseum.org/art/collection/search/330160","creditText":"The Metropolitan Museum of Art · Bequest of Nanette B. Kelekian, 2020","creator":{"@type":"Organization","name":"The Metropolitan Museum of Art"},"copyrightNotice":"The Metropolitan Museum of Art · Bequest of Nanette B. Kelekian, 2020 · Public domain"},{"@type":"ImageObject","@id":"https://theowlatlas.com/atlas/#photo-met-athena","name":"Athena · The Met 2021.40.80","caption":"Athena facing right on a silver tetradrachm in the Met, wearing a decorated helmet.","contentUrl":"https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702575/main-image","width":1200,"height":1085,"license":"https://creativecommons.org/publicdomain/mark/1.0/","acquireLicensePage":"https://www.metmuseum.org/art/collection/search/330160","creditText":"The Metropolitan Museum of Art · Bequest of Nanette B. Kelekian, 2020","creator":{"@type":"Organization","name":"The Metropolitan Museum of Art"},"copyrightNotice":"The Metropolitan Museum of Art · Bequest of Nanette B. Kelekian, 2020 · Public domain"},{"@type":"ImageObject","@id":"https://theowlatlas.com/atlas/#photo-profile","name":"Profile-eye Athena & owl · paired plate","caption":"Two faces of a fourth-century Athenian tetradrachm: Athena’s eye in profile and an owl.","contentUrl":"https://upload.wikimedia.org/wikipedia/commons/f/fc/Sg2537.jpg","width":500,"height":253,"license":"https://creativecommons.org/licenses/by-sa/3.0/","acquireLicensePage":"https://commons.wikimedia.org/wiki/File:Sg2537.jpg","creditText":"Classical Numismatic Group, Inc. / Wikimedia Commons","creator":{"@type":"Organization","name":"Classical Numismatic Group, Inc. / Wikimedia Commons"},"copyrightNotice":"Classical Numismatic Group, Inc. / Wikimedia Commons · CC BY-SA 3.0"},{"@type":"ImageObject","@id":"https://theowlatlas.com/atlas/#photo-early-athena","name":"Early classical Athena · Cleveland 1920.267.a","caption":"Athena’s helmeted head on an early classical Athenian silver tetradrachm.","contentUrl":"https://upload.wikimedia.org/wikipedia/commons/5/54/Greece%2C_5th_century_BC_-_Athenian_Tetradrachm-_Female_Head_%28obverse%29_-_1920.267.a_-_Cleveland_Museum_of_Art.jpg","width":2318,"height":2280,"license":"https://creativecommons.org/publicdomain/zero/1.0/","acquireLicensePage":"https://commons.wikimedia.org/wiki/File:Greece,_5th_century_BC_-_Athenian_Tetradrachm-_Female_Head_(obverse)_-_1920.267.a_-_Cleveland_Museum_of_Art.jpg","creditText":"Cleveland Museum of Art · Gift of Harold W. Parsons","creator":{"@type":"Organization","name":"Cleveland Museum of Art"},"copyrightNotice":"Cleveland Museum of Art · Gift of Harold W. Parsons · CC0 1.0"},{"@type":"ImageObject","@id":"https://theowlatlas.com/atlas/#photo-early-owl","name":"Early classical owl · Cleveland 1920.267.b","caption":"The owl reverse of Cleveland 1920.267, with an olive sprig, crescent moon and ΑΘΕ inside a recessed square.","contentUrl":"https://openaccess-cdn.clevelandart.org/1920.267.b/1920.267.b_print.jpg","width":2384,"height":2280,"license":"https://creativecommons.org/publicdomain/zero/1.0/","acquireLicensePage":"https://commons.wikimedia.org/wiki/File:Greece,_5th_century_BC_-_Athenian_Tetradrachm-_Owl_(reverse)_-_1920.267.b_-_Cleveland_Museum_of_Art.tif","creditText":"Cleveland Museum of Art · Gift of Harold W. Parsons","creator":{"@type":"Organization","name":"Cleveland Museum of Art"},"copyrightNotice":"Cleveland Museum of Art · Gift of Harold W. Parsons · CC0 1.0"},{"@type":"ImageObject","@id":"https://theowlatlas.com/atlas/#photo-new-owl","name":"New Style owl · Musée de la BnF","caption":"A New Style owl stands on a horizontal amphora amid inscriptions, inside an olive wreath.","contentUrl":"https://upload.wikimedia.org/wikipedia/commons/8/82/Silver_tetradrachm_Athens_new_style_reverse.jpg","width":1340,"height":1340,"license":"https://creativecommons.org/publicdomain/mark/1.0/","acquireLicensePage":"https://commons.wikimedia.org/wiki/File:Silver_tetradrachm_Athens_new_style_reverse.jpg","creditText":"Marie-Lan Nguyen / Wikimedia Commons · Musée de la BnF","creator":{"@type":"Organization","name":"Marie-Lan Nguyen / Wikimedia Commons"},"copyrightNotice":"Marie-Lan Nguyen / Wikimedia Commons · Musée de la BnF · Public domain"},{"@type":"ImageObject","@id":"https://theowlatlas.com/atlas/#photo-new-athena","name":"New Style Athena · Musée de la BnF","caption":"An elaborate helmet and naturalistic profile of Athena on a broad New Style silver coin.","contentUrl":"https://upload.wikimedia.org/wikipedia/commons/0/04/Silver_tetradrachm_Athens_new_style_obverse.jpg","width":1200,"height":1200,"license":"https://creativecommons.org/publicdomain/mark/1.0/","acquireLicensePage":"https://commons.wikimedia.org/wiki/File:Silver_tetradrachm_Athens_new_style_obverse.jpg","creditText":"Marie-Lan Nguyen / Wikimedia Commons · Musée de la BnF","creator":{"@type":"Organization","name":"Marie-Lan Nguyen / Wikimedia Commons"},"copyrightNotice":"Marie-Lan Nguyen / Wikimedia Commons · Musée de la BnF · Public domain"},{"@type":"ImageObject","@id":"https://theowlatlas.com/atlas/#photo-sabakes","name":"The owl in Persian-administered Egypt","caption":"Paired faces of a Sabakes owl-type coin: Athena at left and an owl with local lettering at right.","contentUrl":"https://upload.wikimedia.org/wikipedia/commons/e/eb/EGYPT%2C_Persian_Administration._Sabakes._Circa_340-333_BC.jpg","width":800,"height":403,"license":"https://creativecommons.org/licenses/by-sa/3.0/","acquireLicensePage":"https://commons.wikimedia.org/wiki/File:EGYPT,_Persian_Administration._Sabakes._Circa_340-333_BC.jpg","creditText":"Classical Numismatic Group, Inc. / Wikimedia Commons","creator":{"@type":"Organization","name":"Classical Numismatic Group, Inc. / Wikimedia Commons"},"copyrightNotice":"Classical Numismatic Group, Inc. / Wikimedia Commons · CC BY-SA 3.0"}]}</script>
  </head>
@@ -5463,7 +5672,7 @@ h4 {
     </span>
    </div>
   </header>
-  <main id="main"><div class="chrome-utility"><button aria-pressed="false" class="motion-button" id="motion-toggle" title="Turn off decorative animation" type="button">
+  <main id="main"><div class="chrome-utility"><span class="chrome-utility-label"><span class="chapter-caption">YOU ARE READING</span><span class="chrome-utility-page">THE REFERENCE ATLAS</span></span><button aria-pressed="false" class="motion-button" id="motion-toggle" title="Turn off decorative animation" type="button">
      <span aria-hidden="true" class="motion-dot">
      </span>
      <span id="motion-label">
@@ -5533,7 +5742,7 @@ h4 {
       </a>
     </div>
     <figcaption class="image-credit"><a href="https://www.metmuseum.org/art/collection/search/330160" target="_blank" rel="noopener noreferrer">The Metropolitan Museum of Art · Bequest of Nanette B. Kelekian, 2020</a><span class="license-short"><a href="https://creativecommons.org/publicdomain/mark/1.0/" target="_blank" rel="noopener noreferrer">Public domain</a></span></figcaption>
-  </figure><h3>Classical mass issues</h3><span class="eyebrow">c. 450s–404 BCE</span><p class="feature">Athena, olive, crescent, owl and ΑΘΕ in a familiar, compact design. <sup class="citation"><a href="#source-met" data-source="met" aria-label="Source 01: Silver tetradrachm, 2021.40.80">[01]</a> <a href="#source-ngc" data-source="ngc" aria-label="Source 21: NGC Ancients: The Elusive “Full Crest” Owls of Athens">[21]</a></sup></p><p class="micro-copy">Mature fifth-century design</p></article>
+  </figure><h3>Classical mass issues</h3><span class="eyebrow">c. 450s–404 BCE</span><p class="feature">Athena, olive, crescent, owl and ΑΘΕ in a familiar, compact design. <sup class="citation"><a href="#source-met" data-source="met" data-short="The Metropolitan Museum of Art" aria-label="Source 01: Silver tetradrachm, 2021.40.80">01</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">01</span>The Metropolitan Museum of Art</span> <a href="#source-ngc" data-source="ngc" data-short="NGC Ancients 2018" aria-label="Source 21: NGC Ancients: The Elusive “Full Crest” Owls of Athens">21</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">21</span>NGC Ancients 2018</span></sup></p><p class="micro-copy">Mature fifth-century design</p></article>
      </div>
      <div id="compare-panel-right">
       <article class="comparison-panel"><figure class="image-figure comparison-photo" data-photo="new-owl" style="--plate-ratio:1">
@@ -5545,7 +5754,7 @@ h4 {
       </a>
     </div>
     <figcaption class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Silver_tetradrachm_Athens_new_style_reverse.jpg" target="_blank" rel="noopener noreferrer">Marie-Lan Nguyen / Wikimedia Commons · Musée de la BnF</a><span class="license-short"><a href="https://creativecommons.org/publicdomain/mark/1.0/" target="_blank" rel="noopener noreferrer">Public domain</a></span></figcaption>
-  </figure><h3>New Style</h3><span class="eyebrow">c. 165/164–1st century BCE</span><p class="feature">A broader composition: elaborate Athena, owl on an amphora, olive wreath and more inscriptions. <sup class="citation"><a href="#source-new-photo" data-source="new-photo" aria-label="Source 19: Silver tetradrachm, Athens New Style (reverse)">[19]</a> <a href="#source-new-chronology" data-source="new-chronology" aria-label="Source 14: The Chronology of the New Style Coinage of Athens">[14]</a> <a href="#source-new-catalogs" data-source="new-catalogs" aria-label="Source 20: New Style Athenian Tetradrachms, 166/164–63/62 BC">[20]</a></sup></p><p class="micro-copy">Late endpoint varies by catalog</p></article>
+  </figure><h3>New Style</h3><span class="eyebrow">c. 165/164–1st century BCE</span><p class="feature">A broader composition: elaborate Athena, owl on an amphora, olive wreath and more inscriptions. <sup class="citation"><a href="#source-new-photo" data-source="new-photo" data-short="Marie-Lan Nguyen / Wikimedia Commons" aria-label="Source 19: Silver tetradrachm, Athens New Style (reverse)">19</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">19</span>Marie-Lan Nguyen / Wikimedia Commons</span> <a href="#source-new-chronology" data-source="new-chronology" data-short="Otto Mørkholm 1984" aria-label="Source 14: The Chronology of the New Style Coinage of Athens">14</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">14</span>Otto Mørkholm 1984</span> <a href="#source-new-catalogs" data-source="new-catalogs" data-short="Forum Ancient Coins, NumisWiki" aria-label="Source 20: New Style Athenian Tetradrachms, 166/164–63/62 BC">20</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">20</span>Forum Ancient Coins, NumisWiki</span></sup></p><p class="micro-copy">Late endpoint varies by catalog</p></article>
      </div>
     </div>
     <p class="micro-copy compare-resolution">
@@ -5578,7 +5787,7 @@ h4 {
       </a>
     </div>
     <figcaption class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Greek_Silver_Tetradrachm_of_Athens_(Attica).jpg" target="_blank" rel="noopener noreferrer">Exekias / Wikimedia Commons</a><span class="license-short"><a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener noreferrer">CC BY 2.0</a></span></figcaption>
-  </figure></div></div><h4>Archaic</h4><p class="date">Late 6th century–c. 480 BCE</p><p>A strikingly frontal eye on a profile face; compact, individually engraved forms. <sup class="citation"><a href="#source-archaic-photo" data-source="archaic-photo" aria-label="Source 17: Greek Silver Tetradrachm of Athens (Attica)">[17]</a> <a href="#source-early-silver" data-source="early-silver" aria-label="Source 06: Tyrants, democrats and the first silver ‘owl’ coins of Athens">[06]</a></sup></p><p class="status">Approximate boundary</p><details><summary>Attribution & dating notes</summary><p>The Athena–owl pairing was already established before the classical mass issues. Early style varies: “archaic” is not a synonym for crude. The exact introduction date remains debated.</p></details><details class="family-market"><summary>Recent prices for other specimens</summary><p>One archaic VF tetradrachm with a flan flaw sold for $6,710 in January 2026. A single result cannot establish a range for this diverse early family; it does not value the photographed specimen.</p><p class="micro-copy">USD, including buyer premium; before tax and shipping. Research: 17 September 2026.</p><p><a href="https://coins.ha.com/itm/ancients/greek/greek-attica-athens-ca-510-500-480-bc-ar-light-weight-specimen-tetradrachm-21mm-1638-gm-11h-ngc-vf-4-5-5-/a/3130-36022.s" target="_blank" rel="noopener noreferrer">Heritage 3130 / 36022 <span aria-hidden="true">↗</span></a></p><a class="quiet-link" href="../pricing/">Explore prices &amp; the evidence ↗</a></details></article>
+  </figure></div></div><h4>Archaic</h4><p class="date">Late 6th century–c. 480 BCE</p><p>A strikingly frontal eye on a profile face; compact, individually engraved forms. <sup class="citation"><a href="#source-archaic-photo" data-source="archaic-photo" data-short="Exekias / Wikimedia Commons" aria-label="Source 17: Greek Silver Tetradrachm of Athens (Attica)">17</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">17</span>Exekias / Wikimedia Commons</span> <a href="#source-early-silver" data-source="early-silver" data-short="Davis et al. 2025" aria-label="Source 06: Tyrants, democrats and the first silver ‘owl’ coins of Athens">06</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">06</span>Davis et al. 2025</span></sup></p><p class="status">Approximate boundary</p><details><summary>Attribution & dating notes</summary><p>The Athena–owl pairing was already established before the classical mass issues. Early style varies: “archaic” is not a synonym for crude. The exact introduction date remains debated.</p></details><details class="family-market"><summary>Recent prices for other specimens</summary><p>One archaic VF tetradrachm with a flan flaw sold for $6,710 in January 2026. A single result cannot establish a range for this diverse early family; it does not value the photographed specimen.</p><p class="micro-copy">USD, including buyer premium; before tax and shipping. Research: 17 September 2026.</p><p><a href="https://coins.ha.com/itm/ancients/greek/greek-attica-athens-ca-510-500-480-bc-ar-light-weight-specimen-tetradrachm-21mm-1638-gm-11h-ngc-vf-4-5-5-/a/3130-36022.s" target="_blank" rel="noopener noreferrer">Heritage 3130 / 36022 <span aria-hidden="true">↗</span></a></p><a class="quiet-link" href="../pricing/">Explore prices &amp; the evidence ↗</a></details></article>
 <article class="family-card" id="family-early-classical"><div class="family-number"><span>02</span><span>ATHENS</span></div><div class="family-faces"><div class="family-face" role="group" aria-label="Obverse of Early classical"><p class="eyebrow family-face-label">Obverse</p><figure class="image-figure family-photo" data-photo="early-athena" style="--plate-ratio:1.0166666666666666">
     <div class="image-surface">
       <a class="image-trigger" href="https://upload.wikimedia.org/wikipedia/commons/5/54/Greece%2C_5th_century_BC_-_Athenian_Tetradrachm-_Female_Head_%28obverse%29_-_1920.267.a_-_Cleveland_Museum_of_Art.jpg" target="_blank" rel="noopener noreferrer" data-image="early-athena" aria-label="Inspect Early classical Athena · Cleveland 1920.267.a in the image viewer">
@@ -5597,7 +5806,7 @@ h4 {
       </a>
     </div>
     <figcaption class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Greece,_5th_century_BC_-_Athenian_Tetradrachm-_Owl_(reverse)_-_1920.267.b_-_Cleveland_Museum_of_Art.tif" target="_blank" rel="noopener noreferrer">Cleveland Museum of Art · Gift of Harold W. Parsons</a><span class="license-short"><a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">CC0 1.0</a></span></figcaption>
-  </figure></div></div><h4>Early classical</h4><p class="date">c. 480–450 BCE</p><p>More composed engraving, while the old frontal-eye convention survives. <sup class="citation"><a href="#source-cma-early" data-source="cma-early" aria-label="Source 02: Athenian Tetradrachm, 1920.267">[02]</a></sup></p><p class="status">Broad stylistic grouping</p><details><summary>Attribution & dating notes</summary><p>Sometimes called transitional in the fifth-century sense. This label is not the same as the “transitional” owls of the early fourth century. The illustrated museum example is dated 480–449 BCE. Both photographs show the same coin: Cleveland 1920.267, with obverse 1920.267.a and reverse 1920.267.b.</p></details><details class="family-market"><summary>Recent prices for other specimens</summary><p>Different early-classical coins sold for $1,464 (Starr IV, Choice VF with scuffs) and $2,928 (Starr V, Choice AU) in 2026. They are different issues and grades, not a price range for the Cleveland specimen.</p><p class="micro-copy">USD, including buyer premium; before tax and shipping. Research: 17 September 2026.</p><p><a href="https://coins.ha.com/itm/ancients/greek/greek-attica-athens-ca-475-465-bc-ar-tetradrachm-24mm-1722-gm-1h-ngc-choice-vf-4-5-3-5-scuffs/a/232616-63054.s" target="_blank" rel="noopener noreferrer">Heritage 232616 / 63054 <span aria-hidden="true">↗</span></a> · <a href="https://coins.ha.com/itm/ancients/greek/greek-attica-athens-ca-465-455-bc-ar-tetradrachm-25mm-1696-gm-1h-ngc-choice-au-5-5-3-5/a/61626-23036.s" target="_blank" rel="noopener noreferrer">Heritage 61626 / 23036 <span aria-hidden="true">↗</span></a></p><a class="quiet-link" href="../pricing/">Explore prices &amp; the evidence ↗</a></details></article>
+  </figure></div></div><h4>Early classical</h4><p class="date">c. 480–450 BCE</p><p>More composed engraving, while the old frontal-eye convention survives. <sup class="citation"><a href="#source-cma-early" data-source="cma-early" data-short="Cleveland Museum of Art" aria-label="Source 02: Athenian Tetradrachm, 1920.267">02</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">02</span>Cleveland Museum of Art</span></sup></p><p class="status">Broad stylistic grouping</p><details><summary>Attribution & dating notes</summary><p>Sometimes called transitional in the fifth-century sense. This label is not the same as the “transitional” owls of the early fourth century. The illustrated museum example is dated 480–449 BCE. Both photographs show the same coin: Cleveland 1920.267, with obverse 1920.267.a and reverse 1920.267.b.</p></details><details class="family-market"><summary>Recent prices for other specimens</summary><p>Different early-classical coins sold for $1,464 (Starr IV, Choice VF with scuffs) and $2,928 (Starr V, Choice AU) in 2026. They are different issues and grades, not a price range for the Cleveland specimen.</p><p class="micro-copy">USD, including buyer premium; before tax and shipping. Research: 17 September 2026.</p><p><a href="https://coins.ha.com/itm/ancients/greek/greek-attica-athens-ca-475-465-bc-ar-tetradrachm-24mm-1722-gm-1h-ngc-choice-vf-4-5-3-5-scuffs/a/232616-63054.s" target="_blank" rel="noopener noreferrer">Heritage 232616 / 63054 <span aria-hidden="true">↗</span></a> · <a href="https://coins.ha.com/itm/ancients/greek/greek-attica-athens-ca-465-455-bc-ar-tetradrachm-25mm-1696-gm-1h-ngc-choice-au-5-5-3-5/a/61626-23036.s" target="_blank" rel="noopener noreferrer">Heritage 61626 / 23036 <span aria-hidden="true">↗</span></a></p><a class="quiet-link" href="../pricing/">Explore prices &amp; the evidence ↗</a></details></article>
 <article class="family-card" id="family-classical"><div class="family-number"><span>03</span><span>ATHENS</span></div><div class="family-faces"><div class="family-face" role="group" aria-label="Obverse of Classical mass issues"><p class="eyebrow family-face-label">Obverse</p><figure class="image-figure family-photo" data-photo="met-athena" style="--plate-ratio:1.1059907834101383">
     <div class="image-surface">
       <a class="image-trigger" href="https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702575/main-image" target="_blank" rel="noopener noreferrer" data-image="met-athena" aria-label="Inspect Athena · The Met 2021.40.80 in the image viewer">
@@ -5616,7 +5825,7 @@ h4 {
       </a>
     </div>
     <figcaption class="image-credit"><a href="https://www.metmuseum.org/art/collection/search/330160" target="_blank" rel="noopener noreferrer">The Metropolitan Museum of Art · Bequest of Nanette B. Kelekian, 2020</a><span class="license-short"><a href="https://creativecommons.org/publicdomain/mark/1.0/" target="_blank" rel="noopener noreferrer">Public domain</a></span></figcaption>
-  </figure></div></div><h4>Classical mass issues</h4><p class="date">c. 450s–404 BCE</p><p>Athena, olive, crescent, owl and ΑΘΕ in a familiar, compact design. <sup class="citation"><a href="#source-met" data-source="met" aria-label="Source 01: Silver tetradrachm, 2021.40.80">[01]</a> <a href="#source-ngc" data-source="ngc" aria-label="Source 21: NGC Ancients: The Elusive “Full Crest” Owls of Athens">[21]</a></sup></p><p class="status">Mature fifth-century design</p><details><summary>Attribution & dating notes</summary><p>The mature group dated 440–404 BCE sits within this broader mass-issue phase. The illustrated Met specimen retains its museum catalogue date; the period does not identify a particular year of striking.</p></details><details class="family-market"><summary>Recent prices for other specimens</summary><p>Other classical owls graded NGC Choice XF sold for $976–$1,464 in our seven-coin 2026 sample. Centering, strike and surfaces still differ. This is context for the family, not a valuation of the museum coin.</p><p class="micro-copy">USD, including buyer premium; before tax and shipping. Research: 17 September 2026.</p><p><a href="https://coins.ha.com/c/search/results.zx?archive_state=5327&amp;auction_name=232622&amp;auction_year=2026&amp;dept=1909&amp;mode=archive&amp;session_desc=3767&amp;sold_status=1526~1524" target="_blank" rel="noopener noreferrer">Heritage 232622 / 64024 <span aria-hidden="true">↗</span></a> · <a href="https://coins.ha.com/c/search/results.zx?archive_state=5327&amp;auction_name=232635&amp;auction_year=2026&amp;dept=1909&amp;ic4=OtherResults-SampleItem-AuctionNo-051517&amp;mode=archive&amp;sold_status=1526~1524" target="_blank" rel="noopener noreferrer">Heritage 232635 / 64020 <span aria-hidden="true">↗</span></a></p><a class="quiet-link" href="../pricing/">Explore prices &amp; the evidence ↗</a></details></article>
+  </figure></div></div><h4>Classical mass issues</h4><p class="date">c. 450s–404 BCE</p><p>Athena, olive, crescent, owl and ΑΘΕ in a familiar, compact design. <sup class="citation"><a href="#source-met" data-source="met" data-short="The Metropolitan Museum of Art" aria-label="Source 01: Silver tetradrachm, 2021.40.80">01</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">01</span>The Metropolitan Museum of Art</span> <a href="#source-ngc" data-source="ngc" data-short="NGC Ancients 2018" aria-label="Source 21: NGC Ancients: The Elusive “Full Crest” Owls of Athens">21</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">21</span>NGC Ancients 2018</span></sup></p><p class="status">Mature fifth-century design</p><details><summary>Attribution & dating notes</summary><p>The mature group dated 440–404 BCE sits within this broader mass-issue phase. The illustrated Met specimen retains its museum catalogue date; the period does not identify a particular year of striking.</p></details><details class="family-market"><summary>Recent prices for other specimens</summary><p>Other classical owls graded NGC Choice XF sold for $976–$1,464 in our seven-coin 2026 sample. Centering, strike and surfaces still differ. This is context for the family, not a valuation of the museum coin.</p><p class="micro-copy">USD, including buyer premium; before tax and shipping. Research: 17 September 2026.</p><p><a href="https://coins.ha.com/c/search/results.zx?archive_state=5327&amp;auction_name=232622&amp;auction_year=2026&amp;dept=1909&amp;mode=archive&amp;session_desc=3767&amp;sold_status=1526~1524" target="_blank" rel="noopener noreferrer">Heritage 232622 / 64024 <span aria-hidden="true">↗</span></a> · <a href="https://coins.ha.com/c/search/results.zx?archive_state=5327&amp;auction_name=232635&amp;auction_year=2026&amp;dept=1909&amp;ic4=OtherResults-SampleItem-AuctionNo-051517&amp;mode=archive&amp;sold_status=1526~1524" target="_blank" rel="noopener noreferrer">Heritage 232635 / 64020 <span aria-hidden="true">↗</span></a></p><a class="quiet-link" href="../pricing/">Explore prices &amp; the evidence ↗</a></details></article>
 <article class="family-card" id="family-profile"><div class="family-number"><span>04</span><span>ATHENS</span></div><div class="family-faces"><div class="family-face" role="group" aria-label="Obverse of Early 4th-century profile-eye"><p class="eyebrow family-face-label">Obverse</p><figure class="image-figure family-photo" data-photo="profile" style="--plate-ratio:1.976284584980237">
     <div class="image-surface">
       <a class="image-trigger" href="https://upload.wikimedia.org/wikipedia/commons/f/fc/Sg2537.jpg" target="_blank" rel="noopener noreferrer" data-image="profile" aria-label="Inspect Profile-eye Athena &amp; owl · paired plate in the image viewer">
@@ -5635,7 +5844,7 @@ h4 {
       </a>
     </div>
     <figcaption class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Sg2537.jpg" target="_blank" rel="noopener noreferrer">Classical Numismatic Group, Inc. / Wikimedia Commons</a><span class="license-short"><a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></span></figcaption>
-  </figure></div></div><h4>Early 4th-century profile-eye</h4><p class="date">Early 4th century BCE</p><p>Athena’s eye is more plausibly seen from the side; the reverse remains conservative. <sup class="citation"><a href="#source-profile" data-source="profile" aria-label="Source 08: Athenian Tetradrachm Coinage of the First Half of the Fourth Century BC">[08]</a> <a href="#source-profile-photo" data-source="profile-photo" aria-label="Source 18: Sg2537: Athenian profile-eye tetradrachm">[18]</a> <a href="#source-isotopes" data-source="isotopes" aria-label="Source 09: When is an owl not an owl? An analysis of Attic tetradrachms circulating in the southern Levant in the late fifth and fourth centuries BCE">[09]</a></sup></p><p class="status">Exact opening date debated</p><details><summary>Attribution & dating notes</summary><p>Frequently cataloged c. 393–355 BCE, with other chronologies using c. 400/390–353. Eye shape is a clue, not a universal dating algorithm: related forms occur in late fifth-century work.</p></details></article>
+  </figure></div></div><h4>Early 4th-century profile-eye</h4><p class="date">Early 4th century BCE</p><p>Athena’s eye is more plausibly seen from the side; the reverse remains conservative. <sup class="citation"><a href="#source-profile" data-source="profile" data-short="John H. Kroll 2011" aria-label="Source 08: Athenian Tetradrachm Coinage of the First Half of the Fourth Century BC">08</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">08</span>John H. Kroll 2011</span> <a href="#source-profile-photo" data-source="profile-photo" data-short="Classical Numismatic Group" aria-label="Source 18: Sg2537: Athenian profile-eye tetradrachm">18</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">18</span>Classical Numismatic Group</span> <a href="#source-isotopes" data-source="isotopes" data-short="Gentelli et al. 2026" aria-label="Source 09: When is an owl not an owl? An analysis of Attic tetradrachms circulating in the southern Levant in the late fifth and fourth centuries BCE">09</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">09</span>Gentelli et al. 2026</span></sup></p><p class="status">Exact opening date debated</p><details><summary>Attribution & dating notes</summary><p>Frequently cataloged c. 393–355 BCE, with other chronologies using c. 400/390–353. Eye shape is a clue, not a universal dating algorithm: related forms occur in late fifth-century work.</p></details></article>
 <article class="family-card" id="family-pi"><div class="family-number"><span>05</span><span>ATHENS</span></div><div class="family-faces"><div class="family-face" role="group" aria-label="Obverse of Pi-style"><p class="eyebrow family-face-label">Obverse</p><figure class="image-figure family-photo" data-photo="bnf-pi-iii-1475-obverse" style="--plate-ratio:1">
     <div class="image-surface">
       <a class="image-trigger" href="https://upload.wikimedia.org/wikipedia/commons/1/14/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%281_of_2%29.jpg" target="_blank" rel="noopener noreferrer" data-image="bnf-pi-iii-1475-obverse" aria-label="Inspect Pi III · Athena · BnF 1475 in the image viewer">
@@ -5654,7 +5863,7 @@ h4 {
       </a>
     </div>
     <figcaption class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%282_of_2%29.jpg" target="_blank" rel="noopener noreferrer">Bibliothèque nationale de France, département Monnaies, médailles et antiques, 1966.453.1475; Gallica, via Wikimedia Commons.</a><span class="license-short"><a href="https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%282_of_2%29.jpg" target="_blank" rel="noopener noreferrer">PD-France assertion (Commons)</a></span><a class="reuse-badge" href="#image-reuse-policy">Reuse review pending ↗</a></figcaption>
-  </figure></div></div><h4>Pi-style</h4><p class="date">Mid–late 4th century BCE</p><p>The developed helmet ornament suggests the Greek letter π; many flans show folding and restriking. <sup class="citation"><a href="#source-remint" data-source="remint" aria-label="Source 07: The Reminting of Athenian Silver Coinage, 353 B.C.">[07]</a> <a href="#source-isotopes" data-source="isotopes" aria-label="Source 09: When is an owl not an owl? An analysis of Attic tetradrachms circulating in the southern Levant in the late fifth and fourth centuries BCE">[09]</a> <a href="#source-bnf-pi-iii" data-source="bnf-pi-iii" aria-label="Source 22: Athenian silver tetradrachm, Pi III · 1966.453.1475">[22]</a> <a href="#source-bnf-pi-ii" data-source="bnf-pi-ii" aria-label="Source 24: Athenian silver tetradrachm, Pi II · 1966.453.1469">[24]</a></sup></p><p class="status">Illustrated: Pi III + Pi II · image reuse review pending</p><details><summary>Attribution & dating notes</summary><p>The main image is BnF 1966.453.1475, explicitly catalogued as Pi III, c. 353–295 BCE. Pi II, BnF 1966.453.1469, is available in the comparison selector with its broader catalogue date retained. These object dates are distinct from competing wider Pi-style chronologies, including Kroll’s 353 BCE reminting and the early-340s discussion in the 2026 isotope paper.</p></details><details class="family-market"><summary>Recent prices for other specimens</summary><p>Other Pi-style coins sold for $420 (raw Good VF, worn obverse die) and $793 (NGC MS) including fees in 2026. The sample cannot establish separate values for Pi II or Pi III, or for these BnF specimens.</p><p class="micro-copy">USD, including buyer premium; before tax and shipping. Research: 17 September 2026.</p><p><a href="https://www.cngcoins.com/Lot.aspx?BACK_URL=%2FLots.aspx%3FIS_ADVANCED%3D1%26SEARCH_IN_CONTAINER_TYPE_ID_1%3D1%26SEARCH_IN_CONTAINER_TYPE_ID_2%3D1%26SEARCH_IN_CONTAINER_TYPE_ID_3%3D1%26SEARCH_IN_CONTAINER_TYPE_ID_4%3D0%26TABS_TYPE%3D2%26CONTAINER_TYPE_ID%3D2%26SEARCH_IN_ITEM_ADD_DATE%3D1%26mm_ITEM_ADD_DATE%3D4%26dd_ITEM_ADD_DATE%3D3%26yyyy_ITEM_ADD_DATE%3D2026%26VIEW_TYPE%3D0%26MAX_COUNT%3D10000%26PAGE_NUM%3D200&amp;LOT_ID=199709" target="_blank" rel="noopener noreferrer">CNG 612 / 89 <span aria-hidden="true">↗</span></a> · <a href="https://coins.ha.com/c/search/results.zx?archive_state=5327&amp;auction_name=232635&amp;auction_year=2026&amp;dept=1909&amp;ic4=OtherResults-SampleItem-AuctionNo-051517&amp;mode=archive&amp;sold_status=1526~1524" target="_blank" rel="noopener noreferrer">Heritage 232635 / 64024 <span aria-hidden="true">↗</span></a></p><a class="quiet-link" href="../pricing/">Explore prices &amp; the evidence ↗</a></details></article>
+  </figure></div></div><h4>Pi-style</h4><p class="date">Mid–late 4th century BCE</p><p>The developed helmet ornament suggests the Greek letter π; many flans show folding and restriking. <sup class="citation"><a href="#source-remint" data-source="remint" data-short="John H. Kroll 2011" aria-label="Source 07: The Reminting of Athenian Silver Coinage, 353 B.C.">07</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">07</span>John H. Kroll 2011</span> <a href="#source-isotopes" data-source="isotopes" data-short="Gentelli et al. 2026" aria-label="Source 09: When is an owl not an owl? An analysis of Attic tetradrachms circulating in the southern Levant in the late fifth and fourth centuries BCE">09</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">09</span>Gentelli et al. 2026</span> <a href="#source-bnf-pi-iii" data-source="bnf-pi-iii" data-short="Bibliothèque nationale de France" aria-label="Source 22: Athenian silver tetradrachm, Pi III · 1966.453.1475">22</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">22</span>Bibliothèque nationale de France</span> <a href="#source-bnf-pi-ii" data-source="bnf-pi-ii" data-short="Bibliothèque nationale de France" aria-label="Source 24: Athenian silver tetradrachm, Pi II · 1966.453.1469">24</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">24</span>Bibliothèque nationale de France</span></sup></p><p class="status">Illustrated: Pi III + Pi II · image reuse review pending</p><details><summary>Attribution & dating notes</summary><p>The main image is BnF 1966.453.1475, explicitly catalogued as Pi III, c. 353–295 BCE. Pi II, BnF 1966.453.1469, is available in the comparison selector with its broader catalogue date retained. These object dates are distinct from competing wider Pi-style chronologies, including Kroll’s 353 BCE reminting and the early-340s discussion in the 2026 isotope paper.</p></details><details class="family-market"><summary>Recent prices for other specimens</summary><p>Other Pi-style coins sold for $420 (raw Good VF, worn obverse die) and $793 (NGC MS) including fees in 2026. The sample cannot establish separate values for Pi II or Pi III, or for these BnF specimens.</p><p class="micro-copy">USD, including buyer premium; before tax and shipping. Research: 17 September 2026.</p><p><a href="https://www.cngcoins.com/Lot.aspx?BACK_URL=%2FLots.aspx%3FIS_ADVANCED%3D1%26SEARCH_IN_CONTAINER_TYPE_ID_1%3D1%26SEARCH_IN_CONTAINER_TYPE_ID_2%3D1%26SEARCH_IN_CONTAINER_TYPE_ID_3%3D1%26SEARCH_IN_CONTAINER_TYPE_ID_4%3D0%26TABS_TYPE%3D2%26CONTAINER_TYPE_ID%3D2%26SEARCH_IN_ITEM_ADD_DATE%3D1%26mm_ITEM_ADD_DATE%3D4%26dd_ITEM_ADD_DATE%3D3%26yyyy_ITEM_ADD_DATE%3D2026%26VIEW_TYPE%3D0%26MAX_COUNT%3D10000%26PAGE_NUM%3D200&amp;LOT_ID=199709" target="_blank" rel="noopener noreferrer">CNG 612 / 89 <span aria-hidden="true">↗</span></a> · <a href="https://coins.ha.com/c/search/results.zx?archive_state=5327&amp;auction_name=232635&amp;auction_year=2026&amp;dept=1909&amp;ic4=OtherResults-SampleItem-AuctionNo-051517&amp;mode=archive&amp;sold_status=1526~1524" target="_blank" rel="noopener noreferrer">Heritage 232635 / 64024 <span aria-hidden="true">↗</span></a></p><a class="quiet-link" href="../pricing/">Explore prices &amp; the evidence ↗</a></details></article>
 <article class="family-card" id="family-late-old"><div class="family-number"><span>06</span><span>ATHENS</span></div><div class="family-faces"><div class="family-face" role="group" aria-label="Obverse of Later Old Style"><p class="eyebrow family-face-label">Obverse</p><figure class="image-figure family-photo" data-photo="bnf-quadridigite-1478-obverse" style="--plate-ratio:1">
     <div class="image-surface">
       <a class="image-trigger" href="https://upload.wikimedia.org/wikipedia/commons/7/75/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%281_of_2%29.jpg" target="_blank" rel="noopener noreferrer" data-image="bnf-quadridigite-1478-obverse" aria-label="Inspect Quadridigité · Athena · BnF 1478 in the image viewer">
@@ -5673,7 +5882,7 @@ h4 {
       </a>
     </div>
     <figcaption class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%282_of_2%29.jpg" target="_blank" rel="noopener noreferrer">Bibliothèque nationale de France, département Monnaies, médailles et antiques, 1966.453.1478; Gallica, via Wikimedia Commons.</a><span class="license-short"><a href="https://commons.wikimedia.org/wiki/File:Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500421v_%282_of_2%29.jpg" target="_blank" rel="noopener noreferrer">PD-France assertion (Commons)</a></span><a class="reuse-badge" href="#image-reuse-policy">Reuse review pending ↗</a></figcaption>
-  </figure></div></div><h4>Later Old Style</h4><p class="date">3rd century BCE</p><p>The old Athena–owl design persists in distinct groups, including quadridigité and heterogeneous issues. The illustrated specimen is quadridigité. <sup class="citation"><a href="#source-bnf-quadridigite" data-source="bnf-quadridigite" aria-label="Source 23: Athenian silver tetradrachm, Quadridigité · 1966.453.1478">[23]</a> <a href="#source-iris-quadridigite" data-source="iris-quadridigite" aria-label="Source 26: Athens, quadridigité · Nicolet-Pierre and Kroll 1990, nos. 1–28">[26]</a> <a href="#source-cng-heterogeneous" data-source="cng-heterogeneous" aria-label="Source 27: Heterogeneous Group C tetradrachm · Electronic Auction 594, lot 66">[27]</a></sup></p><p class="status">Illustrated: quadridigité · heterogeneous photo still needed</p><details><summary>Attribution & dating notes</summary><p>BnF 1966.453.1478 is explicitly catalogued as quadridigité and dated c. 286–261 BCE in that record; this range is not a date for every later Old Style issue. A separate Heterogeneous Group C auction specimen is sourced, but its 500 × 240 px preview has not been substituted for a high-resolution reference photograph. Reuse review remains pending for the linked BnF photographs.</p></details><details class="family-market"><summary>Recent prices for other specimens</summary><p>A quadridigite VF coin with marks and scrapes sold for $570 including fees in July 2026. This is one other specimen, not a valuation of the BnF coin or a price guide to every later Old Style group.</p><p class="micro-copy">USD, including buyer premium; before tax and shipping. Research: 17 September 2026.</p><p><a href="https://cngcoins.com/Lot.aspx?BACK_URL=%2FLots.aspx%3FCONTAINER_NAME%3D%26CONTAINER_TYPE_ID%3D2%26IS_ADVANCED%3D1%26ITEM_DESC%3DAthens%2Btetradrachm%26ITEM_IS_SOLD%3D1%26MAX_COUNT%3D10000%26PAGE%3D14%26PAGE_NUM%3D200%26SEARCH_IN_CONTAINER_TYPE_ID_1%3D1%26SEARCH_IN_CONTAINER_TYPE_ID_2%3D1%26SEARCH_IN_CONTAINER_TYPE_ID_3%3D1%26SEARCH_IN_CONTAINER_TYPE_ID_4%3D1%26TABS_TYPE%3D2%26VIEW_TYPE%3D0&amp;LOT_ID=201460" target="_blank" rel="noopener noreferrer">CNG 613 / 160 <span aria-hidden="true">↗</span></a></p><a class="quiet-link" href="../pricing/">Explore prices &amp; the evidence ↗</a></details></article>
+  </figure></div></div><h4>Later Old Style</h4><p class="date">3rd century BCE</p><p>The old Athena–owl design persists in distinct groups, including quadridigité and heterogeneous issues. The illustrated specimen is quadridigité. <sup class="citation"><a href="#source-bnf-quadridigite" data-source="bnf-quadridigite" data-short="Bibliothèque nationale de France" aria-label="Source 23: Athenian silver tetradrachm, Quadridigité · 1966.453.1478">23</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">23</span>Bibliothèque nationale de France</span> <a href="#source-iris-quadridigite" data-source="iris-quadridigite" data-short="IRIS / University of Oxford" aria-label="Source 26: Athens, quadridigité · Nicolet-Pierre and Kroll 1990, nos. 1–28">26</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">26</span>IRIS / University of Oxford</span> <a href="#source-cng-heterogeneous" data-source="cng-heterogeneous" data-short="Classical Numismatic Group, Inc." aria-label="Source 27: Heterogeneous Group C tetradrachm · Electronic Auction 594, lot 66">27</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">27</span>Classical Numismatic Group, Inc.</span></sup></p><p class="status">Illustrated: quadridigité · heterogeneous photo still needed</p><details><summary>Attribution & dating notes</summary><p>BnF 1966.453.1478 is explicitly catalogued as quadridigité and dated c. 286–261 BCE in that record; this range is not a date for every later Old Style issue. A separate Heterogeneous Group C auction specimen is sourced, but its 500 × 240 px preview has not been substituted for a high-resolution reference photograph. Reuse review remains pending for the linked BnF photographs.</p></details><details class="family-market"><summary>Recent prices for other specimens</summary><p>A quadridigite VF coin with marks and scrapes sold for $570 including fees in July 2026. This is one other specimen, not a valuation of the BnF coin or a price guide to every later Old Style group.</p><p class="micro-copy">USD, including buyer premium; before tax and shipping. Research: 17 September 2026.</p><p><a href="https://cngcoins.com/Lot.aspx?BACK_URL=%2FLots.aspx%3FCONTAINER_NAME%3D%26CONTAINER_TYPE_ID%3D2%26IS_ADVANCED%3D1%26ITEM_DESC%3DAthens%2Btetradrachm%26ITEM_IS_SOLD%3D1%26MAX_COUNT%3D10000%26PAGE%3D14%26PAGE_NUM%3D200%26SEARCH_IN_CONTAINER_TYPE_ID_1%3D1%26SEARCH_IN_CONTAINER_TYPE_ID_2%3D1%26SEARCH_IN_CONTAINER_TYPE_ID_3%3D1%26SEARCH_IN_CONTAINER_TYPE_ID_4%3D1%26TABS_TYPE%3D2%26VIEW_TYPE%3D0&amp;LOT_ID=201460" target="_blank" rel="noopener noreferrer">CNG 613 / 160 <span aria-hidden="true">↗</span></a></p><a class="quiet-link" href="../pricing/">Explore prices &amp; the evidence ↗</a></details></article>
 <article class="family-card" id="family-new"><div class="family-number"><span>07</span><span>ATHENS</span></div><div class="family-faces"><div class="family-face" role="group" aria-label="Obverse of New Style"><p class="eyebrow family-face-label">Obverse</p><figure class="image-figure family-photo" data-photo="new-athena" style="--plate-ratio:1">
     <div class="image-surface">
       <a class="image-trigger" href="https://upload.wikimedia.org/wikipedia/commons/0/04/Silver_tetradrachm_Athens_new_style_obverse.jpg" target="_blank" rel="noopener noreferrer" data-image="new-athena" aria-label="Inspect New Style Athena · Musée de la BnF in the image viewer">
@@ -5692,7 +5901,7 @@ h4 {
       </a>
     </div>
     <figcaption class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Silver_tetradrachm_Athens_new_style_reverse.jpg" target="_blank" rel="noopener noreferrer">Marie-Lan Nguyen / Wikimedia Commons · Musée de la BnF</a><span class="license-short"><a href="https://creativecommons.org/publicdomain/mark/1.0/" target="_blank" rel="noopener noreferrer">Public domain</a></span></figcaption>
-  </figure></div></div><h4>New Style</h4><p class="date">c. 165/164–1st century BCE</p><p>A broader composition: elaborate Athena, owl on an amphora, olive wreath and more inscriptions. <sup class="citation"><a href="#source-new-photo" data-source="new-photo" aria-label="Source 19: Silver tetradrachm, Athens New Style (reverse)">[19]</a> <a href="#source-new-chronology" data-source="new-chronology" aria-label="Source 14: The Chronology of the New Style Coinage of Athens">[14]</a> <a href="#source-new-catalogs" data-source="new-catalogs" aria-label="Source 20: New Style Athenian Tetradrachms, 166/164–63/62 BC">[20]</a></sup></p><p class="status">Late endpoint varies by catalog</p><details><summary>Attribution & dating notes</summary><p>The familiar c. 165–42 BCE label is not a universally settled pair of endpoints. This atlas uses a broader envelope rather than assigning every New Style coin one precise terminal date.</p></details><details class="family-market"><summary>Recent prices for other specimens</summary><p>Other New Style coins sold for $610 (NGC Fine) and $1,464 (Choice XF) in August 2026. Exact issues and condition differ; these examples do not establish magistrate-by-magistrate values or price the museum photographs.</p><p class="micro-copy">USD, including buyer premium; before tax and shipping. Research: 17 September 2026.</p><p><a href="https://coins.ha.com/c/search/results.zx?archive_state=5327&amp;auction_name=61541&amp;auction_year=2026&amp;dept=1909&amp;ic5=CatalogHome-ActionArea-Cover-071515&amp;mode=archive&amp;sold_status=1526~1524" target="_blank" rel="noopener noreferrer">Heritage 61541 / 25003 <span aria-hidden="true">↗</span></a> · <a href="https://coins.ha.com/c/search/results.zx?archive_state=5327&amp;auction_name=61541&amp;auction_year=2026&amp;dept=1909&amp;ic5=CatalogHome-ActionArea-Cover-071515&amp;mode=archive&amp;sold_status=1526~1524" target="_blank" rel="noopener noreferrer">Heritage 61541 / 25011 <span aria-hidden="true">↗</span></a></p><a class="quiet-link" href="../pricing/">Explore prices &amp; the evidence ↗</a></details></article>
+  </figure></div></div><h4>New Style</h4><p class="date">c. 165/164–1st century BCE</p><p>A broader composition: elaborate Athena, owl on an amphora, olive wreath and more inscriptions. <sup class="citation"><a href="#source-new-photo" data-source="new-photo" data-short="Marie-Lan Nguyen / Wikimedia Commons" aria-label="Source 19: Silver tetradrachm, Athens New Style (reverse)">19</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">19</span>Marie-Lan Nguyen / Wikimedia Commons</span> <a href="#source-new-chronology" data-source="new-chronology" data-short="Otto Mørkholm 1984" aria-label="Source 14: The Chronology of the New Style Coinage of Athens">14</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">14</span>Otto Mørkholm 1984</span> <a href="#source-new-catalogs" data-source="new-catalogs" data-short="Forum Ancient Coins, NumisWiki" aria-label="Source 20: New Style Athenian Tetradrachms, 166/164–63/62 BC">20</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">20</span>Forum Ancient Coins, NumisWiki</span></sup></p><p class="status">Late endpoint varies by catalog</p><details><summary>Attribution & dating notes</summary><p>The familiar c. 165–42 BCE label is not a universally settled pair of endpoints. This atlas uses a broader envelope rather than assigning every New Style coin one precise terminal date.</p></details><details class="family-market"><summary>Recent prices for other specimens</summary><p>Other New Style coins sold for $610 (NGC Fine) and $1,464 (Choice XF) in August 2026. Exact issues and condition differ; these examples do not establish magistrate-by-magistrate values or price the museum photographs.</p><p class="micro-copy">USD, including buyer premium; before tax and shipping. Research: 17 September 2026.</p><p><a href="https://coins.ha.com/c/search/results.zx?archive_state=5327&amp;auction_name=61541&amp;auction_year=2026&amp;dept=1909&amp;ic5=CatalogHome-ActionArea-Cover-071515&amp;mode=archive&amp;sold_status=1526~1524" target="_blank" rel="noopener noreferrer">Heritage 61541 / 25003 <span aria-hidden="true">↗</span></a> · <a href="https://coins.ha.com/c/search/results.zx?archive_state=5327&amp;auction_name=61541&amp;auction_year=2026&amp;dept=1909&amp;ic5=CatalogHome-ActionArea-Cover-071515&amp;mode=archive&amp;sold_status=1526~1524" target="_blank" rel="noopener noreferrer">Heritage 61541 / 25011 <span aria-hidden="true">↗</span></a></p><a class="quiet-link" href="../pricing/">Explore prices &amp; the evidence ↗</a></details></article>
 <article class="family-card" id="family-egypt"><div class="family-number"><span>08</span><span>REGIONAL BRANCH</span></div><div class="family-faces"><div class="family-face" role="group" aria-label="Obverse of Egyptian owl-type issues"><p class="eyebrow family-face-label">Obverse</p><figure class="image-figure family-photo" data-photo="sabakes" style="--plate-ratio:1.9851116625310175">
     <div class="image-surface">
       <a class="image-trigger" href="https://upload.wikimedia.org/wikipedia/commons/e/eb/EGYPT%2C_Persian_Administration._Sabakes._Circa_340-333_BC.jpg" target="_blank" rel="noopener noreferrer" data-image="sabakes" aria-label="Inspect The owl in Persian-administered Egypt in the image viewer">
@@ -5711,7 +5920,7 @@ h4 {
       </a>
     </div>
     <figcaption class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:EGYPT,_Persian_Administration._Sabakes._Circa_340-333_BC.jpg" target="_blank" rel="noopener noreferrer">Classical Numismatic Group, Inc. / Wikimedia Commons</a><span class="license-short"><a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></span></figcaption>
-  </figure></div></div><h4>Egyptian owl-type issues</h4><p class="date">c. 340–333 BCE · Sabakes type</p><p>Athenian visual language adapted under Persian administration in Egypt. <sup class="citation"><a href="#source-sabakes" data-source="sabakes" aria-label="Source 13: Sabaces Egypt van Alfen 2002 V: “Sabakes”, Athenian imitations">[13]</a></sup></p><p class="status">Different issuing authority</p><details><summary>Attribution & dating notes</summary><p>“Attic” can describe a weight convention, not the mint. An owl design or an Egyptian findspot alone does not settle who issued a coin. This named type provides a stronger attribution.</p></details></article>
+  </figure></div></div><h4>Egyptian owl-type issues</h4><p class="date">c. 340–333 BCE · Sabakes type</p><p>Athenian visual language adapted under Persian administration in Egypt. <sup class="citation"><a href="#source-sabakes" data-source="sabakes" data-short="IRIS / Online Greek Coinage" aria-label="Source 13: Sabaces Egypt van Alfen 2002 V: “Sabakes”, Athenian imitations">13</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">13</span>IRIS / Online Greek Coinage</span></sup></p><p class="status">Different issuing authority</p><details><summary>Attribution & dating notes</summary><p>“Attic” can describe a weight convention, not the mint. An owl design or an Egyptian findspot alone does not settle who issued a coin. This named type provides a stronger attribution.</p></details></article>
     </div>
     <details class="catalogue-guide reveal" id="coin-descriptions">
      <summary>
@@ -5726,15 +5935,15 @@ h4 {
       <dl>
        <div>
         <dt>Place &amp; issuing authority</dt>
-        <dd>“Attica, Athens” identifies a region and an issuing city. A findspot records where a coin was discovered, not necessarily where it was made. <sup class="citation"><a href="#source-attica" data-source="attica" aria-label="Source 05: About the ancient city of Athens and its surrounding region, Attica">[05]</a> <a href="#source-isotopes" data-source="isotopes" aria-label="Source 09: When is an owl not an owl? An analysis of Attic tetradrachms circulating in the southern Levant in the late fifth and fourth centuries BCE">[09]</a></sup></dd>
+        <dd>“Attica, Athens” identifies a region and an issuing city. A findspot records where a coin was discovered, not necessarily where it was made. <sup class="citation"><a href="#source-attica" data-source="attica" data-short="Attic Inscriptions Online" aria-label="Source 05: About the ancient city of Athens and its surrounding region, Attica">05</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">05</span>Attic Inscriptions Online</span> <a href="#source-isotopes" data-source="isotopes" data-short="Gentelli et al. 2026" aria-label="Source 09: When is an owl not an owl? An analysis of Attic tetradrachms circulating in the southern Levant in the late fifth and fourth centuries BCE">09</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">09</span>Gentelli et al. 2026</span></sup></dd>
        </div>
        <div>
         <dt>Metal &amp; denomination</dt>
-        <dd>AR identifies silver. A tetradrachm is a four-drachma denomination; its recorded weight and diameter describe the particular specimen. <sup class="citation"><a href="#source-met" data-source="met" aria-label="Source 01: Silver tetradrachm, 2021.40.80">[01]</a></sup></dd>
+        <dd>AR identifies silver. A tetradrachm is a four-drachma denomination; its recorded weight and diameter describe the particular specimen. <sup class="citation"><a href="#source-met" data-source="met" data-short="The Metropolitan Museum of Art" aria-label="Source 01: Silver tetradrachm, 2021.40.80">01</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">01</span>The Metropolitan Museum of Art</span></sup></dd>
        </div>
        <div>
         <dt>Date &amp; attribution</dt>
-        <dd>A date range places an issue within a proposed chronology; it does not identify the exact year in which every specimen was struck. Museum object dates and broader stylistic periods can differ. <sup class="citation"><a href="#source-met" data-source="met" aria-label="Source 01: Silver tetradrachm, 2021.40.80">[01]</a> <a href="#source-ngc" data-source="ngc" aria-label="Source 21: NGC Ancients: The Elusive “Full Crest” Owls of Athens">[21]</a></sup></dd>
+        <dd>A date range places an issue within a proposed chronology; it does not identify the exact year in which every specimen was struck. Museum object dates and broader stylistic periods can differ. <sup class="citation"><a href="#source-met" data-source="met" data-short="The Metropolitan Museum of Art" aria-label="Source 01: Silver tetradrachm, 2021.40.80">01</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">01</span>The Metropolitan Museum of Art</span> <a href="#source-ngc" data-source="ngc" data-short="NGC Ancients 2018" aria-label="Source 21: NGC Ancients: The Elusive “Full Crest” Owls of Athens">21</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">21</span>NGC Ancients 2018</span></sup></dd>
        </div>
       </dl>
      </div>
@@ -5749,17 +5958,17 @@ h4 {
       </span>
      </div>
      <div class="glossary-grid">
-      <details><summary>Attica</summary><p>The region around Athens in present-day Greece. Athens was the issuing city-state. “Attica, Athens” identifies region and city, not two separate owl varieties. <sup class="citation"><a href="#source-attica" data-source="attica" aria-label="Source 05: About the ancient city of Athens and its surrounding region, Attica">[05]</a></sup></p></details>
-<details><summary>Attic standard</summary><p>A weight convention used beyond Athens. The illustrated Cleveland tetradrachm weighs 17.2 g; findspot, weight standard and mint are separate questions. <sup class="citation"><a href="#source-cma-classic" data-source="cma-classic" aria-label="Source 03: Tetradrachm: Head of Athena, 1941.296.a">[03]</a> <a href="#source-sabakes" data-source="sabakes" aria-label="Source 13: Sabaces Egypt van Alfen 2002 V: “Sabakes”, Athenian imitations">[13]</a></sup></p></details>
-<details><summary>Tetradrachm</summary><p>A denomination of four drachmas. AR in a catalog identifies silver, not a place or a mint mark. <sup class="citation"><a href="#source-met" data-source="met" aria-label="Source 01: Silver tetradrachm, 2021.40.80">[01]</a></sup></p></details>
-<details><summary>Obverse / reverse</summary><p>The two faces of a coin. For these Athenian types, the Athena face is conventionally the obverse and the owl face the reverse. <sup class="citation"><a href="#source-met" data-source="met" aria-label="Source 01: Silver tetradrachm, 2021.40.80">[01]</a></sup></p></details>
-<details><summary>Flan</summary><p>The metal blank that receives the design. Its shape and folded or restruck fabric may preserve evidence of manufacture. <sup class="citation"><a href="#source-remint" data-source="remint" aria-label="Source 07: The Reminting of Athenian Silver Coinage, 353 B.C.">[07]</a></sup></p></details>
-<details><summary>Incuse</summary><p>A recessed area. On many older owl reverses, the design lies within an incuse square. <sup class="citation"><a href="#source-acropolis" data-source="acropolis" aria-label="Source 04: Athenian tetradrachm">[04]</a></sup></p></details>
-<details><summary>Ethnic</summary><p>An inscription naming a people or civic community; ΑΘΕ is the abbreviated ethnic of the Athenians. <sup class="citation"><a href="#source-acropolis" data-source="acropolis" aria-label="Source 04: Athenian tetradrachm">[04]</a></sup></p></details>
-<details><summary>Pi-style</summary><p>A modern stylistic label referring to the helmet ornament—not the value, weight, or mathematical properties of the coin. <sup class="citation"><a href="#source-remint" data-source="remint" aria-label="Source 07: The Reminting of Athenian Silver Coinage, 353 B.C.">[07]</a></sup></p></details>
-<details><summary>Imitation</summary><p>A coin using another issuer’s design language. An ancient imitation can be real silver and historically legitimate; this is not the same category as a modern forgery. <sup class="citation"><a href="#source-sabakes" data-source="sabakes" aria-label="Source 13: Sabaces Egypt van Alfen 2002 V: “Sabakes”, Athenian imitations">[13]</a> <a href="#source-law" data-source="law" aria-label="Source 10: Law on approvers (dokimastai) of silver coinage, 375/4 BC (AIO 819 / RO 25)">[10]</a></sup></p></details>
-<details><summary>Test cut</summary><p>A deliberate incision used to investigate metal beneath the surface. A cut is evidence to interpret, not proof of a precise route or an automatic guarantee of authenticity. <sup class="citation"><a href="#source-law" data-source="law" aria-label="Source 10: Law on approvers (dokimastai) of silver coinage, 375/4 BC (AIO 819 / RO 25)">[10]</a> <a href="#source-isotopes" data-source="isotopes" aria-label="Source 09: When is an owl not an owl? An analysis of Attic tetradrachms circulating in the southern Levant in the late fifth and fourth centuries BCE">[09]</a></sup></p></details>
-<details><summary>Hoard / findspot</summary><p>A hoard is a deposited group of objects; a findspot records discovery. Neither is automatically the place where a coin was minted. <sup class="citation"><a href="#source-isotopes" data-source="isotopes" aria-label="Source 09: When is an owl not an owl? An analysis of Attic tetradrachms circulating in the southern Levant in the late fifth and fourth centuries BCE">[09]</a></sup></p></details>
+      <details><summary>Attica</summary><p>The region around Athens in present-day Greece. Athens was the issuing city-state. “Attica, Athens” identifies region and city, not two separate owl varieties. <sup class="citation"><a href="#source-attica" data-source="attica" data-short="Attic Inscriptions Online" aria-label="Source 05: About the ancient city of Athens and its surrounding region, Attica">05</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">05</span>Attic Inscriptions Online</span></sup></p></details>
+<details><summary>Attic standard</summary><p>A weight convention used beyond Athens. The illustrated Cleveland tetradrachm weighs 17.2 g; findspot, weight standard and mint are separate questions. <sup class="citation"><a href="#source-cma-classic" data-source="cma-classic" data-short="Cleveland Museum of Art" aria-label="Source 03: Tetradrachm: Head of Athena, 1941.296.a">03</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">03</span>Cleveland Museum of Art</span> <a href="#source-sabakes" data-source="sabakes" data-short="IRIS / Online Greek Coinage" aria-label="Source 13: Sabaces Egypt van Alfen 2002 V: “Sabakes”, Athenian imitations">13</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">13</span>IRIS / Online Greek Coinage</span></sup></p></details>
+<details><summary>Tetradrachm</summary><p>A denomination of four drachmas. AR in a catalog identifies silver, not a place or a mint mark. <sup class="citation"><a href="#source-met" data-source="met" data-short="The Metropolitan Museum of Art" aria-label="Source 01: Silver tetradrachm, 2021.40.80">01</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">01</span>The Metropolitan Museum of Art</span></sup></p></details>
+<details><summary>Obverse / reverse</summary><p>The two faces of a coin. For these Athenian types, the Athena face is conventionally the obverse and the owl face the reverse. <sup class="citation"><a href="#source-met" data-source="met" data-short="The Metropolitan Museum of Art" aria-label="Source 01: Silver tetradrachm, 2021.40.80">01</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">01</span>The Metropolitan Museum of Art</span></sup></p></details>
+<details><summary>Flan</summary><p>The metal blank that receives the design. Its shape and folded or restruck fabric may preserve evidence of manufacture. <sup class="citation"><a href="#source-remint" data-source="remint" data-short="John H. Kroll 2011" aria-label="Source 07: The Reminting of Athenian Silver Coinage, 353 B.C.">07</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">07</span>John H. Kroll 2011</span></sup></p></details>
+<details><summary>Incuse</summary><p>A recessed area. On many older owl reverses, the design lies within an incuse square. <sup class="citation"><a href="#source-acropolis" data-source="acropolis" data-short="Acropolis Museum" aria-label="Source 04: Athenian tetradrachm">04</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">04</span>Acropolis Museum</span></sup></p></details>
+<details><summary>Ethnic</summary><p>An inscription naming a people or civic community; ΑΘΕ is the abbreviated ethnic of the Athenians. <sup class="citation"><a href="#source-acropolis" data-source="acropolis" data-short="Acropolis Museum" aria-label="Source 04: Athenian tetradrachm">04</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">04</span>Acropolis Museum</span></sup></p></details>
+<details><summary>Pi-style</summary><p>A modern stylistic label referring to the helmet ornament—not the value, weight, or mathematical properties of the coin. <sup class="citation"><a href="#source-remint" data-source="remint" data-short="John H. Kroll 2011" aria-label="Source 07: The Reminting of Athenian Silver Coinage, 353 B.C.">07</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">07</span>John H. Kroll 2011</span></sup></p></details>
+<details><summary>Imitation</summary><p>A coin using another issuer’s design language. An ancient imitation can be real silver and historically legitimate; this is not the same category as a modern forgery. <sup class="citation"><a href="#source-sabakes" data-source="sabakes" data-short="IRIS / Online Greek Coinage" aria-label="Source 13: Sabaces Egypt van Alfen 2002 V: “Sabakes”, Athenian imitations">13</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">13</span>IRIS / Online Greek Coinage</span> <a href="#source-law" data-source="law" data-short="Lambert &amp; Rhodes updated 2024" aria-label="Source 10: Law on approvers (dokimastai) of silver coinage, 375/4 BC (AIO 819 / RO 25)">10</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">10</span>Lambert &amp; Rhodes updated 2024</span></sup></p></details>
+<details><summary>Test cut</summary><p>A deliberate incision used to investigate metal beneath the surface. A cut is evidence to interpret, not proof of a precise route or an automatic guarantee of authenticity. <sup class="citation"><a href="#source-law" data-source="law" data-short="Lambert &amp; Rhodes updated 2024" aria-label="Source 10: Law on approvers (dokimastai) of silver coinage, 375/4 BC (AIO 819 / RO 25)">10</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">10</span>Lambert &amp; Rhodes updated 2024</span> <a href="#source-isotopes" data-source="isotopes" data-short="Gentelli et al. 2026" aria-label="Source 09: When is an owl not an owl? An analysis of Attic tetradrachms circulating in the southern Levant in the late fifth and fourth centuries BCE">09</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">09</span>Gentelli et al. 2026</span></sup></p></details>
+<details><summary>Hoard / findspot</summary><p>A hoard is a deposited group of objects; a findspot records discovery. Neither is automatically the place where a coin was minted. <sup class="citation"><a href="#source-isotopes" data-source="isotopes" data-short="Gentelli et al. 2026" aria-label="Source 09: When is an owl not an owl? An analysis of Attic tetradrachms circulating in the southern Levant in the late fifth and fourth centuries BCE">09</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">09</span>Gentelli et al. 2026</span></sup></p></details>
 <details><summary>c. / BCE</summary><p>Circa means approximately. BCE uses the same numbered years as BC: 440 BCE and 440 BC refer to the same year. </p></details>
      </div>
     </section>
@@ -5912,7 +6121,7 @@ h4 {
     <details class="method-note" id="image-reuse-policy">
      <summary>BnF photographs: public-domain assertions and reuse review</summary>
      <p>The individual Commons file records for Pi III (BnF 1475), Pi II (BnF 1469), and quadridigité (BnF 1478) assert public-domain status in France under PD-France. This atlas records that assertion as such—not as a CC0 grant or as direct permission from BnF.</p>
-     <p>BnF separately publishes conditions for commercial and promotional reuse, including stated exceptions. The project-specific application remains unresolved. All six photographs therefore carry a visible <strong>Reuse review pending</strong> notice in their captions, viewer and exported metadata. No permission request has been sent. <sup class="citation"><a href="#source-bnf-reuse" data-source="bnf-reuse" aria-label="Source 28: Commander une reproduction avec une utilisation commerciale">[28]</a></sup></p>
+     <p>BnF separately publishes conditions for commercial and promotional reuse, including stated exceptions. The project-specific application remains unresolved. All six photographs therefore carry a visible <strong>Reuse review pending</strong> notice in their captions, viewer and exported metadata. No permission request has been sent. <sup class="citation"><a href="#source-bnf-reuse" data-source="bnf-reuse" data-short="Bibliothèque nationale de France" aria-label="Source 28: Commander une reproduction avec une utilisation commerciale">28</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">28</span>Bibliothèque nationale de France</span></sup></p>
      <p>Institutional identification, image resolution and reuse status are separate questions. The Pi-style and quadridigité exhibits have documented museum specimens; that identification does not itself establish publication clearance.</p>
     </details>
     <details class="method-note">
@@ -6059,15 +6268,58 @@ function escapeHtml(value) {
   })[character]);
 }
 
+/** A citation's margin label is derived here rather than stored, so it can never
+ *  drift from the bibliography record it names. Wide screens print it beside the
+ *  numeral; the dialog and the bibliography keep the full, unshortened record. */
+const SOURCE_SHORT_LABEL_MAX = 40;
+
+const familyName = (name) => name.trim().split(/\s+/).pop();
+
+/** Only the record's own leading date becomes part of a label. A trailing
+ *  qualifier ("; translation 1913", "; accessed 2026") and a bare "2026 access"
+ *  are dropped: a margin label must never make an ancient or undated record look
+ *  as though it were published in the year someone last opened it. */
+function sourceShortDate(source) {
+  const year = String(source.year ?? '').split(/\s*;\s*/)[0];
+  if (/access/i.test(year)) return '';
+  const match = year.match(/\b(?:1\d{3}|2\d{3})\b/);
+  if (!match) return '';
+  return /^updated\b/i.test(year) ? `updated ${match[0]}` : match[0];
+}
+
+function sourceShortLabel(source) {
+  // A ";" or "·" separates distinct parties in these records; name the first.
+  const author = String(source.author ?? '').split(/\s*[;·]\s*/)[0]
+    .replace(/^Translation:\s*/i, '').trim();
+  // "&" marks a byline of people here; institutions spell out "and"/"et".
+  const people = / & /.test(author) ? author.split(/\s*(?:,| & )\s*/).filter(Boolean) : [];
+  const brief = people.length === 2 ? `${familyName(people[0])} & ${familyName(people[1])}`
+    : people.length > 2 ? `${familyName(people[0])} et al.`
+    : author.split(/\s*,\s*/)[0];
+  const date = sourceShortDate(source);
+  const withDate = (name) => (date ? `${name} ${date}` : name);
+  // Shorten only as far as the margin requires, keeping the fullest form that fits.
+  for (const candidate of [author, author.replace(/^The /, ''), author.split(' / ')[0], brief]) {
+    const label = withDate(candidate);
+    if (label.length <= SOURCE_SHORT_LABEL_MAX) return label;
+  }
+  return `${withDate(brief).slice(0, SOURCE_SHORT_LABEL_MAX - 1).trimEnd()}…`;
+}
+
 function sourceRefs(ids, data) {
-  const links = ids.map((id) => {
+  const chips = ids.map((id) => {
     const index = data.sources.findIndex((source) => source.id === id);
     if (index < 0) throw new Error(`Unknown source: ${id}`);
     const source = data.sources[index];
     const number = String(index + 1).padStart(2, '0');
-    return `<a href="#source-${escapeHtml(id)}" data-source="${escapeHtml(id)}" aria-label="Source ${number}: ${escapeHtml(source.title)}">[${number}]</a>`;
+    const short = escapeHtml(sourceShortLabel(source));
+    // The square brackets are drawn by CSS so wide screens can drop them for a
+    // plain superscript numeral. The note is decorative: the link already names
+    // the source for assistive technology and still opens the same dialog.
+    return `<a href="#source-${escapeHtml(id)}" data-source="${escapeHtml(id)}" data-short="${short}" aria-label="Source ${number}: ${escapeHtml(source.title)}">${number}</a>`
+      + `<span class="cite-note" aria-hidden="true"><span class="cite-note-index">${number}</span>${short}</span>`;
   });
-  return `<sup class="citation">${links.join(' ')}</sup>`;
+  return `<sup class="citation">${chips.join(' ')}</sup>`;
 }
 
 /** Rendered slot widths per layout class, so the browser can choose a derivative

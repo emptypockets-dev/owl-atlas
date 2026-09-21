@@ -5093,6 +5093,9 @@ h4 {
    wordmark was tracked for Georgia, so it is opened up a little here. */
 .ethnic {
   letter-spacing:-.02em
+}
+
+/* --------------------------------------------------------------------------
 
    Chunk 2 / Beauty — task A+B: the hero coin as an object in a room, and the
    fact strip that leads with the verified numbers.
@@ -5425,6 +5428,212 @@ h4 {
   .hero-photo::before { inset:-18% }
 }
 
+/* ==========================================================================
+   CHUNK 2 / BEAUTY — set pieces and citation sidenotes
+   Everything this task adds lives here: the dotted-theta interlude, the
+   "80–100 generations" invitation, wide-screen citation sidenotes and the
+   sub-page chrome label. Nothing above this line was rewritten for it except
+   the citation brackets, which moved into ::before/::after so wide screens can
+   drop them.
+   ========================================================================== */
+
+/* --- The dotted theta -------------------------------------------------- */
+/* A light band between the Anatomy exhibit and the ink-dark 404, so two dark
+   set pieces never stack. The mark is the wordmark's own circle-and-dot, drawn
+   at reading scale with a finer stroke; no font glyph and no invented artefact. */
+.theta-interlude {
+  background:var(--paper-deep);
+  color:var(--ink);
+  color-scheme:light;
+  border-block:1px solid var(--line);
+  padding:clamp(72px,9vw,132px) var(--gutter);
+  display:grid;
+  grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+  gap:clamp(36px,6vw,90px);
+  align-items:center;
+}
+.theta-interlude>* { max-width:var(--max); }
+.theta-stage { display:flex; justify-content:center; }
+.theta-mark {
+  display:block;
+  width:auto;
+  height:clamp(230px,57vh,560px);
+  max-width:100%;
+  color:var(--olive);
+  overflow:visible;
+}
+.theta-copy .eyebrow { color:var(--muted-light); }
+.theta-copy h2 {
+  font-size:clamp(2.75rem,6vw,5.25rem);
+  line-height:1.03;
+  margin-top:22px;
+}
+.theta-copy h2 em { color:var(--muted-light); }
+.theta-copy p { max-width:33rem; }
+.theta-copy .lead { margin-top:30px; }
+.theta-copy>p+p { font-size:var(--type-body); line-height:1.85; color:var(--muted-light); }
+
+@media screen and (max-width:900px) {
+  .theta-interlude { grid-template-columns:minmax(0,1fr); gap:34px; }
+  .theta-mark { height:clamp(180px,38vh,320px); }
+}
+@media print {
+  .theta-interlude { display:block; break-inside:avoid; border:0; }
+  .theta-stage { justify-content:flex-start; margin-bottom:18px; }
+  .theta-mark { height:110pt; }
+  .theta-copy h2 { font-size:30pt; }
+}
+
+/* --- 80–100 generations, on the home page ------------------------------ */
+/* The companion page measures this specimen in detail; here the number is the
+   invitation. Its own marks and scale, so the two are not one page twice. */
+.journey-invitation {
+  padding-block:clamp(66px,7.5vw,104px);
+  grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+  gap:clamp(40px,5vw,70px);
+}
+.journey-invitation-copy .lead {
+  font-family:var(--serif);
+  font-size:1.5rem;
+  line-height:1.45;
+  letter-spacing:-.02em;
+  margin-top:26px;
+}
+.journey-invitation-copy>p+p { font-size:var(--type-body); line-height:1.85; color:var(--muted-dark); }
+.journey-invitation-copy .quiet-link { margin-top:26px; }
+.generation-figure { border-top:1px solid var(--line-dark); padding-top:30px; min-width:0; }
+.generation-count { display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 24px; }
+.generation-count strong {
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(3.25rem,7vw,6.25rem);
+  line-height:1;
+  letter-spacing:-.06em;
+  white-space:nowrap;
+}
+.generation-count span { font-size:var(--type-support); line-height:1.5; color:var(--muted-dark); }
+.generation-marks { display:grid; grid-template-columns:repeat(20,minmax(0,1fr)); gap:11px; margin:30px 0 20px; }
+.generation-marks span { display:block; height:16px; border-left:2px solid var(--gold); }
+.generation-marks .range-end { opacity:.28; }
+.generation-figure figcaption {
+  font:var(--type-label)/1.8 var(--sans);
+  color:var(--muted-dark);
+  max-width:34rem;
+}
+
+@media screen and (max-width:900px) {
+  .journey-invitation { grid-template-columns:minmax(0,1fr); gap:38px; }
+  .generation-marks { grid-template-columns:repeat(25,minmax(0,1fr)); gap:8px; }
+  .generation-marks span { height:13px; }
+}
+@media print {
+  .journey-invitation { display:block; break-inside:avoid; }
+  .generation-figure { margin-top:22px; }
+  .generation-marks span { border-color:#444; }
+}
+
+/* --- Citation chips and their margin notes ----------------------------- */
+/* The brackets are drawn, not typed, so the sidenote layout can drop them and
+   leave a plain superscript numeral. Everything narrower than the sidenote
+   breakpoint, every touch device and every printed page keeps the chip as it
+   was, including its tap target. */
+.citation a::before { content:"["; }
+.citation a::after { content:"]"; }
+.cite-note { display:none; }
+
+@media screen and (min-width:1180px) and (hover:hover) {
+  :root { --cite-note-col:168px; --cite-note-gap:24px; }
+  main .citation a::before,main .citation a::after { content:none; }
+  main .citation a {
+    /* Narrower without the brackets, but never below the 24px target the chip
+       already had: a citation is inline in a sentence, so it keeps its floor. */
+    min-width:24px;
+    padding:2px 1px;
+    color:var(--muted-light);
+    text-decoration:none;
+  }
+  main .citation a:hover,main .citation a:focus-visible {
+    color:inherit;
+    background:none;
+    text-decoration:underline;
+  }
+  /* The hero caption belongs to the opening, not to the chapter apparatus; it
+     keeps the chip exactly as the rest of the site shows it below 1180px. */
+  .hero .citation a::before { content:"["; }
+  .hero .citation a::after { content:"]"; }
+  .hero .citation a { min-width:24px; padding:3px; color:inherit; }
+  .hero .citation a:hover { background:var(--paper-deep); color:var(--ink); }
+  /* Only containers with room of their own carry a note: the note is floated
+     into reserved padding, so it can never reach a neighbouring column, an
+     image, a card or the sticky Anatomy stage. Where the measure has no room to
+     give — the narrow .prose columns, the geography and evidence grids, the
+     family cards, the Anatomy stage copy — the compact numeral stands alone. */
+  .theta-copy,
+  .crisis-text,
+  .section-heading>.section-deck,
+  .mining-band>div,
+  .late-old-heading,
+  .editorial-detail p,
+  .chapter-rights-note p,
+  .research-feature>div,
+  .document-card>div {
+    padding-right:calc(var(--cite-note-col) + var(--cite-note-gap));
+  }
+  /* Contain the floated notes, so a run of them grows its own container instead
+     of spilling over whatever the container sits above. The grid items in this
+     list already establish their own formatting context. */
+  .crisis-text,
+  .section-heading>.section-deck,
+  .late-old-heading,
+  .editorial-detail p { display:flow-root; }
+  /* These two are sized by their own measure, so the column is added to it
+     rather than taken out of it. */
+  .crisis-text { max-width:calc(580px + var(--cite-note-col) + var(--cite-note-gap)); }
+  .section-heading>.section-deck { max-width:calc(620px + var(--cite-note-col) + var(--cite-note-gap)); }
+
+  .theta-copy .cite-note,
+  .crisis-text .cite-note,
+  .section-heading>.section-deck .cite-note,
+  .mining-band>div .cite-note,
+  .late-old-heading .cite-note,
+  .editorial-detail p .cite-note,
+  .chapter-rights-note p .cite-note,
+  .research-feature>div .cite-note,
+  .document-card>div .cite-note {
+    display:block;
+    float:right;
+    clear:right;
+    width:var(--cite-note-col);
+    margin:0 calc(-1 * (var(--cite-note-col) + var(--cite-note-gap))) 12px 0;
+    font:var(--type-label)/1.5 var(--mono);
+    letter-spacing:0;
+    white-space:normal;
+    text-align:left;
+    text-indent:0;
+    vertical-align:baseline;
+    color:var(--muted-light);
+    padding-top:.2em;
+  }
+  .cite-note-index { display:block; color:var(--gold); margin-bottom:4px; }
+  .section-paper .cite-note-index { color:#8a7c4d; }
+}
+
+/* --- Sub-page chrome strip label --------------------------------------- */
+/* The home page's sticky bar names the chapter under way; the sub-pages have no
+   chapter tracker, so their strip names the page instead of standing empty. */
+.chrome-utility-label { display:flex; align-items:center; gap:14px; min-width:0; margin-right:auto; }
+.chrome-utility-page {
+  font-family:var(--mono);
+  font-size:var(--type-label);
+  letter-spacing:.12em;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+@media screen and (max-width:600px) {
+  .chrome-utility-label>.chapter-caption { display:none; }
+}
+
   </style>
  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://theowlatlas.com/#organization","name":"The Owl Atlas","url":"https://theowlatlas.com/"},{"@type":"Article","@id":"https://theowlatlas.com/one-owl/#page","url":"https://theowlatlas.com/one-owl/","mainEntityOfPage":"https://theowlatlas.com/one-owl/","name":"2,400 Years. Still Here. — One Owl’s Survival | The Owl Atlas","headline":"2,400 Years. Still Here. — One Owl’s Survival | The Owl Atlas","description":"Follow one Mint State Athenian owl across 2,400 years: original photographs, the scale of human generations, and its documented modern appearances.","image":"https://theowlatlas.com/social/one-owl.png","inLanguage":"en","dateModified":"2026-09-16","author":{"@id":"https://theowlatlas.com/#organization"},"publisher":{"@id":"https://theowlatlas.com/#organization"},"isPartOf":{"@id":"https://theowlatlas.com/#website"}}]}</script>
  </head>
@@ -5463,7 +5672,7 @@ h4 {
     </span>
    </div>
   </header>
-  <main id="main"><div class="chrome-utility"><button aria-pressed="false" class="motion-button" id="motion-toggle" title="Turn off decorative animation" type="button">
+  <main id="main"><div class="chrome-utility"><span class="chrome-utility-label"><span class="chapter-caption">YOU ARE READING</span><span class="chrome-utility-page">ONE OWL</span></span><button aria-pressed="false" class="motion-button" id="motion-toggle" title="Turn off decorative animation" type="button">
      <span aria-hidden="true" class="motion-dot">
      </span>
      <span id="motion-label">
@@ -5505,7 +5714,7 @@ h4 {
     </div>
     <div class="journey-specimen">
      <p><strong>Athens · silver tetradrachm</strong><br>c. 440–404 BCE · 17.21 g</p>
-     <p><strong>MS · Strike 4/5 · Surface 4/5</strong><br>NGC 2086328-049 <sup class="citation"><a href="#source-journey-ngc" data-source="journey-ngc" aria-label="Source 44: Certification record: 2086328-049">[44]</a></sup></p>
+     <p><strong>MS · Strike 4/5 · Surface 4/5</strong><br>NGC 2086328-049 <sup class="citation"><a href="#source-journey-ngc" data-source="journey-ngc" data-short="NGC 2018" aria-label="Source 44: Certification record: 2086328-049">44</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">44</span>NGC 2018</span></sup></p>
      <a href="#photographs">See the holder &amp; photo record <span aria-hidden="true">↓</span></a>
     </div>
    </section>
@@ -5515,13 +5724,13 @@ h4 {
      <div class="journey-heading"><span class="eyebrow">01 / A MOMENT AT THE MINT</span><h2 id="mint-state-title">The strike took<br><em>a moment.</em></h2></div>
      <div class="journey-copy">
       <p class="lead">The sharpness began with a hammer blow. Keeping it is a different story.</p>
-      <p>A silver blank was struck between two engraved dies. Athena and the owl emerged together. The blank’s shape, the dies and the force and alignment of the strike helped determine which details appeared. <sup class="citation"><a href="#source-met-minting" data-source="met-minting" aria-label="Source 32: Greek Art: From Prehistoric to Classical — Coins of Ancient Greece">[32]</a></sup></p>
+      <p>A silver blank was struck between two engraved dies. Athena and the owl emerged together. The blank’s shape, the dies and the force and alignment of the strike helped determine which details appeared. <sup class="citation"><a href="#source-met-minting" data-source="met-minting" data-short="Michael Norris 2000" aria-label="Source 32: Greek Art: From Prehistoric to Classical — Coins of Ancient Greece">32</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">32</span>Michael Norris 2000</span></sup></p>
       <dl class="journey-grades">
        <div><dt>MS <span>Mint State</span></dt><dd>An uncirculated grade. It describes condition, not a record of every time the coin changed hands.</dd></div>
        <div><dt>4/5 <span>Strike</span></dt><dd>A separate assessment of manufacture: the blank, dies, centering and quality of the strike.</dd></div>
        <div><dt>4/5 <span>Surface</span></dt><dd>An assessment of surface condition, including factors such as marks, corrosion, luster and cleaning. It does not mean “80% of the surface survives.”</dd></div>
       </dl>
-      <p class="journey-note">NGC assesses these aspects separately. Neither MS nor a surface score establishes that a coin was never cleaned. <sup class="citation"><a href="#source-market-ngc" data-source="market-ngc" aria-label="Source 36: NGC Ancients: grading, strike, surface and style">[36]</a></sup></p>
+      <p class="journey-note">NGC assesses these aspects separately. Neither MS nor a surface score establishes that a coin was never cleaned. <sup class="citation"><a href="#source-market-ngc" data-source="market-ngc" data-short="Numismatic Guaranty Company" aria-label="Source 36: NGC Ancients: grading, strike, surface and style">36</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">36</span>Numismatic Guaranty Company</span></sup></p>
       <a class="quiet-link" href="../#minting">See how an owl was struck <span aria-hidden="true">↗</span></a>
      </div>
     </div>
@@ -5560,14 +5769,14 @@ h4 {
    <section class="chapter section-paper journey-section" id="survival" aria-labelledby="survival-title" data-chapter="03 / The long unknown">
     <div class="journey-split">
      <div class="journey-heading"><span class="eyebrow">03 / THE LONG UNKNOWN</span><h2 id="survival-title">Survival can<br><em>be uneventful.</em></h2><p class="journey-side-note">No findspot or ancient chain of ownership has been established for this specimen.</p></div>
-     <div class="journey-copy"><p class="lead">A long interval out of circulation can preserve details that repeated handling would wear away.</p><p>Coins with little apparent wear really do emerge from hoards. In his 1933 account of the Beni Hasan find in Egypt, J. Grafton Milne described 54 Athenian-type tetradrachms as exceptionally preserved and apparently uncirculated. These were different coins, and his description predates modern grading. <sup class="citation"><a href="#source-journey-beni-hasan" data-source="journey-beni-hasan" aria-label="Source 50: The Beni Hasan Coin-Hoard">[50]</a></sup></p><p>The Acropolis Museum also records an earlier owl, dated 483–480 BCE, from a hoard found in 1886. A recorded find context gives that coin a chapter of history that ours lacks. <sup class="citation"><a href="#source-journey-hoard" data-source="journey-hoard" aria-label="Source 47: Athenian tetradrachm · Acropolis hoard 1886, no. 20">[47]</a></sup></p><p>Burial can also damage silver: moisture, salts and the surrounding soil matter. Neither an unbroken line of collectors nor a benign burial can be assumed from an MS grade. The fictional story chooses a fortunate path; the real coin’s early path remains unknown. <sup class="citation"><a href="#source-journey-conservation" data-source="journey-conservation" aria-label="Source 48: Identifying Archaeological Metal · CCI Notes 4/1">[48]</a></sup></p></div>
+     <div class="journey-copy"><p class="lead">A long interval out of circulation can preserve details that repeated handling would wear away.</p><p>Coins with little apparent wear really do emerge from hoards. In his 1933 account of the Beni Hasan find in Egypt, J. Grafton Milne described 54 Athenian-type tetradrachms as exceptionally preserved and apparently uncirculated. These were different coins, and his description predates modern grading. <sup class="citation"><a href="#source-journey-beni-hasan" data-source="journey-beni-hasan" data-short="J. Grafton Milne 1933" aria-label="Source 50: The Beni Hasan Coin-Hoard">50</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">50</span>J. Grafton Milne 1933</span></sup></p><p>The Acropolis Museum also records an earlier owl, dated 483–480 BCE, from a hoard found in 1886. A recorded find context gives that coin a chapter of history that ours lacks. <sup class="citation"><a href="#source-journey-hoard" data-source="journey-hoard" data-short="Acropolis Museum" aria-label="Source 47: Athenian tetradrachm · Acropolis hoard 1886, no. 20">47</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">47</span>Acropolis Museum</span></sup></p><p>Burial can also damage silver: moisture, salts and the surrounding soil matter. Neither an unbroken line of collectors nor a benign burial can be assumed from an MS grade. The fictional story chooses a fortunate path; the real coin’s early path remains unknown. <sup class="citation"><a href="#source-journey-conservation" data-source="journey-conservation" data-short="Canadian Conservation Institute 2007" aria-label="Source 48: Identifying Archaeological Metal · CCI Notes 4/1">48</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">48</span>Canadian Conservation Institute 2007</span></sup></p></div>
     </div>
     <section class="journey-collecting" id="collecting-history" aria-labelledby="ancient-collector-title">
-     <div class="journey-question"><div><span class="eyebrow">BACK TO HISTORY / THE COLLECTING INSTINCT</span><h3 id="ancient-collector-title">How long have people<br><em>collected coins?</em></h3></div><div class="journey-copy"><p>Interest in old coins reaches back at least two thousand years. The Smithsonian associates the recognizable collecting hobby with the Renaissance, while noting possible ancient Roman precedents. <sup class="citation"><a href="#source-journey-collecting" data-source="journey-collecting" aria-label="Source 51: Collecting Money · The Value of Money">[51]</a></sup></p></div></div>
+     <div class="journey-question"><div><span class="eyebrow">BACK TO HISTORY / THE COLLECTING INSTINCT</span><h3 id="ancient-collector-title">How long have people<br><em>collected coins?</em></h3></div><div class="journey-copy"><p>Interest in old coins reaches back at least two thousand years. The Smithsonian associates the recognizable collecting hobby with the Renaissance, while noting possible ancient Roman precedents. <sup class="citation"><a href="#source-journey-collecting" data-source="journey-collecting" data-short="Smithsonian National Museum of American…" aria-label="Source 51: Collecting Money · The Value of Money">51</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">51</span>Smithsonian National Museum of American…</span></sup></p></div></div>
      <ol class="journey-collectors" aria-label="Historical examples of appreciating and collecting old coins">
-      <li><span class="eyebrow">ROMAN ANTIQUITY</span><h4>Old coins as presents.</h4><p>Suetonius describes Augustus giving old royal coins and foreign money as festive gifts. People could already enjoy a coin for its age or unfamiliarity. This is evidence of appreciation and gifting; it does not establish a modern-style collecting hobby. <sup class="citation"><a href="#source-journey-suetonius" data-source="journey-suetonius" aria-label="Source 49: Life of Augustus, chapter 75">[49]</a></sup></p></li>
-      <li><span class="eyebrow">THE FOURTEENTH CENTURY</span><h4>A poet’s gift to an emperor.</h4><p>Petrarch recounts giving treasured Roman gold and silver coins to Charles IV. The portraits were lessons in history: he urged the emperor to emulate the rulers they showed. The attraction of an old coin could be intellectual as well as beautiful. <sup class="citation"><a href="#source-journey-petrarch" data-source="journey-petrarch" aria-label="Source 52: His Audience with the Emperor · Familiar Letters XIX.3">[52]</a></sup></p></li>
-      <li><span class="eyebrow">THE SEVENTEENTH CENTURY</span><h4>A king makes time for his collection.</h4><p>Louis XIV expanded the royal Cabinet and brought it to Versailles so he could spend time with it daily. The BnF’s department of coins, medals and antiquities grew from that royal collection. Royal collecting is a documented part of this wider story. <sup class="citation"><a href="#source-journey-royal-cabinet" data-source="journey-royal-cabinet" aria-label="Source 53: History of the Department of Coins, Medals and Antiques">[53]</a></sup></p></li>
+      <li><span class="eyebrow">ROMAN ANTIQUITY</span><h4>Old coins as presents.</h4><p>Suetonius describes Augustus giving old royal coins and foreign money as festive gifts. People could already enjoy a coin for its age or unfamiliarity. This is evidence of appreciation and gifting; it does not establish a modern-style collecting hobby. <sup class="citation"><a href="#source-journey-suetonius" data-source="journey-suetonius" data-short="Suetonius" aria-label="Source 49: Life of Augustus, chapter 75">49</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">49</span>Suetonius</span></sup></p></li>
+      <li><span class="eyebrow">THE FOURTEENTH CENTURY</span><h4>A poet’s gift to an emperor.</h4><p>Petrarch recounts giving treasured Roman gold and silver coins to Charles IV. The portraits were lessons in history: he urged the emperor to emulate the rulers they showed. The attraction of an old coin could be intellectual as well as beautiful. <sup class="citation"><a href="#source-journey-petrarch" data-source="journey-petrarch" data-short="Francesco Petrarch" aria-label="Source 52: His Audience with the Emperor · Familiar Letters XIX.3">52</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">52</span>Francesco Petrarch</span></sup></p></li>
+      <li><span class="eyebrow">THE SEVENTEENTH CENTURY</span><h4>A king makes time for his collection.</h4><p>Louis XIV expanded the royal Cabinet and brought it to Versailles so he could spend time with it daily. The BnF’s department of coins, medals and antiquities grew from that royal collection. Royal collecting is a documented part of this wider story. <sup class="citation"><a href="#source-journey-royal-cabinet" data-source="journey-royal-cabinet" data-short="Bibliothèque nationale de France" aria-label="Source 53: History of the Department of Coins, Medals and Antiques">53</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">53</span>Bibliothèque nationale de France</span></sup></p></li>
      </ol>
      <p class="journey-note">These are historical parallels, not former owners of the photographed owl. Its documented modern appearances begin below.</p>
     </section>
@@ -5578,9 +5787,9 @@ h4 {
      <div class="journey-heading"><span class="eyebrow">04 / THE RECORD COMES INTO VIEW</span><h2 id="record-title">A long silence.<br><em>Then a number.</em></h2><p class="journey-side-note">2086328-049 links the modern records below. It does not fill the centuries before them.</p></div>
      <div>
       <ol class="journey-records">
-       <li><time datetime="2018-10-12">12 October 2018</time><h3>A recorded grade.</h3><p>NGC’s certification record gives this grade date and lists MS, strike 4/5 and surface 4/5. It is a grading date, not a discovery date. <sup class="citation"><a href="#source-journey-ngc" data-source="journey-ngc" aria-label="Source 44: Certification record: 2086328-049">[44]</a></sup></p></li>
-       <li><time datetime="2022-10-02">2 October 2022</time><h3>An auction appearance.</h3><p>GreatCollections lot 1224867 records the same certificate and 17.21 g weight. Its title says strike 5/5, conflicting with the current NGC record and the holder shown here. That discrepancy does not establish a regrade or a physical change. <sup class="citation"><a href="#source-journey-gc-2022" data-source="journey-gc-2022" aria-label="Source 45: Auction 1224867 · 2 October 2022">[45]</a></sup></p></li>
-       <li><time datetime="2024-06-09">9 June 2024</time><h3>The number appears again.</h3><p>GreatCollections lot 1594499 records the same certificate, weight and MS 4/5–4/5 assessment. Both auction archives mark their lots sold; the prices require login, so no realized price is reported here. <sup class="citation"><a href="#source-journey-gc-2024" data-source="journey-gc-2024" aria-label="Source 46: Auction 1594499 · 9 June 2024">[46]</a></sup></p></li>
+       <li><time datetime="2018-10-12">12 October 2018</time><h3>A recorded grade.</h3><p>NGC’s certification record gives this grade date and lists MS, strike 4/5 and surface 4/5. It is a grading date, not a discovery date. <sup class="citation"><a href="#source-journey-ngc" data-source="journey-ngc" data-short="NGC 2018" aria-label="Source 44: Certification record: 2086328-049">44</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">44</span>NGC 2018</span></sup></p></li>
+       <li><time datetime="2022-10-02">2 October 2022</time><h3>An auction appearance.</h3><p>GreatCollections lot 1224867 records the same certificate and 17.21 g weight. Its title says strike 5/5, conflicting with the current NGC record and the holder shown here. That discrepancy does not establish a regrade or a physical change. <sup class="citation"><a href="#source-journey-gc-2022" data-source="journey-gc-2022" data-short="GreatCollections 2022" aria-label="Source 45: Auction 1224867 · 2 October 2022">45</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">45</span>GreatCollections 2022</span></sup></p></li>
+       <li><time datetime="2024-06-09">9 June 2024</time><h3>The number appears again.</h3><p>GreatCollections lot 1594499 records the same certificate, weight and MS 4/5–4/5 assessment. Both auction archives mark their lots sold; the prices require login, so no realized price is reported here. <sup class="citation"><a href="#source-journey-gc-2024" data-source="journey-gc-2024" data-short="GreatCollections 2024" aria-label="Source 46: Auction 1594499 · 9 June 2024">46</a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">46</span>GreatCollections 2024</span></sup></p></li>
        <li><span class="journey-record-date">Today</span><h3>Close enough to look.</h3><p>The present owner supplied these four photographs. They let us connect the coin’s visible details with its holder, while leaving the undocumented parts of its journey open.</p></li>
       </ol>
       <p class="journey-note">Records checked 17 September 2026. Matches are based on the certification number; this is not a complete chain of custody or an independent authentication.</p>
@@ -5791,15 +6000,58 @@ function escapeHtml(value) {
   })[character]);
 }
 
+/** A citation's margin label is derived here rather than stored, so it can never
+ *  drift from the bibliography record it names. Wide screens print it beside the
+ *  numeral; the dialog and the bibliography keep the full, unshortened record. */
+const SOURCE_SHORT_LABEL_MAX = 40;
+
+const familyName = (name) => name.trim().split(/\s+/).pop();
+
+/** Only the record's own leading date becomes part of a label. A trailing
+ *  qualifier ("; translation 1913", "; accessed 2026") and a bare "2026 access"
+ *  are dropped: a margin label must never make an ancient or undated record look
+ *  as though it were published in the year someone last opened it. */
+function sourceShortDate(source) {
+  const year = String(source.year ?? '').split(/\s*;\s*/)[0];
+  if (/access/i.test(year)) return '';
+  const match = year.match(/\b(?:1\d{3}|2\d{3})\b/);
+  if (!match) return '';
+  return /^updated\b/i.test(year) ? `updated ${match[0]}` : match[0];
+}
+
+function sourceShortLabel(source) {
+  // A ";" or "·" separates distinct parties in these records; name the first.
+  const author = String(source.author ?? '').split(/\s*[;·]\s*/)[0]
+    .replace(/^Translation:\s*/i, '').trim();
+  // "&" marks a byline of people here; institutions spell out "and"/"et".
+  const people = / & /.test(author) ? author.split(/\s*(?:,| & )\s*/).filter(Boolean) : [];
+  const brief = people.length === 2 ? `${familyName(people[0])} & ${familyName(people[1])}`
+    : people.length > 2 ? `${familyName(people[0])} et al.`
+    : author.split(/\s*,\s*/)[0];
+  const date = sourceShortDate(source);
+  const withDate = (name) => (date ? `${name} ${date}` : name);
+  // Shorten only as far as the margin requires, keeping the fullest form that fits.
+  for (const candidate of [author, author.replace(/^The /, ''), author.split(' / ')[0], brief]) {
+    const label = withDate(candidate);
+    if (label.length <= SOURCE_SHORT_LABEL_MAX) return label;
+  }
+  return `${withDate(brief).slice(0, SOURCE_SHORT_LABEL_MAX - 1).trimEnd()}…`;
+}
+
 function sourceRefs(ids, data) {
-  const links = ids.map((id) => {
+  const chips = ids.map((id) => {
     const index = data.sources.findIndex((source) => source.id === id);
     if (index < 0) throw new Error(`Unknown source: ${id}`);
     const source = data.sources[index];
     const number = String(index + 1).padStart(2, '0');
-    return `<a href="#source-${escapeHtml(id)}" data-source="${escapeHtml(id)}" aria-label="Source ${number}: ${escapeHtml(source.title)}">[${number}]</a>`;
+    const short = escapeHtml(sourceShortLabel(source));
+    // The square brackets are drawn by CSS so wide screens can drop them for a
+    // plain superscript numeral. The note is decorative: the link already names
+    // the source for assistive technology and still opens the same dialog.
+    return `<a href="#source-${escapeHtml(id)}" data-source="${escapeHtml(id)}" data-short="${short}" aria-label="Source ${number}: ${escapeHtml(source.title)}">${number}</a>`
+      + `<span class="cite-note" aria-hidden="true"><span class="cite-note-index">${number}</span>${short}</span>`;
   });
-  return `<sup class="citation">${links.join(' ')}</sup>`;
+  return `<sup class="citation">${chips.join(' ')}</sup>`;
 }
 
 /** Rendered slot widths per layout class, so the browser can choose a derivative
