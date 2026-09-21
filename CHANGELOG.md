@@ -1,3 +1,28 @@
+# Geography that looks like a sea-going economy — 21 September 2026
+
+- Paint the eight area maps and their locators in layers instead of on a flat
+  beige background: a blue-grey sea, a shelf stroked under every coastline, a
+  warm paper land, a quiet graticule on the water, and a fine ink coast. The
+  water is now an SVG rectangle rather than a CSS background, so it prints.
+- Give the highlighted area a soft gold halo and move its outline onto its own
+  pass, so a selection can fade and draw itself in. Re-tune the sea labels,
+  label halos, scale plaque and north mark against the new ground; `npm run
+  check` now measures those contrasts and fails below 4.5:1 for text.
+- Add one decorative overview of all eight areas beside the place buttons. When
+  the explorer first scrolls into view the areas light up in turn over about two
+  and a half seconds and then settle on whichever place is open. Approximate
+  regions keep their hatch there, and the caption repeats that it is not a
+  complete mint map.
+- Respect every motion switch: with `Motion off`, `prefers-reduced-motion` or in
+  print there is no sequence, no fade and no draw. Selection stays instant.
+  Keyboard controls, the mobile selector, `#geography-*` deep links, the
+  next-place affordance, the evidence links, the no-JavaScript reading of all
+  eight entries and the print layout are unchanged, and nothing scrolls the page.
+- Add no place, boundary, route or claim: every outline is the same public-domain
+  Natural Earth geometry, and `src/geography.json` is untouched.
+
+---
+
 # How the owl was minted — 16 September 2026
 
 - Add an original three-step SVG illustration between the silver-mining story

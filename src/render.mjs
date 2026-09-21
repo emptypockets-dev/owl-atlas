@@ -323,6 +323,31 @@ function geoPath(rings, projection) {
     return points.length < 3 ? '' : `M${points.map(p => projection.xy(p).map(v => v.toFixed(1)).join(',')).join('L')}Z`;
   }).join('');
 }
+// A quiet graticule on the water. The step is picked so a view never carries
+// more than seven lines in either direction, whatever its span.
+function geoGraticule(projection) {
+  const [west, south, east, north] = projection.bounds;
+  const step = [.25,.5,1,2,5,10,15].find(v => Math.max(east - west, north - south) / v <= 7) || 20;
+  const segment = (a,b) => `M${projection.xy(a).map(v => v.toFixed(1)).join(',')}L${projection.xy(b).map(v => v.toFixed(1)).join(',')}`;
+  let path = '';
+  for (let i = Math.ceil(west / step); i * step <= east; i += 1) path += segment([i * step, south],[i * step, north]);
+  for (let i = Math.ceil(south / step); i * step <= north; i += 1) path += segment([west, i * step],[east, i * step]);
+  return path ? `<path class="geo-graticule" d="${path}"/>` : '';
+}
+// Sea, shelf and land are separate painted layers so the coastline reads as a
+// drawn edge rather than as the absence of a fill. The shelf is the same base
+// outline stroked wide underneath the land, so only its seaward half survives.
+function geoGround(width, height, baseId, graticule = '') {
+  return `<rect class="geo-sea" width="${width}" height="${height}"/>${graticule}<use class="geo-shelf geo-shelf-outer" href="#${baseId}"/><use class="geo-shelf" href="#${baseId}"/><use class="geo-base geo-land" href="#${baseId}"/>`;
+}
+// The selected area is painted as a halo, a fill and a traceable outline. All
+// four layers reuse one outline, so the extra passes cost references rather than
+// geometry, and pathLength="1" lets the outline draw itself in at any scale.
+// An empty `selected` means the outline already lives in the shared defs.
+function geoAreaLayers(areaId, selected, patternId = '') {
+  const defs = selected ? `<defs><path id="${areaId}" pathLength="1" d="${selected}"/></defs>` : '';
+  return `${defs}<use class="geo-area-glow" href="#${areaId}"/><use class="geo-area-glow geo-area-glow-inner" href="#${areaId}"/><use class="geo-area" href="#${areaId}"${patternId ? ` style="fill:url(#${patternId})"` : ''}/><use class="geo-area-trace" href="#${areaId}"/>`;
+}
 function geographyMap(place, geometry, locator = false) {
   const width = locator ? 360 : 720, height = locator ? 190 : 450;
   const projection = geoProjection(locator ? (place.id === 'athens' ? [18,33.5,30,43] : [7,10,78,47]) : place.bounds, width, height);
@@ -332,7 +357,10 @@ function geographyMap(place, geometry, locator = false) {
   const base = countries.map(country => geoPath(country.rings, projection)).filter(Boolean);
   const sharedWorld = locator && place.id !== 'athens';
   const baseId = sharedWorld ? 'geo-world-outlines' : `${id}-base`;
-  const selected = geoPath(geometry.shapes[place.shape], projection);
+  // Every locator but Attica's shares the wide frame, so it also shares the
+  // outline the overview map already carries.
+  const areaId = sharedWorld ? `geo-reach-${place.id}` : `${id}-area`;
+  const selected = sharedWorld ? '' : geoPath(geometry.shapes[place.shape], projection);
   const hatch = place.approximate && !locator;
   let overlays = '';
   if (!locator) {
@@ -364,12 +392,23 @@ function geographyMap(place, geometry, locator = false) {
     overlays += `<g class="geo-scale"><rect x="16" y="${height-55}" width="220" height="49" rx="2"/><path d="M28,${height-30}v7h${length.toFixed(1)}v-7"/><text x="28" y="${height-35}">${km} km</text></g><text class="geo-north" x="${width-25}" y="${height-22}" text-anchor="end">N ↑</text>`;
   }
   const accessible = locator ? 'aria-hidden="true" focusable="false"' : `role="img" aria-labelledby="${id}-title ${id}-desc"`;
-  return `<svg class="${locator ? 'geo-locator-map' : 'geo-focus-map'}" viewBox="0 0 ${width} ${height}" ${accessible}>${locator ? '' : `<title id="${id}-title">${escapeHtml(place.name)}: ${escapeHtml(place.legend)}</title><desc id="${id}-desc">${escapeHtml(place.where)} ${escapeHtml(place.mapNote)} North is up. The scale bar is approximate at the map centre.</desc>`}${hatch ? `<defs><pattern id="${id}-hatch" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#d6c99e"/><path d="M-2,2L2,-2M0,8L8,0M6,10L10,6" stroke="#84784f" stroke-width="1"/></pattern></defs>` : ''}${sharedWorld ? '' : `<defs><path id="${baseId}" d="${base.join('')}"/></defs>`}<use class="geo-base" href="#${baseId}"/>${locator ? `<path class="geo-home" d="${geoPath(geometry.countries.GRC.rings, projection)}"/>` : ''}<path class="geo-area" d="${selected}"${hatch ? ` style="fill:url(#${id}-hatch)"` : ''}/><use class="geo-boundaries" href="#${baseId}"/>${overlays}</svg>`;
+  return `<svg class="${locator ? 'geo-locator-map' : 'geo-focus-map'}" viewBox="0 0 ${width} ${height}" ${accessible}>${locator ? '' : `<title id="${id}-title">${escapeHtml(place.name)}: ${escapeHtml(place.legend)}</title><desc id="${id}-desc">${escapeHtml(place.where)} ${escapeHtml(place.mapNote)} North is up. The scale bar is approximate at the map centre.</desc>`}${hatch ? `<defs><pattern id="${id}-hatch" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#d6c99e"/><path d="M-2,2L2,-2M0,8L8,0M6,10L10,6" stroke="#84784f" stroke-width="1"/></pattern></defs>` : ''}${sharedWorld ? '' : `<defs><path id="${baseId}" d="${base.join('')}"/></defs>`}${geoGround(width, height, baseId, locator ? '' : geoGraticule(projection))}${locator ? `<path class="geo-home" d="${geoPath(geometry.countries.GRC.rings, projection)}"/>` : ''}${geoAreaLayers(areaId, selected, hatch ? `${id}-hatch` : '')}<use class="geo-boundaries" href="#${baseId}"/>${overlays}</svg>`;
+}
+// One overview of all eight areas, in the same wide frame the locators use. It
+// repeats what the buttons beneath it already name, so it is decorative; it adds
+// no place, boundary or route that the eight panels do not already show.
+function geographyReachMap(places, geometry, projection) {
+  const [ax,ay] = projection.xy([23.73,37.98]);
+  // Approximate regions keep the hatch they carry on their own close-up, so the
+  // overview never makes an orientation grouping look like a surveyed border.
+  const layer = (className, hatched = false) => places.map(p => `<use class="${className}" data-geo-reach="${escapeHtml(p.id)}" href="#geo-reach-${escapeHtml(p.id)}"${hatched && p.approximate ? ' style="fill:url(#geo-reach-hatch)"' : ''}/>`).join('');
+  return `<svg class="geo-reach-map" viewBox="0 0 360 190" aria-hidden="true" focusable="false">${geoGround(360,190,'geo-world-outlines')}<path class="geo-home" d="${geoPath(geometry.countries.GRC.rings, projection)}"/>${layer('geo-reach-halo')}${layer('geo-reach-area', true)}<use class="geo-boundaries" href="#geo-world-outlines"/><circle class="geo-city" cx="${ax.toFixed(1)}" cy="${ay.toFixed(1)}" r="3"/></svg>`;
 }
 export function geographyMarkup(data, geometry) {
   const places = data.geography.places;
   const worldProjection = geoProjection([7,10,78,47],360,190);
   const worldPath = Object.values(geometry.countries).map(country => geoPath(country.rings,worldProjection)).join('');
+  const reachPaths = places.map(p => `<path id="geo-reach-${escapeHtml(p.id)}" pathLength="1" d="${geoPath(geometry.shapes[p.shape],worldProjection)}"/>`).join('');
   const buttons = places.map((p,i) => `<button type="button" data-geography="${escapeHtml(p.id)}" aria-pressed="${i===0}" aria-controls="geography-${escapeHtml(p.id)}"><span>${escapeHtml(p.name)}</span><small>${escapeHtml(p.kind)}</small></button>`).join('');
   const panels = places.map((p,i) => `<article class="geo-place" id="geography-${escapeHtml(p.id)}" aria-labelledby="geography-${escapeHtml(p.id)}-title">
     <header class="geo-place-heading"><span class="eyebrow">${String(i+1).padStart(2,'0')} / ${escapeHtml(p.kind)}</span><h3 id="geography-${escapeHtml(p.id)}-title" tabindex="-1">${escapeHtml(p.name)}</h3></header>
@@ -377,5 +416,5 @@ export function geographyMarkup(data, geometry) {
     <div class="geo-map-context"><figure class="geo-locator">${geographyMap(p,geometry,true)}<figcaption>${p.id === 'athens' ? 'Green: Greece · box: Attica close-up' : 'Green: Greece · dot: Athens · box: close-up'}</figcaption></figure><p>${escapeHtml(p.mapNote)}<span class="geo-scale-note">Each view has its own approximate scale. North is always up.</span></p></div></div>
     <div class="geo-copy"><h4>${escapeHtml(p.heading)}</h4><p class="geo-where">${escapeHtml(p.where)}</p><p class="geo-relation">${escapeHtml(p.relation)}</p><div class="geo-evidence"><span class="eyebrow">${escapeHtml(p.role)}</span><p>${escapeHtml(p.evidence)} ${sourceRefs(p.refs,data)}</p></div>${p.orientationSource ? `<a class="quiet-link geo-region-source" href="${escapeHtml(p.orientationSource)}" target="_blank" rel="noopener noreferrer">About this region ↗</a>` : ''}<button class="geo-next" type="button" data-geography-next="${escapeHtml(places[(i+1)%places.length].id)}" hidden>${i===places.length-1 ? 'Return to Athens' : `Next: ${escapeHtml(places[i+1].name)}`} <span aria-hidden="true">→</span></button></div></div>
   </article>`).join('\n');
-  return `<div class="geography-explorer" id="geography-explorer"><svg class="geo-definitions" width="0" height="0" aria-hidden="true" focusable="false"><defs><path id="geo-world-outlines" d="${worldPath}"/></defs></svg><div class="geo-controls" hidden><div class="geo-place-buttons" role="group" aria-label="Explore a place">${buttons}</div><label class="geo-select-wrap" for="geography-select">Explore a place<select id="geography-select">${places.map(p=>`<option value="${escapeHtml(p.id)}">${escapeHtml(p.name)}</option>`).join('')}</select></label></div><p class="sr-only" id="geography-status" role="status" aria-live="polite"></p>${panels}<p class="geo-credit">Selected places across several centuries, not a reconstructed journey or a complete mint map. Modern geographic outlines and rivers: <a href="${escapeHtml(geometry.licenseUrl)}" target="_blank" rel="noopener noreferrer">Natural Earth · public domain</a>. Ancient political borders are not shown.</p></div>`;
+  return `<div class="geography-explorer" id="geography-explorer"><svg class="geo-definitions" width="0" height="0" aria-hidden="true" focusable="false"><defs><pattern id="geo-reach-hatch" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="5" height="5" fill="#d6c99e"/><path d="M-1,1L1,-1M0,5L5,0M4,6L6,4" stroke="#84784f" stroke-width=".7"/></pattern><path id="geo-world-outlines" d="${worldPath}"/>${reachPaths}</defs></svg><div class="geo-controls" hidden><figure class="geo-reach" data-animate-on-view>${geographyReachMap(places,geometry,worldProjection)}<figcaption>The eight areas in this chapter; gold marks the one open below.</figcaption></figure><div class="geo-place-buttons" role="group" aria-label="Explore a place">${buttons}</div><label class="geo-select-wrap" for="geography-select">Explore a place<select id="geography-select">${places.map(p=>`<option value="${escapeHtml(p.id)}">${escapeHtml(p.name)}</option>`).join('')}</select></label></div><p class="sr-only" id="geography-status" role="status" aria-live="polite"></p>${panels}<p class="geo-credit">Selected places across several centuries, not a reconstructed journey or a complete mint map. Modern geographic outlines and rivers: <a href="${escapeHtml(geometry.licenseUrl)}" target="_blank" rel="noopener noreferrer">Natural Earth · public domain</a>. Ancient political borders are not shown.</p></div>`;
 }
