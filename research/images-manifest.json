@@ -15,7 +15,30 @@
     "date": "449–440 BCE",
     "note": "Museum dating. The actual specimen is 17.2 g and 23 mm; not shown at actual size.",
     "crop": "none",
-    "changes": "No retouching or AI enhancement. Anatomy of an Owl uses a display-only rim silhouette and camera zoom/pan; its turning edge is schematic. The image viewer opens the complete, unchanged source photograph."
+    "changes": "No retouching or AI enhancement. Anatomy of an Owl uses a display-only rim silhouette and camera zoom/pan; its turning edge is schematic. The image viewer opens the complete, unchanged source photograph. Page loading now uses self-hosted resized JPEG derivatives (800/1600/2400 px, sips, quality 82), superseding any earlier page-loading note above; the full-resolution original linked here is unchanged.",
+    "derived": {
+      "sources": [
+        {
+          "width": 800,
+          "height": 831,
+          "path": "public/images/derived/classic-owl-800-b4cb57d2.jpg",
+          "bytes": 214927
+        },
+        {
+          "width": 1600,
+          "height": 1662,
+          "path": "public/images/derived/classic-owl-1600-60289951.jpg",
+          "bytes": 791039
+        },
+        {
+          "width": 2400,
+          "height": 2493,
+          "path": "public/images/derived/classic-owl-2400-55836d97.jpg",
+          "bytes": 1705481
+        }
+      ],
+      "placeholder": "data:image/jpeg;base64,/9j/wAARCAAZABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9sAQwAJCQkJCQkQCQkQFhAQEBYeFhYWFh4mHh4eHh4mLiYmJiYmJi4uLi4uLi4uNzc3Nzc3QEBAQEBISEhISEhISEhI/9sAQwELDAwSERIfEREfSzMqM0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tL/90ABAAC/9oADAMBAAIRAxEAPwDtNR1W200BXG6RhkIOPxJ7Vyh8WahKSba1DKpwcDP9aqa2JH1mYO21TtwT/dx2rJuZI0Gy1BAzy56k1LY0j1DTNStdTh8yHhwPnQ9VNaeB6V5x4VfydSMXXdGc9PY9ia9F3U0xNH//0L/iSwM0gmXg8c1zQtiI9zHcw7Yxn/Cu71j/AFFcf3pNAmaugxBLwS4wdu3Gc4FdvuNcfo3+trqaYrn/2Q=="
+    }
   },
   {
     "id": "classic-athena",
@@ -33,7 +56,24 @@
     "date": "449–440 BCE",
     "note": "Browser-compatible 1920-pixel JPEG derivative. A 2480 × 2549 TIFF master is linked from the source record.",
     "crop": "none",
-    "changes": "No retouching or AI enhancement. Anatomy of an Owl uses a display-only rim silhouette and camera zoom/pan; its turning edge is schematic. The image viewer opens the complete, unchanged source photograph."
+    "changes": "No retouching or AI enhancement. Anatomy of an Owl uses a display-only rim silhouette and camera zoom/pan; its turning edge is schematic. The image viewer opens the complete, unchanged source photograph. Page loading now uses self-hosted resized JPEG derivatives (800/1600 px, sips, quality 82), superseding any earlier page-loading note above; the full-resolution original linked here is unchanged.",
+    "derived": {
+      "sources": [
+        {
+          "width": 800,
+          "height": 822,
+          "path": "public/images/derived/classic-athena-800-4bf7e659.jpg",
+          "bytes": 220367
+        },
+        {
+          "width": 1600,
+          "height": 1644,
+          "path": "public/images/derived/classic-athena-1600-93d7c023.jpg",
+          "bytes": 828278
+        }
+      ],
+      "placeholder": "data:image/jpeg;base64,/9j/wAARCAAYABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9sAQwAJCQkJCQkQCQkQFhAQEBYeFhYWFh4mHh4eHh4mLiYmJiYmJi4uLi4uLi4uNzc3Nzc3QEBAQEBISEhISEhISEhI/9sAQwELDAwSERIfEREfSzMqM0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tL/90ABAAC/9oADAMBAAIRAxEAPwC3rfim4MkjW2Aa5iDX9Y88MZ26HjjGe1UbrzS4Vf4hjnuSf6Yq1p8IN2gPJOVYfU9RSGen6DqFxf22brbvXHI7+vFbtcfogNpOLVH8wB9hYdOQT/SuxppiaP/QTUfDOqWx2bM4PBHf8aji0zVReRXEUGNihSOMHAwT9a9a1n7qfWsmHrQ0FzN0TS3slee4A82Q/kBW/S9qSmhH/9k="
+    }
   },
   {
     "id": "archaic",
@@ -51,7 +91,18 @@
     "date": "Source attribution: c. 520–510 BCE",
     "note": "17.09 g; Seltman 302d. The early absolute attribution remains a catalog convention. A 759-pixel-wide plate, not an AI enlargement.",
     "crop": "bottom",
-    "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image."
+    "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image. Page loading now uses self-hosted resized JPEG derivatives (759 px, sips, quality 82), superseding any earlier page-loading note above; the full-resolution original linked here is unchanged.",
+    "derived": {
+      "sources": [
+        {
+          "width": 759,
+          "height": 1608,
+          "path": "public/images/derived/archaic-759-cd93f76f.jpg",
+          "bytes": 431446
+        }
+      ],
+      "placeholder": null
+    }
   },
   {
     "id": "met-owl",
@@ -69,7 +120,18 @@
     "date": "c. 440–404 BCE",
     "note": "24 mm. The Met dates this classical tetradrachm to 440–404 BCE.",
     "crop": "none",
-    "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image."
+    "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image. Page loading now uses self-hosted resized JPEG derivatives (800 px, sips, quality 82), superseding any earlier page-loading note above; the full-resolution original linked here is unchanged.",
+    "derived": {
+      "sources": [
+        {
+          "width": 800,
+          "height": 865,
+          "path": "public/images/derived/met-owl-800-621094c9.jpg",
+          "bytes": 213988
+        }
+      ],
+      "placeholder": null
+    }
   },
   {
     "id": "met-athena",
@@ -87,7 +149,18 @@
     "date": "c. 440–404 BCE",
     "note": "24 mm. Companion face of the same Met specimen.",
     "crop": "none",
-    "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image."
+    "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image. Page loading now uses self-hosted resized JPEG derivatives (800 px, sips, quality 82), superseding any earlier page-loading note above; the full-resolution original linked here is unchanged.",
+    "derived": {
+      "sources": [
+        {
+          "width": 800,
+          "height": 723,
+          "path": "public/images/derived/met-athena-800-363b2ded.jpg",
+          "bytes": 154277
+        }
+      ],
+      "placeholder": null
+    }
   },
   {
     "id": "profile",
@@ -123,7 +196,24 @@
     "date": "Museum range: 480–449 BCE",
     "note": "The museum’s current range is followed; the older Commons import has different compact metadata. Its matching reverse is Cleveland 1920.267.b; both are catalogued as parts of the same coin, 1920.267.",
     "crop": "none",
-    "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image."
+    "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image. Page loading now uses self-hosted resized JPEG derivatives (800/1600 px, sips, quality 82), superseding any earlier page-loading note above; the full-resolution original linked here is unchanged.",
+    "derived": {
+      "sources": [
+        {
+          "width": 800,
+          "height": 787,
+          "path": "public/images/derived/early-athena-800-1364bf75.jpg",
+          "bytes": 181509
+        },
+        {
+          "width": 1600,
+          "height": 1573,
+          "path": "public/images/derived/early-athena-1600-9f89f274.jpg",
+          "bytes": 606035
+        }
+      ],
+      "placeholder": null
+    }
   },
   {
     "id": "early-owl",
@@ -141,7 +231,24 @@
     "date": "Museum range: 480–449 BCE",
     "note": "The matching reverse of obverse 1920.267.a. Cleveland explicitly groups both faces under accession 1920.267 (17.237 g; 24 mm). The current museum date is retained instead of the older Commons import’s broader label. The viewer uses the museum’s 2,384 × 2,280 JPEG; the TIFF master is available from the linked photograph record.",
     "crop": "none",
-    "changes": "Museum-supplied 750 × 717 JPEG for page loading; museum-supplied 2,384 × 2,280 JPEG in the viewer. Full source frame, with no additional crop, retouching, upscaling or AI enhancement."
+    "changes": "Museum-supplied 750 × 717 JPEG for page loading; museum-supplied 2,384 × 2,280 JPEG in the viewer. Full source frame, with no additional crop, retouching, upscaling or AI enhancement. Page loading now uses self-hosted resized JPEG derivatives (800/1600 px, sips, quality 82), superseding any earlier page-loading note above; the full-resolution original linked here is unchanged.",
+    "derived": {
+      "sources": [
+        {
+          "width": 800,
+          "height": 765,
+          "path": "public/images/derived/early-owl-800-2bfc8d28.jpg",
+          "bytes": 160127
+        },
+        {
+          "width": 1600,
+          "height": 1530,
+          "path": "public/images/derived/early-owl-1600-89edc607.jpg",
+          "bytes": 598348
+        }
+      ],
+      "placeholder": null
+    }
   },
   {
     "id": "new-owl",
@@ -159,7 +266,18 @@
     "date": "Hellenistic New Style",
     "note": "Current file is 1340 × 1340, preferred by the photographer over the older, larger but lower-quality upload. Source metadata says c. 200–150 BCE; this is not adopted as a precise date here.",
     "crop": "none",
-    "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image."
+    "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image. Page loading now uses self-hosted resized JPEG derivatives (800 px, sips, quality 82), superseding any earlier page-loading note above; the full-resolution original linked here is unchanged.",
+    "derived": {
+      "sources": [
+        {
+          "width": 800,
+          "height": 800,
+          "path": "public/images/derived/new-owl-800-3efdabb3.jpg",
+          "bytes": 275386
+        }
+      ],
+      "placeholder": null
+    }
   },
   {
     "id": "new-athena",
@@ -177,7 +295,18 @@
     "date": "Hellenistic New Style",
     "note": "The source cross-links this photograph with the owl reverse. Original file metadata retains a c. 200–150 BCE date; no exact issue year is assigned in this edition.",
     "crop": "none",
-    "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image."
+    "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image. Page loading now uses self-hosted resized JPEG derivatives (800 px, sips, quality 82), superseding any earlier page-loading note above; the full-resolution original linked here is unchanged.",
+    "derived": {
+      "sources": [
+        {
+          "width": 800,
+          "height": 800,
+          "path": "public/images/derived/new-athena-800-2e4e4b36.jpg",
+          "bytes": 246500
+        }
+      ],
+      "placeholder": null
+    }
   },
   {
     "id": "sabakes",

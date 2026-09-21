@@ -62,8 +62,10 @@ Nothing is deployed or pushed without an explicit request.
 
 ## Owner decisions (21 September 2026)
 
-- Display font: compare Instrument Serif, Fraunces and GFS Didot on a localhost
-  sample page before choosing.
+- Display font: Fraunces, chosen from the localhost sample page
+  (`docs/font-samples/`) over Instrument Serif and GFS Didot. Self-hosted
+  variable woff2 with the opsz, wght, SOFT and WONK axes; `wght` must be set
+  explicitly because the file's default weight is 900.
 - The owner's four One Owl photographs may be offered for reuse under CC BY 4.0
   with credit to The Owl Atlas. Museum CC0 images are included regardless.
 - Vercel Web Analytics (cookie-free) is authorized; enable it in the final chunk
