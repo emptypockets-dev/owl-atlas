@@ -77,7 +77,14 @@ Nothing is deployed or pushed without an explicit request.
   instead of 5.7 MB; share cards and JSON-LD on all four pages; phone hero
   coin-first; header hides on scroll-down; motion toggle in the chapter bar.
   Review screenshots: `node scripts/qa-shots.mjs`.
-- Chunk 2: typography merged (Fraunces, metrics-matched fallback, GFS Didot for
-  Greek). Hero object and hooks, set pieces and sidenotes, and the share-card
-  re-render are in progress.
+- Chunk 2: merged 21 September 2026. Fraunces with a metrics-matched fallback
+  and GFS Didot for Greek; hero spotlight, sweep and owl-to-Athena turn with a
+  "Turn the coin" control; sourced hero deck and three-fact strip (sources 42
+  and 43); page titles with a hook; dotted-theta interlude (`#theta`);
+  "80–100 generations" invitation; margin sidenotes for citations on wide
+  screens; labelled sub-page strip; share cards re-rendered in Fraunces.
+  Lesson: never resolve an end-of-file stylesheet conflict by concatenating
+  both sides; rebuild as base plus each branch's appended block.
+- Chunk 3: in progress (three parallel agents: minting animation, geography
+  reveal, One Owl hero and CC BY 4.0 records).
 - Chunk 4 prep: `research/hooks-findings.md` ranks ten verified hooks.
