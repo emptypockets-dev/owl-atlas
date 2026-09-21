@@ -129,3 +129,11 @@ Nothing is deployed or pushed without an explicit request.
   `.plate-label`, `.archaic-photo`, `.early-faces`, `.editorial-two`) and the
   `archaic-photo` crop branch in `build.mjs`.
 - Chunk 4 prep: `research/hooks-findings.md` ranks ten verified hooks.
+
+## Backlog (owner TODOs)
+
+- Photo uploads: when the site accepts coin photographs from visitors (for
+  example an identifier that takes a picture), automatically remove the
+  background from each upload and strip location data (EXIF GPS and similar)
+  before anything is stored or shown. Reference implementation: the local
+  `silver-collection` folder, the same code that runs lusterapp.com.
