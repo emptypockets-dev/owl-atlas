@@ -24,6 +24,15 @@ is required. The HTML contains its CSS, JavaScript and content data.
 edition references the museum and Wikimedia image hosts; it does not bundle
 image bytes. The story and references remain available when images fail.
 
+**Headlines fall back to Georgia when you open `index.html` straight off the
+disk.** The display face, Fraunces, is self-hosted under `public/fonts/`, and the
+stylesheet asks for it at a root-absolute path (`/public/fonts/fraunces/…`)
+because the same CSS is inlined into pages at two directory depths. Over
+`file://` a root-absolute path resolves to the root of the filesystem, so the
+font never loads and the metric-matched Georgia stand-in is used instead. The
+page is complete and correct either way — the shapes are simply Georgia's. Serve
+the folder over HTTP, as below, to see the intended typography.
+
 For local development, serve the folder with any static server, for example:
 
 ```sh
@@ -253,7 +262,9 @@ screens, measures its height for deep links, and keeps all four destinations
 available. Narrow comparison panels stack while family cards retain paired
 coin faces. Text enlargement and increased spacing are checked separately.
 
-The site adds no analytics, accounts, trackers, cookies or remote fonts. Its only
+The site adds no analytics, accounts, trackers, cookies or third-party fonts: the
+two open-licensed display faces are served from this site's own origin, so no
+font CDN learns anything about a reader. Its only
 stored preference is the optional motion setting in browser local storage.
 Remote image hosts still receive ordinary browser requests.
 
