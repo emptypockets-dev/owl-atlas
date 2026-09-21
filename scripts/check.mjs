@@ -395,7 +395,7 @@ check(replay.replace(/<[^>]*>/g, '').trim().startsWith('Play again'), 'The repla
 check(minting.includes('<div class="minting-footer-actions">'), 'The replay control sits with the onward link, beside the copy');
 // Every moving part waits for the class the observer adds, and motion off puts
 // the figure back to the frame it was drawn in.
-const mintingCss = styles.slice(styles.indexOf('/* === CHUNK 3 / MINTING'));
+const mintingCss = styles.slice(styles.indexOf('/* === CHUNK 3 / MINTING'), styles.indexOf('end CHUNK 3 / MINTING'));
 check(Boolean(mintingCss) && mintingCss.includes('end CHUNK 3 / MINTING'), 'The minting styles are one self-contained block');
 for (const rule of mintingCss.split('\n')) {
   if (!/^\s*\.[^{]*\{[^}]*animation:/.test(rule)) continue;

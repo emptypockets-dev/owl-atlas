@@ -85,6 +85,17 @@ Nothing is deployed or pushed without an explicit request.
   screens; labelled sub-page strip; share cards re-rendered in Fraunces.
   Lesson: never resolve an end-of-file stylesheet conflict by concatenating
   both sides; rebuild as base plus each branch's appended block.
-- Chunk 3: in progress (three parallel agents: minting animation, geography
-  reveal, One Owl hero and CC BY 4.0 records).
+- Chunk 3: merged 21 September 2026. Minting illustration plays a schematic
+  strike once in view with a replay control; geography explorer has sea and
+  land tones, coastlines, a gold region with glow, an eight-area overview and
+  a sequenced reveal; One Owl leads with one lit owl in a measured circular
+  crop, and all four owner photographs now carry CC BY 4.0 with the credit
+  "The Owl Atlas (theowlatlas.com)".
+- Chunk 4: in progress (three parallel agents: resemblance identifier, share
+  tools and card maker, creator kit page).
+- Polish list for chunk 5: the "Hammer" label overlaps the moving hammer
+  mid-animation; hide the hero's honesty note on phones; round the focus ring
+  on pill buttons; remove dead `.journey-faces` rules; distinguish the two
+  Kroll 2011 sidenote labels; restore the motion toggle to the 44 px scans in
+  `tests/artifact_browser.py` and `tests/one_owl_browser.py`.
 - Chunk 4 prep: `research/hooks-findings.md` ranks ten verified hooks.
