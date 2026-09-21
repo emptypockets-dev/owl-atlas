@@ -1,3 +1,30 @@
+# One owl, one lit object — 21 September 2026
+
+- Lead the companion story with a single large owl instead of two side-by-side
+  slab photographs. The reverse close-up becomes a circular display crop lit with
+  the home hero's language: a vignette on the section, a warm spotlight behind the
+  disc, a hairline ring. No turn and no fabricated thickness — one photograph of
+  one side. On phones the coin leads and the words follow, as the home hero does.
+- Move Athena to a smaller disc beside the specimen facts. Both faces keep their
+  eyebrow label, their visible credit and their route to the complete frame.
+- Both crops are declared transformations, not new files. Each circle was measured
+  off the owner's own 960×1280 JPEG — the owl r=430 px at (433, 745), Athena
+  r=372 px at (510, 730) — and is drawn in CSS over the unchanged bytes. The
+  photograph record now states both measurements and shows all four complete
+  frames; "Look closer" still opens each untouched original. Holder prongs,
+  reflections and plastic marks are retained, never retouched.
+- Record the owner's release of all four photographs under CC BY 4.0, dated
+  21 September 2026, with the deed URL, the credit "The Owl Atlas
+  (theowlatlas.com)" it requires, and the statement that the site code's MIT
+  licence does not cover photographs. Updated in `src/one-owl.json`, on the page,
+  in `THIRD_PARTY_NOTICES.md` and on the one-owl share card. The JPEG bytes and
+  their SHA-256 checksums are unchanged.
+- Add checks that all four records carry the CC BY 4.0 deed URL, that the page
+  states the required credit, and that the stylesheet percentages are the
+  arithmetic of the measured circles, so a crop cannot silently drift off the coin.
+
+---
+
 # Geography that looks like a sea-going economy — 21 September 2026
 
 - Paint the eight area maps and their locators in layers instead of on a flat

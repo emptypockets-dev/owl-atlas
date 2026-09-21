@@ -397,7 +397,10 @@ async function oneOwlCard() {
     deck('One coin, still graded Mint State.', {x: 64, y: 450, size: 21}) +
     coin(owl, {cx: 936, cy: 332, r: 168});
   return {
-    svg: card({body, credit: `${owl.credit} · photographed in its holder`}),
+    // The owner released these four photographs under CC BY 4.0, so the card
+    // that carries one off the site has to carry the attribution it requires.
+    // owl.credit is already "<credit> · <license>" from the image record.
+    svg: card({body, credit: `${owl.credit} · photographed in its holder · reuse with credit to The Owl Atlas (theowlatlas.com)`}),
     alt: data.social['one-owl'].alt,
     sources: [owl],
   };

@@ -13,6 +13,13 @@ import re
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = 'https://theowlatlas.com/one-owl/'
+# The owner released all four photographs under CC BY 4.0 on 21 September 2026.
+CC_BY_URL = 'https://creativecommons.org/licenses/by/4.0/'
+REQUIRED_CREDIT = 'The Owl Atlas (theowlatlas.com)'
+# The two close-ups are shown as circular display crops measured off these very
+# files. The complete frames stay in the page, the viewer and the deployed bytes.
+DISPLAY_CROPS = {'owner-owl': 2, 'owner-athena': 2,
+                 'owner-holder-obverse': 1, 'owner-holder-reverse': 1}
 # Independently recorded from the four owner-supplied originals, 17 Sep 2026.
 ORIGINALS = {
     'owner-athena': ('bcb5410fae9d60fe7b2cbbf26802089c269d337eb76abc4ae1b132c0114ec492', 960, 1280),
@@ -111,21 +118,64 @@ for image_id, (digest, width, height) in ORIGINALS.items():
     check(jpeg_dimensions(content) == (width, height) == (image['width'], image['height']),
           f'{image_id}: real JPEG dimensions match metadata')
     check((ROOT / 'dist' / local).read_bytes() == content, f'{image_id}: deployed bytes match original')
-    check(image['reuseStatus'] == 'owner-permission' and 'MIT' in image['rightsNote'],
-          f'{image_id}: scoped permission and software-license exclusion retained')
-    check(image['credit'] == 'Photographs courtesy of the owner', f'{image_id}: anonymous credit retained')
+    check(image['license'] == 'CC BY 4.0' and image['licenseUrl'] == CC_BY_URL
+          and image['reuseStatus'] == 'cc-by-4.0',
+          f'{image_id}: the owner’s CC BY 4.0 release is recorded with its deed URL')
+    check('CC BY 4.0' in image['rightsNote'] and REQUIRED_CREDIT in image['rightsNote']
+          and 'MIT' in image['rightsNote'],
+          f'{image_id}: rights note states the licence, the required credit and the code-license exclusion')
+    check(image['credit'] == 'Photograph courtesy of the owner, via The Owl Atlas',
+          f'{image_id}: credit stays anonymous and names the party to attribute')
     check(image['crop'] == 'none', f'{image_id}: complete original remains available')
     viewer_url = urljoin(CANONICAL, page_data['images'][image_id]['localUrl'])
     check(viewer_url == image['url'], f'{image_id}: nested-page viewer resolves the published original')
 
 photos = [attrs for tag, attrs in document.elements if tag == 'img' and attrs.get('src')]
 expected_paths = {urlsplit(image['url']).path for image in journey['images'].values()}
-check(len(photos) == 4, 'Four photograph elements appear in the static story')
+# Six elements, four files: each close-up appears once as the story's circular
+# display crop and once as its complete frame in the photograph record.
+check(len(photos) == sum(DISPLAY_CROPS.values()),
+      'Every supplied photograph appears, and the two cropped close-ups also appear complete')
+check({urlsplit(urljoin(CANONICAL, photo['src'])).path for photo in photos} == expected_paths,
+      'The story shows all four supplied originals and no other image file')
+for image_id, appearances in DISPLAY_CROPS.items():
+    check(html.count(f'data-photo="{image_id}"') == appearances,
+          f'{image_id}: appears exactly {appearances} time(s) in the story')
 for photo in photos:
     url = urlsplit(urljoin(CANONICAL, photo['src']))
     check(url.netloc == 'theowlatlas.com' and url.path in expected_paths,
           'Every embedded photo is a supplied original, never an NGC or auction-house image')
     check(bool(photo.get('alt')), 'Every photograph has alternative text')
+
+# The photograph record carries the licence a reader has to act on, and it is
+# where the declared display crops are stated next to the complete frames.
+record = re.search(r'<details id="photographs"[\s\S]*?</details>', html)
+check(bool(record), 'The photograph record is present')
+record_html = record[0]
+check('CC BY 4.0' in record_html and CC_BY_URL in record_html and REQUIRED_CREDIT in record_html,
+      'The record names the licence, links its deed and states the required credit')
+check(CC_BY_URL in html and REQUIRED_CREDIT in text,
+      'The page states the credit the licence requires in readable copy')
+check('Used with permission' not in text and 'No general reuse license' not in text,
+      'The superseded permission-only wording is gone from the page')
+for image_id in ('owner-owl', 'owner-athena'):
+    image = journey['images'][image_id]
+    crop = image['displayCrop']
+    check(crop['shape'] == 'circle', f'{image_id}: the display crop is declared as a circle')
+    check(all(isinstance(crop[key], int) for key in ('centreX', 'centreY', 'radius')),
+          f'{image_id}: the display crop is a measurement, not a description')
+    check(0 <= crop['centreX'] - crop['radius'] and crop['centreX'] + crop['radius'] <= image['width']
+          and 0 <= crop['centreY'] - crop['radius'] and crop['centreY'] + crop['radius'] <= image['height'],
+          f'{image_id}: the display crop stays inside the photographed frame')
+    check(f"radius {crop['radius']} px" in image['changes']
+          and f"({crop['centreX']}, {crop['centreY']})" in image['changes']
+          and 'byte for byte' in image['changes'],
+          f'{image_id}: the changes note declares the measured circle over an unchanged file')
+    check(f"radius {crop['radius']} pixels" in record_html
+          and f"({crop['centreX']}, {crop['centreY']})" in record_html,
+          f'{image_id}: the page states the measured circle beside the complete frame')
+    check(record_html.count(f'data-photo="{image_id}"') == 1,
+          f'{image_id}: the complete, uncropped frame is shown in the record')
 
 coin = journey['coin']
 check(coin['certificate'] == '2086328-049' and coin['weightG'] == 17.21,

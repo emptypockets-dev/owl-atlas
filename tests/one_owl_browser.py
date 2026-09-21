@@ -29,6 +29,18 @@ ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / 'dist'
 HTML = (DIST / 'one-owl/index.html').read_text()
 PHOTO_IDS = ('owner-athena', 'owner-owl', 'owner-holder-obverse', 'owner-holder-reverse')
+# The two close-ups appear twice: once as the story's circular display crop and
+# once as the complete frame in the photograph record. Both are the same file.
+APPEARANCES = {'owner-athena': 2, 'owner-owl': 2,
+               'owner-holder-obverse': 1, 'owner-holder-reverse': 1}
+CC_BY_URL = 'https://creativecommons.org/licenses/by/4.0/'
+REQUIRED_CREDIT = 'The Owl Atlas (theowlatlas.com)'
+# Each display crop, measured off the owner's own 960x1280 frame. The rendered
+# circle has to land on the measured coin, or the crop is no longer declared.
+DISCS = {
+    '.journey-disc': {'cx': 433, 'cy': 745, 'r': 430},
+    '.journey-face-small': {'cx': 510, 'cy': 730, 'r': 372},
+}
 CHAPTER_IDS = ('top', 'mint-state', 'an-imagined-life', 'generations', 'survival', 'collecting-history', 'record', 'photographs', 'sources')
 WIDTHS = (1440, 768, 390, 320)
 OUTPUT = Path('/private/tmp') if Path('/private/tmp').exists() else Path(tempfile.gettempdir())
@@ -155,47 +167,86 @@ try:
         disclosure = page.locator('#photographs')
         check(disclosure.evaluate('e=>e.tagName==="DETAILS"&&!e.open'), 'Holder documentation is collapsed by default')
         for photo_id in PHOTO_IDS[:2]:
-            check(page.locator(f'[data-photo="{photo_id}"]').is_visible(), f'{photo_id}: coin face is visible')
+            check(page.locator(f'[data-photo="{photo_id}"]').first.is_visible(), f'{photo_id}: coin face is visible')
+
+        # The two close-ups are shown as circular display crops. The crop is CSS
+        # over the unchanged file, so the rendered circle has to sit on the coin
+        # the measurement names, and the file's own dimensions must not change.
+        for selector, measured in DISCS.items():
+            disc = page.locator(f'{selector} .image-surface').first
+            disc.scroll_into_view_if_needed()
+            geometry = disc.evaluate("""(e,m)=>{
+              const box=e.getBoundingClientRect(), img=e.querySelector('img').getBoundingClientRect();
+              return {side:box.width, height:box.height,
+                round:getComputedStyle(e).borderTopLeftRadius,
+                dx:(img.left+img.width*m.cx/960)-(box.left+box.width/2),
+                dy:(img.top+img.height*m.cy/1280)-(box.top+box.height/2),
+                diameter:img.width*2*m.r/960};
+            }""", measured)
+            check(abs(geometry['side'] - geometry['height']) < 1,
+                  f'{selector}: the display crop is a square window, so its circle is round', geometry)
+            check(geometry['round'].endswith('%') or float(geometry['round'].rstrip('px')) >= geometry['side'] / 2 - 1,
+                  f'{selector}: the display crop is masked to a circle', geometry)
+            check(abs(geometry['dx']) < 2 and abs(geometry['dy']) < 2,
+                  f'{selector}: the measured coin centre lands at the centre of the circle', geometry)
+            check(abs(geometry['diameter'] - geometry['side']) < 2,
+                  f'{selector}: the measured coin diameter fills the circle', geometry)
+
+        record_text = page.locator('#photographs').text_content()
+        check('CC BY 4.0' in record_text and REQUIRED_CREDIT in record_text,
+              'The photograph record states the licence and the credit it requires')
+        check(page.locator(f'#photographs a[href="{CC_BY_URL}"]').count() == 1,
+              'The photograph record links the CC BY 4.0 deed')
+        check('CC BY 4.0' in page.locator('.journey-disc figcaption').inner_text(),
+              'The opening credit names the licence beneath the coin')
+
         disclosure.locator('summary').focus()
         page.keyboard.press('Enter')
         check(disclosure.evaluate('e=>e.open'), 'Keyboard opens the holder photographs')
 
         for photo_id in PHOTO_IDS:
-            figure = page.locator(f'[data-photo="{photo_id}"]')
-            check(figure.count() == 1, f'{photo_id}: photograph appears once')
-            figure.scroll_into_view_if_needed()
-            image = figure.locator('img')
-            image.wait_for(state='visible')
-            page.wait_for_function('(id)=>{const e=document.querySelector(`[data-photo="${id}"] img`);return e.complete&&e.naturalWidth>0}', arg=photo_id)
-            dims = image.evaluate('e=>({w:e.naturalWidth,h:e.naturalHeight,expectedW:Number(e.getAttribute("width")),expectedH:Number(e.getAttribute("height")),url:e.currentSrc,alt:e.alt})')
-            check(dims['w'] == dims['expectedW'] and dims['h'] == dims['expectedH'],
-                  f'{photo_id}: actual photo dimensions match the record', dims)
-            check(bool(dims['alt'].strip()), f'{photo_id}: image has descriptive alternative text')
-            check(bool(figure.locator('figcaption').inner_text().strip()), f'{photo_id}: visible attribution is attached')
-            asset_path = DIST / urlparse(dims['url']).path.lstrip('/')
-            check(asset_path.is_file(), f'{photo_id}: local asset is included in dist', str(asset_path))
-            response = page.request.get(dims['url'])
-            check(response.status == 200, f'{photo_id}: image request succeeds')
-            if asset_path.is_file():
-                check(hashlib.sha256(response.body()).digest() == hashlib.sha256(asset_path.read_bytes()).digest(),
-                      f'{photo_id}: served image bytes match the staged original')
-            trigger = figure.locator('[data-image]')
-            trigger.focus()
-            page.keyboard.press('Enter')
-            dialog = page.locator('#image-dialog')
-            check(dialog.evaluate('e=>e.open&&e.matches(":modal")'), f'{photo_id}: keyboard opens a native modal viewer')
-            page.wait_for_function('document.querySelector("#viewer-image").complete&&document.querySelector("#viewer-image").naturalWidth>0')
-            check(page.locator('#viewer-image').evaluate('e=>e.naturalWidth') == dims['w'], f'{photo_id}: original resolution is available in the viewer')
-            check(page.locator('#image-stage').evaluate('e=>e===document.activeElement'), f'{photo_id}: viewer keyboard controls receive focus')
-            check(bool(page.locator('#viewer-credit').inner_text().strip()) and bool(page.locator('#viewer-license').inner_text().strip()),
-                  f'{photo_id}: viewer preserves credit and rights information')
-            page.keyboard.press('+')
-            check(page.locator('#zoom-value').inner_text() == '125%', f'{photo_id}: keyboard zoom enlarges the photograph')
-            page.keyboard.press('0')
-            check(page.locator('#zoom-value').inner_text() == '100%', f'{photo_id}: keyboard reset restores fitted view')
-            page.keyboard.press('Escape')
-            check(not dialog.evaluate('e=>e.open'), f'{photo_id}: Escape closes the viewer')
-            check(trigger.evaluate('e=>e===document.activeElement'), f'{photo_id}: focus returns to the selected photograph')
+            figures = page.locator(f'[data-photo="{photo_id}"]')
+            check(figures.count() == APPEARANCES[photo_id],
+                  f'{photo_id}: appears {APPEARANCES[photo_id]} time(s), display crop plus complete frame',
+                  figures.count())
+            for index in range(figures.count()):
+                where = f'{photo_id}[{index}]'
+                figure = figures.nth(index)
+                figure.scroll_into_view_if_needed()
+                image = figure.locator('img')
+                image.wait_for(state='visible')
+                page.wait_for_function('([id,i])=>{const e=document.querySelectorAll(`[data-photo="${id}"] img`)[i];return e&&e.complete&&e.naturalWidth>0}', arg=[photo_id, index])
+                dims = image.evaluate('e=>({w:e.naturalWidth,h:e.naturalHeight,expectedW:Number(e.getAttribute("width")),expectedH:Number(e.getAttribute("height")),url:e.currentSrc,alt:e.alt})')
+                check(dims['w'] == dims['expectedW'] and dims['h'] == dims['expectedH'],
+                      f'{where}: actual photo dimensions match the record', dims)
+                check(bool(dims['alt'].strip()), f'{where}: image has descriptive alternative text')
+                check(bool(figure.locator('figcaption').inner_text().strip()), f'{where}: visible attribution is attached')
+                check('CC BY 4.0' in figure.locator('figcaption').inner_text(), f'{where}: the visible attribution names the licence')
+                asset_path = DIST / urlparse(dims['url']).path.lstrip('/')
+                check(asset_path.is_file(), f'{where}: local asset is included in dist', str(asset_path))
+                response = page.request.get(dims['url'])
+                check(response.status == 200, f'{where}: image request succeeds')
+                if asset_path.is_file():
+                    check(hashlib.sha256(response.body()).digest() == hashlib.sha256(asset_path.read_bytes()).digest(),
+                          f'{where}: served image bytes match the staged original')
+                trigger = figure.locator('[data-image]')
+                trigger.focus()
+                page.keyboard.press('Enter')
+                dialog = page.locator('#image-dialog')
+                check(dialog.evaluate('e=>e.open&&e.matches(":modal")'), f'{where}: keyboard opens a native modal viewer')
+                page.wait_for_function('document.querySelector("#viewer-image").complete&&document.querySelector("#viewer-image").naturalWidth>0')
+                check(page.locator('#viewer-image').evaluate('e=>e.naturalWidth') == dims['w'],
+                      f'{where}: the complete original resolution is available in the viewer')
+                check(page.locator('#image-stage').evaluate('e=>e===document.activeElement'), f'{where}: viewer keyboard controls receive focus')
+                check(bool(page.locator('#viewer-credit').inner_text().strip()) and bool(page.locator('#viewer-license').inner_text().strip()),
+                      f'{where}: viewer preserves credit and rights information')
+                page.keyboard.press('+')
+                check(page.locator('#zoom-value').inner_text() == '125%', f'{where}: keyboard zoom enlarges the photograph')
+                page.keyboard.press('0')
+                check(page.locator('#zoom-value').inner_text() == '100%', f'{where}: keyboard reset restores fitted view')
+                page.keyboard.press('Escape')
+                check(not dialog.evaluate('e=>e.open'), f'{where}: Escape closes the viewer')
+                check(trigger.evaluate('e=>e===document.activeElement'), f'{where}: focus returns to the selected photograph')
 
         citation = page.locator('[data-source]:visible').first
         citation.focus()
@@ -253,16 +304,23 @@ try:
         check(nojs.locator('.source-entry:visible').count() > 0, 'No-JavaScript bibliography is visible')
         check(nojs.locator('#fiction-boundary').is_visible() and nojs.locator('.journey-scenes>li').count() == 4, 'All four fictional scenes and their context remain readable without JavaScript')
         for photo_id in PHOTO_IDS[:2]:
-            check(nojs.locator(f'[data-photo="{photo_id}"]').is_visible(), f'No-JavaScript {photo_id}: coin face remains visible')
+            check(nojs.locator(f'[data-photo="{photo_id}"]').first.is_visible(), f'No-JavaScript {photo_id}: coin face remains visible')
         nojs.locator('#photographs > summary').focus()
         nojs.keyboard.press('Enter')
         check(nojs.locator('#photographs').evaluate('e=>e.open'), 'No-JavaScript disclosure opens with the keyboard')
+        check(REQUIRED_CREDIT in nojs.locator('#photographs').inner_text(),
+              'No-JavaScript reading still states the credit the licence requires')
         for photo_id in PHOTO_IDS:
-            figure = nojs.locator(f'[data-photo="{photo_id}"]')
-            trigger = figure.locator('[data-image]')
-            check(figure.is_visible() and bool(figure.locator('figcaption').inner_text().strip()), f'No-JavaScript {photo_id}: photo and attribution remain available')
-            original = urljoin(nojs.url, trigger.get_attribute('href'))
-            check(nojs.request.get(original).status == 200, f'No-JavaScript {photo_id}: link leads directly to the photograph')
+            figures = nojs.locator(f'[data-photo="{photo_id}"]')
+            check(figures.count() == APPEARANCES[photo_id], f'No-JavaScript {photo_id}: every appearance is in the static markup')
+            for index in range(figures.count()):
+                figure = figures.nth(index)
+                trigger = figure.locator('[data-image]')
+                check(figure.is_visible() and bool(figure.locator('figcaption').inner_text().strip()), f'No-JavaScript {photo_id}[{index}]: photo and attribution remain available')
+                # Without JavaScript the "Look closer" link is the route to the
+                # complete, uncropped frame, so it has to reach the real file.
+                original = urljoin(nojs.url, trigger.get_attribute('href'))
+                check(nojs.request.get(original).status == 200, f'No-JavaScript {photo_id}[{index}]: link leads directly to the complete photograph')
         first_citation = nojs.locator('[data-source]').first
         fragment = first_citation.get_attribute('href')
         first_citation.click()

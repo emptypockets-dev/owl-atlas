@@ -7,23 +7,34 @@ any material. The website's software license does not cover these photographs.
 
 ## Image groups
 
-**Owner-supplied photographs / permission for this site**
+**Owner-supplied photographs / CC BY 4.0**
 
 - Four JPEGs of NGC 2086328-049, supplied 17 September 2026: obverse and reverse
   close-ups, and full-holder obverse and reverse views.
-- Credit: “Photographs courtesy of the owner.” Permission covers inclusion in
-  this owner-requested story; no general reuse license is granted.
+- Credit: “Photograph courtesy of the owner, via The Owl Atlas.”
+- License: the owner released all four on 21 September 2026 under
+  [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). They may be copied,
+  adapted and redistributed, including commercially, with credit to
+  “The Owl Atlas (theowlatlas.com)”. This replaces the earlier
+  permission-for-this-site-only terms.
 - Files are published byte for byte under `public/images/one-owl-*.jpg`. No
-  cropping, retouching, reconstruction or enhancement; full frames remain in
-  both page and viewer. Reflections, holder prongs and plastic marks are retained.
+  retouching, reconstruction or enhancement; full frames remain in both page and
+  viewer. Reflections, holder prongs and plastic marks are retained.
+- Declared transformation: the companion story displays the two close-ups as
+  circular crops drawn in CSS over the unchanged files — the owl as a circle of
+  radius 430 px centred at (433, 745), Athena as a circle of radius 372 px
+  centred at (510, 730), both in their 960×1280 frames. The measurements and the
+  method are recorded in each image's `displayCrop` and `changes` fields, and the
+  complete frames are shown in the page's photograph record.
 - The files contain orientation, resolution, color-space and dimension metadata;
   no GPS or personal identifying metadata was found. No metadata was changed.
 - Exact dimensions and SHA-256 checksums are in `src/one-owl.json`, exported to
   `research/one-owl-manifest.json`. These records belong to the companion page,
   separate from the main atlas’s 17 external image records.
 - The software MIT license excludes these photographs, just as it excludes the
-  externally hosted museum and other third-party photographs. NGC and auction
-  photographs are linked as evidence but are not reproduced on the companion page.
+  externally hosted museum and other third-party photographs: reuse follows the
+  CC BY 4.0 terms above, not the code license. NGC and auction photographs are
+  linked as evidence but are not reproduced on the companion page.
 
 **Cleveland Museum of Art / CC0 1.0**
 
