@@ -85,11 +85,14 @@ for (const [index, delta] of wheel.entries()) {
     }
   }
   await sleep(settle);
-  const state = await send('Runtime.evaluate', {expression: `(() => { ${evaluate ? `const custom = (() => { ${evaluate} })();` : 'const custom = null;'} const header = document.querySelector('.site-header'); const bar = document.querySelector('.chapter-bar, .chrome-utility'); return JSON.stringify({scrollY: Math.round(scrollY), html: document.documentElement.className, headerTop: header ? Math.round(header.getBoundingClientRect().top) : null, barTop: bar ? Math.round(bar.getBoundingClientRect().top) : null, custom}); })()`, returnByValue: true}, sessionId);
+  // The custom expression may be async and may throw; both are reported, never fatal.
+  const state = await send('Runtime.evaluate', {expression: `(async () => { let custom = null; ${evaluate ? `try { custom = await (async () => { ${evaluate} })(); } catch (error) { custom = {evalError: String(error && error.stack || error)}; }` : ''} const header = document.querySelector('.site-header'); const bar = document.querySelector('.chapter-bar, .chrome-utility'); return JSON.stringify({scrollY: Math.round(scrollY), html: document.documentElement.className, headerTop: header ? Math.round(header.getBoundingClientRect().top) : null, barTop: bar ? Math.round(bar.getBoundingClientRect().top) : null, custom}); })()`, awaitPromise: true, returnByValue: true}, sessionId);
   const {data} = await send('Page.captureScreenshot', {format: 'png'}, sessionId);
   const file = `${out}-${String(index + 1).padStart(2, '0')}.png`;
   await writeFile(file, Buffer.from(data, 'base64'));
-  summary.push({file, delta, state: JSON.parse(state.result.value)});
+  let parsed;
+  try { parsed = JSON.parse(state.result.value); } catch { parsed = {unparsed: state.result, exception: state.exceptionDetails?.text}; }
+  summary.push({file, delta, state: parsed});
 }
 console.log(JSON.stringify(summary, null, 1));
 socket.close();
