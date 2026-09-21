@@ -908,3 +908,82 @@ if (animatedStages.length) {
     });
   }
 }
+
+/* === CHUNK 4 / IDENTIFIER ================================================ */
+/**
+ * "Which owl does this resemble?" — the reference page's guided comparison.
+ *
+ * Progressive enhancement, like everything else here. The build renders the
+ * questions, a static decision table and an inert <template> of result cards.
+ * Without JavaScript the form and the result panel stay `hidden` and the table
+ * stays open, so a reader loses the narrowing and keeps every trait, source and
+ * family. This block reveals the controls, collapses the table into a reference,
+ * and clones the matching cards.
+ *
+ * The matching rule lives in the markup, not here: each card carries the traits
+ * this edition records for its family, and a family survives an answer when its
+ * recorded value agrees or when the value is "varies" — how the data stores a
+ * trait this edition has not established. So the flow never narrows past the
+ * evidence, and a reader who answers "not sure" throughout still sees all eight.
+ *
+ * This is resemblance only. Nothing here dates, grades, values or attributes a
+ * coin, and the visible caution above the form says so.
+ */
+const identifyForm = byId('identify-form');
+if (identifyForm) {
+  const identifyResult = byId('identify-result');
+  const identifyStatus = byId('identify-status');
+  const identifyCards = byId('identify-cards');
+  const identifyTemplates = byId('identify-card-templates');
+  const identifyReference = byId('identify-reference');
+  const identifyTraits = [...identifyForm.querySelectorAll('[data-identify-trait]')].map((group) => group.dataset.identifyTrait);
+  const identifySource = [...identifyTemplates.content.querySelectorAll('[data-identify-family]')];
+  const identifyNames = new Map(identifySource.map((card) => [card.dataset.identifyFamily, card.querySelector('h4').textContent]));
+
+  const identifyAnswers = () => {
+    const entered = new FormData(identifyForm);
+    const chosen = {};
+    for (const trait of identifyTraits) {
+      const value = entered.get(`identify-${trait}`);
+      if (value) chosen[trait] = value;
+    }
+    return chosen;
+  };
+  const identifyMatches = (chosen) => identifySource.filter((card) => {
+    const recorded = JSON.parse(card.dataset.identifyTraits);
+    return Object.entries(chosen).every(([trait, value]) => recorded[trait] === 'varies' || recorded[trait] === value);
+  });
+  const identifyList = (names) => (names.length > 1 ? `${names.slice(0, -1).join(', ')} and ${names.at(-1)}` : names[0]);
+
+  function renderIdentify() {
+    const chosen = identifyAnswers();
+    const asked = Object.keys(chosen).length;
+    const found = identifyMatches(chosen);
+    identifyCards.replaceChildren();
+    if (!asked) {
+      identifyStatus.textContent = `Answer any question above and the ${identifySource.length} families narrow here. Nothing is ruled out yet.`;
+      return;
+    }
+    if (!found.length) {
+      identifyStatus.textContent = 'No family in this edition carries all of those traits together. Answer “Not sure” wherever you are unsure, or read the whole table below.';
+      return;
+    }
+    for (const card of found) identifyCards.append(card.cloneNode(true));
+    watchImages(identifyCards);
+    const names = identifyList(found.map((card) => identifyNames.get(card.dataset.identifyFamily)));
+    const basis = asked === 1 ? 'On that one observation' : `On those ${asked} observations`;
+    const count = found.length === 1 ? 'one family resembles' : `${found.length} families resemble`;
+    identifyStatus.textContent = `${basis}, ${count} what you described: ${names}. A resemblance, not an attribution.`;
+  }
+
+  identifyForm.hidden = false;
+  identifyResult.hidden = false;
+  // With the questions available the table becomes a reference rather than the
+  // whole feature, so it starts closed here and stays open without scripting.
+  if (identifyReference) identifyReference.open = false;
+  identifyForm.addEventListener('change', renderIdentify);
+  // The reset event fires before the controls return to their checked defaults.
+  identifyForm.addEventListener('reset', () => setTimeout(renderIdentify, 0));
+  identifyForm.addEventListener('submit', (event) => event.preventDefault());
+  renderIdentify();
+}

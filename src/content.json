@@ -868,7 +868,48 @@
         "early-silver"
       ],
       "feature": "A strikingly frontal eye on a profile face; compact, individually engraved forms.",
-      "detail": "The Athena–owl pairing was already established before the classical mass issues. Early style varies: “archaic” is not a synonym for crude. The exact introduction date remains debated."
+      "detail": "The Athena–owl pairing was already established before the classical mass issues. Early style varies: “archaic” is not a synonym for crude. The exact introduction date remains debated.",
+      "identify": {
+        "eye": {
+          "value": "frontal",
+          "refs": [
+            "archaic-photo",
+            "early-silver"
+          ]
+        },
+        "crest": {
+          "value": "varies",
+          "refs": [
+            "ngc"
+          ]
+        },
+        "helmetPi": {
+          "value": false,
+          "refs": [
+            "remint"
+          ]
+        },
+        "wreath": {
+          "value": false,
+          "refs": [
+            "archaic-photo"
+          ]
+        },
+        "amphoraAndMagistrates": {
+          "value": false,
+          "refs": [
+            "archaic-photo"
+          ]
+        },
+        "localLettering": {
+          "value": false,
+          "refs": [
+            "archaic-photo",
+            "acropolis"
+          ]
+        },
+        "styleNote": "Frontal eye on a compact flan, with no wreath and no amphora. The boundary with the early classical group is approximate, so nothing recorded here separates a late archaic die from an early classical one."
+      }
     },
     {
       "id": "early-classical",
@@ -883,7 +924,47 @@
         "cma-early"
       ],
       "feature": "More composed engraving, while the old frontal-eye convention survives.",
-      "detail": "Sometimes called transitional in the fifth-century sense. This label is not the same as the “transitional” owls of the early fourth century. The illustrated museum example is dated 480–449 BCE. Both photographs show the same coin: Cleveland 1920.267, with obverse 1920.267.a and reverse 1920.267.b."
+      "detail": "Sometimes called transitional in the fifth-century sense. This label is not the same as the “transitional” owls of the early fourth century. The illustrated museum example is dated 480–449 BCE. Both photographs show the same coin: Cleveland 1920.267, with obverse 1920.267.a and reverse 1920.267.b.",
+      "identify": {
+        "eye": {
+          "value": "frontal",
+          "refs": [
+            "cma-early"
+          ]
+        },
+        "crest": {
+          "value": "varies",
+          "refs": [
+            "ngc"
+          ]
+        },
+        "helmetPi": {
+          "value": false,
+          "refs": [
+            "remint"
+          ]
+        },
+        "wreath": {
+          "value": false,
+          "refs": [
+            "cma-early"
+          ]
+        },
+        "amphoraAndMagistrates": {
+          "value": false,
+          "refs": [
+            "cma-early"
+          ]
+        },
+        "localLettering": {
+          "value": false,
+          "refs": [
+            "cma-early",
+            "acropolis"
+          ]
+        },
+        "styleNote": "The frontal eye is kept while the engraving grows more composed. “Transitional” names this fifth-century refinement and also the early fourth century, so the label alone does not place a coin."
+      }
     },
     {
       "id": "classical",
@@ -899,7 +980,49 @@
         "ngc"
       ],
       "feature": "Athena, olive, crescent, owl and ΑΘΕ in a familiar, compact design.",
-      "detail": "The mature group dated 440–404 BCE sits within this broader mass-issue phase. The illustrated Met specimen retains its museum catalogue date; the period does not identify a particular year of striking."
+      "detail": "The mature group dated 440–404 BCE sits within this broader mass-issue phase. The illustrated Met specimen retains its museum catalogue date; the period does not identify a particular year of striking.",
+      "identify": {
+        "eye": {
+          "value": "frontal",
+          "refs": [
+            "cma-classic",
+            "profile"
+          ]
+        },
+        "crest": {
+          "value": "partial-or-off-flan",
+          "refs": [
+            "ngc",
+            "market-crest"
+          ]
+        },
+        "helmetPi": {
+          "value": false,
+          "refs": [
+            "remint"
+          ]
+        },
+        "wreath": {
+          "value": false,
+          "refs": [
+            "met"
+          ]
+        },
+        "amphoraAndMagistrates": {
+          "value": false,
+          "refs": [
+            "met"
+          ]
+        },
+        "localLettering": {
+          "value": false,
+          "refs": [
+            "met",
+            "acropolis"
+          ]
+        },
+        "styleNote": "A crest complete on the flan is unusual here, which is why catalogues remark on it. Wear, strike and flan vary far more across this group than the design itself does."
+      }
     },
     {
       "id": "profile",
@@ -918,7 +1041,49 @@
         "isotopes"
       ],
       "feature": "Athena’s eye is more plausibly seen from the side; the reverse remains conservative.",
-      "detail": "Frequently cataloged c. 393–355 BCE, with other chronologies using c. 400/390–353. Eye shape is a clue, not a universal dating algorithm: related forms occur in late fifth-century work."
+      "detail": "Frequently cataloged c. 393–355 BCE, with other chronologies using c. 400/390–353. Eye shape is a clue, not a universal dating algorithm: related forms occur in late fifth-century work.",
+      "identify": {
+        "eye": {
+          "value": "profile",
+          "refs": [
+            "profile",
+            "profile-photo"
+          ]
+        },
+        "crest": {
+          "value": "varies",
+          "refs": [
+            "ngc"
+          ]
+        },
+        "helmetPi": {
+          "value": "varies",
+          "refs": [
+            "profile",
+            "remint"
+          ]
+        },
+        "wreath": {
+          "value": false,
+          "refs": [
+            "profile-photo"
+          ]
+        },
+        "amphoraAndMagistrates": {
+          "value": false,
+          "refs": [
+            "profile-photo"
+          ]
+        },
+        "localLettering": {
+          "value": false,
+          "refs": [
+            "profile-photo",
+            "acropolis"
+          ]
+        },
+        "styleNote": "The eye turns; the reverse does not. Eye shape is a clue rather than a dating rule, since related forms occur in late fifth-century work, and this edition records no separate helmet-ornament convention for the group."
+      }
     },
     {
       "id": "pi",
@@ -940,7 +1105,50 @@
       "specimens": [
         "bnf-pi-iii-1475",
         "bnf-pi-ii-1469"
-      ]
+      ],
+      "identify": {
+        "eye": {
+          "value": "profile",
+          "refs": [
+            "bnf-pi-iii",
+            "bnf-pi-ii"
+          ]
+        },
+        "crest": {
+          "value": "varies",
+          "refs": [
+            "bnf-pi-iii"
+          ]
+        },
+        "helmetPi": {
+          "value": true,
+          "refs": [
+            "remint",
+            "bnf-pi-iii",
+            "iris-pi"
+          ]
+        },
+        "wreath": {
+          "value": false,
+          "refs": [
+            "bnf-pi-iii"
+          ]
+        },
+        "amphoraAndMagistrates": {
+          "value": false,
+          "refs": [
+            "bnf-pi-iii"
+          ]
+        },
+        "localLettering": {
+          "value": false,
+          "refs": [
+            "bnf-pi-iii",
+            "acropolis"
+          ]
+        },
+        "styleNote": "The ornament names the style; it does not fix a year. Folded and restruck flans are common, and competing chronologies place the group differently."
+      }
     },
     {
       "id": "late-old",
@@ -960,7 +1168,49 @@
       "detail": "BnF 1966.453.1478 is explicitly catalogued as quadridigité and dated c. 286–261 BCE in that record; this range is not a date for every later Old Style issue. A separate Heterogeneous Group C auction specimen is sourced, but its 500 × 240 px preview has not been substituted for a high-resolution reference photograph. Reuse review remains pending for the linked BnF photographs.",
       "specimens": [
         "bnf-quadridigite-1478"
-      ]
+      ],
+      "identify": {
+        "eye": {
+          "value": "varies",
+          "refs": [
+            "bnf-quadridigite",
+            "iris-quadridigite"
+          ]
+        },
+        "crest": {
+          "value": "varies",
+          "refs": [
+            "bnf-quadridigite"
+          ]
+        },
+        "helmetPi": {
+          "value": "varies",
+          "refs": [
+            "bnf-quadridigite",
+            "iris-quadridigite"
+          ]
+        },
+        "wreath": {
+          "value": false,
+          "refs": [
+            "bnf-quadridigite"
+          ]
+        },
+        "amphoraAndMagistrates": {
+          "value": false,
+          "refs": [
+            "bnf-quadridigite"
+          ]
+        },
+        "localLettering": {
+          "value": false,
+          "refs": [
+            "bnf-quadridigite",
+            "acropolis"
+          ]
+        },
+        "styleNote": "Several distinct third-century groups share the old design. This edition records no single eye or helmet convention across them, so this family stays in view whatever you answer."
+      }
     },
     {
       "id": "new",
@@ -977,7 +1227,50 @@
         "new-catalogs"
       ],
       "feature": "A broader composition: elaborate Athena, owl on an amphora, olive wreath and more inscriptions.",
-      "detail": "The familiar c. 165–42 BCE label is not a universally settled pair of endpoints. This atlas uses a broader envelope rather than assigning every New Style coin one precise terminal date."
+      "detail": "The familiar c. 165–42 BCE label is not a universally settled pair of endpoints. This atlas uses a broader envelope rather than assigning every New Style coin one precise terminal date.",
+      "identify": {
+        "eye": {
+          "value": "profile",
+          "refs": [
+            "new-photo"
+          ]
+        },
+        "crest": {
+          "value": "full",
+          "refs": [
+            "new-photo"
+          ]
+        },
+        "helmetPi": {
+          "value": false,
+          "refs": [
+            "new-photo",
+            "new-catalogs"
+          ]
+        },
+        "wreath": {
+          "value": true,
+          "refs": [
+            "new-photo",
+            "new-catalogs"
+          ]
+        },
+        "amphoraAndMagistrates": {
+          "value": true,
+          "refs": [
+            "new-photo",
+            "new-chronology"
+          ]
+        },
+        "localLettering": {
+          "value": false,
+          "refs": [
+            "new-photo",
+            "new-catalogs"
+          ]
+        },
+        "styleNote": "A broader flan carries an elaborate helmet, the owl on an amphora, an olive wreath and added names — all in Greek. These are the easiest traits to see and the ones that narrow fastest."
+      }
     },
     {
       "id": "egypt",
@@ -994,7 +1287,47 @@
         "sabakes"
       ],
       "feature": "Athenian visual language adapted under Persian administration in Egypt.",
-      "detail": "“Attic” can describe a weight convention, not the mint. An owl design or an Egyptian findspot alone does not settle who issued a coin. This named type provides a stronger attribution."
+      "detail": "“Attic” can describe a weight convention, not the mint. An owl design or an Egyptian findspot alone does not settle who issued a coin. This named type provides a stronger attribution.",
+      "identify": {
+        "eye": {
+          "value": "varies",
+          "refs": [
+            "sabakes"
+          ]
+        },
+        "crest": {
+          "value": "varies",
+          "refs": [
+            "sabakes"
+          ]
+        },
+        "helmetPi": {
+          "value": "varies",
+          "refs": [
+            "sabakes"
+          ]
+        },
+        "wreath": {
+          "value": false,
+          "refs": [
+            "sabakes"
+          ]
+        },
+        "amphoraAndMagistrates": {
+          "value": false,
+          "refs": [
+            "sabakes"
+          ]
+        },
+        "localLettering": {
+          "value": "varies",
+          "refs": [
+            "sabakes",
+            "isotopes"
+          ]
+        },
+        "styleNote": "Athenian visual language adapted under Persian administration in Egypt; the illustrated Sabakes type carries local lettering beside the owl. An owl design, a weight standard or a findspot alone does not settle who issued a coin, so this family stays in view either way."
+      }
     }
   ],
   "artifactStories": {

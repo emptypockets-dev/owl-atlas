@@ -395,7 +395,7 @@ check(replay.replace(/<[^>]*>/g, '').trim().startsWith('Play again'), 'The repla
 check(minting.includes('<div class="minting-footer-actions">'), 'The replay control sits with the onward link, beside the copy');
 // Every moving part waits for the class the observer adds, and motion off puts
 // the figure back to the frame it was drawn in.
-const mintingCss = styles.slice(styles.indexOf('/* === CHUNK 3 / MINTING'), styles.indexOf('end CHUNK 3 / MINTING'));
+const mintingEnd = styles.indexOf('end CHUNK 3 / MINTING'); const mintingCss = styles.slice(styles.indexOf('/* === CHUNK 3 / MINTING'), mintingEnd + 'end CHUNK 3 / MINTING'.length);
 check(Boolean(mintingCss) && mintingCss.includes('end CHUNK 3 / MINTING'), 'The minting styles are one self-contained block');
 for (const rule of mintingCss.split('\n')) {
   if (!/^\s*\.[^{]*\{[^}]*animation:/.test(rule)) continue;
@@ -567,5 +567,136 @@ check(appScript.includes("geographyExplorer.querySelector('[data-animate-on-view
   'The geographic sweep is hooked to its own in-view observer');
 check(!/scrollIntoView|scrollTo/.test(appScript.slice(appScript.indexOf('const geographyExplorer'), appScript.indexOf('// Inline citations'))),
   'The geographic block never moves the page for the reader');
+
+/* === CHUNK 4 / IDENTIFIER ================================================ */
+// "Which owl does this resemble?" is a resemblance flow, never an attribution
+// one. These checks hold three things at once: every family carries a complete,
+// source-backed trait block; the reference page renders the flow and its
+// scriptless decision table; and the wording stays out of authentication
+// territory.
+const IDENTIFY_TRAITS = ['eye', 'crest', 'helmetPi', 'wreath', 'amphoraAndMagistrates', 'localLettering'];
+const IDENTIFY_VALUES = {
+  eye: ['frontal', 'profile', 'varies'],
+  crest: ['full', 'partial-or-off-flan', 'varies'],
+  helmetPi: [true, false, 'varies'],
+  wreath: [true, false, 'varies'],
+  amphoraAndMagistrates: [true, false, 'varies'],
+  localLettering: [true, false, 'varies'],
+};
+for (const family of data.families) {
+  const identify = family.identify;
+  check(Boolean(identify), `${family.id}: no identify block`);
+  check(typeof identify.styleNote === 'string' && identify.styleNote.length > 40, `${family.id}: identify needs a readable styleNote`);
+  check(Object.keys(identify).every(key => key === 'styleNote' || IDENTIFY_TRAITS.includes(key)), `${family.id}: unexpected identify key`);
+  for (const trait of IDENTIFY_TRAITS) {
+    const record = identify[trait];
+    check(Boolean(record) && typeof record === 'object', `${family.id}: identify.${trait} is missing`);
+    check(IDENTIFY_VALUES[trait].includes(record.value), `${family.id}: identify.${trait} has an unknown value ${JSON.stringify(record.value)}`);
+    check(Array.isArray(record.refs) && record.refs.length > 0, `${family.id}: identify.${trait} cites no source`);
+    record.refs.forEach(id => check(ids.has(id), `${family.id}: identify.${trait} cites an unknown source ${id}`));
+  }
+}
+// An unrecorded trait must never narrow, so every answer has to leave at least
+// the families that record it as "varies" standing.
+const identifyValue = (family, trait) => {
+  const raw = family.identify[trait].value;
+  return raw === true ? 'yes' : raw === false ? 'no' : raw;
+};
+for (const trait of IDENTIFY_TRAITS) {
+  const recorded = data.families.filter(family => identifyValue(family, trait) !== 'varies');
+  check(recorded.length > 0, `identify.${trait} is recorded for no family, so its question can never narrow`);
+  check(new Set(data.families.map(family => identifyValue(family, trait))).size > 1, `identify.${trait} is identical across all eight families`);
+}
+const identifySection = atlas.match(/<section class="identify" id="identify"[\s\S]*?<\/section>\s*<div class="compare-tools">/)?.[0] || '';
+check(Boolean(identifySection), 'The reference page renders the identifier before the comparison tool');
+check(!/\{\{IDENTIFIER\}\}/.test(atlas + template + pricing + journey), 'The identifier token is resolved everywhere');
+check(html.includes('href="atlas/#identify"'), 'The homepage invites readers into the identifier');
+// Questions: native radios in a real form, each group with an answer that keeps
+// every family, and each illustration drawn from a rights-cleared photograph.
+const identifyGroups = [...identifySection.matchAll(/<fieldset class="identify-question" data-identify-trait="([^"]+)"[\s\S]*?<\/fieldset>/g)];
+check(identifyGroups.length === IDENTIFY_TRAITS.length, `Every recorded trait gets a question: ${identifyGroups.length}`);
+for (const [group, trait] of identifyGroups) {
+  check(IDENTIFY_TRAITS.includes(trait), `Unknown identifier question trait: ${trait}`);
+  const radios = [...group.matchAll(/<input type="radio" id="[^"]*" name="identify-([^"]+)" value="([^"]*)"/g)];
+  check(radios.length >= 3, `${trait}: a question needs at least two answers and an opt-out`);
+  check(radios.every(([, name]) => name === trait), `${trait}: every radio belongs to its own group`);
+  check(radios.filter(([, , value]) => value === '').length === 1, `${trait}: exactly one "not sure" answer that keeps every family`);
+  check(/value="" checked>/.test(group), `${trait}: the flow opens with nothing ruled out`);
+  check(/<legend>/.test(group), `${trait}: the question is a labelled group`);
+  const illustrated = [...group.matchAll(/data-photo="([^"]+)"/g)].map(match => match[1]);
+  check(illustrated.length > 0, `${trait}: the question shows what to look at`);
+  for (const id of illustrated) {
+    check(Boolean(data.images[id]), `${trait}: unknown illustration ${id}`);
+    check(data.images[id].reuseStatus !== 'review-pending', `${trait}: a reuse-review-pending photograph must not illustrate a question`);
+  }
+}
+check(/<button class="identify-reset" id="identify-reset" type="reset">Start again<\/button>/.test(identifySection), 'The flow can be started again');
+check(/<form class="identify-form" id="identify-form" hidden>/.test(identifySection), 'The form is revealed by script, so it is never inert');
+check(/id="identify-status" role="status" aria-live="polite"/.test(identifySection), 'The result panel announces itself politely');
+// Result cards: every family, both faces, its pricing note and, where one
+// exists, the comparison preset the story already uses.
+const identifyCards = [...identifySection.matchAll(/<article class="identify-card" data-identify-family="([^"]+)" data-identify-traits="([^"]*)"[\s\S]*?(?=<article class="identify-card"|<\/template>)/g)];
+check(identifyCards.length === data.families.length, 'Every family has a result card');
+for (const [card, id, traits] of identifyCards) {
+  const family = data.families.find(entry => entry.id === id);
+  check(Boolean(family), `Unknown identifier result card: ${id}`);
+  const recorded = JSON.parse(traits.replace(/&quot;/g, '"'));
+  for (const trait of IDENTIFY_TRAITS) check(recorded[trait] === identifyValue(family, trait), `${id}: card trait ${trait} differs from src/content.json`);
+  check(card.includes('class="family-faces"'), `${id}: the result card shows both faces`);
+  for (const side of ['obverse', 'reverse']) if (family[side]) check(card.includes(`data-photo="${family[side]}"`), `${id}: the result card lost its ${side}`);
+  check(card.includes(`href="#family-${id}"`), `${id}: the result card links to the full family entry`);
+  if (data.market?.familyNotes?.[id]) check(/class="family-market"/.test(card) && /pricing\//.test(card), `${id}: the result card keeps its pricing note link`);
+  if (family.specimens?.length) check(/data-compare-preset="(pi-pair|late-bridge)"/.test(card), `${id}: the result card keeps its comparison preset link`);
+}
+// The scriptless decision table is the whole feature in static HTML.
+const identifyTable = identifySection.match(/<table class="identify-table">[\s\S]*?<\/table>/)?.[0] || '';
+check(Boolean(identifyTable), 'The identifier renders a decision table without JavaScript');
+check(/<details class="identify-reference" id="identify-reference" open>/.test(identifySection), 'The table is open until script collapses it');
+for (const family of data.families) check(identifyTable.includes(`>${escapeHtml(family.name)}</a>`), `The decision table lists ${family.name}`);
+check((identifyTable.match(/<tr><th scope="row">/g) || []).length === data.families.length, 'The decision table has one row per family');
+for (const trait of IDENTIFY_TRAITS) {
+  for (const family of data.families) {
+    for (const id of family.identify[trait].refs) {
+      check(identifyTable.includes(`data-source="${id}"`) || identifySection.includes(`data-source="${id}"`), `The identifier shows the source ${id} behind ${family.id}/${trait}`);
+    }
+  }
+}
+const identifyReadings = identifySection.match(/<ul class="identify-readings">[\s\S]*?<\/ul>/)?.[0] || '';
+check((identifyReadings.match(/<li>/g) || []).length >= 3, 'The table opens with worked "if … look at …" readings');
+check(/If .*?, look at the <strong>/.test(identifyReadings), 'Each reading names the families it points at');
+// Resemblance, never authentication. AGENTS.md rules out authentication advice,
+// so the caution has to be visible and these words must not appear in the flow.
+const identifyCopy = identifySection.replace(/<[^>]*>/g, ' ');
+check(/resemblance, not attribution/i.test(identifyCopy), 'The identifier states that it narrows a resemblance');
+check(/only physical examination and a specialist opinion can attribute a coin/i.test(identifyCopy),
+  'The identifier says what it cannot do, in the open');
+for (const word of ['authenticate', 'authentication', 'genuine', 'guarantee', 'certif']) {
+  check(!new RegExp(word, 'i').test(identifyCopy), `The identifier must not use the word "${word}"`);
+}
+// The result cards carry the pricing notes the family grid already shows, and
+// those name grades and values to disclaim them in their own wording. This
+// narrower slice is the identifier's own prose: caution, questions, readings
+// and table, with the parked result cards taken out.
+const identifyOwnCopy = identifySection.replace(/<template[\s\S]*?<\/template>/, ' ').replace(/<[^>]*>/g, ' ');
+for (const word of ['grade', 'value', 'appraise', 'worth', 'price']) {
+  const used = [...identifyOwnCopy.matchAll(new RegExp(`\\b${word}\\w*`, 'gi'))].map(match => match[0]);
+  check(used.every(instance => new RegExp(`(?:not|never|nor|neither)[^.]{0,80}${instance}`, 'i').test(identifyOwnCopy)),
+    `The identifier's own copy only mentions "${word}" to disclaim it`);
+}
+// Styles and behaviour: one self-contained appended block each, with the flow
+// still enhancement rather than a dependency.
+const IDENTIFIER_END = 'end CHUNK 4 / IDENTIFIER';
+const identifierCss = styles.slice(styles.indexOf('/* === CHUNK 4 / IDENTIFIER'), styles.indexOf(IDENTIFIER_END) + IDENTIFIER_END.length);
+check(identifierCss.includes(IDENTIFIER_END), 'The identifier styles are one self-contained block');
+check(inlineStyles.includes('.identify-answer {'), 'The built CSS carries the identifier answers');
+check(/\.identify-answer\s*\{[^}]*min-height:44px/.test(identifierCss), 'Every answer is a 44 px target');
+for (const guard of ['html.motion-off .identify-answer', '@media (prefers-reduced-motion:reduce)']) {
+  check(identifierCss.includes(guard), `The identifier transitions are switched off for ${guard}`);
+}
+check(!/\.identify-form\s*\{[^}]*display:/.test(identifierCss), 'Nothing overrides the hidden attribute on the identifier form');
+check(appScript.includes("const identifyForm = byId('identify-form')"), 'The identifier flow is wired in src/app.js');
+check(/identifyForm\.hidden = false/.test(appScript), 'Script reveals the questions rather than markup hiding content from a reader without it');
+check(!/scrollIntoView|scrollTo/.test(appScript.slice(appScript.indexOf("const identifyForm"))),
+  'The identifier never moves the page for the reader');
 
 console.log(`PASS: ${tests} structural/rendering checks; ${data.sources.length} sources; ${Object.keys(data.images).length} images; ${data.families.length} family records.\nExternal network availability and historical claims require separate review.`);
