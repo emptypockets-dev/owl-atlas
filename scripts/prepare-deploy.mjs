@@ -30,6 +30,22 @@ try {
   for (const asset of ['favicon.svg', 'robots.txt', 'sitemap.xml']) {
     await copyFile(path.join(root, 'public', asset), path.join(stage, asset));
   }
+  // Self-hosted display faces. The list is read back out of the stylesheet
+  // rather than written down here, so a face that stops being referenced stops
+  // being published: the unused Instrument Serif candidate never ships, and a
+  // newly referenced subset cannot be forgotten. Paths are root-absolute in the
+  // CSS because the sheet is inlined into pages at two directory depths.
+  const stylesheet = await readFile(path.join(root, 'src/styles.css'), 'utf8');
+  const fontFiles = new Set([...stylesheet.matchAll(/url\((\/public\/fonts\/[^)'"]+)\)/g)].map(match => match[1]));
+  for (const reference of fontFiles) {
+    const relative = reference.slice(1);
+    if (!/^public\/fonts\/[a-z0-9-]+\/[a-zA-Z0-9_-]+\.woff2$/.test(relative)) {
+      throw new Error(`Unsafe or unsupported font path in src/styles.css: ${reference}`);
+    }
+    const target = path.join(stage, relative);
+    await mkdir(path.dirname(target), {recursive: true});
+    await copyFile(path.join(root, relative), target);
+  }
   // Share cards, named explicitly by the content record rather than by a glob.
   await mkdir(path.join(stage, 'social'));
   for (const [page, card] of Object.entries(data.social)) {
@@ -64,7 +80,7 @@ try {
   const imageCount = Object.keys(data.images).length + Object.keys(journey.images).length;
   const pending = Object.values(data.images).filter(image => image.reuseStatus === 'review-pending').length;
   const derivedImages = Object.values({...data.images, ...journey.images}).filter(image => image.derived?.sources?.length).length;
-  console.log(`Prepared dist/: ${localCount}/${imageCount} local image files, plus ${derivedFiles.size} self-hosted display copies for ${derivedImages} photographs. No deployment performed.`);
+  console.log(`Prepared dist/: ${localCount}/${imageCount} local image files, plus ${derivedFiles.size} self-hosted display copies for ${derivedImages} photographs, and ${fontFiles.size} self-hosted font files. No deployment performed.`);
   if (localCount + derivedImages < imageCount) console.warn('Photographs still require external hosts. Verify live delivery before launch.');
   if (pending) console.warn(`${pending} image records retain unresolved reuse-review flags. Staging is not publication clearance.`);
 } catch (error) {

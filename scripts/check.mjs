@@ -218,6 +218,41 @@ for (const [pathname, page] of socialPages) {
 }
 check((sitemap.match(new RegExp(`<lastmod>${data.reviewed}</lastmod>`,'g'))||[]).length === socialPages.size, 'Every sitemap entry carries the reviewed lastmod');
 check(!/\bsocial\b/.test(await readFile(path.join(root, 'public/robots.txt'), 'utf8')), 'robots.txt does not block the share cards');
+// Self-hosted display faces. The stylesheet is inlined into all four pages and
+// three of them sit a directory down, so every font URL has to be root-absolute
+// and has to resolve to a file that prepare-deploy will stage into dist/.
+const inlineStyles = html.match(/<style>([\s\S]*?)<\/style>/)?.[1] || '';
+check(inlineStyles.includes('@font-face'), 'The built CSS carries the self-hosted @font-face rules');
+const fontUrls = new Set([...inlineStyles.matchAll(/url\((\/public\/fonts\/[^)'"]+)\)/g)].map(match => match[1]));
+check(fontUrls.size > 0, 'The built CSS references at least one self-hosted font file');
+for (const reference of fontUrls) {
+  check(/^\/public\/fonts\/[a-z0-9-]+\/[a-zA-Z0-9_-]+\.woff2$/.test(reference), `Unsupported font URL in the built CSS: ${reference}`);
+  check((await stat(path.join(root, reference.slice(1)))).size > 0, `The built CSS references a missing font file: ${reference}`);
+}
+check(![...fontUrls].some(reference => reference.includes('instrument-serif')), 'The rejected Instrument Serif candidate is not referenced');
+// Fraunces' own default instance is wght 900, so a face declared at a single
+// weight would render every headline Black. Each subset declares the full range
+// instead, which lets the ordinary CSS font-weight (400 throughout) drive the
+// axis even where a rule also sets font-variation-settings for SOFT and WONK.
+const fraunces = [...inlineStyles.matchAll(/@font-face\s*\{[^}]*\}/g)].map(match => match[0]).filter(face => face.includes("font-family:'Fraunces'"));
+check(fraunces.length === 4, 'Fraunces ships as four subset faces: upright and italic, latin and latin-ext');
+for (const face of fraunces) {
+  check(face.includes('font-weight:100 900'), 'Every Fraunces face declares font-weight:100 900 so nothing inherits the 900 default');
+  check(face.includes('font-display:swap'), 'Every Fraunces face swaps in rather than blocking first paint');
+  check(face.includes('unicode-range:'), 'Every Fraunces face is bound to its own subset');
+}
+check(/@font-face\s*\{[^}]*font-family:'Fraunces Fallback'[^}]*size-adjust:/.test(inlineStyles), 'The Georgia fallback is metrics-matched with size-adjust');
+for (const descriptor of ['ascent-override:', 'descent-override:', 'line-gap-override:']) {
+  check(inlineStyles.includes(descriptor), `The Georgia fallback declares ${descriptor.slice(0, -1)}`);
+}
+// Both Latin subsets are on the critical path: the headlines are the first thing
+// on screen and the italic runs inside them.
+for (const [pathname, document] of documents) {
+  const head = document.slice(0, document.indexOf('</head>'));
+  for (const file of ['fraunces-latin-var-normal.woff2', 'fraunces-latin-var-italic.woff2']) {
+    check(head.includes(`<link as="font" crossorigin="" href="/public/fonts/fraunces/${file}" rel="preload" type="font/woff2"/>`), `${pathname}: preloads ${file}`);
+  }
+}
 check(!/<tr\b[^>]*data-market-row/.test(markup) && !markup.includes('class="market-history-figure"'), 'Homepage has only the pricing summary');
 check((pricing.replace(/<script[^>]*>[\s\S]*?<\/script>/g,'').match(/<tr\b[^>]*data-market-row/g)||[]).length === 66, 'Full page preserves all 66 observations');
 const htmlIds = [...markup.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
