@@ -9041,7 +9041,7 @@ function initShareCards({data, onDialogToggle = () => {}} = {}) {
   };
 
   /* --- A. a copy-link control on every chapter heading ------------------- */
-  const headings = [...main.querySelectorAll('h1,h2,#anatomy-title')].filter((heading) =>
+  const headings = [...main.querySelectorAll('h1,h2')].filter((heading) =>
     !heading.classList.contains('sr-only') &&
     !heading.closest('dialog,.site-footer') &&
     // The home hero carries the share-card invitation instead; every other
