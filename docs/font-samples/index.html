@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>The Owl Atlas — display serif candidates</title>
+<style>
+/* ---------------------------------------------------------------------------
+   Self-contained specimen page. No external requests: the only subresources
+   are the woff2 files under public/fonts/, referenced by relative path.
+   Section colours, type sizes and letter-spacing are lifted from src/styles.css
+   so the candidates are judged in the real setting, not in a neutral box.
+--------------------------------------------------------------------------- */
+
+/* --- Instrument Serif (Google Fonts v5, latin + latin-ext) --------------- */
+@font-face{
+  font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:block;
+  src:url(../../public/fonts/instrument-serif/instrument-serif-latin-400-normal.woff2) format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:block;
+  src:url(../../public/fonts/instrument-serif/instrument-serif-latin-ext-400-normal.woff2) format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face{
+  font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:block;
+  src:url(../../public/fonts/instrument-serif/instrument-serif-latin-400-italic.woff2) format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:block;
+  src:url(../../public/fonts/instrument-serif/instrument-serif-latin-ext-400-italic.woff2) format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+/* --- Fraunces (Google Fonts v38, variable: opsz wght SOFT WONK) ---------- */
+@font-face{
+  font-family:'Fraunces';font-style:normal;font-weight:100 900;font-display:block;
+  src:url(../../public/fonts/fraunces/fraunces-latin-var-normal.woff2) format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:'Fraunces';font-style:normal;font-weight:100 900;font-display:block;
+  src:url(../../public/fonts/fraunces/fraunces-latin-ext-var-normal.woff2) format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face{
+  font-family:'Fraunces';font-style:italic;font-weight:100 900;font-display:block;
+  src:url(../../public/fonts/fraunces/fraunces-latin-var-italic.woff2) format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:'Fraunces';font-style:italic;font-weight:100 900;font-display:block;
+  src:url(../../public/fonts/fraunces/fraunces-latin-ext-var-italic.woff2) format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+/* --- GFS Didot (Google Fonts v18 Regular; GFS upstream Italic + Bold) ---- */
+@font-face{
+  font-family:'GFS Didot';font-style:normal;font-weight:400;font-display:block;
+  src:url(../../public/fonts/gfs-didot/gfs-didot-latin-400-normal.woff2) format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:'GFS Didot';font-style:normal;font-weight:400;font-display:block;
+  src:url(../../public/fonts/gfs-didot/gfs-didot-greek-400-normal.woff2) format('woff2');
+  unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;
+}
+@font-face{
+  font-family:'GFS Didot';font-style:normal;font-weight:400;font-display:block;
+  src:url(../../public/fonts/gfs-didot/gfs-didot-greek-ext-400-normal.woff2) format('woff2');
+  unicode-range:U+1F00-1FFF;
+}
+@font-face{
+  font-family:'GFS Didot';font-style:italic;font-weight:400;font-display:block;
+  src:url(../../public/fonts/gfs-didot/gfs-didot-400-italic.woff2) format('woff2');
+}
+@font-face{
+  font-family:'GFS Didot';font-style:normal;font-weight:700;font-display:block;
+  src:url(../../public/fonts/gfs-didot/gfs-didot-700-normal.woff2) format('woff2');
+}
+
+/* --- Site tokens (copied from src/styles.css) --------------------------- */
+:root{
+  --paper:#f0ede4;
+  --paper-deep:#e5e1d5;
+  --ink:#1c2420;
+  --forest:#191e1c;
+  --forest-deep:#111714;
+  --olive:#3b4539;
+  --light:#f1eee4;
+  --gold:#c5b88b;
+  --muted-dark:#b4b9ad;
+  --muted-light:#596258;
+  --line:rgba(28,36,32,.2);
+  --line-dark:rgba(240,237,228,.2);
+  --serif:Georgia,'Times New Roman',serif;
+  --sans:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:'SFMono-Regular',Consolas,'Liberation Mono',monospace;
+  --type-label:.8125rem;
+  --type-small:.875rem;
+  --type-support:.9375rem;
+  --type-body:1rem;
+  --type-reading:1.0625rem;
+  --gutter:clamp(24px,6.2vw,104px);
+  --max:1440px;
+
+  /* Specimen controls */
+  --display:var(--serif);
+  --display-scale:1;
+  --opsz:144;
+  --soft:0;
+  --wonk:1;
+  --wght:400;
+  color-scheme:dark;
+}
+
+/* The four candidate stacks. Georgia trails every webfont so a Latin-only
+   face visibly falls back on Greek instead of hiding the gap. */
+[data-font="georgia"]    { --display:Georgia,'Times New Roman',serif }
+[data-font="instrument"] { --display:'Instrument Serif',Georgia,'Times New Roman',serif }
+[data-font="fraunces"]   { --display:'Fraunces',Georgia,'Times New Roman',serif }
+[data-font="didot"]      { --display:'GFS Didot',Georgia,'Times New Roman',serif }
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:150px}
+body{
+  margin:0;background:var(--forest);font-family:var(--sans);color:var(--light);
+  font-size:var(--type-reading);line-height:1.7;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,p,figure{margin:0}
+h1,h2,h3,h4{font-weight:400}
+
+/* Every glyph under test routes through .display so one variable swaps all. */
+.display{
+  font-family:var(--display);
+  letter-spacing:-.05em;
+  line-height:1.04;
+}
+[data-font="fraunces"] .display{
+  font-variation-settings:"opsz" var(--opsz),"wght" var(--wght),"SOFT" var(--soft),"WONK" var(--wonk);
+}
+
+.eyebrow{
+  display:block;font-family:var(--mono);font-size:var(--type-label);line-height:1.5;
+  letter-spacing:.12em;text-transform:uppercase;font-weight:400;
+}
+.muted{color:var(--muted-dark)}
+
+/* ---------------------------------------------------------------- toolbar */
+.toolbar{
+  position:sticky;top:0;z-index:20;
+  display:flex;flex-wrap:wrap;align-items:center;gap:10px 26px;
+  padding:14px var(--gutter);
+  background:rgba(17,23,20,.94);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line-dark);
+}
+.toolbar-title{
+  font-family:var(--mono);font-size:var(--type-label);letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gold);margin-right:6px;
+}
+.choices{display:flex;flex-wrap:wrap;gap:8px}
+.choices label{
+  display:inline-flex;align-items:center;gap:9px;
+  border:1px solid var(--line-dark);border-radius:100px;
+  padding:7px 16px;font-size:var(--type-small);line-height:1.4;cursor:pointer;
+  transition:background .15s ease,border-color .15s ease;
+}
+.choices label:hover{border-color:var(--gold)}
+.choices input{accent-color:#c5b88b;margin:0}
+.choices input:checked + span{color:var(--gold)}
+.toolbar.is-compare .choices{opacity:.42}
+.compare-toggle{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--light);border-radius:100px;padding:7px 18px;
+  font-size:var(--type-small);cursor:pointer;
+}
+.compare-toggle:hover{border-color:var(--gold);color:var(--gold)}
+.toolbar.is-compare .compare-toggle{background:var(--light);color:var(--forest);border-color:var(--light)}
+
+.axes{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;margin-left:auto}
+.axes[hidden]{display:none}
+.axis{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:var(--type-label);letter-spacing:.06em;color:var(--muted-dark)}
+.axis input[type=range]{width:118px;accent-color:#c5b88b}
+.axis output{color:var(--gold);min-width:3.1em;display:inline-block}
+
+/* ---------------------------------------------------------------- layout */
+.page-intro{padding:44px var(--gutter) 10px;max-width:920px}
+.page-intro h1{font-family:var(--serif);font-size:2.1rem;letter-spacing:-.04em;line-height:1.1;margin:14px 0 16px}
+.page-intro p{font-size:var(--type-support);line-height:1.75;color:var(--muted-dark);max-width:70ch}
+.page-intro p + p{margin-top:.9em}
+
+.compare-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line-dark)}
+.col{background:var(--forest);--display-scale:.25;min-width:0}
+.col-label{
+  position:sticky;top:64px;z-index:10;
+  font-family:var(--mono);font-size:var(--type-label);letter-spacing:.12em;text-transform:uppercase;
+  padding:11px 16px;background:var(--forest-deep);color:var(--gold);
+  border-bottom:1px solid var(--line-dark);
+}
+.single .col-label{display:none}
+.single .set{--display-scale:1}
+
+/* --------------------------------------------------------- specimen frame */
+.spec{position:relative}
+.spec-tag{
+  font-family:var(--mono);font-size:var(--type-label);letter-spacing:.12em;text-transform:uppercase;
+  padding:9px var(--gutter);border-bottom:1px solid var(--line-dark);
+  background:var(--forest-deep);color:var(--muted-dark);
+}
+.col .spec-tag{padding-left:16px;padding-right:16px;font-size:.6875rem}
+
+/* ?only=a..e narrows the page to one specimen across all faces. */
+[data-only="a"] [data-spec]:not([data-spec="a"]),
+[data-only="b"] [data-spec]:not([data-spec="b"]),
+[data-only="c"] [data-spec]:not([data-spec="c"]),
+[data-only="d"] [data-spec]:not([data-spec="d"]),
+[data-only="e"] [data-spec]:not([data-spec="e"]){display:none}
+
+/* ------------------------------------------------------------ specimen A */
+.hero{background:var(--forest);color:var(--light);padding:calc(28px * var(--display-scale) + 22px) var(--gutter) 26px;overflow:hidden}
+.col .hero{padding-left:16px;padding-right:16px}
+.hero-layout{
+  display:grid;grid-template-columns:1.04fr 1fr;align-items:center;gap:25px;
+  max-width:var(--max);margin:36px auto 46px;
+}
+.col .hero-layout{grid-template-columns:1fr;gap:26px;margin:20px auto 24px}
+.hero-copy h1{
+  font-size:calc(clamp(4.375rem,7.6vw,7.625rem) * var(--display-scale));
+  margin:21px 0 28px;line-height:.96;letter-spacing:-.055em;
+}
+.hero-copy h1 em{color:#cbcdbd;font-weight:400}
+.hero-deck{max-width:390px;color:#c6cbbf;line-height:1.7;font-size:var(--type-reading)}
+.col .hero-deck{font-size:var(--type-small);max-width:none}
+.hero-topline{max-width:var(--max);margin:auto}
+.hero-object{position:relative;max-width:620px;width:100%;justify-self:center;padding:20px 10px}
+.hero-photo{width:100%;padding:8%;border:1px solid #9eaa9370;border-radius:50%;margin:auto}
+.coin-disc{
+  aspect-ratio:1;border-radius:50%;
+  background:
+    radial-gradient(circle at 38% 32%,#6f7a67 0,#4c5748 38%,#333b34 68%,#242b25 100%);
+  box-shadow:0 36px 80px #0005,inset 0 0 0 1px rgba(240,237,228,.09);
+}
+.object-measure{
+  display:flex;align-items:center;justify-content:center;gap:22px;
+  font-family:var(--mono);font-size:var(--type-label);margin:25px auto 0;color:var(--gold);
+}
+.col .object-measure{gap:12px;font-size:.6875rem}
+.object-measure span + span{border-left:1px solid var(--line-dark);padding-left:22px}
+.col .object-measure span + span{padding-left:12px}
+.object-caption{font-size:var(--type-label);text-align:center;margin-top:9px;color:var(--muted-dark)}
+.col .object-caption{font-size:.6875rem;line-height:1.45}
+.hero-bottom{
+  border-top:1px solid var(--line-dark);padding-top:19px;max-width:var(--max);margin:auto;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  font-family:var(--mono);font-size:var(--type-label);letter-spacing:.04em;color:var(--muted-dark);
+}
+.col .hero-bottom{display:none}
+
+/* ------------------------------------------------------------ specimen B */
+.crisis{background:var(--forest-deep);color:var(--light);padding:96px var(--gutter)}
+.col .crisis{padding:34px 16px}
+.crisis-content{max-width:var(--max);margin:auto}
+.crisis-year{
+  font-family:var(--display);
+  font-size:calc(clamp(11.25rem,26vw,25rem) * var(--display-scale));
+  line-height:1;letter-spacing:-.085em;color:#99a28e;margin:45px 0 23px;
+}
+.col .crisis-year{margin:16px 0 12px}
+[data-font="fraunces"] .crisis-year{
+  font-variation-settings:"opsz" var(--opsz),"wght" var(--wght),"SOFT" var(--soft),"WONK" var(--wonk);
+}
+.crisis-year > span{
+  font-family:var(--mono);font-size:var(--type-support);letter-spacing:.12em;
+  display:block;line-height:1;margin-top:5px;color:var(--gold);
+}
+.col .crisis-year > span{font-size:var(--type-label)}
+.crisis h2{font-size:calc(clamp(3.0625rem,6vw,5.5rem) * var(--display-scale));letter-spacing:-.05em;line-height:1.04}
+.crisis h2 em{color:var(--muted-dark);font-weight:400}
+.crisis-text{max-width:620px;margin-top:34px;color:var(--muted-dark);font-size:var(--type-body);line-height:1.8}
+.col .crisis-text{font-size:var(--type-small);margin-top:20px}
+.crisis-text p + p{margin-top:1.2em}
+
+/* ------------------------------------------------------------ specimen C */
+.chapter{background:var(--paper);color:var(--ink);padding:96px var(--gutter);color-scheme:light}
+.col .chapter{padding:34px 16px}
+.chapter .eyebrow{color:var(--muted-light)}
+.section-heading{margin-bottom:46px;max-width:var(--max)}
+.col .section-heading{margin-bottom:26px}
+.section-heading .eyebrow{margin-bottom:24px;display:inline-flex;align-items:center;gap:12px}
+.section-heading .eyebrow::before{
+  content:"";flex:0 0 13px;width:13px;height:13px;border:1px solid currentColor;border-radius:50%;
+  background:radial-gradient(circle,currentColor 0 1.5px,transparent 2px);
+}
+.col .section-heading .eyebrow{font-size:.6875rem;gap:8px}
+.col .section-heading .eyebrow::before{flex-basis:10px;width:10px;height:10px}
+.section-heading h2{font-size:calc(clamp(3.125rem,6vw,5.75rem) * var(--display-scale));max-width:950px;letter-spacing:-.05em;line-height:1.04}
+.section-heading h2 em{color:var(--muted-light);font-weight:400}
+.chapter-copy{max-width:760px}
+.chapter-copy p{font-size:var(--type-body);line-height:1.9}
+.col .chapter-copy p{font-size:var(--type-small);line-height:1.8}
+.chapter-copy p + p{margin-top:1.2em}
+
+/* ------------------------------------------------------------ specimen D */
+.figures{background:var(--olive);color:var(--light);padding:82px var(--gutter)}
+.col .figures{padding:32px 16px}
+.figures-inner{max-width:var(--max);margin:auto;display:grid;gap:44px}
+.col .figures-inner{gap:26px}
+.numerals{display:flex;flex-wrap:wrap;gap:16px 54px;align-items:baseline}
+.col .numerals{gap:10px 20px}
+.numeral{font-size:calc(3.4rem * var(--display-scale) * 1.9);letter-spacing:-.045em;line-height:1.1}
+.col .numeral{font-size:calc(3.4rem * var(--display-scale) * 2.6)}
+.numeral small{display:block;font-family:var(--mono);font-size:.8125rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-top:8px}
+.col .numeral small{font-size:.625rem}
+
+.wordmark-row{display:flex;flex-wrap:wrap;gap:34px}
+.col .wordmark-row{gap:18px;flex-direction:column}
+.wordmark{display:inline-flex;align-items:center;gap:14px;font-size:var(--type-label);line-height:1.25;letter-spacing:.12em}
+.ethnic{font-size:calc(2.4375rem * var(--display-scale) * 1.55);letter-spacing:-.055em;line-height:1}
+.col .ethnic{font-size:calc(2.4375rem * var(--display-scale) * 2.4)}
+.wordmark .ethnic{border-right:1px solid var(--line-dark);padding-right:15px}
+.logo-theta{display:inline-block;width:.75em;height:.75em;vertical-align:-.025em;overflow:visible}
+.greek-line{font-size:calc(2rem * var(--display-scale) * 1.4);letter-spacing:-.02em;line-height:1.3}
+.col .greek-line{font-size:calc(2rem * var(--display-scale) * 2.3)}
+.figure-note{font-size:var(--type-label);color:#dfe3d8;line-height:1.6;max-width:62ch;font-family:var(--mono);letter-spacing:.02em}
+.col .figure-note{font-size:.6875rem}
+.figure-note b{color:var(--gold);font-weight:400}
+.greek-warning{display:none}
+[data-font="instrument"] .greek-warning,
+[data-font="fraunces"] .greek-warning{display:block}
+
+/* ------------------------------------------------------------ specimen E */
+.smalls{background:var(--paper-deep);color:var(--ink);padding:82px var(--gutter);color-scheme:light}
+.col .smalls{padding:32px 16px}
+.smalls-inner{max-width:var(--max);margin:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}
+.col .smalls-inner{grid-template-columns:1fr;gap:22px}
+.smalls .eyebrow{color:var(--muted-light);margin-bottom:10px}
+.smalls h3{font-size:1.9rem;letter-spacing:-.035em;line-height:1.2;margin-bottom:12px}
+.smalls h4{font-size:1.3rem;letter-spacing:-.035em;line-height:1.25;margin-bottom:10px}
+.smalls p{font-size:var(--type-support);line-height:1.8;color:#3d463c}
+.col .smalls p{font-size:var(--type-small)}
+.smalls-row + .smalls-row{margin-top:34px}
+.hairline-note{
+  grid-column:1/-1;border-top:1px solid var(--line);padding-top:16px;
+  font-family:var(--mono);font-size:var(--type-label);letter-spacing:.06em;color:var(--muted-light);
+}
+.col .hairline-note{font-size:.6875rem}
+
+/* ------------------------------------------------------------- face notes */
+.face-note{display:none;background:var(--forest-deep);border-top:1px solid var(--line-dark);padding:34px var(--gutter) 46px}
+.col .face-note{padding:22px 16px 30px}
+[data-font="georgia"]    .face-note[data-for="georgia"],
+[data-font="instrument"] .face-note[data-for="instrument"],
+[data-font="fraunces"]   .face-note[data-for="fraunces"],
+[data-font="didot"]      .face-note[data-for="didot"]{display:block}
+.face-note h3{font-family:var(--serif);font-size:1.5rem;letter-spacing:-.03em;margin-bottom:6px;color:var(--light)}
+.col .face-note h3{font-size:1.15rem}
+.face-note dl{display:grid;grid-template-columns:auto 1fr;gap:4px 18px;margin:16px 0 0;max-width:820px}
+.col .face-note dl{grid-template-columns:1fr;gap:2px 0}
+.face-note dt{font-family:var(--mono);font-size:var(--type-label);letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.col .face-note dt{font-size:.625rem;margin-top:8px}
+.face-note dd{margin:0;font-size:var(--type-small);line-height:1.6;color:var(--muted-dark)}
+.col .face-note dd{font-size:.75rem;line-height:1.5}
+.face-note .character{font-size:var(--type-support);line-height:1.7;color:#d6dacd;max-width:74ch;margin-top:18px}
+.col .face-note .character{font-size:.75rem;margin-top:12px}
+
+@media (max-width:1100px){
+  .compare-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .col{--display-scale:.5}
+}
+@media (max-width:820px){
+  .hero-layout{grid-template-columns:1fr}
+  .smalls-inner{grid-template-columns:1fr}
+  .compare-grid{grid-template-columns:1fr}
+  .col{--display-scale:1}
+  .axes{margin-left:0}
+}
+</style>
+</head>
+<body>
+
+<header class="toolbar" id="toolbar">
+  <span class="toolbar-title">Display face</span>
+  <div class="choices" id="choices">
+    <label><input type="radio" name="face" value="georgia" checked><span>Georgia (current)</span></label>
+    <label><input type="radio" name="face" value="instrument"><span>Instrument Serif</span></label>
+    <label><input type="radio" name="face" value="fraunces"><span>Fraunces</span></label>
+    <label><input type="radio" name="face" value="didot"><span>GFS Didot</span></label>
+  </div>
+  <button type="button" class="compare-toggle" id="compare-toggle" aria-pressed="false">Compare side by side</button>
+  <div class="axes" id="axes" hidden>
+    <span class="axis"><label for="opsz">opsz</label><input type="range" id="opsz" min="9" max="144" step="1" value="144"><output for="opsz" id="opsz-out">144</output></span>
+    <span class="axis"><label for="soft">SOFT</label><input type="range" id="soft" min="0" max="100" step="1" value="0"><output for="soft" id="soft-out">0</output></span>
+    <span class="axis"><label for="wonk">WONK</label><input type="range" id="wonk" min="0" max="1" step="1" value="1"><output for="wonk" id="wonk-out">1</output></span>
+  </div>
+</header>
+
+<section class="page-intro">
+  <span class="eyebrow muted">THE OWL ATLAS · TYPOGRAPHY REVIEW</span>
+  <h1>Three display serifs on the real screens.</h1>
+  <p>The same five specimens — hero, the 404 set piece, a chapter opening on paper, figures and Greek, and small headings — drawn four times over: the Georgia we ship today, and three OFL candidates. Colours, sizes, letter-spacing and line-height are taken from <code>src/styles.css</code>, so what changes between settings is the face and nothing else.</p>
+  <p>Switch faces with the radios above, or press <b>Compare side by side</b> to see all four at once. Fraunces is variable: its <code>opsz</code>, <code>SOFT</code> and <code>WONK</code> sliders appear whenever Fraunces is on screen. The disc in the hero is a plain gradient placeholder, not a coin photograph.</p>
+  <p>Any setting can be linked to: <code>?face=didot</code>, <code>?compare=1</code>, <code>?only=d</code> for one specimen on its own, or a <code>#hero</code> / <code>#year404</code> / <code>#chapter</code> / <code>#greek</code> / <code>#smalls</code> anchor. They combine — <code>?compare=1&amp;only=d</code> puts the four Greek settings side by side.</p>
+</section>
+
+<main id="stage">
+  <div class="single" id="single" data-font="georgia"></div>
+  <div class="compare-grid" id="compare" hidden></div>
+</main>
+
+<template id="set-template">
+<div class="set">
+
+  <!-- ============================ SPECIMEN A ============================ -->
+  <p class="spec-tag" data-spec="a">Specimen A · Hero</p>
+  <section class="spec hero" data-spec="a">
+    <div class="hero-topline"><span class="eyebrow">A FIELD GUIDE TO ATHENIAN COINAGE</span></div>
+    <div class="hero-layout">
+      <div class="hero-copy">
+        <p class="eyebrow muted">RESEARCH EDITION 03 / 2026</p>
+        <h1 class="display">A small owl.<br><em>An ancient<br>world.</em></h1>
+        <p class="hero-deck">Explore the art, history and changing forms of Athena–owl coinage, from early Athens to the wider ancient world. Compare museum specimens and follow the evidence behind their attribution.</p>
+      </div>
+      <div class="hero-object">
+        <div class="hero-photo"><div class="coin-disc" aria-hidden="true"></div></div>
+        <div class="object-measure"><span>17.2 g</span><span>23 mm</span><span>449–440 BCE</span></div>
+        <p class="object-caption">Placeholder disc — stands in for the hero coin photograph.</p>
+      </div>
+    </div>
+    <div class="hero-bottom">
+      <span>From the late 6th century to the Hellenistic world</span>
+      <span>Look closely. Every image opens.</span>
+    </div>
+  </section>
+
+  <!-- ============================ SPECIMEN B ============================ -->
+  <p class="spec-tag" data-spec="b">Specimen B · 404 BCE set piece</p>
+  <section class="spec crisis" data-spec="b">
+    <div class="crisis-content">
+      <span class="eyebrow muted">04 / THE END OF THE PELOPONNESIAN WAR</span>
+      <div class="crisis-year" aria-hidden="true">404<span>BCE</span></div>
+      <h2 class="display">The war ends.<br><em>The story does not.</em></h2>
+      <div class="crisis-text">
+        <p>In 404 BCE, Athens surrendered to Sparta. The Peloponnesian War ended, marking a rupture in the history of the city and its coinage.</p>
+        <p>This is the conventional endpoint of the great late-fifth-century mass issue. Older coins continued to circulate, and Athenian coinage continued into the fourth century.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ SPECIMEN C ============================ -->
+  <p class="spec-tag" data-spec="c">Specimen C · Chapter opening on paper</p>
+  <section class="spec chapter" data-spec="c">
+    <div class="section-heading">
+      <span class="eyebrow">01 / WHERE THE OWLS WERE MADE &amp; USED</span>
+      <h2 class="display">From Athens<br><em>to a wider world.</em></h2>
+    </div>
+    <div class="chapter-copy">
+      <p>The owl began as the money of Athens, an ancient Greek city-state. Its reach extended beyond the city that struck it.</p>
+      <p>Start with Athens and its surrounding region, Attica. Then explore the islands, countries and historical regions connected with owl coinage. Each close-up shows an area; the small locator keeps it in the wider world.</p>
+    </div>
+  </section>
+
+  <!-- ============================ SPECIMEN D ============================ -->
+  <p class="spec-tag" data-spec="d">Specimen D · Figures and Greek</p>
+  <section class="spec figures" data-spec="d">
+    <div class="figures-inner">
+      <div>
+        <span class="eyebrow" style="color:var(--gold);margin-bottom:22px">FIGURES AS THEY APPEAR IN THE ATLAS</span>
+        <div class="numerals">
+          <span class="numeral display">$976–$1,464<small>Market range</small></span>
+          <span class="numeral display">80–100<small>Known dies</small></span>
+          <span class="numeral display">17.2 g · 23 mm<small>Weight · diameter</small></span>
+        </div>
+      </div>
+      <div>
+        <span class="eyebrow" style="color:var(--gold);margin-bottom:22px">THE WORDMARK, TWO WAYS</span>
+        <div class="wordmark-row">
+          <span class="wordmark">
+            <span class="ethnic display" lang="grc">ΑΘΕ</span>
+            <span>THE OWL<br>ATLAS</span>
+          </span>
+          <span class="wordmark">
+            <span class="ethnic display" lang="grc" aria-hidden="true">Α<svg class="logo-theta" viewBox="0 0 36 36" aria-hidden="true" focusable="false"><circle cx="18" cy="18" r="15.5" fill="none" stroke="currentColor" stroke-width="2"></circle><circle cx="18" cy="18" r="2.8" fill="currentColor"></circle></svg>Ε</span>
+            <span>THE OWL<br>ATLAS</span>
+          </span>
+        </div>
+        <p class="greek-line display" lang="grc" style="margin-top:26px">ΑΘΗΝΑΙΩΝ · Θ Α Ε Ω Σ</p>
+      </div>
+      <p class="figure-note">Left: the face’s own capital theta. Right: the site’s dotted-theta SVG, which never changes. <span class="greek-warning"><br><b>Latin-only face —</b> every Greek glyph above is Georgia, not the candidate. Any Greek on the site would sit in a second, unrelated design.</span></p>
+    </div>
+  </section>
+
+  <!-- ============================ SPECIMEN E ============================ -->
+  <p class="spec-tag" data-spec="e">Specimen E · Small sizes (1.9rem / 1.3rem)</p>
+  <section class="spec smalls" data-spec="e">
+    <div class="smalls-inner">
+      <div>
+        <span class="eyebrow">WHERE IT WAS MADE</span>
+        <h3 class="display">Mint.</h3>
+        <p>The authority and place that issued a coin. An owl design alone does not prove an Athenian origin.</p>
+        <div class="smalls-row">
+          <span class="eyebrow">01 / THE TOOLS</span>
+          <h4 class="display">Engrave the dies.</h4>
+          <p>A die is a metal tool with an engraved design. The lower die makes Athena; the upper die makes her owl.</p>
+        </div>
+      </div>
+      <div>
+        <span class="eyebrow">WHERE IT TRAVELLED</span>
+        <h3 class="display">Circulation.</h3>
+        <p>Coins could move as money or as silver valued by weight. The same weight standard could also be used by different issuers.</p>
+        <div class="smalls-row">
+          <span class="eyebrow">02 / THE SILVER</span>
+          <h4 class="display">Place the blank.</h4>
+          <p>The blank, called a flan, sits on the lower die fixed in the anvil. The upper die goes above it.</p>
+        </div>
+      </div>
+      <div>
+        <span class="eyebrow">WHERE IT WAS FOUND</span>
+        <h3 class="display">Findspot.</h3>
+        <p>A hoard is a group of coins deposited together. Its location records one point in those coins’ histories, not every stop.</p>
+        <div class="smalls-row">
+          <span class="eyebrow">03 / THE STRIKE</span>
+          <h4 class="display">A classification is not a date.</h4>
+          <p>A hammer blow drives the silver against both engraved surfaces, impressing the two faces of the coin together.</p>
+        </div>
+      </div>
+      <p class="hairline-note">Watch the stems and serifs here. A face that thins to a hairline at 1.3rem will disappear on a low-DPI screen.</p>
+    </div>
+  </section>
+
+  <!-- ============================== NOTES ============================== -->
+  <div class="face-note" data-for="georgia">
+    <h3>Georgia — the baseline we ship today</h3>
+    <dl>
+      <dt>Weights</dt><dd>Regular, Italic, Bold, Bold Italic — supplied by the operating system.</dd>
+      <dt>Files</dt><dd>0 KB. Nothing to download, nothing to license, no flash of fallback text.</dd>
+      <dt>Greek</dt><dd>Yes, on macOS and Windows. Linux and some Android devices substitute a different serif, so the wordmark is not guaranteed.</dd>
+    </dl>
+    <p class="character">Georgia was drawn for screens at text sizes, with a big x-height, sturdy slab-ish serifs and lining-ish numerals that stay readable anywhere — which is exactly why it goes soft and generic when blown up to 122px in the hero: it reads as a competent website rather than a museum wall label.</p>
+  </div>
+
+  <div class="face-note" data-for="instrument">
+    <h3>Instrument Serif — Regular and Italic only</h3>
+    <dl>
+      <dt>Weights</dt><dd>400 upright and 400 italic. No bold, no variable axes; a bold would have to be faked or avoided.</dd>
+      <dt>Files</dt><dd>latin 14.7 KB + italic 15.3 KB (30.0 KB the pair); 45.9 KB with the latin-ext subsets. Google Fonts v5.</dd>
+      <dt>Greek</dt><dd>No. Every Greek glyph falls back — see Specimen D.</dd>
+    </dl>
+    <p class="character">A tall, narrow, high-contrast display serif with small apertures and a very long, calligraphic italic; it is at its best exactly where this site needs it — huge, tight-tracked and set in two or three words — and it is the cheapest of the three by a wide margin.</p>
+  </div>
+
+  <div class="face-note" data-for="fraunces">
+    <h3>Fraunces — variable, four axes</h3>
+    <dl>
+      <dt>Weights</dt><dd>Variable 100–900, upright and italic, plus <code>opsz</code> 9–144, <code>SOFT</code> 0–100 and <code>WONK</code> 0–1. All four axes confirmed present in the downloaded files.</dd>
+      <dt>Files</dt><dd>latin 118.0 KB + italic 146.0 KB (264.0 KB the pair); 494.0 KB with latin-ext. Google Fonts v38.</dd>
+      <dt>Static alternative</dt><dd>Pinned to opsz 144 / wght 400 / SOFT 0 / WONK 1 the same glyphs compress to 16.8 KB upright and 21.4 KB italic — a 93% saving if the axes are only ever used to pick one setting.</dd>
+      <dt>Greek</dt><dd>No. Every Greek glyph falls back — see Specimen D.</dd>
+    </dl>
+    <p class="character">A warm, slightly wonky revival of soft-serif wood type: the <code>WONK</code> axis swaps in eccentric alternates, <code>SOFT</code> rounds the terminals, and <code>opsz</code> lets the hairlines actually thicken at small sizes — enormous range, at the cost of a payload larger than the rest of the page’s CSS and JS combined.</p>
+  </div>
+
+  <div class="face-note" data-for="didot">
+    <h3>GFS Didot — the only candidate with Greek</h3>
+    <dl>
+      <dt>Weights</dt><dd>Regular 400, Italic 400 and Bold 700. Google Fonts serves the Regular only; the Italic and Bold here come from the Greek Font Society’s own OFL release.</dd>
+      <dt>Files</dt><dd>Regular: latin 14.2 KB + greek 7.1 KB + greek-ext 8.8 KB. Italic 47.0 KB, Bold 44.2 KB (each latin + greek in one file). 121.1 KB for everything.</dd>
+      <dt>Greek</dt><dd>Yes — a Greek typeface first, with a full polytonic range and a genuinely designed Θ.</dd>
+    </dl>
+    <p class="character">A neoclassical Didot cut in Athens, with vertical stress, flat hairline serifs and a real Greek design rather than a Latin face with Greek bolted on — the most historically apt of the three, and the one most likely to go thin and brittle at the 1.3rem heading size in Specimen E.</p>
+  </div>
+
+</div>
+</template>
+
+<script>
+(function () {
+  'use strict';
+
+  var FACES = ['georgia', 'instrument', 'fraunces', 'didot'];
+  var LABELS = {
+    georgia: 'Georgia — current',
+    instrument: 'Instrument Serif',
+    fraunces: 'Fraunces',
+    didot: 'GFS Didot'
+  };
+
+  var tpl = document.getElementById('set-template');
+  var single = document.getElementById('single');
+  var compare = document.getElementById('compare');
+  var toolbar = document.getElementById('toolbar');
+  var toggle = document.getElementById('compare-toggle');
+  var axes = document.getElementById('axes');
+
+  // One specimen set is authored once and stamped out, so every column is
+  // guaranteed to be showing identical copy at identical sizes.
+  single.appendChild(tpl.content.cloneNode(true));
+
+  // Ids go on the single view only — the compare columns are clones and must
+  // not duplicate them. They make #hero, #year404 &c. linkable.
+  var ANCHORS = ['hero', 'year404', 'chapter', 'greek', 'smalls'];
+  Array.prototype.forEach.call(single.querySelectorAll('.spec-tag'), function (tag, i) {
+    if (ANCHORS[i]) { tag.id = ANCHORS[i]; }
+  });
+
+  FACES.forEach(function (face) {
+    var col = document.createElement('div');
+    col.className = 'col';
+    col.setAttribute('data-font', face);
+    var label = document.createElement('p');
+    label.className = 'col-label';
+    label.textContent = LABELS[face];
+    col.appendChild(label);
+    col.appendChild(tpl.content.cloneNode(true));
+    compare.appendChild(col);
+  });
+
+  function currentFace() {
+    var checked = document.querySelector('input[name=face]:checked');
+    return checked ? checked.value : 'georgia';
+  }
+
+  function syncAxes() {
+    var comparing = !compare.hidden;
+    axes.hidden = !(comparing || currentFace() === 'fraunces');
+  }
+
+  document.getElementById('choices').addEventListener('change', function () {
+    single.setAttribute('data-font', currentFace());
+    syncAxes();
+  });
+
+  toggle.addEventListener('click', function () {
+    var on = compare.hidden;
+    compare.hidden = !on;
+    single.hidden = on;
+    toggle.setAttribute('aria-pressed', String(on));
+    toolbar.classList.toggle('is-compare', on);
+    toggle.textContent = on ? 'Back to one face' : 'Compare side by side';
+    syncAxes();
+  });
+
+  [['opsz', '--opsz'], ['soft', '--soft'], ['wonk', '--wonk']].forEach(function (pair) {
+    var input = document.getElementById(pair[0]);
+    var out = document.getElementById(pair[0] + '-out');
+    input.addEventListener('input', function () {
+      document.documentElement.style.setProperty(pair[1], input.value);
+      out.textContent = input.value;
+    });
+  });
+
+  // ?face=didot / ?compare=1 so a given setting can be linked to, and so a
+  // headless screenshot can capture something other than the default.
+  var params = new URLSearchParams(location.search);
+  var wanted = params.get('face');
+  if (FACES.indexOf(wanted) !== -1) {
+    document.querySelector('input[name=face][value="' + wanted + '"]').checked = true;
+    single.setAttribute('data-font', wanted);
+  }
+  if (params.get('compare') === '1') {
+    toggle.click();
+  }
+  var only = params.get('only');
+  if (only && 'abcde'.indexOf(only) !== -1) {
+    document.getElementById('stage').setAttribute('data-only', only);
+  }
+  // Re-apply the hash after the specimens are built, since the ids did not
+  // exist when the document first resolved it.
+  if (location.hash && single.querySelector(location.hash)) {
+    single.querySelector(location.hash).scrollIntoView({ block: 'start', behavior: 'instant' });
+  }
+
+  syncAxes();
+})();
+</script>
+</body>
+</html>
