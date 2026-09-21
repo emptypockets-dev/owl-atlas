@@ -5242,13 +5242,6 @@ h4 {
   100% { opacity:0;transform:translateX(320%) rotate(13deg) }
 }
 
-/* On a pointer device the light answers the reader, once per hover. */
-@media (hover:hover) and (pointer:fine) {
-  html:not(.motion-off) .hero-photo .image-trigger:hover .hero-sheen::before {
-    animation:hero-sheen 1400ms cubic-bezier(.36,.08,.3,1);
-  }
-}
-
 /* --- Motion rules ---------------------------------------------------------
    With the site's motion toggle off, or the operating-system preference set,
    nothing turns or sweeps on its own; the button still swaps faces instantly
@@ -6020,38 +6013,8 @@ html.motion-off .mint-replay { display:none; }
   color:var(--muted-dark);
 }
 
-/* --- A single sweep of light ---------------------------------------------
-   One low-alpha band, answering a pointer once per hover, the same restraint
-   the home hero uses. It never runs on its own, never runs on touch, and stops
-   entirely when either motion preference is set. */
-@media (hover:hover) and (pointer:fine) {
-  html:not(.motion-off) .journey-disc .image-trigger::after {
-    content:'';
-    position:absolute;
-    top:-30%;
-    bottom:-30%;
-    left:0;
-    width:34%;
-    z-index:1;
-    opacity:0;
-    pointer-events:none;
-    transform:translateX(-200%) rotate(13deg);
-    background:linear-gradient(90deg,#fff8e600,#fff8e621 24%,#fffaf042 50%,#fff8e621 76%,#fff8e600);
-  }
-  html:not(.motion-off) .journey-disc .image-trigger:hover::after {
-    animation:journey-disc-sheen 1400ms cubic-bezier(.36,.08,.3,1);
-  }
-}
-
-@keyframes journey-disc-sheen {
-  0% { opacity:0;transform:translateX(-200%) rotate(13deg) }
-  16% { opacity:1 }
-  84% { opacity:1 }
-  100% { opacity:0;transform:translateX(320%) rotate(13deg) }
-}
 
 @media (prefers-reduced-motion:reduce) {
-  .journey-disc .image-trigger::after { animation:none!important;opacity:0!important;content:none }
 }
 
 /* --- Athena, beside the specimen facts -----------------------------------
