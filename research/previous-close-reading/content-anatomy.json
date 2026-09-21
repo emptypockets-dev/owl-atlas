@@ -1,0 +1,82 @@
+[
+  {
+    "id": "identity",
+    "name": "ΑΘΕ",
+    "side": "reverse",
+    "image": "classic-owl",
+    "x": 84,
+    "y": 52,
+    "title": "Three letters. A civic signature.",
+    "text": "ΑΘΕ abbreviates “of the Athenians.” The letters are alpha, theta and epsilon. On this coin, theta is a circle with a central dot—the ancient counterpart of the printed Θ.",
+    "refs": [
+      "acropolis",
+      "openlearn-theta"
+    ]
+  },
+  {
+    "id": "owl",
+    "name": "The owl",
+    "side": "reverse",
+    "image": "classic-owl",
+    "x": 53,
+    "y": 48,
+    "title": "A body in profile. Eyes looking back.",
+    "text": "The owl’s body turns right while its head faces the viewer.",
+    "refs": [
+      "acropolis"
+    ]
+  },
+  {
+    "id": "olive",
+    "name": "Olive & crescent",
+    "side": "reverse",
+    "image": "classic-owl",
+    "x": 24,
+    "y": 28,
+    "title": "Small symbols, enduring identity.",
+    "text": "The olive sprig and crescent accompany the owl on these classical examples. Their presence is observable; a precise commemorative meaning for every detail should not be assumed.",
+    "refs": [
+      "cma-early"
+    ]
+  },
+  {
+    "id": "square",
+    "name": "The incuse",
+    "side": "reverse",
+    "image": "classic-owl",
+    "x": 22,
+    "y": 78,
+    "title": "The square belongs to the strike.",
+    "text": "The reverse sits in a recessed, or incuse, square formed in striking.",
+    "refs": [
+      "acropolis"
+    ]
+  },
+  {
+    "id": "eye",
+    "name": "Athena’s eye",
+    "side": "obverse",
+    "image": "classic-athena",
+    "x": 75,
+    "y": 48,
+    "title": "The face turns. The eye does not quite follow.",
+    "text": "The conspicuous almond-shaped eye appears almost frontal although Athena’s face is in profile. Compare it with the fourth-century example farther down the story.",
+    "refs": [
+      "cma-classic",
+      "profile"
+    ]
+  },
+  {
+    "id": "helmet",
+    "name": "The helmet",
+    "side": "obverse",
+    "image": "classic-athena",
+    "x": 36,
+    "y": 27,
+    "title": "The detail that names a later family.",
+    "text": "The classical helmet here provides a reference for the changed ornament in the later Pi-style group.",
+    "refs": [
+      "remint"
+    ]
+  }
+]
