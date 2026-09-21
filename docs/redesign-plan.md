@@ -101,7 +101,7 @@ Nothing is deployed or pushed without an explicit request.
 - Owner-requested edit, 21 September 2026: chapter 05, "A familiar owl, a
   changing Athens", is removed. The owner's reason was repetition — the site was
   asking readers for paragraphs about subtle differences. The interactive close
-  reading is restored in chapter 03 in its place, rebuilt from
+  reading is restored in chapter 03 (now 02) in its place, rebuilt from
   `research/previous-close-reading/` in Fraunces and the chunk-2 language, with
   the "Three letters" reading reduced to one line that hands ΑΘΕ to the theta
   interlude. The withdrawn chapter's two real points became the two obverse
@@ -111,9 +111,21 @@ Nothing is deployed or pushed without an explicit request.
   BnF reuse notice moved to `/atlas/`; no source or image record was dropped.
   Chapters 06–09 renumbered to 05–08. Styles are one appended
   `CHUNK 5 / CLOSE READING` block, per the chunk-2 lesson above.
+- Owner-requested edit, 21 September 2026: chapter 02, "The owl takes shape",
+  is removed. Same reason as chapter 05 — two museum plates and a terminology
+  paragraph asked for reading about subtle differences. The Wappenmuenzen note
+  and its open question now open the classical chapter, which becomes 02, with
+  one quiet link to `atlas/#family-archaic`; the archaic frontal eye is one
+  clause in the "Athena's eye" reading; the two senses of "transitional" are a
+  new glossary entry. The archaic and early classical photographs are no longer
+  on the home page but stay on `/atlas/`, in the identifier and in `/kit/`; no
+  source or image record was dropped. Chapters 03-08 renumbered to 02-07.
 - Polish list for chunk 5: the "Hammer" label overlaps the moving hammer
   mid-animation; hide the hero's honesty note on phones; round the focus ring
   on pill buttons; remove dead `.journey-faces` rules; distinguish the two
   Kroll 2011 sidenote labels; restore the motion toggle to the 44 px scans in
-  `tests/artifact_browser.py` and `tests/one_owl_browser.py`.
+  `tests/artifact_browser.py` and `tests/one_owl_browser.py`; remove the rules
+  the removed chapter 02 left behind (`.duo-plates`, `.museum-plate`,
+  `.plate-label`, `.archaic-photo`, `.early-faces`, `.editorial-two`) and the
+  `archaic-photo` crop branch in `build.mjs`.
 - Chunk 4 prep: `research/hooks-findings.md` ranks ten verified hooks.

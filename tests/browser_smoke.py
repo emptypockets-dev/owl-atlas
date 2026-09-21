@@ -103,7 +103,7 @@ with sync_playwright() as p:
     check(not page.locator('#image-dialog').evaluate('e=>e.open'), 'Escape closes image dialog')
     check(image_link.evaluate('e=>document.activeElement===e'), 'Image-dialog focus restored')
 
-    # The chapter 03 close reading: a native radio pair chooses the face, the
+    # The chapter 02 close reading: a native radio pair chooses the face, the
     # detail buttons choose the reading, and a numbered marker sits over the
     # photograph at the reading's own coordinates.
     readings = DATA['closeReading']['readings']

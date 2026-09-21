@@ -1,3 +1,32 @@
+# Early-owls chapter removed — 21 September 2026
+
+- Remove chapter 02, "The owl takes shape", at the owner's request. Two museum
+  plates and a terminology paragraph were asking readers for attention on
+  subtle differences, which is the repetition the owner named.
+- Keep what was interesting, in one place each and briefly. The Wappenmünzen
+  note and the open question about when and why Athens adopted Athena and her
+  owl now open the classical chapter, above "An owl becomes an icon", with one
+  quiet link to `atlas/#family-archaic` for readers who want to see the
+  earliest owls. The archaic frontal eye of c. 520–510 BCE is one clause in the
+  "Athena's eye" reading, which stays at three sentences. The two senses of
+  "transitional" are a new atlas glossary entry citing NGC and the profile-eye
+  source; the "refinement without forgetting" observation was already the
+  early-classical family card's feature line and was not duplicated.
+- No source or image record was dropped. The archaic and early classical
+  photographs simply leave the home page: they are still displayed on `/atlas/`
+  in the family cards, in the `#identify` figures and in `/kit/`, and none of
+  them is reuse-review-pending. All 50 sources, all 17 image records and all
+  three BnF specimens are retained.
+- The minting illustration's onward link now reads "Now meet the classical owl"
+  and lands on `#classical`. Chapters 03–08 become 02–07, in the eyebrows, the
+  chapter-bar labels and the one line of `/atlas/` copy that named a chapter.
+- Styles are one appended `CHAPTER 02 OPENING` block: a single rule giving the
+  new atlas link its space under the deck. The rules that only served the
+  removed chapter are dead and are listed on the chunk-5 polish list rather
+  than removed in the same commit.
+
+---
+
 # Close reading restored, fourth-century chapter folded in — 21 September 2026
 
 - Restore the interactive close reading in chapter 03, in the slot the Anatomy

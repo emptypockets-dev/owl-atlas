@@ -7535,7 +7535,7 @@ html.motion-off .identify-reset { transition:none; }
 /* === end CHUNK 4 / IDENTIFIER ============================================ */
 
 /* ==========================================================================
-   CHUNK 5 / CLOSE READING — six details on one coin, in chapter 03
+   CHUNK 5 / CLOSE READING — six details on one coin, in chapter 02
    The close reading that preceded the withdrawn Anatomy exhibit, rebuilt in the
    current type and the chunk-2 set-piece language: paper ground, mono eyebrow,
    gold marker, Fraunces at the mid-size axis the rest of the page uses for h3
@@ -7706,3 +7706,14 @@ html.motion-off .close-reading-marker { transition:none; }
   .close-reading-coda { display:block; }
 }
 /* === end CHUNK 5 / CLOSE READING ========================================= */
+
+/* ==========================================================================
+   CHAPTER 02 OPENING — the classical chapter now opens the story of the owl
+   itself, so its deck carries the Wappenmünzen note and hands the earliest
+   owls to /atlas/#family-archaic. `p` is margin:0 throughout this sheet, so
+   the link that follows the deck needs its own space. Additive; nothing above
+   this line was changed for it.
+   ========================================================================== */
+
+.section-heading>.quiet-link { margin-top:26px; }
+/* === end CHAPTER 02 OPENING ============================================== */

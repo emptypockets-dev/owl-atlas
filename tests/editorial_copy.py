@@ -60,12 +60,22 @@ match = re.search(r'<details\b[^>]*\bid="coin-descriptions"[^>]*>', html)
 check(bool(match), 'Reference guide is a native disclosure')
 check(bool(match) and not re.search(r'\bopen\b', match.group()), 'Reference guide is collapsed by default')
 # "A familiar owl, a changing Athens" was removed on 21 September 2026 at the
-# owner's request. Its fourth-century reading moved into the chapter 03 close
-# reading; its specimens, presets and caveats moved to /atlas/.
-for anchor in ['origins', 'first-owls', 'classical', '404', 'new-style', 'beyond', 'evidence']:
+# owner's request. Its fourth-century reading moved into the close reading; its
+# specimens, presets and caveats moved to /atlas/. "The owl takes shape" was
+# removed the same day: its archaic and early classical plates stay on /atlas/,
+# and what it argued is now the classical chapter's opening deck, one clause in
+# the close reading, and a glossary entry.
+for anchor in ['origins', 'classical', '404', 'new-style', 'beyond', 'evidence']:
     check(f'id="{anchor}"' in home_html, f'Preserved homepage chapter anchor: {anchor}')
 check('id="after-athens"' not in home_html, 'The withdrawn fourth-century chapter is gone')
-check('id="close-reading"' in home_html, 'The chapter 03 close reading is restored')
+check('id="first-owls"' not in home_html, 'The withdrawn early-owls chapter is gone')
+# What that chapter carried alone keeps a home, briefly and in one place each.
+check('Wappenm\u00fcnzen' in visible_copy, 'The heraldic-coin note opens the classical chapter')
+check('#family-archaic' in home_html, 'The earliest owls stay one link away')
+check('c. 520\u2013510 BCE' in all_copy, 'The archaic frontal eye survives in the close reading')
+check(any(term == 'Transitional' for term, *_ in data['glossary']),
+      'The two senses of "transitional" survive in the glossary')
+check('id="close-reading"' in home_html, 'The chapter 02 close reading is restored')
 for reading in data['closeReading']['readings']:
     check(f'id="close-reading-{reading["id"]}"' in home_html, f'Close reading is in the document: {reading["id"]}')
     check(reading['title'] in visible_copy, f'Close reading is readable without JavaScript: {reading["id"]}')
