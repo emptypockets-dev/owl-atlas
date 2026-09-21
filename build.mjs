@@ -205,6 +205,11 @@ const html = pageMetadata(renderPage(mainTemplate).replace(/href="#(source-[^"]+
   {page:'home', pathname:'/', type:'Article', website:true, photographs:data});
 await writeFile(path.join(root,'index.html'),html);
 // Reuse the existing site chrome and native dialogs; only the page content differs.
+// The motion control lives in the home page's chapter bar, which is inside <main>
+// and therefore not part of the shared header slice. The sub-pages have no chapter
+// tracker, so they open <main> with the same sticky strip carrying just that control.
+const motionToggle = mainTemplate.match(/<button[^>]*id="motion-toggle"[\s\S]*?<\/button>/)[0];
+const chromeUtility = `<div class="chrome-utility">${motionToggle}</div>`;
 const pricingTitle = 'Athenian Owl Prices & Auction History — The Owl Atlas';
 const pricingDescription = 'Explore current Athenian owl auction prices, 2019–2026 comparisons, buyer fees and 66 source-linked market observations. Research snapshot: September 2026.';
 const pricingStart = mainTemplate.slice(0,mainTemplate.indexOf('<main id="main">') + '<main id="main">'.length)
@@ -219,7 +224,7 @@ const pricingStart = mainTemplate.slice(0,mainTemplate.indexOf('<main id="main">
   // Only the homepage paints the hero disc; the other pages must not preload it.
   .replace('{{HERO_PRELOAD}}','')
   .replace('{{SOURCE_COUNT}}', String(data.sources.filter(s=>s.id.startsWith('market-')).length))
-  .replace('Skip to the story','Skip to the pricing research');
+  .replace('Skip to the story','Skip to the pricing research') + chromeUtility;
 const pricingEnd = mainTemplate.slice(mainTemplate.indexOf('   <footer class="site-footer'))
   .replace('href="#top"','href="../#pricing"').replace('Back to the beginning ↑','Back to the story ↗')
   .replace('The story, family entries and bibliography remain readable without JavaScript. Image links open the original photographs; interactive comparison and zoom controls require JavaScript.', 'The price comparisons, chart, sales ledger and sources remain readable without JavaScript. The calculator and ledger filters require JavaScript.');
@@ -237,7 +242,7 @@ const atlasStart = mainTemplate.slice(0,mainTemplate.indexOf('<main id="main">')
   .replaceAll('https://theowlatlas.com/','https://theowlatlas.com/atlas/')
   .replace(/href="#(top|origins|pricing)"/g,'href="../#$1"')
   .replace('{{HERO_PRELOAD}}','')
-  .replace('Skip to the story','Skip to the reference atlas');
+  .replace('Skip to the story','Skip to the reference atlas') + chromeUtility;
 const atlasEnd = mainTemplate.slice(mainTemplate.indexOf('   <footer class="site-footer'))
   .replace('href="#top"','href="../"').replace('Back to the beginning ↑','Back to the story ↗');
 const atlasData = {...data, images:relocateImages(data.images,'../')};
@@ -269,7 +274,7 @@ const journeyStart = mainTemplate.slice(0,mainTemplate.indexOf('<main id="main">
   .replace(/href="#(top|origins|atlas|pricing)"/g,'href="../#$1"')
   .replace('href="/atlas/#sources"','href="#sources"')
   .replace('{{HERO_PRELOAD}}','')
-  .replace('{{SOURCE_COUNT}}',String(journey.sourceIds.length));
+  .replace('{{SOURCE_COUNT}}',String(journey.sourceIds.length)) + chromeUtility;
 const journeyEnd = mainTemplate.slice(mainTemplate.indexOf('   <footer class="site-footer'))
   .replace('href="#top"','href="../#one-owl"').replace('Back to the beginning ↑','Back to the atlas ↗')
   .replace('The story, family entries and bibliography remain readable without JavaScript. Image links open the original photographs; interactive comparison and zoom controls require JavaScript.', 'The complete story, photographs and sources remain available without JavaScript. Image links open the original photographs; zoom controls require JavaScript.');
