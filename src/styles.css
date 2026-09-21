@@ -6340,3 +6340,346 @@ html.motion-off .geo-place-buttons button { transition:none; }
     opacity:1!important;
   }
 }
+
+/* === CHUNK 4 / KIT ======================================================= */
+/* The creator kit at /kit/. One appended block, no edits above this line.
+   Everything here is scoped to .kit-page or a .kit- class, so nothing can
+   reach the story, the reference atlas, the pricing page or the companion. */
+
+.kit-hero {
+  padding:calc(var(--header) + 54px) var(--gutter) 74px;
+  background:var(--forest);
+  color:var(--light);
+}
+.kit-hero .journey-back { margin-bottom:34px; }
+.kit-hero-grid {
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  gap:clamp(36px,5vw,76px);
+  align-items:start;
+  max-width:var(--max);
+  margin:0 auto;
+}
+.kit-hero h1 { font-size:clamp(2.9rem,6.4vw,5rem); margin:14px 0 26px; }
+.kit-hero h1 em { color:var(--gold); }
+.kit-hero .kit-deck {
+  font-family:var(--serif);
+  font-size:clamp(1.2rem,2vw,1.5rem);
+  line-height:1.42;
+  letter-spacing:-.012em;
+  max-width:30ch;
+}
+.kit-hero p:not(.eyebrow):not(.kit-deck) { margin-top:22px; max-width:46ch; color:var(--muted-dark); }
+
+/* The four sections, as a contents list rather than a row of buttons. */
+.kit-jump { display:grid; gap:0; border-top:1px solid var(--line-dark); }
+.kit-jump a {
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr);
+  gap:18px;
+  align-items:baseline;
+  padding:18px 0;
+  border-bottom:1px solid var(--line-dark);
+  text-decoration:none;
+  min-height:44px;
+}
+.kit-jump a>span:last-child { display:block; font-family:var(--serif); font-size:1.3125rem; letter-spacing:-.02em; }
+.kit-jump a em {
+  display:block;
+  font-family:var(--sans);
+  font-style:normal;
+  font-size:var(--type-small);
+  letter-spacing:.01em;
+  color:var(--muted-dark);
+  margin-top:3px;
+}
+.kit-jump-index { font-family:var(--mono); font-size:var(--type-label); color:var(--gold); letter-spacing:.06em; }
+.kit-jump a:hover>span:last-child { color:var(--gold); }
+
+/* --- Shared section furniture ------------------------------------------- */
+.kit-section>* { max-width:var(--max); margin-left:auto; margin-right:auto; }
+.kit-group { margin-top:62px; }
+.kit-group-note { max-width:66ch; margin-top:14px; color:var(--muted-light); font-size:var(--type-support); }
+.section-dark .kit-group-note,.section-olive .kit-group-note { color:var(--muted-dark); }
+.kit-foot { margin-top:46px; max-width:78ch; margin-left:0; }
+
+/* --- The two rules, then the exclusion ---------------------------------- */
+.kit-rules {
+  display:grid;
+  grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);
+  gap:clamp(24px,3.4vw,52px);
+  margin-top:40px;
+  padding-top:30px;
+  border-top:1px solid var(--line);
+}
+.kit-rules h3 { font-size:1.6875rem; margin-bottom:14px; }
+.kit-rules p { max-width:58ch; font-size:var(--type-support); }
+.kit-rules-note {
+  background:var(--paper-deep);
+  border-left:3px solid var(--gold);
+  padding:24px 26px;
+}
+.kit-rules-note p { margin-top:10px; font-size:var(--type-small); }
+.kit-rules-note .quiet-link { margin-top:16px; display:inline-flex; }
+
+/* --- The gallery -------------------------------------------------------- */
+.kit-gallery {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(310px,1fr));
+  gap:28px;
+  margin-top:26px;
+}
+.kit-image {
+  display:flex;
+  flex-direction:column;
+  border:1px solid var(--line);
+  background:var(--light);
+}
+.section-dark .kit-image,.section-olive .kit-image { border-color:var(--line-dark); background:rgba(240,237,228,.05); }
+.kit-image-preview {
+  display:block;
+  background:#22271f;
+  aspect-ratio:4/3;
+  overflow:hidden;
+  border-bottom:1px solid var(--line);
+}
+.kit-image-preview img { width:100%; height:100%; object-fit:contain; }
+.kit-image-body { padding:20px 22px 22px; display:flex; flex-direction:column; flex:1; }
+.kit-image-body h4 { font-family:var(--serif); font-size:1.25rem; letter-spacing:-.02em; line-height:1.15; }
+.kit-image-meta { margin-top:8px; font-size:var(--type-label); line-height:1.6; color:var(--muted-light); }
+.section-dark .kit-image-meta,.section-olive .kit-image-meta { color:var(--muted-dark); }
+.kit-image-note { margin-top:12px; font-size:var(--type-label); color:var(--muted-light); }
+.kit-image-licence { margin-top:14px; display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 10px; }
+.kit-image-licence>span { font-size:var(--type-label); line-height:1.55; color:var(--muted-light); flex:1 1 14ch; }
+.section-dark .kit-image-licence>span,.section-olive .kit-image-licence>span { color:var(--muted-dark); }
+.kit-licence-chip {
+  font-family:var(--mono);
+  font-size:var(--type-label);
+  letter-spacing:.03em;
+  text-decoration:none;
+  border:1px solid var(--line);
+  padding:2px 8px;
+  white-space:nowrap;
+}
+.kit-licence-chip[data-terms="optional"] { border-color:#7d8a78; color:#3f4a3d; }
+.kit-licence-chip[data-terms="required"],.kit-licence-chip[data-terms="share-alike"] { border-color:#8f6019; color:#7a4f12; background:rgba(197,184,139,.24); }
+.section-dark .kit-licence-chip[data-terms="optional"],.section-olive .kit-licence-chip[data-terms="optional"] { border-color:var(--line-dark); color:var(--muted-dark); }
+.section-dark .kit-licence-chip[data-terms="required"],.section-dark .kit-licence-chip[data-terms="share-alike"],
+.section-olive .kit-licence-chip[data-terms="required"],.section-olive .kit-licence-chip[data-terms="share-alike"] { border-color:var(--gold); color:var(--gold); background:none; }
+.kit-licence-chip:hover { color:var(--ink); border-color:currentColor; }
+.section-dark .kit-licence-chip:hover,.section-olive .kit-licence-chip:hover { color:var(--light); }
+
+.kit-downloads { list-style:none; margin:18px 0 0; padding:0; border-top:1px solid var(--line); }
+.section-dark .kit-downloads,.section-olive .kit-downloads { border-top-color:var(--line-dark); }
+.kit-downloads li { border-bottom:1px solid var(--line); }
+.section-dark .kit-downloads li,.section-olive .kit-downloads li { border-bottom-color:var(--line-dark); }
+.kit-download {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:4px 14px;
+  min-height:44px;
+  padding:11px 0;
+  font-family:var(--sans);
+  font-size:var(--type-small);
+  text-decoration:none;
+}
+.kit-download span { font-family:var(--mono); font-size:var(--type-label); color:var(--muted-light); letter-spacing:.02em; }
+.section-dark .kit-download span,.section-olive .kit-download span { color:var(--muted-dark); }
+.kit-download:hover { color:var(--gold); }
+
+/* --- The credit blocks and their copy buttons --------------------------- */
+.kit-credit { margin-top:auto; padding-top:18px; }
+.kit-credit .eyebrow { display:block; margin-bottom:8px; }
+.kit-code {
+  display:block;
+  font-family:var(--mono);
+  font-size:var(--type-label);
+  line-height:1.65;
+  letter-spacing:0;
+  overflow-wrap:anywhere;
+  background:var(--paper-deep);
+  border:1px solid var(--line);
+  padding:11px 13px;
+  -webkit-user-select:all;
+  user-select:all;
+}
+.section-dark .kit-code,.section-olive .kit-code { background:rgba(17,23,20,.55); border-color:var(--line-dark); color:var(--light); }
+.kit-copy { display:none; }
+/* The button is a JavaScript affordance, and the script that answers it is what
+   adds .kit-js, so a reader without JavaScript is never shown a dead control. */
+html.kit-js .kit-copy {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  margin-top:10px;
+  padding:0 16px;
+  border:1px solid var(--control-line);
+  font-family:var(--mono);
+  font-size:var(--type-label);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  transition:color .2s ease,border-color .2s ease;
+}
+html.kit-js .kit-copy:hover { border-color:var(--gold); color:var(--gold); }
+.section-dark .kit-copy,.section-olive .kit-copy { border-color:var(--line-dark); }
+
+/* --- Say these things ---------------------------------------------------- */
+.kit-caution {
+  margin-top:40px;
+  padding:26px 28px;
+  border:1px solid var(--gold);
+  background:rgba(17,23,20,.28);
+}
+.kit-caution .eyebrow { display:block; margin-bottom:12px; }
+.kit-caution p { max-width:78ch; font-size:var(--type-support); }
+.kit-facts { list-style:none; margin:46px 0 0; padding:0; display:grid; gap:0; border-top:1px solid var(--line-dark); }
+.kit-fact { padding:30px 0; border-bottom:1px solid var(--line-dark); }
+.kit-fact-head { display:flex; align-items:baseline; gap:16px; }
+.kit-fact-index { font-family:var(--mono); font-size:var(--type-label); color:var(--gold); letter-spacing:.06em; }
+.kit-fact-hook {
+  font-family:var(--serif);
+  font-size:clamp(1.5rem,2.9vw,2.125rem);
+  line-height:1.16;
+  letter-spacing:-.035em;
+  margin-top:14px;
+  max-width:26ch;
+}
+.kit-fact-expansion { margin-top:16px; max-width:70ch; font-size:var(--type-support); color:var(--muted-dark); }
+.kit-fact-note { margin-top:16px; }
+.kit-fact-note>summary {
+  font-family:var(--sans);
+  font-size:var(--type-small);
+  min-height:44px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  list-style:none;
+}
+/* display:flex takes the native marker away, so the kit draws its own. */
+.kit-fact-note>summary::-webkit-details-marker { display:none; }
+.kit-fact-note>summary::before {
+  content:"+";
+  font-family:var(--mono);
+  font-size:1rem;
+  line-height:1;
+  color:var(--gold);
+  width:1em;
+  text-align:center;
+}
+.kit-fact-note[open]>summary::before { content:"\2212"; }
+.kit-fact-note ul { margin:8px 0 0; padding-left:1.15em; max-width:74ch; }
+.kit-fact-note li { font-size:var(--type-small); line-height:1.7; color:var(--muted-dark); }
+.kit-fact-note li+li { margin-top:8px; }
+.kit-unverified { margin-top:46px; padding-top:28px; border-top:1px solid var(--line-dark); }
+.kit-unverified h3 { font-size:1.6875rem; }
+.kit-unverified p { margin-top:12px; max-width:74ch; font-size:var(--type-support); color:var(--muted-dark); }
+.kit-unverified ul { margin:18px 0 0; padding-left:1.15em; max-width:78ch; }
+.kit-unverified li { font-size:var(--type-small); line-height:1.7; color:var(--muted-dark); }
+.kit-unverified li+li { margin-top:10px; }
+
+/* --- Link back ----------------------------------------------------------- */
+.kit-ask {
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
+  gap:clamp(24px,3.6vw,56px);
+  margin-top:40px;
+  padding-top:30px;
+  border-top:1px solid var(--line);
+}
+.kit-ask h3 { font-size:1.6875rem; margin-bottom:16px; }
+.kit-ask-copy p { max-width:60ch; font-size:var(--type-support); }
+.kit-ask-copyblock { background:var(--paper-deep); border:1px solid var(--line); padding:24px 26px; align-self:start; }
+.kit-ask-copyblock .eyebrow { display:block; margin-bottom:8px; }
+.kit-ask-copyblock .kit-code { background:var(--light); }
+.kit-ask-copyblock>.eyebrow:not(:first-child) { margin-top:26px; }
+
+.kit-links { list-style:none; margin:26px 0 0; padding:0; border-top:1px solid var(--line); }
+.kit-links li {
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr) auto;
+  gap:16px clamp(18px,2.6vw,40px);
+  align-items:center;
+  padding:22px 0;
+  border-bottom:1px solid var(--line);
+}
+.kit-link-copy h4 { font-family:var(--serif); font-size:1.3125rem; letter-spacing:-.022em; }
+.kit-link-copy p { margin-top:6px; font-size:var(--type-small); color:var(--muted-light); max-width:48ch; }
+.kit-link-actions { display:flex; align-items:center; gap:18px; }
+.kit-link-actions .kit-copy { margin-top:0; }
+
+/* --- Share cards --------------------------------------------------------- */
+.kit-cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:30px; margin-top:34px; }
+.kit-card { border:1px solid var(--line-dark); background:rgba(240,237,228,.05); }
+.kit-card img { width:100%; height:auto; border-bottom:1px solid var(--line-dark); }
+.kit-card figcaption { padding:18px 20px 20px; display:flex; flex-direction:column; align-items:flex-start; gap:4px; }
+.kit-card figcaption strong { font-family:var(--serif); font-weight:400; font-size:1.25rem; letter-spacing:-.02em; }
+/* Outside the bordered download list a bare link reads as a caption, so the
+   card downloads take the underline the quiet links beside them already have. */
+.kit-card .kit-download {
+  justify-content:flex-start;
+  gap:10px;
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:.22em;
+}
+.kit-card .quiet-link { margin-top:2px; }
+/* The cards run straight into the site footer, which is the same dark ground,
+   so this section does not also need a full chapter's worth of closing space. */
+#cards { padding-bottom:36px; }
+.kit-page .footer-bottom [aria-current="page"] { text-decoration:underline; text-underline-offset:6px; }
+.kit-cards-foot { margin-top:38px; padding-top:24px; border-top:1px solid var(--line-dark); display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:26px; }
+.kit-cards-foot p { max-width:60ch; font-size:var(--type-small); color:var(--muted-dark); }
+
+/* --- Narrow screens ------------------------------------------------------ */
+@media screen and (max-width:1100px) {
+  .kit-hero { padding-top:calc(var(--header) + 32px); }
+  .kit-hero-grid { grid-template-columns:minmax(0,1fr); gap:38px; }
+  .kit-rules,.kit-ask { grid-template-columns:minmax(0,1fr); }
+  .kit-links li { grid-template-columns:minmax(0,1fr); align-items:start; }
+  .kit-link-actions { justify-content:flex-start; }
+}
+@media screen and (max-width:760px) {
+  .kit-hero { padding-bottom:52px; }
+  .kit-gallery,.kit-cards { grid-template-columns:minmax(0,1fr); }
+  .kit-rules-note,.kit-ask-copyblock,.kit-caution { padding:20px; }
+  .kit-fact-hook { max-width:none; }
+  .kit-jump a { grid-template-columns:auto minmax(0,1fr); gap:14px; }
+}
+
+/* --- Wide screens: the citation margin notes ----------------------------- */
+/* The shared rule drops the chip's brackets above 1180px and gives the note
+   back in the margin, but only for the containers it names. The kit's facts
+   have to opt in, or their citations would be bare numerals with no label. */
+@media screen and (min-width:1180px) and (hover:hover) {
+  .kit-fact-expansion { padding-right:calc(var(--cite-note-col) + var(--cite-note-gap)); }
+  .kit-fact-expansion .cite-note {
+    display:block;
+    float:right;
+    clear:right;
+    width:var(--cite-note-col);
+    margin:0 calc(-1 * (var(--cite-note-col) + var(--cite-note-gap))) 12px 0;
+    font:var(--type-label)/1.5 var(--mono);
+    letter-spacing:0;
+    white-space:normal;
+    text-align:left;
+    text-indent:0;
+    vertical-align:baseline;
+    color:var(--muted-dark);
+    padding-top:.2em;
+  }
+}
+
+/* --- Print --------------------------------------------------------------- */
+/* On paper a copy button is a dead control and a preview is a waste of ink,
+   but the credit lines and the download addresses are exactly what a reader
+   wants off a printed sheet, so those stay. */
+@media print {
+  .kit-copy,.kit-jump,.kit-image-preview,.kit-card img { display:none; }
+  .kit-gallery,.kit-cards { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .kit-image,.kit-fact,.kit-card,.kit-links li { break-inside:avoid; }
+  .kit-code { background:#fff; border-color:#bbb; }
+  .kit-fact-note[open]>summary { font-weight:600; }
+}
