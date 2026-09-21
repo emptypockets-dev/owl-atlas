@@ -222,7 +222,13 @@
       </p>
      </div>
     </div>
-    <section class="minting-section" id="minting" aria-labelledby="minting-title">
+    <!-- Enhancement only. The three diagrams, their titles, descriptions and prose
+         are the whole explanation. app.js adds `is-playing` once the section
+         scrolls into view and unhides the replay control; the stylesheet owns the
+         timeline. Without JavaScript, with motion off and in print nothing moves,
+         the control is not shown, and the steps read exactly as drawn here. The
+         extra groups and hooks below never add a figure to the dies. -->
+    <section class="minting-section" id="minting" aria-labelledby="minting-title" data-animate-on-view="minting-strike">
      <div class="minting-heading">
       <div><span class="eyebrow">FROM SILVER TO A COIN</span><h3 id="minting-title">How do you<br/><em>make an owl?</em></h3></div>
       <p>The pictures began in the tools. Two engraved dies pressed a design into each side of a silver blank. {{CITE:met-minting}}</p>
@@ -232,14 +238,16 @@
        <svg class="minting-diagram" viewBox="0 0 360 260" role="img" aria-labelledby="mint-tools-title mint-tools-desc">
         <title id="mint-tools-title">Two engraved dies</title>
         <desc id="mint-tools-desc">Side view: the upper die makes the owl reverse; the lower die, fixed in the anvil, makes Athena's obverse.</desc>
-        <path class="mint-guide" d="M180 26V216"/>
-        <path class="mint-anvil" d="M120 218H240L254 244H106Z"/>
-        <path class="mint-tool" d="M148 42H212V115H197L192 106L185 115H174L168 108L162 115H148Z"/>
-        <path class="mint-tool" d="M148 178H165L171 187L178 178H190L196 185L202 178H212V218H148Z"/>
-        <path class="mint-edge" d="M155 47H205M155 211H205"/>
-        <path class="mint-leader" d="M218 80H235M142 188H126"/>
-        <text class="mint-label" x="244" y="78">Upper die</text>
-        <text class="mint-label" x="16" y="186">Lower die</text>
+        <path class="mint-guide mint-a-guide" d="M180 26V216"/>
+        <path class="mint-anvil mint-a-anvil" d="M120 218H240L254 244H106Z"/>
+        <path class="mint-tool mint-a-die mint-a-die-upper" pathLength="1" d="M148 42H212V115H197L192 106L185 115H174L168 108L162 115H148Z"/>
+        <path class="mint-tool mint-a-die mint-a-die-lower" pathLength="1" d="M148 178H165L171 187L178 178H190L196 185L202 178H212V218H148Z"/>
+        <path class="mint-edge mint-a-engrave" pathLength="1" d="M155 47H205M155 211H205"/>
+        <g class="mint-a-tag">
+         <path class="mint-leader" d="M218 80H235M142 188H126"/>
+         <text class="mint-label" x="244" y="78">Upper die</text>
+         <text class="mint-label" x="16" y="186">Lower die</text>
+        </g>
        </svg>
        <div class="minting-step-copy"><span class="eyebrow">01 / THE TOOLS</span><h4>Engrave the dies.</h4><p>A die is a metal tool with an engraved design. The lower die makes Athena; the upper die makes her owl.</p></div>
       </li>
@@ -247,17 +255,24 @@
        <svg class="minting-diagram" viewBox="0 0 360 260" role="img" aria-labelledby="mint-blank-title mint-blank-desc">
         <title id="mint-blank-title">A blank between the dies</title>
         <desc id="mint-blank-desc">A silver blank rests on the lower die. The upper die is aligned above it.</desc>
-        <path class="mint-guide" d="M180 26V216"/>
-        <path class="mint-anvil" d="M120 218H240L254 244H106Z"/>
-        <path class="mint-tool" d="M148 42H212V115H197L192 106L185 115H174L168 108L162 115H148Z"/>
-        <path class="mint-tool" d="M148 178H165L171 187L178 178H190L196 185L202 178H212V218H148Z"/>
-        <path class="mint-edge" d="M155 47H205M155 211H205"/>
-        <path class="mint-silver" d="M134 164C145 157 210 157 226 164V173C210 180 146 180 134 173Z"/>
-        <path class="mint-silver-edge" d="M134 164C150 171 211 171 226 164"/>
-        <path class="mint-motion" d="M180 125V148M175 142L180 148L185 142"/>
-        <path class="mint-leader" d="M232 168H244M118 230H98"/>
-        <text class="mint-label" x="252" y="164">Silver blank</text>
-        <text class="mint-label" x="43" y="234">Anvil</text>
+        <g class="mint-a-carry">
+         <path class="mint-guide" d="M180 26V216"/>
+         <path class="mint-anvil" d="M120 218H240L254 244H106Z"/>
+         <path class="mint-tool" d="M148 42H212V115H197L192 106L185 115H174L168 108L162 115H148Z"/>
+         <path class="mint-tool" d="M148 178H165L171 187L178 178H190L196 185L202 178H212V218H148Z"/>
+         <path class="mint-edge" d="M155 47H205M155 211H205"/>
+         <path class="mint-leader" d="M118 230H98"/>
+         <text class="mint-label" x="43" y="234">Anvil</text>
+        </g>
+        <g class="mint-a-blank">
+         <path class="mint-silver" d="M134 164C145 157 210 157 226 164V173C210 180 146 180 134 173Z"/>
+         <path class="mint-silver-edge" d="M134 164C150 171 211 171 226 164"/>
+        </g>
+        <path class="mint-motion mint-a-arrow" pathLength="1" d="M180 125V148M175 142L180 148L185 142"/>
+        <g class="mint-a-tag">
+         <path class="mint-leader" d="M232 168H244"/>
+         <text class="mint-label" x="252" y="164">Silver blank</text>
+        </g>
        </svg>
        <div class="minting-step-copy"><span class="eyebrow">02 / THE SILVER</span><h4>Place the blank.</h4><p>The blank, called a <em>flan</em>, sits on the lower die fixed in the anvil. The upper die goes above it.</p></div>
       </li>
@@ -265,22 +280,43 @@
        <svg class="minting-diagram" viewBox="0 0 360 260" role="img" aria-labelledby="mint-strike-title mint-strike-desc">
         <title id="mint-strike-title">The hammer strikes the upper die</title>
         <desc id="mint-strike-desc">Force passes through the upper die to the silver, impressing the designs on both faces.</desc>
-        <path class="mint-anvil" d="M120 218H240L254 244H106Z"/>
-        <path class="mint-tool" d="M148 178H165L171 187L178 178H190L196 185L202 178H212V218H148Z"/>
-        <path class="mint-silver" d="M132 167Q180 157 228 167V175Q180 184 132 175Z"/>
-        <path class="mint-tool" d="M148 96H212V169H197L192 160L185 169H174L168 162L162 169H148Z"/>
-        <path class="mint-edge" d="M155 101H205M155 211H205"/>
-        <path class="mint-handle" d="M217 63H331Q338 69 331 75H217Z"/>
-        <path class="mint-tool" d="M145 50L153 46H210L218 50V90L210 94H153L145 90Z"/>
-        <path class="mint-motion" d="M119 50V91M113 84L119 91L125 84"/>
-        <path class="mint-leader" d="M226 52L241 32H258M234 171H247"/>
-        <text class="mint-label" x="263" y="36">Hammer</text>
-        <text class="mint-label" x="255" y="169">Both faces</text>
+        <g class="mint-a-carry">
+         <path class="mint-anvil" d="M120 218H240L254 244H106Z"/>
+         <path class="mint-tool" d="M148 178H165L171 187L178 178H190L196 185L202 178H212V218H148Z"/>
+         <path class="mint-edge" d="M155 211H205"/>
+        </g>
+        <g class="mint-a-flan">
+         <path class="mint-silver" d="M132 167Q180 157 228 167V175Q180 184 132 175Z"/>
+        </g>
+        <g class="mint-a-upper">
+         <path class="mint-tool" d="M148 96H212V169H197L192 160L185 169H174L168 162L162 169H148Z"/>
+         <path class="mint-edge" d="M155 101H205"/>
+        </g>
+        <!-- Schematic relief only: three evenly spaced ticks and one dashed
+             contour on the struck flan. No device, letter or figure is drawn. -->
+        <g class="mint-a-relief" opacity="0">
+         <path class="mint-relief" d="M163 171V175.5M180 171V176M197 171V175.5"/>
+         <path class="mint-relief-arc" d="M146 174.5Q180 181 214 174.5"/>
+        </g>
+        <circle class="mint-a-ring" cx="180" cy="171" r="17" opacity="0" vector-effect="non-scaling-stroke"/>
+        <g class="mint-a-hammer">
+         <path class="mint-handle" d="M217 63H331Q338 69 331 75H217Z"/>
+         <path class="mint-tool" d="M145 50L153 46H210L218 50V90L210 94H153L145 90Z"/>
+        </g>
+        <path class="mint-motion mint-a-arrow" pathLength="1" d="M119 50V91M113 84L119 91L125 84"/>
+        <g class="mint-a-tag mint-a-tag-hammer">
+         <path class="mint-leader" d="M226 52L241 32H258"/>
+         <text class="mint-label" x="263" y="36">Hammer</text>
+        </g>
+        <g class="mint-a-tag mint-a-tag-faces">
+         <path class="mint-leader" d="M234 171H247"/>
+         <text class="mint-label" x="255" y="169">Both faces</text>
+        </g>
        </svg>
        <div class="minting-step-copy"><span class="eyebrow">03 / THE STRIKE</span><h4>Strike the upper die.</h4><p>A hammer blow drives the silver against both engraved surfaces, impressing the two faces of the coin together.</p></div>
       </li>
      </ol>
-     <div class="minting-footer"><p class="micro-copy">Schematic side views. Tool shapes, engraved marks and spacing are simplified; not to scale. Silver is highlighted in gold.</p><a class="quiet-link" href="#first-owls">Now meet the early owls <span aria-hidden="true">↓</span></a></div>
+     <div class="minting-footer"><p class="micro-copy">Schematic side views. Tool shapes, engraved marks and spacing are simplified; not to scale. Silver is highlighted in gold. Where it runs, the optional animation shows the order of the steps, not a measured speed, force or number of blows, and the struck disc carries no design.</p><div class="minting-footer-actions"><button class="mint-replay" type="button" data-animate-replay title="Replay the schematic strike" hidden><span>Play again<span class="sr-only">: the schematic strike sequence</span></span></button><a class="quiet-link" href="#first-owls">Now meet the early owls <span aria-hidden="true">↓</span></a></div></div>
     </section>
    </section>
    <section aria-labelledby="first-title" class="chapter section-dark" data-chapter="02 / The owl takes shape" id="first-owls">

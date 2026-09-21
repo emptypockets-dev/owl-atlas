@@ -863,3 +863,48 @@ window.addEventListener('afterprint', () => {
 window.addEventListener('beforeprint', () => {
   document.querySelectorAll('.reveal').forEach((element) => element.classList.replace('is-waiting', 'is-visible'));
 });
+
+/**
+ * Play a decorative sequence once, when its section is read.
+ *
+ * A generic companion to `.reveal`, which fades a block in; this marks a whole
+ * container so a stylesheet can run a timed sequence inside it. An element with
+ * `data-animate-on-view` gets `is-playing` the first time it scrolls into view,
+ * and a `[data-animate-replay]` control inside it restarts that sequence by
+ * dropping the class, forcing a reflow and setting it again.
+ *
+ * Nothing here decides what moves or for how long: the CSS owns the timeline, so
+ * a section that only draws itself in costs the same as one that does not move at
+ * all. When motion is off — the reader's toggle or the operating system's reduced
+ * motion preference — the stylesheet leaves every part at its authored frame and
+ * hides the replay control, so the section reads as the static figure it is
+ * without JavaScript. The class is still applied in that case, which means
+ * turning motion back on plays the sequence rather than silently doing nothing.
+ * State is never announced: these sequences illustrate copy that is already on
+ * the page, so a live region would only repeat it.
+ */
+const animatedStages = document.querySelectorAll('[data-animate-on-view]');
+if (animatedStages.length) {
+  // Fires when the container's top edge passes the lower quarter of the viewport,
+  // which does not depend on how tall the container is on a given screen.
+  const playObserver = 'IntersectionObserver' in window
+    ? new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add('is-playing');
+        playObserver.unobserve(entry.target);
+      }
+    }, {rootMargin: '0px 0px -25% 0px', threshold: 0})
+    : null;
+  for (const stage of animatedStages) {
+    playObserver?.observe(stage);
+    const replay = stage.querySelector('[data-animate-replay]');
+    if (!replay) continue;
+    replay.hidden = false;
+    replay.addEventListener('click', () => {
+      stage.classList.remove('is-playing');
+      void stage.offsetWidth; // restart the CSS timeline from its first frame
+      stage.classList.add('is-playing');
+    });
+  }
+}

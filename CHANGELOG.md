@@ -1,3 +1,27 @@
+# The strike, in motion — 21 September 2026
+
+- Animate the existing three-step minting diagram once, when the section is
+  read: the dies draw themselves in, the blank falls and settles on the lower
+  die, then the hammer falls, an impact ring spreads and the blank becomes a
+  struck disc. About four and a half seconds, on the shapes that were already
+  there plus an impact ring and a faint relief hint.
+- The struck disc carries no design. Nothing in the sequence adds an owl, an
+  Athena, a letter or any other device to the dies, and the footer now says so
+  beside the existing schematic disclaimer. See `research/minting-findings.json`.
+- Add a generic `data-animate-on-view` hook to `src/app.js`: an
+  IntersectionObserver adds `is-playing` once, and a `[data-animate-replay]`
+  control restarts the sequence. A mono "Play again" button at the 44px touch
+  target sits beside the copy; a thin rule under the existing 01/02/03 labels
+  marks the step under way, and no state is announced.
+- Motion stays optional. Without JavaScript, with the motion toggle off, under
+  the operating system's reduced-motion preference and in print, the three
+  diagrams, their titles, descriptions and prose are exactly as drawn, the new
+  relief hint and impact ring stay invisible, and the control is not shown.
+- No dependencies, no scroll hijacking, no new photographs. Existing sources,
+  image records, reuse flags and section links are unchanged.
+
+---
+
 # One owl, one lit object — 21 September 2026
 
 - Lead the companion story with a single large owl instead of two side-by-side
