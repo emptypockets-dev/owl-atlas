@@ -106,8 +106,9 @@ const replacements = {
 };
 const shared = (await read('src/render.mjs')).replace(/^export /gm,'');
 const artifact = (await read('src/artifact-explorer.js')).replace(/^export /gm,'');
+const shareCards = (await read('src/share-cards.js')).replace(/^export /gm,'');
 const app = (await read('src/app.js')).replace(/^import .*from '\.\/(?:render\.mjs|artifact-explorer\.js)';\s*/gm,'');
-const script = `(() => {\n'use strict';\n${shared}\n${artifact}\n${app}\n})();`;
+const script = `(() => {\n'use strict';\n${shared}\n${artifact}\n${shareCards}\n${app}\n})();`;
 const styles = await read('src/styles.css');
 function renderPage(template, pageData = data) {
   let html = template;

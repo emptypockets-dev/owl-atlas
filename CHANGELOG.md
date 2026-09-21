@@ -1,3 +1,53 @@
+# Reasons to post — 21 September 2026
+
+- Give every chapter heading a "Copy link" control. It copies the canonical
+  address with the chapter's own bookmark — `https://theowlatlas.com/#404`,
+  `https://theowlatlas.com/atlas/#sources` — taken from each page's `<link
+  rel="canonical">`, so a local preview still hands out the production URL. The
+  control keeps a 44px target, stays in the tab order, is quiet until the
+  heading is hovered or it takes focus on a pointer device, and is always
+  visible at its smallest size on a touch screen, where there is no hover to
+  discover it with. A polite live region says "Link copied" for a screen reader.
+- Add a Share pair to the chapter bar and to the sub-pages' chrome strip:
+  "Share" hands the current chapter's label and URL to `navigator.share` where
+  the browser has one and copies the link where it does not, and "Make a card"
+  opens the new card maker. Both shrink to their icons and their accessible
+  names below 900px. A quiet "Make a share card ↗" sits under the hero fact
+  strip, hidden until JavaScript unhides it.
+- Add a native `<dialog>` that composes share cards with `<canvas>`, in
+  portrait 1080×1350 and landscape 1200×630, and offers Download plus Share
+  (the latter only where `navigator.canShare({files})` is true). Five presets:
+  the owl (Cleveland 1941.296.b), Athena (1941.296.a), four days' pay for a
+  craftsman on the Acropolis in 408/7 BC (IG I³ 476, source 42), the owl on
+  Greece's €1 coin today (ECB) on the New Style owl, and "2,400 years. Still
+  here." on the owner's own owl, which stays a claim about that one coin.
+- The cards are drawn in the reader's browser and never uploaded. They reuse
+  the palette, the Fraunces and GFS Didot type, the dotted-theta wordmark, the
+  coin discs and the layout of `scripts/render-social.mjs`, loading the display
+  faces through `document.fonts.load` with the stylesheet's metrics-matched
+  Georgia behind them. `classic-athena` needed a disc of its own; it was
+  measured off the museum's frame and trued against a rendered card.
+- Only rights-cleared photographs can reach a card. Every preset names a record
+  in `src/content.json` or `src/one-owl.json`; `npm run check` fails if one is
+  missing, is flagged `reuseStatus: "review-pending"`, disagrees with the frame
+  the disc was measured against, or has no file on disk. The runtime resolves
+  paths from the page's own inlined records, refuses anything that is not a
+  same-origin file under `/public/images/`, and drops a review-pending record
+  even when it is handed a perfectly good local file. Nothing is fetched across
+  origins, so the canvas is never tainted and the export cannot fail that way.
+  The owner's owl carries the credit its own rights note prescribes, "The Owl
+  Atlas (theowlatlas.com) · CC BY 4.0", because the home page does not inline
+  that record.
+- All of it is enhancement. The copy and Share controls exist only at runtime —
+  `npm run check` asserts they are absent from the built markup — the dialog
+  ships inert, every transition is off under `html.motion-off` and the
+  operating system's reduced-motion preference, and the whole set leaves the
+  printed page. No dependencies, no new photographs, no content records
+  touched.
+
+---
+
+
 # The strike, in motion — 21 September 2026
 
 - Animate the existing three-step minting diagram once, when the section is

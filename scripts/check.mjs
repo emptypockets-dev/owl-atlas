@@ -395,7 +395,7 @@ check(replay.replace(/<[^>]*>/g, '').trim().startsWith('Play again'), 'The repla
 check(minting.includes('<div class="minting-footer-actions">'), 'The replay control sits with the onward link, beside the copy');
 // Every moving part waits for the class the observer adds, and motion off puts
 // the figure back to the frame it was drawn in.
-const mintingCss = styles.slice(styles.indexOf('/* === CHUNK 3 / MINTING'), styles.indexOf('end CHUNK 3 / MINTING'));
+const mintingEnd = styles.indexOf('end CHUNK 3 / MINTING'); const mintingCss = styles.slice(styles.indexOf('/* === CHUNK 3 / MINTING'), mintingEnd + 'end CHUNK 3 / MINTING'.length);
 check(Boolean(mintingCss) && mintingCss.includes('end CHUNK 3 / MINTING'), 'The minting styles are one self-contained block');
 for (const rule of mintingCss.split('\n')) {
   if (!/^\s*\.[^{]*\{[^}]*animation:/.test(rule)) continue;
@@ -567,5 +567,147 @@ check(appScript.includes("geographyExplorer.querySelector('[data-animate-on-view
   'The geographic sweep is hooked to its own in-view observer');
 check(!/scrollIntoView|scrollTo/.test(appScript.slice(appScript.indexOf('const geographyExplorer'), appScript.indexOf('// Inline citations'))),
   'The geographic block never moves the page for the reader');
+
+
+/* --- CHUNK 4 / SHARE ------------------------------------------------------
+   The coin-card maker may only ever draw a rights-cleared photograph, so the
+   preset table is held against the two content records on disk, against the
+   files themselves, and against the data each built page actually ships. The
+   copy-link and Share controls are runtime enhancements, so they must NOT be
+   in the built markup at all; only their dialog is. */
+const {SHARE_CARD_PRESETS, SHARE_CARD_SIZES, shareCardAssetPath, resolveShareCards} = await import('../src/share-cards.js');
+const shareOwnerData = JSON.parse(await readFile(path.join(root, 'src/one-owl.json'), 'utf8'));
+const shareRecords = {...data.images, ...shareOwnerData.images};
+const shareModule = await readFile(path.join(root, 'src/share-cards.js'), 'utf8');
+const shareBuild = await readFile(path.join(root, 'build.mjs'), 'utf8');
+const shareMarkupOnly = (document) => document.replace(/<script[\s\S]*?<\/script>/gi, '');
+const sharePages = [['index.html', html], ['atlas/index.html', atlas], ['pricing/index.html', pricing], ['one-owl/index.html', journey]];
+
+check(SHARE_CARD_PRESETS.length === 5, 'The card maker offers its five preset cards');
+check(SHARE_CARD_SIZES.some(size => size.width === 1080 && size.height === 1350), 'A 1080×1350 portrait card is offered');
+check(SHARE_CARD_SIZES.some(size => size.width === 1200 && size.height === 630), 'A 1200×630 landscape card is offered');
+const sharePresetIds = new Set();
+for (const preset of SHARE_CARD_PRESETS) {
+  check(!sharePresetIds.has(preset.id), `Duplicate share-card preset: ${preset.id}`);
+  sharePresetIds.add(preset.id);
+  const record = shareRecords[preset.image];
+  check(Boolean(record), `${preset.id}: names a photograph no content record describes (${preset.image})`);
+  check(record.reuseStatus !== 'review-pending', `${preset.id}: a reuse-review-pending photograph must never reach a share card`);
+  check(record.width === preset.source.width && record.height === preset.source.height,
+    `${preset.id}: the coin disc was measured against ${preset.source.width}×${preset.source.height}, but ${preset.image} is ${record.width}×${record.height}`);
+  check(preset.disc.cx > 0 && preset.disc.cy > 0 && preset.disc.r > 0, `${preset.id}: needs a measured coin disc`);
+  check(preset.disc.cx + preset.disc.r <= preset.source.width * 1.05 && preset.disc.cy + preset.disc.r <= preset.source.height * 1.05,
+    `${preset.id}: the coin disc falls outside its own photograph`);
+  check(preset.headline.length === 2 && preset.headline.every(Boolean), `${preset.id}: needs a two-line headline`);
+  for (const key of ['name', 'eyebrow', 'fact', 'object']) check(Boolean(preset[key]), `${preset.id}: needs ${key}`);
+  // Every file this preset could draw, in any build: the self-hosted
+  // derivatives when the photograph has them, the record's own local file when
+  // it does not. Each one has to be a same-origin path and be on disk.
+  const files = (derivedManifest?.images?.[preset.image]?.derivatives || []).map(derivative => derivative.path);
+  if (!files.length) files.push(preset.fallback?.path || record.localUrl);
+  check(files.length > 0 && files.every(Boolean), `${preset.id}: has no image file to draw`);
+  for (const file of files) {
+    check(Boolean(shareCardAssetPath(file)), `${preset.id}: ${file} is not a same-origin /public/images path`);
+    check((await stat(path.join(root, file))).isFile(), `${preset.id}: ${file} is missing on disk`);
+  }
+}
+// The owner's owl is credited the way its own rights note prescribes, because
+// src/one-owl.json is not inlined into the home page that offers the card.
+const shareOwner = SHARE_CARD_PRESETS.find(preset => preset.image === 'owner-owl');
+check(Boolean(shareOwner?.fallback), 'The owner-photograph card carries its own credit and licence');
+check(shareRecords['owner-owl'].reuseStatus === 'cc-by-4.0', 'The owner photograph is released under CC BY 4.0');
+check(shareOwner.fallback.license === shareRecords['owner-owl'].license, 'The card prints the licence the record declares');
+check(shareRecords['owner-owl'].rightsNote.includes('The Owl Atlas (theowlatlas.com)'), 'The record prescribes the credit the card prints');
+check(shareOwner.fallback.credit.includes('The Owl Atlas (theowlatlas.com)'), 'The card prints the prescribed credit');
+check(/^One coin,/.test(shareOwner.fact) && !/\bowls\b|\bmost\b|\busually\b|survival rate/i.test(shareOwner.fact),
+  'The “Still here” card stays a claim about one coin, not about owls in general');
+// The four-days card and the €1 card each name the evidence on the image.
+check(SHARE_CARD_PRESETS.find(preset => preset.id === 'four-days').note.includes('IG I³ 476'),
+  'The four-days card prints the Erechtheion accounts it rests on');
+check(SHARE_CARD_PRESETS.find(preset => preset.id === 'euro-echo').note.includes('European Central Bank'),
+  'The €1 card prints the ECB as its source');
+
+// The runtime guard, proved against this build's own data: a review-pending
+// record is refused even when it is handed a perfectly good same-origin file.
+const sharePendingId = Object.keys(data.images).find(id => data.images[id].reuseStatus === 'review-pending');
+check(Boolean(sharePendingId), 'The BnF reuse-review flags are still in the data');
+check(resolveShareCards(
+  {[sharePendingId]: {...data.images[sharePendingId], localUrl: 'public/images/one-owl-owl.jpg'}},
+  [{...SHARE_CARD_PRESETS[0], id: 'smuggled', image: sharePendingId}],
+).length === 0, 'A reuse-review-pending record is refused even when it has a same-origin file');
+for (const rejected of ['https://upload.wikimedia.org/a.jpg', 'data:image/png;base64,AAAA', 'public/images/../../secret.jpg', '/etc/passwd', '']) {
+  check(shareCardAssetPath(rejected) === null, `A share card refuses ${rejected || '(an empty path)'}`);
+}
+check(shareCardAssetPath('../public/images/derived/classic-owl-800-b4cb57d2.jpg') === '/public/images/derived/classic-owl-800-b4cb57d2.jpg',
+  'A sub-page image path resolves to the one root-absolute file');
+
+// The preset table is inlined into every page, so it can be read back out of
+// the built HTML and held to the same rule as the table on disk.
+const shareEmbedded = html.slice(html.indexOf('SHARE_CARD_PRESETS'), html.indexOf('SHARE_CARD_LAYOUTS'));
+check(shareEmbedded.length > 800, 'The built page carries the share-card preset table');
+check(!/https?:\/\//.test(shareEmbedded), 'No embedded preset names a remote image');
+for (const [id, image] of Object.entries(data.images)) {
+  if (image.reuseStatus !== 'review-pending') continue;
+  check(!shareEmbedded.includes(id), `${id}: a reuse-review-pending photograph must not appear in the embedded preset table`);
+  check(!shareEmbedded.includes(image.url), `${id}: its original must not appear in the embedded preset table`);
+}
+for (const preset of SHARE_CARD_PRESETS) check(shareEmbedded.includes(`'${preset.image}'`), `${preset.id}: the built page carries its photograph id`);
+
+// Each page resolves the full set from its own inlined records, and every file
+// the dialog would load is on disk.
+for (const [name, document] of sharePages) {
+  const pageData = JSON.parse(document.match(/<script\b[^>]*\bid="atlas-data"[^>]*>([\s\S]*?)<\/script>/i)[1]);
+  const cards = resolveShareCards(pageData.images);
+  check(cards.length === SHARE_CARD_PRESETS.length, `${name}: offers all ${SHARE_CARD_PRESETS.length} cards`);
+  for (const card of cards) {
+    check(card.path.startsWith('/public/images/'), `${name}: ${card.id} draws a same-origin file, not ${card.path}`);
+    check((await stat(path.join(root, card.path.slice(1)))).isFile(), `${name}: ${card.id} points at a file that exists`);
+    check(card.credit.trim().length > 0, `${name}: ${card.id} carries a credit line`);
+  }
+}
+
+// The dialog is the only part of the feature that ships as markup.
+for (const [name, document] of sharePages) {
+  const markup = shareMarkupOnly(document);
+  check(markup.includes('<dialog aria-labelledby="share-card-title" class="share-dialog" id="share-card-dialog">'), `${name}: carries the share-card dialog`);
+  for (const label of ['Make a share card', 'Choose a card', 'Card size', 'id="share-card-canvas"', 'id="share-card-presets"',
+    'id="share-card-download"', 'id="share-card-status"', 'aria-label="Close the share card maker"']) {
+    check(markup.includes(label), `${name}: the share-card dialog keeps ${label}`);
+  }
+  check(markup.includes('<canvas height="1350" id="share-card-canvas" role="img" width="1080">'), `${name}: the preview canvas exports at its full size`);
+  check(markup.includes('<button class="share-card-action" hidden id="share-card-share" type="button">'), `${name}: the dialog's Share button waits for a browser that can share a file`);
+  check(markup.includes('value="portrait"') && markup.includes('value="landscape"'), `${name}: both card sizes are offered`);
+  // Runtime enhancements: nothing that copies or shares a link is in the markup.
+  for (const marker of ['class="heading-share"', 'class="chapter-copy', 'id="share-page"', 'id="share-card-open"', 'class="share-control"']) {
+    check(!markup.includes(marker), `${name}: ${marker} is built at runtime, not shipped as markup`);
+  }
+}
+for (const marker of ['heading-share', 'chapter-copy', 'share-page', 'share-control']) {
+  check(!template.includes(marker), `src/page.html does not hand-write the ${marker} enhancement`);
+}
+check(/<button class="hero-share-card" hidden id="hero-share-card" type="button">/.test(html),
+  'The hero invitation ships hidden and waits for JavaScript');
+check(/Make a share card\s*<span aria-hidden="true">\s*↗/.test(html), 'The hero invitation reads “Make a share card ↗”');
+check(!atlas.includes('id="hero-share-card"') && !pricing.includes('id="hero-share-card"'), 'Only the home page carries the hero invitation');
+
+// Styling and inlining contracts.
+check(inlineStyles.includes('CHUNK 4 / SHARE'), 'The built CSS carries the share block under its own header');
+for (const rule of ['.heading-share {', '.chapter-copy {', '.share-button {', '.share-dialog {', '.share-card-stage canvas {', '.hero-share-card {']) {
+  check(inlineStyles.includes(rule), `The built CSS carries ${rule.slice(0, -2)}`);
+}
+check(/\.share-dialog:not\(\[open\]\)\s*\{\s*display:none/.test(inlineStyles), 'A closed card maker stays closed');
+check(/\.chapter-copy\s*\{[^}]*min-height:44px/.test(inlineStyles), 'The copy control keeps a 44px target');
+check(/@media \(hover:hover\) and \(pointer:fine\)\s*\{\s*\.chapter-copy\s*\{[^}]*opacity:0/.test(inlineStyles),
+  'The copy control only hides itself where there is a hover to reveal it with');
+check(inlineStyles.includes('html:not(.motion-off) .chapter-copy'), 'The share controls transition only while motion is on');
+check(/@media print\s*\{\s*\.chapter-copy,\s*\.share-control/.test(inlineStyles), 'The share controls leave the printed page');
+check(!/^import /m.test(shareModule), 'The share module stays self-contained so build.mjs can inline it');
+check(!/\.crossOrigin\s*=/.test(shareModule), 'Nothing asks the browser for a cross-origin photograph');
+check(shareModule.includes("querySelector('link[rel=\"canonical\"]')"), 'A copied link is built from the canonical address, not the preview origin');
+check(shareModule.includes('navigator.canShare'), 'A file is only shared where the browser says it can share one');
+check(shareModule.includes('navigator.share'), 'The Share control uses the native share sheet where there is one');
+check(shareBuild.includes("read('src/share-cards.js')"), 'build.mjs inlines the share module');
+check(/\$\{shareCards\}[^$]*\$\{app\}/.test(shareBuild), 'The share module is inlined ahead of src/app.js, which calls it');
+check(/^initShareCards\(\{$/m.test(appScript), 'src/app.js starts the share controls');
 
 console.log(`PASS: ${tests} structural/rendering checks; ${data.sources.length} sources; ${Object.keys(data.images).length} images; ${data.families.length} family records.\nExternal network availability and historical claims require separate review.`);
