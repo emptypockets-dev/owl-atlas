@@ -126,9 +126,60 @@ for (const [pathname, document] of documents) {
     const destination = documents.get(url.pathname);
     check(Boolean(destination?.includes(`id="${url.hash.slice(1)}"`)), `${pathname}: valid link ${match[1]}`);
   }
-  for (const [,attrs,script] of document.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)) if (!attrs.includes('application/json')) { new vm.Script(script); tests++; }
+  for (const [,attrs,script] of document.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)) if (!/application\/(ld\+)?json/.test(attrs)) { new vm.Script(script); tests++; }
   check(!/\{\{[A-Z]|INLINE_(STYLES|SCRIPT|DATA)/.test(document), `${pathname}: no unrendered template tokens`);
 }
+// Share cards and structured data: every page must unfurl with its own picture
+// and describe itself to search engines without drifting from src/content.json.
+const socialPages = new Map([['/','home'],['/pricing/','pricing'],['/one-owl/','one-owl'],['/atlas/','atlas']]);
+const reviewPending = new Set(Object.values(data.images).filter(image => image.reuseStatus === 'review-pending').map(image => image.url));
+for (const [pathname, document] of documents) {
+  const page = socialPages.get(pathname);
+  const card = data.social?.[page];
+  check(Boolean(card?.file && card.alt), `${pathname}: social card record in src/content.json`);
+  const image = `https://theowlatlas.com/social/${card.file}`;
+  const head = document.slice(0, document.indexOf('</head>'));
+  const meta = (attribute) => (head.match(new RegExp(`content="([^"]*)" ${attribute}/>`)) || [])[1];
+  check(meta('property="og:image"') === image, `${pathname}: absolute og:image`);
+  check(meta('name="twitter:image"') === image, `${pathname}: twitter:image`);
+  check(meta('property="og:image:width"') === '1200' && meta('property="og:image:height"') === '630', `${pathname}: declared share image size`);
+  check(meta('property="og:image:type"') === 'image/png', `${pathname}: declared share image type`);
+  check(meta('name="twitter:card"') === 'summary_large_image', `${pathname}: large summary card`);
+  check(meta('property="og:image:alt"') === escapeHtml(card.alt) && meta('name="twitter:image:alt"') === escapeHtml(card.alt), `${pathname}: share image alt text`);
+  const blocks = [...document.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
+  check(blocks.length === 1, `${pathname}: exactly one JSON-LD block`);
+  check(!/<\/script/i.test(blocks[0][1]), `${pathname}: JSON-LD cannot close its own tag`);
+  const graph = JSON.parse(blocks[0][1])['@graph'];
+  const work = graph.find(node => ['Article','CreativeWork'].includes(node['@type']));
+  check(Boolean(work), `${pathname}: Article or CreativeWork node`);
+  for (const key of ['headline','description','image','dateModified','author','publisher','inLanguage']) check(Boolean(work[key]), `${pathname}: JSON-LD ${key}`);
+  check(work.image === image, `${pathname}: JSON-LD image is the share card`);
+  check(work.dateModified === data.reviewed, `${pathname}: JSON-LD dateModified is the reviewed date`);
+  check(work.inLanguage === 'en' && work.url === `https://theowlatlas.com${pathname}`, `${pathname}: JSON-LD language and URL`);
+  check(graph.find(node => node['@type'] === 'Organization')?.name === 'The Owl Atlas', `${pathname}: publisher Organization`);
+  check(graph.some(node => node['@type'] === 'WebSite') === (pathname === '/'), `${pathname}: WebSite node on the home page only`);
+  const photographs = graph.filter(node => node['@type'] === 'ImageObject');
+  check((photographs.length > 0) === ['/','/atlas/'].includes(pathname), `${pathname}: photograph metadata only where the register applies`);
+  for (const photograph of photographs) {
+    for (const key of ['contentUrl','license','acquireLicensePage','creditText','creator','copyrightNotice']) check(Boolean(photograph[key]), `${pathname}: ${photograph['@id']} lacks ${key}`);
+    check(!reviewPending.has(photograph.contentUrl), `${pathname}: no review-pending photograph in structured data`);
+  }
+}
+// The referenced PNGs exist at the declared size; IHDR read directly, no dependency.
+for (const [page, card] of Object.entries(data.social)) {
+  const png = await readFile(path.join(root, 'public/social', card.file));
+  check(png.subarray(0, 8).toString('latin1') === '\x89PNG\r\n\x1a\n', `${page}: ${card.file} is a PNG`);
+  check(png.readUInt32BE(16) === 1200 && png.readUInt32BE(20) === 630, `${page}: ${card.file} is 1200x630`);
+  check(png.length <= 600 * 1024, `${page}: ${card.file} fits the 600 KiB share budget`);
+}
+const sitemap = await readFile(path.join(root, 'public/sitemap.xml'), 'utf8');
+check(sitemap.includes('xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"'), 'Sitemap declares the image namespace');
+for (const [pathname, page] of socialPages) {
+  check(sitemap.includes(`<loc>https://theowlatlas.com${pathname}</loc>`), `Sitemap lists ${pathname}`);
+  check(sitemap.includes(`<image:loc>https://theowlatlas.com/social/${data.social[page].file}</image:loc>`), `Sitemap lists the ${page} share card`);
+}
+check((sitemap.match(new RegExp(`<lastmod>${data.reviewed}</lastmod>`,'g'))||[]).length === socialPages.size, 'Every sitemap entry carries the reviewed lastmod');
+check(!/\bsocial\b/.test(await readFile(path.join(root, 'public/robots.txt'), 'utf8')), 'robots.txt does not block the share cards');
 check(!/<tr\b[^>]*data-market-row/.test(markup) && !markup.includes('class="market-history-figure"'), 'Homepage has only the pricing summary');
 check((pricing.replace(/<script[^>]*>[\s\S]*?<\/script>/g,'').match(/<tr\b[^>]*data-market-row/g)||[]).length === 66, 'Full page preserves all 66 observations');
 const htmlIds = [...markup.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
@@ -136,7 +187,7 @@ check(new Set(htmlIds).size === htmlIds.length, 'Duplicate DOM IDs');
 for (const match of markup.matchAll(/href="#([^"]+)"/g)) check(htmlIds.includes(match[1]), `Broken internal link #${match[1]}`);
 check(!/\{\{[A-Z]|INLINE_(STYLES|SCRIPT|DATA)|__\w+_URL__/.test(html), 'Unresolved template token');
 const scripts = [...html.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)];
-for (const [, attrs, script] of scripts) if (!attrs.includes('application/json')) { new vm.Script(script); tests++; }
+for (const [, attrs, script] of scripts) if (!/application\/(ld\+)?json/.test(attrs)) { new vm.Script(script); tests++; }
 check(escapeHtml('<img "x" onerror=\'x\'>&') === '&lt;img &quot;x&quot; onerror=&#39;x&#39;&gt;&amp;', 'HTML escaping regression');
 assert.throws(() => sourceRefs(['not-real'], data)); tests++;
 assert.throws(() => photoMarkup('not-real', data)); tests++;
