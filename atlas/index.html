@@ -5634,6 +5634,129 @@ h4 {
   .chrome-utility-label>.chapter-caption { display:none; }
 }
 
+/* === CHUNK 3 / GEOGRAPHY ================================================= */
+/* The explorer was accurate but flat: a beige polygon on beige paper. Sea,
+   shelf, land, graticule and coast are now separate painted layers inside the
+   SVG, so the maps read as a sea-going economy and — unlike the old CSS
+   background — the water survives printing. No tiles, pins, routes or places
+   are added; every outline is the same public-domain geometry as before. */
+:root {
+  --geo-sea:#bed0d5;
+  --geo-sea-shelf:#93b0b8;
+  --geo-graticule:#9fb7bf;
+  --geo-land:#f2ecdd;
+  --geo-coast:#77857c;
+  --geo-water-ink:#345267;
+  --geo-river:#4a7485;
+  --geo-area-ink:#7a6c3d;
+  --geo-area-glow:#b09a54;
+  --geo-home:#788b6d;
+}
+.geo-sea { fill:var(--geo-sea); }
+.geo-graticule { fill:none; stroke:var(--geo-graticule); stroke-width:.7; stroke-opacity:.6; }
+/* One outline stroked wide under the land, so only its seaward half survives:
+   a drawn coast rather than the edge of a missing fill. */
+.geo-shelf { fill:none; stroke:var(--geo-sea-shelf); stroke-width:4; stroke-opacity:.85; stroke-linejoin:round; }
+.geo-shelf-outer { stroke-width:10; stroke-opacity:.3; }
+.geo-land { fill:var(--geo-land); }
+.geo-boundaries { stroke:var(--geo-coast); stroke-width:.75; stroke-opacity:.8; }
+.geo-home { fill:var(--geo-home); }
+.geo-river { stroke:var(--geo-river); stroke-opacity:.9; stroke-linecap:round; }
+.geo-city { stroke:var(--geo-land); }
+/* The gold keeps its own outline on a separate pass, so a selection can draw
+   that outline in without the shape carrying two of them. */
+.geo-area { stroke:none; }
+.geo-area-glow { fill:none; stroke:var(--geo-area-glow); stroke-opacity:.15; stroke-width:17; stroke-linejoin:round; }
+.geo-area-glow-inner { stroke-opacity:.24; stroke-width:7; }
+.geo-area-trace { fill:none; stroke:var(--geo-area-ink); stroke-width:1.4; stroke-linejoin:round; }
+.geo-locator-map .geo-area-glow { stroke-width:6; }
+.geo-locator-map .geo-area-glow-inner { stroke-width:2.6; }
+.geo-locator-map .geo-area-trace { stroke-width:.45; }
+.geo-focus,.geo-locator-map { background:var(--geo-sea); }
+.geo-view-window { stroke-width:1.2; }
+.geo-legend-swatch { border-color:var(--geo-area-ink); }
+/* Legibility over the new ground: every halo matches what sits beneath it. */
+.geo-map-label { stroke:var(--geo-land); }
+.geo-map-label-water { fill:var(--geo-water-ink); stroke:var(--geo-sea); }
+.geo-locator-label { stroke:var(--geo-land); }
+.geo-scale rect { fill:var(--geo-land); fill-opacity:.94; stroke:rgba(28,36,32,.28); stroke-width:1; }
+.geo-north { paint-order:stroke; stroke:var(--geo-land); stroke-width:4; stroke-linejoin:round; }
+
+/* --- The overview above the buttons ------------------------------------- */
+/* Decorative and JavaScript-only: it lives inside .geo-controls, which is
+   hidden without scripting and in print, and it names nothing the eight
+   buttons beneath it do not already name. */
+.geo-reach { margin:0; padding:15px 18px; border-bottom:1px solid var(--line); }
+.geo-reach-map { display:block; width:100%; max-width:330px; height:auto; border:1px solid var(--line); }
+.geo-reach figcaption { margin-top:8px; max-width:330px; font:var(--type-label)/1.6 var(--mono); color:var(--muted-light); }
+.geo-reach-area { fill:var(--gold); fill-opacity:.26; stroke:var(--geo-area-ink); stroke-width:0; stroke-linejoin:round; }
+.geo-reach-halo { fill:none; stroke:var(--geo-area-glow); stroke-width:4.5; stroke-opacity:0; stroke-linejoin:round; }
+.geo-reach-area.is-sweep { fill-opacity:.68; }
+.geo-reach-halo.is-sweep { stroke-opacity:.32; }
+.geo-reach-area.is-current { fill-opacity:1; stroke-width:.8; }
+.geo-reach-halo.is-current { stroke-opacity:.6; stroke-width:7; }
+.geo-place-buttons button { transition:background 220ms ease, box-shadow 220ms ease; }
+.geo-place-buttons button.is-sweep:not([aria-pressed="true"]) { background:#dedfd1; box-shadow:inset 0 -3px var(--gold); }
+@media screen and (min-width:761px) and (max-width:1180px) {
+  .geo-reach { display:flex; align-items:flex-end; gap:18px; }
+  .geo-reach-map { flex:0 0 300px; width:300px; }
+  .geo-reach figcaption { margin:0 0 6px; max-width:28em; }
+}
+@media screen and (min-width:1181px) {
+  /* :not([hidden]) matters: an author `display` would otherwise beat the user
+     agent's [hidden] rule and show these controls with JavaScript unavailable. */
+  .geo-controls:not([hidden]) { display:grid; grid-template-columns:minmax(0,1fr) 302px; align-items:stretch; }
+  .geo-place-buttons { grid-column:1; grid-row:1; }
+  .geo-reach { grid-column:2; grid-row:1; border-bottom:0; border-left:1px solid var(--line); }
+  .geo-reach-map,.geo-reach figcaption { max-width:none; }
+  /* The overview is taller than two rows of buttons, so the labels centre in
+     the height it sets rather than stranding themselves at the top. */
+  .geo-place-buttons button { display:flex; flex-direction:column; justify-content:center; align-items:flex-start; }
+}
+
+/* --- Motion: one opening sweep, then a short draw on each selection ------ */
+/* The sweep itself is scheduled in the geography block of src/app.js and only
+   ever adds classes here. Selecting a place shows a panel that was display:none,
+   which restarts these animations without any further scripting. */
+@keyframes geo-area-in { from { opacity:0 } to { opacity:1 } }
+@keyframes geo-area-trace-in { from { stroke-dashoffset:1 } to { stroke-dashoffset:0 } }
+.geography-explorer.is-revealed .geo-place:not([hidden]) .geo-area { animation:geo-area-in 520ms ease-out both; }
+.geography-explorer.is-revealed .geo-place:not([hidden]) .geo-area-glow { animation:geo-area-in 900ms ease-out both; }
+.geography-explorer.is-revealed .geo-place:not([hidden]) .geo-area-trace {
+  stroke-dasharray:1 1;
+  animation:geo-area-trace-in 880ms ease-out both;
+}
+.geo-reach-area,.geo-reach-halo { transition:fill-opacity 420ms ease, stroke-opacity 420ms ease, stroke-width 300ms ease; }
+html.motion-off .geography-explorer .geo-area,
+html.motion-off .geography-explorer .geo-area-glow,
+html.motion-off .geography-explorer .geo-area-trace {
+  animation:none!important;
+  stroke-dasharray:none!important;
+  opacity:1!important;
+}
+html.motion-off .geo-reach-area,
+html.motion-off .geo-reach-halo,
+html.motion-off .geo-place-buttons button { transition:none; }
+@media (prefers-reduced-motion:reduce) {
+  .geography-explorer .geo-area,
+  .geography-explorer .geo-area-glow,
+  .geography-explorer .geo-area-trace {
+    animation:none!important;
+    stroke-dasharray:none!important;
+    opacity:1!important;
+  }
+  .geo-reach-area,.geo-reach-halo,.geo-place-buttons button { transition:none; }
+}
+@media print {
+  .geography-explorer .geo-area,
+  .geography-explorer .geo-area-glow,
+  .geography-explorer .geo-area-trace {
+    animation:none!important;
+    stroke-dasharray:none!important;
+    opacity:1!important;
+  }
+}
+
   </style>
  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://theowlatlas.com/#organization","name":"The Owl Atlas","url":"https://theowlatlas.com/"},{"@type":"CreativeWork","@id":"https://theowlatlas.com/atlas/#page","url":"https://theowlatlas.com/atlas/","mainEntityOfPage":"https://theowlatlas.com/atlas/","name":"The Owl Atlas — Compare the owls, follow the sources","headline":"The Owl Atlas — Compare the owls, follow the sources","description":"Eight owl coin families side by side, both faces in museum photographs, plus a plain-language glossary and every source linked in full.","image":"https://theowlatlas.com/social/atlas.png","inLanguage":"en","dateModified":"2026-09-16","author":{"@id":"https://theowlatlas.com/#organization"},"publisher":{"@id":"https://theowlatlas.com/#organization"},"isPartOf":{"@id":"https://theowlatlas.com/#website"},"associatedMedia":[{"@id":"https://theowlatlas.com/atlas/#photo-archaic"},{"@id":"https://theowlatlas.com/atlas/#photo-met-owl"},{"@id":"https://theowlatlas.com/atlas/#photo-met-athena"},{"@id":"https://theowlatlas.com/atlas/#photo-profile"},{"@id":"https://theowlatlas.com/atlas/#photo-early-athena"},{"@id":"https://theowlatlas.com/atlas/#photo-early-owl"},{"@id":"https://theowlatlas.com/atlas/#photo-new-owl"},{"@id":"https://theowlatlas.com/atlas/#photo-new-athena"},{"@id":"https://theowlatlas.com/atlas/#photo-sabakes"}]},{"@type":"ImageObject","@id":"https://theowlatlas.com/atlas/#photo-archaic","name":"Archaic Athena & owl · paired plate","caption":"A vertical photographic plate: an archaic helmeted Athena above, an angular owl with an olive spray below.","contentUrl":"https://upload.wikimedia.org/wikipedia/commons/2/23/Greek_Silver_Tetradrachm_of_Athens_%28Attica%29.jpg","width":759,"height":1608,"license":"https://creativecommons.org/licenses/by/2.0/","acquireLicensePage":"https://commons.wikimedia.org/wiki/File:Greek_Silver_Tetradrachm_of_Athens_(Attica).jpg","creditText":"Exekias / Wikimedia Commons","creator":{"@type":"Organization","name":"Exekias / Wikimedia Commons"},"copyrightNotice":"Exekias / Wikimedia Commons · CC BY 2.0"},{"@type":"ImageObject","@id":"https://theowlatlas.com/atlas/#photo-met-owl","name":"Owl · The Met 2021.40.80","caption":"The owl reverse of a silver tetradrachm cataloged 440–404 BCE, with ΑΘΕ to the right.","contentUrl":"https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702577/main-image","width":1110,"height":1200,"license":"https://creativecommons.org/publicdomain/mark/1.0/","acquireLicensePage":"https://www.metmuseum.org/art/collection/search/330160","creditText":"The Metropolitan Museum of Art · Bequest of Nanette B. Kelekian, 2020","creator":{"@type":"Organization","name":"The Metropolitan Museum of Art"},"copyrightNotice":"The Metropolitan Museum of Art · Bequest of Nanette B. Kelekian, 2020 · Public domain"},{"@type":"ImageObject","@id":"https://theowlatlas.com/atlas/#photo-met-athena","name":"Athena · The Met 2021.40.80","caption":"Athena facing right on a silver tetradrachm in the Met, wearing a decorated helmet.","contentUrl":"https://collectionapi.metmuseum.org/api/collection/v1/iiif/330160/702575/main-image","width":1200,"height":1085,"license":"https://creativecommons.org/publicdomain/mark/1.0/","acquireLicensePage":"https://www.metmuseum.org/art/collection/search/330160","creditText":"The Metropolitan Museum of Art · Bequest of Nanette B. Kelekian, 2020","creator":{"@type":"Organization","name":"The Metropolitan Museum of Art"},"copyrightNotice":"The Metropolitan Museum of Art · Bequest of Nanette B. Kelekian, 2020 · Public domain"},{"@type":"ImageObject","@id":"https://theowlatlas.com/atlas/#photo-profile","name":"Profile-eye Athena & owl · paired plate","caption":"Two faces of a fourth-century Athenian tetradrachm: Athena’s eye in profile and an owl.","contentUrl":"https://upload.wikimedia.org/wikipedia/commons/f/fc/Sg2537.jpg","width":500,"height":253,"license":"https://creativecommons.org/licenses/by-sa/3.0/","acquireLicensePage":"https://commons.wikimedia.org/wiki/File:Sg2537.jpg","creditText":"Classical Numismatic Group, Inc. / Wikimedia Commons","creator":{"@type":"Organization","name":"Classical Numismatic Group, Inc. / Wikimedia Commons"},"copyrightNotice":"Classical Numismatic Group, Inc. / Wikimedia Commons · CC BY-SA 3.0"},{"@type":"ImageObject","@id":"https://theowlatlas.com/atlas/#photo-early-athena","name":"Early classical Athena · Cleveland 1920.267.a","caption":"Athena’s helmeted head on an early classical Athenian silver tetradrachm.","contentUrl":"https://upload.wikimedia.org/wikipedia/commons/5/54/Greece%2C_5th_century_BC_-_Athenian_Tetradrachm-_Female_Head_%28obverse%29_-_1920.267.a_-_Cleveland_Museum_of_Art.jpg","width":2318,"height":2280,"license":"https://creativecommons.org/publicdomain/zero/1.0/","acquireLicensePage":"https://commons.wikimedia.org/wiki/File:Greece,_5th_century_BC_-_Athenian_Tetradrachm-_Female_Head_(obverse)_-_1920.267.a_-_Cleveland_Museum_of_Art.jpg","creditText":"Cleveland Museum of Art · Gift of Harold W. Parsons","creator":{"@type":"Organization","name":"Cleveland Museum of Art"},"copyrightNotice":"Cleveland Museum of Art · Gift of Harold W. Parsons · CC0 1.0"},{"@type":"ImageObject","@id":"https://theowlatlas.com/atlas/#photo-early-owl","name":"Early classical owl · Cleveland 1920.267.b","caption":"The owl reverse of Cleveland 1920.267, with an olive sprig, crescent moon and ΑΘΕ inside a recessed square.","contentUrl":"https://openaccess-cdn.clevelandart.org/1920.267.b/1920.267.b_print.jpg","width":2384,"height":2280,"license":"https://creativecommons.org/publicdomain/zero/1.0/","acquireLicensePage":"https://commons.wikimedia.org/wiki/File:Greece,_5th_century_BC_-_Athenian_Tetradrachm-_Owl_(reverse)_-_1920.267.b_-_Cleveland_Museum_of_Art.tif","creditText":"Cleveland Museum of Art · Gift of Harold W. Parsons","creator":{"@type":"Organization","name":"Cleveland Museum of Art"},"copyrightNotice":"Cleveland Museum of Art · Gift of Harold W. Parsons · CC0 1.0"},{"@type":"ImageObject","@id":"https://theowlatlas.com/atlas/#photo-new-owl","name":"New Style owl · Musée de la BnF","caption":"A New Style owl stands on a horizontal amphora amid inscriptions, inside an olive wreath.","contentUrl":"https://upload.wikimedia.org/wikipedia/commons/8/82/Silver_tetradrachm_Athens_new_style_reverse.jpg","width":1340,"height":1340,"license":"https://creativecommons.org/publicdomain/mark/1.0/","acquireLicensePage":"https://commons.wikimedia.org/wiki/File:Silver_tetradrachm_Athens_new_style_reverse.jpg","creditText":"Marie-Lan Nguyen / Wikimedia Commons · Musée de la BnF","creator":{"@type":"Organization","name":"Marie-Lan Nguyen / Wikimedia Commons"},"copyrightNotice":"Marie-Lan Nguyen / Wikimedia Commons · Musée de la BnF · Public domain"},{"@type":"ImageObject","@id":"https://theowlatlas.com/atlas/#photo-new-athena","name":"New Style Athena · Musée de la BnF","caption":"An elaborate helmet and naturalistic profile of Athena on a broad New Style silver coin.","contentUrl":"https://upload.wikimedia.org/wikipedia/commons/0/04/Silver_tetradrachm_Athens_new_style_obverse.jpg","width":1200,"height":1200,"license":"https://creativecommons.org/publicdomain/mark/1.0/","acquireLicensePage":"https://commons.wikimedia.org/wiki/File:Silver_tetradrachm_Athens_new_style_obverse.jpg","creditText":"Marie-Lan Nguyen / Wikimedia Commons · Musée de la BnF","creator":{"@type":"Organization","name":"Marie-Lan Nguyen / Wikimedia Commons"},"copyrightNotice":"Marie-Lan Nguyen / Wikimedia Commons · Musée de la BnF · Public domain"},{"@type":"ImageObject","@id":"https://theowlatlas.com/atlas/#photo-sabakes","name":"The owl in Persian-administered Egypt","caption":"Paired faces of a Sabakes owl-type coin: Athena at left and an owl with local lettering at right.","contentUrl":"https://upload.wikimedia.org/wikipedia/commons/e/eb/EGYPT%2C_Persian_Administration._Sabakes._Circa_340-333_BC.jpg","width":800,"height":403,"license":"https://creativecommons.org/licenses/by-sa/3.0/","acquireLicensePage":"https://commons.wikimedia.org/wiki/File:EGYPT,_Persian_Administration._Sabakes._Circa_340-333_BC.jpg","creditText":"Classical Numismatic Group, Inc. / Wikimedia Commons","creator":{"@type":"Organization","name":"Classical Numismatic Group, Inc. / Wikimedia Commons"},"copyrightNotice":"Classical Numismatic Group, Inc. / Wikimedia Commons · CC BY-SA 3.0"}]}</script>
  </head>
@@ -6586,6 +6709,31 @@ function geoPath(rings, projection) {
     return points.length < 3 ? '' : `M${points.map(p => projection.xy(p).map(v => v.toFixed(1)).join(',')).join('L')}Z`;
   }).join('');
 }
+// A quiet graticule on the water. The step is picked so a view never carries
+// more than seven lines in either direction, whatever its span.
+function geoGraticule(projection) {
+  const [west, south, east, north] = projection.bounds;
+  const step = [.25,.5,1,2,5,10,15].find(v => Math.max(east - west, north - south) / v <= 7) || 20;
+  const segment = (a,b) => `M${projection.xy(a).map(v => v.toFixed(1)).join(',')}L${projection.xy(b).map(v => v.toFixed(1)).join(',')}`;
+  let path = '';
+  for (let i = Math.ceil(west / step); i * step <= east; i += 1) path += segment([i * step, south],[i * step, north]);
+  for (let i = Math.ceil(south / step); i * step <= north; i += 1) path += segment([west, i * step],[east, i * step]);
+  return path ? `<path class="geo-graticule" d="${path}"/>` : '';
+}
+// Sea, shelf and land are separate painted layers so the coastline reads as a
+// drawn edge rather than as the absence of a fill. The shelf is the same base
+// outline stroked wide underneath the land, so only its seaward half survives.
+function geoGround(width, height, baseId, graticule = '') {
+  return `<rect class="geo-sea" width="${width}" height="${height}"/>${graticule}<use class="geo-shelf geo-shelf-outer" href="#${baseId}"/><use class="geo-shelf" href="#${baseId}"/><use class="geo-base geo-land" href="#${baseId}"/>`;
+}
+// The selected area is painted as a halo, a fill and a traceable outline. All
+// four layers reuse one outline, so the extra passes cost references rather than
+// geometry, and pathLength="1" lets the outline draw itself in at any scale.
+// An empty `selected` means the outline already lives in the shared defs.
+function geoAreaLayers(areaId, selected, patternId = '') {
+  const defs = selected ? `<defs><path id="${areaId}" pathLength="1" d="${selected}"/></defs>` : '';
+  return `${defs}<use class="geo-area-glow" href="#${areaId}"/><use class="geo-area-glow geo-area-glow-inner" href="#${areaId}"/><use class="geo-area" href="#${areaId}"${patternId ? ` style="fill:url(#${patternId})"` : ''}/><use class="geo-area-trace" href="#${areaId}"/>`;
+}
 function geographyMap(place, geometry, locator = false) {
   const width = locator ? 360 : 720, height = locator ? 190 : 450;
   const projection = geoProjection(locator ? (place.id === 'athens' ? [18,33.5,30,43] : [7,10,78,47]) : place.bounds, width, height);
@@ -6595,7 +6743,10 @@ function geographyMap(place, geometry, locator = false) {
   const base = countries.map(country => geoPath(country.rings, projection)).filter(Boolean);
   const sharedWorld = locator && place.id !== 'athens';
   const baseId = sharedWorld ? 'geo-world-outlines' : `${id}-base`;
-  const selected = geoPath(geometry.shapes[place.shape], projection);
+  // Every locator but Attica's shares the wide frame, so it also shares the
+  // outline the overview map already carries.
+  const areaId = sharedWorld ? `geo-reach-${place.id}` : `${id}-area`;
+  const selected = sharedWorld ? '' : geoPath(geometry.shapes[place.shape], projection);
   const hatch = place.approximate && !locator;
   let overlays = '';
   if (!locator) {
@@ -6627,12 +6778,23 @@ function geographyMap(place, geometry, locator = false) {
     overlays += `<g class="geo-scale"><rect x="16" y="${height-55}" width="220" height="49" rx="2"/><path d="M28,${height-30}v7h${length.toFixed(1)}v-7"/><text x="28" y="${height-35}">${km} km</text></g><text class="geo-north" x="${width-25}" y="${height-22}" text-anchor="end">N ↑</text>`;
   }
   const accessible = locator ? 'aria-hidden="true" focusable="false"' : `role="img" aria-labelledby="${id}-title ${id}-desc"`;
-  return `<svg class="${locator ? 'geo-locator-map' : 'geo-focus-map'}" viewBox="0 0 ${width} ${height}" ${accessible}>${locator ? '' : `<title id="${id}-title">${escapeHtml(place.name)}: ${escapeHtml(place.legend)}</title><desc id="${id}-desc">${escapeHtml(place.where)} ${escapeHtml(place.mapNote)} North is up. The scale bar is approximate at the map centre.</desc>`}${hatch ? `<defs><pattern id="${id}-hatch" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#d6c99e"/><path d="M-2,2L2,-2M0,8L8,0M6,10L10,6" stroke="#84784f" stroke-width="1"/></pattern></defs>` : ''}${sharedWorld ? '' : `<defs><path id="${baseId}" d="${base.join('')}"/></defs>`}<use class="geo-base" href="#${baseId}"/>${locator ? `<path class="geo-home" d="${geoPath(geometry.countries.GRC.rings, projection)}"/>` : ''}<path class="geo-area" d="${selected}"${hatch ? ` style="fill:url(#${id}-hatch)"` : ''}/><use class="geo-boundaries" href="#${baseId}"/>${overlays}</svg>`;
+  return `<svg class="${locator ? 'geo-locator-map' : 'geo-focus-map'}" viewBox="0 0 ${width} ${height}" ${accessible}>${locator ? '' : `<title id="${id}-title">${escapeHtml(place.name)}: ${escapeHtml(place.legend)}</title><desc id="${id}-desc">${escapeHtml(place.where)} ${escapeHtml(place.mapNote)} North is up. The scale bar is approximate at the map centre.</desc>`}${hatch ? `<defs><pattern id="${id}-hatch" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#d6c99e"/><path d="M-2,2L2,-2M0,8L8,0M6,10L10,6" stroke="#84784f" stroke-width="1"/></pattern></defs>` : ''}${sharedWorld ? '' : `<defs><path id="${baseId}" d="${base.join('')}"/></defs>`}${geoGround(width, height, baseId, locator ? '' : geoGraticule(projection))}${locator ? `<path class="geo-home" d="${geoPath(geometry.countries.GRC.rings, projection)}"/>` : ''}${geoAreaLayers(areaId, selected, hatch ? `${id}-hatch` : '')}<use class="geo-boundaries" href="#${baseId}"/>${overlays}</svg>`;
+}
+// One overview of all eight areas, in the same wide frame the locators use. It
+// repeats what the buttons beneath it already name, so it is decorative; it adds
+// no place, boundary or route that the eight panels do not already show.
+function geographyReachMap(places, geometry, projection) {
+  const [ax,ay] = projection.xy([23.73,37.98]);
+  // Approximate regions keep the hatch they carry on their own close-up, so the
+  // overview never makes an orientation grouping look like a surveyed border.
+  const layer = (className, hatched = false) => places.map(p => `<use class="${className}" data-geo-reach="${escapeHtml(p.id)}" href="#geo-reach-${escapeHtml(p.id)}"${hatched && p.approximate ? ' style="fill:url(#geo-reach-hatch)"' : ''}/>`).join('');
+  return `<svg class="geo-reach-map" viewBox="0 0 360 190" aria-hidden="true" focusable="false">${geoGround(360,190,'geo-world-outlines')}<path class="geo-home" d="${geoPath(geometry.countries.GRC.rings, projection)}"/>${layer('geo-reach-halo')}${layer('geo-reach-area', true)}<use class="geo-boundaries" href="#geo-world-outlines"/><circle class="geo-city" cx="${ax.toFixed(1)}" cy="${ay.toFixed(1)}" r="3"/></svg>`;
 }
 function geographyMarkup(data, geometry) {
   const places = data.geography.places;
   const worldProjection = geoProjection([7,10,78,47],360,190);
   const worldPath = Object.values(geometry.countries).map(country => geoPath(country.rings,worldProjection)).join('');
+  const reachPaths = places.map(p => `<path id="geo-reach-${escapeHtml(p.id)}" pathLength="1" d="${geoPath(geometry.shapes[p.shape],worldProjection)}"/>`).join('');
   const buttons = places.map((p,i) => `<button type="button" data-geography="${escapeHtml(p.id)}" aria-pressed="${i===0}" aria-controls="geography-${escapeHtml(p.id)}"><span>${escapeHtml(p.name)}</span><small>${escapeHtml(p.kind)}</small></button>`).join('');
   const panels = places.map((p,i) => `<article class="geo-place" id="geography-${escapeHtml(p.id)}" aria-labelledby="geography-${escapeHtml(p.id)}-title">
     <header class="geo-place-heading"><span class="eyebrow">${String(i+1).padStart(2,'0')} / ${escapeHtml(p.kind)}</span><h3 id="geography-${escapeHtml(p.id)}-title" tabindex="-1">${escapeHtml(p.name)}</h3></header>
@@ -6640,7 +6802,7 @@ function geographyMarkup(data, geometry) {
     <div class="geo-map-context"><figure class="geo-locator">${geographyMap(p,geometry,true)}<figcaption>${p.id === 'athens' ? 'Green: Greece · box: Attica close-up' : 'Green: Greece · dot: Athens · box: close-up'}</figcaption></figure><p>${escapeHtml(p.mapNote)}<span class="geo-scale-note">Each view has its own approximate scale. North is always up.</span></p></div></div>
     <div class="geo-copy"><h4>${escapeHtml(p.heading)}</h4><p class="geo-where">${escapeHtml(p.where)}</p><p class="geo-relation">${escapeHtml(p.relation)}</p><div class="geo-evidence"><span class="eyebrow">${escapeHtml(p.role)}</span><p>${escapeHtml(p.evidence)} ${sourceRefs(p.refs,data)}</p></div>${p.orientationSource ? `<a class="quiet-link geo-region-source" href="${escapeHtml(p.orientationSource)}" target="_blank" rel="noopener noreferrer">About this region ↗</a>` : ''}<button class="geo-next" type="button" data-geography-next="${escapeHtml(places[(i+1)%places.length].id)}" hidden>${i===places.length-1 ? 'Return to Athens' : `Next: ${escapeHtml(places[i+1].name)}`} <span aria-hidden="true">→</span></button></div></div>
   </article>`).join('\n');
-  return `<div class="geography-explorer" id="geography-explorer"><svg class="geo-definitions" width="0" height="0" aria-hidden="true" focusable="false"><defs><path id="geo-world-outlines" d="${worldPath}"/></defs></svg><div class="geo-controls" hidden><div class="geo-place-buttons" role="group" aria-label="Explore a place">${buttons}</div><label class="geo-select-wrap" for="geography-select">Explore a place<select id="geography-select">${places.map(p=>`<option value="${escapeHtml(p.id)}">${escapeHtml(p.name)}</option>`).join('')}</select></label></div><p class="sr-only" id="geography-status" role="status" aria-live="polite"></p>${panels}<p class="geo-credit">Selected places across several centuries, not a reconstructed journey or a complete mint map. Modern geographic outlines and rivers: <a href="${escapeHtml(geometry.licenseUrl)}" target="_blank" rel="noopener noreferrer">Natural Earth · public domain</a>. Ancient political borders are not shown.</p></div>`;
+  return `<div class="geography-explorer" id="geography-explorer"><svg class="geo-definitions" width="0" height="0" aria-hidden="true" focusable="false"><defs><pattern id="geo-reach-hatch" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="5" height="5" fill="#d6c99e"/><path d="M-1,1L1,-1M0,5L5,0M4,6L6,4" stroke="#84784f" stroke-width=".7"/></pattern><path id="geo-world-outlines" d="${worldPath}"/>${reachPaths}</defs></svg><div class="geo-controls" hidden><figure class="geo-reach" data-animate-on-view>${geographyReachMap(places,geometry,worldProjection)}<figcaption>The eight areas in this chapter; gold marks the one open below.</figcaption></figure><div class="geo-place-buttons" role="group" aria-label="Explore a place">${buttons}</div><label class="geo-select-wrap" for="geography-select">Explore a place<select id="geography-select">${places.map(p=>`<option value="${escapeHtml(p.id)}">${escapeHtml(p.name)}</option>`).join('')}</select></label></div><p class="sr-only" id="geography-status" role="status" aria-live="polite"></p>${panels}<p class="geo-credit">Selected places across several centuries, not a reconstructed journey or a complete mint map. Modern geographic outlines and rivers: <a href="${escapeHtml(geometry.licenseUrl)}" target="_blank" rel="noopener noreferrer">Natural Earth · public domain</a>. Ancient political borders are not shown.</p></div>`;
 }
 
 /** Discrete, declarative artifact views. No framework, scroll capture or per-step animation. */
@@ -7249,11 +7411,25 @@ if (geographyExplorer) {
   const panels = Array.from(geographyExplorer.querySelectorAll('.geo-place'));
   const buttons = Array.from(geographyExplorer.querySelectorAll('[data-geography]'));
   const select = byId('geography-select');
+  // The overview above the buttons is decorative, so it is driven by class only:
+  // nothing here changes what is selected, announced, focused or linkable.
+  const reachAreas = Array.from(geographyExplorer.querySelectorAll('[data-geo-reach]'));
+  const geographyStill = () => motionOff || document.documentElement.classList.contains('motion-off');
+  let reachTimers = [];
+  function endGeographySweep() {
+    reachTimers.forEach(clearTimeout);
+    reachTimers = [];
+    reachAreas.forEach(area => area.classList.remove('is-sweep'));
+    buttons.forEach(button => button.classList.remove('is-sweep'));
+  }
   function selectGeography(id, announce = true) {
     const selected = byId(`geography-${id}`);
     if (!panels.includes(selected)) return;
+    // Any real choice ends the opening sweep at once; it never competes with the reader.
+    endGeographySweep();
     panels.forEach(panel => { panel.hidden = panel !== selected; });
     buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.geography === id)));
+    reachAreas.forEach(area => area.classList.toggle('is-current', area.dataset.geoReach === id));
     select.value = id;
     if (announce) byId('geography-status').textContent = `${data.geography.places.find(place => place.id === id).name} selected.`;
   }
@@ -7276,6 +7452,36 @@ if (geographyExplorer) {
   geographyFromHash();
   window.addEventListener('hashchange', geographyFromHash);
   geographyExplorer.querySelector('.geo-controls').hidden = false;
+  // Once, when the overview is actually on screen: the eight areas light up in
+  // turn over about two and a half seconds and then settle back on whichever
+  // place is open. Scrolling, selection and the deep link are untouched, and
+  // with motion off nothing runs at all.
+  function runGeographySweep() {
+    if (geographyStill() || !reachAreas.length) return;
+    const places = data.geography.places, step = 260;
+    places.forEach((place, index) => {
+      reachTimers.push(setTimeout(() => {
+        if (geographyStill()) { endGeographySweep(); return; }
+        reachAreas.forEach(area => { if (area.dataset.geoReach === place.id) area.classList.add('is-sweep'); });
+        buttons.forEach(button => { if (button.dataset.geography === place.id) button.classList.add('is-sweep'); });
+      }, index * step));
+    });
+    reachTimers.push(setTimeout(endGeographySweep, places.length * step + 620));
+  }
+  const sweepTarget = geographyExplorer.querySelector('[data-animate-on-view]');
+  if (sweepTarget && 'IntersectionObserver' in window) {
+    const sweepObserver = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        sweepObserver.disconnect();
+        geographyExplorer.classList.add('is-revealed');
+        runGeographySweep();
+      }
+    }, {threshold: 0.55});
+    sweepObserver.observe(sweepTarget);
+  } else {
+    geographyExplorer.classList.add('is-revealed');
+  }
 }
 
 // Inline citations open a compact evidence note; without JS their anchors work.
