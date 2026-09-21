@@ -64,8 +64,11 @@ both belong to the same coin; see `research/early-classical-findings.json`.
 
 ## The experience
 
-- Nine narrative chapters: Athens and the geography of owl coinage; early owls; classical mass issues;
-  404 BCE; fourth-century changes; New Style; regional imitations; evidence; and collecting today.
+- Eight narrative chapters: Athens and the geography of owl coinage; early owls; classical mass
+  issues; 404 BCE; New Style; regional imitations; evidence; and collecting today. A dotted-theta
+  interlude sits between the third and fourth. The separate fourth-and-third-century chapter was
+  removed on 21 September 2026 at the owner's request; what it argued is now in the chapter 03
+  close reading and in the `/atlas/` family cards.
 - A short pricing chapter introduces three examples spanning the 2026 auction sample.
   The full research lives at `/pricing/`: 64 auction results, two qualified public eBay
   observations, a 2019–2026 chart, repeat-sale comparison, fee calculator and searchable ledger.
@@ -79,13 +82,16 @@ both belong to the same coin; see `research/early-classical-findings.json`.
   SVG side views and accompanying text remain readable without JavaScript.
 - Scroll reveals, restrained parallax, a chapter indicator and reading progress.
   Scrolling is never hijacked. OS reduced-motion preferences take priority.
-- The “Anatomy of an Owl” exhibit was removed on 21 September 2026; the close
-  reading that preceded it is archived in `research/previous-close-reading/`.
-  The artifact camera module remains in `src/` but is no longer built in.
-  A reusable artifact camera follows normalized focus coordinates through both
-  sides of Cleveland 1941.296. Both source photographs and all readings remain
-  available without JavaScript and in print. See `docs/artifact-stories.md` for
-  the declarative API, localhost coordinate helper and validation commands.
+- An interactive close reading in chapter 03: six sourced details across both
+  sides of Cleveland 1941.296. A native radio pair chooses the face, detail
+  buttons choose a reading, and a numbered marker moves to that reading's own
+  coordinates over the photograph. Every reading, both photographs and all their
+  citations are rendered at build time, so without JavaScript the whole close
+  reading is simply on the page with the controls hidden; the same is true in
+  print. The readings are in `src/content.json` under `closeReading`.
+  The “Anatomy of an Owl” exhibit that briefly replaced this reading was removed
+  on 21 September 2026; its archive is in `research/previous-close-reading/`, and
+  the artifact camera module remains in `src/` but is no longer built in.
 - A dedicated `/atlas/` reference page contains the comparison tool, eight-family atlas, glossary, bibliography and image-use records. The homepage ends with a short invitation to explore it. Old reference bookmarks redirect to the new page.
 - A two-column, eight-family comparison atlas. Pi-style additionally has separate
   Pi II/Pi III specimen selectors, and story links preset meaningful comparisons.
@@ -192,19 +198,19 @@ npm run build           # merges public/images/derived/manifest.json, no network
 npm run check
 ```
 
-- Widths are 800 and 1,600 pixels, plus 2,400 for the two Anatomy of an Owl
-  faces, at JPEG quality 82. A requested width larger than the source is
-  skipped: nothing is ever enlarged, and a source narrower than 800 pixels is
-  re-encoded only at its own size.
+- Widths are 800 and 1,600 pixels, at JPEG quality 82, plus a 2,400 copy of the
+  classical owl that the withdrawn Anatomy exhibit used and nothing now requests.
+  A requested width larger than the source is skipped: nothing is ever enlarged,
+  and a source narrower than 800 pixels is re-encoded only at its own size.
 - A copy that would not be smaller than its original is discarded, so
   `profile` and `sabakes` keep their existing display URLs.
 - File names carry a content hash, so `vercel.json` serves
   `/public/images/derived/` as immutable for a year. `npm run build:deploy`
   stages only the derived files the build actually references.
-- `image.url` is untouched. It remains the "Full-resolution original" link,
-  the image viewer's on-demand source, and the "Full photograph" link in the
-  Anatomy exhibit. Each derived record's `changes` note states the
-  transformation, which is also visible in the viewer and the image register.
+- `image.url` is untouched. It remains the "Full-resolution original" link and
+  the image viewer's on-demand source, including from the close reading. Each
+  derived record's `changes` note states the transformation, which is also
+  visible in the viewer and the image register.
 - The six reuse-review-pending BnF photographs are never downloaded or derived
   here and continue to hotlink their originals unchanged.
 - `public/images/derived/manifest.json` records, per photograph, the SHA-256 of
@@ -212,11 +218,11 @@ npm run check
   and pixel size of every derivative. `npm run check` verifies those bytes on
   disk. `node scripts/derive-images.mjs --force` re-downloads and rebuilds.
 
-The hero photograph and both Anatomy faces also carry a 24-pixel blurred
-placeholder, inlined as a data URI under 1.1 KB, so the hero disc and the
-exhibit stage are never empty while the photograph arrives. Placeholders are
-loading affordances generated from the same source file; they are never
-presented as the photograph, and the viewer still opens the original.
+The hero photograph carries a 24-pixel blurred placeholder, inlined as a data
+URI under 1.1 KB, so the hero disc is never an empty well while the photograph
+arrives. Placeholders are loading affordances generated from the same source
+file; they are never presented as the photograph, and the viewer still opens
+the original.
 
 Unlike the vendoring script above, `scripts/derive-images.mjs` has been run
 against the live hosts: 11 originals (19.2 MiB) downloaded and verified, and
@@ -292,7 +298,7 @@ MARKET_URL=https://theowlatlas.com CHROMIUM_PATH=/path/to/chromium python3 tests
 ```
 
 Tests cover five viewport widths, reduced motion, native modal opening/closing
-and focus return, image-error states, anatomy, both sides of all eight comparison
+and focus return, image-error states, the chapter 03 close reading, both sides of all eight comparison
 entries, Pi II/Pi III selection and comparison presets, BnF object and reuse
 metadata, source filtering, the optional catalogue guide and JavaScript-disabled reading. A clearly labeled
 synthetic grid tests loaded-image zoom/pan; it is never included in the website.

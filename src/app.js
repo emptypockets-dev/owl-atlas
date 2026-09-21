@@ -957,3 +957,56 @@ function openShareCardFromHash() {
 }
 openShareCardFromHash();
 window.addEventListener('hashchange', openShareCardFromHash);
+
+// === CHUNK 5 / CLOSE READING ==============================================
+// Both photographs, all six readings and every citation are in the document at
+// build time; without this script they are simply all on the page. The
+// enhancement only adds the switch: the native radio pair chooses a face, the
+// detail buttons choose a reading, and a numbered marker moves over the
+// photograph. Nothing here is the only route to a sourced statement.
+const closeReadingPanels = [...document.querySelectorAll('[data-close-reading-side]')];
+if (closeReadingPanels.length && data.closeReading) {
+  const closeReadings = data.closeReading.readings;
+  for (const panel of closeReadingPanels) {
+    const buttons = [...panel.querySelectorAll('[data-close-reading]')];
+    const marker = panel.querySelector('.close-reading-marker');
+    const text = panel.querySelector('.close-reading-text');
+    const surface = panel.querySelector('.image-surface');
+    if (!buttons.length || !marker || !text || !surface) continue;
+    // Anchor the marker's percentages to the photograph itself, never to the
+    // face label above it or the credit line below it.
+    surface.append(marker);
+    const selectReading = (button) => {
+      const index = closeReadings.findIndex((reading) => reading.id === button.dataset.closeReading);
+      const reading = closeReadings[index];
+      if (!reading) return;
+      for (const other of buttons) other.setAttribute('aria-pressed', String(other === button));
+      for (const item of text.querySelectorAll('.close-reading-item')) {
+        item.hidden = item.id !== button.getAttribute('aria-controls');
+      }
+      marker.style.setProperty('--x', `${reading.x}%`);
+      marker.style.setProperty('--y', `${reading.y}%`);
+      marker.textContent = String(index + 1);
+    };
+    selectReading(buttons[0]);
+    // Live only after the opening state is in place, so arriving at the chapter
+    // does not read the first reading aloud on its own.
+    text.setAttribute('aria-live', 'polite');
+    text.setAttribute('aria-atomic', 'true');
+    for (const button of buttons) button.addEventListener('click', () => selectReading(button));
+    panel.querySelector('.detail-buttons').hidden = false;
+    marker.hidden = false;
+  }
+  const faceInputs = [...document.querySelectorAll('input[name="close-reading-side"]')];
+  const faceControl = document.querySelector('.close-reading-faces');
+  const showCloseReadingFace = () => {
+    const chosen = document.querySelector('input[name="close-reading-side"]:checked');
+    if (!chosen) return;
+    for (const panel of closeReadingPanels) panel.hidden = panel.dataset.closeReadingSide !== chosen.value;
+  };
+  if (faceInputs.length && faceControl) {
+    for (const input of faceInputs) input.addEventListener('change', showCloseReadingFace);
+    showCloseReadingFace();
+    faceControl.hidden = false;
+  }
+}

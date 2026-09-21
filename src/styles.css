@@ -7533,3 +7533,176 @@ html.motion-off .identify-reset { transition:none; }
   .identify-table tr { break-inside:avoid; }
 }
 /* === end CHUNK 4 / IDENTIFIER ============================================ */
+
+/* ==========================================================================
+   CHUNK 5 / CLOSE READING — six details on one coin, in chapter 03
+   The close reading that preceded the withdrawn Anatomy exhibit, rebuilt in the
+   current type and the chunk-2 set-piece language: paper ground, mono eyebrow,
+   gold marker, Fraunces at the mid-size axis the rest of the page uses for h3
+   and h4. Everything below is additive; nothing above this line was changed
+   for it. The readings themselves live in src/content.json.
+   ========================================================================== */
+
+.close-reading {
+  border-top:1px solid var(--line);
+  margin-top:clamp(56px,7vw,90px);
+  padding-top:clamp(44px,5vw,70px);
+}
+.close-reading-header {
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:clamp(24px,4vw,48px);
+  margin-bottom:clamp(28px,3.5vw,45px);
+}
+.close-reading-header .eyebrow { color:var(--muted-light); }
+.close-reading-header h3 {
+  font-size:clamp(2.25rem,4.2vw,3.25rem);
+  margin-top:18px;
+}
+.close-reading-header h3 em { color:var(--muted-light); }
+.close-reading-header>p {
+  max-width:23rem;
+  font-size:var(--type-support);
+  line-height:1.75;
+  color:var(--muted-light);
+}
+
+.segmented.close-reading-faces {
+  width:max-content;
+  max-width:100%;
+  align-self:start;
+  margin-bottom:28px;
+}
+.close-reading-faces span {
+  min-height:44px;
+  display:flex;
+  align-items:center;
+}
+
+.close-reading-layout {
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+  gap:clamp(32px,5vw,70px);
+  align-items:center;
+}
+/* Without JavaScript both faces stand one above the other; with it only one is
+   ever shown, so the gap between them must not survive the hiding. */
+.close-reading-layout+.close-reading-layout:not([hidden]) { margin-top:45px; }
+.close-reading-faces:not([hidden])~.close-reading-layout { margin-top:0; }
+
+.close-reading-photo { position:relative; max-width:600px; }
+.close-reading-marker {
+  position:absolute;
+  left:var(--x,50%);
+  top:var(--y,50%);
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#19251df0;
+  color:var(--light);
+  border:1px solid var(--gold);
+  box-shadow:0 0 0 7px rgba(197,184,139,.24);
+  font-family:var(--mono);
+  font-size:var(--type-support);
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  transition:left .4s,top .4s;
+}
+
+/* The detail buttons are the site's existing pressed-control idiom, already
+   styled above with a 48px target, the aria-pressed treatment, the readability
+   pass and the higher-contrast control border. Nothing is restated here. */
+
+/* No reserved height: the readability pass took it off the old exhibit's copy
+   column for good reason, and the photograph is held still by the sticky rule
+   below rather than by padding out the words beside it. */
+.close-reading-item+.close-reading-item:not([hidden]) { margin-top:28px; }
+.detail-buttons:not([hidden])+.close-reading-text .close-reading-item { margin-top:0; }
+.close-reading-item .eyebrow { color:var(--muted-light); }
+.close-reading-item h4 {
+  font-family:var(--serif);
+  font-size:clamp(1.75rem,2.6vw,2.1875rem);
+  letter-spacing:-.035em;
+  line-height:1.12;
+  margin:14px 0;
+}
+.close-reading-item p {
+  font-size:var(--type-reading);
+  line-height:1.8;
+  max-width:34rem;
+}
+.close-reading-controls>.micro-copy { margin-top:20px; }
+
+/* The coda carries the one statement the withdrawn chapter had that the six
+   readings do not: the design outlasts them, and the atlas can show it. */
+.close-reading-coda {
+  border-top:1px solid var(--line);
+  margin-top:clamp(36px,4.5vw,60px);
+  padding-top:clamp(24px,3vw,36px);
+  display:flex;
+  flex-wrap:wrap;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:clamp(18px,3vw,40px);
+}
+.close-reading-coda p {
+  max-width:34rem;
+  font-size:var(--type-support);
+  line-height:1.8;
+  color:var(--muted-light);
+}
+.close-reading-coda-links {
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:14px;
+}
+
+@media screen and (min-width:901px) {
+  /* The photograph holds still under the header while the readings change. */
+  .close-reading-photo {
+    position:sticky;
+    top:calc(var(--header-visible) + var(--bar) + 20px);
+  }
+}
+@media screen and (max-width:900px) {
+  .close-reading-header { display:block; }
+  .close-reading-header>p { margin-top:20px; max-width:26rem; font-size:var(--type-small); }
+  .close-reading-layout { grid-template-columns:minmax(0,1fr); gap:30px; }
+  .close-reading-photo { max-width:520px; width:100%; margin-inline:auto; }
+  .close-reading-item p { font-size:var(--type-body); }
+}
+@media screen and (max-width:600px) {
+  .segmented.close-reading-faces { width:100%; }
+  .segmented.close-reading-faces label { flex:1; }
+  .close-reading-marker { width:32px; height:32px; box-shadow:0 0 0 5px rgba(197,184,139,.24); }
+  .close-reading-coda-links { width:100%; }
+}
+
+/* The marker is the only thing here that moves, so the motion control and the
+   OS preference both stop it without touching the reading. */
+html.motion-off .close-reading-marker { transition:none; }
+@media (prefers-reduced-motion:reduce) {
+  .close-reading-marker { transition:none; }
+}
+
+/* On paper the switch is meaningless: print both faces and all six readings,
+   which is exactly the document the reader gets without JavaScript. */
+@media print {
+  .close-reading { break-inside:auto; }
+  .close-reading-faces,.close-reading-marker,.close-reading-coda-links,
+  .close-reading-controls .detail-buttons { display:none!important; }
+  .close-reading-layout[hidden] { display:grid!important; }
+  .close-reading-item[hidden] { display:block!important; }
+  .close-reading-layout+.close-reading-layout,
+  .close-reading-item+.close-reading-item { margin-top:24pt!important; }
+  .close-reading-layout { break-inside:avoid; }
+  .close-reading-photo { position:static; }
+  .close-reading-item p { font-size:var(--type-reading); }
+  .close-reading-coda { display:block; }
+}
+/* === end CHUNK 5 / CLOSE READING ========================================= */
