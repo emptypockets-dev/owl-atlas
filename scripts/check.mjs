@@ -348,4 +348,75 @@ for (const [document, label, page] of [[pricing, 'PRICING RESEARCH', '/pricing/'
   check(strip.includes('id="motion-toggle"'), `${page}: chrome strip keeps the motion control`);
 }
 check(!html.includes('class="chrome-utility"'), 'The home page keeps its chapter bar rather than the sub-page strip');
+
+/* ---------------------------------------------------------------------------
+ * One Owl: the owner's CC BY 4.0 release, and the measured display crops.
+ *
+ * A licence a reader cannot act on is not a licence, so every record has to
+ * carry the deed URL and the page has to name the credit the licence requires.
+ * The two close-ups are shown as circular crops measured off the owner's own
+ * files; the measurement, the CSS that draws it and the complete frames in the
+ * record all have to agree, or the crop has stopped being declared.
+ * ------------------------------------------------------------------------- */
+const companion = JSON.parse(await readFile(path.join(root, 'src/one-owl.json'), 'utf8'));
+const OWNER_PHOTOS = ['owner-athena', 'owner-owl', 'owner-holder-obverse', 'owner-holder-reverse'];
+const CC_BY_URL = 'https://creativecommons.org/licenses/by/4.0/';
+const REQUIRED_CREDIT = 'The Owl Atlas (theowlatlas.com)';
+check(Object.keys(companion.images).length === OWNER_PHOTOS.length,
+  'The companion still carries exactly the four owner photographs');
+for (const id of OWNER_PHOTOS) {
+  const image = companion.images[id];
+  check(Boolean(image), `${id}: owner photograph record is present`);
+  check(image.license === 'CC BY 4.0' && image.licenseUrl === CC_BY_URL,
+    `${id}: must carry the CC BY 4.0 name and its deed URL`);
+  check(image.reuseStatus === 'cc-by-4.0', `${id}: reuse status records the CC BY 4.0 release`);
+  check(image.credit === 'Photograph courtesy of the owner, via The Owl Atlas',
+    `${id}: credit stays anonymous and names the party to attribute`);
+  check(image.rightsNote.includes('CC BY 4.0') && image.rightsNote.includes(REQUIRED_CREDIT)
+    && image.rightsNote.includes('MIT'),
+    `${id}: rights note states the licence, the required credit and the code-licence exclusion`);
+}
+check(journey.includes(`href="${CC_BY_URL}"`), 'The companion page links the CC BY 4.0 deed');
+check(journey.includes(REQUIRED_CREDIT), 'The companion page states the credit the licence requires');
+const photoRecord = journey.match(/<details id="photographs"[\s\S]*?<\/details>/)?.[0] || '';
+check(photoRecord.includes('CC BY 4.0') && photoRecord.includes(REQUIRED_CREDIT)
+  && photoRecord.includes(CC_BY_URL),
+  'The photograph record itself carries the licence, its deed link and the required credit');
+const styleBlock = styles.slice(styles.indexOf('CHUNK 3 / ONE OWL'));
+check(styles.includes('CHUNK 3 / ONE OWL'), 'The One Owl styles are appended in their own block');
+for (const [id, selector] of [['owner-owl', '.journey-disc .image-trigger img'],
+                              ['owner-athena', '.journey-face-small .image-trigger img']]) {
+  const image = companion.images[id];
+  const crop = image.displayCrop;
+  check(crop?.shape === 'circle', `${id}: the display crop is declared as a circle`);
+  check([crop.centreX, crop.centreY, crop.radius].every(Number.isInteger),
+    `${id}: the display crop is a measurement, not a description`);
+  check(crop.centreX - crop.radius >= 0 && crop.centreY - crop.radius >= 0
+    && crop.centreX + crop.radius <= image.width && crop.centreY + crop.radius <= image.height,
+    `${id}: the display crop stays inside the photographed frame`);
+  check(image.crop === 'none', `${id}: the record still points at the complete original`);
+  check(image.changes.includes(`radius ${crop.radius} px`)
+    && image.changes.includes(`(${crop.centreX}, ${crop.centreY})`),
+    `${id}: the changes note states the measured circle`);
+  check(photoRecord.includes(`radius ${crop.radius} pixels`)
+    && photoRecord.includes(`(${crop.centreX}, ${crop.centreY})`),
+    `${id}: the page states the measured circle`);
+  check(photoRecord.includes(`data-photo="${id}"`),
+    `${id}: the complete frame is shown in the photograph record`);
+  // The stylesheet draws the crop, so its percentages have to be the arithmetic
+  // of the measurement: width 960/side, height 1280/side, offsets -x/side, -y/side.
+  const side = crop.radius * 2;
+  const rule = styleBlock.match(new RegExp(`${selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*\\{[^}]*\\}`))?.[0] || '';
+  check(rule.length > 0, `${id}: the stylesheet rule that draws the crop is present`);
+  for (const [property, expected] of [
+    ['width', 96000 / side], ['height', 128000 / side],
+    ['left', -100 * (crop.centreX - crop.radius) / side],
+    ['top', -100 * (crop.centreY - crop.radius) / side],
+  ]) {
+    const declared = Number(rule.match(new RegExp(`(?:^|[;{\\s])${property}:(-?[\\d.]+)%`, 'm'))?.[1]);
+    check(Number.isFinite(declared) && Math.abs(declared - expected) < 0.01,
+      `${id}: stylesheet ${property} must be ${expected.toFixed(3)}% for the measured crop, found ${declared}%`);
+  }
+}
+
 console.log(`PASS: ${tests} structural/rendering checks; ${data.sources.length} sources; ${Object.keys(data.images).length} images; ${data.families.length} family records.\nExternal network availability and historical claims require separate review.`);
