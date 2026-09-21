@@ -64,11 +64,12 @@ both belong to the same coin; see `research/early-classical-findings.json`.
 
 ## The experience
 
-- Eight narrative chapters: Athens and the geography of owl coinage; early owls; classical mass
-  issues; 404 BCE; New Style; regional imitations; evidence; and collecting today. A dotted-theta
-  interlude sits between the third and fourth. The separate fourth-and-third-century chapter was
-  removed on 21 September 2026 at the owner's request; what it argued is now in the chapter 03
-  close reading and in the `/atlas/` family cards.
+- Seven narrative chapters: Athens and the geography of owl coinage; the classical mass issues;
+  404 BCE; New Style; regional imitations; evidence; and collecting today. A dotted-theta
+  interlude sits between the second and third. Two chapters were removed on 21 September 2026 at
+  the owner's request: the fourth-and-third-century chapter, and "The owl takes shape". What they
+  argued is now in the chapter 02 close reading, that chapter's opening deck, the `/atlas/` family
+  cards and the glossary; the archaic and early classical photographs stay on `/atlas/`.
 - A short pricing chapter introduces three examples spanning the 2026 auction sample.
   The full research lives at `/pricing/`: 64 auction results, two qualified public eBay
   observations, a 2019–2026 chart, repeat-sale comparison, fee calculator and searchable ledger.
@@ -82,7 +83,7 @@ both belong to the same coin; see `research/early-classical-findings.json`.
   SVG side views and accompanying text remain readable without JavaScript.
 - Scroll reveals, restrained parallax, a chapter indicator and reading progress.
   Scrolling is never hijacked. OS reduced-motion preferences take priority.
-- An interactive close reading in chapter 03: six sourced details across both
+- An interactive close reading in chapter 02: six sourced details across both
   sides of Cleveland 1941.296. A native radio pair chooses the face, detail
   buttons choose a reading, and a numbered marker moves to that reading's own
   coordinates over the photograph. Every reading, both photographs and all their
@@ -298,7 +299,7 @@ MARKET_URL=https://theowlatlas.com CHROMIUM_PATH=/path/to/chromium python3 tests
 ```
 
 Tests cover five viewport widths, reduced motion, native modal opening/closing
-and focus return, image-error states, the chapter 03 close reading, both sides of all eight comparison
+and focus return, image-error states, the chapter 02 close reading, both sides of all eight comparison
 entries, Pi II/Pi III selection and comparison presets, BnF object and reuse
 metadata, source filtering, the optional catalogue guide and JavaScript-disabled reading. A clearly labeled
 synthetic grid tests loaded-image zoom/pan; it is never included in the website.

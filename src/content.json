@@ -1474,9 +1474,10 @@
         "x": 75,
         "y": 48,
         "title": "The face turns. The eye does not quite follow.",
-        "text": "The conspicuous almond-shaped eye appears almost frontal although Athena’s face is in profile. In many fourth-century issues the eye follows the face into profile. Eye shapes overlap across the late fifth and early fourth centuries, so this feature alone cannot date a coin.",
+        "text": "The conspicuous almond-shaped eye appears almost frontal although Athena’s face is in profile, a convention already set on the archaic owls of c. 520–510 BCE. In many fourth-century issues the eye follows the face into profile. Eye shapes overlap across the late fifth and early fourth centuries, so this feature alone cannot date a coin.",
         "refs": [
           "cma-classic",
+          "archaic-photo",
           "profile",
           "isotopes"
         ]
@@ -2055,6 +2056,14 @@
       ]
     ],
     [
+      "Transitional",
+      "A stylistic label used two ways: for the refined fifth-century owls and for early-fourth-century issues. A catalogue has to say which transition it means.",
+      [
+        "ngc",
+        "profile"
+      ]
+    ],
+    [
       "Pi-style",
       "A modern stylistic label referring to the helmet ornament—not the value, weight, or mathematical properties of the coin.",
       [
@@ -2309,7 +2318,7 @@
         "where": "Egypt lies on the southern shore of the Mediterranean. The Nile runs north through it to a broad delta on the coast.",
         "relation": "South of Athens, across the Mediterranean.",
         "role": "Circulation and related local issues",
-        "evidence": "Egyptian hoards include Athenian coins, sometimes valued as silver by weight. Later, authorities in Persian-administered Egypt issued related owl-type coins, including the Sabakes type shown in chapter 06.",
+        "evidence": "Egyptian hoards include Athenian coins, sometimes valued as silver by weight. Later, authorities in Persian-administered Egypt issued related owl-type coins, including the Sabakes type shown in chapter 05.",
         "refs": [
           "owl-hoards",
           "sabakes"

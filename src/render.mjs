@@ -154,7 +154,7 @@ export function familyFacesMarkup(family, data) {
   return `<div class="family-faces">${faces.join('')}</div>`;
 }
 
-/** The close reading in chapter 03. Every reading, on both faces, with its
+/** The close reading in chapter 02. Every reading, on both faces, with its
  *  citations, is in the document before a script runs: without JavaScript the
  *  two photographs and all six readings are simply there, and the controls that
  *  would switch between them stay hidden. The enhancement in app.js reveals the
