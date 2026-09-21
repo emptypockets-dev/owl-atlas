@@ -5634,6 +5634,417 @@ h4 {
   .chrome-utility-label>.chapter-caption { display:none; }
 }
 
+/* ==========================================================================
+   CHUNK 3 / ONE OWL — the companion opening as one lit object
+
+   Everything this task adds to the companion page lives in this block, which is
+   appended so the sheet above it can be merged untouched. The opening used to
+   show two slab photographs side by side; it now leads with a single large owl
+   and moves Athena to the specimen strip beneath, both still credited and both
+   still opening their complete frames in the viewer.
+
+   The only pre-existing rules this block overrides are named beside them:
+   .journey-hero (gains a position and a clipped box for the vignette) and
+   .journey-specimen (through the .journey-specimen-faced modifier the markup
+   now carries, because the strip gained a fourth item).
+
+   The two discs are DISPLAY CROPS, not new files. Each circle was measured off
+   the owner's own 960x1280 JPEG and is drawn in CSS over the unchanged file:
+     owl    — circle r=430px centred (433, 745); square source window
+              860x860 at (3, 315)
+     Athena — circle r=372px centred (510, 730); square source window
+              744x744 at (138, 358)
+   The percentages below are those windows expressed against the rendered disc:
+   width = 960/side, height = 1280/side, left = -x/side, top = -y/side. No pixel
+   is resampled, removed from the file, retouched or invented, and #photographs
+   shows all four complete frames.
+   ========================================================================== */
+
+/* --- The room -------------------------------------------------------------
+   The same language as the home hero: a vignette on the section and a warm
+   spotlight behind the disc, so the coin reads as a lit object in a dark room
+   rather than a cut-out. No turn and no fabricated thickness: this is one
+   photograph of one side, and the other side is shown separately.
+
+   Overrides .journey-hero, which previously set padding alone. The vignette
+   needs a positioned, clipped box; the clip also keeps the spotlight from
+   widening the page on a narrow screen. */
+.journey-hero {
+  position:relative;
+  overflow:hidden;
+}
+
+/* The vignette sits at z-index 0: above the section background, below every
+   piece of hero content, which the rule beneath this one lifts to z-index 2. */
+.journey-hero::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    radial-gradient(84% 72% at 70% 46%,#2a302a33 0%,#2a302a1a 46%,transparent 78%),
+    radial-gradient(124% 92% at 66% 48%,transparent 38%,#0c100e57 76%,#070a098f 100%);
+}
+
+.journey-hero>* {
+  position:relative;
+  z-index:2;
+}
+
+/* --- The owl as the hero object ------------------------------------------ */
+.journey-object {
+  width:100%;
+  max-width:580px;
+  justify-self:center;
+  min-width:0;
+}
+
+.journey-face-tag {
+  text-align:center;
+  margin:0;
+  font-size:var(--type-small);
+  letter-spacing:.045em;
+}
+
+/* The ring is the edge of the lit pool, not a frame around a picture. */
+.journey-disc-ring {
+  position:relative;
+  z-index:2;
+  width:100%;
+  margin:18px auto 0;
+  padding:6%;
+  border:1px solid #9eaa9370;
+  border-radius:50%;
+}
+
+.journey-disc-ring::before {
+  content:'';
+  position:absolute;
+  inset:-15%;
+  z-index:-1;
+  border-radius:50%;
+  pointer-events:none;
+  background:radial-gradient(circle at 50% 45%,
+    #ded2ae33 0%,#c5b88b20 34%,#c5b88b0e 54%,#c5b88b00 72%);
+}
+
+.journey-disc {
+  margin:0;
+  position:relative;
+}
+
+.journey-disc .image-surface {
+  aspect-ratio:1;
+  border-radius:50%;
+  overflow:hidden;
+  border:0;
+  /* The dark end of the palette: what is left of the slab well inside the
+     circle is genuinely this dark, so the disc and the room agree. */
+  background:#202622;
+  box-shadow:0 36px 80px #00000060,0 0 0 1px #ded2ae21,0 12px 44px -10px #c5b88b33;
+}
+
+.journey-disc .image-trigger,
+.journey-disc .image-frame {
+  border-radius:50%;
+}
+
+/* The measured display crop. 860px of the 960px-wide original fills the disc:
+   960/860 = 111.628%, 1280/860 = 148.837%, and the window's top-left corner
+   (3, 315) becomes -3/860 and -315/860. */
+.journey-disc .image-trigger img {
+  position:absolute;
+  max-width:none;
+  width:111.628%;
+  height:148.837%;
+  left:-0.349%;
+  top:-36.628%;
+  object-fit:cover;
+  transform:none;
+}
+
+/* A photographed coin should not swell under the pointer, and a scale here
+   would pull the off-centre crop away from the middle of the circle. */
+.journey-disc .image-trigger:hover img {
+  transform:none;
+}
+
+/* "Look closer" opens the complete, uncropped frame, so it belongs on the
+   disc. Centred, because a circle has no bottom-right corner. */
+.journey-disc .expand-label {
+  right:auto;
+  left:50%;
+  bottom:7%;
+  transform:translate(-50%,4px);
+}
+
+.journey-disc .image-trigger:hover .expand-label,
+.journey-disc .image-trigger:focus-visible .expand-label {
+  transform:translate(-50%,0);
+}
+
+.journey-disc .image-credit {
+  margin-top:20px;
+  text-align:center;
+  font-size:var(--type-small);
+  line-height:1.7;
+}
+
+.journey-disc .license-short {
+  display:block;
+}
+
+.journey-disc .license-short::before {
+  content:none;
+}
+
+.journey-crop-note {
+  max-width:35rem;
+  margin:16px auto 0;
+  text-align:center;
+  font-size:var(--type-small);
+  line-height:1.7;
+  color:var(--muted-dark);
+}
+
+/* --- A single sweep of light ---------------------------------------------
+   One low-alpha band, answering a pointer once per hover, the same restraint
+   the home hero uses. It never runs on its own, never runs on touch, and stops
+   entirely when either motion preference is set. */
+@media (hover:hover) and (pointer:fine) {
+  html:not(.motion-off) .journey-disc .image-trigger::after {
+    content:'';
+    position:absolute;
+    top:-30%;
+    bottom:-30%;
+    left:0;
+    width:34%;
+    z-index:1;
+    opacity:0;
+    pointer-events:none;
+    transform:translateX(-200%) rotate(13deg);
+    background:linear-gradient(90deg,#fff8e600,#fff8e621 24%,#fffaf042 50%,#fff8e621 76%,#fff8e600);
+  }
+  html:not(.motion-off) .journey-disc .image-trigger:hover::after {
+    animation:journey-disc-sheen 1400ms cubic-bezier(.36,.08,.3,1);
+  }
+}
+
+@keyframes journey-disc-sheen {
+  0% { opacity:0;transform:translateX(-200%) rotate(13deg) }
+  16% { opacity:1 }
+  84% { opacity:1 }
+  100% { opacity:0;transform:translateX(320%) rotate(13deg) }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .journey-disc .image-trigger::after { animation:none!important;opacity:0!important;content:none }
+}
+
+/* --- Athena, beside the specimen facts -----------------------------------
+   Smaller, the same circular language, the same credit and the same route to
+   her complete frame. Overrides .journey-specimen's own grid-template-columns
+   and gap through the modifier class the markup carries; nothing else in that
+   rule changes. */
+.journey-specimen-faced {
+  grid-template-columns:auto minmax(0,1fr) minmax(0,1fr) auto;
+  gap:22px 34px;
+  padding-top:30px;
+}
+
+.journey-second-face {
+  display:grid;
+  gap:11px;
+  align-content:center;
+  min-width:0;
+  max-width:330px;
+}
+
+.journey-second-face>.eyebrow {
+  margin:0;
+  font-size:var(--type-small);
+  letter-spacing:.045em;
+}
+
+.journey-face-small {
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin:0;
+  min-width:0;
+}
+
+.journey-face-small .image-surface {
+  flex:none;
+  width:88px;
+  aspect-ratio:1;
+  border-radius:50%;
+  overflow:hidden;
+  border:0;
+  background:#202622;
+  box-shadow:0 10px 26px #00000055,0 0 0 1px #ded2ae1f;
+}
+
+.journey-face-small .image-trigger,
+.journey-face-small .image-frame {
+  border-radius:50%;
+}
+
+/* Athena's measured window is 744px square at (138, 358): 960/744 = 129.032%,
+   1280/744 = 172.043%, -138/744 and -358/744. */
+.journey-face-small .image-trigger img {
+  position:absolute;
+  max-width:none;
+  width:129.032%;
+  height:172.043%;
+  left:-18.548%;
+  top:-48.118%;
+  object-fit:cover;
+  transform:none;
+}
+
+.journey-face-small .image-trigger:hover img {
+  transform:none;
+}
+
+/* At 88px the label would cover the face; the whole disc is the target. */
+.journey-face-small .expand-label {
+  display:none;
+}
+
+.journey-face-small .image-credit {
+  flex:1;
+  min-width:0;
+  margin-top:0;
+  font-size:var(--type-small);
+  line-height:1.55;
+}
+
+.journey-face-small .license-short {
+  display:block;
+}
+
+.journey-face-small .license-short::before {
+  content:none;
+}
+
+/* --- The complete frames in the record ----------------------------------- */
+.journey-frame-pair {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:28px;
+  max-width:740px;
+  margin:28px 0 32px;
+}
+
+.journey-frame .image-surface {
+  aspect-ratio:var(--plate-ratio);
+  border-radius:2px;
+}
+
+.journey-frame .image-trigger img {
+  object-fit:contain;
+}
+
+.journey-frame .image-trigger:hover img {
+  transform:none;
+}
+
+.journey-frame .license-short {
+  display:block;
+}
+
+.journey-frame .license-short::before {
+  content:none;
+}
+
+.journey-page .journey-rights-note strong {
+  color:var(--light);
+  font-weight:500;
+}
+
+/* --- Responsive ---------------------------------------------------------- */
+@media (max-width:1100px) {
+  .journey-object { max-width:520px; }
+}
+
+@media (max-width:1000px) {
+  .journey-object { max-width:460px; }
+  .journey-specimen-faced {
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:24px 28px;
+  }
+  .journey-second-face {
+    grid-column:1 / -1;
+    max-width:420px;
+  }
+}
+
+/* On a phone the coin is the point: it leads, the words follow, exactly as the
+   home hero does at this width. DOM order is unchanged, so the reading order
+   and the no-JavaScript page still run the headline first. */
+@media (max-width:760px) {
+  .journey-hero-grid {
+    gap:30px;
+  }
+  .journey-object {
+    order:1;
+    max-width:min(78vw,400px);
+    margin-inline:auto;
+  }
+  .journey-intro {
+    order:2;
+  }
+  .journey-disc-ring {
+    margin-top:12px;
+    padding:4.5%;
+  }
+  .journey-disc-ring::before {
+    inset:-11%;
+  }
+  .journey-crop-note {
+    margin-top:14px;
+    line-height:1.6;
+  }
+}
+
+@media (max-width:600px) {
+  .journey-specimen-faced {
+    grid-template-columns:minmax(0,1fr);
+    gap:22px;
+  }
+  .journey-second-face {
+    max-width:none;
+  }
+  .journey-frame-pair {
+    grid-template-columns:minmax(0,1fr);
+  }
+  .journey-disc .expand-label {
+    bottom:5%;
+    padding:10px 9px;
+    gap:6px;
+  }
+}
+
+@media (max-width:400px) {
+  .journey-face-small {
+    gap:12px;
+  }
+  .journey-face-small .image-surface {
+    width:74px;
+  }
+}
+
+@media print {
+  .journey-hero::after { content:none; }
+  .journey-disc-ring { border-color:#999; }
+  .journey-disc-ring::before { content:none; }
+  .journey-disc .image-surface { box-shadow:none; }
+  .journey-face-small .image-surface { box-shadow:none; }
+  .journey-frame-pair { break-inside:avoid; }
+}
+
 /* === CHUNK 3 / GEOGRAPHY ================================================= */
 /* The explorer was accurate but flat: a beige polygon on beige paper. Sea,
    shelf, land, graticule and coast are now separate painted layers inside the
