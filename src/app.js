@@ -402,11 +402,25 @@ if (geographyExplorer) {
   const panels = Array.from(geographyExplorer.querySelectorAll('.geo-place'));
   const buttons = Array.from(geographyExplorer.querySelectorAll('[data-geography]'));
   const select = byId('geography-select');
+  // The overview above the buttons is decorative, so it is driven by class only:
+  // nothing here changes what is selected, announced, focused or linkable.
+  const reachAreas = Array.from(geographyExplorer.querySelectorAll('[data-geo-reach]'));
+  const geographyStill = () => motionOff || document.documentElement.classList.contains('motion-off');
+  let reachTimers = [];
+  function endGeographySweep() {
+    reachTimers.forEach(clearTimeout);
+    reachTimers = [];
+    reachAreas.forEach(area => area.classList.remove('is-sweep'));
+    buttons.forEach(button => button.classList.remove('is-sweep'));
+  }
   function selectGeography(id, announce = true) {
     const selected = byId(`geography-${id}`);
     if (!panels.includes(selected)) return;
+    // Any real choice ends the opening sweep at once; it never competes with the reader.
+    endGeographySweep();
     panels.forEach(panel => { panel.hidden = panel !== selected; });
     buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.geography === id)));
+    reachAreas.forEach(area => area.classList.toggle('is-current', area.dataset.geoReach === id));
     select.value = id;
     if (announce) byId('geography-status').textContent = `${data.geography.places.find(place => place.id === id).name} selected.`;
   }
@@ -429,6 +443,36 @@ if (geographyExplorer) {
   geographyFromHash();
   window.addEventListener('hashchange', geographyFromHash);
   geographyExplorer.querySelector('.geo-controls').hidden = false;
+  // Once, when the overview is actually on screen: the eight areas light up in
+  // turn over about two and a half seconds and then settle back on whichever
+  // place is open. Scrolling, selection and the deep link are untouched, and
+  // with motion off nothing runs at all.
+  function runGeographySweep() {
+    if (geographyStill() || !reachAreas.length) return;
+    const places = data.geography.places, step = 260;
+    places.forEach((place, index) => {
+      reachTimers.push(setTimeout(() => {
+        if (geographyStill()) { endGeographySweep(); return; }
+        reachAreas.forEach(area => { if (area.dataset.geoReach === place.id) area.classList.add('is-sweep'); });
+        buttons.forEach(button => { if (button.dataset.geography === place.id) button.classList.add('is-sweep'); });
+      }, index * step));
+    });
+    reachTimers.push(setTimeout(endGeographySweep, places.length * step + 620));
+  }
+  const sweepTarget = geographyExplorer.querySelector('[data-animate-on-view]');
+  if (sweepTarget && 'IntersectionObserver' in window) {
+    const sweepObserver = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        sweepObserver.disconnect();
+        geographyExplorer.classList.add('is-revealed');
+        runGeographySweep();
+      }
+    }, {threshold: 0.55});
+    sweepObserver.observe(sweepTarget);
+  } else {
+    geographyExplorer.classList.add('is-revealed');
+  }
 }
 
 // Inline citations open a compact evidence note; without JS their anchors work.

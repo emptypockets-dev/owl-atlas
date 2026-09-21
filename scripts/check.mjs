@@ -348,4 +348,90 @@ for (const [document, label, page] of [[pricing, 'PRICING RESEARCH', '/pricing/'
   check(strip.includes('id="motion-toggle"'), `${page}: chrome strip keeps the motion control`);
 }
 check(!html.includes('class="chrome-utility"'), 'The home page keeps its chapter bar rather than the sub-page strip');
+// --- CHUNK 3 / GEOGRAPHY -------------------------------------------------
+// The eight focused maps must keep every label, scale bar and north mark they
+// had before the design pass, and the water and land they are now painted on
+// have to be real CSS classes rather than a figure background, so they survive
+// printing. The opening sweep is decoration: it adds classes and nothing else.
+const geographyBlock = markup.match(/<div class="geography-explorer"[\s\S]*?<p class="geo-credit"/)?.[0] || '';
+check(Boolean(geographyBlock), 'The geographic explorer renders');
+const focusMaps = [...geographyBlock.matchAll(/<svg class="geo-focus-map"[\s\S]*?<\/svg>/g)].map(match => match[0]);
+check(focusMaps.length === data.geography.places.length, `Eight focused area maps, got ${focusMaps.length}`);
+for (const [index, place] of data.geography.places.entries()) {
+  const map = focusMaps[index];
+  check(map.includes(`<title id="geo-${place.id}-map-title">`), `${place.id}: the focused map still names itself`);
+  check(/<g class="geo-scale"><rect[^>]*\/><path[^>]*\/><text[^>]*>\d+ km<\/text><\/g>/.test(map), `${place.id}: the focused map keeps its scale bar`);
+  check(/<text class="geo-north"[^>]*>N /.test(map), `${place.id}: the focused map keeps its north mark`);
+  for (const [name, , , kind] of place.labels) {
+    check(map.includes(`class="geo-map-label geo-map-label-${kind}"`), `${place.id}: keeps a ${kind} label`);
+    check(map.includes(`>${escapeHtml(name)}</text>`), `${place.id}: keeps the ${name} label`);
+  }
+  check(map.includes('<rect class="geo-sea"') && map.includes('class="geo-base geo-land"'), `${place.id}: sea and land are painted layers, not a background`);
+  check(map.includes('<use class="geo-shelf'), `${place.id}: the coast is drawn as a shelf`);
+  check(map.includes('<path class="geo-graticule"'), `${place.id}: the water carries a graticule`);
+  check(map.includes('class="geo-area-trace"') && map.includes('pathLength="1"'), `${place.id}: the area outline can draw itself in`);
+}
+const locatorMaps = [...geographyBlock.matchAll(/<svg class="geo-locator-map"[\s\S]*?<\/svg>/g)].map(match => match[0]);
+check(locatorMaps.length === data.geography.places.length, 'Every place keeps its wider locator');
+for (const map of locatorMaps) {
+  check(map.includes('<rect class="geo-sea"') && map.includes('class="geo-base geo-land"'), 'A locator gets the same painted water and land');
+  check(map.includes('class="geo-area-trace"'), 'A locator highlight can draw itself in');
+}
+// The overview of all eight areas lives inside the controls, which are hidden
+// without JavaScript and in print, and it names nothing the buttons do not.
+const geographyControls = geographyBlock.match(/<div class="geo-controls" hidden>[\s\S]*?<\/select><\/label><\/div>/)?.[0] || '';
+check(geographyControls.includes('<figure class="geo-reach" data-animate-on-view>'), 'The overview map is the scroll hook, inside the JavaScript-only controls');
+check(/<svg class="geo-reach-map"[^>]*aria-hidden="true"[^>]*focusable="false"/.test(geographyControls), 'The overview repeats the buttons, so it stays decorative');
+for (const place of data.geography.places) {
+  check((geographyControls.match(new RegExp(`data-geo-reach="${place.id}"`, 'g')) || []).length === 2, `${place.id}: has an overview halo and area`);
+  check(geographyBlock.includes(`<path id="geo-reach-${place.id}" pathLength="1"`), `${place.id}: one shared overview outline`);
+  if (place.approximate) check(new RegExp(`data-geo-reach="${place.id}" href="#geo-reach-${place.id}" style="fill:url\\(#geo-reach-hatch\\)"`).test(geographyControls),
+    `${place.id}: an approximate region stays hatched in the overview`);
+}
+// Water and land are classes in the built stylesheet, and the opening sweep is
+// switched off for every reduced-motion state as well as for print.
+for (const rule of ['.geo-sea {', '.geo-land {', '.geo-shelf {', '.geo-graticule {', '.geo-area-trace {', '.geo-reach-area {', '.geo-reach-halo {']) {
+  check(inlineStyles.includes(rule), `The built CSS carries ${rule.slice(0, -2)}`);
+}
+const geoToken = (name) => (inlineStyles.match(new RegExp(`--${name}:(#[0-9a-f]{6})`)) || [])[1];
+for (const name of ['geo-sea', 'geo-land', 'geo-coast', 'geo-water-ink', 'geo-sea-shelf', 'geo-graticule']) {
+  check(Boolean(geoToken(name)), `The built CSS declares --${name}`);
+}
+const channel = (value) => { const c = value / 255; return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4; };
+const relativeLuminance = (hex) => {
+  const [r, g, b] = [1, 3, 5].map(at => channel(parseInt(hex.slice(at, at + 2), 16)));
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+};
+const contrastRatio = (a, b) => {
+  const [light, dark] = [relativeLuminance(a), relativeLuminance(b)].sort((x, y) => y - x);
+  return (light + 0.05) / (dark + 0.05);
+};
+check(Math.abs(contrastRatio('#ffffff', '#767676') - 4.54) < 0.01, 'Contrast arithmetic regression');
+for (const [ink, ground, minimum, label] of [
+  [geoToken('geo-water-ink'), geoToken('geo-sea'), 4.5, 'sea labels on the water'],
+  ['#1c2420', geoToken('geo-land'), 4.5, 'place labels on the land'],
+  ['#596258', geoToken('geo-land'), 4.5, 'context labels on the land'],
+  ['#1c2420', geoToken('geo-land'), 4.5, 'the scale bar on its plaque'],
+  [geoToken('geo-coast'), geoToken('geo-land'), 3, 'the coastline against the land'],
+  [geoToken('geo-sea-shelf'), geoToken('geo-sea'), 1.2, 'the shelf against the open water'],
+  [geoToken('geo-land'), geoToken('geo-sea'), 1.25, 'land against sea'],
+]) {
+  const ratio = contrastRatio(ink, ground);
+  check(ratio >= minimum, `Geographic contrast: ${label} is ${ratio.toFixed(2)}:1, below ${minimum}:1`);
+}
+// An author `display` on the bare selector would beat the user agent's [hidden]
+// rule and expose the inert controls to a reader without JavaScript.
+check(!/\.geo-controls\s*\{[^}]*display:/.test(inlineStyles), 'Nothing overrides the hidden attribute on the geographic controls');
+check(!/\.geo-reach\s*\{[^}]*position:(fixed|sticky)/.test(inlineStyles), 'The overview map never pins itself over the reading');
+for (const guard of ['html.motion-off .geography-explorer .geo-area', '@media (prefers-reduced-motion:reduce)', '@media print']) {
+  check(inlineStyles.includes(guard), `The geographic reveal is switched off for ${guard}`);
+}
+const appScript = await readFile(path.join(root, 'src/app.js'), 'utf8');
+check(/const geographyStill = \(\) => motionOff \|\| document\.documentElement\.classList\.contains\('motion-off'\)/.test(appScript),
+  'The geographic sweep reads both motion switches before it runs');
+check(appScript.includes("geographyExplorer.querySelector('[data-animate-on-view]')"),
+  'The geographic sweep is hooked to its own in-view observer');
+check(!/scrollIntoView|scrollTo/.test(appScript.slice(appScript.indexOf('const geographyExplorer'), appScript.indexOf('// Inline citations'))),
+  'The geographic block never moves the page for the reader');
+
 console.log(`PASS: ${tests} structural/rendering checks; ${data.sources.length} sources; ${Object.keys(data.images).length} images; ${data.families.length} family records.\nExternal network availability and historical claims require separate review.`);
