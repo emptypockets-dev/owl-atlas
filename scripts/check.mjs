@@ -348,4 +348,67 @@ for (const [document, label, page] of [[pricing, 'PRICING RESEARCH', '/pricing/'
   check(strip.includes('id="motion-toggle"'), `${page}: chrome strip keeps the motion control`);
 }
 check(!html.includes('class="chrome-utility"'), 'The home page keeps its chapter bar rather than the sub-page strip');
+// Chunk 3: the minting strike animation.
+// The three diagrams stay the whole explanation. The motion is decorative, so
+// the accessible descriptions, the schematic disclaimer and the ban on invented
+// coin imagery all have to survive the animation, and every moving part has to
+// be gated behind the class the observer adds.
+const minting = markup.match(/<section class="minting-section"[\s\S]*?<\/section>/)?.[0] || '';
+check(Boolean(minting), 'The minting section is present on the home page');
+check(/<section class="minting-section"[^>]*\bdata-animate-on-view="[^"]+"/.test(minting),
+  'The minting section carries the play-once-in-view hook');
+const diagrams = [...minting.matchAll(/<svg class="minting-diagram"[\s\S]*?<\/svg>/g)].map(match => match[0]);
+check(diagrams.length === 3, 'All three minting diagrams are still drawn');
+const diagramLabels = [
+  ['mint-tools', 'Two engraved dies', 'Side view: the upper die makes the owl reverse; the lower die, fixed in the anvil, makes Athena\'s obverse.'],
+  ['mint-blank', 'A blank between the dies', 'A silver blank rests on the lower die. The upper die is aligned above it.'],
+  ['mint-strike', 'The hammer strikes the upper die', 'Force passes through the upper die to the silver, impressing the designs on both faces.'],
+];
+for (const [index, [id, title, desc]] of diagramLabels.entries()) {
+  const diagram = diagrams[index] || '';
+  check(diagram.includes(`aria-labelledby="${id}-title ${id}-desc"`), `${id}: the diagram is still named by its title and description`);
+  check(diagram.includes(`<title id="${id}-title">${title}</title>`), `${id}: unchanged accessible title`);
+  check(diagram.includes(`<desc id="${id}-desc">${desc}</desc>`), `${id}: unchanged accessible description`);
+  // Nothing the animation adds may be a picture of a coin: the diagrams stay
+  // hand-drawn geometry, with no raster, no reused symbol and no embedded markup.
+  const drawn = diagram.replace(/<(title|desc)[^>]*>[\s\S]*?<\/\1>/g, '');
+  const elements = new Set([...drawn.matchAll(/<([a-zA-Z][\w-]*)/g)].map(match => match[1]));
+  elements.delete('svg');
+  check([...elements].every(name => ['g', 'path', 'circle', 'text'].includes(name)),
+    `${id}: only schematic shapes, not [${[...elements].join(', ')}]`);
+}
+const strike = diagrams[2] || '';
+check(/<g class="mint-a-relief"[^>]*\bopacity="0"/.test(strike), 'The struck-disc relief hint starts invisible in the markup itself');
+check(/<circle class="mint-a-ring"[^>]*\bopacity="0"/.test(strike), 'The impact ring starts invisible in the markup itself');
+check(minting.includes('Schematic side views. Tool shapes, engraved marks and spacing are simplified; not to scale. Silver is highlighted in gold.'),
+  'The schematic disclaimer is unchanged');
+check(/the struck disc carries no design/.test(minting) && /not a measured speed, force or number of blows/.test(minting),
+  'The disclaimer states what the animation does not claim');
+// The replay control: a real button, named, at the touch target, and rendered
+// hidden so a reader without JavaScript is never offered a control that is inert.
+const replay = minting.match(/<button[^>]*class="mint-replay"[^>]*>[\s\S]*?<\/button>/)?.[0] || '';
+check(Boolean(replay), 'The minting section renders a replay control');
+check(/\btype="button"/.test(replay), 'The replay control is a plain button, not a submit');
+check(/\bdata-animate-replay\b/.test(replay), 'The replay control is wired to the generic hook');
+check(/\bhidden\b/.test(replay), 'The replay control is hidden until JavaScript unhides it');
+check(replay.replace(/<[^>]*>/g, '').trim().startsWith('Play again'), 'The replay control has a visible, accessible name');
+check(minting.includes('<div class="minting-footer-actions">'), 'The replay control sits with the onward link, beside the copy');
+// Every moving part waits for the class the observer adds, and motion off puts
+// the figure back to the frame it was drawn in.
+const mintingCss = styles.slice(styles.indexOf('/* === CHUNK 3 / MINTING'));
+check(Boolean(mintingCss) && mintingCss.includes('end CHUNK 3 / MINTING'), 'The minting styles are one self-contained block');
+for (const rule of mintingCss.split('\n')) {
+  if (!/^\s*\.[^{]*\{[^}]*animation:/.test(rule)) continue;
+  check(/\.is-playing\b/.test(rule), `A minting animation runs before the section is read: ${rule.trim()}`);
+}
+check(/html\.motion-off .minting-section \[class\*="mint-a-"\][\s\S]{0,260}animation:none!important/.test(mintingCss),
+  'Motion off stops the minting sequence');
+check(/html\.motion-off \.mint-replay \{ display:none; \}/.test(mintingCss), 'Motion off takes the replay control away');
+check(/@media print \{[\s\S]*?\.mint-replay \{ display:none; \}/.test(mintingCss), 'The replay control does not print');
+check(mintingCss.includes('.minting-diagram .mint-a-relief { opacity:0; }'), 'The relief hint is invisible at rest');
+// The hook itself is generic and ships in the built script.
+const appSource = (await readFile(path.join(root, 'src/app.js'), 'utf8'));
+check(/document\.querySelectorAll\('\[data-animate-on-view\]'\)/.test(appSource), 'app.js exposes a generic data-animate-on-view hook');
+check(/\[data-animate-replay\]/.test(appSource), 'app.js wires a generic replay control');
+check(html.includes('data-animate-on-view') && html.includes('is-playing'), 'The built page ships both the hook and the class it adds');
 console.log(`PASS: ${tests} structural/rendering checks; ${data.sources.length} sources; ${Object.keys(data.images).length} images; ${data.families.length} family records.\nExternal network availability and historical claims require separate review.`);
