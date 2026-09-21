@@ -58,6 +58,10 @@ def load(browser, relative, width, javascript=True):
 
 
 def layout(page, label):
+    # The header retracts once the reader scrolls down, so measure its geometry
+    # where it is on screen: at the top of the page, with the change settled.
+    page.evaluate("""async()=>{window.scrollTo({top:0,behavior:'instant'});
+      await new Promise(resolve=>setTimeout(resolve,360));}""")
     result = page.evaluate("""() => {
       const controls = [...document.querySelectorAll('.site-header a, .site-header button')]
         .map(e => { const r=e.getBoundingClientRect(); return {
@@ -82,6 +86,31 @@ def layout(page, label):
     check(not result['short'], f'{label}: header targets are at least 44px tall', result['short'])
     check(not result['overlaps'], f'{label}: header targets do not overlap', result['overlaps'])
     check(result['navCount'] == 4, f'{label}: all four navigation destinations remain visible', result['navCount'])
+
+
+def motion_control(page, label):
+    """The motion control left the header for the sticky bar that stays on screen
+    while reading. It must remain a full-size, labelled, reachable target there."""
+    page.evaluate("""async()=>{window.scrollTo({top:1600,behavior:'instant'});
+      await new Promise(resolve=>setTimeout(resolve,420));}""")
+    result = page.evaluate("""() => {
+      const button=document.querySelector('#motion-toggle');
+      const bar=document.querySelector('.chapter-bar')||document.querySelector('.chrome-utility');
+      const r=button.getBoundingClientRect(), b=bar.getBoundingClientRect();
+      return {width:r.width, height:r.height, top:r.top, bottom:r.bottom,
+        inViewport:r.top>=-1 && r.bottom<=innerHeight+1 && r.left>=-1 && r.right<=innerWidth+1,
+        insideBar:r.top>=b.top-1 && r.bottom<=b.bottom+1,
+        labelled:document.querySelector('#motion-label').textContent.trim().length>0,
+        pressed:button.getAttribute('aria-pressed')};
+    }""")
+    check(result['height'] >= 43.5 and result['width'] >= 43.5,
+          f'{label}: motion control keeps a 44px target', result)
+    check(result['inViewport'], f'{label}: motion control stays reachable while reading', result)
+    check(result['insideBar'], f'{label}: motion control sits in the sticky bar', result)
+    check(result['labelled'] and result['pressed'] in ('true', 'false'),
+          f'{label}: motion control keeps its label and pressed state', result)
+    page.evaluate("""async()=>{window.scrollTo({top:0,behavior:'instant'});
+      await new Promise(resolve=>setTimeout(resolve,360));}""")
 
 
 def text_floor(page, selector, minimum, label):
@@ -171,6 +200,7 @@ with sync_playwright() as p:
             ''')
             layout(page, f'{label} / increased text spacing')
             spacing.evaluate('e=>e.remove()')
+            motion_control(page, label)
             page.close()
 
         page = load(browser, relative, 390, javascript=False)
@@ -195,6 +225,6 @@ with sync_playwright() as p:
 check(not errors, 'No unexpected JavaScript errors', errors)
 print(json.dumps({
     'passed':len(checks)-len(failures), 'total':len(checks), 'failures':failures,
-    'scope':'Selected typography, header geometry, source keyboard interaction, root-text enlargement, text spacing, and no-JavaScript checks in Chromium. External photographs blocked; not accessibility certification or actual browser zoom coverage.',
+    'scope':'Selected typography, header geometry, motion-control placement and target size, source keyboard interaction, root-text enlargement, text spacing, and no-JavaScript checks in Chromium. External photographs blocked; not accessibility certification or actual browser zoom coverage.',
 }, indent=2))
 raise SystemExit(1 if failures else 0)

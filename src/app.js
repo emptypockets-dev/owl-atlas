@@ -84,16 +84,75 @@ const hero = byId('top');
 const heroObject = byId('hero-object');
 const crisis = byId('404');
 const crisisYear = crisis?.querySelector('.crisis-year');
+
+// The header gives the screen back while reading: it retracts after a short
+// downward scroll and returns on any upward move, at the top of the page, when
+// focus enters it, and while a dialog is open. Nothing here drives the scroll
+// position; it only reflects the direction the reader chose. The effective
+// height is published as --header-visible so sticky chrome, anchor landings and
+// the Anatomy stage measure what is on screen rather than what is in the markup.
+const siteHeader = document.querySelector('.site-header');
+const HEADER_GRACE = 120;
+let headerHeight = Math.ceil(siteHeader.getBoundingClientRect().height);
+let headerHidden = false;
+let headerPinned = false;
+let lastScrollY = Math.max(0, window.scrollY);
+let anchorScrollUntil = 0;
+let anchorScrollLimit = 0;
+function publishHeaderOffset() {
+  document.documentElement.style.setProperty('--header-visible', `${headerHidden ? 0 : headerHeight}px`);
+}
+function setHeaderHidden(hidden) {
+  if (hidden === headerHidden) return;
+  headerHidden = hidden;
+  document.documentElement.classList.toggle('header-hidden', hidden);
+  publishHeaderOffset();
+}
+function updateHeaderVisibility() {
+  const position = Math.max(0, window.scrollY);
+  const previous = lastScrollY;
+  lastScrollY = position;
+  if (headerPinned || siteHeader.contains(document.activeElement)) return setHeaderHidden(false);
+  if (position <= HEADER_GRACE) return setHeaderHidden(false);
+  // Hold the current state while a fragment jump is in flight. The browser has
+  // already chosen the landing position from scroll-padding-top; changing the
+  // header underneath it would move the destination after the fact.
+  if (performance.now() < anchorScrollUntil) {
+    anchorScrollUntil = Math.min(anchorScrollLimit, performance.now() + 220);
+    return;
+  }
+  if (position > previous) setHeaderHidden(true);
+  else if (position < previous) setHeaderHidden(false);
+}
+// A smooth jump keeps the hold while it is still moving, but never past a fixed
+// ceiling: a stalled animation must not freeze the header for the whole session.
+function holdHeaderForAnchor() {
+  anchorScrollUntil = performance.now() + 700;
+  anchorScrollLimit = performance.now() + 2500;
+}
+document.addEventListener('click', (event) => {
+  const link = event.target instanceof Element ? event.target.closest('a[href]') : null;
+  if (link?.hash && link.host === location.host && link.pathname === location.pathname) holdHeaderForAnchor();
+}, true);
+window.addEventListener('hashchange', holdHeaderForAnchor);
+// A deliberate gesture always wins over an animation still in progress.
+for (const name of ['wheel', 'touchstart', 'keydown']) {
+  window.addEventListener(name, () => { anchorScrollUntil = 0; }, {passive: true});
+}
+siteHeader.addEventListener('focusin', () => setHeaderHidden(false));
+publishHeaderOffset();
+
 let scheduled = false;
 function updateScroll() {
   scheduled = false;
+  updateHeaderVisibility();
   const scrollable = document.documentElement.scrollHeight - window.innerHeight;
   const percentage = scrollable > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollable)) : 0;
   byId('reading-fill').style.transform = `scaleX(${percentage})`;
   let active = chapters[0];
-  const headerHeight = document.querySelector('.site-header').getBoundingClientRect().height;
+  const visibleHeader = headerHidden ? 0 : headerHeight;
   for (const chapter of chapters) {
-    if (chapter.getBoundingClientRect().top <= headerHeight + 150) active = chapter;
+    if (chapter.getBoundingClientRect().top <= visibleHeader + 150) active = chapter;
     else break;
   }
   if (active && byId('current-chapter')) byId('current-chapter').textContent = active.dataset.chapter;
@@ -114,15 +173,17 @@ window.addEventListener('scroll', requestScrollUpdate, {passive: true});
 // Keep deep links clear of wrapping navigation, including enlarged browser text.
 function syncNavigationHeight() {
   const root = document.documentElement;
-  root.style.setProperty('--header', `${Math.ceil(document.querySelector('.site-header').getBoundingClientRect().height)}px`);
-  const bar = document.querySelector('.chapter-bar');
+  headerHeight = Math.ceil(siteHeader.getBoundingClientRect().height);
+  root.style.setProperty('--header', `${headerHeight}px`);
+  publishHeaderOffset();
+  const bar = document.querySelector('.chapter-bar') || document.querySelector('.chrome-utility');
   root.style.setProperty('--bar', `${bar ? Math.ceil(bar.getBoundingClientRect().height) : 0}px`);
   requestScrollUpdate();
 }
 if ('ResizeObserver' in window) {
   const navigationObserver = new ResizeObserver(syncNavigationHeight);
-  navigationObserver.observe(document.querySelector('.site-header'));
-  const bar = document.querySelector('.chapter-bar');
+  navigationObserver.observe(siteHeader);
+  const bar = document.querySelector('.chapter-bar') || document.querySelector('.chrome-utility');
   if (bar) navigationObserver.observe(bar);
 }
 syncNavigationHeight();
@@ -170,7 +231,12 @@ const sourceDialog = byId('source-dialog');
 const imageDialog = byId('image-dialog');
 const sourceContent = byId('source-dialog-content');
 function syncModalState() {
-  document.body.classList.toggle('modal-open', sourceDialog.open || imageDialog.open);
+  const open = sourceDialog.open || imageDialog.open;
+  document.body.classList.toggle('modal-open', open);
+  // A dialog is a deliberate stop: bring the navigation back so closing it does
+  // not leave the reader without the wordmark, the nav or the motion control.
+  headerPinned = open;
+  if (open) setHeaderHidden(false);
 }
 function openSource(id) {
   const index = data.sources.findIndex((source) => source.id === id);

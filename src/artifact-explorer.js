@@ -61,7 +61,10 @@ export class ArtifactExplorer {
       const bar = document.querySelector('.chapter-bar');
       if (bar) this.resize.observe(bar);
     }
+    // One observer for both documentElement flags: the motion setting, and the
+    // retracting header, which changes how much height the exhibit may claim.
     this.motionObserver = new MutationObserver(() => {
+      this.measure();
       if (this.reducedMotion()) this.select(Math.max(0,this.active), true);
     });
     this.motionObserver.observe(document.documentElement, {attributes:true, attributeFilter:['class']});
@@ -72,8 +75,11 @@ export class ArtifactExplorer {
   measure() {
     const size = this.stage.getBoundingClientRect();
     this.size = {width:size.width, height:size.height};
-    const header = document.querySelector('.site-header').getBoundingClientRect().height;
-    const bar = document.querySelector('.chapter-bar')?.getBoundingClientRect().height || 0;
+    // Measure the chrome the reader can actually see: the header retracts while
+    // reading, and the exhibit should claim the space it leaves behind.
+    const header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-visible')) || 0;
+    const bar = (document.querySelector('.chapter-bar') || document.querySelector('.chrome-utility'))
+      ?.getBoundingClientRect().height || 0;
     const compact = matchMedia('(max-width: 900px)').matches;
     // When text is enlarged or the viewport is shallow, let the exhibit flow.
     // Keeping enough reading space is more important than keeping it pinned.
@@ -97,7 +103,7 @@ export class ArtifactExplorer {
   update() {
     const boundary = this.root.getBoundingClientRect();
     if (boundary.bottom < 0 || boundary.top > innerHeight) return;
-    const navigation = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header')) +
+    const navigation = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-visible')) +
       parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--bar'));
     const compact = matchMedia('(max-width:900px)').matches;
     const top = compact && !this.root.classList.contains('is-unpinned')
