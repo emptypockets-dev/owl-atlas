@@ -471,6 +471,28 @@
       "scope": "Ancient Athenian theta letterforms, including the circle with a central dot.",
       "note": "Activity 14 compares dotted and crossed theta on Themistocles ostraka. These are examples of Athenian writing, not a catalogue or dating source for the illustrated coin.",
       "accessed": "2026-09-17"
+    },
+    {
+      "id": "hook-erechtheion",
+      "title": "Erechtheion building accounts, 408/7 BC (IG I³ 476)",
+      "author": "Translation: Stephen Lambert & Robin Osborne; Attic Inscriptions Online",
+      "year": "AIO translation; accessed 2026",
+      "url": "https://www.atticinscriptions.com/inscription/IGI3/476",
+      "kind": "Ancient document",
+      "scope": "Wages and piece-rates on the Erechtheion. AIO's note 6 states that the architect and the labourers, both skilled and unskilled, were employed either on a day-wage of 1 dr. or on piece-rates computed on the basis of that wage.",
+      "note": "Most surviving entries record piece-rates for named tasks rather than counted days; the 1 dr. day-wage is AIO's editorial summary of the accounts, not a quoted line of the stone. The accounts cover one year of finishing work at one building.",
+      "accessed": "2026-09-21"
+    },
+    {
+      "id": "hook-ans-design",
+      "title": "The First Athenian Owls: Symbols of What, Exactly?",
+      "author": "Peter van Alfen · American Numismatic Society, Pocket Change",
+      "year": "1 March 2021",
+      "url": "https://numismatics.org/pocketchange/owls/",
+      "kind": "Museum research blog",
+      "scope": "The civic legibility of the owl type and its longevity: the Athenians saw little need to change the basic design until they ceased minting tetradrachms completely in the first century BC.",
+      "note": "A curator's public-facing post, not a peer-reviewed article. The Peisistratid branding explanation is reported there as a current explanation rather than asserted. The claim concerns the basic type; style and detail changed considerably.",
+      "accessed": "2026-09-21"
     }
   ],
   "images": {

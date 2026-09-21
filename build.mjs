@@ -210,8 +210,8 @@ await writeFile(path.join(root,'index.html'),html);
 // tracker, so they open <main> with the same sticky strip carrying just that control.
 const motionToggle = mainTemplate.match(/<button[^>]*id="motion-toggle"[\s\S]*?<\/button>/)[0];
 const chromeUtility = `<div class="chrome-utility">${motionToggle}</div>`;
-const pricingTitle = 'Athenian Owl Prices & Auction History — The Owl Atlas';
-const pricingDescription = 'Explore current Athenian owl auction prices, 2019–2026 comparisons, buyer fees and 66 source-linked market observations. Research snapshot: September 2026.';
+const pricingTitle = 'Athenian Owl Coin Prices: 66 Sourced Sales — The Owl Atlas';
+const pricingDescription = 'What an Athenian owl actually sold for: 66 source-linked auction results, 2019–2026 comparisons and buyer fees explained. Snapshot: September 2026.';
 const pricingStart = mainTemplate.slice(0,mainTemplate.indexOf('<main id="main">') + '<main id="main">'.length)
   .replace('<body>', '<body class="pricing-page">')
   .replace(/<title>[\s\S]*?<\/title>/, `<title>${pricingTitle}</title>`)
@@ -236,9 +236,9 @@ await writeFile(path.join(root,'pricing/index.html'),pricingHtml);
 // The reference page retains the complete comparison, glossary and bibliography.
 const atlasStart = mainTemplate.slice(0,mainTemplate.indexOf('<main id="main">') + '<main id="main">'.length)
   .replace('<body>', '<body class="reference-page">')
-  .replace(/<title>[\s\S]*?<\/title>/, '<title>Compare Owl Coins &amp; Explore the Sources — The Owl Atlas</title>')
-  .replace(/content="[^"]*" (property="og:title"|name="twitter:title")/g, 'content="The Owl Atlas — Reference atlas and sources" $1')
-  .replace(/content="[^"]*" (name="description"|property="og:description"|name="twitter:description")/g, 'content="Compare eight owl coin families, examine both faces, and explore the glossary, source bibliography and image credits." $1')
+  .replace(/<title>[\s\S]*?<\/title>/, '<title>Compare Eight Athenian Owl Coin Families — The Owl Atlas</title>')
+  .replace(/content="[^"]*" (property="og:title"|name="twitter:title")/g, 'content="The Owl Atlas — Compare the owls, follow the sources" $1')
+  .replace(/content="[^"]*" (name="description"|property="og:description"|name="twitter:description")/g, 'content="Eight owl coin families side by side, both faces in museum photographs, plus a plain-language glossary and every source linked in full." $1')
   .replaceAll('https://theowlatlas.com/','https://theowlatlas.com/atlas/')
   .replace(/href="#(top|origins|pricing)"/g,'href="../#$1"')
   .replace('{{HERO_PRELOAD}}','')
@@ -264,7 +264,7 @@ const journeyData = {
   images: relocateImages({...data.images, ...journey.images}, '../'),
 };
 const journeyTitle = '2,400 Years. Still Here. — One Owl’s Survival | The Owl Atlas';
-const journeyDescription = 'Follow one Mint State Athenian owl across 2,400 years: original photographs, the scale of human generations, possible preservation paths and its documented modern appearances.';
+const journeyDescription = 'Follow one Mint State Athenian owl across 2,400 years: original photographs, the scale of human generations, and its documented modern appearances.';
 const journeyStart = mainTemplate.slice(0,mainTemplate.indexOf('<main id="main">') + '<main id="main">'.length)
   .replace('<body>', '<body class="journey-page">')
   .replace(/<title>[\s\S]*?<\/title>/, `<title>${journeyTitle}</title>`)
