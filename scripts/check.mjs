@@ -4,7 +4,7 @@ import {readFile, stat} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import vm from 'node:vm';
-import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup, marketStats, marketCsv} from '../src/render.mjs';
+import {escapeHtml, sourceRefs, sourceShortLabel, SOURCE_SHORT_LABEL_MAX, photoMarkup, comparisonMarkup, marketStats, marketCsv} from '../src/render.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const data = JSON.parse(await readFile(path.join(root, 'src/content.json'), 'utf8'));
 const html = await readFile(path.join(root, 'index.html'), 'utf8');
@@ -267,4 +267,85 @@ assert.throws(() => photoMarkup('not-real', data)); tests++;
 assert.throws(() => comparisonMarkup('not-real', 'reverse', data)); tests++;
 assert.throws(() => comparisonMarkup('pi', 'reverse', data, 'bnf-quadridigite-1478')); tests++;
 assert.throws(() => comparisonMarkup('pi', 'edge', data)); tests++;
+// Chunk 2 set pieces and the wide-screen citation apparatus.
+// The dotted-theta interlude is an original mark plus the site's own sourced
+// wording; it must stay readable, labelled in the chapter bar, and light, so the
+// ink-dark 404 that follows is not the second dark set piece in a row.
+const theta = markup.match(/<section[^>]*id="theta"[\s\S]*?<\/section>/)?.[0] || '';
+check(Boolean(theta), 'The dotted-theta interlude is present on the home page');
+check(/data-chapter="Interlude[^"]*"/.test(theta), 'The interlude is labelled in the chapter bar');
+check(/<svg class="theta-mark"[\s\S]*?<circle[^>]*r="15\.5"[\s\S]*?<circle[^>]*r="2\.8"/.test(theta),
+  'The interlude draws the wordmark\'s own circle-and-dot, not a font glyph');
+check(theta.includes('class="theta-interlude"') && !/section-(ink|dark|olive)/.test(theta),
+  'The interlude stays light, so two dark set pieces never stack');
+check(theta.includes('id="theta-title"') && /<h2 id="theta-title">/.test(theta), 'The interlude has a heading');
+for (const id of ['acropolis', 'openlearn-theta']) {
+  check(theta.includes(`data-source="${id}"`), `The interlude keeps its existing citation: ${id}`);
+}
+check(!/2,400-year-old letterform|still in use/i.test(theta),
+  'The interlude does not promote the unsupported "letterform still in use" claim');
+// The home page's generations set piece invites the companion story; it must not
+// restate it, and its scale claim stays an illustration.
+const invitation = markup.match(/<aside[^>]*id="one-owl"[\s\S]*?<\/aside>/)?.[0] || '';
+check(Boolean(invitation), 'The one-owl invitation is present');
+check(invitation.includes('How does an owl') && invitation.includes('survive 2,400 years?'),
+  'The invitation keeps its headline');
+check(invitation.includes('80&#x2013;100') || invitation.includes('80–100'), 'The invitation shows the 80-100 range');
+check((invitation.match(/<span( class="range-end")?><\/span>/g) || []).length === 100,
+  'The invitation reuses all one hundred generation marks');
+check((invitation.match(/class="range-end"/g) || []).length === 20, 'Twenty marks show the rounded upper range');
+check(invitation.includes('An illustration of elapsed time, not a count of owners.'),
+  'The invitation states what the generation scale is not');
+check(invitation.includes('Still graded Mint State') && invitation.includes('One coin.'),
+  'The Mint State claim stays about the single companion coin');
+check(invitation.includes('href="one-owl/"'), 'The invitation still links to the companion story');
+check(!invitation.includes('Beni Hasan') && !invitation.includes('journey-generation-marks'),
+  'The invitation is not a second copy of the companion page');
+// Citation sidenote labels: derived, short, escaped, and attached to every chip
+// without disturbing the dialog target or the no-JavaScript anchor.
+for (const source of data.sources) {
+  const label = sourceShortLabel(source);
+  check(label.length > 0 && label.length <= SOURCE_SHORT_LABEL_MAX,
+    `${source.id}: margin label must be 1-${SOURCE_SHORT_LABEL_MAX} characters, got ${label.length}`);
+  check(!/^\s|\s$/.test(label), `${source.id}: margin label is trimmed`);
+  check(!/access/i.test(label), `${source.id}: a visit date must not read as a publication date`);
+}
+check(sourceShortLabel({author: 'Cleveland Museum of Art', year: 'Collection record'}) === 'Cleveland Museum of Art',
+  'An undated institution is named without a year');
+check(sourceShortLabel({author: 'Alexandra Fullname, Bernard Secondname, Carol Third & Dmitri Fourth', year: '2025'})
+  === 'Fullname et al. 2025', 'A byline too long for the margin collapses to the first surname');
+check(sourceShortLabel({author: 'Stephen Lambert & P. J. Rhodes', year: 'Updated 2024'}) === 'Lambert & Rhodes updated 2024',
+  'Two authors keep both surnames and the revision year');
+check(sourceShortLabel({author: 'X', year: 'Undated; accessed 2026'}) === 'X', 'An access year is dropped');
+check(sourceShortLabel({author: 'A'.repeat(80), year: '2020'}).length <= SOURCE_SHORT_LABEL_MAX,
+  'An over-long name is truncated to the margin width');
+for (const [pathname, document] of documents) {
+  const pageMarkup = document.replace(/<script[^>]*>[\s\S]*?<\/script>/g, '');
+  const chips = [...pageMarkup.matchAll(/<a href="[^"]*#source-([^"]+)" data-source="[^"]+" data-short="([^"]*)"[^>]*>(\d\d)<\/a><span class="cite-note" aria-hidden="true"><span class="cite-note-index">(\d\d)<\/span>([^<]*)<\/span>/g)];
+  check(chips.length > 0, `${pathname}: renders citation chips with margin labels`);
+  const plainChips = (pageMarkup.match(/<a [^>]*\bdata-source="/g) || []).length;
+  check(chips.length === plainChips, `${pathname}: every citation carries a data-short label and a note`);
+  for (const [, id, short, number, noteNumber, noteText] of chips) {
+    check(number === noteNumber, `${pathname}: chip ${number} and its note disagree`);
+    check(short === noteText, `${pathname}: chip ${number} label and note text disagree`);
+    check(short.length > 0 && short.length <= SOURCE_SHORT_LABEL_MAX + 6,
+      `${pathname}: ${id} margin label is too long once escaped`);
+    check(!/[<>]/.test(short), `${pathname}: ${id} margin label is escaped`);
+  }
+  // The brackets are drawn by CSS; nothing may reintroduce them as chip text.
+  check(!/data-source="[^"]*"[^>]*>\[\d\d\]</.test(pageMarkup), `${pathname}: chip text is the bare numeral`);
+}
+const styles = await readFile(path.join(root, 'src/styles.css'), 'utf8');
+check(/\.citation a::before\s*\{\s*content:"\[";/.test(styles) && /\.citation a::after\s*\{\s*content:"\]";/.test(styles),
+  'The chip brackets are still drawn for every narrow, touch and printed reading');
+check(/@media screen and \(min-width:1180px\) and \(hover:hover\)/.test(styles),
+  'Sidenotes are gated on a wide viewport and a hovering pointer');
+check(!/\.artifact-step-copy[^{]*\.cite-note/.test(styles), 'The sticky Anatomy stage never carries a sidenote');
+// Each sub-page names itself where the home page names the chapter under way.
+for (const [document, label, page] of [[pricing, 'PRICING RESEARCH', '/pricing/'], [atlas, 'THE REFERENCE ATLAS', '/atlas/'], [journey, 'ONE OWL', '/one-owl/']]) {
+  const strip = document.match(/<div class="chrome-utility">[\s\S]*?<\/div>/)?.[0] || '';
+  check(strip.includes(`<span class="chrome-utility-page">${label}</span>`), `${page}: chrome strip names the page`);
+  check(strip.includes('id="motion-toggle"'), `${page}: chrome strip keeps the motion control`);
+}
+check(!html.includes('class="chrome-utility"'), 'The home page keeps its chapter bar rather than the sub-page strip');
 console.log(`PASS: ${tests} structural/rendering checks; ${data.sources.length} sources; ${Object.keys(data.images).length} images; ${data.families.length} family records.\nExternal network availability and historical claims require separate review.`);

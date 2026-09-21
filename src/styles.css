@@ -5385,3 +5385,209 @@ h4 {
   .object-honesty { max-width:30rem }
   .hero-photo::before { inset:-18% }
 }
+
+/* ==========================================================================
+   CHUNK 2 / BEAUTY — set pieces and citation sidenotes
+   Everything this task adds lives here: the dotted-theta interlude, the
+   "80–100 generations" invitation, wide-screen citation sidenotes and the
+   sub-page chrome label. Nothing above this line was rewritten for it except
+   the citation brackets, which moved into ::before/::after so wide screens can
+   drop them.
+   ========================================================================== */
+
+/* --- The dotted theta -------------------------------------------------- */
+/* A light band between the Anatomy exhibit and the ink-dark 404, so two dark
+   set pieces never stack. The mark is the wordmark's own circle-and-dot, drawn
+   at reading scale with a finer stroke; no font glyph and no invented artefact. */
+.theta-interlude {
+  background:var(--paper-deep);
+  color:var(--ink);
+  color-scheme:light;
+  border-block:1px solid var(--line);
+  padding:clamp(72px,9vw,132px) var(--gutter);
+  display:grid;
+  grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+  gap:clamp(36px,6vw,90px);
+  align-items:center;
+}
+.theta-interlude>* { max-width:var(--max); }
+.theta-stage { display:flex; justify-content:center; }
+.theta-mark {
+  display:block;
+  width:auto;
+  height:clamp(230px,57vh,560px);
+  max-width:100%;
+  color:var(--olive);
+  overflow:visible;
+}
+.theta-copy .eyebrow { color:var(--muted-light); }
+.theta-copy h2 {
+  font-size:clamp(2.75rem,6vw,5.25rem);
+  line-height:1.03;
+  margin-top:22px;
+}
+.theta-copy h2 em { color:var(--muted-light); }
+.theta-copy p { max-width:33rem; }
+.theta-copy .lead { margin-top:30px; }
+.theta-copy>p+p { font-size:var(--type-body); line-height:1.85; color:var(--muted-light); }
+
+@media screen and (max-width:900px) {
+  .theta-interlude { grid-template-columns:minmax(0,1fr); gap:34px; }
+  .theta-mark { height:clamp(180px,38vh,320px); }
+}
+@media print {
+  .theta-interlude { display:block; break-inside:avoid; border:0; }
+  .theta-stage { justify-content:flex-start; margin-bottom:18px; }
+  .theta-mark { height:110pt; }
+  .theta-copy h2 { font-size:30pt; }
+}
+
+/* --- 80–100 generations, on the home page ------------------------------ */
+/* The companion page measures this specimen in detail; here the number is the
+   invitation. Its own marks and scale, so the two are not one page twice. */
+.journey-invitation {
+  padding-block:clamp(66px,7.5vw,104px);
+  grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+  gap:clamp(40px,5vw,70px);
+}
+.journey-invitation-copy .lead {
+  font-family:var(--serif);
+  font-size:1.5rem;
+  line-height:1.45;
+  letter-spacing:-.02em;
+  margin-top:26px;
+}
+.journey-invitation-copy>p+p { font-size:var(--type-body); line-height:1.85; color:var(--muted-dark); }
+.journey-invitation-copy .quiet-link { margin-top:26px; }
+.generation-figure { border-top:1px solid var(--line-dark); padding-top:30px; min-width:0; }
+.generation-count { display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 24px; }
+.generation-count strong {
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(3.25rem,7vw,6.25rem);
+  line-height:1;
+  letter-spacing:-.06em;
+  white-space:nowrap;
+}
+.generation-count span { font-size:var(--type-support); line-height:1.5; color:var(--muted-dark); }
+.generation-marks { display:grid; grid-template-columns:repeat(20,minmax(0,1fr)); gap:11px; margin:30px 0 20px; }
+.generation-marks span { display:block; height:16px; border-left:2px solid var(--gold); }
+.generation-marks .range-end { opacity:.28; }
+.generation-figure figcaption {
+  font:var(--type-label)/1.8 var(--sans);
+  color:var(--muted-dark);
+  max-width:34rem;
+}
+
+@media screen and (max-width:900px) {
+  .journey-invitation { grid-template-columns:minmax(0,1fr); gap:38px; }
+  .generation-marks { grid-template-columns:repeat(25,minmax(0,1fr)); gap:8px; }
+  .generation-marks span { height:13px; }
+}
+@media print {
+  .journey-invitation { display:block; break-inside:avoid; }
+  .generation-figure { margin-top:22px; }
+  .generation-marks span { border-color:#444; }
+}
+
+/* --- Citation chips and their margin notes ----------------------------- */
+/* The brackets are drawn, not typed, so the sidenote layout can drop them and
+   leave a plain superscript numeral. Everything narrower than the sidenote
+   breakpoint, every touch device and every printed page keeps the chip as it
+   was, including its tap target. */
+.citation a::before { content:"["; }
+.citation a::after { content:"]"; }
+.cite-note { display:none; }
+
+@media screen and (min-width:1180px) and (hover:hover) {
+  :root { --cite-note-col:168px; --cite-note-gap:24px; }
+  main .citation a::before,main .citation a::after { content:none; }
+  main .citation a {
+    /* Narrower without the brackets, but never below the 24px target the chip
+       already had: a citation is inline in a sentence, so it keeps its floor. */
+    min-width:24px;
+    padding:2px 1px;
+    color:var(--muted-light);
+    text-decoration:none;
+  }
+  main .citation a:hover,main .citation a:focus-visible {
+    color:inherit;
+    background:none;
+    text-decoration:underline;
+  }
+  /* The hero caption belongs to the opening, not to the chapter apparatus; it
+     keeps the chip exactly as the rest of the site shows it below 1180px. */
+  .hero .citation a::before { content:"["; }
+  .hero .citation a::after { content:"]"; }
+  .hero .citation a { min-width:24px; padding:3px; color:inherit; }
+  .hero .citation a:hover { background:var(--paper-deep); color:var(--ink); }
+  /* Only containers with room of their own carry a note: the note is floated
+     into reserved padding, so it can never reach a neighbouring column, an
+     image, a card or the sticky Anatomy stage. Where the measure has no room to
+     give — the narrow .prose columns, the geography and evidence grids, the
+     family cards, the Anatomy stage copy — the compact numeral stands alone. */
+  .theta-copy,
+  .crisis-text,
+  .section-heading>.section-deck,
+  .mining-band>div,
+  .late-old-heading,
+  .editorial-detail p,
+  .chapter-rights-note p,
+  .research-feature>div,
+  .document-card>div {
+    padding-right:calc(var(--cite-note-col) + var(--cite-note-gap));
+  }
+  /* Contain the floated notes, so a run of them grows its own container instead
+     of spilling over whatever the container sits above. The grid items in this
+     list already establish their own formatting context. */
+  .crisis-text,
+  .section-heading>.section-deck,
+  .late-old-heading,
+  .editorial-detail p { display:flow-root; }
+  /* These two are sized by their own measure, so the column is added to it
+     rather than taken out of it. */
+  .crisis-text { max-width:calc(580px + var(--cite-note-col) + var(--cite-note-gap)); }
+  .section-heading>.section-deck { max-width:calc(620px + var(--cite-note-col) + var(--cite-note-gap)); }
+
+  .theta-copy .cite-note,
+  .crisis-text .cite-note,
+  .section-heading>.section-deck .cite-note,
+  .mining-band>div .cite-note,
+  .late-old-heading .cite-note,
+  .editorial-detail p .cite-note,
+  .chapter-rights-note p .cite-note,
+  .research-feature>div .cite-note,
+  .document-card>div .cite-note {
+    display:block;
+    float:right;
+    clear:right;
+    width:var(--cite-note-col);
+    margin:0 calc(-1 * (var(--cite-note-col) + var(--cite-note-gap))) 12px 0;
+    font:var(--type-label)/1.5 var(--mono);
+    letter-spacing:0;
+    white-space:normal;
+    text-align:left;
+    text-indent:0;
+    vertical-align:baseline;
+    color:var(--muted-light);
+    padding-top:.2em;
+  }
+  .cite-note-index { display:block; color:var(--gold); margin-bottom:4px; }
+  .section-paper .cite-note-index { color:#8a7c4d; }
+}
+
+/* --- Sub-page chrome strip label --------------------------------------- */
+/* The home page's sticky bar names the chapter under way; the sub-pages have no
+   chapter tracker, so their strip names the page instead of standing empty. */
+.chrome-utility-label { display:flex; align-items:center; gap:14px; min-width:0; margin-right:auto; }
+.chrome-utility-page {
+  font-family:var(--mono);
+  font-size:var(--type-label);
+  letter-spacing:.12em;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+@media screen and (max-width:600px) {
+  .chrome-utility-label>.chapter-caption { display:none; }
+}
