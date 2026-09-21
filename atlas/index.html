@@ -5634,6 +5634,218 @@ h4 {
   .chrome-utility-label>.chapter-caption { display:none; }
 }
 
+/* === CHUNK 3 / MINTING ==================================================== */
+/* A quiet, replayable strike for "How do you make an owl?".
+ *
+ * The three diagrams, their <title>/<desc> and their prose are unchanged and
+ * remain the whole explanation. Every rule below is gated on
+ * `.minting-section.is-playing`, which src/app.js adds once the section scrolls
+ * into view, so the resting state — no JavaScript, motion off, reduced motion,
+ * print — is exactly the static figure that was authored. The only new ink is
+ * an impact ring and a schematic relief hint (three ticks and one dashed
+ * contour) on the struck flan: no owl, no Athena, no device of any kind.
+ *
+ * Timeline, in one place so the three panels stay in step:
+ *   0.00-1.50s  01 / THE TOOLS   anvil, dies drawn in, engraved marks, labels
+ *   1.50-2.90s  02 / THE SILVER  the blank falls and settles on the lower die
+ *   2.90-4.60s  03 / THE STRIKE  hammer falls, impact at 3.68s, struck disc
+ */
+.minting-section { --mint-run:4.6s; --mint-gold:#8a6a24; }
+
+/* --- New schematic parts. Invisible until the sequence reaches them. ------ */
+.minting-diagram .mint-relief { fill:none; stroke:var(--mint-gold); stroke-width:1.1; }
+.minting-diagram .mint-relief-arc { fill:none; stroke:var(--mint-gold); stroke-width:1; stroke-dasharray:1 2.6; }
+.minting-diagram .mint-a-relief { opacity:0; }
+.minting-diagram .mint-a-ring { fill:none; stroke:var(--mint-gold); stroke-width:1.4; opacity:0; }
+
+/* Transforms resolve against the 360x260 viewBox, so the lengths below are the
+   same user units as the path data. */
+.minting-diagram .mint-a-blank,
+.minting-diagram .mint-a-hammer,
+.minting-diagram .mint-a-upper { transform-box:view-box; }
+.minting-diagram .mint-a-flan { transform-box:view-box; transform-origin:180px 182px; }
+.minting-diagram .mint-a-ring { transform-box:view-box; transform-origin:180px 171px; }
+
+/* --- 01 / THE TOOLS ------------------------------------------------------- */
+.minting-section.is-playing .mint-a-anvil { animation:mint-a-fade .4s ease-out 0s both; }
+.minting-section.is-playing .mint-a-die { animation:mint-a-draw .7s cubic-bezier(.35,0,.25,1) both, mint-a-ink .4s ease-out both; }
+.minting-section.is-playing .mint-a-die-lower { animation-delay:.1s, .45s; }
+.minting-section.is-playing .mint-a-die-upper { animation-delay:.32s, .67s; }
+.minting-section.is-playing .mint-a-engrave { animation:mint-a-draw .48s cubic-bezier(.3,0,.3,1) .9s both; }
+.minting-section.is-playing .mint-a-guide { animation:mint-a-fade .35s ease-out 1s both; }
+
+/* The same tools stand in panels 02 and 03, so they arrive with panel 01
+   rather than leaving those panels empty until their own step comes round. */
+.minting-section.is-playing .mint-a-carry { animation:mint-a-fade .8s ease-out .4s both; }
+
+/* --- 02 / THE SILVER ------------------------------------------------------ */
+.minting-section.is-playing .mint-a-blank { animation:mint-a-drop 1s 1.72s both; }
+
+/* --- 03 / THE STRIKE ------------------------------------------------------
+   Panel 03 assembles with the other two — raised hammer, raised die, a blank
+   still plump — and holds that pose until the blow. Only the movement waits for
+   step 03, so nothing appears out of nowhere part-way through the sequence. */
+.minting-section.is-playing .mint-a-hammer { animation:mint-a-hammer-fall 1.3s 2.95s both, mint-a-fade .8s ease-out .4s both; }
+.minting-section.is-playing .mint-a-upper { animation:mint-a-die-drive 1.3s 2.95s both, mint-a-fade .8s ease-out .4s both; }
+.minting-section.is-playing .mint-a-flan { animation:mint-a-flan-strike 1.3s 2.95s both, mint-a-fade .8s ease-out .4s both; }
+.minting-section.is-playing .mint-a-ring { animation:mint-a-ring-out .55s cubic-bezier(.1,.6,.3,1) 3.66s both; }
+.minting-section.is-playing .mint-a-relief { animation:mint-a-relief-in .55s ease-out 3.8s both; }
+
+/* --- Arrows and labels, per panel ----------------------------------------- */
+.minting-section.is-playing .mint-a-arrow { animation:mint-a-draw .4s cubic-bezier(.3,0,.3,1) both; }
+.minting-section.is-playing .minting-steps>li:nth-child(2) .mint-a-arrow { animation-delay:1.55s; }
+.minting-section.is-playing .minting-steps>li:nth-child(3) .mint-a-arrow { animation-delay:3s; }
+.minting-section.is-playing .mint-a-tag { animation:mint-a-fade .38s ease-out both; }
+.minting-section.is-playing .minting-steps>li:nth-child(1) .mint-a-tag { animation-delay:1.05s; }
+.minting-section.is-playing .minting-steps>li:nth-child(2) .mint-a-tag { animation-delay:2.42s; }
+.minting-section.is-playing .mint-a-tag-hammer { animation-delay:2.98s; }
+.minting-section.is-playing .mint-a-tag-faces { animation-delay:4.05s; animation-duration:.45s; }
+
+/* --- The step under way ---------------------------------------------------
+   A thin rule grows under the existing mono label in the copy column. The label
+   itself keeps its ink colour: nothing here reduces the contrast of live text,
+   and nothing is announced, because the animation is decorative. */
+.minting-section .minting-step-copy>.eyebrow { position:relative; }
+.minting-section .minting-step-copy>.eyebrow::after {
+  content:'';
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-6px;
+  height:2px;
+  background:var(--mint-gold);
+  transform:scaleX(0);
+  transform-origin:left center;
+  opacity:0;
+}
+.minting-section.is-playing .minting-step-copy>.eyebrow::after { animation:mint-a-cue linear both; }
+.minting-section.is-playing .minting-steps>li:nth-child(1) .minting-step-copy>.eyebrow::after { animation-duration:1.5s; animation-delay:0s; }
+.minting-section.is-playing .minting-steps>li:nth-child(2) .minting-step-copy>.eyebrow::after { animation-duration:1.4s; animation-delay:1.5s; }
+.minting-section.is-playing .minting-steps>li:nth-child(3) .minting-step-copy>.eyebrow::after { animation-duration:1.7s; animation-delay:2.9s; }
+
+/* --- The replay control ---------------------------------------------------
+   The site's pill button in mono, at the 44px touch target, sitting above the
+   onward link. It is rendered `hidden`; app.js unhides it only where it can do
+   something, and the motion-off rules below take it away again. */
+.minting-footer-actions {
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:18px;
+  flex-shrink:0;
+}
+.mint-replay {
+  min-height:44px;
+  min-width:44px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:11px;
+  padding:0 19px;
+  border:1px solid var(--line);
+  border-radius:100px;
+  background:transparent;
+  color:var(--ink);
+  font-family:var(--mono);
+  font-size:var(--type-label);
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  cursor:pointer;
+}
+.mint-replay::before {
+  content:'';
+  width:9px;
+  height:9px;
+  flex:none;
+  border-radius:50%;
+  border:1px solid var(--mint-gold);
+}
+.mint-replay:hover { border-color:rgba(28,36,32,.45); }
+/* The dot is filled while the sequence runs and hollow once it has finished. */
+.minting-section.is-playing .mint-replay::before { animation:mint-a-running var(--mint-run) step-end both; }
+
+@keyframes mint-a-fade { from { opacity:0 } to { opacity:1 } }
+@keyframes mint-a-relief-in { from { opacity:0 } to { opacity:.62 } }
+@keyframes mint-a-ink { from { fill-opacity:0 } to { fill-opacity:1 } }
+@keyframes mint-a-draw {
+  from { stroke-dasharray:1; stroke-dashoffset:1 }
+  to { stroke-dasharray:1; stroke-dashoffset:0 }
+}
+@keyframes mint-a-running { from { background:var(--mint-gold) } to { background:transparent } }
+@keyframes mint-a-cue {
+  0% { opacity:0; transform:scaleX(0) }
+  9% { opacity:1; transform:scaleX(.09) }
+  88% { opacity:1; transform:scaleX(.88) }
+  100% { opacity:0; transform:scaleX(1) }
+}
+/* The blank falls under its own weight, touches down and damps once. */
+@keyframes mint-a-drop {
+  0% { opacity:0; transform:translateY(-26px); animation-timing-function:linear }
+  16% { opacity:1; transform:translateY(-23px); animation-timing-function:cubic-bezier(.55,.02,.86,.38) }
+  58% { opacity:1; transform:translateY(0); animation-timing-function:cubic-bezier(.3,0,.35,1) }
+  74% { opacity:1; transform:translateY(-3.2px); animation-timing-function:cubic-bezier(.45,0,.55,1) }
+  100% { opacity:1; transform:translateY(0) }
+}
+/* The hammer hangs, falls on to the raised die at 40%, drives it home at 56%
+   and rebounds. The die and the flan share those percentages. */
+@keyframes mint-a-hammer-fall {
+  0% { transform:translateY(-40px); animation-timing-function:cubic-bezier(.55,.03,.9,.42) }
+  40% { transform:translateY(-20px); animation-timing-function:cubic-bezier(.2,.5,.4,1) }
+  56% { transform:translateY(0); animation-timing-function:cubic-bezier(.22,.7,.4,1) }
+  74% { transform:translateY(-7px); animation-timing-function:cubic-bezier(.45,0,.55,1) }
+  100% { transform:translateY(0) }
+}
+@keyframes mint-a-die-drive {
+  0% { transform:translateY(-20px); animation-timing-function:linear }
+  40% { transform:translateY(-20px); animation-timing-function:cubic-bezier(.22,.7,.4,1) }
+  56% { transform:translateY(0) }
+  100% { transform:translateY(0) }
+}
+/* Tall and narrow before the blow, spread and thin after it. */
+@keyframes mint-a-flan-strike {
+  0% { transform:scale(.9,1.28); animation-timing-function:linear }
+  40% { transform:scale(.9,1.28); animation-timing-function:cubic-bezier(.2,.75,.35,1) }
+  58% { transform:scale(1.06,.9); animation-timing-function:cubic-bezier(.35,0,.5,1) }
+  76% { transform:scale(.99,1.03); animation-timing-function:cubic-bezier(.4,0,.5,1) }
+  100% { transform:scale(1,1) }
+}
+@keyframes mint-a-ring-out {
+  0% { opacity:0; transform:scale(.3) }
+  16% { opacity:.85; transform:scale(.85) }
+  100% { opacity:0; transform:scale(2.1) }
+}
+
+/* --- Motion off, reduced motion and print ---------------------------------
+   Every animated part falls back to the frame it was drawn in, the new relief
+   and ring stay at zero opacity, and the control goes away rather than offering
+   a replay that cannot run. */
+html.motion-off .minting-section [class*="mint-a-"],
+html.motion-off .minting-section .minting-step-copy>.eyebrow::after,
+html.motion-off .minting-section .mint-replay::before {
+  animation:none!important;
+  transform:none!important;
+}
+html.motion-off .mint-replay { display:none; }
+@media (prefers-reduced-motion:reduce) {
+  .mint-replay { display:none; }
+}
+@media print {
+  .minting-section [class*="mint-a-"],
+  .minting-section .minting-step-copy>.eyebrow::after,
+  .minting-section .mint-replay::before {
+    animation:none!important;
+    transform:none!important;
+  }
+  .minting-footer-actions { display:block; }
+  .mint-replay { display:none; }
+}
+@media (max-width:600px) {
+  .minting-footer-actions { gap:14px; }
+  .minting-footer .minting-footer-actions .quiet-link { margin-top:0; }
+}
+/* === end CHUNK 3 / MINTING ================================================ */
+
 /* ==========================================================================
    CHUNK 3 / ONE OWL — the companion opening as one lit object
 
@@ -8283,6 +8495,51 @@ window.addEventListener('afterprint', () => {
 window.addEventListener('beforeprint', () => {
   document.querySelectorAll('.reveal').forEach((element) => element.classList.replace('is-waiting', 'is-visible'));
 });
+
+/**
+ * Play a decorative sequence once, when its section is read.
+ *
+ * A generic companion to `.reveal`, which fades a block in; this marks a whole
+ * container so a stylesheet can run a timed sequence inside it. An element with
+ * `data-animate-on-view` gets `is-playing` the first time it scrolls into view,
+ * and a `[data-animate-replay]` control inside it restarts that sequence by
+ * dropping the class, forcing a reflow and setting it again.
+ *
+ * Nothing here decides what moves or for how long: the CSS owns the timeline, so
+ * a section that only draws itself in costs the same as one that does not move at
+ * all. When motion is off — the reader's toggle or the operating system's reduced
+ * motion preference — the stylesheet leaves every part at its authored frame and
+ * hides the replay control, so the section reads as the static figure it is
+ * without JavaScript. The class is still applied in that case, which means
+ * turning motion back on plays the sequence rather than silently doing nothing.
+ * State is never announced: these sequences illustrate copy that is already on
+ * the page, so a live region would only repeat it.
+ */
+const animatedStages = document.querySelectorAll('[data-animate-on-view]');
+if (animatedStages.length) {
+  // Fires when the container's top edge passes the lower quarter of the viewport,
+  // which does not depend on how tall the container is on a given screen.
+  const playObserver = 'IntersectionObserver' in window
+    ? new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add('is-playing');
+        playObserver.unobserve(entry.target);
+      }
+    }, {rootMargin: '0px 0px -25% 0px', threshold: 0})
+    : null;
+  for (const stage of animatedStages) {
+    playObserver?.observe(stage);
+    const replay = stage.querySelector('[data-animate-replay]');
+    if (!replay) continue;
+    replay.hidden = false;
+    replay.addEventListener('click', () => {
+      stage.classList.remove('is-playing');
+      void stage.offsetWidth; // restart the CSS timeline from its first frame
+      stage.classList.add('is-playing');
+    });
+  }
+}
 
 })();
   </script>
