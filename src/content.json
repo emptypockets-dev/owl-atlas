@@ -2,6 +2,24 @@
   "title": "The Owl Atlas",
   "edition": "Research edition 03",
   "reviewed": "2026-09-16",
+  "social": {
+    "home": {
+      "file": "home.png",
+      "alt": "The Owl Atlas: a silver Athenian owl tetradrachm reverse from the Cleveland Museum of Art, beside the headline “A small owl. An ancient world.”"
+    },
+    "atlas": {
+      "file": "atlas.png",
+      "alt": "Four Athenian owl reverses in a row — archaic, early classical, classical and New Style — beside the headline “See the differences. Keep the nuance.”"
+    },
+    "pricing": {
+      "file": "pricing.png",
+      "alt": "Three Athenian owl price points from the dated research snapshot, beside the headline “One owl. Many prices.”"
+    },
+    "one-owl": {
+      "file": "one-owl.png",
+      "alt": "A Mint State Athenian owl tetradrachm reverse, photographed in its holder, beside the headline “2,400 years. Still here.”"
+    }
+  },
   "sources": [
     {
       "id": "met",

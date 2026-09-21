@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://theowlatlas.com/</loc></url>
-  <url><loc>https://theowlatlas.com/atlas/</loc></url>
-  <url><loc>https://theowlatlas.com/pricing/</loc></url>
-  <url><loc>https://theowlatlas.com/one-owl/</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://theowlatlas.com/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <image:image><image:loc>https://theowlatlas.com/social/home.png</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://theowlatlas.com/atlas/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <image:image><image:loc>https://theowlatlas.com/social/atlas.png</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://theowlatlas.com/pricing/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <image:image><image:loc>https://theowlatlas.com/social/pricing.png</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://theowlatlas.com/one-owl/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <image:image><image:loc>https://theowlatlas.com/social/one-owl.png</image:loc></image:image>
+  </url>
 </urlset>

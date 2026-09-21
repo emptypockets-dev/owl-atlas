@@ -12,6 +12,7 @@
     "build:local": "node build.mjs --local-images",
     "vendor:images": "node scripts/vendor-images.mjs",
     "derive:images": "node scripts/derive-images.mjs",
+    "social": "node scripts/render-social.mjs",
     "check": "node scripts/check.mjs",
     "build:deploy": "node build.mjs && node scripts/prepare-deploy.mjs",
     "build:deploy:local": "node build.mjs --local-images && node scripts/prepare-deploy.mjs"

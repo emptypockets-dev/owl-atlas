@@ -126,10 +126,83 @@ function renderPage(template, pageData = data) {
   if (/\{\{[A-Z_]+|__\w+_URL__/.test(html)) throw new Error('An unresolved build token remains.');
   return html;
 }
+// Share card and structured data. Both are derived from the page's own head and
+// from src/content.json, so the card, the JSON-LD and the visible metadata
+// cannot drift apart, and no page carries a hand-written duplicate of either.
+const SITE_URL = 'https://theowlatlas.com/';
+const ORGANIZATION_ID = 'https://theowlatlas.com/#organization';
+const WEBSITE_ID = 'https://theowlatlas.com/#website';
+const unescapeHtml = (value) => value.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+function headContent(html, attribute, pathname) {
+  const match = html.match(new RegExp(`content="([^"]*)" ${attribute}/>`));
+  if (!match) throw new Error(`${pathname}: missing head metadata ${attribute}`);
+  return unescapeHtml(match[1]);
+}
+// Only photographs actually shown on that page, and never a record whose reuse
+// review is unresolved: those six stay out of structured data entirely.
+function photographObjects(html, pageData, pathname) {
+  const shown = new Set([...html.matchAll(/data-image="([^"]+)"/g)].map(match => match[1]));
+  return Object.values(pageData.images)
+    .filter(image => shown.has(image.id) && image.reuseStatus !== 'review-pending')
+    .map(image => ({
+      '@type': 'ImageObject',
+      '@id': `https://theowlatlas.com${pathname}#photo-${image.id}`,
+      name: image.title,
+      caption: image.alt,
+      contentUrl: image.url,
+      width: image.width,
+      height: image.height,
+      license: image.licenseUrl,
+      acquireLicensePage: image.source,
+      creditText: image.credit,
+      creator: {'@type': 'Organization', name: image.credit.split(' · ')[0]},
+      copyrightNotice: `${image.credit} · ${image.license}`,
+    }));
+}
+function pageMetadata(html, {page, pathname, type, website = false, photographs = null}) {
+  const card = data.social[page];
+  if (!card) throw new Error(`src/content.json has no social card for ${page}`);
+  const image = `https://theowlatlas.com/social/${card.file}`;
+  const alt = escapeHtml(card.alt);
+  let out = html;
+  for (const [attribute, value] of [['property="og:image"', image], ['name="twitter:image"', image], ['property="og:image:alt"', alt], ['name="twitter:image:alt"', alt]]) {
+    const pattern = new RegExp(`content="[^"]*" ${attribute}/>`);
+    if (!pattern.test(out)) throw new Error(`${pathname}: no ${attribute} meta tag to fill`);
+    out = out.replace(pattern, () => `content="${value}" ${attribute}/>`);
+  }
+  const url = `https://theowlatlas.com${pathname}`;
+  const headline = headContent(out, 'property="og:title"', pathname);
+  const description = headContent(out, 'name="description"', pathname);
+  const work = {
+    '@type': type,
+    '@id': `${url}#page`,
+    url,
+    mainEntityOfPage: url,
+    name: headline,
+    headline,
+    description,
+    image,
+    inLanguage: 'en',
+    dateModified: data.reviewed,
+    author: {'@id': ORGANIZATION_ID},
+    publisher: {'@id': ORGANIZATION_ID},
+    isPartOf: {'@id': WEBSITE_ID},
+  };
+  const media = photographs ? photographObjects(out, photographs, pathname) : [];
+  if (media.length) work.associatedMedia = media.map(item => ({'@id': item['@id']}));
+  const graph = [{'@type': 'Organization', '@id': ORGANIZATION_ID, name: data.title, url: SITE_URL}];
+  if (website) graph.push({'@type': 'WebSite', '@id': WEBSITE_ID, url: SITE_URL, name: data.title, description, inLanguage: 'en', publisher: {'@id': ORGANIZATION_ID}});
+  graph.push(work, ...media);
+  // Escaped exactly like the inline data block, so no value can close the tag.
+  const json = JSON.stringify({'@context': 'https://schema.org', '@graph': graph}).replace(/</g, '\\u003c');
+  if ((out.match(/<\/head>/g) || []).length !== 1) throw new Error(`${pathname}: expected exactly one </head>`);
+  return out.replace('</head>', () => `<script type="application/ld+json">${json}</script>\n </head>`);
+}
 // Keep moved reference bookmarks reachable, including without JavaScript.
 const referenceIds = ['sources','sources-title','family-tree','coin-descriptions','glossary-title','image-reuse-policy',...data.families.map(f=>`family-${f.id}`),...data.sources.map(s=>`source-${s.id}`)];
 replacements.ATLAS_LEGACY_LINKS = referenceIds.filter(id=>!['atlas','atlas-title'].includes(id)).map(id=>`<span id="${escapeHtml(id)}" class="market-legacy-anchor" data-reference-redirect aria-hidden="true"></span>`).join('');
-const html = renderPage(mainTemplate).replace(/href="#(source-[^"]+|image-reuse-policy)"/g,'href="atlas/#$1"');
+const html = pageMetadata(renderPage(mainTemplate).replace(/href="#(source-[^"]+|image-reuse-policy)"/g,'href="atlas/#$1"'),
+  {page:'home', pathname:'/', type:'Article', website:true, photographs:data});
 await writeFile(path.join(root,'index.html'),html);
 // Reuse the existing site chrome and native dialogs; only the page content differs.
 const pricingTitle = 'Athenian Owl Prices & Auction History — The Owl Atlas';
@@ -150,8 +223,9 @@ const pricingStart = mainTemplate.slice(0,mainTemplate.indexOf('<main id="main">
 const pricingEnd = mainTemplate.slice(mainTemplate.indexOf('   <footer class="site-footer'))
   .replace('href="#top"','href="../#pricing"').replace('Back to the beginning ↑','Back to the story ↗')
   .replace('The story, family entries and bibliography remain readable without JavaScript. Image links open the original photographs; interactive comparison and zoom controls require JavaScript.', 'The price comparisons, chart, sales ledger and sources remain readable without JavaScript. The calculator and ledger filters require JavaScript.');
-const pricingHtml = renderPage(pricingTemplate.replace('{{PRICING_START}}',pricingStart).replace('{{PRICING_END}}',pricingEnd),
-  {...data, images:relocateImages(data.images,'../')});
+const pricingHtml = pageMetadata(renderPage(pricingTemplate.replace('{{PRICING_START}}',pricingStart).replace('{{PRICING_END}}',pricingEnd),
+  {...data, images:relocateImages(data.images,'../')}),
+  {page:'pricing', pathname:'/pricing/', type:'Article'});
 await mkdir(path.join(root,'pricing'),{recursive:true});
 await writeFile(path.join(root,'pricing/index.html'),pricingHtml);
 // The reference page retains the complete comparison, glossary and bibliography.
@@ -172,8 +246,9 @@ const atlasData = {...data, images:relocateImages(data.images,'../')};
 replacements.COMPARE_PANEL_LEFT = comparisonMarkup('classical','reverse',atlasData);
 replacements.COMPARE_PANEL_RIGHT = comparisonMarkup('new','reverse',atlasData);
 replacements.FAMILY_CARDS = atlasData.families.map((family,index) => familyCard(family,index,atlasData)).join('\n');
-const atlasHtml = renderPage(atlasTemplate.replace('{{ATLAS_START}}',atlasStart).replace('{{ATLAS_END}}',atlasEnd),atlasData)
-  .replace(/href="pricing\//g,'href="../pricing/');
+const atlasHtml = pageMetadata(renderPage(atlasTemplate.replace('{{ATLAS_START}}',atlasStart).replace('{{ATLAS_END}}',atlasEnd),atlasData)
+  .replace(/href="pricing\//g,'href="../pricing/'),
+  {page:'atlas', pathname:'/atlas/', type:'CreativeWork', photographs:atlasData});
 await mkdir(path.join(root,'atlas'),{recursive:true});
 await writeFile(path.join(root,'atlas/index.html'),atlasHtml);
 // Owner-supplied photographs and personal records belong to this companion only.
@@ -201,9 +276,21 @@ const journeyEnd = mainTemplate.slice(mainTemplate.indexOf('   <footer class="si
 const journeyTemplate = (await read('src/one-owl.html'))
   .replace('{{JOURNEY_START}}',journeyStart).replace('{{JOURNEY_END}}',journeyEnd)
   .replace('{{JOURNEY_SOURCES}}',journeyData.sources.map((source,index) => journey.sourceIds.includes(source.id) ? sourceEntry(source,index) : '').join('\n'));
-const journeyHtml = `${renderPage(journeyTemplate,journeyData).trimEnd()}\n`;
+const journeyHtml = `${pageMetadata(renderPage(journeyTemplate,journeyData), {page:'one-owl', pathname:'/one-owl/', type:'Article'}).trimEnd()}\n`;
 await mkdir(path.join(root,'one-owl'),{recursive:true});
 await writeFile(path.join(root,'one-owl/index.html'),journeyHtml);
+// Generated so <lastmod> and the share-card image entries can never fall behind
+// the reviewed date or a renamed card. prepare-deploy copies the result as-is.
+const sitemapPages = [['/','home'],['/atlas/','atlas'],['/pricing/','pricing'],['/one-owl/','one-owl']];
+await writeFile(path.join(root,'public/sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${sitemapPages.map(([pathname,page]) => `  <url>
+    <loc>https://theowlatlas.com${pathname}</loc>
+    <lastmod>${data.reviewed}</lastmod>
+    <image:image><image:loc>https://theowlatlas.com/social/${data.social[page].file}</image:loc></image:image>
+  </url>`).join('\n')}
+</urlset>
+`);
 await mkdir(path.join(root,'research'),{recursive:true});
 await writeFile(path.join(root,'research/sources.json'),JSON.stringify(data.sources,null,2));
 await writeFile(path.join(root,'research/images-manifest.json'),JSON.stringify(Object.values(data.images),null,2));

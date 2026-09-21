@@ -97,6 +97,7 @@ Node 20 or newer is sufficient. There are no npm dependencies to install.
 ```sh
 npm run build          # rebuild index.html from source files
 npm run check          # check references, IDs, rendering and JavaScript syntax
+npm run social         # re-render the four 1200×630 share cards (network + renderer)
 ```
 
 | File | Responsibility |
@@ -294,13 +295,35 @@ overwrite other reports. Root-font enlargement is not actual browser zoom.
 See `research/readability-qa.json` for the latest run and
 `research/readability-release-qa.json` for separate public-site/photo checks.
 
+## Share cards and structured data
+
+Each page declares its own 1200×630 `og:image` and a `summary_large_image`
+Twitter card, plus one `application/ld+json` block that `build.mjs` derives from
+the page's own head and from `src/content.json`, so the card, the JSON-LD and the
+visible metadata cannot drift apart. The home and atlas pages also carry an
+`ImageObject` for each rights-cleared photograph they show, with `contentUrl`,
+`license`, `acquireLicensePage`, `creditText`, `creator` and `copyrightNotice`.
+**The six BnF records whose reuse review is unresolved are excluded from
+structured data and from the cards entirely.** `public/sitemap.xml` is generated
+with the reviewed `lastmod` and an image entry per card.
+
+The committed PNGs under `public/social/` are produced by
+`scripts/render-social.mjs` (`npm run social`). It downloads the museum
+originals into the gitignored `.cache/originals/`, composites one shared SVG
+template per page, and rasterises it with Playwright's cached Chromium headless
+shell, falling back to `rsvg-convert`. Alt text lives in `src/content.json` under
+`social`; `npm run check` fails if a page's alt text, image URL, JSON-LD or PNG
+size drifts. Re-run it — and commit the result — whenever the display font, the
+market snapshot or a card headline changes.
+
 ## Deployment
 
 Build the public-only folder with `npm run build:deploy` and set your static
 host's output directory to `dist`. For an approved complete local-image set, use
 `npm run build:deploy:local` instead. `scripts/prepare-deploy.mjs` stages only the
-built HTML, code license, third-party notices and explicitly referenced local
-images; it does not deploy anything. Preview with:
+built HTML, code license, third-party notices, the four share cards under
+`social/` and explicitly referenced local images; it does not deploy anything.
+Preview with:
 
 ```sh
 python3 -m http.server 8000 --bind 127.0.0.1 --directory dist

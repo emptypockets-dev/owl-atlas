@@ -30,6 +30,12 @@ try {
   for (const asset of ['favicon.svg', 'robots.txt', 'sitemap.xml']) {
     await copyFile(path.join(root, 'public', asset), path.join(stage, asset));
   }
+  // Share cards, named explicitly by the content record rather than by a glob.
+  await mkdir(path.join(stage, 'social'));
+  for (const [page, card] of Object.entries(data.social)) {
+    if (!/^[a-z0-9-]+\.png$/.test(card.file)) throw new Error(`Unsafe social card filename for ${page}: ${card.file}`);
+    await copyFile(path.join(root, 'public/social', card.file), path.join(stage, 'social', card.file));
+  }
   for (const [id, image] of Object.entries({...data.images, ...journey.images})) {
     // Self-hosted resized display copies the build actually references. Their
     // names carry a content hash, so they are served immutably (see vercel.json).
