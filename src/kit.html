@@ -1,0 +1,320 @@
+{{KIT_START}}
+<script>
+ /* The only interaction on this page: one delegated click handler that copies a
+    credit line or a link. It lives here rather than in src/app.js because it is
+    the kit's alone. Without it every credit line below is ordinary, selectable
+    text and every link is an ordinary link. */
+ (function () {
+  if (!('closest' in Element.prototype)) return;
+  document.documentElement.classList.add('kit-js');
+  document.addEventListener('click', function (event) {
+   var button = event.target.closest('[data-copy]');
+   if (!button) return;
+   var field = document.getElementById(button.getAttribute('data-copy'));
+   var label = button.querySelector('[data-copy-label]');
+   if (!field || !label) return;
+   var idle = button.getAttribute('data-copy-idle');
+   var text = field.textContent.replace(/\s+/g, ' ').trim();
+   var settle = function (message) {
+    label.textContent = message;
+    window.setTimeout(function () { label.textContent = idle; }, 2600);
+   };
+   if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function () { settle('Copied'); }, function () { settle('Select and copy'); });
+   } else {
+    settle('Select and copy');
+   }
+  });
+ })();
+</script>
+   <section class="kit-hero section-dark" id="top" aria-labelledby="kit-title" data-chapter="Creator kit">
+    <a class="journey-back" href="../">← Back to the atlas</a>
+    <div class="kit-hero-grid">
+     <div>
+      <p class="eyebrow">FOR TIKTOK, INSTAGRAM, YOUTUBE AND REDDIT</p>
+      <h1 id="kit-title">Use the owl.<br><em>Credit the atlas.</em></h1>
+      <p class="kit-deck">Everything you need to post about the Athenian owl without guessing: photographs you are allowed to use, facts that survive a fact-check, and the credit lines that go with both.</p>
+      <p>Nothing here needs an email address or a login. Take the pictures, take the facts, take the wording. If the post does well, a link back is the whole fee.</p>
+     </div>
+     <nav class="kit-jump" aria-label="Sections of the creator kit">
+      <a href="#pictures"><span class="kit-jump-index">01</span><span>Use these pictures<em>15 rights-cleared photographs</em></span></a>
+      <a href="#facts"><span class="kit-jump-index">02</span><span>Say these things<em>Ten facts, each with its source</em></span></a>
+      <a href="#credit"><span class="kit-jump-index">03</span><span>Link back<span class="sr-only">.</span><em>The credit and the short links</em></span></a>
+      <a href="#cards"><span class="kit-jump-index">04</span><span>Share cards<span class="sr-only">.</span><em>Ready-made 1200 × 630 images</em></span></a>
+     </nav>
+    </div>
+   </section>
+
+   <section class="chapter section-paper kit-section" id="pictures" aria-labelledby="pictures-title" data-chapter="01 / Use these pictures">
+    <div class="section-heading">
+     <span class="eyebrow">01 / THE PICTURES</span>
+     <h2 id="pictures-title">Use these<br><em>pictures.</em></h2>
+     <p class="section-deck">Fifteen photographs of real owl coins, every one of them cleared for reuse. Each has a resized copy you can download straight from this site, a link to the untouched original at the museum or on Wikimedia Commons, its licence, and a credit line you can copy in one click.</p>
+    </div>
+    <div class="kit-rules">
+     <div>
+      <h3>Two things to check before you post</h3>
+      <p><strong>Who has to be named.</strong> A CC0 or public-domain photograph asks nothing of you legally. A CC BY, CC BY-SA or CC BY 4.0 photograph <em>requires</em> the credit that sits under it here — leave it off and the licence no longer covers you. Every card below says which case it is.</p>
+      <p><strong>What happens if you change it.</strong> Crop, colour, add text: allowed everywhere below. But the two CC BY-SA 3.0 photographs carry share-alike, so whatever you make from them has to go out under CC BY-SA 3.0 as well. The rest have no such condition.</p>
+     </div>
+     <div class="kit-rules-note">
+      <span class="eyebrow">NOT INCLUDED</span>
+      <p>The six BnF photographs shown elsewhere on this site — the Pi III, Pi II and quadridigité specimens from Gallica — are <strong>not</strong> in this kit and are not on the share cards. Their Wikimedia file records assert public-domain status in France, but that is an assertion, not a grant from the library, and our reuse review is still open. We will not hand you a permission we do not have.</p>
+      <a class="quiet-link" href="../atlas/#image-reuse-policy">Read the image-use policy <span aria-hidden="true">↗</span></a>
+     </div>
+    </div>
+    <div class="kit-group">
+     <div class="atlas-header">
+      <h3 id="pictures-open">Museum photographs · no attribution required</h3>
+      <span class="micro-copy">CC0 1.0 and public domain</span>
+     </div>
+     <p class="kit-group-note">Cleveland and the Met put these into the public domain. You can use them for anything, including advertising, without naming anybody. We still print a credit line for each one, because a caption that names the museum is a better caption.</p>
+     <div class="kit-gallery">{{KIT_IMAGES_OPEN}}</div>
+    </div>
+    <div class="kit-group">
+     <div class="atlas-header">
+      <h3 id="pictures-credit">Wikimedia photographs · credit required</h3>
+      <span class="micro-copy">CC BY 2.0 and CC BY-SA 3.0</span>
+     </div>
+     <p class="kit-group-note">These are photographers’ and dealers’ own images, released on the condition that they are credited. Copy the line under each one into your caption, your video description or the alt text — wherever your platform lets text live.</p>
+     <div class="kit-gallery">{{KIT_IMAGES_CREDIT}}</div>
+    </div>
+    <div class="kit-group">
+     <div class="atlas-header">
+      <h3 id="pictures-owner">The owner’s own photographs · credit The Owl Atlas</h3>
+      <span class="micro-copy">CC BY 4.0</span>
+     </div>
+     <p class="kit-group-note">Four photographs of a single certified tetradrachm, taken by its owner and released on 21 September 2026 under CC BY 4.0. Copy, adapt and redistribute them, including commercially, as long as you credit “The Owl Atlas (theowlatlas.com)”. They are photographed through the coin’s plastic holder: the prongs, reflections and marks you can see are on the plastic, not on the silver, and nothing has been retouched out.</p>
+     <div class="kit-gallery">{{KIT_IMAGES_OWNER}}</div>
+    </div>
+    <p class="micro-copy kit-foot">No photograph on this site is generated, upscaled or enhanced with invented detail. The resized copies offered here are plain JPEG resamples of the linked originals; the transformation is stated in each record. The MIT licence of this site’s code does not cover any photograph.</p>
+   </section>
+
+   <section class="chapter section-olive kit-section" id="facts" aria-labelledby="facts-title" data-chapter="02 / Say these things">
+    <div class="section-heading">
+     <span class="eyebrow">02 / THE FACTS</span>
+     <h2 id="facts-title">Say these<br><em>things.</em></h2>
+     <p class="section-deck">Ten facts about the owl, each one traced to a document somebody actually opened. The first line is the post. The paragraph under it is what you say when the comments ask. The collapsed note is what stops you being wrong — read it before you press publish.</p>
+    </div>
+    <div class="kit-caution">
+     <span class="eyebrow">TWO STANDING WARNINGS</span>
+     <p><strong>“Mint State after 2,400 years” is about one coin.</strong> It is true of NGC 2086328-049, the single certified tetradrachm in <a href="../one-owl/">One Owl</a>, and of nothing else on this site. It is not a fact about Athenian owls as a class, and most surviving owls are nothing like it. Do not put it in a list of owl facts.</p>
+     <p><strong>Some translations are still in copyright.</strong> Godley’s Herodotus (1920) and Crawley’s Thucydides (1910) are safe to quote. Rackham’s <em>Athenian Constitution</em> (1952) and O’Neill’s <em>Birds</em> (1938) may not be — link to Perseus and keep any quotation to a phrase rather than reproducing the passage.</p>
+    </div>
+    <ol class="kit-facts">
+     <li class="kit-fact" id="fact-four-days">
+      <div class="kit-fact-head"><span class="kit-fact-index">01</span><span class="eyebrow">PURCHASING POWER</span></div>
+      <p class="kit-fact-hook">On the Acropolis in 408/7 BC, one owl was about four days’ pay.</p>
+      <p class="kit-fact-expansion">The building accounts for the Erechtheion record the wages of the people finishing the temple, and Attic Inscriptions Online summarises the rate they worked to: a day-wage of one drachma, or piece-rates worked out from it. A tetradrachm was four drachmas, so a single owl stood roughly for a four-day week of that work. {{CITE:hook-erechtheion,met}}</p>
+      <details class="kit-fact-note">
+       <summary>Before you post this</summary>
+       <ul>
+        <li>Most surviving entries in the accounts are piece-rates for named tasks, not counted days; the one-drachma day-wage is AIO’s summary of how the rates were computed, not a single quoted line.</li>
+        <li>The accounts cover one year of finishing work at one building, in the last years of the Peloponnesian War. They are not a wage series for the fifth century.</li>
+        <li>Nothing says a worker was actually handed a tetradrachm. The equivalence is arithmetic on the denomination, not a recorded payment.</li>
+       </ul>
+      </details>
+     </li>
+     <li class="kit-fact" id="fact-sacred-fake">
+      <div class="kit-fact-head"><span class="kit-fact-index">02</span><span class="eyebrow">COUNTERFEITS</span></div>
+      <p class="kit-fact-hook">An Athenian law of 375/4 BC ordered that a fake owl be cut open on the spot and handed over to a goddess.</p>
+      <p class="kit-fact-expansion">Nikophon’s law put a public approver among the bankers’ tables in the Agora and by the stele of Poseidon in Piraeus, and told him what to do with a coin that was not what it claimed. A piece with a bronze or lead core was to be cut through at once, and then became sacred property of the Mother of the Gods, deposited with the Council. {{CITE:law}}</p>
+      <details class="kit-fact-note">
+       <summary>Before you post this</summary>
+       <ul>
+        <li>The law is a document of 375/4 BC. It does not describe practice in every earlier or later year.</li>
+        <li>The clause on foreign silver struck with an Athenian type is partly restored; AIO records the restoration as plausible but notes the missing parallels. Do not build a claim on that clause.</li>
+        <li>This is a rule about what officials did, not a method a reader can use to judge a coin today.</li>
+       </ul>
+      </details>
+     </li>
+     <li class="kit-fact" id="fact-euro">
+      <div class="kit-fact-head"><span class="kit-fact-index">03</span><span class="eyebrow">THE MODERN ECHO</span></div>
+      <p class="kit-fact-hook">The owl on the Greek one-euro coin was copied from a fifth-century Athenian four-drachma coin.</p>
+      <p class="kit-fact-expansion">The European Central Bank’s record of the Greek national sides states the source of the design in plain words. The denomination changed, the metal changed, and the bird stayed. {{CITE:ecb}}</p>
+      <details class="kit-fact-note">
+       <summary>Before you post this</summary>
+       <ul>
+        <li>The ECB names a type, not a particular specimen. Do not claim the euro design copies any single museum coin, or any coin shown on this site.</li>
+        <li>“Copied from” is the ECB’s own wording; keep it rather than upgrading it to a claim about artistic method.</li>
+       </ul>
+      </details>
+     </li>
+     <li class="kit-fact" id="fact-aristophanes">
+      <div class="kit-fact-head"><span class="kit-fact-index">04</span><span class="eyebrow">OWLS IN COMEDY</span></div>
+      <p class="kit-fact-hook">In 414 BC Aristophanes had a chorus of birds promise the judges owls that would nest in their purses and hatch small change.</p>
+      <p class="kit-fact-expansion">In <em>Birds</em> the chorus offers the competition judges a bribe: the owls of Laurion will never run out on them, and will move in and breed. The joke only works because the audience heard the coin and the bird in the same word. {{CITE:hook-birds}}</p>
+      <details class="kit-fact-note">
+       <summary>Before you post this</summary>
+       <ul>
+        <li>This is a comic bribe aimed at the play’s judges, not a report of monetary practice.</li>
+        <li>The Greek at line 1108 has the owls hatching out small change (<span lang="grc">μικρὰ κέρματα</span>); Eugene O’Neill’s published English renders this as laying coins. Quote the published translation, or the Greek, rather than paraphrasing between them.</li>
+        <li>O’Neill’s 1938 translation may still be in copyright. Link to Perseus and quote briefly; do not reproduce the passage at length.</li>
+       </ul>
+      </details>
+     </li>
+     <li class="kit-fact" id="fact-unchanged-design">
+      <div class="kit-fact-head"><span class="kit-fact-index">05</span><span class="eyebrow">A DELIBERATELY OLD-FASHIONED COIN</span></div>
+      <p class="kit-fact-hook">Athens found a design that worked and then left it alone until it stopped striking tetradrachms altogether.</p>
+      <p class="kit-fact-expansion">The American Numismatic Society’s curator, writing about the first owls, notes that the type spelled out its own origin so completely that the Athenians saw little need to change the basic design until tetradrachm production ended in the first century BC. Style shifted over those centuries; the idea of the coin did not. {{CITE:hook-ans-design}}</p>
+      <details class="kit-fact-note">
+       <summary>Before you post this</summary>
+       <ul>
+        <li>The claim is about the basic type, not about detail. Helmet ornament, eye rendering and style changed a great deal, which is what the coin families on this site are built on.</li>
+        <li>The explanation that the Peisistratids chose the type as a “brand” for exported silver is reported by van Alfen as a current explanation, not asserted as fact. Keep it attributed and conditional.</li>
+        <li>This is a curator’s public-facing post, not a peer-reviewed article.</li>
+       </ul>
+      </details>
+     </li>
+     <li class="kit-fact" id="fact-test-cut">
+      <div class="kit-fact-head"><span class="kit-fact-index">06</span><span class="eyebrow">TEST CUTS</span></div>
+      <p class="kit-fact-hook">Some surviving owls carry a chisel cut: one in the American Numismatic Society, found in Egypt, is catalogued simply as “One chisel cut”.</p>
+      <p class="kit-fact-expansion">An archaic Athenian tetradrachm from the Asyut hoard is recorded at 17.047 g and worn, with a single chisel cut noted in its condition record. Cutting was also official business: the Athenian law of 375/4 BC required the city’s approver to cut through any coin with a bronze or lead core. {{CITE:hook-ans-testcut,law}}</p>
+      <details class="kit-fact-note">
+       <summary>Before you post this</summary>
+       <ul>
+        <li>The ANS record states that this coin is cut. It does not say who cut it, when, where or why.</li>
+        <li>One catalogued specimen is not evidence for how common test cuts are. No reliable overall proportion could be verified, so do not post a percentage.</li>
+        <li>A cut is evidence to interpret. Do not present it as a way of telling a genuine coin from a false one.</li>
+       </ul>
+      </details>
+     </li>
+     <li class="kit-fact" id="fact-fleet">
+      <div class="kit-fact-head"><span class="kit-fact-index">07</span><span class="eyebrow">SILVER INTO SHIPS</span></div>
+      <p class="kit-fact-hook">Athens once decided not to share out a windfall of mine silver, and built a fleet with it instead.</p>
+      <p class="kit-fact-expansion">Herodotus says the revenues from the mines at Laurium were about to be divided at ten drachmae a man when Themistocles persuaded the Athenians to build two hundred ships for the war with Aegina. The <em>Athenaion Politeia</em> tells it differently: a hundred-talent profit from newly found mines at Maronea, lent to the hundred richest Athenians, a hundred triremes, and the battle of Salamis. {{CITE:hook-hdt-fleet,hook-athpol-fleet}}</p>
+      <details class="kit-fact-note">
+       <summary>Before you post this</summary>
+       <ul>
+        <li>The two ancient accounts disagree on the mine, the number of ships and the mechanism. Present the disagreement rather than merging them — it is the better story anyway.</li>
+        <li>Herodotus does not date the episode and does not connect these ships to Salamis; the <em>Athenaion Politeia</em> does. The conventional 483/2 BC comes from the archon year, not from either text.</li>
+        <li>Neither text mentions owls. Do not say the fleet was paid for in tetradrachms.</li>
+        <li>Godley’s own footnote observes that ten drachmae a head would come to far too small a sum to build 200 ships, and reads the passage as a contribution to a shipbuilding fund.</li>
+       </ul>
+      </details>
+     </li>
+     <li class="kit-fact" id="fact-reach">
+      <div class="kit-fact-head"><span class="kit-fact-index">08</span><span class="eyebrow">REACH</span></div>
+      <p class="kit-fact-hook">A 2025 survey of 999 coin hoards found Athenian coinage pushing well past the Greek world, into the Levant and Egypt.</p>
+      <p class="kit-fact-expansion">Zane Mullins assembled 999 hoards and 160,007 coins from 550 to 300 BC to measure how Classical Greek coinages actually moved. Among the results the study singles out is the penetration of Athenian coinage into non-Greek areas such as the Levant and Egypt, alongside a count of the foreign imitations that followed it. {{CITE:owl-circulation,hook-ans-dollar}}</p>
+      <details class="kit-fact-note">
+       <summary>Before you post this</summary>
+       <ul>
+        <li>Hoards record where coins were buried, not the routes they travelled or how they were used.</li>
+        <li>The sample covers 550–300 BC. It is not a statement about every period.</li>
+        <li>Some hoard descriptions do not separate Athenian coins from imitations; the study discusses imitations as a category of its own.</li>
+        <li>“The dollar of the ancient world” is popular framing, not a research finding. It appears as the headline of an ANS outreach video post about the first owl, and no scholarly source we opened used it. Mullins’ numbers do the same job honestly.</li>
+       </ul>
+      </details>
+     </li>
+     <li class="kit-fact" id="fact-jury">
+      <div class="kit-fact-head"><span class="kit-fact-index">09</span><span class="eyebrow">PURCHASING POWER</span></div>
+      <p class="kit-fact-hook">One owl was eight days on an Athenian jury.</p>
+      <p class="kit-fact-expansion">The <em>Athenaion Politeia</em> lists what the city paid for public duties: half a drachma for the jury-courts, five obols for the Council, a drachma for an ordinary meeting of the Assembly. Four drachmas, the value of one tetradrachm, is eight days of jury pay. {{CITE:hook-athpol-pay,met}}</p>
+      <details class="kit-fact-note">
+       <summary>Before you post this</summary>
+       <ul>
+        <li>The <em>Athenaion Politeia</em> describes the arrangements of its own time, the later fourth century BC. It is not a rate that held for every year, and notably not the rate at the time of the classical owls this site leads with.</li>
+        <li>Its authorship is debated; it is transmitted under Aristotle’s name.</li>
+        <li>Jury service was not daily employment, so eight days of pay is not eight days of life.</li>
+        <li>Rackham’s 1952 translation may still be in copyright; link rather than reproduce at length.</li>
+       </ul>
+      </details>
+     </li>
+     <li class="kit-fact" id="fact-seaman">
+      <div class="kit-fact-head"><span class="kit-fact-index">10</span><span class="eyebrow">PURCHASING POWER</span></div>
+      <p class="kit-fact-hook">For a rower in the fleet that sailed for Sicily in 415 BC, one owl was four days at sea.</p>
+      <p class="kit-fact-expansion">Thucydides says the treasury gave a drachma a day to each seaman of that expedition, and that the trierarchs added bounties of their own on top. At four drachmas, one tetradrachm covers four days of the state’s share. {{CITE:hook-thuc-seamen}}</p>
+      <details class="kit-fact-note">
+       <summary>Before you post this</summary>
+       <ul>
+        <li>This is the rate for one exceptionally well-funded expedition, which Thucydides presents as unusually lavish. It is not a standing naval wage.</li>
+        <li>Thucydides says captains paid extra, so what a man actually earned varied.</li>
+        <li>The related passage at 3.17.4, where hoplites at Potidaea draw two drachmae a day, is regarded by many editors as a later insertion. Do not lead with it.</li>
+       </ul>
+      </details>
+     </li>
+    </ol>
+    <div class="kit-unverified">
+     <h3>Four things we could not verify — so neither should you</h3>
+     <p>These circulate widely and we could not stand any of them up against a source we were able to open and read. They are not on this page because they did not earn their place.</p>
+     <ul>
+      <li><strong>A silver purity figure</strong> — “about 98% silver”, or any percentage. The relevant XRF study of 788 coins exists, but its abstract gives no purity figure and the full text could not be opened. Post no number.</li>
+      <li><strong>How many owls Athens struck</strong>, in total or per year. No mintage estimate from a museum or peer-reviewed source could be located and read.</li>
+      <li><strong>A proportion of surviving owls that are test cut.</strong> Only dealer and hobby pages make that claim quantitatively.</li>
+      <li><strong>“One of the most widely used and widely circulating coinages of the ancient Greek world.”</strong> Attributed all over the web to the ANS. Both candidate ANS pages were downloaded in full and searched: the sentence is in neither.</li>
+     </ul>
+    </div>
+   </section>
+
+   <section class="chapter section-paper kit-section" id="credit" aria-labelledby="credit-title" data-chapter="03 / Link back">
+    <div class="section-heading">
+     <span class="eyebrow">03 / THE ASK</span>
+     <h2 id="credit-title">Link<br><em>back.</em></h2>
+     <p class="section-deck">The pictures are free and the facts are free. The one thing we ask is the thing that keeps this site going: name us, and link to the chapter you actually used.</p>
+    </div>
+    <div class="kit-ask">
+     <div class="kit-ask-copy">
+      <h3>Three lines, and we are square</h3>
+      <p><strong>Credit “The Owl Atlas (theowlatlas.com)”.</strong> In the caption, the description, the pinned comment — wherever your platform lets text live.</p>
+      <p><strong>Link the chapter, not just the front door.</strong> If your post is about the year 404 BCE, link the 404 chapter. A reader who lands on the exact thing you were talking about stays; a reader dropped on a homepage leaves.</p>
+      <p><strong>Say what this is.</strong> It is an independent, source-linked research edition with known gaps — not a museum, not an authentication service, not a price guide. That sentence is more interesting than a badge, and it is true.</p>
+      <p class="micro-copy">We are not asking for approval rights, a preview, or a tag. Post what you like; we will read the comments like everybody else.</p>
+     </div>
+     <div class="kit-ask-copyblock">
+      <span class="eyebrow">THE CREDIT LINE</span>
+      <code class="kit-code" id="kit-credit-site">The Owl Atlas — theowlatlas.com</code>
+      <button class="kit-copy" type="button" data-copy="kit-credit-site" data-copy-idle="Copy credit"><span data-copy-label>Copy credit</span></button>
+      <span class="eyebrow">THE LONGER ONE</span>
+      <code class="kit-code" id="kit-credit-site-long">Source: The Owl Atlas (theowlatlas.com), an independent, source-linked guide to Athenian owl coinage.</code>
+      <button class="kit-copy" type="button" data-copy="kit-credit-site-long" data-copy-idle="Copy credit"><span data-copy-label>Copy credit</span></button>
+     </div>
+    </div>
+    <div class="kit-group">
+     <div class="atlas-header">
+      <h3 id="credit-links">The five links worth sending someone to</h3>
+      <span class="micro-copy">Short, stable, and each one lands on the thing itself</span>
+     </div>
+     <ul class="kit-links">
+      <li>
+       <div class="kit-link-copy"><h4>The year the silver stopped</h4><p>404 BCE, the end of the Peloponnesian War, and what it did to the coinage. The single most postable chapter on the site.</p></div>
+       <code class="kit-code" id="kit-link-404">theowlatlas.com/#404</code>
+       <div class="kit-link-actions"><button class="kit-copy" type="button" data-copy="kit-link-404" data-copy-idle="Copy link"><span data-copy-label>Copy link</span></button><a class="quiet-link" href="../#404">Open <span aria-hidden="true">↗</span></a></div>
+      </li>
+      <li>
+       <div class="kit-link-copy"><h4>Anatomy of an Owl</h4><p>One coin, eight ways of looking: Athena’s eye, the crest, the olive spray, the letters. Built for people who have never held one.</p></div>
+       <code class="kit-code" id="kit-link-anatomy">theowlatlas.com/#anatomy</code>
+       <div class="kit-link-actions"><button class="kit-copy" type="button" data-copy="kit-link-anatomy" data-copy-idle="Copy link"><span data-copy-label>Copy link</span></button><a class="quiet-link" href="../#anatomy">Open <span aria-hidden="true">↗</span></a></div>
+      </li>
+      <li>
+       <div class="kit-link-copy"><h4>Three letters. One dot.</h4><p>ΑΘΕ, and the theta drawn as a circle with a dot in the middle. A thirty-second video that writes itself.</p></div>
+       <code class="kit-code" id="kit-link-theta">theowlatlas.com/#theta</code>
+       <div class="kit-link-actions"><button class="kit-copy" type="button" data-copy="kit-link-theta" data-copy-idle="Copy link"><span data-copy-label>Copy link</span></button><a class="quiet-link" href="../#theta">Open <span aria-hidden="true">↗</span></a></div>
+      </li>
+      <li>
+       <div class="kit-link-copy"><h4>2,400 years. Still here.</h4><p>One certified coin, its four photographs, and an honest account of how much of its history is simply unknown.</p></div>
+       <code class="kit-code" id="kit-link-one-owl">theowlatlas.com/one-owl/</code>
+       <div class="kit-link-actions"><button class="kit-copy" type="button" data-copy="kit-link-one-owl" data-copy-idle="Copy link"><span data-copy-label>Copy link</span></button><a class="quiet-link" href="../one-owl/">Open <span aria-hidden="true">↗</span></a></div>
+      </li>
+      <li>
+       <div class="kit-link-copy"><h4>One owl. Many prices.</h4><p>Sixty-six source-linked auction results, buyer fees explained, and a dated snapshot rather than a valuation.</p></div>
+       <code class="kit-code" id="kit-link-pricing">theowlatlas.com/pricing/</code>
+       <div class="kit-link-actions"><button class="kit-copy" type="button" data-copy="kit-link-pricing" data-copy-idle="Copy link"><span data-copy-label>Copy link</span></button><a class="quiet-link" href="../pricing/">Open <span aria-hidden="true">↗</span></a></div>
+      </li>
+     </ul>
+    </div>
+   </section>
+
+   <section class="chapter section-dark kit-section" id="cards" aria-labelledby="cards-title" data-chapter="04 / Share cards">
+    <div class="section-heading">
+     <span class="eyebrow">04 / THE CARDS</span>
+     <h2 id="cards-title">Share<br><em>cards.</em></h2>
+     <p class="section-deck">The five images that appear when somebody pastes a link to this site into a chat, a post or a thread. Each is 1200 × 630, carries its own photograph credits, and is yours to download and post directly.</p>
+    </div>
+    <div class="kit-cards">{{KIT_CARDS}}</div>
+    <div class="kit-cards-foot">
+     <p>Every photograph on these cards is CC0, public domain, CC BY or the owner’s own CC BY 4.0 work, with its institution and licence printed in the corner. None of the six reuse-review-pending BnF photographs appears on any card; the renderer refuses them outright.</p>
+     <p>Want the coin without our headline over it? <a href="/#share-card">Make your own card</a> from any photograph in this kit — or just take the pictures above and build it wherever you already edit.</p>
+    </div>
+   </section>
+{{KIT_END}}

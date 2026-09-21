@@ -1,4 +1,4 @@
-import {readFile, writeFile, mkdir, access} from 'node:fs/promises';
+import {readFile, writeFile, mkdir, access, stat} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup, familyFacesMarkup, artifactStoryMarkup, geographyMarkup, marketFamilyMarkup, marketSummaryMarkup, marketCurrentMarkup, marketHistoryMarkup, marketFamiliesMarkup, marketLedgerMarkup, marketCsv, derivedSrcset, photoSizesFor, photoMaxWidthFor, identifierMarkup} from './src/render.mjs';
@@ -70,6 +70,7 @@ const options = (selected) => data.families.map((family) => `<option value="${fa
 const mainTemplate = await read('src/page.html');
 const pricingTemplate = await read('src/pricing.html');
 const atlasTemplate = await read('src/atlas.html');
+const kitTemplate = await read('src/kit.html');
 const legacyMarketIds = [...new Set([
   ...[...pricingTemplate.matchAll(/id="(market-[^"]+)"/g)].map(match => match[1]),
   ...data.market.records.map(record => `sale-${record.id}`),
@@ -289,9 +290,113 @@ const journeyTemplate = (await read('src/one-owl.html'))
 const journeyHtml = `${pageMetadata(renderPage(journeyTemplate,journeyData), {page:'one-owl', pathname:'/one-owl/', type:'Article'}).trimEnd()}\n`;
 await mkdir(path.join(root,'one-owl'),{recursive:true});
 await writeFile(path.join(root,'one-owl/index.html'),journeyHtml);
+// The creator kit. Everything it hands out is derived from the records the atlas
+// already publishes — licence, credit, the self-hosted resized copies and the
+// untouched original all come from src/content.json and src/one-owl.json — so a
+// download offered here can never carry terms the image register does not state.
+// The groups are selected by licence, which is also what keeps the six BnF
+// photographs out: `review-pending` is the only reuse status with no group.
+const kitBytes = (bytes) => bytes >= 1048576 ? `${(bytes / 1048576).toFixed(1)} MB` : `${Math.round(bytes / 1024)} KB`;
+const kitPx = (value) => value.toLocaleString('en-US');
+const KIT_TERMS = {
+  'CC0 1.0': ['optional', 'No attribution required. This is the credit we use anyway.'],
+  'Public domain': ['optional', 'No attribution required. This is the credit we use anyway.'],
+  'CC BY 2.0': ['required', 'Attribution required. Copy this line with the picture.'],
+  'CC BY-SA 3.0': ['share-alike', 'Attribution required, and share-alike: whatever you make from it goes out under CC BY-SA 3.0 too.'],
+  'CC BY 4.0': ['required', 'Attribution required. Copy this line with the picture.'],
+};
+// The owner asked to be credited as the site rather than by name, so the CC BY
+// 4.0 line names The Owl Atlas exactly as src/one-owl.json's rightsNote requires.
+// The licence URL is parenthesised rather than followed by a full stop: a
+// pasted caption on most platforms would otherwise swallow the stop into the link.
+const kitCreditLine = (image) => image.reuseStatus === 'cc-by-4.0'
+  ? `${image.title}. The Owl Atlas (theowlatlas.com), ${image.license} (${image.licenseUrl})`
+  : `${image.title}. ${image.credit}, ${image.license} (${image.licenseUrl}), via The Owl Atlas — theowlatlas.com`;
+// Record links that point back at this site are followed relatively, so every
+// link on the kit works on a preview host as well as on the production domain.
+const kitHref = (url) => url.startsWith(SITE_URL) ? `../${url.slice(SITE_URL.length)}` : url;
+const kitLink = (href, label, download) => download
+  ? `<li><a class="kit-download" download href="${escapeHtml(href)}">${label}</a></li>`
+  : `<li><a class="kit-download" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">${label}</a></li>`;
+async function kitImageCard(id, image) {
+  const terms = KIT_TERMS[image.license];
+  if (!terms) throw new Error(`The creator kit has no stated terms for ${id}: ${image.license}`);
+  if (image.reuseStatus === 'review-pending') throw new Error(`A reuse-review-pending photograph reached the creator kit: ${id}`);
+  const sources = [...(image.derived?.sources || [])].sort((a, b) => a.width - b.width);
+  const preview = sources[0] || null;
+  const downloads = [];
+  for (const source of preview === sources.at(-1) ? sources.slice(0, 1) : [preview, sources.at(-1)]) {
+    if (source) downloads.push(kitLink(source.path, `Resized JPEG <span>${kitPx(source.width)} × ${kitPx(source.height)} · ${kitBytes(source.bytes)}</span>`, true));
+  }
+  if (image.localUrl) {
+    const bytes = (await stat(path.join(root, image.localUrl.replace(/^\.\.\//, '')))).size;
+    downloads.push(kitLink(image.localUrl, `Untouched original <span>${kitPx(image.width)} × ${kitPx(image.height)} · ${kitBytes(bytes)}</span>`, true));
+  } else {
+    downloads.push(kitLink(kitHref(image.url), `Untouched original at the source <span>${kitPx(image.width)} × ${kitPx(image.height)} px ↗</span>`, false));
+  }
+  downloads.push(kitLink(kitHref(image.source), 'Photograph &amp; rights record <span>↗</span>', false));
+  if (image.objectUrl) downloads.push(kitLink(kitHref(image.objectUrl), 'Museum / object catalogue <span>↗</span>', false));
+  const note = sources.length ? '' : '<p class="kit-image-note">The source file is already at or below our display width, so no resized copy is published: the original below is the smallest file there is.</p>';
+  return `<article class="kit-image" id="kit-image-${escapeHtml(id)}">
+    <a class="kit-image-preview" href="${escapeHtml(image.localUrl || kitHref(image.url))}" target="_blank" rel="noopener noreferrer">
+     <img src="${escapeHtml(preview?.path || image.localUrl || image.displayUrl || image.url)}" width="${preview?.width || image.width}" height="${preview?.height || image.height}" alt="${escapeHtml(image.alt)}" loading="lazy" decoding="async">
+    </a>
+    <div class="kit-image-body">
+     <h4>${escapeHtml(image.title)}</h4>
+     <p class="kit-image-meta">${escapeHtml(image.credit)}<br>${escapeHtml(image.date)}</p>
+     <p class="kit-image-licence"><a class="kit-licence-chip" data-terms="${escapeHtml(terms[0])}" href="${escapeHtml(image.licenseUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(image.license)}</a><span>${escapeHtml(terms[1])}</span></p>
+     ${note}<ul class="kit-downloads">${downloads.join('')}</ul>
+     <div class="kit-credit">
+      <span class="eyebrow">READY-MADE CREDIT</span>
+      <code class="kit-code" id="kit-credit-${escapeHtml(id)}">${escapeHtml(kitCreditLine(image))}</code>
+      <button class="kit-copy" type="button" data-copy="kit-credit-${escapeHtml(id)}" data-copy-idle="Copy credit"><span data-copy-label>Copy credit</span></button>
+     </div>
+    </div>
+   </article>`;
+}
+const kitData = {...data, images: relocateImages({...data.images, ...journey.images}, '../')};
+const kitGroup = async (test) => (await Promise.all(Object.entries(kitData.images)
+  .filter(([, image]) => test(image)).map(([id, image]) => kitImageCard(id, image)))).join('\n');
+replacements.KIT_IMAGES_OPEN = await kitGroup(image => ['CC0 1.0', 'Public domain'].includes(image.license));
+replacements.KIT_IMAGES_CREDIT = await kitGroup(image => ['CC BY 2.0', 'CC BY-SA 3.0'].includes(image.license));
+replacements.KIT_IMAGES_OWNER = await kitGroup(image => image.license === 'CC BY 4.0');
+replacements.KIT_CARDS = (await Promise.all([['home','The Owl Atlas','../'],['atlas','The reference atlas','../atlas/'],
+  ['pricing','Prices today','../pricing/'],['one-owl','One owl','../one-owl/'],['kit','This creator kit','#top']]
+  .map(async ([page, label, href]) => {
+    const card = data.social[page];
+    if (!card) throw new Error(`src/content.json has no social card for ${page}`);
+    const file = `/social/${card.file}`;
+    const bytes = (await stat(path.join(root, 'public/social', card.file))).size;
+    return `<figure class="kit-card">
+    <img src="${escapeHtml(file)}" width="1200" height="630" alt="${escapeHtml(card.alt)}" loading="lazy" decoding="async">
+    <figcaption><strong>${escapeHtml(label)}</strong><span class="micro-copy">1200 × 630 PNG · ${kitBytes(bytes)}</span><a class="kit-download" download href="${escapeHtml(file)}">Download the card <span aria-hidden="true">↓</span></a><a class="quiet-link" href="${escapeHtml(href)}">See the page <span aria-hidden="true">↗</span></a></figcaption>
+   </figure>`;
+  }))).join('\n');
+const kitTitle = 'Creator kit: images, facts and credits — The Owl Atlas';
+const kitDescription = 'Rights-cleared owl coin photographs to download, ten facts with the source behind each one, ready-made credit lines and share cards. Free to use; credit The Owl Atlas.';
+const kitStart = mainTemplate.slice(0,mainTemplate.indexOf('<main id="main">') + '<main id="main">'.length)
+  .replace('<body>', '<body class="kit-page">')
+  .replace(/<title>[\s\S]*?<\/title>/, `<title>${kitTitle}</title>`)
+  .replace(/content="[^"]*" (name="description"|property="og:description"|name="twitter:description")/g, `content="${kitDescription}" $1`)
+  .replace(/content="[^"]*" (property="og:title"|name="twitter:title")/g, `content="${kitTitle}" $1`)
+  .replaceAll('https://theowlatlas.com/','https://theowlatlas.com/kit/')
+  .replace(/href="#(top|origins|atlas|pricing)"/g,'href="../#$1"')
+  .replace('{{HERO_PRELOAD}}','')
+  .replace('Skip to the story','Skip to the creator kit') + chromeUtility('CREATOR KIT');
+const kitEnd = mainTemplate.slice(mainTemplate.indexOf('   <footer class="site-footer'))
+  .replace('href="#top"','href="../#atlas"').replace('Back to the beginning ↑','Back to the atlas ↗')
+  .replace('href="/kit/"','href="/kit/" aria-current="page"')
+  .replace('The story, family entries and bibliography remain readable without JavaScript. Image links open the original photographs; interactive comparison and zoom controls require JavaScript.', 'Every photograph, download, fact, credit line and share card on this page is here without JavaScript; the credit text is then selected and copied by hand. The image viewer and the copy buttons need JavaScript.');
+// The kit cites a bibliography it does not reprint, so its chips point at the
+// reference page exactly as the home page's do.
+const kitHtml = `${pageMetadata(renderPage(kitTemplate.replace('{{KIT_START}}',kitStart).replace('{{KIT_END}}',kitEnd), kitData)
+  .replace(/href="#(source-[^"]+|image-reuse-policy)"/g,'href="../atlas/#$1"'),
+  {page:'kit', pathname:'/kit/', type:'CreativeWork'}).trimEnd()}\n`;
+await mkdir(path.join(root,'kit'),{recursive:true});
+await writeFile(path.join(root,'kit/index.html'),kitHtml);
 // Generated so <lastmod> and the share-card image entries can never fall behind
 // the reviewed date or a renamed card. prepare-deploy copies the result as-is.
-const sitemapPages = [['/','home'],['/atlas/','atlas'],['/pricing/','pricing'],['/one-owl/','one-owl']];
+const sitemapPages = [['/','home'],['/atlas/','atlas'],['/pricing/','pricing'],['/one-owl/','one-owl'],['/kit/','kit']];
 await writeFile(path.join(root,'public/sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${sitemapPages.map(([pathname,page]) => `  <url>

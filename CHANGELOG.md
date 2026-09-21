@@ -1,3 +1,55 @@
+# A creator kit — 21 September 2026
+
+- New page at `/kit/`, assembled from `src/kit.html` by `build.mjs` exactly like
+  the other sub-pages: the shared head and chrome, its own title, description and
+  share metas, a `CreativeWork` JSON-LD block, the chrome strip label
+  `CREATOR KIT`, and a sitemap entry. `scripts/prepare-deploy.mjs` stages it.
+- **Use these pictures.** Every rights-cleared photograph on the site — eight CC0
+  and public-domain museum files, one CC BY 2.0 and two CC BY-SA 3.0 Wikimedia
+  files, and the owner's four CC BY 4.0 photographs — with a preview, the
+  self-hosted resized copies, the untouched original, the rights record, the
+  licence with its deed link, and a ready-made credit line. Groups are selected
+  by licence, so a new photograph appears automatically and a reuse-review-pending
+  one cannot. The six BnF photographs are named as excluded, with the reason and
+  a link to the image-use policy on `/atlas/`.
+- **Say these things.** The ten verified hooks from `research/hooks-findings.md`,
+  each a quotable one-liner, a two-sentence expansion, a collapsed
+  “Before you post this” with every qualification the research recorded, and a
+  citation chip. Two standing warnings lead the section: Mint State belongs to
+  NGC 2086328-049 and to nothing else, and Rackham and O'Neill may still be in
+  copyright. A closing list names the four claims that could not be verified —
+  silver purity, mintage, a test-cut proportion, and the sentence misattributed
+  to the ANS — so a creator knows not to post them.
+- **Link back.** The credit line, the request to link the chapter rather than the
+  front door, and copyable short URLs for `/#404`, `/#anatomy`, `/#theta`,
+  `/one-owl/` and `/pricing/`.
+- **Share cards.** All five `public/social/*.png` cards as downloads, with a link
+  to the on-site card maker at `/#share-card` that is an ordinary link home until
+  that anchor exists.
+- Nine hook source records appended to `src/content.json` (44–50 are new; 42 and
+  43 were already there), all `accessed` 2026-09-21. The two ANS collection
+  records are recorded over HTTPS. Sources that support only the hooks ranked
+  below the top ten are not added.
+- New `kit` share card, 1200 × 630, “Use the owl. Credit the atlas.” over three
+  coins, one per licence family the kit hands out. `scripts/render-social.mjs`
+  refuses a reuse-review-pending photograph, so none can reach it.
+- The footer on every page gains a “For creators” link. The primary navigation
+  does not: a fifth item fits at 1024 px but overflows the header row by 108 px
+  at 1101 px and above, where it would wrap and break the header height.
+- Copying a credit or a link is progressive enhancement. The page's own small
+  script adds the class that reveals the buttons, so without JavaScript every
+  credit line is simply selectable text and no dead control is shown.
+- `npm run check` gains the kit's own head, identifier, link and structured-data
+  checks, plus: no reuse-review-pending photograph is shown, linked or offered;
+  every download resolves to a declared derivative, a staged file or an HTTPS
+  original; every fact cites an existing source id and carries its
+  qualifications; Mint State appears only in the one-coin warning; the kit card
+  is 1200 × 630; and the sitemap lists `/kit/`.
+- No new dependency, no analytics, no scroll hijacking, no new photograph. The
+  existing image records, reuse flags, sources and section links are unchanged.
+
+---
+
 # Which owl does this resemble? — 21 September 2026
 
 - Add a guided, five-question flow to the reference page at `/atlas/#identify`,
