@@ -1,3 +1,50 @@
+# Home page reordered: the coin first, the maps later — 21 September 2026
+
+- The reader now meets the coin before the geography. Chapter 01, "Silver from
+  Laurion", is a short opening on Attica, the Laurion mining district and the
+  tetradrachm, beside one static Athens & Attica map, and then the minting
+  illustration. It was 3,455 px, 633 words and 19 controls at 1440; it is now
+  1,381 px, and the only thing to operate in it is the strike replay.
+- The eight-region explorer moved whole into chapter 05, "An owl beyond Attica",
+  where the chapter already argued that not every owl came from Athens. Every
+  `#geography-<place>` id, the keyboard buttons, the mobile selector, the hash
+  deep links, the overview sweep and the no-JavaScript reading came with it; the
+  block selects by id, so nothing in `src/app.js` changed.
+- The new chapter-01 map is `atticaLocatorMarkup()` beside `geographyMarkup()`:
+  the explorer's own Athens view, same projection, scale bar, north mark and
+  labels, drawn once as a static figure with no buttons. `geographyMap()` gained
+  an optional id base so the same place can be drawn twice in one document.
+- Chapter 02, "The classical icon", moved to `section-dark`, so the close
+  reading reads like a museum vitrine. The three controls that were painted for
+  a paper ground — the pressed detail button, its hover, and the face switch —
+  are restated for the dark ground at 14.5:1 for the label and 5.2:1 for the
+  numeral. The chapter's prose column is one lead sentence and the specimen
+  ticket; the paragraph that restated what the close reading shows is gone.
+- Chapter 06, "How we know", was halved: 1,778 px to 990 px. Four kinds of
+  evidence as one-liners with their citations, then Nikophon's law of 375/4 BCE
+  — the public approver in the Agora, the coin with a bronze or lead core cut
+  through, and the piece that became sacred property of the Mother of the Gods.
+  The wording is the phrasing already vetted in `research/hooks-findings.json`
+  and on `/kit/`, and `scripts/check.mjs` now holds the three copies together.
+  The isotope research feature and the euro coda went, because `isotopes` and
+  `ecb` are both still cited on the page — `isotopes` three times, `ecb` in the
+  hero fact strip. No source or image record was dropped.
+- The `#atlas` invitation section became a compact continue row of three
+  destinations — the reference atlas, the identifier and the creator kit —
+  keeping its id. The One Owl invitation now ends the page, immediately before
+  the footer, on `--forest-deep` so it does not read as the same dark twice.
+- Every chapter 01–07 and the interlude now end with a one-line mono link to
+  the next section, in static markup: "Now meet the classical owl ↓" was the
+  model and is still chapter 01's, in the minting footer.
+- Chapter numbers are unchanged, 01–07. The home page is 15,531 px at 1440,
+  down from 17,563. `/kit/` gains the fifth short link its heading promised:
+  `theowlatlas.com/#beyond` for the maps.
+- Styles are one appended `CHUNK 6 / STORY ORDER` block, per the chunk-2 lesson.
+  Nothing above it was edited. The only pre-existing declarations it reaches are
+  the paper-ground control fills, restated under `.section-dark`.
+
+---
+
 # Early-owls chapter removed — 21 September 2026
 
 - Remove chapter 02, "The owl takes shape", at the owner's request. Two museum

@@ -4,7 +4,7 @@ import {readFile, stat} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import vm from 'node:vm';
-import {escapeHtml, sourceRefs, sourceShortLabel, SOURCE_SHORT_LABEL_MAX, photoMarkup, comparisonMarkup, marketStats, marketCsv} from '../src/render.mjs';
+import {escapeHtml, sourceRefs, sourceShortLabel, SOURCE_SHORT_LABEL_MAX, photoMarkup, comparisonMarkup, marketStats, marketCsv, atticaLocatorMarkup} from '../src/render.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const data = JSON.parse(await readFile(path.join(root, 'src/content.json'), 'utf8'));
 const html = await readFile(path.join(root, 'index.html'), 'utf8');
@@ -107,6 +107,7 @@ for (const story of Object.values(data.artifactStories)) {
 for (const [, , refs] of data.glossary) refs.forEach(id => check(ids.has(id), `Unknown glossary source: ${id}`));
 for (const match of (template + atlasTemplate).matchAll(/\{\{CITE:([^}]+)\}\}/g)) match[1].split(',').forEach(id => check(ids.has(id), `Unknown narrative citation: ${id}`));
 const geography = JSON.parse(await readFile(path.join(root, 'src/geography.json'), 'utf8'));
+const hooks = JSON.parse(await readFile(path.join(root, 'research/hooks-findings.json'), 'utf8'));
 const placeIds = new Set();
 for (const place of data.geography.places) {
   check(!placeIds.has(place.id), `Duplicate geographic place: ${place.id}`); placeIds.add(place.id);
@@ -987,5 +988,142 @@ check(shareModule.includes('navigator.share'), 'The Share control uses the nativ
 check(shareBuild.includes("read('src/share-cards.js')"), 'build.mjs inlines the share module');
 check(/\$\{shareCards\}[^$]*\$\{app\}/.test(shareBuild), 'The share module is inlined ahead of src/app.js, which calls it');
 check(/^initShareCards\(\{$/m.test(appScript), 'src/app.js starts the share controls');
+
+/* === CHUNK 6 / STORY ORDER =============================================== */
+// The home page was reordered so the reader meets the coin before the maps.
+// These checks hold the order itself, the two moves that carry live behaviour
+// (the eight-place explorer and the One Owl finale), the one new drawing, and
+// the wording of the chapter that was halved.
+const sectionOrder = [...markup.matchAll(/<(?:section|aside)[^>]*\bid="([a-z0-9-]+)"[^>]*>/g)]
+  .map(match => match[1])
+  .filter(id => ['top','origins','classical','theta','404','new-style','beyond','evidence','pricing','atlas','one-owl'].includes(id));
+assert.deepEqual(sectionOrder,
+  ['top','origins','classical','theta','404','new-style','beyond','evidence','pricing','atlas','one-owl'],
+  `Home page story order changed: ${sectionOrder.join(' > ')}`); tests++;
+check(markup.indexOf('id="one-owl"') < markup.indexOf('<footer class="site-footer')
+  && markup.indexOf('id="atlas"') < markup.indexOf('id="one-owl"'),
+  'The One Owl invitation is the last thing before the footer');
+// Chapter numbers are still 01-07, in the eyebrows and the chapter-bar labels.
+// Top-level story sections are the ones the build indents by three spaces;
+// #minting is nested inside chapter 01 and must not end a slice.
+const storyParts = markup.split(/(?=\n   <(?:section|aside|footer)\b)/);
+const storySection = (id) => storyParts.find(part => new RegExp(`^\\s*<(?:section|aside)[^>]*\\bid="${id}"`).test(part)) || '';
+for (const [id, number, label] of [['origins','01','Silver from Laurion'],['classical','02','The classical icon'],
+  ['404','03','War and its aftermath'],['new-style','04','The redesign'],['beyond','05','An owl beyond Attica'],
+  ['evidence','06','How we know'],['pricing','07','The owl today']]) {
+  const section = storySection(id);
+  check(Boolean(section), `Chapter ${number} is present: #${id}`);
+  check(section.includes(`data-chapter="${number} / ${label}"`), `#${id} is labelled "${number} / ${label}" in the chapter bar`);
+  check(new RegExp(`<span class="eyebrow[^"]*">\\s*${number} / `).test(section), `#${id} still numbers itself ${number}`);
+  // Every chapter hands the reader to the next one, in static markup.
+  check(/class="onward-cue|class="minting-footer-actions"/.test(section), `#${id} ends with an onward cue`);
+}
+const onwardTargets = [...markup.matchAll(/<div class="onward-cue[^"]*"[^>]*><a class="quiet-link" href="#([a-z0-9-]+)"/g)].map(m => m[1]);
+assert.deepEqual(onwardTargets, ['theta','404','new-style','beyond','evidence','pricing','atlas'],
+  `Onward cues point somewhere unexpected: ${onwardTargets.join(', ')}`); tests++;
+const pageScripts = [...html.matchAll(/<script(?![^>]*application\/(?:ld\+)?json)[^>]*>([\s\S]*?)<\/script>/g)].map(match => match[1]).join('\n');
+check(!pageScripts.includes('onward-cue'), 'The onward cues are markup, not script');
+
+// Chapter 01: one static Attica map, drawn from the explorer's own data, with
+// the scale bar, north mark and labels the explorer's focused maps carry. It
+// must not be a second copy of the explorer, and its ids must not collide with
+// the explorer's Athens panel.
+const origins = storySection('origins');
+check(!origins.includes('geography-explorer') && !origins.includes('data-geography='),
+  'The eight-region explorer has left chapter 01');
+const atticaFigure = origins.match(/<figure class="geo-focus origins-map">[\s\S]*?<\/figure>/)?.[0] || '';
+check(Boolean(atticaFigure), 'Chapter 01 draws one static Athens & Attica figure');
+check((origins.match(/<svg class="geo-focus-map"/g) || []).length === 1
+  && !origins.includes('geo-locator-map'), 'Chapter 01 carries exactly one map and no second locator');
+check(atticaFigure.includes('<title id="geo-attica-opening-map-title">'), 'The static map names itself');
+check(/<g class="geo-scale"><rect[^>]*\/><path[^>]*\/><text[^>]*>\d+ km<\/text><\/g>/.test(atticaFigure),
+  'The static map keeps its scale bar');
+check(/<text class="geo-north"[^>]*>N /.test(atticaFigure), 'The static map keeps its north mark');
+for (const [name, , , kind] of data.geography.places.find(place => place.id === 'athens').labels) {
+  check(atticaFigure.includes(`class="geo-map-label geo-map-label-${kind}"`) && atticaFigure.includes(`>${escapeHtml(name)}</text>`),
+    `The static map keeps the ${name} label`);
+}
+check(atticaFigure.includes('<button') === false, 'The static map has nothing to operate');
+check(origins.includes('id="minting"'), 'The minting illustration stays in chapter 01');
+assert.throws(() => atticaLocatorMarkup({geography: {places: []}}, geography)); tests++;
+
+// Chapter 05 now holds the explorer, with every deep-link id intact.
+const beyond = storySection('beyond');
+check(beyond.includes('id="geography-explorer"'), 'The explorer now lives in chapter 05');
+for (const place of data.geography.places) {
+  check(beyond.includes(`id="geography-${place.id}"`), `Deep link survives the move: #geography-${place.id}`);
+}
+check(beyond.includes('class="geography-key') && beyond.includes('class="geography-evidence'),
+  'Chapter 05 keeps a trimmed lead-in and the mint/circulation/findspot key');
+check(beyond.includes('data-image="sabakes"') && beyond.indexOf('data-image="sabakes"') < beyond.indexOf('geography-explorer'),
+  'Chapter 05 opens on the Sabakes example, before the explorer');
+
+// Chapter 06, halved: four one-line kinds of evidence and one document. The
+// Nikophon wording is the phrasing already vetted in research/hooks-findings
+// and on /kit/, so the two must not drift apart.
+const evidence = storySection('evidence');
+check(!evidence.includes('research-feature') && !evidence.includes('modern-coda'),
+  'The research feature and euro coda have left chapter 06');
+check((evidence.match(/<span class="evidence-index">/g) || []).length === 4, 'Four kinds of evidence remain');
+for (const id of ['profile', 'isotopes', 'early-silver', 'law', 'mines', 'accounts']) {
+  check(evidence.includes(`data-source="${id}"`), `Chapter 06 keeps its ${id} citation`);
+}
+const sacredFake = 'became sacred property of the Mother of the Gods, deposited with the Council';
+check(evidence.includes(sacredFake), 'Chapter 06 tells the Nikophon story in the vetted wording');
+check(kitMarkup.includes(sacredFake), '/kit/ and chapter 06 tell it the same way');
+check(hooks.hooks.find(hook => hook.id === 'hook-sacred-fake').expansion.includes(sacredFake),
+  'The vetted wording is the one the research file records');
+check(evidence.includes('Nikophon’s law of 375/4 BCE') && evidence.includes('bronze or lead core'),
+  'Chapter 06 dates the law and names what was cut through');
+check(evidence.includes('survives only in a debated restoration'),
+  'The foreign-silver clause keeps its restoration caveat');
+check(evidence.includes('href="https://atticinscriptions.com/inscription/RO/25"'), 'The translated inscription stays one click away');
+// Sources the removed material carried are still cited on this page.
+for (const id of ['ecb', 'isotopes', 'law']) {
+  check((markup.match(new RegExp(`data-source="${id}"`, 'g')) || []).length > 0,
+    `${id} is still cited on the home page after the cut`);
+}
+
+// The continue row replaces the old invitation section but keeps its id.
+const continueRow = storySection('atlas');
+check(continueRow.includes('class="chapter section-paper continue-row"'), 'The continue row keeps the #atlas id');
+for (const href of ['atlas/', 'atlas/#identify', '/kit/']) {
+  check(continueRow.includes(`href="${href}"`), `The continue row offers ${href}`);
+}
+check((continueRow.match(/<li>/g) || []).length === 3, 'The continue row offers exactly three destinations');
+
+// Styles: one appended block, and the dark chapter restates the control fills
+// that were painted for a paper ground.
+const storyStart = styles.indexOf('/* ==========================================================================\n   CHUNK 6 / STORY ORDER');
+check(storyStart > styles.lastIndexOf('end CHUNK 5 / CLOSE READING'), 'The story-order styles are appended after chunk 5');
+const storyCss = styles.slice(storyStart);
+check(storyCss.includes('end CHUNK 6 / STORY ORDER') && storyCss.trim().endsWith('*/'),
+  'The story-order styles are one self-contained block at the end of the sheet');
+for (const rule of ['.onward-cue {', '.origins-opening {', '.continue-cards {', '#one-owl {']) {
+  check(inlineStyles.includes(rule), `The built CSS carries ${rule.slice(0, -2)}`);
+}
+check(/<section[^>]*id="classical"[^>]*class="chapter section-dark"|<section[^>]*class="chapter section-dark"[^>]*id="classical"/.test(markup),
+  'Chapter 02 reads on a dark ground');
+for (const selector of ['.section-dark .detail-buttons button[aria-pressed="true"]',
+  '.section-dark .detail-buttons button:hover:not([aria-pressed="true"])',
+  '.section-dark .segmented input:checked+span']) {
+  check(storyCss.includes(selector), `The dark ground restates ${selector}`);
+}
+// Contrast for the text the dark chapter introduces. The pressed control is a
+// light fill, so its numeral needs a dark gold rather than the paper-ground one.
+for (const [ink, ground, minimum, label] of [
+  ['#b4b9ad', '#191e1c', 4.5, 'muted copy on the dark chapter'],
+  ['#f1eee4', '#191e1c', 4.5, 'reading text on the dark chapter'],
+  ['#c5b88b', '#191e1c', 4.5, 'citation sidenote index on the dark chapter'],
+  ['#6f6233', '#f1eee4', 4.5, 'the pressed detail button numeral'],
+  ['#191e1c', '#f1eee4', 4.5, 'the pressed detail button label'],
+  ['#778072', '#191e1c', 3, 'the unpressed control border'],
+  ['#b4b9ad', '#111714', 4.5, 'the One Owl invitation on the deeper dark'],
+]) {
+  const ratio = contrastRatio(ink, ground);
+  check(ratio >= minimum, `Story-order contrast: ${label} is ${ratio.toFixed(2)}:1, below ${minimum}:1`);
+}
+check(storyCss.includes('#6f6233'), 'The pressed-control numeral uses the dark gold, not the paper-ground one');
+/* === end CHUNK 6 / STORY ORDER =========================================== */
 
 console.log(`PASS: ${tests} structural/rendering checks; ${data.sources.length} sources; ${Object.keys(data.images).length} images; ${data.families.length} family records.\nExternal network availability and historical claims require separate review.`);

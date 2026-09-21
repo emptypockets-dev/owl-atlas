@@ -62,7 +62,14 @@ with sync_playwright() as p:
     page.locator('#motion-toggle').click()
     check(not page.locator('html').evaluate("e => e.classList.contains('motion-off')"), 'Manual motion re-enabled')
 
-    # Guided geography uses native controls and keeps one complete reading panel visible.
+    # Guided geography uses native controls and keeps one complete reading panel
+    # visible. Since 21 September 2026 the explorer lives in chapter 05
+    # ("An owl beyond Attica"); chapter 01 keeps one static Attica map instead.
+    check(page.locator('#beyond #geography-explorer').count() == 1, 'The explorer sits in chapter 05')
+    check(page.locator('#origins #geography-explorer').count() == 0, 'Chapter 01 has no explorer')
+    check(page.locator('#origins .origins-map .geo-focus-map').count() == 1,
+          'Chapter 01 draws one static Athens & Attica map')
+    check(page.locator('#origins .geo-focus-map').count() == 1, 'Chapter 01 draws no second map')
     for place in DATA['geography']['places']:
         button = page.locator(f'[data-geography="{place["id"]}"]')
         button.focus()
@@ -103,7 +110,8 @@ with sync_playwright() as p:
     check(not page.locator('#image-dialog').evaluate('e=>e.open'), 'Escape closes image dialog')
     check(image_link.evaluate('e=>document.activeElement===e'), 'Image-dialog focus restored')
 
-    # The chapter 02 close reading: a native radio pair chooses the face, the
+    # Chapter 02 now reads on a dark ground; the controls below are the same ones,
+    # repainted for it. The close reading: a native radio pair chooses the face, the
     # detail buttons choose the reading, and a numbered marker sits over the
     # photograph at the reading's own coordinates.
     readings = DATA['closeReading']['readings']
