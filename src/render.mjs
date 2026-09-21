@@ -5,15 +5,58 @@ export function escapeHtml(value) {
   })[character]);
 }
 
+/** A citation's margin label is derived here rather than stored, so it can never
+ *  drift from the bibliography record it names. Wide screens print it beside the
+ *  numeral; the dialog and the bibliography keep the full, unshortened record. */
+export const SOURCE_SHORT_LABEL_MAX = 40;
+
+const familyName = (name) => name.trim().split(/\s+/).pop();
+
+/** Only the record's own leading date becomes part of a label. A trailing
+ *  qualifier ("; translation 1913", "; accessed 2026") and a bare "2026 access"
+ *  are dropped: a margin label must never make an ancient or undated record look
+ *  as though it were published in the year someone last opened it. */
+function sourceShortDate(source) {
+  const year = String(source.year ?? '').split(/\s*;\s*/)[0];
+  if (/access/i.test(year)) return '';
+  const match = year.match(/\b(?:1\d{3}|2\d{3})\b/);
+  if (!match) return '';
+  return /^updated\b/i.test(year) ? `updated ${match[0]}` : match[0];
+}
+
+export function sourceShortLabel(source) {
+  // A ";" or "·" separates distinct parties in these records; name the first.
+  const author = String(source.author ?? '').split(/\s*[;·]\s*/)[0]
+    .replace(/^Translation:\s*/i, '').trim();
+  // "&" marks a byline of people here; institutions spell out "and"/"et".
+  const people = / & /.test(author) ? author.split(/\s*(?:,| & )\s*/).filter(Boolean) : [];
+  const brief = people.length === 2 ? `${familyName(people[0])} & ${familyName(people[1])}`
+    : people.length > 2 ? `${familyName(people[0])} et al.`
+    : author.split(/\s*,\s*/)[0];
+  const date = sourceShortDate(source);
+  const withDate = (name) => (date ? `${name} ${date}` : name);
+  // Shorten only as far as the margin requires, keeping the fullest form that fits.
+  for (const candidate of [author, author.replace(/^The /, ''), author.split(' / ')[0], brief]) {
+    const label = withDate(candidate);
+    if (label.length <= SOURCE_SHORT_LABEL_MAX) return label;
+  }
+  return `${withDate(brief).slice(0, SOURCE_SHORT_LABEL_MAX - 1).trimEnd()}…`;
+}
+
 export function sourceRefs(ids, data) {
-  const links = ids.map((id) => {
+  const chips = ids.map((id) => {
     const index = data.sources.findIndex((source) => source.id === id);
     if (index < 0) throw new Error(`Unknown source: ${id}`);
     const source = data.sources[index];
     const number = String(index + 1).padStart(2, '0');
-    return `<a href="#source-${escapeHtml(id)}" data-source="${escapeHtml(id)}" aria-label="Source ${number}: ${escapeHtml(source.title)}">[${number}]</a>`;
+    const short = escapeHtml(sourceShortLabel(source));
+    // The square brackets are drawn by CSS so wide screens can drop them for a
+    // plain superscript numeral. The note is decorative: the link already names
+    // the source for assistive technology and still opens the same dialog.
+    return `<a href="#source-${escapeHtml(id)}" data-source="${escapeHtml(id)}" data-short="${short}" aria-label="Source ${number}: ${escapeHtml(source.title)}">${number}</a>`
+      + `<span class="cite-note" aria-hidden="true"><span class="cite-note-index">${number}</span>${short}</span>`;
   });
-  return `<sup class="citation">${links.join(' ')}</sup>`;
+  return `<sup class="citation">${chips.join(' ')}</sup>`;
 }
 
 /** Rendered slot widths per layout class, so the browser can choose a derivative
