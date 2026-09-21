@@ -1,3 +1,41 @@
+# Which owl does this resemble? — 21 September 2026
+
+- Add a guided, five-question flow to the reference page at `/atlas/#identify`,
+  above the comparison tool: Athena's eye, the helmet crest, a Π-shaped helmet
+  ornament, a wreath, an amphora with long inscriptions, and a sixth question on
+  lettering that is not Greek. Each question shows a small illustrative crop and
+  carries a "Not sure / can't tell" answer that keeps every family in view.
+- Resemblance, never attribution. A visible caution states that the flow does not
+  date, grade or value a coin, and that only physical examination and a
+  specialist opinion can attribute one. The words "authenticate", "genuine" and
+  "guarantee" are absent from the feature and a check keeps them out.
+- Record the observable traits per family in a new `identify` block in
+  `src/content.json`, each trait tied to existing bibliography ids. No source was
+  added. A trait this edition has not established is stored as `varies`, which
+  never rules its family out — which is why Later Old Style and the Egyptian
+  owl-type issues survive most answers, and the table says so.
+- Result cards reuse the family faces, the family's pricing note and, for
+  Pi-style and Later Old Style, the comparison presets the story already links.
+  The cards live in an inert `<template>` until a question is answered, so an
+  untouched form fetches no photographs.
+- Readable without JavaScript. The build renders a decision table of all eight
+  families and six traits with a citation in every cell, opened by default and
+  preceded by four worked "if … look at …" readings derived from the same data.
+  The form and result panel stay `hidden` until `src/app.js` reveals them, native
+  radios in a real `<form>` keep the flow keyboard-operable at 44 px targets, and
+  the result count is announced politely.
+- The homepage's "Continue exploring" section gains one quiet link into the flow.
+- Six illustrative crops, all from rights-cleared photographs. The six
+  reuse-review-pending BnF files are never used to illustrate a question; they
+  appear only inside result cards, exactly as they already do in the family grid.
+- Fix a one-line bug in `scripts/check.mjs` from the previous entry: the minting
+  stylesheet slice ended before its own end marker, so the check that followed
+  could never pass and `npm run check` failed for every change.
+- No dependencies, no new sources or photographs, no scroll hijacking. Existing
+  image records, reuse flags and section links are unchanged.
+
+---
+
 # The strike, in motion — 21 September 2026
 
 - Animate the existing three-step minting diagram once, when the section is

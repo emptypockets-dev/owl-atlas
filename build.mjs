@@ -1,7 +1,7 @@
 import {readFile, writeFile, mkdir, access} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup, familyFacesMarkup, artifactStoryMarkup, geographyMarkup, marketFamilyMarkup, marketSummaryMarkup, marketCurrentMarkup, marketHistoryMarkup, marketFamiliesMarkup, marketLedgerMarkup, marketCsv, derivedSrcset, photoSizesFor, photoMaxWidthFor} from './src/render.mjs';
+import {escapeHtml, sourceRefs, photoMarkup, comparisonMarkup, familyFacesMarkup, artifactStoryMarkup, geographyMarkup, marketFamilyMarkup, marketSummaryMarkup, marketCurrentMarkup, marketHistoryMarkup, marketFamiliesMarkup, marketLedgerMarkup, marketCsv, derivedSrcset, photoSizesFor, photoMaxWidthFor, identifierMarkup} from './src/render.mjs';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const read = (relative) => readFile(path.join(root, relative), 'utf8');
@@ -253,6 +253,9 @@ const atlasData = {...data, images:relocateImages(data.images,'../')};
 replacements.COMPARE_PANEL_LEFT = comparisonMarkup('classical','reverse',atlasData);
 replacements.COMPARE_PANEL_RIGHT = comparisonMarkup('new','reverse',atlasData);
 replacements.FAMILY_CARDS = atlasData.families.map((family,index) => familyCard(family,index,atlasData)).join('\n');
+// "Which owl does this resemble?" is rendered only on the reference page, beside
+// the comparison tool it hands the reader on to, so it uses the same paths.
+replacements.IDENTIFIER = identifierMarkup(atlasData);
 const atlasHtml = pageMetadata(renderPage(atlasTemplate.replace('{{ATLAS_START}}',atlasStart).replace('{{ATLAS_END}}',atlasEnd),atlasData)
   .replace(/href="pricing\//g,'href="../pricing/'),
   {page:'atlas', pathname:'/atlas/', type:'CreativeWork', photographs:atlasData});
