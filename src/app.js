@@ -202,9 +202,6 @@ syncMotion();
  * head still preloads one image.
  */
 const HERO_TURN_MS = 1400;      // must match the .hero-turn transition in styles.css
-const HERO_INTRO_DELAY = 1200;  // after the owl photograph has finished loading
-const HERO_SWEEP_DELAY = 1500;
-const HERO_REST_MS = 2500;
 const heroFaces = {
   reverse: {image: 'classic-owl', label: 'Owl · reverse'},
   obverse: {image: 'classic-athena', label: 'Athena · obverse'},
@@ -239,29 +236,18 @@ function setupHeroCoin() {
   back.setAttribute('aria-hidden', 'true');
   turn.append(back);
   const surface = frame.closest('.image-surface');
-  const sheen = document.createElement('span');
-  sheen.className = 'hero-sheen';
-  sheen.setAttribute('aria-hidden', 'true');
-  turn.after(sheen);
-  sheen.addEventListener('animationend', () => sheen.classList.remove('is-sweeping'));
 
   // The class is the CSS contract and the variable is the site's own state.
   // Reading both means an inspector (or a review harness) that sets the class
-  // directly also stops the arrival turn, not just its transition.
+  // directly also stops a turn in progress, not just its transition.
   const noMotion = () => motionOff || document.documentElement.classList.contains('motion-off');
 
   let side = 'reverse';
-  let introSettled = false;
-  let introWaiting = false;
-  let obverseReady = false;
-  let introTimer = 0;
-  let restTimer = 0;
-  let sweepTimer = 0;
   let edgeTimer = 0;
   let identityTimer = 0;
-  let turnEndsAt = 0;
-  let introDeadline = Infinity;
   let wasStill = false;
+  // The coin only turns when the reader asks, so every rename is worth announcing.
+  faceLabel.setAttribute('aria-live', 'polite');
 
   // Everything that names the visible face: the caption, which face the
   // accessibility tree exposes, and what the viewer will open.
@@ -285,7 +271,6 @@ function setupHeroCoin() {
     turn.style.transitionDuration = still ? '0ms' : '';
     // The pressed state is the control answering the reader, so it flips at once.
     button.setAttribute('aria-pressed', String(next === 'obverse'));
-    turnEndsAt = still ? 0 : performance.now() + HERO_TURN_MS;
     if (still) applyIdentity(next);
     else {
       void turn.offsetWidth;  // restart the edge keyframes for this turn
@@ -297,46 +282,10 @@ function setupHeroCoin() {
     turn.style.transform = `rotateY(${next === 'obverse' ? 180 : 0}deg)`;
   }
 
-  // The arrival turn is the page introducing itself, not a change the reader
-  // asked for, so the caption only starts announcing once it is over.
-  function settleIntro() {
-    clearTimeout(introTimer);
-    clearTimeout(restTimer);
-    introWaiting = false;
-    if (introSettled) return;
-    introSettled = true;
-    faceLabel.setAttribute('aria-live', 'polite');
-  }
+  button.addEventListener('click', () => showFace(side === 'reverse' ? 'obverse' : 'reverse'));
 
-  function sweepLight() {
-    if (noMotion()) return;
-    // A light crossing a coin that is edge-on is a light crossing nothing, so
-    // the arrival sweep waits for the disc to settle on a face before it runs.
-    const remaining = turnEndsAt - performance.now();
-    if (remaining > 0) { sweepTimer = setTimeout(sweepLight, remaining + 60); return; }
-    sheen.classList.remove('is-sweeping');
-    void sheen.offsetWidth;
-    sheen.classList.add('is-sweeping');
-  }
-
-  function runIntro() {
-    if (introSettled) return;
-    if (!obverseReady) { introWaiting = true; return; }
-    introWaiting = false;
-    // A second face that arrives long after the reader did is no longer an
-    // arrival: it would turn the coin under someone already reading.
-    if (noMotion() || performance.now() > introDeadline) return settleIntro();
-    showFace('obverse');
-    restTimer = setTimeout(() => { showFace('reverse'); settleIntro(); }, HERO_TURN_MS + HERO_REST_MS);
-  }
-
-  button.addEventListener('click', () => {
-    settleIntro();
-    showFace(side === 'reverse' ? 'obverse' : 'reverse');
-  });
-
-  // Turning motion off mid-sequence stops the arrival turn where it is rather
-  // than finishing a rotation the reader has just asked not to see.
+  // Turning motion off mid-turn stops the coin where it is rather than
+  // finishing a rotation the reader has just asked not to see.
   // documentElement's class list also carries the retracting header, so only a
   // real change into the motion-off state is worth reacting to.
   new MutationObserver(() => {
@@ -344,12 +293,9 @@ function setupHeroCoin() {
     if (still === wasStill) return;
     wasStill = still;
     if (!still) return;
-    clearTimeout(sweepTimer);
     clearTimeout(edgeTimer);
     clearTimeout(identityTimer);
-    sheen.classList.remove('is-sweeping');
     turn.classList.remove('is-turning');
-    settleIntro();
     showFace(side, true);
   }).observe(document.documentElement, {attributes: true, attributeFilter: ['class']});
 
@@ -365,9 +311,7 @@ function setupHeroCoin() {
     // watchImages() must not paint the shared disc with this face's error state.
     image.dataset.watched = 'true';
     image.addEventListener('load', () => {
-      obverseReady = true;
       controls.hidden = false;   // the control appears only once both faces exist
-      if (introWaiting) runIntro();
     }, {once: true});
     if (sources.length > 1) {
       image.srcset = derivedSrcset(obverse, maxWidth);
@@ -377,7 +321,8 @@ function setupHeroCoin() {
     back.append(image);
   }
 
-  // Nothing is fetched, and nothing turns, until the owl itself is on screen.
+  // Nothing is fetched until the owl itself is on screen; nothing ever turns
+  // on its own.
   function owlReady() {
     // The build paints a blurred 24-pixel copy of the owl behind the disc so it
     // is never an empty well while the photograph loads. That job is finished
@@ -385,10 +330,7 @@ function setupHeroCoin() {
     // thing showing through the window. The flat well is the room behind it.
     surface?.style.removeProperty('background-image');
     wasStill = noMotion();
-    introDeadline = performance.now() + HERO_INTRO_DELAY + 4000;
     addObverse();
-    sweepTimer = setTimeout(sweepLight, HERO_SWEEP_DELAY);
-    introTimer = setTimeout(runIntro, HERO_INTRO_DELAY);
   }
   if (owlImage.complete) { if (owlImage.naturalWidth) owlReady(); }
   else owlImage.addEventListener('load', owlReady, {once: true});

@@ -5064,7 +5064,7 @@ h4 {
    Everything below is additive and appended on purpose: the only pre-existing
    hero declarations it overrides are named in the comments beside them.
    Without JavaScript the hero renders exactly the owl photograph it always
-   has; app.js builds the second face, the edges and the sheen at runtime, and
+   has; app.js builds the second face and the edges at runtime, and
    only then unhides the "Turn the coin" control.
    ========================================================================== */
 
@@ -5168,52 +5168,12 @@ h4 {
   34%,38% { opacity:1 }
 }
 
-/* --- The specular sweep ---------------------------------------------------
-   A single low-alpha band crossing the disc. It stays well under a quarter of
-   full white, so it lights the surface without hiding the relief. */
-.hero-photo .hero-sheen {
-  position:absolute;
-  inset:0;
-  z-index:1;
-  border-radius:50%;
-  overflow:hidden;
-  pointer-events:none;
-}
-
-.hero-photo .hero-sheen::before {
-  content:'';
-  position:absolute;
-  top:-32%;
-  bottom:-32%;
-  left:0;
-  width:34%;
-  opacity:0;
-  transform:translateX(-200%) rotate(13deg);
-  background:linear-gradient(90deg,#fff8e600,#fff8e626 24%,#fffaf04a 50%,#fff8e626 76%,#fff8e600);
-}
-
-.hero-photo .hero-sheen.is-sweeping::before {
-  animation:hero-sheen 1150ms cubic-bezier(.36,.08,.3,1);
-}
-
-@keyframes hero-sheen {
-  0% { opacity:0;transform:translateX(-200%) rotate(13deg) }
-  16% { opacity:1 }
-  84% { opacity:1 }
-  100% { opacity:0;transform:translateX(320%) rotate(13deg) }
-}
-
 /* --- Motion rules ---------------------------------------------------------
    With the site's motion toggle off, or the operating-system preference set,
    nothing turns or sweeps on its own; the button still swaps faces instantly
    because app.js zeroes the transition before it writes the transform. */
 .motion-off .hero-photo .hero-turn {
   transition:none!important;
-}
-
-.motion-off .hero-photo .hero-sheen::before {
-  animation:none!important;
-  opacity:0!important;
 }
 
 .motion-off .hero-photo .hero-edge {
@@ -5223,7 +5183,6 @@ h4 {
 
 @media (prefers-reduced-motion:reduce) {
   .hero-photo .hero-turn { transition:none!important }
-  .hero-photo .hero-sheen::before { animation:none!important;opacity:0!important }
   .hero-photo .hero-edge { animation:none!important;opacity:0!important }
 }
 
