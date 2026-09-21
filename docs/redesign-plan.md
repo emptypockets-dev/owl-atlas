@@ -92,7 +92,8 @@ Nothing is deployed or pushed without an explicit request.
   crop, and all four owner photographs now carry CC BY 4.0 with the credit
   "The Owl Atlas (theowlatlas.com)".
 - Chunk 4: in progress (three parallel agents: resemblance identifier, share
-  tools and card maker, creator kit page).
+  tools and card maker, creator kit page). The owner asked to PAUSE after
+  chunk 4 merges to make tweaks to existing work; chunk 5 waits for a go.
 - Polish list for chunk 5: the "Hammer" label overlaps the moving hammer
   mid-animation; hide the hero's honesty note on phones; round the focus ring
   on pill buttons; remove dead `.journey-faces` rules; distinguish the two
