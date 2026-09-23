@@ -65,7 +65,7 @@ check(bool(match) and not re.search(r'\bopen\b', match.group()), 'Reference guid
 # removed the same day: its archaic and early classical plates stay on /atlas/,
 # and what it argued is now the classical chapter's opening deck, one clause in
 # the close reading, and a glossary entry.
-for anchor in ['origins', 'classical', 'theta', '404', 'new-style', 'beyond', 'evidence',
+for anchor in ['origins', 'classical', '404', 'new-style', 'beyond', 'evidence',
                'pricing', 'atlas', 'one-owl', 'minting', 'geography-explorer']:
     check(f'id="{anchor}"' in home_html, f'Preserved homepage anchor: {anchor}')
 check('id="after-athens"' not in home_html, 'The withdrawn fourth-century chapter is gone')
@@ -94,7 +94,7 @@ check('SOURCED IMAGES / REUSE REVIEW PENDING' in visible_copy,
 # ground; chapter 06 was halved around Nikophon's law; the One Owl invitation
 # now ends the page. Chapter numbers are unchanged, 01-07.
 order = [home_html.index(f'id="{anchor}"') for anchor in
-         ['origins', 'classical', 'theta', '404', 'new-style', 'beyond', 'evidence',
+         ['origins', 'classical', '404', 'new-style', 'beyond', 'evidence',
           'pricing', 'atlas', 'one-owl']]
 check(order == sorted(order), 'Home page story order is 01-07, continue row, One Owl')
 check(home_html.index('id="one-owl"') < home_html.index('<footer class="site-footer'),
@@ -120,9 +120,18 @@ check('data-source="law"' in evidence_html, 'The Nikophon story keeps its source
 check('data-source="ecb"' in home_html, 'The euro fact is still cited, in the hero strip')
 # Every chapter hands the reader on, in static markup.
 cues = re.findall(r'<div class="onward-cue[^"]*"><a class="quiet-link" href="#([a-z0-9-]+)"', home_html)
-check(cues == ['theta', '404', 'new-style', 'beyond', 'evidence', 'pricing', 'atlas'],
+check(cues == ['404', 'new-style', 'beyond', 'evidence', 'pricing', 'atlas'],
       f'Onward cues run through the story in order: {cues}')
 check('Now meet the classical owl' in visible_copy, 'Chapter 01 keeps its onward cue in the minting footer')
+# The dotted-theta interlude was removed on 23 September 2026 at the owner's
+# request. The close reading's ΑΘΕ detail now carries the dotted theta and both
+# of the interlude's citations, so the home page still cites each of them.
+check('id="theta"' not in home_html, 'The withdrawn dotted-theta interlude is gone')
+identity_html = re.search(r'<article class="close-reading-item" id="close-reading-identity">.*?</article>',
+                          home_html, flags=re.S)
+check(bool(identity_html) and all(f'data-source="{source}"' in identity_html.group()
+                                  for source in ('acropolis', 'openlearn-theta')),
+      'The ΑΘΕ reading cites acropolis and openlearn-theta')
 check(data['edition'] == 'Research edition 03', 'Data edition updated')
 check(len(data['sources']) == 50, 'All 41 earlier sources retained plus the nine shareable-fact references')
 check(len(data['images']) == 17, 'Original 16 image records retained plus the researched early-classical reverse')

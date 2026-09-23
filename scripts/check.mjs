@@ -272,22 +272,13 @@ assert.throws(() => comparisonMarkup('not-real', 'reverse', data)); tests++;
 assert.throws(() => comparisonMarkup('pi', 'reverse', data, 'bnf-quadridigite-1478')); tests++;
 assert.throws(() => comparisonMarkup('pi', 'edge', data)); tests++;
 // Chunk 2 set pieces and the wide-screen citation apparatus.
-// The dotted-theta interlude is an original mark plus the site's own sourced
-// wording; it must stay readable, labelled in the chapter bar, and light, so the
-// ink-dark 404 that follows is not the second dark set piece in a row.
-const theta = markup.match(/<section[^>]*id="theta"[\s\S]*?<\/section>/)?.[0] || '';
-check(Boolean(theta), 'The dotted-theta interlude is present on the home page');
-check(/data-chapter="Interlude[^"]*"/.test(theta), 'The interlude is labelled in the chapter bar');
-check(/<svg class="theta-mark"[\s\S]*?<circle[^>]*r="15\.5"[\s\S]*?<circle[^>]*r="2\.8"/.test(theta),
-  'The interlude draws the wordmark\'s own circle-and-dot, not a font glyph');
-check(theta.includes('class="theta-interlude"') && !/section-(ink|dark|olive)/.test(theta),
-  'The interlude stays light, so two dark set pieces never stack');
-check(theta.includes('id="theta-title"') && /<h2 id="theta-title">/.test(theta), 'The interlude has a heading');
-for (const id of ['acropolis', 'openlearn-theta']) {
-  check(theta.includes(`data-source="${id}"`), `The interlude keeps its existing citation: ${id}`);
-}
-check(!/2,400-year-old letterform|still in use/i.test(theta),
-  'The interlude does not promote the unsupported "letterform still in use" claim');
+// The dotted-theta interlude was removed on 23 September 2026 at the owner's
+// request. The close reading's ΑΘΕ detail now carries the dotted theta, so the
+// guard against the unsupported "letterform still in use" claim moves with it.
+const identityReading = markup.match(/<article class="close-reading-item" id="close-reading-identity">[\s\S]*?<\/article>/)?.[0] || '';
+check(identityReading.includes('circle with a central dot'), 'The ΑΘΕ reading carries the dotted theta');
+check(!/2,400-year-old letterform|still in use/i.test(identityReading),
+  'The ΑΘΕ reading does not promote the unsupported "letterform still in use" claim');
 // The home page's generations set piece invites the companion story; it must not
 // restate it, and its scale claim stays an illustration.
 const invitation = markup.match(/<aside[^>]*id="one-owl"[\s\S]*?<\/aside>/)?.[0] || '';
@@ -996,9 +987,9 @@ check(/^initShareCards\(\{$/m.test(appScript), 'src/app.js starts the share cont
 // the wording of the chapter that was halved.
 const sectionOrder = [...markup.matchAll(/<(?:section|aside)[^>]*\bid="([a-z0-9-]+)"[^>]*>/g)]
   .map(match => match[1])
-  .filter(id => ['top','origins','classical','theta','404','new-style','beyond','evidence','pricing','atlas','one-owl'].includes(id));
+  .filter(id => ['top','origins','classical','404','new-style','beyond','evidence','pricing','atlas','one-owl'].includes(id));
 assert.deepEqual(sectionOrder,
-  ['top','origins','classical','theta','404','new-style','beyond','evidence','pricing','atlas','one-owl'],
+  ['top','origins','classical','404','new-style','beyond','evidence','pricing','atlas','one-owl'],
   `Home page story order changed: ${sectionOrder.join(' > ')}`); tests++;
 check(markup.indexOf('id="one-owl"') < markup.indexOf('<footer class="site-footer')
   && markup.indexOf('id="atlas"') < markup.indexOf('id="one-owl"'),
@@ -1019,7 +1010,7 @@ for (const [id, number, label] of [['origins','01','Silver from Laurion'],['clas
   check(/class="onward-cue|class="minting-footer-actions"/.test(section), `#${id} ends with an onward cue`);
 }
 const onwardTargets = [...markup.matchAll(/<div class="onward-cue[^"]*"[^>]*><a class="quiet-link" href="#([a-z0-9-]+)"/g)].map(m => m[1]);
-assert.deepEqual(onwardTargets, ['theta','404','new-style','beyond','evidence','pricing','atlas'],
+assert.deepEqual(onwardTargets, ['404','new-style','beyond','evidence','pricing','atlas'],
   `Onward cues point somewhere unexpected: ${onwardTargets.join(', ')}`); tests++;
 const pageScripts = [...html.matchAll(/<script(?![^>]*application\/(?:ld\+)?json)[^>]*>([\s\S]*?)<\/script>/g)].map(match => match[1]).join('\n');
 check(!pageScripts.includes('onward-cue'), 'The onward cues are markup, not script');

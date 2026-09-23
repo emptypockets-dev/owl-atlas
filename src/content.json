@@ -1461,9 +1461,10 @@
         "x": 84,
         "y": 52,
         "title": "The city signs its own money.",
-        "text": "ΑΘΕ abbreviates “of the Athenians”; the interlude that follows takes up its dotted theta.",
+        "text": "ΑΘΕ abbreviates “of the Athenians.” On this coin theta is a circle with a central dot, the ancient counterpart of the printed Θ, and the form this atlas borrows for its own mark.",
         "refs": [
-          "acropolis"
+          "acropolis",
+          "openlearn-theta"
         ]
       },
       {

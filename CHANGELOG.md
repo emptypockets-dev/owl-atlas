@@ -1,3 +1,40 @@
+# Dotted-theta interlude removed — 23 September 2026
+
+- Remove the interlude between chapters 02 and 03, "Interlude / The city's
+  signature" (`#theta`, "Three letters. One dot."), at the owner's request.
+  The reason is the one the owner gave for the two removed chapters:
+  repetition. The close reading in chapter 02 already has an ΑΘΕ detail, and
+  the interlude was that detail's second half.
+- The ΑΘΕ reading now carries the dotted theta itself, in two sentences:
+  "ΑΘΕ abbreviates “of the Athenians.” On this coin theta is a circle with a
+  central dot, the ancient counterpart of the printed Θ, and the form this
+  atlas borrows for its own mark." It cites `openlearn-theta` beside
+  `acropolis`, so both of the interlude's sources are still cited on the home
+  page. No source or image record was dropped.
+- Chapter 02's onward cue now reads "Now the year the war ended ↓", the
+  interlude's own closing line, and lands on `#404`. The chapter bar runs from
+  02 / The classical icon straight to 03 / War and its aftermath. The home page
+  is 14,591 px at 1440, from 15,445, and 20,543 px at 390, from 21,582.
+- Chapter 02's dark ground now meets the ink-dark 404 directly; the interlude
+  was the light band between them. The seam is a slight tonal step, `--forest`
+  to `--forest-deep`, where the 404's column rules begin.
+- `/kit/` drops the "Three letters. One dot." short link, and its heading now
+  promises four links: `#404`, `#beyond`, `/one-owl/` and `/pricing/`.
+  `/#theta` no longer has a target and opens at the top of the home page.
+- `scripts/check.mjs` replaces the interlude's eight checks with two on the
+  ΑΘΕ reading: it carries the dotted theta, and it avoids the unsupported
+  "letterform still in use" wording that `research/hooks-findings.json` ruled
+  out. `tests/editorial_copy.py` checks that `#theta` is gone and that the
+  reading cites both sources. The story-order, onward-cue and fragment lists in
+  `scripts/check.mjs`, `tests/editorial_copy.py` and
+  `tests/reference_browser.py` lose `theta`, and `tests/browser_smoke.py` no
+  longer screenshots it.
+- The `.theta-*` rules in `src/styles.css` are dead and are on the chunk-5
+  polish list rather than removed here: `.theta-copy` shares two selector
+  lists with live rules in the wide-screen sidenote block.
+
+---
+
 # Home page reordered: the coin first, the maps later — 21 September 2026
 
 - The reader now meets the coin before the geography. Chapter 01, "Silver from

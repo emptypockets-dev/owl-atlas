@@ -139,6 +139,15 @@ Nothing is deployed or pushed without an explicit request.
   01–07 and the interlude end with a one-line mono link to the next section.
   Chapter numbers are unchanged; the page is 15,531 px at 1440, from 17,563.
   Styles are one appended `CHUNK 6 / STORY ORDER` block.
+- Owner-requested edit, 23 September 2026: the dotted-theta interlude
+  (`#theta`, "Three letters. One dot.") between chapters 02 and 03 is removed,
+  for the same reason as the two removed chapters: repetition. The close
+  reading's ΑΘΕ detail now carries the dotted theta in one extra sentence and
+  cites both of the interlude's sources (`acropolis`, `openlearn-theta`);
+  chapter 02's onward cue goes straight to `#404` ("Now the year the war
+  ended"); `/kit/` drops the `#theta` short link and promises four. No source
+  or image record was dropped. Chapter 02's dark ground now meets the ink-dark
+  404 with no light band between them, which is worth a look at the next review.
 - Polish list for chunk 5: the "Hammer" label overlaps the moving hammer
   mid-animation; hide the hero's honesty note on phones; round the focus ring
   on pill buttons; remove dead `.journey-faces` rules; distinguish the two
@@ -146,9 +155,15 @@ Nothing is deployed or pushed without an explicit request.
   `tests/artifact_browser.py` and `tests/one_owl_browser.py`; remove the rules
   the removed chapter 02 left behind (`.duo-plates`, `.museum-plate`,
   `.plate-label`, `.archaic-photo`, `.early-faces`, `.editorial-two`) and the
-  `archaic-photo` crop branch in `build.mjs`; and the rules the geography
+  `archaic-photo` crop branch in `build.mjs`; the rules the geography
   intro left behind when chapter 01 was rebuilt (`.geography-intro`, plus
-  its entries in the `min-width:0` and narrow-screen lists).
+  its entries in the `min-width:0` and narrow-screen lists); and the rules the
+  removed dotted-theta interlude left behind (`.theta-interlude`,
+  `.theta-stage`, `.theta-mark` and `.theta-copy`, with their narrow-screen and
+  print variants and the header comment in `CHUNK 2 / BEAUTY`; the
+  `.theta-copy>.onward-cue` and `.theta-interlude` spacing rules in
+  `CHUNK 6 / STORY ORDER`; and the `.theta-copy` entries in the two
+  wide-screen sidenote selector lists).
 - Chunk 4 prep: `research/hooks-findings.md` ranks ten verified hooks.
 
 ## Backlog (owner TODOs)

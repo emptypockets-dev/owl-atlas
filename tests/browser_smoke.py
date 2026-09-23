@@ -310,7 +310,6 @@ with sync_playwright() as p:
             page.screenshot(path=str(SCREENSHOTS / f'compare-{width}.png'))
             page.locator('#close-reading').screenshot(path=str(SCREENSHOTS / f'close-reading-{width}.png'))
             page.locator('#classical').screenshot(path=str(SCREENSHOTS / f'classical-{width}.png'))
-            page.locator('#theta').screenshot(path=str(SCREENSHOTS / f'theta-{width}.png'))
             page.locator('[id="404"]').screenshot(path=str(SCREENSHOTS / f'crisis-{width}.png'))
         page.close()
 
