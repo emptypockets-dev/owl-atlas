@@ -69,9 +69,9 @@ both belong to the same coin; see `research/early-classical-findings.json`.
   classical icon — the interactive close reading, on a dark ground; 03 War and its
   aftermath (404 BCE); 04 The redesign (New Style); 05 An owl beyond Attica — the Sabakes
   example and the eight-region geographic explorer; 06 How we know — four kinds of evidence
-  and Nikophon's law of 375/4 BCE; 07 The owl today. A dotted-theta interlude sits between
-  chapters 02 and 03, a compact continue row follows chapter 07, and the One Owl invitation
-  ends the page. Every chapter closes with a one-line link to the next section.
+  and Nikophon's law of 375/4 BCE; 07 The owl today. A compact continue row follows
+  chapter 07, and the One Owl invitation ends the page. Every chapter closes with a
+  one-line link to the next section.
   The home page was reordered on 21 September 2026 so the reader meets the coin before the
   maps; the explorer moved from chapter 01 to chapter 05 whole, with every deep link intact.
   Two chapters were removed earlier the same day at the owner's request: the

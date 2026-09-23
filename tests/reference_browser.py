@@ -37,7 +37,7 @@ with sync_playwright() as p:
     check(home.locator('.source-entry').count()==0,'Homepage omits the full bibliography')
     check(home.locator('h1').count()==1,'Homepage retains one main heading')
     check(home.locator('a[href="one-owl/"]').count()>0,'Homepage retains the One Owl journey link')
-    for fragment in ('origins','minting','classical','close-reading','theta','404','new-style',
+    for fragment in ('origins','minting','classical','close-reading','404','new-style',
                      'beyond','geography-explorer','evidence','pricing','atlas','one-owl'):
         check(home.locator(f'#{fragment}').count()==1,f'Homepage preserves #{fragment}')
     # The 21 September 2026 reorder: the explorer moved from chapter 01 to
@@ -47,7 +47,7 @@ with sync_playwright() as p:
     check(home.evaluate('''() => {
       const ids=[...document.querySelectorAll('main > section, main > aside')].map(e=>e.id);
       return ids.join(',');
-    }''')=='top,origins,classical,theta,404,new-style,beyond,evidence,pricing,atlas,one-owl',
+    }''')=='top,origins,classical,404,new-style,beyond,evidence,pricing,atlas,one-owl',
           'Homepage story order is the reordered one')
     new_height=home.evaluate('document.documentElement.scrollHeight')
     baseline=Path('/private/tmp/owl-before-reference-split.html')
