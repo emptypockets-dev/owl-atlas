@@ -48,8 +48,8 @@ check(data['images']['early-owl'] == early['imageRecord'], 'Early-classical reve
 for fid in ['pi','late-old']:
     family = next(item for item in data['families'] if item['id'] == fid)
     check(bool(family['obverse'] and family['reverse']), f'{fid}: both formerly missing sides integrated')
-check(len(data['images']) == 17, 'Original 16 images plus the documented early-classical reverse')
-check(len(data['sources']) == 50, '50 source records, including eight market references and the nine shareable-fact references the creator kit cites')
+check(len(data['images']) == 18, 'Original 16 images plus the documented early-classical reverse and the Laurion ore photograph')
+check(len(data['sources']) == 51, '51 source records, including eight market references, the nine shareable-fact references the creator kit cites and the Laurion cupellation study')
 check(len(data['specimens']) == 3, 'Three BnF specimen records')
 check(not any(i['url'] == research['additional_catalogue_lead']['image_url'] for i in data['images'].values()), 'Low-resolution heterogeneous preview not substituted')
 

@@ -1,7 +1,7 @@
 import {readFile, writeFile, mkdir, access, stat} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {escapeHtml, sourceRefs, photoMarkup, closeReadingMarkup, comparisonMarkup, familyFacesMarkup, geographyMarkup, atticaLocatorMarkup, marketFamilyMarkup, marketSummaryMarkup, marketCurrentMarkup, marketHistoryMarkup, marketFamiliesMarkup, marketLedgerMarkup, marketCsv, derivedSrcset, photoSizesFor, photoMaxWidthFor, identifierMarkup} from './src/render.mjs';
+import {escapeHtml, sourceRefs, photoMarkup, closeReadingMarkup, comparisonMarkup, familyFacesMarkup, geographyMarkup, marketFamilyMarkup, marketSummaryMarkup, marketCurrentMarkup, marketHistoryMarkup, marketFamiliesMarkup, marketLedgerMarkup, marketCsv, derivedSrcset, photoSizesFor, photoMaxWidthFor, identifierMarkup} from './src/render.mjs';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const read = (relative) => readFile(path.join(root, relative), 'utf8');
@@ -94,7 +94,6 @@ const replacements = {
   MARKET_LEDGER: marketLedgerMarkup(data),
   CLOSE_READING: closeReadingMarkup(data),
   GEOGRAPHY: geographyMarkup(data, geography),
-  ATTICA_LOCATOR: atticaLocatorMarkup(data, geography),
   SOURCE_COUNT: data.sources.length,
   IMAGE_COUNT: Object.keys(data.images).length,
   COMPARE_LEFT: options('classical'),

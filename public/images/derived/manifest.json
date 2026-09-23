@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21T12:09:39.540Z",
+  "generatedAt": "2026-09-23T12:11:05.409Z",
   "tool": "/usr/bin/sips (sips-316)",
   "settings": {
     "format": "jpeg",
@@ -376,6 +376,44 @@
       ],
       "widths": [],
       "derivatives": [],
+      "placeholder": null
+    },
+    "laurion-galena": {
+      "id": "laurion-galena",
+      "sourceUrl": "https://live.staticflickr.com/65535/49365343353_e79acf0fd8_o.jpg",
+      "sourceBytes": 6141391,
+      "sourceSha256": "ab00d0e0ba059374d8b33d05b19e73048454a702f45d1d8f45e1da0554066cdd",
+      "sourceWidth": 3217,
+      "sourceHeight": 2477,
+      "license": "CC BY 2.0",
+      "credit": "James St. John / Flickr",
+      "reuseStatus": "cc-by-2.0",
+      "tool": "/usr/bin/sips (sips-316)",
+      "settings": "format jpeg, formatOptions 82, --resampleWidth",
+      "requestedWidths": [
+        800,
+        1600
+      ],
+      "widths": [
+        800,
+        1600
+      ],
+      "derivatives": [
+        {
+          "width": 800,
+          "height": 616,
+          "path": "public/images/derived/laurion-galena-800-3aaa9550.jpg",
+          "bytes": 193058,
+          "sha256": "3aaa95508d1b4823e9c7ca412fd50bd8248494a91e2d0c3fe4b20f78fabc682d"
+        },
+        {
+          "width": 1600,
+          "height": 1232,
+          "path": "public/images/derived/laurion-galena-1600-23702608.jpg",
+          "bytes": 715543,
+          "sha256": "2370260856a4711c8e6bc16ee7cbcb56ada3b71b718c7edda07c1c60bedc6859"
+        }
+      ],
       "placeholder": null
     }
   }

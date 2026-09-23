@@ -7752,11 +7752,11 @@ html.motion-off .close-reading-marker { transition:none; }
 .theta-copy>.onward-cue { margin-top:clamp(24px,2.6vw,34px); }
 @media print { .onward-cue { display:none!important; } }
 
-/* --- Chapter 01: the silver, then one map ------------------------------ */
-/* The eight-region explorer has left this chapter. What remains is a short
-   opening beside the explorer's own Athens & Attica view, drawn once and
-   static, and then the minting illustration. The chapter is deliberately
-   tighter than the rest: it is the first thing after the hero. */
+/* --- Chapter 01: the silver, then its ore ------------------------------ */
+/* The eight-region explorer has left this chapter, and on 23 September 2026
+   its static Attica map did too. What remains is a short opening beside a
+   photograph of Laurion ore, and then the minting illustration. The chapter
+   is deliberately tighter than the rest: it is the first thing after the hero. */
 #origins { padding-block:clamp(56px,4.8vw,80px); }
 .origins-opening {
   display:grid;
@@ -7770,7 +7770,10 @@ html.motion-off .close-reading-marker { transition:none; }
 .origins-copy .prose .lead { font-size:1.3125rem; line-height:1.5; }
 .origins-copy .prose p+p { font-size:var(--type-body); margin-top:1em; }
 .origins-figure { min-width:0; }
-.origins-map { margin:0; }
+/* The mount takes the photograph's own proportions instead of the square the
+   coin plates use, so the ore is never letterboxed. */
+.origins-photo .image-surface { aspect-ratio:var(--plate-ratio); }
+.origins-caption { margin-top:10px; max-width:34rem; }
 #origins .minting-section {
   margin-top:clamp(32px,3.4vw,48px);
   padding-top:clamp(26px,2.6vw,38px);
@@ -7871,7 +7874,7 @@ html.motion-off .close-reading-marker { transition:none; }
 @media screen and (max-width:900px) {
   .origins-opening { grid-template-columns:minmax(0,1fr); gap:30px; }
   .origins-copy .prose { max-width:36rem; }
-  .origins-map { max-width:640px; }
+  .origins-figure { max-width:640px; }
   .continue-cards { grid-template-columns:minmax(0,1fr); }
   .continue-heading { display:block; }
   .continue-heading h2 { margin-top:12px; }

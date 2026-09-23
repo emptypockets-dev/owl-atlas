@@ -574,6 +574,17 @@
       "scope": "The Sicilian expedition of 415 BC: the treasury giving a drachma a day to each seaman, with the trierarchs adding bounties on top of the state's pay.",
       "note": "A rate for one expedition that Thucydides presents as exceptionally costly, not a standing naval wage. Perseus publishes this translation under CC BY-SA 3.0 US.",
       "accessed": "2026-09-21"
+    },
+    {
+      "id": "laurion-cupellation",
+      "title": "Cupellation and litharge in their technological context at Laurion, Attika (Greece) – From Prehistoric to Hellenistic and early Roman periods",
+      "author": "George D. Papadimitriou · Deutsches Bergbau-Museum Bochum, Der Anschnitt Beiheft 50",
+      "year": "2023",
+      "url": "https://doi.org/10.46586/DBM.264.395",
+      "kind": "Research paper",
+      "scope": "How Laurion ore became silver: smelting in charcoal-fired shaft furnaces gave argentiferous lead, most commonly about 2,000 g of silver to a tonne of lead; cupellation under blown air then oxidised the lead to litharge (lead oxide) and left the silver.",
+      "note": "In F. Hulek, H. Lohmann, S. Nomicos and A. Hauptmann (eds), Laurion. Interdisciplinary Approaches to an Ancient Greek Mining Landscape (Deutsches Bergbau-Museum Bochum, 2023), pp. 87–104; open access. The author, of the School of Mining and Metallurgy at the National Technical University of Athens, gives the smelting charge as mainly cerussite with galena up to about 20 per cent, and silver contents of 1,000–4,000 g a tonne depending on the ore. A technical account across periods; it does not trace the silver of any particular coin.",
+      "accessed": "2026-09-23"
     }
   ],
   "images": {
@@ -774,6 +785,25 @@
       "note": "Egypt, Persian administration; the type is indexed in IRIS under Sabaces/Sabakes. Test cuts are visible. The original plate is only 800 pixels wide.",
       "crop": "right",
       "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image."
+    },
+    "laurion-galena": {
+      "id": "laurion-galena",
+      "title": "Laurion ore · argentiferous galena",
+      "url": "https://live.staticflickr.com/65535/49365343353_e79acf0fd8_o.jpg",
+      "displayUrl": "https://live.staticflickr.com/65535/49365343353_e79acf0fd8_o.jpg",
+      "source": "https://www.flickr.com/photos/jsjgeology/49365343353",
+      "credit": "James St. John / Flickr",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+      "width": 3217,
+      "height": 2477,
+      "alt": "A slab of Laurion ore on museum display: dark grey galena made of many small, glinting cubic crystals, flecked with pale mineral grains, on a brownish rock base.",
+      "objectUrl": "",
+      "date": "Mineral specimen, collecting date unrecorded; photographed 30 January 2011",
+      "note": "Laurion (Lavrion) silver mines, Attica; the exact mine and the collecting date are unrecorded. On public display at the Carnegie Museum of Natural History, Pittsburgh; its exhibit label, as transcribed by the photographer, calls this an ore sample from the silver mines of Laurium, galena with sphalerite in limestone. The photographer identifies it as argentiferous (silver-bearing) galena; no silver content is stated and none is visible. A modern mineral specimen, not an ancient find, and not ore from any particular coin. Part of the exhibit label shows at the upper right. CC BY 2.0 as displayed on the photographer's Flickr page on 23 September 2026.",
+      "crop": "none",
+      "changes": "No crop, retouching, upscaling or AI enhancement. The viewer and the full-resolution link open the photographer's unchanged 3,217 × 2,477 original.",
+      "reuseStatus": "cc-by-2.0"
     },
     "bnf-pi-iii-1475-obverse": {
       "id": "bnf-pi-iii-1475-obverse",

@@ -64,12 +64,13 @@ with sync_playwright() as p:
 
     # Guided geography uses native controls and keeps one complete reading panel
     # visible. Since 21 September 2026 the explorer lives in chapter 05
-    # ("An owl beyond Attica"); chapter 01 keeps one static Attica map instead.
+    # ("An owl beyond Attica"). Since 23 September 2026 chapter 01 shows a
+    # photograph of Laurion ore where its static Attica map was, and no map.
     check(page.locator('#beyond #geography-explorer').count() == 1, 'The explorer sits in chapter 05')
     check(page.locator('#origins #geography-explorer').count() == 0, 'Chapter 01 has no explorer')
-    check(page.locator('#origins .origins-map .geo-focus-map').count() == 1,
-          'Chapter 01 draws one static Athens & Attica map')
-    check(page.locator('#origins .geo-focus-map').count() == 1, 'Chapter 01 draws no second map')
+    check(page.locator('#origins .origins-photo [data-image="laurion-galena"]').count() == 1,
+          'Chapter 01 shows the Laurion ore photograph')
+    check(page.locator('#origins .geo-focus-map, #origins .geo-locator-map').count() == 0, 'Chapter 01 draws no map')
     for place in DATA['geography']['places']:
         button = page.locator(f'[data-geography="{place["id"]}"]')
         button.focus()

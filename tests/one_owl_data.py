@@ -99,7 +99,7 @@ page_data = inline_data(html)
 text = re.sub(r'\s+', ' ', ' '.join(document.parts))
 ids = [attrs['id'] for _, attrs in document.elements if attrs.get('id')]
 
-check(len(atlas['images']) == 17, 'The 17 atlas photographs remain a separate collection')
+check(len(atlas['images']) == 18, 'The 18 atlas photographs remain a separate collection')
 check(sum(i.get('reuseStatus') == 'review-pending' for i in atlas['images'].values()) == 6,
       'All six original unresolved reuse flags remain')
 check(set(journey['images']) == set(ORIGINALS), 'Companion has exactly the four supplied photos')

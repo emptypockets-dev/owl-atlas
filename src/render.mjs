@@ -67,6 +67,7 @@ export const photoSizes = {
   'family-photo': '25vw',
   'artifact-static-photo': '40vw',
   'close-reading-photograph': '(max-width: 900px) 90vw, 600px',
+  'origins-photo': '(max-width: 900px) 92vw, 40vw',
 };
 
 /** The hero disc is never wider than 620 CSS pixels, and the close reading's
@@ -377,13 +378,10 @@ function geoAreaLayers(areaId, selected, patternId = '') {
   const defs = selected ? `<defs><path id="${areaId}" pathLength="1" d="${selected}"/></defs>` : '';
   return `${defs}<use class="geo-area-glow" href="#${areaId}"/><use class="geo-area-glow geo-area-glow-inner" href="#${areaId}"/><use class="geo-area" href="#${areaId}"${patternId ? ` style="fill:url(#${patternId})"` : ''}/><use class="geo-area-trace" href="#${areaId}"/>`;
 }
-// `idBase` exists so one place can be drawn in two places on the same document
-// without colliding ids: chapter 01 draws Attica on its own, chapter 05 draws it
-// again inside the explorer. Everything else about the two drawings is identical.
-function geographyMap(place, geometry, locator = false, idBase = null) {
+function geographyMap(place, geometry, locator = false) {
   const width = locator ? 360 : 720, height = locator ? 190 : 450;
   const projection = geoProjection(locator ? (place.id === 'athens' ? [18,33.5,30,43] : [7,10,78,47]) : place.bounds, width, height);
-  const id = `${idBase || `geo-${place.id}`}-${locator ? 'locator' : 'map'}`;
+  const id = `geo-${place.id}-${locator ? 'locator' : 'map'}`;
   const countries = Object.entries(geometry.countries).filter(([code]) => locator || place.id !== 'athens' || code !== 'GRC').map(([, country]) => country);
   if (!locator && place.id === 'athens') countries.push(...Object.values(geometry.greekRegions));
   const base = countries.map(country => geoPath(country.rings, projection)).filter(Boolean);
@@ -436,18 +434,6 @@ function geographyReachMap(places, geometry, projection) {
   const layer = (className, hatched = false) => places.map(p => `<use class="${className}" data-geo-reach="${escapeHtml(p.id)}" href="#geo-reach-${escapeHtml(p.id)}"${hatched && p.approximate ? ' style="fill:url(#geo-reach-hatch)"' : ''}/>`).join('');
   return `<svg class="geo-reach-map" viewBox="0 0 360 190" aria-hidden="true" focusable="false">${geoGround(360,190,'geo-world-outlines')}<path class="geo-home" d="${geoPath(geometry.countries.GRC.rings, projection)}"/>${layer('geo-reach-halo')}${layer('geo-reach-area', true)}<use class="geo-boundaries" href="#geo-world-outlines"/><circle class="geo-city" cx="${ax.toFixed(1)}" cy="${ay.toFixed(1)}" r="3"/></svg>`;
 }
-/** Chapter 01's single map: the explorer's own Athens & Attica view, drawn once
- *  as a static figure. Same projection, same scale bar, north mark and labels;
- *  no buttons, no panel, no second locator, nothing for a reader to operate. The
- *  eight-place explorer in chapter 05 still owns the interactive version, and
- *  this figure carries its own id base so both can stand in one document. */
-export function atticaLocatorMarkup(data, geometry) {
-  const place = data.geography.places.find((entry) => entry.id === 'athens');
-  if (!place) throw new Error('The geography data has no Athens & Attica place.');
-  return `<figure class="geo-focus origins-map">${geographyMap(place, geometry, false, 'geo-attica-opening')}`
-    + `<figcaption><span class="geo-legend-swatch" aria-hidden="true"></span>${escapeHtml(place.legend)}. ${escapeHtml(place.mapNote)}</figcaption></figure>`;
-}
-
 export function geographyMarkup(data, geometry) {
   const places = data.geography.places;
   const worldProjection = geoProjection([7,10,78,47],360,190);
