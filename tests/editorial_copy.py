@@ -110,7 +110,7 @@ check('not an ancient find' in origins_html,
       'The ore photograph is presented as a museum specimen, not an ancient find')
 check('cupellation' in origins_html and 'data-source="laurion-cupellation"' in origins_html,
       'Chapter 01 explains ore to lead to silver, with its source')
-check('SILVER FROM LAURION' in visible_copy and 'First the silver.' in visible_copy,
+check('SILVER FROM LAURION' in visible_copy and 'Before the owl,' in visible_copy,
       'Chapter 01 is about the silver')
 beyond_html = home_html[home_html.index('id="beyond"'):home_html.index('id="evidence"')]
 check('id="geography-explorer"' in beyond_html, 'The explorer now lives in chapter 05')
