@@ -7926,6 +7926,19 @@ html.motion-off .close-reading-marker { transition:none; }
 }
 /* === end CHUNK 6 / STORY ORDER =========================================== */
 
+/* === HOLD / SHARE-CARD MAKER HIDDEN =========================================
+   Owner request, 23 September 2026: keep the card maker built but offer no way
+   in for now. Delete this block to bring back the hero invitation, the chapter
+   bar control and the creator kit's pointer. The dialog markup, script and
+   checks stay as they are. */
+#hero-share-card,
+#share-card-open,
+.kit-links p:has(> a[href="/#share-card"]),
+p:has(> a[href="/#share-card"]) {
+  display:none !important;
+}
+/* === end HOLD / SHARE-CARD MAKER HIDDEN === */
+
   </style>
  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://theowlatlas.com/#organization","name":"The Owl Atlas","url":"https://theowlatlas.com/"},{"@type":"Article","@id":"https://theowlatlas.com/one-owl/#page","url":"https://theowlatlas.com/one-owl/","mainEntityOfPage":"https://theowlatlas.com/one-owl/","name":"2,400 Years. Still Here. — One Owl’s Survival | The Owl Atlas","headline":"2,400 Years. Still Here. — One Owl’s Survival | The Owl Atlas","description":"Follow one Mint State Athenian owl across 2,400 years: original photographs, the scale of human generations, and its documented modern appearances.","image":"https://theowlatlas.com/social/one-owl.png","inLanguage":"en","dateModified":"2026-09-16","author":{"@id":"https://theowlatlas.com/#organization"},"publisher":{"@id":"https://theowlatlas.com/#organization"},"isPartOf":{"@id":"https://theowlatlas.com/#website"}}]}</script>
  </head>
@@ -10708,7 +10721,7 @@ if (identifyForm) {
 function openShareCardFromHash() {
   if (location.hash !== '#share-card') return;
   const trigger = document.getElementById('hero-share-card');
-  if (!trigger) return;
+  if (!trigger || getComputedStyle(trigger).display === 'none') return;
   history.replaceState(null, '', location.pathname + location.search);
   trigger.click();
 }
@@ -10767,6 +10780,16 @@ if (closeReadingPanels.length && data.closeReading) {
     faceControl.hidden = false;
   }
 }
+
+// While the card maker is on hold (see the HOLD block at the end of styles.css)
+// the /#share-card hash must not open it either.
+window.addEventListener('hashchange', (event) => {
+  const trigger = document.getElementById('hero-share-card');
+  if (location.hash === '#share-card' && trigger && getComputedStyle(trigger).display === 'none') {
+    history.replaceState(null, '', location.pathname + location.search);
+    event.stopImmediatePropagation();
+  }
+}, true);
 
 })();
   </script>

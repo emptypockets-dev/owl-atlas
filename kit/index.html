@@ -7926,6 +7926,19 @@ html.motion-off .close-reading-marker { transition:none; }
 }
 /* === end CHUNK 6 / STORY ORDER =========================================== */
 
+/* === HOLD / SHARE-CARD MAKER HIDDEN =========================================
+   Owner request, 23 September 2026: keep the card maker built but offer no way
+   in for now. Delete this block to bring back the hero invitation, the chapter
+   bar control and the creator kit's pointer. The dialog markup, script and
+   checks stay as they are. */
+#hero-share-card,
+#share-card-open,
+.kit-links p:has(> a[href="/#share-card"]),
+p:has(> a[href="/#share-card"]) {
+  display:none !important;
+}
+/* === end HOLD / SHARE-CARD MAKER HIDDEN === */
+
   </style>
  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://theowlatlas.com/#organization","name":"The Owl Atlas","url":"https://theowlatlas.com/"},{"@type":"CreativeWork","@id":"https://theowlatlas.com/kit/#page","url":"https://theowlatlas.com/kit/","mainEntityOfPage":"https://theowlatlas.com/kit/","name":"Creator kit: images, facts and credits — The Owl Atlas","headline":"Creator kit: images, facts and credits — The Owl Atlas","description":"Rights-cleared owl coin photographs to download, ten facts with the source behind each one, ready-made credit lines and share cards. Free to use; credit The Owl Atlas.","image":"https://theowlatlas.com/social/kit.png","inLanguage":"en","dateModified":"2026-09-16","author":{"@id":"https://theowlatlas.com/#organization"},"publisher":{"@id":"https://theowlatlas.com/#organization"},"isPartOf":{"@id":"https://theowlatlas.com/#website"}}]}</script>
  </head>
@@ -11052,7 +11065,7 @@ if (identifyForm) {
 function openShareCardFromHash() {
   if (location.hash !== '#share-card') return;
   const trigger = document.getElementById('hero-share-card');
-  if (!trigger) return;
+  if (!trigger || getComputedStyle(trigger).display === 'none') return;
   history.replaceState(null, '', location.pathname + location.search);
   trigger.click();
 }
@@ -11111,6 +11124,16 @@ if (closeReadingPanels.length && data.closeReading) {
     faceControl.hidden = false;
   }
 }
+
+// While the card maker is on hold (see the HOLD block at the end of styles.css)
+// the /#share-card hash must not open it either.
+window.addEventListener('hashchange', (event) => {
+  const trigger = document.getElementById('hero-share-card');
+  if (location.hash === '#share-card' && trigger && getComputedStyle(trigger).display === 'none') {
+    history.replaceState(null, '', location.pathname + location.search);
+    event.stopImmediatePropagation();
+  }
+}, true);
 
 })();
   </script>

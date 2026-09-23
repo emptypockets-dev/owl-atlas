@@ -7886,3 +7886,16 @@ html.motion-off .close-reading-marker { transition:none; }
   .continue-cards a:hover { background:none; }
 }
 /* === end CHUNK 6 / STORY ORDER =========================================== */
+
+/* === HOLD / SHARE-CARD MAKER HIDDEN =========================================
+   Owner request, 23 September 2026: keep the card maker built but offer no way
+   in for now. Delete this block to bring back the hero invitation, the chapter
+   bar control and the creator kit's pointer. The dialog markup, script and
+   checks stay as they are. */
+#hero-share-card,
+#share-card-open,
+.kit-links p:has(> a[href="/#share-card"]),
+p:has(> a[href="/#share-card"]) {
+  display:none !important;
+}
+/* === end HOLD / SHARE-CARD MAKER HIDDEN === */

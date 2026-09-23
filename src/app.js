@@ -951,7 +951,7 @@ if (identifyForm) {
 function openShareCardFromHash() {
   if (location.hash !== '#share-card') return;
   const trigger = document.getElementById('hero-share-card');
-  if (!trigger) return;
+  if (!trigger || getComputedStyle(trigger).display === 'none') return;
   history.replaceState(null, '', location.pathname + location.search);
   trigger.click();
 }
@@ -1010,3 +1010,13 @@ if (closeReadingPanels.length && data.closeReading) {
     faceControl.hidden = false;
   }
 }
+
+// While the card maker is on hold (see the HOLD block at the end of styles.css)
+// the /#share-card hash must not open it either.
+window.addEventListener('hashchange', (event) => {
+  const trigger = document.getElementById('hero-share-card');
+  if (location.hash === '#share-card' && trigger && getComputedStyle(trigger).display === 'none') {
+    history.replaceState(null, '', location.pathname + location.search);
+    event.stopImmediatePropagation();
+  }
+}, true);
