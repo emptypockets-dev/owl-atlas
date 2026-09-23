@@ -70,8 +70,9 @@ both belong to the same coin; see `research/early-classical-findings.json`.
   aftermath (404 BCE); 04 The redesign (New Style); 05 An owl beyond Attica — the Sabakes
   example and the eight-region geographic explorer; 06 How we know — four kinds of evidence
   and Nikophon's law of 375/4 BCE; 07 The owl today. A compact continue row follows
-  chapter 07, and the One Owl invitation ends the page. Every chapter closes with a
-  one-line link to the next section.
+  chapter 07 with two links, the reference atlas and its sources and image credits,
+  and the One Owl invitation ends the page. Every chapter closes with a one-line link
+  to the next section; a hairline marks where chapter 02's dark ground meets 03.
   The home page was reordered on 21 September 2026 so the reader meets the coin before the
   maps; the explorer moved from chapter 01 to chapter 05 whole, with every deep link intact.
   Two chapters were removed earlier the same day at the owner's request: the
@@ -102,6 +103,10 @@ both belong to the same coin; see `research/early-classical-findings.json`.
   on 21 September 2026; its archive is in `research/previous-close-reading/`, and
   the artifact camera module remains in `src/` but is no longer built in.
 - A dedicated `/atlas/` reference page contains the comparison tool, eight-family atlas, glossary, bibliography and image-use records. The homepage ends with a short invitation to explore it. Old reference bookmarks redirect to the new page.
+  The "Which owl does this resemble?" identifier that stood above the comparison tool,
+  and the `/kit/` creator kit page, were removed on 23 September 2026 at the owner's
+  request. The kit's template is archived, unbuilt, in `research/kit-page-archived/`;
+  the sources it cited stay in the bibliography.
 - A two-column, eight-family comparison atlas. Pi-style additionally has separate
   Pi II/Pi III specimen selectors, and story links preset meaningful comparisons.
 - A native-dialog image viewer with source/rights metadata, fitted-size zoom,

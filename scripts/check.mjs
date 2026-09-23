@@ -170,10 +170,7 @@ check(/<link as="image"[^>]*\bimagesrcset="[^"]*public\/images\/derived\/[^"]*"[
 check(!/<link as="image"[^>]*rel="preload"/.test(atlas + pricing + journey), 'Only the homepage preloads the hero photograph');
 // Share cards and structured data: every page must unfurl with its own picture
 // and describe itself to search engines without drifting from src/content.json.
-// Sitemap and share-card coverage. /kit/ has no entry in `documents` above, so
-// the head-metadata loop simply skips it; the kit page gets its own head, link
-// and structured-data checks in the CHUNK 4 / KIT block at the end of this file.
-const socialPages = new Map([['/','home'],['/pricing/','pricing'],['/one-owl/','one-owl'],['/atlas/','atlas'],['/kit/','kit']]);
+const socialPages = new Map([['/','home'],['/pricing/','pricing'],['/one-owl/','one-owl'],['/atlas/','atlas']]);
 const reviewPending = new Set(Object.values(data.images).filter(image => image.reuseStatus === 'review-pending').map(image => image.url));
 for (const [pathname, document] of documents) {
   const page = socialPages.get(pathname);
@@ -564,281 +561,6 @@ check(appScript.includes("geographyExplorer.querySelector('[data-animate-on-view
 check(!/scrollIntoView|scrollTo/.test(appScript.slice(appScript.indexOf('const geographyExplorer'), appScript.indexOf('// Inline citations'))),
   'The geographic block never moves the page for the reader');
 
-/* === CHUNK 4 / IDENTIFIER ================================================ */
-// "Which owl does this resemble?" is a resemblance flow, never an attribution
-// one. These checks hold three things at once: every family carries a complete,
-// source-backed trait block; the reference page renders the flow and its
-// scriptless decision table; and the wording stays out of authentication
-// territory.
-const IDENTIFY_TRAITS = ['eye', 'crest', 'helmetPi', 'wreath', 'amphoraAndMagistrates', 'localLettering'];
-const IDENTIFY_VALUES = {
-  eye: ['frontal', 'profile', 'varies'],
-  crest: ['full', 'partial-or-off-flan', 'varies'],
-  helmetPi: [true, false, 'varies'],
-  wreath: [true, false, 'varies'],
-  amphoraAndMagistrates: [true, false, 'varies'],
-  localLettering: [true, false, 'varies'],
-};
-for (const family of data.families) {
-  const identify = family.identify;
-  check(Boolean(identify), `${family.id}: no identify block`);
-  check(typeof identify.styleNote === 'string' && identify.styleNote.length > 40, `${family.id}: identify needs a readable styleNote`);
-  check(Object.keys(identify).every(key => key === 'styleNote' || IDENTIFY_TRAITS.includes(key)), `${family.id}: unexpected identify key`);
-  for (const trait of IDENTIFY_TRAITS) {
-    const record = identify[trait];
-    check(Boolean(record) && typeof record === 'object', `${family.id}: identify.${trait} is missing`);
-    check(IDENTIFY_VALUES[trait].includes(record.value), `${family.id}: identify.${trait} has an unknown value ${JSON.stringify(record.value)}`);
-    check(Array.isArray(record.refs) && record.refs.length > 0, `${family.id}: identify.${trait} cites no source`);
-    record.refs.forEach(id => check(ids.has(id), `${family.id}: identify.${trait} cites an unknown source ${id}`));
-  }
-}
-// An unrecorded trait must never narrow, so every answer has to leave at least
-// the families that record it as "varies" standing.
-const identifyValue = (family, trait) => {
-  const raw = family.identify[trait].value;
-  return raw === true ? 'yes' : raw === false ? 'no' : raw;
-};
-for (const trait of IDENTIFY_TRAITS) {
-  const recorded = data.families.filter(family => identifyValue(family, trait) !== 'varies');
-  check(recorded.length > 0, `identify.${trait} is recorded for no family, so its question can never narrow`);
-  check(new Set(data.families.map(family => identifyValue(family, trait))).size > 1, `identify.${trait} is identical across all eight families`);
-}
-const identifySection = atlas.match(/<section class="identify" id="identify"[\s\S]*?<\/section>\s*<div class="compare-tools">/)?.[0] || '';
-check(Boolean(identifySection), 'The reference page renders the identifier before the comparison tool');
-check(!/\{\{IDENTIFIER\}\}/.test(atlas + template + pricing + journey), 'The identifier token is resolved everywhere');
-check(html.includes('href="atlas/#identify"'), 'The homepage invites readers into the identifier');
-// Questions: native radios in a real form, each group with an answer that keeps
-// every family, and each illustration drawn from a rights-cleared photograph.
-const identifyGroups = [...identifySection.matchAll(/<fieldset class="identify-question" data-identify-trait="([^"]+)"[\s\S]*?<\/fieldset>/g)];
-check(identifyGroups.length === IDENTIFY_TRAITS.length, `Every recorded trait gets a question: ${identifyGroups.length}`);
-for (const [group, trait] of identifyGroups) {
-  check(IDENTIFY_TRAITS.includes(trait), `Unknown identifier question trait: ${trait}`);
-  const radios = [...group.matchAll(/<input type="radio" id="[^"]*" name="identify-([^"]+)" value="([^"]*)"/g)];
-  check(radios.length >= 3, `${trait}: a question needs at least two answers and an opt-out`);
-  check(radios.every(([, name]) => name === trait), `${trait}: every radio belongs to its own group`);
-  check(radios.filter(([, , value]) => value === '').length === 1, `${trait}: exactly one "not sure" answer that keeps every family`);
-  check(/value="" checked>/.test(group), `${trait}: the flow opens with nothing ruled out`);
-  check(/<legend>/.test(group), `${trait}: the question is a labelled group`);
-  const illustrated = [...group.matchAll(/data-photo="([^"]+)"/g)].map(match => match[1]);
-  check(illustrated.length > 0, `${trait}: the question shows what to look at`);
-  for (const id of illustrated) {
-    check(Boolean(data.images[id]), `${trait}: unknown illustration ${id}`);
-    check(data.images[id].reuseStatus !== 'review-pending', `${trait}: a reuse-review-pending photograph must not illustrate a question`);
-  }
-}
-check(/<button class="identify-reset" id="identify-reset" type="reset">Start again<\/button>/.test(identifySection), 'The flow can be started again');
-check(/<form class="identify-form" id="identify-form" hidden>/.test(identifySection), 'The form is revealed by script, so it is never inert');
-check(/id="identify-status" role="status" aria-live="polite"/.test(identifySection), 'The result panel announces itself politely');
-// Result cards: every family, both faces, its pricing note and, where one
-// exists, the comparison preset the story already uses.
-const identifyCards = [...identifySection.matchAll(/<article class="identify-card" data-identify-family="([^"]+)" data-identify-traits="([^"]*)"[\s\S]*?(?=<article class="identify-card"|<\/template>)/g)];
-check(identifyCards.length === data.families.length, 'Every family has a result card');
-for (const [card, id, traits] of identifyCards) {
-  const family = data.families.find(entry => entry.id === id);
-  check(Boolean(family), `Unknown identifier result card: ${id}`);
-  const recorded = JSON.parse(traits.replace(/&quot;/g, '"'));
-  for (const trait of IDENTIFY_TRAITS) check(recorded[trait] === identifyValue(family, trait), `${id}: card trait ${trait} differs from src/content.json`);
-  check(card.includes('class="family-faces"'), `${id}: the result card shows both faces`);
-  for (const side of ['obverse', 'reverse']) if (family[side]) check(card.includes(`data-photo="${family[side]}"`), `${id}: the result card lost its ${side}`);
-  check(card.includes(`href="#family-${id}"`), `${id}: the result card links to the full family entry`);
-  if (data.market?.familyNotes?.[id]) check(/class="family-market"/.test(card) && /pricing\//.test(card), `${id}: the result card keeps its pricing note link`);
-  if (family.specimens?.length) check(/data-compare-preset="(pi-pair|late-bridge)"/.test(card), `${id}: the result card keeps its comparison preset link`);
-}
-// The scriptless decision table is the whole feature in static HTML.
-const identifyTable = identifySection.match(/<table class="identify-table">[\s\S]*?<\/table>/)?.[0] || '';
-check(Boolean(identifyTable), 'The identifier renders a decision table without JavaScript');
-check(/<details class="identify-reference" id="identify-reference" open>/.test(identifySection), 'The table is open until script collapses it');
-for (const family of data.families) check(identifyTable.includes(`>${escapeHtml(family.name)}</a>`), `The decision table lists ${family.name}`);
-check((identifyTable.match(/<tr><th scope="row">/g) || []).length === data.families.length, 'The decision table has one row per family');
-for (const trait of IDENTIFY_TRAITS) {
-  for (const family of data.families) {
-    for (const id of family.identify[trait].refs) {
-      check(identifyTable.includes(`data-source="${id}"`) || identifySection.includes(`data-source="${id}"`), `The identifier shows the source ${id} behind ${family.id}/${trait}`);
-    }
-  }
-}
-const identifyReadings = identifySection.match(/<ul class="identify-readings">[\s\S]*?<\/ul>/)?.[0] || '';
-check((identifyReadings.match(/<li>/g) || []).length >= 3, 'The table opens with worked "if … look at …" readings');
-check(/If .*?, look at the <strong>/.test(identifyReadings), 'Each reading names the families it points at');
-// Resemblance, never authentication. AGENTS.md rules out authentication advice,
-// so the caution has to be visible and these words must not appear in the flow.
-const identifyCopy = identifySection.replace(/<[^>]*>/g, ' ');
-check(/resemblance, not attribution/i.test(identifyCopy), 'The identifier states that it narrows a resemblance');
-check(/only physical examination and a specialist opinion can attribute a coin/i.test(identifyCopy),
-  'The identifier says what it cannot do, in the open');
-for (const word of ['authenticate', 'authentication', 'genuine', 'guarantee', 'certif']) {
-  check(!new RegExp(word, 'i').test(identifyCopy), `The identifier must not use the word "${word}"`);
-}
-// The result cards carry the pricing notes the family grid already shows, and
-// those name grades and values to disclaim them in their own wording. This
-// narrower slice is the identifier's own prose: caution, questions, readings
-// and table, with the parked result cards taken out.
-const identifyOwnCopy = identifySection.replace(/<template[\s\S]*?<\/template>/, ' ').replace(/<[^>]*>/g, ' ');
-for (const word of ['grade', 'value', 'appraise', 'worth', 'price']) {
-  const used = [...identifyOwnCopy.matchAll(new RegExp(`\\b${word}\\w*`, 'gi'))].map(match => match[0]);
-  check(used.every(instance => new RegExp(`(?:not|never|nor|neither)[^.]{0,80}${instance}`, 'i').test(identifyOwnCopy)),
-    `The identifier's own copy only mentions "${word}" to disclaim it`);
-}
-// Styles and behaviour: one self-contained appended block each, with the flow
-// still enhancement rather than a dependency.
-const IDENTIFIER_END = 'end CHUNK 4 / IDENTIFIER';
-const identifierCss = styles.slice(styles.indexOf('/* === CHUNK 4 / IDENTIFIER'), styles.indexOf(IDENTIFIER_END) + IDENTIFIER_END.length);
-check(identifierCss.includes(IDENTIFIER_END), 'The identifier styles are one self-contained block');
-check(inlineStyles.includes('.identify-answer {'), 'The built CSS carries the identifier answers');
-check(/\.identify-answer\s*\{[^}]*min-height:44px/.test(identifierCss), 'Every answer is a 44 px target');
-for (const guard of ['html.motion-off .identify-answer', '@media (prefers-reduced-motion:reduce)']) {
-  check(identifierCss.includes(guard), `The identifier transitions are switched off for ${guard}`);
-}
-check(!/\.identify-form\s*\{[^}]*display:/.test(identifierCss), 'Nothing overrides the hidden attribute on the identifier form');
-check(appScript.includes("const identifyForm = byId('identify-form')"), 'The identifier flow is wired in src/app.js');
-check(/identifyForm\.hidden = false/.test(appScript), 'Script reveals the questions rather than markup hiding content from a reader without it');
-check(!/scrollIntoView|scrollTo/.test(appScript.slice(appScript.indexOf("const identifyForm"))),
-  'The identifier never moves the page for the reader');
-// --- CHUNK 4 / KIT -------------------------------------------------------
-// The creator kit hands photographs and claims to strangers, so the things it
-// must never get wrong are exactly the things checked here: a photograph whose
-// reuse review is open must not appear, a download must resolve to a file that
-// is actually published, and every fact must still be attached to a source
-// record. The kit page is not in the `documents` map above, so it also gets its
-// own head, identifier and internal-link checks.
-const kit = await readFile(path.join(root, 'kit/index.html'), 'utf8');
-const kitMarkup = kit.replace(/<script[^>]*>[\s\S]*?<\/script>/g, '');
-check(kit.includes('href="https://theowlatlas.com/kit/" rel="canonical"'), '/kit/: correct canonical URL');
-check(kit.includes('<title>Creator kit: images, facts and credits — The Owl Atlas</title>'), '/kit/: its own title');
-check((kitMarkup.match(/<h1\b/g) || []).length === 1, '/kit/: one main heading');
-check(!/\{\{[A-Z]|INLINE_(STYLES|SCRIPT|DATA)|__\w+_URL__/.test(kit), '/kit/: no unrendered template tokens');
-const kitIds = [...kitMarkup.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
-check(new Set(kitIds).size === kitIds.length, '/kit/: unique IDs');
-for (const [, attrs, script] of kit.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)) {
-  if (!/application\/(ld\+)?json/.test(attrs)) { new vm.Script(script); tests++; }
-}
-check(kitMarkup.includes('<span class="chrome-utility-page">CREATOR KIT</span>'), '/kit/: the chrome strip names the page');
-check(kitMarkup.includes('Skip to the creator kit'), '/kit/: the skip link names this page');
-const kitGraph = JSON.parse(kit.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];
-const kitWork = kitGraph.find(node => node['@type'] === 'CreativeWork');
-check(Boolean(kitWork) && kitWork.url === 'https://theowlatlas.com/kit/', '/kit/: a CreativeWork node for this URL');
-check(kitWork.image === `https://theowlatlas.com/social/${data.social.kit.file}`, '/kit/: JSON-LD image is the kit card');
-check(!kitGraph.some(node => node['@type'] === 'ImageObject'),
-  '/kit/: the kit republishes licences, not an image register, so it declares no ImageObject');
-// The four sections the kit promises, each addressable from outside.
-for (const [id, heading] of [['pictures', 'Use these'], ['facts', 'Say these'], ['credit', 'Link'], ['cards', 'Share']]) {
-  check(kitMarkup.includes(`id="${id}"`), `/kit/: the ${id} section exists`);
-  check(kitMarkup.includes(`id="${id}-title"`) && kitMarkup.includes(heading), `/kit/: the ${id} section is headed`);
-}
-// Nothing whose reuse review is open may be shown, offered or named here, and
-// the kit must not quietly drop a photograph that is cleared either.
-const kitCleared = Object.entries({...data.images, ...companion.images})
-  .filter(([, image]) => image.reuseStatus !== 'review-pending');
-for (const [id, image] of Object.entries({...data.images, ...companion.images})) {
-  const shown = kitMarkup.includes(`id="kit-image-${id}"`);
-  if (image.reuseStatus === 'review-pending') {
-    check(!shown, `/kit/: ${id} is reuse-review-pending and must not be listed`);
-    // The shared data island every page inlines still carries the record; what
-    // must not happen is the kit showing, linking or offering the file.
-    check(!kitMarkup.includes(escapeHtml(image.url)), `/kit/: ${id}'s file must not be shown or linked on the page`);
-  } else {
-    check(shown, `/kit/: ${id} is cleared for reuse and belongs in the gallery`);
-  }
-}
-check((kitMarkup.match(/class="kit-image"/g) || []).length === kitCleared.length,
-  `/kit/: the gallery lists exactly the ${kitCleared.length} rights-cleared photographs`);
-check(kitMarkup.includes('../atlas/#image-reuse-policy'), '/kit/: links the image-use policy on the reference page');
-// Every download resolves: a derived file the build declared, a repository file
-// prepare-deploy stages, or an https original at the museum or on Commons.
-const kitDownloads = [...kitMarkup.matchAll(/<a class="kit-download"[^>]*href="([^"]+)"/g)].map(match => match[1]);
-check(kitDownloads.length >= kitCleared.length, '/kit/: every photograph offers at least one download');
-for (const href of new Set(kitDownloads)) {
-  if (/^https:\/\//.test(href)) { tests++; continue; }
-  // A file link names a file; a rights-record link on this site names a page.
-  const route = href.split('#')[0];
-  const relative = route.startsWith('/social/') ? `public${route}` : route.replace(/^\.\.\//, '');
-  const target = relative.endsWith('/') ? `${relative}index.html` : relative;
-  if (target.startsWith('public/images/derived/')) {
-    check(declaredDerivatives.has(target), `/kit/: ${href} is not a derived file the build declared`);
-  }
-  check((await stat(path.join(root, target))).isFile(), `/kit/: ${href} does not resolve to a published file`);
-}
-check(!kitDownloads.some(href => /^http:\/\//.test(href)), '/kit/: no download is offered over plain HTTP');
-// A credit line for every photograph, carrying the licence it has to name.
-for (const [id, image] of kitCleared) {
-  const credit = kitMarkup.match(new RegExp(`<code class="kit-code" id="kit-credit-${id}">([^<]*)</code>`))?.[1] || '';
-  check(credit.length > 0, `/kit/: ${id} has a ready-made credit line`);
-  check(credit.includes(escapeHtml(image.license)) && credit.includes(escapeHtml(image.licenseUrl)),
-    `/kit/: ${id}'s credit names its licence and links the deed`);
-  check(credit.includes(image.reuseStatus === 'cc-by-4.0' ? escapeHtml(REQUIRED_CREDIT) : escapeHtml(image.credit)),
-    `/kit/: ${id}'s credit names the party the licence says to attribute`);
-}
-// Share-alike is a condition a creator can breach by accident, so it is stated
-// on the photograph rather than only in the section introduction.
-for (const [id, image] of kitCleared) {
-  if (image.license !== 'CC BY-SA 3.0') continue;
-  check(kitMarkup.includes(`data-terms="share-alike" href="${escapeHtml(image.licenseUrl)}"`),
-    `/kit/: ${id} is CC BY-SA and must be flagged share-alike`);
-}
-// Ten facts, each attached to a source record that exists.
-const kitFacts = [...kitMarkup.matchAll(/<li class="kit-fact" id="fact-[^"]+">[\s\S]*?<\/li>\s*(?=<li class="kit-fact"|<\/ol>)/g)].map(match => match[0]);
-check(kitFacts.length === 10, `/kit/: ten facts, got ${kitFacts.length}`);
-for (const fact of kitFacts) {
-  const cited = [...fact.matchAll(/data-source="([^"]+)"/g)].map(match => match[1]);
-  check(cited.length > 0, '/kit/: a fact with no citation');
-  for (const id of cited) check(ids.has(id), `/kit/: a fact cites an unknown source ${id}`);
-  check(/<details class="kit-fact-note">/.test(fact), '/kit/: a fact without its qualifications');
-  check(/<p class="kit-fact-hook">/.test(fact) && /<p class="kit-fact-expansion">/.test(fact),
-    '/kit/: a fact without both a one-liner and its expansion');
-}
-// The Mint State grade belongs to one certified coin. On this page it may be
-// named only in the warning against generalising it: never among the ten facts,
-// and nowhere else in the prose. The share cards' own alt text comes from
-// src/content.json and is checked with the cards, so images are set aside here.
-const kitProse = kitMarkup.replace(/<img\b[^>]*>/g, '');
-const kitCaution = kitProse.match(/<div class="kit-caution">[\s\S]*?<\/div>/)?.[0] || '';
-check(/Mint State/.test(kitCaution) && kitCaution.includes('NGC 2086328-049'),
-  '/kit/: the one-coin warning names the certificate the grade belongs to');
-for (const fact of kitFacts) {
-  check(!/Mint State/i.test(fact), '/kit/: Mint State must never appear among the facts about owls as a class');
-}
-check(!/Mint State/i.test(kitProse.replace(kitCaution, '')),
-  '/kit/: Mint State is named outside the one-coin warning');
-// The five share cards, each 1200x630 and each staged by prepare-deploy.
-for (const [page, card] of Object.entries(data.social)) {
-  check(kitMarkup.includes(`href="/social/${card.file}"`), `/kit/: offers the ${page} share card`);
-  const png = await readFile(path.join(root, 'public/social', card.file));
-  check(png.readUInt32BE(16) === 1200 && png.readUInt32BE(20) === 630, `/kit/: ${card.file} is 1200x630`);
-}
-check((kitMarkup.match(/class="kit-card"/g) || []).length === Object.keys(data.social).length,
-  '/kit/: every share card the site renders is offered for download');
-check(kitMarkup.includes('href="/#share-card"'),
-  '/kit/: points at the on-site card maker, which is an ordinary link to the home page if that anchor is absent');
-// Internal links, checked here because /kit/ is not in the `documents` map. The
-// card-maker anchor is deliberately exempt: it belongs to a separate change and
-// the link is harmless until that anchor lands.
-const kitPages = new Map([['/', html], ['/pricing/', pricing], ['/one-owl/', journey], ['/atlas/', atlas], ['/kit/', kit]]);
-for (const match of kitMarkup.matchAll(/href="([^"]+)"/g)) {
-  const url = new URL(match[1], 'https://theowlatlas.com/kit/');
-  if (url.origin !== 'https://theowlatlas.com' || !url.hash) continue;
-  if (match[1] === '/#share-card') { tests++; continue; }
-  const destination = kitPages.get(url.pathname);
-  check(Boolean(destination?.includes(`id="${url.hash.slice(1)}"`)), `/kit/: valid link ${match[1]}`);
-}
-// The copy buttons are enhancement. Without JavaScript the class that shows
-// them is never added, so the credit text stays plain selectable text.
-check(/\.kit-copy \{ display:none; \}/.test(styles), 'The kit copy buttons are hidden by default');
-check(/html\.kit-js \.kit-copy \{/.test(styles), 'The kit copy buttons appear only once the kit script has run');
-check(kit.includes("document.documentElement.classList.add('kit-js')"), '/kit/: the kit script is what reveals its own buttons');
-for (const match of kitMarkup.matchAll(/<button class="kit-copy"[^>]*data-copy="([^"]+)"/g)) {
-  check(kitIds.includes(match[1]), `/kit/: a copy button points at a missing field ${match[1]}`);
-}
-check(!/\.kit-[a-z-]*\s*\{[^}]*position:(fixed|sticky)/.test(styles), 'Nothing on the kit pins itself over the reading');
-// The kit ships as a page of its own: the footer reaches it from every page and
-// prepare-deploy stages it beside the others.
-for (const [pathname, document] of documents) {
-  check(document.includes('href="/kit/"'), `${pathname}: the footer reaches the creator kit`);
-}
-check(sitemap.includes('<loc>https://theowlatlas.com/kit/</loc>'), 'The sitemap lists /kit/');
-const deployScript = await readFile(path.join(root, 'scripts/prepare-deploy.mjs'), 'utf8');
-check(deployScript.includes("copyFile(path.join(root, 'kit/index.html'), path.join(stage, 'kit/index.html'))"),
-  'prepare-deploy stages kit/index.html');
-
 /* --- CHUNK 4 / SHARE ------------------------------------------------------
    The coin-card maker may only ever draw a rights-cleared photograph, so the
    preset table is held against the two content records on disk, against the
@@ -1050,8 +772,8 @@ check(beyond.includes('data-image="sabakes"') && beyond.indexOf('data-image="sab
   'Chapter 05 opens on the Sabakes example, before the explorer');
 
 // Chapter 06, halved: four one-line kinds of evidence and one document. The
-// Nikophon wording is the phrasing already vetted in research/hooks-findings
-// and on /kit/, so the two must not drift apart.
+// Nikophon wording is the phrasing already vetted in research/hooks-findings,
+// so the two must not drift apart.
 const evidence = storySection('evidence');
 check(!evidence.includes('research-feature') && !evidence.includes('modern-coda'),
   'The research feature and euro coda have left chapter 06');
@@ -1061,7 +783,6 @@ for (const id of ['profile', 'isotopes', 'early-silver', 'law', 'mines', 'accoun
 }
 const sacredFake = 'became sacred property of the Mother of the Gods, deposited with the Council';
 check(evidence.includes(sacredFake), 'Chapter 06 tells the Nikophon story in the vetted wording');
-check(kitMarkup.includes(sacredFake), '/kit/ and chapter 06 tell it the same way');
 check(hooks.hooks.find(hook => hook.id === 'hook-sacred-fake').expansion.includes(sacredFake),
   'The vetted wording is the one the research file records');
 check(evidence.includes('Nikophon’s law of 375/4 BCE') && evidence.includes('bronze or lead core'),
@@ -1075,13 +796,15 @@ for (const id of ['ecb', 'isotopes', 'law']) {
     `${id} is still cited on the home page after the cut`);
 }
 
-// The continue row replaces the old invitation section but keeps its id.
+// The continue row replaces the old invitation section but keeps its id. With
+// the identifier and the creator kit withdrawn on 23 September 2026, it offers
+// two destinations: the reference atlas, then its sources and image credits.
 const continueRow = storySection('atlas');
 check(continueRow.includes('class="chapter section-paper continue-row"'), 'The continue row keeps the #atlas id');
-for (const href of ['atlas/', 'atlas/#identify', '/kit/']) {
-  check(continueRow.includes(`href="${href}"`), `The continue row offers ${href}`);
-}
-check((continueRow.match(/<li>/g) || []).length === 3, 'The continue row offers exactly three destinations');
+const continueTargets = [...continueRow.matchAll(/<li><a href="([^"]+)"/g)].map(match => match[1]);
+assert.deepEqual(continueTargets, ['atlas/', 'atlas/#sources'],
+  `The continue row offers the atlas, then its sources: ${continueTargets.join(', ')}`); tests++;
+check((continueRow.match(/<li>/g) || []).length === 2, 'The continue row offers exactly two destinations');
 
 // Styles: one appended block, and the dark chapter restates the control fills
 // that were painted for a paper ground.
@@ -1116,5 +839,32 @@ for (const [ink, ground, minimum, label] of [
 }
 check(storyCss.includes('#6f6233'), 'The pressed-control numeral uses the dark gold, not the paper-ground one');
 /* === end CHUNK 6 / STORY ORDER =========================================== */
+
+/* === CHUNK 7 / WITHDRAWN FEATURES AND SEAM =============================== */
+// "Which owl does this resemble?" and the /kit/ creator kit were withdrawn on
+// 23 September 2026 at the owner's request; the kit's template is archived in
+// research/kit-page-archived/ and sources 44-50 stay in the bibliography.
+// Nothing built may point at either, and nothing may build or stage /kit/.
+for (const [pathname, document] of documents) {
+  check(!/\bid="identify"|data-identify-|href="[^"]*#identify"/.test(document), `${pathname}: the withdrawn identifier is gone`);
+  check(!/href="(?:\.\.\/|\/)?kit\/"/.test(document), `${pathname}: nothing links to the withdrawn creator kit`);
+}
+check(data.families.every(family => !('identify' in family)), 'No family keeps the withdrawn identify block');
+check(!('kit' in data.social) && Object.keys(data.social).length === socialPages.size, 'One share card per published page, none for /kit/');
+check((sitemap.match(/<loc>/g) || []).length === socialPages.size && !sitemap.includes('/kit/'), 'The sitemap lists the four published pages and not /kit/');
+check(!shareBuild.includes('kit.html') && !shareBuild.includes("'kit/index.html'"), 'build.mjs no longer builds /kit/');
+const deployScript = await readFile(path.join(root, 'scripts/prepare-deploy.mjs'), 'utf8');
+check(!deployScript.includes('kit/index.html'), 'prepare-deploy no longer stages kit/index.html');
+// Chapter 02 (dark) now meets chapter 03 (ink) directly, so 404 opens on a
+// hairline. One block, appended after everything else in the sheet.
+const seamStart = styles.indexOf('/* === CHUNK 7 / SEAM');
+const seamCss = seamStart === -1 ? '' : styles.slice(seamStart);
+check(seamStart > styles.lastIndexOf('end CHUNK 6 / STORY ORDER') && seamCss.trim().endsWith('/* === end CHUNK 7 / SEAM === */'),
+  'The seam styles are one block at the end of the sheet');
+check(/\.crisis\.section-ink\s*\{[^}]*border-top:1px solid var\(--line-dark\)/.test(seamCss), 'Chapter 03 opens on a --line-dark hairline');
+check((markup.match(/class="crisis section-ink"/g) || []).length === 1 && /class="crisis section-ink"[^>]*\bid="404"/.test(markup),
+  'The seam rule reaches exactly one section, #404');
+check(inlineStyles.includes('.crisis.section-ink {'), 'The built CSS carries the seam');
+/* === end CHUNK 7 / WITHDRAWN FEATURES AND SEAM =========================== */
 
 console.log(`PASS: ${tests} structural/rendering checks; ${data.sources.length} sources; ${Object.keys(data.images).length} images; ${data.families.length} family records.\nExternal network availability and historical claims require separate review.`);
