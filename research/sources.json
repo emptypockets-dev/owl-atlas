@@ -548,5 +548,16 @@
     "scope": "The Sicilian expedition of 415 BC: the treasury giving a drachma a day to each seaman, with the trierarchs adding bounties on top of the state's pay.",
     "note": "A rate for one expedition that Thucydides presents as exceptionally costly, not a standing naval wage. Perseus publishes this translation under CC BY-SA 3.0 US.",
     "accessed": "2026-09-21"
+  },
+  {
+    "id": "laurion-cupellation",
+    "title": "Cupellation and litharge in their technological context at Laurion, Attika (Greece) – From Prehistoric to Hellenistic and early Roman periods",
+    "author": "George D. Papadimitriou · Deutsches Bergbau-Museum Bochum, Der Anschnitt Beiheft 50",
+    "year": "2023",
+    "url": "https://doi.org/10.46586/DBM.264.395",
+    "kind": "Research paper",
+    "scope": "How Laurion ore became silver: smelting in charcoal-fired shaft furnaces gave argentiferous lead, most commonly about 2,000 g of silver to a tonne of lead; cupellation under blown air then oxidised the lead to litharge (lead oxide) and left the silver.",
+    "note": "In F. Hulek, H. Lohmann, S. Nomicos and A. Hauptmann (eds), Laurion. Interdisciplinary Approaches to an Ancient Greek Mining Landscape (Deutsches Bergbau-Museum Bochum, 2023), pp. 87–104; open access. The author, of the School of Mining and Metallurgy at the National Technical University of Athens, gives the smelting charge as mainly cerussite with galena up to about 20 per cent, and silver contents of 1,000–4,000 g a tonne depending on the ore. A technical account across periods; it does not trace the silver of any particular coin.",
+    "accessed": "2026-09-23"
   }
 ]

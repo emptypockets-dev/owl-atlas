@@ -1,6 +1,6 @@
 {
   "result": "pass",
-  "checks": 80,
+  "checks": 83,
   "items": [
     "No purchase-specific framing: \\byour\\s+(?:(?:own|new|purchased|individual|specific)\\s+)*(?:coin|owl|label|slab|purchase)\\b",
     "No purchase-specific framing: \\bthe\\s+range\\s+on\\s+your\\s+label\\b",
@@ -54,7 +54,10 @@
     "Home page story order is 01-07, continue row, One Owl",
     "The One Owl invitation is the last thing before the footer",
     "The eight-region explorer has left chapter 01",
-    "Chapter 01 carries one static Attica map",
+    "Chapter 01 draws no static map",
+    "Chapter 01 shows the Laurion ore photograph",
+    "The ore photograph is presented as a museum specimen, not an ancient find",
+    "Chapter 01 explains ore to lead to silver, with its source",
     "Chapter 01 is about the silver",
     "The explorer now lives in chapter 05",
     "Deep link survives the move: athens",
@@ -78,8 +81,8 @@
     "Nothing links to the withdrawn creator kit",
     "The continue row offers the reference atlas, then its sources and image credits",
     "Data edition updated",
-    "All 41 earlier sources retained plus the nine shareable-fact references",
-    "Original 16 image records retained plus the researched early-classical reverse",
+    "All 41 earlier sources retained plus the nine shareable-fact references and the Laurion cupellation study",
+    "Original 16 image records retained plus the researched early-classical reverse and the Laurion ore photograph",
     "All three BnF specimens retained",
     "All six BnF reuse caveats retained"
   ],

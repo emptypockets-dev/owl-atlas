@@ -327,6 +327,42 @@
     "changes": "No retouching or AI enhancement. Some page layouts crop a paired plate; the viewer shows the full source image."
   },
   {
+    "id": "laurion-galena",
+    "title": "Laurion ore · argentiferous galena",
+    "url": "https://live.staticflickr.com/65535/49365343353_e79acf0fd8_o.jpg",
+    "displayUrl": "https://live.staticflickr.com/65535/49365343353_e79acf0fd8_o.jpg",
+    "source": "https://www.flickr.com/photos/jsjgeology/49365343353",
+    "credit": "James St. John / Flickr",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "width": 3217,
+    "height": 2477,
+    "alt": "A slab of Laurion ore on museum display: dark grey galena made of many small, glinting cubic crystals, flecked with pale mineral grains, on a brownish rock base.",
+    "objectUrl": "",
+    "date": "Mineral specimen, collecting date unrecorded; photographed 30 January 2011",
+    "note": "Laurion (Lavrion) silver mines, Attica; the exact mine and the collecting date are unrecorded. On public display at the Carnegie Museum of Natural History, Pittsburgh; its exhibit label, as transcribed by the photographer, calls this an ore sample from the silver mines of Laurium, galena with sphalerite in limestone. The photographer identifies it as argentiferous (silver-bearing) galena; no silver content is stated and none is visible. A modern mineral specimen, not an ancient find, and not ore from any particular coin. Part of the exhibit label shows at the upper right. CC BY 2.0 as displayed on the photographer's Flickr page on 23 September 2026.",
+    "crop": "none",
+    "changes": "No crop, retouching, upscaling or AI enhancement. The viewer and the full-resolution link open the photographer's unchanged 3,217 × 2,477 original. Page loading now uses self-hosted resized JPEG derivatives (800/1600 px, sips, quality 82), superseding any earlier page-loading note above; the full-resolution original linked here is unchanged.",
+    "reuseStatus": "cc-by-2.0",
+    "derived": {
+      "sources": [
+        {
+          "width": 800,
+          "height": 616,
+          "path": "public/images/derived/laurion-galena-800-3aaa9550.jpg",
+          "bytes": 193058
+        },
+        {
+          "width": 1600,
+          "height": 1232,
+          "path": "public/images/derived/laurion-galena-1600-23702608.jpg",
+          "bytes": 715543
+        }
+      ],
+      "placeholder": null
+    }
+  },
+  {
     "id": "bnf-pi-iii-1475-obverse",
     "title": "Pi III · Athena · BnF 1475",
     "url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Monnaie_-_T%C3%A9tradrachme%2C_Argent%2C_Ath%C3%A8nes%2C_Attique_-_btv1b8500418c_%281_of_2%29.jpg",
