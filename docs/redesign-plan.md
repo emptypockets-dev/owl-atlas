@@ -148,6 +148,15 @@ Nothing is deployed or pushed without an explicit request.
   ended"); `/kit/` drops the `#theta` short link and promises four. No source
   or image record was dropped. Chapter 02's dark ground now meets the ink-dark
   404 with no light band between them, which is worth a look at the next review.
+- Owner-requested edit, 23 September 2026: the resemblance identifier
+  (`/atlas/#identify`) and the `/kit/` creator kit are removed. The kit's
+  template is archived, unbuilt, in `research/kit-page-archived/`; sources
+  44–50 stay in the bibliography and the six BnF photographs stay on `/atlas/`.
+  The continue row now offers two links, the reference atlas and its sources
+  and image credits ("Two ways on."), the footer loses "For creators", and the
+  sitemap lists four pages. The 02/03 seam is answered: `#404` opens on a 1 px
+  `--line-dark` hairline with a little more top padding, in an appended
+  `CHUNK 7 / SEAM` block. No source or image record was dropped.
 - Polish list for chunk 5: the "Hammer" label overlaps the moving hammer
   mid-animation; hide the hero's honesty note on phones; round the focus ring
   on pill buttons; remove dead `.journey-faces` rules; distinguish the two

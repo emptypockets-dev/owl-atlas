@@ -1,3 +1,56 @@
+# Resemblance identifier and creator kit removed — 23 September 2026
+
+- Remove "Which owl does this resemble?", the six-question resemblance
+  identifier at `/atlas/#identify`, at the owner's request.
+  `identifierMarkup()` leaves `src/render.mjs`, the `{{IDENTIFIER}}` token
+  leaves `src/atlas.html`, and the self-contained `CHUNK 4 / IDENTIFIER` blocks
+  leave `src/styles.css` and `src/app.js`. The eight families lose their
+  `identify` trait blocks in `src/content.json`; every other field is
+  unchanged. The trait blocks only cited existing bibliography ids, so no
+  source or image record was dropped. `/atlas/` now runs from its heading
+  straight to the comparison tool: 21,647 px at 1440, from 24,141, and
+  34,671 px at 390, from 40,028. `/atlas/#identify` no longer has a target and
+  opens at the top of the reference page.
+- Remove the `/kit/` creator kit at the owner's request. Its template moves to
+  `research/kit-page-archived/kit.html` beside a short README; nothing builds or
+  publishes it. `build.mjs` no longer assembles the page (or imports `stat`,
+  which only the kit used), `scripts/prepare-deploy.mjs` no longer stages it,
+  and the generated sitemap lists four URLs. The kit's share card goes with it:
+  `public/social/kit.png`, `social.kit` and `kitCard()` in
+  `scripts/render-social.mjs`. So does its `CHUNK 4 / KIT` stylesheet block and
+  the footer's "For creators ↗" link on every page. Sources 44–50, first
+  gathered for the kit's facts, stay in the bibliography, and
+  `THIRD_PARTY_NOTICES.md` records the withdrawal. Once deployed, `/kit/`
+  returns 404.
+- The continue row keeps `#atlas` and becomes "Two ways on.": the reference
+  atlas (`atlas/`) and sources & image credits (`atlas/#sources`), in the same
+  card band at two columns. Chapter 07's onward cue reads "Now two ways to keep
+  going ↓".
+- Chapter 02's dark ground met chapter 03's ink with only a slight tonal step
+  once the interlude went. A `CHUNK 7 / SEAM` block appended at the end of
+  `src/styles.css` gives `#404` a full-width 1 px `--line-dark` hairline and a
+  little more top padding, 132 px from 115 (104 px from 90 at 760 px and
+  below), so the boundary reads as a chapter break. It selects
+  `.crisis.section-ink`, that section's own classes: an `[id="404"]` selector
+  inlined into every page reads as a duplicate id to the uniqueness scan. The
+  home page is 14,523 px at 1440, from 14,527, and 20,342 px at 390, from
+  20,484 (both builds measured the same way with `scripts/qa-shots.mjs`).
+- Every page is about 46 KiB lighter, the identifier's trait data and both
+  removed stylesheet blocks being inlined into each: the home page is 913 KiB,
+  from 959. `/atlas/` is 638 KiB, from 779.
+- `scripts/check.mjs` drops the identifier and kit blocks and the kit's entry in
+  the share-card and sitemap map, pins the continue row to `atlas/` then
+  `atlas/#sources`, and adds a `CHUNK 7` block: no page links to `#identify` or
+  `/kit/`, no family keeps an `identify` block, one share card per published
+  page, exactly four sitemap URLs, neither `build.mjs` nor prepare-deploy
+  builds or stages the kit, and the seam is one appended block that draws a
+  `--line-dark` hairline on the single `#404` section. `tests/editorial_copy.py`
+  checks that both features are gone and pins the continue row;
+  `tests/integration_data.py` and one check comment lose their kit wording. The
+  share-card HOLD block is untouched.
+
+---
+
 # Dotted-theta interlude removed — 23 September 2026
 
 - Remove the interlude between chapters 02 and 03, "Interlude / The city's

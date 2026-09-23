@@ -20,8 +20,6 @@ try {
   await copyFile(path.join(root, 'pricing/index.html'), path.join(stage, 'pricing/index.html'));
   await mkdir(path.join(stage, 'one-owl'));
   await copyFile(path.join(root, 'one-owl/index.html'), path.join(stage, 'one-owl/index.html'));
-  await mkdir(path.join(stage, 'kit'));
-  await copyFile(path.join(root, 'kit/index.html'), path.join(stage, 'kit/index.html'));
   await copyFile(path.join(root, 'LICENSE'), path.join(stage, 'LICENSE.txt'));
   await copyFile(path.join(root, 'THIRD_PARTY_NOTICES.md'), path.join(stage, 'THIRD_PARTY_NOTICES.txt'));
   // Explicitly publish only the source-linked market observations, not research notes.

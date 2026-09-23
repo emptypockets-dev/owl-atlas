@@ -110,7 +110,7 @@ for place in data['geography']['places']:
     check(f'id="geography-{place["id"]}"' in beyond_html, f'Deep link survives the move: {place["id"]}')
 check('class="chapter section-dark" data-chapter="02 / The classical icon"' in home_html,
       'Chapter 02 reads on a dark ground')
-# Chapter 06 keeps the wording vetted in research/hooks-findings.json and on /kit/.
+# Chapter 06 keeps the wording vetted in research/hooks-findings.json.
 evidence_html = home_html[home_html.index('id="evidence"'):home_html.index('id="pricing"')]
 sacred_fake = 'became sacred property of the Mother of the Gods, deposited with the Council'
 check(sacred_fake in evidence_html, 'Chapter 06 tells the Nikophon story in the vetted wording')
@@ -132,6 +132,17 @@ identity_html = re.search(r'<article class="close-reading-item" id="close-readin
 check(bool(identity_html) and all(f'data-source="{source}"' in identity_html.group()
                                   for source in ('acropolis', 'openlearn-theta')),
       'The ΑΘΕ reading cites acropolis and openlearn-theta')
+# "Which owl does this resemble?" and the /kit/ creator kit were withdrawn on
+# 23 September 2026 at the owner's request. The continue row now invites the
+# reader to the reference atlas and to its sources and image credits only.
+check('id="identify"' not in html and 'Which owl does this resemble?' not in visible_copy,
+      'The withdrawn resemblance identifier is gone')
+check(not re.search(r'href="(?:\.\./|/)?kit/"', html), 'Nothing links to the withdrawn creator kit')
+continue_row = re.search(r'<section class="chapter section-paper continue-row" id="atlas".*?</section>',
+                         home_html, flags=re.S)
+check(bool(continue_row) and re.findall(r'<li><a href="([^"]+)"', continue_row.group())
+      == ['atlas/', 'atlas/#sources'],
+      'The continue row offers the reference atlas, then its sources and image credits')
 check(data['edition'] == 'Research edition 03', 'Data edition updated')
 check(len(data['sources']) == 50, 'All 41 earlier sources retained plus the nine shareable-fact references')
 check(len(data['images']) == 17, 'Original 16 image records retained plus the researched early-classical reverse')

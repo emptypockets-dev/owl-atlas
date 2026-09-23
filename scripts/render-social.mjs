@@ -1,9 +1,9 @@
 /**
- * Reproducible 1200x630 social cards for the five pages.
+ * Reproducible 1200x630 social cards for the four pages.
  *
  * Node built-ins only; no npm dependency is added to the site. Source
  * photographs are downloaded into the gitignored `.cache/originals/` cache and
- * are never committed; only the five rendered PNGs under `public/social/` are.
+ * are never committed; only the four rendered PNGs under `public/social/` are.
  *
  * Rights: only CC0, public-domain, CC BY / CC BY-SA photographs and the owner's
  * own photographs may be composited here. The six BnF records carrying
@@ -303,7 +303,7 @@ function card({body, credit}) {
     `</svg>`;
 }
 
-/* ----------------------------------------------------------- the five cards */
+/* ----------------------------------------------------------- the four cards */
 
 async function homeCard() {
   const owl = await disc('classic-owl');
@@ -403,44 +403,6 @@ async function oneOwlCard() {
     svg: card({body, credit: `${owl.credit} · photographed in its holder · reuse with credit to The Owl Atlas (theowlatlas.com)`}),
     alt: data.social['one-owl'].alt,
     sources: [owl],
-  };
-}
-
-/**
- * The creator kit's own card. Three coins, one per licence family the kit
- * hands out: a CC0 museum photograph, a CC BY Wikimedia photograph and the
- * owner's CC BY 4.0 photograph. `record()` refuses a reuse-review-pending
- * photograph outright, so the six BnF files cannot reach this card either.
- */
-async function kitCard() {
-  const faces = [
-    {image: await disc('classic-owl'), label: 'CC0 1.0'},
-    {image: await disc('archaic'), label: 'CC BY 2.0'},
-    {image: await disc('owner-owl'), label: 'CC BY 4.0'},
-  ];
-  const diameter = 144;
-  const gap = 40;
-  const startX = 64 + diameter / 2;
-  const row = faces.map((face, index) => {
-    const cx = startX + index * (diameter + gap);
-    return coin(face.image, {cx, cy: 410, r: diameter / 2, ring: false}) +
-      caption(face.label.toUpperCase(), {x: cx, y: 512, size: 11, tracking: 1.3, anchor: 'middle', opacity: 0.6});
-  }).join('');
-  const body =
-    eyebrow('The creator kit \u00b7 Pictures, facts and credits', {x: 64, y: 180}) +
-    headline('Use the owl.', {x: 64, y: 246, size: 58}) +
-    headline('Credit the atlas.', {x: 64, y: 306, size: 58, italic: true}) +
-    row +
-    deck('Rights-cleared photographs,', {x: 1136, y: 380, size: 18, anchor: 'end'}) +
-    deck('ready-made credit lines and', {x: 1136, y: 408, size: 18, anchor: 'end'}) +
-    deck('ten facts with their sources.', {x: 1136, y: 436, size: 18, anchor: 'end'});
-  // One corner credit per photograph, in the order the coins appear. The owner
-  // photograph's CC BY 4.0 licence requires the credit, so it is not optional.
-  const credit = faces.map(face => face.image.shortCredit).join(' \u00b7 ');
-  return {
-    svg: card({body, credit}),
-    alt: data.social.kit.alt,
-    sources: faces.map(face => face.image),
   };
 }
 
@@ -552,7 +514,7 @@ const destinationDir = shipping ? outDir : workDir;
 if (shipping) await assertFontsLoad(renderer);
 else console.warn('\n!! librsvg ignores @font-face, so these will NOT be in Fraunces.\n   Layout check only; writing to .cache/social/ instead of public/social/.\n');
 
-const cards = {home: await homeCard(), atlas: await atlasCard(), pricing: await pricingCard(), 'one-owl': await oneOwlCard(), kit: await kitCard()};
+const cards = {home: await homeCard(), atlas: await atlasCard(), pricing: await pricingCard(), 'one-owl': await oneOwlCard()};
 for (const name of Object.keys(cards)) {
   if (!data.social[name]) throw new Error(`src/content.json has no social record for ${name}`);
 }
