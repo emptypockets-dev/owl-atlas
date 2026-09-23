@@ -289,7 +289,9 @@ screens, measures its height for deep links, and keeps all four destinations
 available. Narrow comparison panels stack while family cards retain paired
 coin faces. Text enlargement and increased spacing are checked separately.
 
-The site adds no analytics, accounts, trackers, cookies or third-party fonts: the
+The site's only measurement is cookie-free Vercel Web Analytics (authorized by
+the owner; served first-party from `/_vercel/insights/`). It adds no other
+analytics, and no accounts, trackers, cookies or third-party fonts: the
 two open-licensed display faces are served from this site's own origin, so no
 font CDN learns anything about a reader. Its only
 stored preference is the optional motion setting in browser local storage.

@@ -4,7 +4,10 @@
 
 Launch the existing Owl Atlas general-audience research edition. Preserve its
 editorial design and source-grounded content. Do not rebuild it in React/Next.js,
-introduce a CMS, add dependencies, add analytics or redesign it just to deploy.
+introduce a CMS, add dependencies or redesign it just to deploy. Cookie-free
+Vercel Web Analytics was authorized by the owner on 21 September 2026 and enabled
+on 23 September 2026 (one `/_vercel/insights/script.js` tag in `src/page.html`);
+no other analytics or tracking is permitted.
 If an existing repository requires integration, make the smallest compatible change.
 The owner has requested a handoff; this ZIP has not itself been deployed.
 

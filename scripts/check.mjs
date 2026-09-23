@@ -891,4 +891,17 @@ check(Boolean(cupellation) && cupellation.accessed === '2026-09-23' && /Laurion/
   'The chapter-01 metallurgy sentence rests on a dated Laurion cupellation source');
 /* === end LAURION ORE PHOTOGRAPH ========================================== */
 
+/* === ANALYTICS ============================================================ */
+// Cookie-free Vercel Web Analytics is the one authorized measurement script
+// (owner authorized 21 Sep 2026, enabled 23 Sep 2026). Nothing else may load
+// script from another origin or add a tracker.
+const ANALYTICS_TAG = '<script defer src="/_vercel/insights/script.js"></script>';
+for (const [file, page] of sharePages) {
+  check(page.split(ANALYTICS_TAG).length - 1 === 1, `${file}: carries the Vercel Web Analytics tag exactly once`);
+  const srcs = [...page.matchAll(/<script\b[^>]*\bsrc="([^"]*)"/g)].map(match => match[1]);
+  check(srcs.every(src => src === '/_vercel/insights/script.js'), `${file}: no other external script (${srcs.join(', ')})`);
+  check(!/googletagmanager|google-analytics|gtag\(|plausible|segment\.com|hotjar|fbq\(/i.test(page), `${file}: no other tracker`);
+}
+/* === end ANALYTICS ======================================================== */
+
 console.log(`PASS: ${tests} structural/rendering checks; ${data.sources.length} sources; ${Object.keys(data.images).length} images; ${data.families.length} family records.\nExternal network availability and historical claims require separate review.`);
