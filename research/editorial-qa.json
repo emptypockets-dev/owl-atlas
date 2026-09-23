@@ -1,6 +1,6 @@
 {
   "result": "pass",
-  "checks": 76,
+  "checks": 77,
   "items": [
     "No purchase-specific framing: \\byour\\s+(?:(?:own|new|purchased|individual|specific)\\s+)*(?:coin|owl|label|slab|purchase)\\b",
     "No purchase-specific framing: \\bthe\\s+range\\s+on\\s+your\\s+label\\b",
@@ -19,7 +19,6 @@
     "Reference guide is collapsed by default",
     "Preserved homepage anchor: origins",
     "Preserved homepage anchor: classical",
-    "Preserved homepage anchor: theta",
     "Preserved homepage anchor: 404",
     "Preserved homepage anchor: new-style",
     "Preserved homepage anchor: beyond",
@@ -71,8 +70,10 @@
     "The isotope feature and the euro coda have left chapter 06",
     "The Nikophon story keeps its source",
     "The euro fact is still cited, in the hero strip",
-    "Onward cues run through the story in order: ['theta', '404', 'new-style', 'beyond', 'evidence', 'pricing', 'atlas']",
+    "Onward cues run through the story in order: ['404', 'new-style', 'beyond', 'evidence', 'pricing', 'atlas']",
     "Chapter 01 keeps its onward cue in the minting footer",
+    "The withdrawn dotted-theta interlude is gone",
+    "The \u0391\u0398\u0395 reading cites acropolis and openlearn-theta",
     "Data edition updated",
     "All 41 earlier sources retained plus the nine shareable-fact references",
     "Original 16 image records retained plus the researched early-classical reverse",
