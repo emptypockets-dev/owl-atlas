@@ -7894,8 +7894,7 @@ html.motion-off .close-reading-marker { transition:none; }
    checks stay as they are. */
 #hero-share-card,
 #share-card-open,
-.kit-links p:has(> a[href="/#share-card"]),
-p:has(> a[href="/#share-card"]) {
+p:has(> a[href$="#share-card"]) {
   display:none !important;
 }
 /* === end HOLD / SHARE-CARD MAKER HIDDEN === */
