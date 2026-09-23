@@ -5,6 +5,11 @@
   "buildCommand": "npm run build:deploy",
   "outputDirectory": "dist",
   "installCommand": "",
+  "redirects": [
+    { "source": "/kit", "destination": "/atlas/#sources", "statusCode": 308 },
+    { "source": "/kit/", "destination": "/atlas/#sources", "statusCode": 308 },
+    { "source": "/kit/:path*", "destination": "/atlas/#sources", "statusCode": 308 }
+  ],
   "headers": [
     {
       "source": "/public/images/derived/(.*)",
