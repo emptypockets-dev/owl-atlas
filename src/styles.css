@@ -7214,3 +7214,31 @@ p:has(> a[href$="#share-card"]) {
   .crisis.section-ink { padding-top:104px; }
 }
 /* === end CHUNK 7 / SEAM === */
+
+/* === CHUNK 8 / LINK HOVER ==================================================
+   Quiet links carry a bottom border, so an underline on hover drew a second
+   line beneath the first. Hover now changes the colour instead: a dark gold
+   on paper grounds, the site's gold on dark ones. */
+.quiet-link:hover,
+.quiet-link:focus-visible {
+  opacity:1;
+  text-decoration:none;
+  color:#6f6233;
+}
+.section-dark .quiet-link:hover,
+.section-dark .quiet-link:focus-visible,
+.section-ink .quiet-link:hover,
+.section-ink .quiet-link:focus-visible,
+.section-olive .quiet-link:hover,
+.section-olive .quiet-link:focus-visible,
+.hero .quiet-link:hover,
+.hero .quiet-link:focus-visible,
+.journey-hero .quiet-link:hover,
+.journey-hero .quiet-link:focus-visible,
+.site-footer .quiet-link:hover,
+.site-footer .quiet-link:focus-visible,
+#one-owl .quiet-link:hover,
+#one-owl .quiet-link:focus-visible {
+  color:var(--gold);
+}
+/* === end CHUNK 8 / LINK HOVER === */

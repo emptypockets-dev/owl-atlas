@@ -7254,6 +7254,34 @@ p:has(> a[href$="#share-card"]) {
 }
 /* === end CHUNK 7 / SEAM === */
 
+/* === CHUNK 8 / LINK HOVER ==================================================
+   Quiet links carry a bottom border, so an underline on hover drew a second
+   line beneath the first. Hover now changes the colour instead: a dark gold
+   on paper grounds, the site's gold on dark ones. */
+.quiet-link:hover,
+.quiet-link:focus-visible {
+  opacity:1;
+  text-decoration:none;
+  color:#6f6233;
+}
+.section-dark .quiet-link:hover,
+.section-dark .quiet-link:focus-visible,
+.section-ink .quiet-link:hover,
+.section-ink .quiet-link:focus-visible,
+.section-olive .quiet-link:hover,
+.section-olive .quiet-link:focus-visible,
+.hero .quiet-link:hover,
+.hero .quiet-link:focus-visible,
+.journey-hero .quiet-link:hover,
+.journey-hero .quiet-link:focus-visible,
+.site-footer .quiet-link:hover,
+.site-footer .quiet-link:focus-visible,
+#one-owl .quiet-link:hover,
+#one-owl .quiet-link:focus-visible {
+  color:var(--gold);
+}
+/* === end CHUNK 8 / LINK HOVER === */
+
   </style>
  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://theowlatlas.com/#organization","name":"The Owl Atlas","url":"https://theowlatlas.com/"},{"@type":"Article","@id":"https://theowlatlas.com/one-owl/#page","url":"https://theowlatlas.com/one-owl/","mainEntityOfPage":"https://theowlatlas.com/one-owl/","name":"2,400 Years. Still Here. — One Owl’s Survival | The Owl Atlas","headline":"2,400 Years. Still Here. — One Owl’s Survival | The Owl Atlas","description":"Follow one Mint State Athenian owl across 2,400 years: original photographs, the scale of human generations, and its documented modern appearances.","image":"https://theowlatlas.com/social/one-owl.png","inLanguage":"en","dateModified":"2026-09-16","author":{"@id":"https://theowlatlas.com/#organization"},"publisher":{"@id":"https://theowlatlas.com/#organization"},"isPartOf":{"@id":"https://theowlatlas.com/#website"}}]}</script>
  </head>
