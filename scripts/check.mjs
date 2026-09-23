@@ -384,7 +384,7 @@ check(/\btype="button"/.test(replay), 'The replay control is a plain button, not
 check(/\bdata-animate-replay\b/.test(replay), 'The replay control is wired to the generic hook');
 check(/\bhidden\b/.test(replay), 'The replay control is hidden until JavaScript unhides it');
 check(replay.replace(/<[^>]*>/g, '').trim().startsWith('Play again'), 'The replay control has a visible, accessible name');
-check(minting.includes('<div class="minting-footer-actions">'), 'The replay control sits with the onward link, beside the copy');
+check(minting.includes('<div class="minting-footer-actions">'), 'The replay control sits beside the copy');
 // Every moving part waits for the class the observer adds, and motion off puts
 // the figure back to the frame it was drawn in.
 const mintingEnd = styles.indexOf('end CHUNK 3 / MINTING');
@@ -728,14 +728,9 @@ for (const [id, number, label] of [['origins','01','Silver from Laurion'],['clas
   check(Boolean(section), `Chapter ${number} is present: #${id}`);
   check(section.includes(`data-chapter="${number} / ${label}"`), `#${id} is labelled "${number} / ${label}" in the chapter bar`);
   check(new RegExp(`<span class="eyebrow[^"]*">\\s*${number} / `).test(section), `#${id} still numbers itself ${number}`);
-  // Every chapter hands the reader to the next one, in static markup.
-  check(/class="onward-cue|class="minting-footer-actions"/.test(section), `#${id} ends with an onward cue`);
 }
-const onwardTargets = [...markup.matchAll(/<div class="onward-cue[^"]*"[^>]*><a class="quiet-link" href="#([a-z0-9-]+)"/g)].map(m => m[1]);
-assert.deepEqual(onwardTargets, ['404','new-style','beyond','evidence','pricing','atlas'],
-  `Onward cues point somewhere unexpected: ${onwardTargets.join(', ')}`); tests++;
-const pageScripts = [...html.matchAll(/<script(?![^>]*application\/(?:ld\+)?json)[^>]*>([\s\S]*?)<\/script>/g)].map(match => match[1]).join('\n');
-check(!pageScripts.includes('onward-cue'), 'The onward cues are markup, not script');
+// The onward cues between chapters were removed on 23 September 2026 at the owner's request.
+check(!/class="onward-cue/.test(markup) && !/Now meet the classical owl/.test(markup), 'No onward cues remain between chapters');
 
 // Chapter 01: the silver, then its ore. Since 23 September 2026 a photograph of
 // Laurion ore stands where the static Attica map was, so the chapter draws no

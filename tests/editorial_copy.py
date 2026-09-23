@@ -126,11 +126,8 @@ check('research-feature' not in evidence_html and 'modern-coda' not in evidence_
       'The isotope feature and the euro coda have left chapter 06')
 check('data-source="law"' in evidence_html, 'The Nikophon story keeps its source')
 check('data-source="ecb"' in home_html, 'The euro fact is still cited, in the hero strip')
-# Every chapter hands the reader on, in static markup.
-cues = re.findall(r'<div class="onward-cue[^"]*"><a class="quiet-link" href="#([a-z0-9-]+)"', home_html)
-check(cues == ['404', 'new-style', 'beyond', 'evidence', 'pricing', 'atlas'],
-      f'Onward cues run through the story in order: {cues}')
-check('Now meet the classical owl' in visible_copy, 'Chapter 01 keeps its onward cue in the minting footer')
+# The onward cues between chapters were removed on 23 September 2026.
+check('onward-cue' not in home_html and 'Now meet the classical owl' not in visible_copy, 'No onward cues between chapters')
 # The dotted-theta interlude was removed on 23 September 2026 at the owner's
 # request. The close reading's ΑΘΕ detail now carries the dotted theta and both
 # of the interlude's citations, so the home page still cites each of them.
