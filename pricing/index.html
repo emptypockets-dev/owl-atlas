@@ -6839,6 +6839,37 @@ p:has(> a[href$="#share-card"]) {
 }
 /* === end CHUNK 8 / LINK HOVER === */
 
+/* === CHUNK 9 / FINAL POLISH ===============================================
+   Three small fixes from the polish list in docs/redesign-plan.md. */
+
+/* The "Hammer" tag waits until the blow has landed (2.95s + 1.3s), so it never
+   sits over the falling hammer. Static and no-JavaScript diagrams are unchanged. */
+.minting-section.is-playing .mint-a-tag-hammer { animation-delay:4.25s; }
+
+/* The flip's honesty note stays for assistive technology (aria-describedby)
+   but costs two lines on a phone, so it is hidden visually there. */
+@media (max-width:759.98px) {
+  #hero-turn-note {
+    position:absolute;
+    width:1px;
+    height:1px;
+    padding:0;
+    margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    white-space:nowrap;
+    border:0;
+  }
+}
+
+/* Pill controls keep their round shape when focused; the global 2px radius
+   rule for links and buttons is left alone. */
+.pill:focus-visible,
+.turn-button:focus-visible,
+.mint-replay:focus-visible,
+.chapter-copy:focus-visible { border-radius:100px; }
+/* === end CHUNK 9 / FINAL POLISH === */
+
 /* === CHUNK 7 / SEAM =========================================================
    Chapter 02 (#classical, --forest) now runs straight into chapter 03 (#404,
    --forest-deep): the interlude that used to stand between them is gone. A
@@ -9295,6 +9326,19 @@ window.addEventListener('hashchange', (event) => {
     event.stopImmediatePropagation();
   }
 }, true);
+
+// Withdrawn anchors (the Anatomy exhibit, the theta interlude and the
+// identifier) cannot be redirected by the server, because a hash never reaches
+// it. Old links land on the nearest live section instead.
+(() => {
+  const withdrawn = { '#anatomy': 'classical', '#theta': 'classical', '#identify': 'atlas' };
+  const targetId = withdrawn[location.hash];
+  if (!targetId || document.getElementById(location.hash.slice(1))) return;
+  const target = document.getElementById(targetId);
+  if (!target) return;
+  history.replaceState(null, '', location.pathname + location.search + '#' + targetId);
+  target.scrollIntoView({ behavior: motionOff ? 'auto' : 'smooth', block: 'start' });
+})();
 
 })();
   </script>
