@@ -157,6 +157,24 @@ check(len(data['specimens']) == 3, 'All three BnF specimens retained')
 check(sum(i.get('reuseStatus') == 'review-pending' for i in data['images'].values()) == 6,
       'All six BnF reuse caveats retained')
 
+# One "aha" lead line per chapter: short, bold, and resting on a cited source.
+# Chapter 06 opens on Nikophon's law; chapter 04 has no vetted hook yet.
+aha_chapters = {'origins': 'hook-birds', 'classical': 'hook-ans-design', '404': 'hook-thuc-seamen',
+                'beyond': 'owl-circulation', 'pricing': 'hook-erechtheion'}
+source_ids = {source['id'] for source in data['sources']}
+for chapter, source_id in aha_chapters.items():
+    start = home_html.find(f'id="{chapter}"')
+    end = home_html.find('</section>', start)
+    section = home_html[start:end]
+    leads = re.findall(r'<strong class="chapter-aha">(.*?)</strong>\s*<sup class="citation">(.*?)</sup>', section, flags=re.S)
+    check(start >= 0 and len(leads) == 1, f'Chapter {chapter} has exactly one cited aha lead')
+    line, cite = leads[0]
+    cited = set(re.findall(r'data-source="([^"]+)"', cite))
+    check(source_id in cited and cited <= source_ids, f'Chapter {chapter} aha cites {source_id}')
+    check(len(line.split()) <= 30 and '. ' not in line, f'Chapter {chapter} aha is one short sentence')
+    check('Mint State' not in line, f'Chapter {chapter} aha does not generalize Mint State')
+check(home_html.count('class="chapter-aha"') == len(aha_chapters), 'No uncited or stray aha lines')
+
 report = {'result': 'pass', 'checks': len(checks), 'items': checks,
           'limitations': ['Editorial regression checks only; not a new source, rights or accessibility audit.']}
 (ROOT / 'research/editorial-qa.json').write_text(json.dumps(report, indent=2) + '\n')

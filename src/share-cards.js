@@ -6,9 +6,8 @@
  * JavaScript the page keeps its headings, its links and its dialogs, and the
  * card maker is simply not offered.
  *
- * Self-contained on purpose: `build.mjs` inlines this file the same way it
- * inlines `src/artifact-explorer.js` (read it, strip `export`, concatenate it
- * into one IIFE), so it must not import anything. `scripts/check.mjs` imports
+ * Self-contained on purpose: `build.mjs` inlines this file (read it, strip
+ * `export`, concatenate it into one IIFE), so it must not import anything. `scripts/check.mjs` imports
  * it as an ordinary ES module, so nothing here may touch the DOM at load time.
  *
  * RIGHTS. Only rights-cleared photographs may be drawn onto a card:

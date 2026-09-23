@@ -1,7 +1,7 @@
 import {readFile, writeFile, mkdir, access} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {escapeHtml, sourceRefs, photoMarkup, closeReadingMarkup, comparisonMarkup, familyFacesMarkup, geographyMarkup, marketFamilyMarkup, marketSummaryMarkup, marketCurrentMarkup, marketHistoryMarkup, marketFamiliesMarkup, marketLedgerMarkup, marketCsv, derivedSrcset, photoSizesFor, photoMaxWidthFor} from './src/render.mjs';
+import {escapeHtml, sourceRefs, photoMarkup, closeReadingMarkup, comparisonMarkup, familyFacesMarkup, geographyMarkup, marketFamilyMarkup, marketSummaryMarkup, marketStats, marketMoney, marketCurrentMarkup, marketHistoryMarkup, marketFamiliesMarkup, marketLedgerMarkup, marketCsv, derivedSrcset, photoSizesFor, photoMaxWidthFor} from './src/render.mjs';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const read = (relative) => readFile(path.join(root, relative), 'utf8');
@@ -85,6 +85,9 @@ const replacements = {
   JOURNEY_SOURCE_COUNT: journey.sourceIds.length,
   GENERATION_MARKS: Array.from({length:100}, (_,i) => `<span${i >= 80 ? ' class="range-end"' : ''}></span>`).join(''),
   MARKET_SUMMARY: marketSummaryMarkup(data),
+  // Chapter 07's lead compares the Erechtheion day-wage with today's price; the
+  // median is computed from the same Choice XF group the summary band shows.
+  MARKET_CXF_MEDIAN: marketMoney(marketStats(data.market.records.filter(r => r.cohort === 'current consecutive lots' && r.grade === 'Choice XF')).median),
   MARKET_LEGACY_LINKS: legacyMarketIds.map(id => `<span id="${escapeHtml(id)}" class="market-legacy-anchor" data-pricing-redirect aria-hidden="true"></span>`).join(''),
   MARKET_SOURCES: data.sources.map((source,index) => source.id.startsWith('market-') ? sourceEntry(source,index) : '').join('\n'),
   MARKET_CURRENT: marketCurrentMarkup(data),
@@ -106,13 +109,13 @@ const replacements = {
 };
 const shared = (await read('src/render.mjs')).replace(/^export /gm,'');
 const shareCards = (await read('src/share-cards.js')).replace(/^export /gm,'');
-const app = (await read('src/app.js')).replace(/^import .*from '\.\/(?:render\.mjs|artifact-explorer\.js)';\s*/gm,'');
+const app = (await read('src/app.js')).replace(/^import .*from '\.\/render\.mjs';\s*/gm,'');
 const script = `(() => {\n'use strict';\n${shared}\n${shareCards}\n${app}\n})();`;
 const styles = await read('src/styles.css');
 function renderPage(template, pageData = data) {
   let html = template;
   html = html.replace(/\{\{PHOTO:([^:}]+):([^}]+)\}\}/g, (_,id,className) => {
-    const crop = className === 'archaic-photo' ? 'top' : className === 'eye-profile' ? 'left' : undefined;
+    const crop = className === 'eye-profile' ? 'left' : undefined;
     return photoMarkup(id,pageData,className,crop,className === 'hero-photo' || id === 'owner-athena' || id === 'owner-owl');
   });
   html = html.replace(/\{\{CITE:([^}]+)\}\}/g, (_,ids) => sourceRefs(ids.split(','),pageData));

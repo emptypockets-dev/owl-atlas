@@ -25,6 +25,8 @@ function sourceShortDate(source) {
 }
 
 export function sourceShortLabel(source) {
+  // A record may name its own margin label where two would otherwise read alike.
+  if (source.short) return source.short;
   // A ";" or "·" separates distinct parties in these records; name the first.
   const author = String(source.author ?? '').split(/\s*[;·]\s*/)[0]
     .replace(/^Translation:\s*/i, '').trim();
@@ -65,7 +67,6 @@ export const photoSizes = {
   'hero-photo': '(max-width: 688px) 90vw, 620px',
   'comparison-photo': '50vw',
   'family-photo': '25vw',
-  'artifact-static-photo': '40vw',
   'close-reading-photograph': '(max-width: 900px) 90vw, 600px',
   'origins-photo': '(max-width: 900px) 92vw, 40vw',
 };
@@ -99,15 +100,6 @@ export function derivedSources(image, maxWidth = Infinity) {
 
 export function derivedSrcset(image, maxWidth = Infinity) {
   return derivedSources(image, maxWidth).map((source) => `${source.path} ${source.width}w`).join(', ');
-}
-
-/** The Anatomy stage sizes its camera from these exact pixels, so the "never
- *  enlarge a source pixel" rule has to measure the file actually displayed. */
-export function artifactFaceSource(image, maxWidth = 2400) {
-  const candidate = derivedSources(image).filter((source) => source.width <= maxWidth).at(-1);
-  return candidate
-    ? {src: candidate.path, width: candidate.width, height: candidate.height}
-    : {src: image.localUrl || image.url, width: image.width, height: image.height};
 }
 
 export function photoMarkup(id, data, className = '', cropOverride, eager = false) {
@@ -180,37 +172,6 @@ export function closeReadingMarkup(data) {
   const links = coda.links.map((link) =>
     `<a class="quiet-link" href="${escapeHtml(link.href)}" data-compare-preset="${escapeHtml(link.preset)}">${escapeHtml(link.label)} <span aria-hidden="true">↗</span></a>`).join('');
   return `${panels}<div class="close-reading-coda reveal"><p>${escapeHtml(coda.text)} ${sourceRefs(coda.refs, data)}</p><div class="close-reading-coda-links">${links}</div></div>`;
-}
-
-export function artifactStoryMarkup(story, data) {
-  const faces = Object.entries(story.faces);
-  const front = data.images[faces[0][1].image];
-  const outline = (face) => face.outline ? `polygon(${face.outline.map(([x,y])=>`${x*100}% ${y*100}%`).join(',')})` : 'none';
-  const planes = faces.map(([side,face]) => {
-    const image=data.images[face.image];
-    // The width/height attributes carry the displayed file's real pixels, which
-    // is what the camera measures before refusing to enlarge a source pixel.
-    const displayed=artifactFaceSource(image);
-    const placeholder=image.derived?.placeholder ? `background-image:url(${escapeHtml(image.derived.placeholder)});` : '';
-    return `<div class="artifact-face" data-artifact-face="${escapeHtml(side)}" aria-hidden="${side !== faces[0][0]}"><img src="${escapeHtml(displayed.src)}" width="${displayed.width}" height="${displayed.height}" alt="${escapeHtml(image.alt)}" loading="lazy" decoding="async" style="${placeholder}clip-path:${outline(face)}"><span class="artifact-photo-error">Photograph unavailable.<br>Open the source record below.</span></div>`;
-  }).join('');
-  const edges = [-2,-1,0,1,2].map(z=>`<span class="artifact-edge" aria-hidden="true" style="--edge-z:${z}px;clip-path:${outline(story.faces.obverse)}"></span>`).join('');
-  const steps = story.steps.map((step,index) => `<article class="artifact-step" id="${story.id}-detail-${escapeHtml(step.id)}" data-artifact-step="${escapeHtml(step.id)}" aria-labelledby="${story.id}-${step.id}-title">${story.id === 'anatomy' && step.id === 'owl' ? '<span id="anatomy-detail-square"></span>' : ''}<div class="artifact-step-copy"><span class="eyebrow">${String(index+1).padStart(2,'0')} / ${escapeHtml(step.label)}</span><h4 id="${story.id}-${step.id}-title" tabindex="-1">${escapeHtml(step.title)}</h4>${step.paragraphs.map((text,i)=>`<p>${escapeHtml(text)}${i === step.paragraphs.length-1 ? ` ${sourceRefs(step.refs,data)}` : ''}</p>`).join('')}</div></article>`).join('');
-  return `<div class="artifact-explorer" data-artifact-story="${escapeHtml(story.id)}">
-    <div class="artifact-sticky">
-      <div class="artifact-live" hidden>
-        <div class="artifact-stage-heading"><span class="artifact-face-label">${escapeHtml(faces[0][1].label)}</span><span class="artifact-state-label">01 / ${escapeHtml(story.steps[0].label)}</span></div>
-        <div class="artifact-stage" role="group" aria-label="Two photographed faces of ${escapeHtml(story.specimen)}">
-          <div class="artifact-camera"><div class="artifact-turn">${edges}${planes}</div></div><p class="artifact-stage-error">Photograph unavailable. The full photograph link keeps its source and credits available.</p>
-        </div>
-        <div class="artifact-stage-foot"><span>${escapeHtml(story.specimen)} · ${escapeHtml(story.date)}</span><a class="artifact-inspect" data-image="${escapeHtml(faces[0][1].image)}" href="${escapeHtml(front.localUrl || front.url)}" target="_blank" rel="noopener noreferrer">Full photograph ↗</a></div>
-        <p class="artifact-credit"><a class="artifact-current-credit" href="${escapeHtml(front.source)}" target="_blank" rel="noopener noreferrer">${escapeHtml(front.credit)}</a> · <a class="artifact-current-license" href="${escapeHtml(front.licenseUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(front.license)}</a></p>
-      </div>
-      <div class="artifact-static">${faces.map(([side,face])=>`<div id="${escapeHtml(story.id)}-${side}"><p class="eyebrow">${escapeHtml(face.label)}</p>${photoMarkup(face.image,data,'artifact-static-photo')}</div>`).join('')}</div>
-      <nav class="artifact-nav" aria-label="Anatomy details" hidden>${story.steps.map((step,index)=>`<a href="#${story.id}-detail-${escapeHtml(step.id)}" aria-label="${String(index+1).padStart(2,'0')}: ${escapeHtml(step.label)}">${String(index+1).padStart(2,'0')}</a>`).join('')}</nav>
-    </div>
-    <div class="artifact-steps">${steps}</div>
-  </div>`;
 }
 
 export function comparisonMarkup(familyId, side, data, specimenId) {
