@@ -182,3 +182,4 @@ Nothing is deployed or pushed without an explicit request.
   background from each upload and strip location data (EXIF GPS and similar)
   before anything is stored or shown. Reference implementation: the local
   `silver-collection` folder, the same code that runs lusterapp.com.
+- Published to production 23 September 2026 (see LAUNCH_STATUS.md); `main` fast-forwarded and pushed.

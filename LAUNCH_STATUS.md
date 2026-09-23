@@ -22,6 +22,47 @@ Vercel authentication; the production domain is public. The existing Pro plan
 was retained, with no plan upgrade or paid add-on. The domain was purchased
 separately by the owner.
 
+## Shareable redesign published — 23 September 2026
+
+Production now serves the redesign built between 21 and 23 September 2026 from
+the `claude/owl-atlas-design-review-beba15` branch, fast-forwarded into `main`.
+Deployed with `vercel deploy --prod` under the personal account after a preview
+build succeeded in the cloud.
+
+- Production deployment: https://owl-atlas-1ojp96n4w-emptypocketsdevs-projects.vercel.app
+- Preview built first: https://owl-atlas-r7ny1zael-emptypocketsdevs-projects.vercel.app
+- Previous production / rollback source: https://owl-atlas-a0hlxf0ps-emptypocketsdevs-projects.vercel.app
+
+What changed, in brief: self-hosted resized photograph derivatives with a
+preloaded hero (215 KB instead of a 5.7 MB original) and blurred placeholder;
+share cards, large-image social metadata and JSON-LD on every page; Fraunces
+display type with a metrics-matched fallback and GFS Didot for Greek; a hero
+that flips between both Cleveland faces on request; a sourced hero deck and
+fact strip; the story reordered as 01 Silver from Laurion (with a Laurion ore
+photograph, CC BY 2.0), 02 the classical icon as a dark vitrine around the
+restored six-reading close reading, 03 404, 04 the redesign, 05 an owl beyond
+Attica with the geography explorer, 06 how we know around Nikophon's law,
+07 the owl today, a continue row and the One Owl finale; margin sidenotes for
+citations on wide screens; the header hides on scroll-down; copy-link and share
+controls on every chapter; the One Owl page leads with one lit owl and its four
+photographs carry the owner's CC BY 4.0 release. The Anatomy exhibit, the old
+chapters 02 and 05, the theta interlude, the resemblance identifier and the
+creator kit page were removed at the owner's request; the kit template is
+archived under `research/kit-page-archived/`, the earlier close reading under
+`research/previous-close-reading/`. The share-card maker is built but hidden
+behind a hold block at the end of `src/styles.css`.
+
+Checks before publishing: 3,918 structural, 91 research-data, 83 editorial,
+128 artifact-geometry and 148 companion checks passed locally; the Playwright
+suites were updated but could not run on the build machine. Live HTTPS checks
+after publishing: `/`, `/atlas/`, `/pricing/`, `/one-owl/`, the sitemap, the
+share image, the favicon, the hero and ore derivatives and the Fraunces font all
+return 200; `/kit/` returns 404; the served home page is byte-identical to the
+staged `dist/index.html`. Records: 51 sources, 18 images, 3 BnF specimens, six
+reuse-review flags unchanged and still displayed on `/atlas/`. Analytics is not
+yet enabled; the owner has authorized cookie-free Vercel Web Analytics for a
+later release.
+
 ## Hero silhouette reverted — 20 September 2026
 
 At the owner's request, the irregular silhouette change below was reverted.
