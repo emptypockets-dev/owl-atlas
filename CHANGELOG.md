@@ -1,3 +1,30 @@
+# Analytics, chapter hooks and a performance sweep — 23 September 2026
+
+- Add cookie-free Vercel Web Analytics: one `/_vercel/insights/script.js` tag
+  in the shared head, so all four pages carry it. The owner authorized it on
+  21 September 2026 and it was enabled on 23 September 2026; `AGENTS.md`
+  records that and forbids any other tracking, and `scripts/check.mjs` fails
+  if a page carries the tag other than once or loads any other external script.
+- Open chapters 01, 02, 03, 05 and 07 on one bold, cited lead sentence drawn
+  from the vetted hooks research: Aristophanes' owls of Laurion (`hook-birds`),
+  the unchanged basic design (`hook-ans-design`), the Sicilian fleet's drachma
+  a day (`hook-thuc-seamen`), the 999-hoard survey (`owl-circulation`), and
+  the Erechtheion day-wage against the 2026 Choice XF median, which the build
+  computes from the pricing records. Chapter 04 has no vetted hook and is
+  unchanged. `tests/editorial_copy.py` requires each line to be one short,
+  cited sentence.
+- Remove dead styles for withdrawn features (`.anatomy-*`, `.artifact-*`,
+  `.theta-*`, `.geography-intro`, `.duo-plates`, `.museum-plate`,
+  `.plate-label`, `.archaic-photo`, `.editorial-two`, `.onward-cue`,
+  `.journey-faces`), with a check that keeps them out, plus the unused
+  `archaic-photo` crop branch in `build.mjs`.
+- Delete the unused `artifactStories` data, `src/artifact-explorer.js`,
+  `tests/artifact_geometry.mjs` and `docs/artifact-stories.md`; drop the
+  2,400 px `classic-owl` derivative and cap derivatives at 1600 px.
+- Give the two Kroll 2011 sources distinct sidenote labels through a `short`
+  field.
+- Built home page: 920,354 → 900,517 bytes; inline JSON 144,424 → 140,295.
+
 # Resemblance identifier and creator kit removed — 23 September 2026
 
 - Remove "Which owl does this resemble?", the six-question resemblance

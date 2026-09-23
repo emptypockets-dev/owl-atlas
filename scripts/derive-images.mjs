@@ -24,9 +24,10 @@ const only = process.argv.find((argument) => argument.startsWith('--only='))?.sl
 
 /** Display widths. A width larger than the source is skipped: never enlarge. */
 const WIDTHS = [800, 1600];
-/** The two Anatomy of an Owl faces also drive a full-stage camera. */
-const EXTRA_WIDTHS = {'classic-athena': [2400], 'classic-owl': [2400]};
-/** Blurred loading placeholders: the hero disc and both Anatomy stage faces. */
+/** No image gets a wider copy: the Anatomy stage that needed 2400 px is gone,
+ *  so every display copy, including the hero's classic-owl, stops at 1600. */
+const EXTRA_WIDTHS = {};
+/** Blurred loading placeholders: the hero disc and the classic Athena face. */
 const PLACEHOLDER_IDS = ['classic-owl', 'classic-athena'];
 const QUALITY = 82;
 const PLACEHOLDER_WIDTH = 24;

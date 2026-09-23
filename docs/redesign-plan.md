@@ -157,22 +157,18 @@ Nothing is deployed or pushed without an explicit request.
   sitemap lists four pages. The 02/03 seam is answered: `#404` opens on a 1 px
   `--line-dark` hairline with a little more top padding, in an appended
   `CHUNK 7 / SEAM` block. No source or image record was dropped.
-- Polish list for chunk 5: the "Hammer" label overlaps the moving hammer
+- Final pass, 23 September 2026: cookie-free Vercel Web Analytics on all four
+  pages (authorized and recorded in `AGENTS.md`); a cited "aha" lead line on
+  chapters 01, 02, 03, 05 and 07 (06 already opens on Nikophon's law; 04 has
+  no vetted hook); dead CSS from the removed chapter 02 plates, geography
+  intro, dotted-theta interlude, Anatomy stage and onward cues swept out;
+  `artifactStories`, the artifact explorer and its geometry test deleted; the
+  2,400 px `classic-owl` derivative dropped; the two Kroll 2011 sidenotes
+  carry distinct labels.
+- Polish list, still open: the "Hammer" label overlaps the moving hammer
   mid-animation; hide the hero's honesty note on phones; round the focus ring
-  on pill buttons; remove dead `.journey-faces` rules; distinguish the two
-  Kroll 2011 sidenote labels; restore the motion toggle to the 44 px scans in
-  `tests/artifact_browser.py` and `tests/one_owl_browser.py`; remove the rules
-  the removed chapter 02 left behind (`.duo-plates`, `.museum-plate`,
-  `.plate-label`, `.archaic-photo`, `.early-faces`, `.editorial-two`) and the
-  `archaic-photo` crop branch in `build.mjs`; the rules the geography
-  intro left behind when chapter 01 was rebuilt (`.geography-intro`, plus
-  its entries in the `min-width:0` and narrow-screen lists); and the rules the
-  removed dotted-theta interlude left behind (`.theta-interlude`,
-  `.theta-stage`, `.theta-mark` and `.theta-copy`, with their narrow-screen and
-  print variants and the header comment in `CHUNK 2 / BEAUTY`; the
-  `.theta-copy>.onward-cue` and `.theta-interlude` spacing rules in
-  `CHUNK 6 / STORY ORDER`; and the `.theta-copy` entries in the two
-  wide-screen sidenote selector lists).
+  on pill buttons; restore the motion toggle to the 44 px scan in
+  `tests/one_owl_browser.py`; a vetted hook for chapter 04.
 - Chunk 4 prep: `research/hooks-findings.md` ranks ten verified hooks.
 
 ## Backlog (owner TODOs)

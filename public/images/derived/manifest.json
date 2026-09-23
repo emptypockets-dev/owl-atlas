@@ -8,14 +8,7 @@
       800,
       1600
     ],
-    "extraWidths": {
-      "classic-athena": [
-        2400
-      ],
-      "classic-owl": [
-        2400
-      ]
-    },
+    "extraWidths": {},
     "placeholderWidth": 24,
     "placeholderQuality": 40,
     "rule": "A requested width larger than the source is skipped; nothing is ever enlarged.",
@@ -58,13 +51,6 @@
           "path": "public/images/derived/classic-owl-1600-60289951.jpg",
           "bytes": 791039,
           "sha256": "60289951ff977ee3367119005a44d700a5e39919570e1cb2a68c48ee22468176"
-        },
-        {
-          "width": 2400,
-          "height": 2493,
-          "path": "public/images/derived/classic-owl-2400-55836d97.jpg",
-          "bytes": 1705481,
-          "sha256": "55836d97941277d20a467f94edd18a929e18b3c5704e5ad99968d22fe729c993"
         }
       ],
       "placeholder": {

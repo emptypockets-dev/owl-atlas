@@ -726,10 +726,6 @@ img {
 .prose>.eyebrow {
   margin-bottom:20px
 }
-
-.geography-intro { display:grid; grid-template-columns:1fr 1fr; gap:48px; margin-bottom:35px }
-.geography-intro .lead { font-family:var(--serif); font-size:1.75rem; line-height:1.4 }
-.geography-intro p+p { margin:0; font-size:var(--type-body); line-height:1.9 }
 .geo-definitions { position:absolute; overflow:hidden; }
 .geography-explorer { border:1px solid var(--line); background:var(--paper-deep); }
 .geo-controls { border-bottom:1px solid var(--line); }
@@ -1092,78 +1088,6 @@ img {
   }
 }
 
-.duo-plates {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:clamp(30px,7vw,110px)
-}
-
-.museum-plate {
-  min-width:0
-}
-
-.plate-label {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  font-family:var(--mono);
-  font-size:var(--type-label);
-  letter-spacing:.06em;
-  border-bottom:1px solid var(--line);
-  padding-bottom:15px;
-  margin-bottom:22px
-}
-
-.museum-plate h3 {
-  font-size:2.25rem;
-  margin:29px 0 16px
-}
-
-.museum-plate>p {
-  max-width:470px;
-  font-size:var(--type-body);
-  line-height:1.85;
-  color:#c4cabe
-}
-
-.museum-plate .image-surface {
-  background:#cccfc5
-}
-
-.museum-plate .image-figure {
-  width:100%
-}
-
-.museum-plate .image-surface {
-  aspect-ratio:1.12
-}
-
-.archaic-photo .image-surface {
-  aspect-ratio:1
-}
-
-.museum-plate .early-faces .image-surface {
-  aspect-ratio:1
-}
-
-.editorial-two {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:80px;
-  margin-top:84px;
-  padding-top:58px;
-  border-top:1px solid var(--line)
-}
-
-.editorial-two h3 {
-  font-size:2.6875rem
-}
-
-.editorial-two h3 em {
-  color:var(--muted-dark)
-}
-
 .classic-grid {
   display:grid;
   grid-template-columns:.82fr 1.18fr;
@@ -1227,92 +1151,6 @@ img {
   margin-top:8px
 }
 
-.anatomy-section {
-  border-top:1px solid var(--line);
-  padding-top:70px;
-  margin-top:90px
-}
-
-.anatomy-header {
-  display:flex;
-  align-items:flex-end;
-  justify-content:space-between;
-  gap:30px;
-  margin-bottom:45px
-}
-
-.anatomy-header h3 {
-  font-size:3.25rem;
-  margin-top:20px
-}
-
-.anatomy-header>p {
-  max-width:300px;
-  font-size:var(--type-support);
-  color:var(--muted-light)
-}
-
-.anatomy-layout {
-  display:grid;
-  grid-template-columns:1.05fr 1fr;
-  gap:70px;
-  align-items:center
-}
-
-.segmented.anatomy-faces {
-  width:max-content;
-  max-width:100%;
-  margin-bottom:28px
-}
-
-.anatomy-faces span {
-  min-height:48px;
-  display:flex;
-  align-items:center
-}
-
-.anatomy-layout+.anatomy-layout:not([hidden]) {
-  margin-top:45px
-}
-
-.anatomy-faces:not([hidden])~.anatomy-layout {
-  margin-top:0
-}
-
-.anatomy-reading+.anatomy-reading:not([hidden]) {
-  margin-top:28px
-}
-
-.detail-buttons:not([hidden])+.anatomy-text .anatomy-reading {
-  margin-top:0
-}
-
-.anatomy-photo-wrap {
-  position:relative;
-  max-width:600px
-}
-
-.anatomy-marker {
-  position:absolute;
-  left:var(--x);
-  top:var(--y);
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#19251df0;
-  color:#f4eed5;
-  border:1px solid #f4eed5;
-  box-shadow:0 0 0 7px #f4eed530;
-  font-family:var(--mono);
-  font-size:var(--type-support);
-  pointer-events:none;
-  transform:translate(-50%,-50%);
-  transition:left .4s,top .4s
-}
-
 .detail-buttons {
   display:grid;
   grid-template-columns:repeat(2,1fr);
@@ -1348,27 +1186,6 @@ img {
 
 .detail-buttons button:hover:not([aria-pressed=true]) {
   background:var(--paper-deep)
-}
-
-.anatomy-text {
-  min-height:240px
-}
-
-.anatomy-text h4 {
-  font-family:var(--serif);
-  font-size:2.1875rem;
-  letter-spacing:-.04em;
-  line-height:1.1;
-  margin:17px 0
-}
-
-.anatomy-text p {
-  font-size:var(--type-reading);
-  line-height:1.8
-}
-
-.anatomy-controls>.micro-copy {
-  margin-top:20px
 }
 
 .crisis {
@@ -2803,10 +2620,6 @@ dialog::backdrop {
     position:sticky;
     top:calc(var(--header-visible) + var(--bar) + 20px)
   }
-  .anatomy-photo-wrap {
-    position:sticky;
-    top:calc(var(--header-visible) + var(--bar) + 20px)
-  }
   .hero-layout {
     margin-bottom:85px
   }
@@ -2856,12 +2669,6 @@ dialog::backdrop {
   }
   .paired-face .image-credit {
     font-size:var(--type-label)
-  }
-  .anatomy-header h3 {
-    font-size:2.8125rem
-  }
-  .anatomy-text h4 {
-    font-size:1.875rem
   }
   .compare-tools {
     grid-template-columns:1fr 1fr;
@@ -3100,33 +2907,6 @@ dialog::backdrop {
   .mining-band h3 {
     font-size:2rem
   }
-  .duo-plates {
-    gap:45px;
-    grid-template-columns:1fr
-  }
-  .museum-plate {
-    max-width:540px;
-    width:100%;
-    margin:auto
-  }
-  .museum-plate h3 {
-    font-size:2.0625rem
-  }
-  .museum-plate .image-surface {
-    aspect-ratio:1.08
-  }
-  .archaic-photo .image-surface {
-    aspect-ratio:1
-  }
-  .editorial-two {
-    grid-template-columns:1fr;
-    gap:25px;
-    margin-top:55px;
-    padding-top:35px
-  }
-  .editorial-two h3 {
-    font-size:2.25rem
-  }
   .classic-grid {
     grid-template-columns:1fr;
     gap:40px
@@ -3150,32 +2930,6 @@ dialog::backdrop {
   .paired-note {
     font-size:var(--type-label)
   }
-  .anatomy-section {
-    padding-top:45px;
-    margin-top:60px
-  }
-  .anatomy-header {
-    display:block;
-    margin-bottom:28px
-  }
-  .anatomy-header h3 {
-    font-size:2.4375rem;
-    margin-top:17px
-  }
-  .anatomy-header>p {
-    margin-top:20px;
-    max-width:360px;
-    font-size:var(--type-small)
-  }
-  .anatomy-layout {
-    grid-template-columns:1fr;
-    gap:30px
-  }
-  .anatomy-photo-wrap {
-    max-width:520px;
-    width:100%;
-    margin:auto
-  }
   .detail-buttons {
     grid-template-columns:repeat(2,1fr);
     gap:6px;
@@ -3191,19 +2945,6 @@ dialog::backdrop {
     display:block;
     font-size:var(--type-label);
     margin:0
-  }
-  .anatomy-text {
-    min-height:170px
-  }
-  .anatomy-text h4 {
-    font-size:2.0625rem;
-    max-width:390px
-  }
-  .anatomy-text p {
-    font-size:var(--type-body)
-  }
-  .anatomy-controls>.micro-copy {
-    font-size:var(--type-label)
   }
   .crisis {
     min-height:0;
@@ -3756,7 +3497,7 @@ dialog::backdrop {
     background:#fff;
     font-size:11pt
   }
-  .site-header,.chapter-bar,.chrome-utility,.motion-button,.scroll-cue,.hero-actions,.compare-tools,.image-trigger .expand-label,.viewer-controls,.source-toolbar,.anatomy-controls .detail-buttons,dialog {
+  .site-header,.chapter-bar,.chrome-utility,.motion-button,.scroll-cue,.hero-actions,.compare-tools,.image-trigger .expand-label,.viewer-controls,.source-toolbar,dialog {
     display:none!important
   }
   .section-dark,.section-ink,.section-olive,.section-paper,.site-footer {
@@ -3901,7 +3642,6 @@ dialog::backdrop {
   }
 }
 
-
 /* Research edition 02: real museum specimens replace the two photo gaps. */
 .specimen-chapter { grid-template-columns:1.2fr 1fr; gap:clamp(32px,5vw,76px); align-items:start; }
 .specimen-exhibit { min-width:0; }
@@ -3978,7 +3718,6 @@ dialog::backdrop {
  .supplement-summary-meta { font-size:var(--type-label); max-width:100px; gap:12px; }
  .late-old-exhibit { padding:24px 18px; margin-top:45px; }
  .late-old-heading h3 { font-size:2.375rem; }
- .late-old-exhibit .plate-label { font-size:var(--type-label); gap:8px; }
  .late-old-grid .specimen-faces { gap:9px; }
  .late-old-grid .specimen-metrics { grid-template-columns:1fr 1fr; }
  .late-old-grid .specimen-metrics>div:last-child { grid-column:1/-1; }
@@ -4194,8 +3933,6 @@ html.motion-off .supplement-summary-meta>span { transition:none; }
   .geo-copy h4 { font-size:1.75rem; }
 }
 @media (max-width:760px) {
-  .geography-intro { grid-template-columns:1fr; gap:20px; }
-  .geography-intro .lead { font-size:1.5625rem; }
   .geo-place-buttons { display:none; }
   .geo-select-wrap { display:block; padding:17px; font:var(--type-label)/1.5 var(--mono); }
   .geo-select-wrap select { display:block; width:100%; margin-top:9px; min-height:48px; padding:10px 36px 10px 12px; font:1.1875rem var(--serif); color:var(--ink); background:var(--paper); border:1px solid var(--line); border-radius:0; color-scheme:light; }
@@ -4218,10 +3955,6 @@ html.motion-off .supplement-summary-meta>span { transition:none; }
   .geo-credit { padding:17px; }
 }
 @media print {
-  .anatomy-faces,.anatomy-marker { display:none!important; }
-  .anatomy-layout[hidden] { display:grid!important; }
-  .anatomy-reading[hidden] { display:block!important; }
-  .anatomy-layout+.anatomy-layout,.anatomy-reading+.anatomy-reading { margin-top:28px!important; }
   .geo-controls,.geo-next { display:none!important; }
   .geo-place[hidden] { display:block!important; }
   .geo-place { break-inside:avoid; border-top:1px solid var(--line)!important; }
@@ -4257,19 +3990,17 @@ html.motion-off .supplement-summary-meta>span { transition:none; }
   .object-measure { flex-wrap:wrap; gap:10px 18px; }
   .object-measure span+span { padding-left:18px; }
   .hero-object .object-tick { max-width:90%; text-align:right; }
-  :is(.hero-layout,.classic-grid,.profile-layout,.pi-layout,.new-layout,.branch-layout,.editorial-two,.document-card,.editorial-policy,.research-feature,.geography-intro,.compare-tools,.specimen-metrics,.market-repeat-prices)>* { min-width:0; }
+  :is(.hero-layout,.classic-grid,.profile-layout,.pi-layout,.new-layout,.branch-layout,.document-card,.editorial-policy,.research-feature,.compare-tools,.specimen-metrics,.market-repeat-prices)>* { min-width:0; }
   .specimen-ticket strong { white-space:normal; }
   .specimen-ticket p { max-width:36rem; }
-  .minting-heading>p,.minting-step-copy p,.geography-intro p+p,.geo-copy .geo-where,.geo-evidence p,
-  .geography-evidence p,.museum-plate>p,.anatomy-header>p,.anatomy-text p,.crisis-text>p+p,
+  .minting-heading>p,.minting-step-copy p,.geo-copy .geo-where,.geo-evidence p,
+  .geography-evidence p,.crisis-text>p+p,
   .dark-note p,.document-card p,.evidence-grid p,.research-feature p,.editorial-policy p,
   .family-card>p:not(.date):not(.status),.comparison-panel>.feature,.late-style-note p,
   .family-card details p,.glossary-grid p,.image-register>p,.method-note>p {
     font-size:var(--type-body); line-height:1.75;
   }
-  .anatomy-text p,.prose p:not(.micro-copy):not(.lead) { font-size:var(--type-reading); }
-  .anatomy-header>p { max-width:24rem; }
-  .anatomy-text { min-height:0; }
+  .prose p:not(.micro-copy):not(.lead) { font-size:var(--type-reading); }
   .detail-buttons button,.segmented span { font-size:var(--type-small); }
   .detail-buttons button span { display:inline-block; }
   .segmented { flex-wrap:wrap; }
@@ -4397,7 +4128,6 @@ html.motion-off .supplement-summary-meta>span { transition:none; }
   .detail-buttons { gap:10px; }
   .detail-buttons button { padding:12px; }
   .detail-buttons button span { margin-right:7px; }
-  .anatomy-header>p { max-width:none; }
   .family-card { padding:24px 18px; }
   .family-faces { gap:16px; }
   .family-card h4 { font-size:1.875rem; }
@@ -4429,8 +4159,6 @@ html.motion-off .supplement-summary-meta>span { transition:none; }
   .comparison-panel .image-figure { max-width:330px; margin-inline:auto; }
   .compare-tools,.compare-specimen-tools { grid-template-columns:minmax(0,1fr); }
   .comparison-panel>.eyebrow { min-height:0; }
-  .segmented.anatomy-faces { width:100%; }
-  .segmented.anatomy-faces label { flex:1; }
   .segmented span { justify-content:center; }
   .specimen-metrics { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .specimen-metrics>div:last-child { grid-column:1/-1; }
@@ -4458,8 +4186,6 @@ html.motion-off .supplement-summary-meta>span { transition:none; }
   .geo-map-label-water,.geo-scale text,.geo-north { font-size:38px; }
 }
 @media screen {
-  .plate-label { flex-wrap:wrap; }
-  .plate-label>span { min-width:0; overflow-wrap:anywhere; }
   .quiet-link { max-width:100%; overflow-wrap:anywhere; }
   .catalogue-guide>summary>span:first-child { min-width:0; }
   .catalogue-guide-title { overflow-wrap:anywhere; }
@@ -4514,8 +4240,6 @@ html.motion-off .supplement-summary-meta>span { transition:none; }
 .journey-intro>p:not(.eyebrow) { max-width:510px; }
 .journey-intro .journey-deck { font:1.5rem/1.45 var(--serif); letter-spacing:-.02em; margin-top:28px; }
 .journey-intro>p:not(.eyebrow):not(.journey-deck) { margin-top:24px; color:var(--muted-dark); font-size:var(--type-reading); }
-.journey-faces { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
-.journey-faces .eyebrow { margin-bottom:14px; font-size:var(--type-small); letter-spacing:.045em; }
 .journey-photo .image-surface { aspect-ratio:var(--plate-ratio); border-radius:2px; }
 .journey-photo .image-trigger img { object-fit:contain; }
 .journey-photo .image-trigger:hover img { transform:none; }
@@ -4534,7 +4258,6 @@ html.motion-off .supplement-summary-meta>span { transition:none; }
 .journey-copy { max-width:610px; min-width:0; }
 .journey-split>*,.journey-question>* { min-width:0; }
 .journey-page main :is(h1,h2,h3,p,dd,.image-credit) { overflow-wrap:anywhere; }
-.journey-faces .expand-label { display:none; }
 .journey-copy>p { font-size:var(--type-reading); line-height:1.85; }
 .journey-copy>.lead { font-size:1.5625rem; line-height:1.5; margin-bottom:26px; }
 .journey-grades { margin:30px 0 20px; }
@@ -4581,7 +4304,6 @@ html.motion-off .supplement-summary-meta>span { transition:none; }
  .journey-intro { max-width:700px; }
  .journey-intro>p:not(.eyebrow) { max-width:640px; }
  .journey-intro h1 { font-size:clamp(3.5rem,9vw,5.5rem); }
- .journey-faces { max-width:740px; }
  .journey-specimen { grid-template-columns:1fr 1fr; }
  .journey-specimen>a { grid-column:1 / -1; }
  .journey-split,.journey-question { grid-template-columns:minmax(0,1fr); gap:32px; }
@@ -4596,8 +4318,6 @@ html.motion-off .supplement-summary-meta>span { transition:none; }
  .journey-hero-grid { margin-top:24px; }
  .journey-intro h1 { font-size:clamp(3rem,12vw,4.5rem); }
  .journey-intro .journey-deck { font-size:1.375rem; }
- .journey-faces { gap:12px; }
- .journey-faces .eyebrow { letter-spacing:0; font-size:var(--type-small); }
  .journey-specimen { grid-template-columns:1fr; gap:22px; }
  .journey-photo .image-credit { line-height:1.6; }
  .journey-photo .expand-label { right:5px; bottom:8px; padding:10px 7px; font-size:var(--type-label); gap:5px; }
@@ -4618,89 +4338,6 @@ html:not(.has-js) .journey-hero { padding-top:30px; }
  .journey-hero { padding-top:25px; }
  .journey-photo-record { break-inside:avoid; }
  .journey-generation-marks span { border-color:#333; }
-}
-
-/* Artifact stories: ordinary document scrolling, a camera, and readable labels. */
-.artifact-explorer { --artifact-clearance:0px; display:grid; grid-template-columns:minmax(0,3fr) minmax(0,2fr); gap:clamp(28px,4vw,64px); align-items:start; }
-.artifact-sticky { min-width:0; }
-.artifact-live { min-width:0; }
-.artifact-stage-heading,.artifact-stage-foot { display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px 20px; font:var(--type-small)/1.5 var(--mono); }
-.artifact-stage-heading { padding:12px 0; border-top:1px solid var(--line); }
-.artifact-state-label { color:var(--muted-light); }
-.artifact-stage { height:clamp(300px,calc(100svh - var(--header) - var(--bar) - 190px),760px); position:relative; overflow:hidden; perspective:1400px; background:var(--paper-deep); isolation:isolate; }
-.artifact-camera { position:absolute; top:50%; left:50%; transform-style:preserve-3d; transition:transform 1000ms cubic-bezier(.22,.55,.25,1); }
-.artifact-turn { position:absolute; translate:-50% -50%; transform-style:preserve-3d; transition:transform 1150ms cubic-bezier(.4,.05,.25,1); }
-.artifact-face,.artifact-edge { position:absolute; top:50%; left:50%; backface-visibility:hidden; }
-.artifact-face { transform:translate(-50%,-50%) translateZ(3px); }
-.artifact-face[data-artifact-face="reverse"] { transform:translate(-50%,-50%) rotateY(180deg) translateZ(3px); }
-/* Each face carries a 24-pixel blurred copy of its own photograph as a loading
-   placeholder, clipped by the same rim silhouette. The photograph paints over
-   it; a failed load hides both and shows the error message instead. */
-.artifact-face img { display:block; width:100%; height:100%; background-position:center; background-repeat:no-repeat; background-size:cover; }
-.artifact-edge { opacity:0; width:97%; height:100%; background:linear-gradient(100deg,#8b887e,#b2afa4 45%,#65665d); transform:translate(-50%,-50%) translateZ(var(--edge-z)); backface-visibility:visible; }
-.artifact-turn.is-turning .artifact-edge { animation:artifact-edge-turn 1150ms linear; }
-/* The photographed faces have different silhouettes. Suggest thickness only
-   while almost edge-on, never put a fabricated backing around visible metal. */
-@keyframes artifact-edge-turn { 0%,30%,43%,100% { opacity:0; } 34%,38% { opacity:1; } }
-.artifact-photo-error { display:none; font:var(--type-body)/1.5 var(--sans); padding:30%; background:var(--paper-deep); width:100%; height:100%; }
-.artifact-face.has-error img { visibility:hidden; }
-.artifact-face.has-error .artifact-photo-error { display:block; position:absolute; inset:0; }
-.artifact-stage-error { display:none; position:absolute; inset:0; padding:24px; align-items:center; justify-content:center; text-align:center; font-size:var(--type-body); }
-.artifact-stage.has-error .artifact-camera { visibility:hidden; }
-.artifact-stage.has-error .artifact-stage-error { display:flex; }
-.artifact-stage-foot { align-items:center; padding-top:12px; font-family:var(--sans); }
-.artifact-inspect { display:inline-flex; min-height:44px; align-items:center; text-underline-offset:4px; }
-.artifact-credit { font:var(--type-label)/1.6 var(--sans); color:var(--muted-light); margin-top:4px; }
-.artifact-credit a { text-underline-offset:3px; }
-.artifact-nav { display:flex; max-width:100%; overflow-x:auto; margin-top:12px; border-top:1px solid var(--line); gap:2px; scrollbar-width:thin; }
-.artifact-nav a { flex:0 0 44px; min-height:44px; display:grid; place-items:center; font:var(--type-label)/1 var(--mono); text-decoration:none; color:var(--muted-light); border-top:2px solid transparent; }
-.artifact-nav a[aria-current] { border-color:var(--ink); color:var(--ink); }
-.artifact-step { padding:36px 0; border-top:1px solid var(--line); scroll-margin-top:var(--artifact-clearance); min-width:0; }
-.artifact-step-copy { max-width:31rem; }
-.artifact-step h4 { font:clamp(2rem,3.2vw,3.125rem)/1.12 var(--serif); letter-spacing:-.035em; margin:24px 0; }
-.artifact-step p { font-size:var(--type-reading); line-height:1.8; }
-.artifact-step .eyebrow { color:var(--muted-light); }
-.artifact-step.is-active .eyebrow { color:var(--ink); }
-.artifact-static { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
-.artifact-static-photo { margin-top:12px; }
-.artifact-static-photo .image-frame { aspect-ratio:auto; }
-.artifact-method { font-size:var(--type-small); color:var(--muted-light); max-width:65rem; margin-top:40px; }
-.artifact-authoring { display:block; font:13px/1.5 var(--mono); padding:10px; background:var(--paper-deep); }
-.artifact-stage.is-authoring { cursor:crosshair; }
-@media screen {
- .artifact-explorer.is-enhanced .artifact-sticky { position:sticky; top:calc(var(--header-visible) + var(--bar) + 12px); }
- .artifact-explorer.is-enhanced .artifact-static { display:none; }
- .artifact-explorer.is-enhanced .artifact-step { min-height:calc(90svh - var(--header) - var(--bar)); display:flex; align-items:center; padding-block:80px; border:0; }
- .artifact-explorer.is-enhanced .artifact-step:last-child { min-height:calc(100svh - var(--header) - var(--bar)); }
- .artifact-explorer.is-unpinned .artifact-sticky { position:static; }
- .artifact-explorer.is-unpinned .artifact-step { min-height:0; padding-block:50px; border-top:1px solid var(--line); }
-}
-@media (max-width:900px) {
- .artifact-explorer { grid-template-columns:minmax(0,1fr); gap:28px; }
- .artifact-explorer.is-enhanced { display:block; }
- .artifact-explorer.is-enhanced .artifact-sticky { top:calc(var(--header-visible) + var(--bar)); background:var(--paper); z-index:4; padding-bottom:4px; }
- .artifact-stage { height:clamp(160px,28svh,320px); }
- .artifact-stage-heading { padding:8px 0; font-size:var(--type-label); }
- .artifact-stage-foot { padding-top:2px; gap:0 12px; font-size:var(--type-label); }
- .artifact-credit { margin:0; }
- .artifact-nav { margin-top:6px; gap:0; }
- .artifact-nav a { flex:1 0 32px; }
- .artifact-explorer.is-enhanced .artifact-step { min-height:65svh; padding:28px 0 85px; display:block; }
- .artifact-explorer.is-enhanced .artifact-step:last-child { min-height:75svh; }
- .artifact-step h4 { font-size:2.125rem; margin:18px 0; }
- .artifact-step :focus-visible { scroll-margin-top:var(--artifact-clearance); }
- .artifact-explorer.is-unpinned .artifact-step { min-height:0; padding-block:36px; }
-}
-@media (max-width:380px) { .artifact-stage { height:25svh; min-height:150px; } }
-@media (prefers-reduced-motion:reduce) {
- .artifact-camera,.artifact-turn { transition:none!important; }
-}
-.motion-off .artifact-camera,.motion-off .artifact-turn { transition:none!important; }
-@media print {
- .artifact-live,.artifact-nav { display:none!important; }
- .artifact-explorer { display:block; }
- .artifact-static { display:grid!important; }
- .artifact-step { break-inside:avoid; }
 }
 
 /* A visibly bounded fictional interlude, followed by sourced collecting history. */
@@ -4937,8 +4574,7 @@ h1,h2,
 .market-calculator output,
 .market-ledger-title,
 .market-coda p,
-.journey-generation-number,
-.artifact-step h4 {
+.journey-generation-number {
   font-variation-settings:"SOFT" 0,"WONK" 1
 }
 
@@ -4991,14 +4627,12 @@ h4 {
 }
 
 .lead,
-.geography-intro .lead,
 .journey-intro .journey-deck {
   letter-spacing:-.012em
 }
 
 .geo-copy h4,
 .minting-step-copy h4,
-.anatomy-text h4,
 .new-detail h4,
 .family-card h4,
 .coverage h4,
@@ -5010,11 +4644,6 @@ h4 {
 .catalogue-date>strong,
 .specimen-supplement>summary strong {
   letter-spacing:-.008em
-}
-
-.artifact-step h4 {
-  letter-spacing:-.022em;
-  line-height:1.04
 }
 
 .large-glyph,
@@ -5350,59 +4979,12 @@ h4 {
 
 /* ==========================================================================
    CHUNK 2 / BEAUTY — set pieces and citation sidenotes
-   Everything this task adds lives here: the dotted-theta interlude, the
+   Everything this task adds lives here: the
    "80–100 generations" invitation, wide-screen citation sidenotes and the
    sub-page chrome label. Nothing above this line was rewritten for it except
    the citation brackets, which moved into ::before/::after so wide screens can
    drop them.
    ========================================================================== */
-
-/* --- The dotted theta -------------------------------------------------- */
-/* A light band between the Anatomy exhibit and the ink-dark 404, so two dark
-   set pieces never stack. The mark is the wordmark's own circle-and-dot, drawn
-   at reading scale with a finer stroke; no font glyph and no invented artefact. */
-.theta-interlude {
-  background:var(--paper-deep);
-  color:var(--ink);
-  color-scheme:light;
-  border-block:1px solid var(--line);
-  padding:clamp(72px,9vw,132px) var(--gutter);
-  display:grid;
-  grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
-  gap:clamp(36px,6vw,90px);
-  align-items:center;
-}
-.theta-interlude>* { max-width:var(--max); }
-.theta-stage { display:flex; justify-content:center; }
-.theta-mark {
-  display:block;
-  width:auto;
-  height:clamp(230px,57vh,560px);
-  max-width:100%;
-  color:var(--olive);
-  overflow:visible;
-}
-.theta-copy .eyebrow { color:var(--muted-light); }
-.theta-copy h2 {
-  font-size:clamp(2.75rem,6vw,5.25rem);
-  line-height:1.03;
-  margin-top:22px;
-}
-.theta-copy h2 em { color:var(--muted-light); }
-.theta-copy p { max-width:33rem; }
-.theta-copy .lead { margin-top:30px; }
-.theta-copy>p+p { font-size:var(--type-body); line-height:1.85; color:var(--muted-light); }
-
-@media screen and (max-width:900px) {
-  .theta-interlude { grid-template-columns:minmax(0,1fr); gap:34px; }
-  .theta-mark { height:clamp(180px,38vh,320px); }
-}
-@media print {
-  .theta-interlude { display:block; break-inside:avoid; border:0; }
-  .theta-stage { justify-content:flex-start; margin-bottom:18px; }
-  .theta-mark { height:110pt; }
-  .theta-copy h2 { font-size:30pt; }
-}
 
 /* --- 80–100 generations, on the home page ------------------------------ */
 /* The companion page measures this specimen in detail; here the number is the
@@ -5488,7 +5070,6 @@ h4 {
      image, a card or the sticky Anatomy stage. Where the measure has no room to
      give — the narrow .prose columns, the geography and evidence grids, the
      family cards, the Anatomy stage copy — the compact numeral stands alone. */
-  .theta-copy,
   .crisis-text,
   .section-heading>.section-deck,
   .mining-band>div,
@@ -5511,7 +5092,6 @@ h4 {
   .crisis-text { max-width:calc(580px + var(--cite-note-col) + var(--cite-note-gap)); }
   .section-heading>.section-deck { max-width:calc(620px + var(--cite-note-col) + var(--cite-note-gap)); }
 
-  .theta-copy .cite-note,
   .crisis-text .cite-note,
   .section-heading>.section-deck .cite-note,
   .mining-band>div .cite-note,
@@ -5938,10 +5518,6 @@ html.motion-off .mint-replay { display:none; }
   font-size:var(--type-small);
   line-height:1.7;
   color:var(--muted-dark);
-}
-
-
-@media (prefers-reduced-motion:reduce) {
 }
 
 /* --- Athena, beside the specimen facts -----------------------------------
@@ -7036,24 +6612,15 @@ html.motion-off .close-reading-marker { transition:none; }
    has already remapped.
    ========================================================================== */
 
-/* --- The onward cue that closes every chapter -------------------------- */
-/* Static markup, one line, the site's own quiet link set in the mono face so a
-   reader can tell a chapter's exit from a citation or an outbound link. */
-.onward-cue {
-  margin-top:clamp(28px,3vw,44px);
-  padding-top:clamp(14px,1.6vw,22px);
-  border-top:1px solid var(--line);
-}
-.onward-cue .quiet-link,
+/* --- The minting section's footer link ---------------------------------- */
+/* The site's own quiet link set in the mono face, so a reader can tell the
+   section's exit from a citation or an outbound link. */
 .minting-footer-actions .quiet-link {
   font-family:var(--mono);
   font-size:var(--type-small);
   letter-spacing:.02em;
   gap:14px;
 }
-.crisis-content>.onward-cue { margin-top:clamp(26px,2.8vw,36px); }
-.theta-copy>.onward-cue { margin-top:clamp(24px,2.6vw,34px); }
-@media print { .onward-cue { display:none!important; } }
 
 /* --- Chapter 01: the silver, then its ore ------------------------------ */
 /* The eight-region explorer has left this chapter, and on 23 September 2026
@@ -7090,7 +6657,6 @@ html.motion-off .close-reading-marker { transition:none; }
    a screen of height without changing the chapter block on /atlas/, /pricing/
    or /one-owl/, which share the .chapter class. */
 #classical,#new-style,#beyond { padding-block:clamp(62px,5.4vw,92px); }
-.theta-interlude { padding-block:clamp(64px,6.6vw,96px); }
 
 /* --- Chapter 05: the explorer's new lead-in ---------------------------- */
 .geography-key { margin-top:clamp(30px,3.4vw,46px); margin-bottom:clamp(12px,1.4vw,18px); }
@@ -7183,7 +6749,6 @@ html.motion-off .close-reading-marker { transition:none; }
   .continue-heading h2 { margin-top:12px; }
 }
 @media screen and (max-width:600px) {
-  .onward-cue { margin-top:32px; padding-top:16px; }
   .origins-copy .prose .lead { font-size:1.25rem; }
   .continue-cards a { padding:20px 0; }
   .continue-cards { background:none; border-block:0; gap:0; }

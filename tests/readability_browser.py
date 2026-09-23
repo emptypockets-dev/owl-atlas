@@ -26,7 +26,7 @@ checks, failures, errors = [], [], []
 
 BODY_TEXT = (
     '.hero-deck, .section-deck, .prose p:not(.micro-copy), '
-    '.artifact-step p, .family-card > p:not(.date):not(.status), '
+    '.family-card > p:not(.date):not(.status), '
     '.geo-evidence p, .minting-step-copy > p, .geography-key p, '
     '.market-summary-prices p, .market-opening-copy > p, '
     '.market-spotlight > p:not(.market-big-price):not(.market-price-note), '

@@ -143,7 +143,6 @@ npm run social         # re-render the four 1200×630 share cards (network + ren
 | `src/geography.json` | Derived public-domain geographic outlines used at build time |
 | `src/styles.css` | Design tokens, responsive layouts, motion and print styles |
 | `src/app.js` | Progressive enhancements and native dialog behavior |
-| `src/artifact-explorer.js` | Reusable artifact camera, discrete scroll states and coordinate authoring helper |
 | `src/render.mjs` | Shared escaped markup used by build and browser |
 | `src/atlas.html` | Dedicated comparison atlas, glossary, bibliography and image-use records |
 | `atlas/index.html` | Generated reference page; do not hand-edit |

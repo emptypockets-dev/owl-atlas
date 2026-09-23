@@ -851,9 +851,9 @@ if (animatedStages.length) {
    coin-card maker.
    --------------------------------------------------------------------------
    The feature itself lives in src/share-cards.js, which build.mjs inlines
-   ahead of this file exactly as it inlines the artifact explorer. It is called
-   rather than imported so the two module names this file imports — the only
-   ones build.mjs strips — stay as they were.
+   ahead of this file, with its `export` keywords stripped. It is called
+   rather than imported because build.mjs strips only the render.mjs import,
+   the one module this file imports.
    ========================================================================== */
 initShareCards({
   data,

@@ -41,7 +41,7 @@ for public reuse. Do not silently clear flags to make a build succeed.
 
 - Address people interested in the coins generally; no references to an owner's
   purchase, slab or label. Catalogue-reading help is optional and collapsed.
-- Preserve the 32 source records, 17 image records, three BnF specimen records,
+- Preserve the 51 source records, 18 image records, three BnF specimen records,
   primary-source links, qualifications and visible coverage gaps unless a
   documented editorial correction warrants a change.
   The seventeenth image is the documented matching early-classical reverse;

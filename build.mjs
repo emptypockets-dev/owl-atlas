@@ -109,13 +109,13 @@ const replacements = {
 };
 const shared = (await read('src/render.mjs')).replace(/^export /gm,'');
 const shareCards = (await read('src/share-cards.js')).replace(/^export /gm,'');
-const app = (await read('src/app.js')).replace(/^import .*from '\.\/(?:render\.mjs|artifact-explorer\.js)';\s*/gm,'');
+const app = (await read('src/app.js')).replace(/^import .*from '\.\/render\.mjs';\s*/gm,'');
 const script = `(() => {\n'use strict';\n${shared}\n${shareCards}\n${app}\n})();`;
 const styles = await read('src/styles.css');
 function renderPage(template, pageData = data) {
   let html = template;
   html = html.replace(/\{\{PHOTO:([^:}]+):([^}]+)\}\}/g, (_,id,className) => {
-    const crop = className === 'archaic-photo' ? 'top' : className === 'eye-profile' ? 'left' : undefined;
+    const crop = className === 'eye-profile' ? 'left' : undefined;
     return photoMarkup(id,pageData,className,crop,className === 'hero-photo' || id === 'owner-athena' || id === 'owner-owl');
   });
   html = html.replace(/\{\{CITE:([^}]+)\}\}/g, (_,ids) => sourceRefs(ids.split(','),pageData));

@@ -88,22 +88,6 @@ check(!markupGapText(), 'Obsolete missing-image claim remains');
 function markupGapText() {
   return ['Why there is no Pi-style photograph here yet', 'Pi-style and later Old Style. Securely attributed, rights-cleared plates remain to be added.'].some(text => html.includes(text));
 }
-for (const story of Object.values(data.artifactStories)) {
-  check(story.id && story.steps.length > 0, 'Artifact story requires an id and steps');
-  const stepIds = new Set();
-  for (const face of Object.values(story.faces)) {
-    check(Boolean(data.images[face.image]), 'Artifact face requires an existing image');
-    if (face.outline) check(face.outline.every(point => point.length === 2 && point.every(n => n >= 0 && n <= 1)), 'Outline uses normalized photo coordinates');
-  }
-  for (const step of story.steps) {
-    check(!stepIds.has(step.id), 'Artifact step IDs must be unique'); stepIds.add(step.id);
-    check(Boolean(story.faces[step.state.side]), 'Artifact step requires a known face');
-    check(step.state.focus.x >= 0 && step.state.focus.x <= 1 && step.state.focus.y >= 0 && step.state.focus.y <= 1, 'Artifact focus uses normalized coordinates');
-    check(Number.isFinite(step.state.zoom) && step.state.zoom >= 1 && Number.isFinite(step.state.rotation), 'Artifact state has valid zoom and rotation');
-    check(step.paragraphs.length > 0, 'Each artifact view has a readable narrative');
-    step.refs.forEach(id => check(ids.has(id), `Unknown artifact citation: ${id}`));
-  }
-}
 for (const [, , refs] of data.glossary) refs.forEach(id => check(ids.has(id), `Unknown glossary source: ${id}`));
 for (const match of (template + atlasTemplate).matchAll(/\{\{CITE:([^}]+)\}\}/g)) match[1].split(',').forEach(id => check(ids.has(id), `Unknown narrative citation: ${id}`));
 const geography = JSON.parse(await readFile(path.join(root, 'src/geography.json'), 'utf8'));
@@ -332,7 +316,6 @@ check(/\.citation a::before\s*\{\s*content:"\[";/.test(styles) && /\.citation a:
   'The chip brackets are still drawn for every narrow, touch and printed reading');
 check(/@media screen and \(min-width:1180px\) and \(hover:hover\)/.test(styles),
   'Sidenotes are gated on a wide viewport and a hovering pointer');
-check(!/\.artifact-step-copy[^{]*\.cite-note/.test(styles), 'The sticky Anatomy stage never carries a sidenote');
 // Each sub-page names itself where the home page names the chapter under way.
 for (const [document, label, page] of [[pricing, 'PRICING RESEARCH', '/pricing/'], [atlas, 'THE REFERENCE ATLAS', '/atlas/'], [journey, 'ONE OWL', '/one-owl/']]) {
   const strip = document.match(/<div class="chrome-utility">[\s\S]*?<\/div>/)?.[0] || '';
@@ -810,7 +793,7 @@ check(storyStart > styles.lastIndexOf('end CHUNK 5 / CLOSE READING'), 'The story
 const storyCss = styles.slice(storyStart);
 check(storyCss.includes('end CHUNK 6 / STORY ORDER') && storyCss.trim().endsWith('*/'),
   'The story-order styles are one self-contained block at the end of the sheet');
-for (const rule of ['.onward-cue {', '.origins-opening {', '.continue-cards {', '#one-owl {']) {
+for (const rule of ['.origins-opening {', '.continue-cards {', '#one-owl {']) {
   check(inlineStyles.includes(rule), `The built CSS carries ${rule.slice(0, -2)}`);
 }
 check(/<section[^>]*id="classical"[^>]*class="chapter section-dark"|<section[^>]*class="chapter section-dark"[^>]*id="classical"/.test(markup),
@@ -903,5 +886,16 @@ for (const [file, page] of sharePages) {
   check(!/googletagmanager|google-analytics|gtag\(|plausible|segment\.com|hotjar|fbq\(/i.test(page), `${file}: no other tracker`);
 }
 /* === end ANALYTICS ======================================================== */
+
+// Styles for features withdrawn on 23 September 2026 stay out of the sheet.
+for (const prefix of ['anatomy-', 'artifact-', 'theta-', 'geography-intro', 'duo-plates', 'museum-plate', 'plate-label',
+  'archaic-photo', 'editorial-two', 'onward-cue', 'journey-faces']) {
+  check(!new RegExp(`\\.${prefix}`).test(styles), `The stylesheet no longer styles .${prefix}`);
+}
+const krollLabels = ['remint', 'profile'].map(id => data.sources.find(source => source.id === id).short);
+check(krollLabels.every(label => label && label.length <= 40) && krollLabels[0] !== krollLabels[1],
+  'The two Kroll 2011 sidenotes carry distinct short labels');
+check(Object.values(derivedManifest?.images || {}).every(record => record.derivatives.every(d => d.width <= 1600)),
+  'No display derivative is wider than 1600 px now that the Anatomy stage is gone');
 
 console.log(`PASS: ${tests} structural/rendering checks; ${data.sources.length} sources; ${Object.keys(data.images).length} images; ${data.families.length} family records.\nExternal network availability and historical claims require separate review.`);
