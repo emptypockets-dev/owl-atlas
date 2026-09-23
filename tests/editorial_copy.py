@@ -92,7 +92,9 @@ check('SOURCED IMAGES / REUSE REVIEW PENDING' in visible_copy,
 # before the maps. Chapter 01 is the silver and one static Attica map; the
 # eight-region explorer moved whole into chapter 05; chapter 02 moved to a dark
 # ground; chapter 06 was halved around Nikophon's law; the One Owl invitation
-# now ends the page. Chapter numbers are unchanged, 01-07.
+# now ends the page. Chapter numbers are unchanged, 01-07. On 23 September 2026
+# chapter 01's static map gave way to a photograph of Laurion ore, at the
+# owner's request; chapter 01 now draws no map at all.
 order = [home_html.index(f'id="{anchor}"') for anchor in
          ['origins', 'classical', '404', 'new-style', 'beyond', 'evidence',
           'pricing', 'atlas', 'one-owl']]
@@ -101,7 +103,13 @@ check(home_html.index('id="one-owl"') < home_html.index('<footer class="site-foo
       'The One Owl invitation is the last thing before the footer')
 origins_html = home_html[home_html.index('id="origins"'):home_html.index('id="classical"')]
 check('geography-explorer' not in origins_html, 'The eight-region explorer has left chapter 01')
-check('class="geo-focus origins-map"' in origins_html, 'Chapter 01 carries one static Attica map')
+check('origins-map' not in origins_html and 'geo-focus-map' not in origins_html,
+      'Chapter 01 draws no static map')
+check(origins_html.count('data-image="laurion-galena"') == 1, 'Chapter 01 shows the Laurion ore photograph')
+check('not an ancient find' in origins_html,
+      'The ore photograph is presented as a museum specimen, not an ancient find')
+check('cupellation' in origins_html and 'data-source="laurion-cupellation"' in origins_html,
+      'Chapter 01 explains ore to lead to silver, with its source')
 check('SILVER FROM LAURION' in visible_copy and 'First the silver.' in visible_copy,
       'Chapter 01 is about the silver')
 beyond_html = home_html[home_html.index('id="beyond"'):home_html.index('id="evidence"')]
@@ -144,8 +152,10 @@ check(bool(continue_row) and re.findall(r'<li><a href="([^"]+)"', continue_row.g
       == ['atlas/', 'atlas/#sources'],
       'The continue row offers the reference atlas, then its sources and image credits')
 check(data['edition'] == 'Research edition 03', 'Data edition updated')
-check(len(data['sources']) == 50, 'All 41 earlier sources retained plus the nine shareable-fact references')
-check(len(data['images']) == 17, 'Original 16 image records retained plus the researched early-classical reverse')
+check(len(data['sources']) == 51,
+      'All 41 earlier sources retained plus the nine shareable-fact references and the Laurion cupellation study')
+check(len(data['images']) == 18,
+      'Original 16 image records retained plus the researched early-classical reverse and the Laurion ore photograph')
 check(len(data['specimens']) == 3, 'All three BnF specimens retained')
 check(sum(i.get('reuseStatus') == 'review-pending' for i in data['images'].values()) == 6,
       'All six BnF reuse caveats retained')

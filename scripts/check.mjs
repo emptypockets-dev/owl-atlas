@@ -4,7 +4,7 @@ import {readFile, stat} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import vm from 'node:vm';
-import {escapeHtml, sourceRefs, sourceShortLabel, SOURCE_SHORT_LABEL_MAX, photoMarkup, comparisonMarkup, marketStats, marketCsv, atticaLocatorMarkup} from '../src/render.mjs';
+import {escapeHtml, sourceRefs, sourceShortLabel, SOURCE_SHORT_LABEL_MAX, photoMarkup, comparisonMarkup, marketStats, marketCsv} from '../src/render.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const data = JSON.parse(await readFile(path.join(root, 'src/content.json'), 'utf8'));
 const html = await readFile(path.join(root, 'index.html'), 'utf8');
@@ -737,28 +737,30 @@ assert.deepEqual(onwardTargets, ['404','new-style','beyond','evidence','pricing'
 const pageScripts = [...html.matchAll(/<script(?![^>]*application\/(?:ld\+)?json)[^>]*>([\s\S]*?)<\/script>/g)].map(match => match[1]).join('\n');
 check(!pageScripts.includes('onward-cue'), 'The onward cues are markup, not script');
 
-// Chapter 01: one static Attica map, drawn from the explorer's own data, with
-// the scale bar, north mark and labels the explorer's focused maps carry. It
-// must not be a second copy of the explorer, and its ids must not collide with
-// the explorer's Athens panel.
+// Chapter 01: the silver, then its ore. Since 23 September 2026 a photograph of
+// Laurion ore stands where the static Attica map was, so the chapter draws no
+// map at all; the eight-region explorer, with its own Athens view, is chapter 05's.
 const origins = storySection('origins');
 check(!origins.includes('geography-explorer') && !origins.includes('data-geography='),
   'The eight-region explorer has left chapter 01');
-const atticaFigure = origins.match(/<figure class="geo-focus origins-map">[\s\S]*?<\/figure>/)?.[0] || '';
-check(Boolean(atticaFigure), 'Chapter 01 draws one static Athens & Attica figure');
-check((origins.match(/<svg class="geo-focus-map"/g) || []).length === 1
-  && !origins.includes('geo-locator-map'), 'Chapter 01 carries exactly one map and no second locator');
-check(atticaFigure.includes('<title id="geo-attica-opening-map-title">'), 'The static map names itself');
-check(/<g class="geo-scale"><rect[^>]*\/><path[^>]*\/><text[^>]*>\d+ km<\/text><\/g>/.test(atticaFigure),
-  'The static map keeps its scale bar');
-check(/<text class="geo-north"[^>]*>N /.test(atticaFigure), 'The static map keeps its north mark');
-for (const [name, , , kind] of data.geography.places.find(place => place.id === 'athens').labels) {
-  check(atticaFigure.includes(`class="geo-map-label geo-map-label-${kind}"`) && atticaFigure.includes(`>${escapeHtml(name)}</text>`),
-    `The static map keeps the ${name} label`);
-}
-check(atticaFigure.includes('<button') === false, 'The static map has nothing to operate');
+check(!/<svg class="geo-(?:focus|locator)-map"/.test(origins) && !origins.includes('origins-map'),
+  'Chapter 01 draws no map: the ore photograph replaced the static Attica figure');
+check((origins.match(/<figure class="image-figure/g) || []).length === 1, 'Chapter 01 carries exactly one photograph');
+const oreFigure = figuresFor(origins, 'laurion-galena')[0] || '';
+check(/^<figure class="image-figure origins-photo" data-photo="laurion-galena"/.test(oreFigure)
+  && oreFigure.includes('data-image="laurion-galena"'), 'Chapter 01 shows the Laurion ore photograph, openable in the viewer');
+check(/<img [^>]*\bsrcset="[^"]*public\/images\/derived\/laurion-galena-[^"]*"[^>]*\bsizes="/.test(oreFigure),
+  'The ore photograph loads self-hosted derivatives through srcset and sizes');
+check(oreFigure.includes(`href="${escapeHtml(data.images['laurion-galena']?.source)}"`)
+  && oreFigure.includes(`>${escapeHtml(data.images['laurion-galena']?.license)}</a>`),
+  'The ore photograph carries its credit, rights record and licence');
+const oreCaption = origins.match(/<p class="micro-copy origins-caption">([\s\S]*?)<\/p>/)?.[1] || '';
+check(/Laurion/.test(oreCaption) && /galena/.test(oreCaption) && /not an ancient find/.test(oreCaption),
+  'The caption names the ore and says it is not an ancient find');
+check(origins.includes('data-source="laurion-cupellation"') && /cupellation/.test(origins) && /litharge/.test(origins),
+  'Chapter 01 takes the ore to lead and the lead to silver by cupellation, with its source');
+check(!origins.slice(0, origins.indexOf('id="minting"')).includes('<button'), 'The chapter-01 opening has nothing to operate');
 check(origins.includes('id="minting"'), 'The minting illustration stays in chapter 01');
-assert.throws(() => atticaLocatorMarkup({geography: {places: []}}, geography)); tests++;
 
 // Chapter 05 now holds the explorer, with every deep-link id intact.
 const beyond = storySection('beyond');
@@ -866,5 +868,32 @@ check((markup.match(/class="crisis section-ink"/g) || []).length === 1 && /class
   'The seam rule reaches exactly one section, #404');
 check(inlineStyles.includes('.crisis.section-ink {'), 'The built CSS carries the seam');
 /* === end CHUNK 7 / WITHDRAWN FEATURES AND SEAM =========================== */
+
+/* === LAURION ORE PHOTOGRAPH ==============================================
+   Added 23 September 2026 with the chapter-01 photograph. A record's stated
+   pixel size has to be the size of the original its derivatives were resized
+   from, for every derived photograph. The ore itself is a modern mineral
+   specimen, so its record has to say where the ore came from and what the
+   picture is not, and to carry a licence the page can act on. */
+for (const [id, record] of Object.entries(derivedManifest?.images || {})) {
+  const image = data.images[id];
+  check(record.sourceWidth === image.width && record.sourceHeight === image.height,
+    `${id}: the record says ${image.width}×${image.height}, the original measured ${record.sourceWidth}×${record.sourceHeight}`);
+}
+const ore = data.images['laurion-galena'] || {};
+check(ore.license === 'CC BY 2.0' && ore.licenseUrl === 'https://creativecommons.org/licenses/by/2.0/' && ore.reuseStatus === 'cc-by-2.0',
+  'laurion-galena: CC BY 2.0, and its reuse status records it');
+check(ore.crop === 'none' && !ore.rightsNote, 'laurion-galena: the full frame, with no open reuse review');
+check(/Laurion \(Lavrion\)/.test(ore.note) && /not an ancient find/.test(ore.note) && /Carnegie Museum of Natural History/.test(ore.note),
+  'laurion-galena: the note gives the locality, the holding museum and what the photograph is not');
+check(/^No crop, retouching, upscaling or AI enhancement\./.test(ore.changes),
+  'laurion-galena: the only declared change is the self-hosted resize');
+check((derivedManifest?.images?.['laurion-galena']?.derivatives || []).length > 0, 'laurion-galena: has self-hosted derivatives');
+check(ore.source === 'https://www.flickr.com/photos/jsjgeology/49365343353',
+  'laurion-galena: links the photographer\'s own photo page, where the licence is stated');
+const cupellation = data.sources.find(source => source.id === 'laurion-cupellation');
+check(Boolean(cupellation) && cupellation.accessed === '2026-09-23' && /Laurion/.test(cupellation.title),
+  'The chapter-01 metallurgy sentence rests on a dated Laurion cupellation source');
+/* === end LAURION ORE PHOTOGRAPH ========================================== */
 
 console.log(`PASS: ${tests} structural/rendering checks; ${data.sources.length} sources; ${Object.keys(data.images).length} images; ${data.families.length} family records.\nExternal network availability and historical claims require separate review.`);

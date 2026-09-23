@@ -48,6 +48,70 @@
   checks that both features are gone and pins the continue row;
   `tests/integration_data.py` and one check comment lose their kit wording. The
   share-card HOLD block is untouched.
+# Laurion ore replaces chapter 01's map — 23 September 2026
+
+- At the owner's request, chapter 01's static Athens & Attica map gives way to a
+  photograph of Laurion ore: `laurion-galena`, argentiferous galena on public
+  display at the Carnegie Museum of Natural History, photographed by James
+  St. John on 30 January 2011 (CC BY 2.0,
+  <https://www.flickr.com/photos/jsjgeology/49365343353>, 3,217 × 2,477 px).
+  The exhibit label, as the photographer transcribes it, calls it an ore sample
+  from the silver mines of Laurium. The record says it is a modern mineral
+  specimen, not an ancient find; that the mine and collecting date are
+  unrecorded; and that the edge of the exhibit label shows at the upper right.
+- Why Flickr: Wikimedia Commons has no photograph of Laurion galena. Searched
+  were the Galena category tree (31 categories), Minerals of Greece (44), the
+  Lavrion mineral and mine categories and full-text searches in several languages,
+  plus the Smithsonian open-access API, the NHM London data portal and
+  Europeana. The Flickr page is the photographer's own and states CC BY 2.0.
+  With no Commons license review behind it, the page was checked on
+  23 September 2026 and the notices ask for a dated copy to be kept.
+- No unstruck blank is added. No museum or excavation record found identifies a
+  photographed silver flan as a blank for Athenian silver coinage: searches of
+  the ANS collection found no unstruck flan from Attica, the Met and Smithsonian
+  open-access searches returned none, and the Agora mint building's unstruck
+  flans are bronze, for the bronze coinage. British Museum photographs are
+  licensed for non-commercial use only and could not be used anyway.
+- Chapter 01's third paragraph gains two sentences on the metal path: the silver
+  came out of lead ore; smelting gave lead holding most often about two
+  kilograms of silver to the tonne; cupellation under blown air oxidised that
+  lead to litharge and left the silver. They cite new source 51,
+  `laurion-cupellation`: George D. Papadimitriou, "Cupellation and litharge in
+  their technological context at Laurion", Der Anschnitt Beiheft 50
+  (Deutsches Bergbau-Museum Bochum, 2023), pp. 87–104, open access. It is
+  appended, so no existing citation number moves; the companion page's own
+  references shift by one. The copy does not call galena *the* ore, because
+  Papadimitriou gives the smelting charge as mainly cerussite with galena up to
+  about 20 per cent. The caption says what the photograph is: "Ore from the
+  Laurion mines: galena, the lead mineral silver was recovered from. A museum
+  specimen photographed in 2011, not an ancient find."
+- Self-hosted derivatives at 800 and 1,600 px under `public/images/derived/`,
+  manifest updated; the other eleven originals came from the checksum-verified
+  cache and their derivatives are byte-identical. `photoSizes` gains
+  `origins-photo`, `(max-width: 900px) 92vw, 40vw`, measured against the column
+  (558 px at 1440, at most 640 px below 900). In the headless QA browser the
+  home page measures 14,617 px at 1440 and 20,686 px at 390.
+- `atticaLocatorMarkup()` and the `ATTICA_LOCATOR` token are removed, and
+  `geographyMap()` loses the `idBase` parameter that existed only for them. The
+  explorer's maps and ids are unchanged. The `.origins-map` rules give way to
+  `.origins-photo` and `.origins-caption` in the story-order block.
+- `scripts/check.mjs` replaces the static-map assertions with photograph ones:
+  exactly one photograph, openable in the viewer, self-hosted srcset, credit,
+  rights record and license, the caption, no map, and the cupellation citation.
+  An appended block checks that every derived record's stated size equals its
+  measured original, and pins `laurion-galena`'s license, reuse status, note,
+  changes and rights link. `tests/editorial_copy.py`, `tests/browser_smoke.py`
+  and `tests/reference_browser.py` look for the photograph and no map; the
+  counts in `tests/editorial_copy.py`, `tests/integration_data.py` and
+  `tests/one_owl_data.py` move to 18 images and 51 sources.
+- `/kit/` lists the photograph automatically in its attribution group. The
+  kit's paragraph in `THIRD_PARTY_NOTICES.md` still says fifteen photographs; it
+  was left alone because `/kit/` is being removed in a separate change.
+- In the headless QA browser Flickr answered the original, and its 2,048 and
+  3,072 px sizes, with HTTP 429 while serving the 1,024 px size; curl with
+  browser-style headers received the original. The page loads only the
+  self-hosted copies. The viewer and the "Full-resolution original" link, which
+  open the Flickr original, still need a check in a real browser.
 
 ---
 

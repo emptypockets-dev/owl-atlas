@@ -41,9 +41,11 @@ with sync_playwright() as p:
                      'beyond','geography-explorer','evidence','pricing','atlas','one-owl'):
         check(home.locator(f'#{fragment}').count()==1,f'Homepage preserves #{fragment}')
     # The 21 September 2026 reorder: the explorer moved from chapter 01 to
-    # chapter 05, and the One Owl invitation became the ending.
+    # chapter 05, and the One Owl invitation became the ending. On 23 September
+    # 2026 chapter 01's static map gave way to a photograph of Laurion ore.
     check(home.locator('#beyond #geography-explorer').count()==1,'Explorer sits in chapter 05')
-    check(home.locator('#origins .origins-map .geo-focus-map').count()==1,'Chapter 01 keeps one static map')
+    check(home.locator('#origins [data-image="laurion-galena"]').count()==1,'Chapter 01 shows the Laurion ore photograph')
+    check(home.locator('#origins .geo-focus-map').count()==0,'Chapter 01 draws no map')
     check(home.evaluate('''() => {
       const ids=[...document.querySelectorAll('main > section, main > aside')].map(e=>e.id);
       return ids.join(',');

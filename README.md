@@ -65,7 +65,8 @@ both belong to the same coin; see `research/early-classical-findings.json`.
 ## The experience
 
 - Seven narrative chapters, in this order: 01 Silver from Laurion — Attica, the Laurion
-  mining district, one static Athens & Attica map and the minting illustration; 02 The
+  mining district, a photograph of Laurion ore with the path from ore to lead to silver,
+  and the minting illustration; 02 The
   classical icon — the interactive close reading, on a dark ground; 03 War and its
   aftermath (404 BCE); 04 The redesign (New Style); 05 An owl beyond Attica — the Sabakes
   example and the eight-region geographic explorer; 06 How we know — four kinds of evidence
@@ -111,7 +112,7 @@ both belong to the same coin; see `research/early-classical-findings.json`.
   Pi II/Pi III specimen selectors, and story links preset meaningful comparisons.
 - A native-dialog image viewer with source/rights metadata, fitted-size zoom,
   keyboard controls, drag and pinch handlers, and original-image links.
-- Inline source dialogs, 41 bibliography records, author/topic filtering, 17
+- Inline source dialogs, 51 bibliography records, author/topic filtering, 18
   image records, three structured BnF specimen records, a glossary and a visible
   editorial coverage register.
 - A guided geographic explorer, in chapter 05, distinguishes cities, islands, modern
@@ -120,8 +121,10 @@ both belong to the same coin; see `research/early-classical-findings.json`.
   shown within Attica and Greece; other regions are areas rather than numbered pins.
   All eight entries remain readable without JavaScript and in print. See
   `research/geography-explorer-findings.json` for data and qualifications.
-  Chapter 01 draws the same Athens & Attica view once, as a static figure with its scale
-  bar and labels and nothing to operate (`atticaLocatorMarkup()` in `src/render.mjs`).
+  Chapter 01 draws no map: since 23 September 2026 a photograph of Laurion ore
+  (`laurion-galena`: galena on display at the Carnegie Museum of Natural History,
+  photographed by James St. John, CC BY 2.0 via Flickr) stands where its static
+  Athens & Attica figure was.
 
 ## Edit and build
 
