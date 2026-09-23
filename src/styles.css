@@ -696,6 +696,13 @@ img {
   letter-spacing:-.022em
 }
 
+/* One surprising, cited fact opens each chapter's lead. It stays inline so its
+   citation marker follows it directly. */
+.chapter-aha {
+  display:inline;
+  font-weight:600
+}
+
 .prose {
   max-width:510px
 }
