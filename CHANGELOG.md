@@ -1,3 +1,22 @@
+# Final polish, fresh leads and withdrawn-path redirects — 23 September 2026
+
+- Minting step 03: the "Hammer" tag fades in after the blow lands (4.25 s)
+  instead of sitting over the falling hammer; the static and no-JavaScript
+  diagram is unchanged.
+- Hide the hero's flip honesty note visually below 760 px; it stays in the
+  accessibility tree for the button's `aria-describedby`.
+- `.pill`, `.turn-button`, `.mint-replay` and `.chapter-copy` keep a rounded
+  focus ring; the global 2 px focus radius is untouched.
+- Reword the bold leads of chapters 02, 03 and 07 so they no longer repeat
+  the hero's "four days' pay" and "little need to change" lines; same
+  citations, one sentence each.
+- `vercel.json` redirects `/kit`, `/kit/` and `/kit/:path*` to
+  `/atlas/#sources` (308). `src/app.js` sends the withdrawn `#anatomy` and
+  `#theta` anchors to `#classical` and `#identify` to `#atlas`.
+  `scripts/check.mjs` checks both.
+- Phone read-through (390×844) of all four pages and the desktop home page:
+  no horizontal overflow found.
+
 # Analytics, chapter hooks and a performance sweep — 23 September 2026
 
 - Add cookie-free Vercel Web Analytics: one `/_vercel/insights/script.js` tag

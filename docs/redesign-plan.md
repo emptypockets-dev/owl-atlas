@@ -165,9 +165,10 @@ Nothing is deployed or pushed without an explicit request.
   `artifactStories`, the artifact explorer and its geometry test deleted; the
   2,400 px `classic-owl` derivative dropped; the two Kroll 2011 sidenotes
   carry distinct labels.
-- Polish list, still open: the "Hammer" label overlaps the moving hammer
-  mid-animation; hide the hero's honesty note on phones; round the focus ring
-  on pill buttons; restore the motion toggle to the 44 px scan in
+- Polish list, done 23 September 2026: the "Hammer" label now appears only
+  after the blow lands; the hero's honesty note is visually hidden below
+  760 px (still read through `aria-describedby`); pill controls keep a rounded
+  focus ring. Still open: restore the motion toggle to the 44 px scan in
   `tests/one_owl_browser.py`; a vetted hook for chapter 04.
 - Chunk 4 prep: `research/hooks-findings.md` ranks ten verified hooks.
 

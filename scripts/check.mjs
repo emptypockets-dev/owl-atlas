@@ -897,5 +897,18 @@ check(krollLabels.every(label => label && label.length <= 40) && krollLabels[0] 
   'The two Kroll 2011 sidenotes carry distinct short labels');
 check(Object.values(derivedManifest?.images || {}).every(record => record.derivatives.every(d => d.width <= 1600)),
   'No display derivative is wider than 1600 px now that the Anatomy stage is gone');
+{
+  let vercel = null;
+  try { vercel = JSON.parse(await readFile(path.join(root, 'vercel.json'), 'utf8')); } catch {}
+  check(vercel !== null, 'vercel.json parses as JSON');
+  const redirects = Array.isArray(vercel?.redirects) ? vercel.redirects : [];
+  for (const source of ['/kit', '/kit/', '/kit/:path*']) {
+    check(redirects.some(r => r.source === source && r.destination === '/atlas/#sources' && r.statusCode === 308),
+      `vercel.json redirects ${source} to /atlas/#sources with a 308`);
+  }
+  const appJs = await readFile(path.join(root, 'src/app.js'), 'utf8');
+  check(/'#anatomy': 'classical', '#theta': 'classical', '#identify': 'atlas'/.test(appJs),
+    'src/app.js maps the withdrawn #anatomy, #theta and #identify anchors to live sections');
+}
 
 console.log(`PASS: ${tests} structural/rendering checks; ${data.sources.length} sources; ${Object.keys(data.images).length} images; ${data.families.length} family records.\nExternal network availability and historical claims require separate review.`);

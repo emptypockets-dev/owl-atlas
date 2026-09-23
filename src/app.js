@@ -941,3 +941,16 @@ window.addEventListener('hashchange', (event) => {
     event.stopImmediatePropagation();
   }
 }, true);
+
+// Withdrawn anchors (the Anatomy exhibit, the theta interlude and the
+// identifier) cannot be redirected by the server, because a hash never reaches
+// it. Old links land on the nearest live section instead.
+(() => {
+  const withdrawn = { '#anatomy': 'classical', '#theta': 'classical', '#identify': 'atlas' };
+  const targetId = withdrawn[location.hash];
+  if (!targetId || document.getElementById(location.hash.slice(1))) return;
+  const target = document.getElementById(targetId);
+  if (!target) return;
+  history.replaceState(null, '', location.pathname + location.search + '#' + targetId);
+  target.scrollIntoView({ behavior: motionOff ? 'auto' : 'smooth', block: 'start' });
+})();
