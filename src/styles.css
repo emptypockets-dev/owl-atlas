@@ -7198,23 +7198,6 @@ p:has(> a[href$="#share-card"]) {
 }
 /* === end HOLD / SHARE-CARD MAKER HIDDEN === */
 
-/* === CHUNK 7 / SEAM =========================================================
-   Chapter 02 (#classical, --forest) now runs straight into chapter 03 (#404,
-   --forest-deep): the interlude that used to stand between them is gone. A
-   full-width --line-dark hairline marks the boundary and a little more top
-   padding keeps the eyebrow clear of it, so the change of ground reads as a
-   chapter break. .crisis is that chapter's own class, and the pair outranks
-   the narrow-screen .crisis padding without naming an id that starts with a
-   digit. */
-.crisis.section-ink {
-  border-top:1px solid var(--line-dark);
-  padding-top:132px;
-}
-@media (max-width:760px) {
-  .crisis.section-ink { padding-top:104px; }
-}
-/* === end CHUNK 7 / SEAM === */
-
 /* === CHUNK 8 / LINK HOVER ==================================================
    Quiet links carry a bottom border, so an underline on hover drew a second
    line beneath the first. Hover now changes the colour instead: a dark gold
@@ -7242,3 +7225,20 @@ p:has(> a[href$="#share-card"]) {
   color:var(--gold);
 }
 /* === end CHUNK 8 / LINK HOVER === */
+
+/* === CHUNK 7 / SEAM =========================================================
+   Chapter 02 (#classical, --forest) now runs straight into chapter 03 (#404,
+   --forest-deep): the interlude that used to stand between them is gone. A
+   full-width --line-dark hairline marks the boundary and a little more top
+   padding keeps the eyebrow clear of it, so the change of ground reads as a
+   chapter break. .crisis is that chapter's own class, and the pair outranks
+   the narrow-screen .crisis padding without naming an id that starts with a
+   digit. */
+.crisis.section-ink {
+  border-top:1px solid var(--line-dark);
+  padding-top:132px;
+}
+@media (max-width:760px) {
+  .crisis.section-ink { padding-top:104px; }
+}
+/* === end CHUNK 7 / SEAM === */
